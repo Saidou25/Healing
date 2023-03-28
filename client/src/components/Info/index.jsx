@@ -7,34 +7,26 @@ const Info = () => {
 
     const [userFirstName, setUserFirstName] = useState('');
     const [userLastName, setUserLastName] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [userPhoneNumber, setUserNumber] = useState('');
-    const [userReason, setUserReason] = useState('');
+    // const [userEmail, setUserEmail] = useState('');
+    // const [userPhoneNumber, setUserNumber] = useState('');
+    // const [userReason, setUserReason] = useState('');
+   
 
     const handleInputChange = (e) => {
         e.preventDefault();
-
-        const newUser = {
-            userFirstName,
-            userLastName,
-            userEmail,
-            userPhoneNumber,
-            userReason
-        }
-        console.log(newUser);
 
         const x = document.querySelector(".validate");
         const y = document.querySelector(".invalidate");
         const x1 = document.querySelector(".validate1");
         const y1 = document.querySelector(".invalidate1");
-        const x2 = document.querySelector(".validate2");
-        const y2 = document.querySelector(".invalidate2");
-        const x3 = document.querySelector(".validate3");
-        const y3 = document.querySelector(".invalidate3");
-        const x4 = document.querySelector(".validate4");
-        const y4 = document.querySelector(".invalidate4");
+        // const x2 = document.querySelector(".validate2");
+        // const y2 = document.querySelector(".invalidate2");
+        // const x3 = document.querySelector(".validate3");
+        // const y3 = document.querySelector(".invalidate3");
+        // const x4 = document.querySelector(".validate4");
+        // const y4 = document.querySelector(".invalidate4");
 
-        const emailRegex = /^\S+@\S+\.\S+$/;
+        // const emailRegex = /^\S+@\S+\.\S+$/;
 
         const { name, value } = e.target;
 
@@ -64,46 +56,46 @@ const Info = () => {
                 y1.style.display = "block";
             }
         }
-        if (name === 'userEmail') {
+        // if (name === 'userEmail') {
 
-            setUserEmail(value);
-            if (value.length > 0 && emailRegex.test(value)) {
+        //     setUserEmail(value);
+        //     if (value.length > 0 && emailRegex.test(value)) {
 
-                x2.style.display = "block";
-                y2.style.display = "none";
-            } else {
+        //         x2.style.display = "block";
+        //         y2.style.display = "none";
+        //     } else {
 
-                x2.style.display = "none";
-                y2.style.display = "block";
-            }
-        }
-        if (name === 'userNumber') {
+        //         x2.style.display = "none";
+        //         y2.style.display = "block";
+        //     }
+        // }
+        // if (name === 'userNumber') {
 
-            setUserNumber(value);
-            if (value.length === 11) {
+        //     setUserNumber(value);
+        //     if (value.length === 11) {
 
 
-                x3.style.display = "block";
-                y3.style.display = "none";
-            } else {
+        //         x3.style.display = "block";
+        //         y3.style.display = "none";
+        //     } else {
 
-                x3.style.display = "none";
-                y3.style.display = "block";
-            }
-        }
-        if (name === 'userReason') {
+        //         x3.style.display = "none";
+        //         y3.style.display = "block";
+        //     }
+        // }
+        // if (name === 'userReason') {
 
-            setUserReason(value);
-            if (value.length > 0) {
+        //     setUserReason(value);
+        //     if (value.length > 0) {
 
-                x4.style.display = "block";
-                y4.style.display = "none";
-            } else {
+        //         x4.style.display = "block";
+        //         y4.style.display = "none";
+        //     } else {
 
-                x4.style.display = "none";
-                y4.style.display = "block";
-            }
-        }
+        //         x4.style.display = "none";
+        //         y4.style.display = "block";
+        //     }
+        // }
 
     };
 
@@ -112,9 +104,9 @@ const Info = () => {
         console.log('Perfect');
         setUserFirstName('');
         setUserLastName('');
-        setUserEmail('');
-        setUserNumber('');
-        setUserReason('');
+        // setUserEmail('');
+        // setUserNumber('');
+        // setUserReason('');
     }
 
     return (
@@ -160,7 +152,7 @@ const Info = () => {
                             <i className="fa-solid fa-check"></i>
                         </div>
                     </div>
-                    <div className="col-6">
+                    {/* <div className="col-6">
                         <label className="form-label">Email</label>
                         <input
                             className="form-control"
@@ -213,7 +205,7 @@ const Info = () => {
                             required
                             <i className="fa-solid fa-check"></i>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="col-12">
                         <button className="btn btn-primary"
                             type="submit"

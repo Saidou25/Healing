@@ -1,14 +1,19 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-     type Test {
+     type Patient {
      _id: ID!
-     user: String
+     name: String
      age: Int!
      }
      
      type Query {
-     tests: [Test]!
+     patients: [Patient]!
+     patient(id: ID!): Patient!
+     }
+
+     type Mutation {
+     addPatient(name: String!, age: Int!): patient
      }
      `;
 
