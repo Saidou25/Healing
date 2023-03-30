@@ -1,21 +1,21 @@
 import { gql } from '@apollo-client';
 
 export const QUERY_PATIENTS = gql`
-query patients {
-patients {
-_id
-name
-age
-}
-}
+     query patients {
+         patients {
+         _id
+         patientname
+         age
+       }
+   }
 `;
 
 export const QUERY_PATIENT = gql`
     query patient($id: ID!) {
-        user(id: $id) {
+        patient(id: $id) {
             _id
-            name
+            patientname
             age
-            }
-            }
-            `;
+        }
+     }
+ `;

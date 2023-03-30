@@ -12,10 +12,11 @@ const resolvers = {
 
     Mutation: {
         addPatient: async (_, args) => {
-            const patient = await Patient.create(args);
-            return { patient };
-        }
-    }
+            console.log('patientname', args.patientname, 'age', args.age);
+     
+            return await Patient.create({ patientname: args.patientname, age: args.age });
+        },
+    },
 };
 
 module.exports = resolvers;

@@ -1,9 +1,14 @@
 const { Schema, model } = require("mongoose");
 
 const patientSchema = new Schema({
-    name: {
+    patientname: {
         type: String,
         repuire: true,
+        trim: true,
+    }, 
+    age: {
+        type: Number,
+        required: true,
         trim: true,
     }
 });

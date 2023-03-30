@@ -1,13 +1,16 @@
 const db = require('../config/connection');
-const Test = require('../models');
-const testSeeds = require('./testSeeds.json');
+const Patient = require('../models');
+
+const patientSeeds = require('./patientSeeds.json');
 
 db.once('open', async () => {
-    console.log(testSeeds);
+   
+    console.log(patientSeeds);
   
     try {
-        await Test.deleteMany({});
-        await Test.insertMany(testSeeds);
+       
+        await Patient.deleteMany({});
+        await Patient.insertMany(patientSeeds)
 
         console.log('all done!');
     } catch (err) {
