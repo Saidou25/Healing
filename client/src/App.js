@@ -7,11 +7,12 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Info from './components/Info';
 import LandingPage from './pages/LandingPage'
+import Appointments from './components/Appointments'
 
 
 const client = new ApolloClient({
   uri: '/graphql',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({ addTypename: false }),
 });
 
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/Info' element={<Info />} />
           <Route path='/Navbar' element={<Navbar />} />
+          <Route path='/Appointments' element={<Appointments />} />
           <Route path='/' element={<LandingPage />} />
         </Routes>
       </>

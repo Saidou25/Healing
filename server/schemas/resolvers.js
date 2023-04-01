@@ -3,7 +3,7 @@ const Patient = require('../models');
 const resolvers = {
     Query: {
         patients: async () => {
-            return await Patient.find();
+            return await Patient.find({});
         },
         patient: async (_, args) => {
             return await Patient.findOne({ _id: args.id });
