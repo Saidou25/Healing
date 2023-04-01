@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Info from './components/Info';
-import PatientList from './components/PatientList'
+import LandingPage from './pages/LandingPage'
 
 
 const client = new ApolloClient({
@@ -25,7 +25,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/Info' element={<Info />} />
           <Route path='/Navbar' element={<Navbar />} />
-          <Route path='/PatientList' element={<PatientList />} />
+          <Route path='/' element={<LandingPage />} />
         </Routes>
       </>
       </Router>

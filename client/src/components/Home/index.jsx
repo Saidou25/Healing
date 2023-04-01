@@ -1,26 +1,21 @@
 import React from 'react';
-import { useQuery } from "@apollo/client";
-import { QUERY_PATIENTS } from '../../utils/queries';
-
+import { useQuery } from '@apollo/client';
 import PatientList from '../PatientList';
-
+import { QUERY_PATIENTS } from '../../utils/queries';
 
 
 const Home = () => {
 
     const { data } = useQuery(QUERY_PATIENTS);
-    const patients = data.patients || [];
+    const patients = data?.patients || [];
+    console.log(patients);
 
     return (
-        <>
-            <h3>This is the new homepage</h3>
-            <div>
-                <PatientList
-                    patients={patients}
-                />
-            </div>
-        </>
+        <div>
+            <PatientList patients={patients} />
+        </div>
     )
 };
+
 
 export default Home;

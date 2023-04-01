@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_PATIENT } from "../../utils/mutations";
 
@@ -6,6 +6,7 @@ import './index.css';
 
 const Info = () => {
 
+    const form = useRef();
     const [patientname, setPatientName] = useState('');
     const [age, setAge] = useState("");
 
@@ -55,7 +56,7 @@ const Info = () => {
                 <div className='title'>Information form</div>
             </div>
             <div className="row">
-                <form onSubmit={handleFormSubmit} className='row profile'>
+                <form ref={form} onSubmit={handleFormSubmit} className='row profile'>
                     <div className="col-6">
                         <label className="form-label1"> First name</label>
                         <input

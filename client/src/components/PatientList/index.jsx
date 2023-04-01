@@ -15,13 +15,10 @@ const PatientList = ({ patients }) => {
                     patients.map((patient) => (
                         <div key={patient._id} className="col-12 col-xl-6">
                             <div className="card mb-3">
-                                <h4 className="card-header bg-dark  p-2 m-0">
+                                <h4 className="card-header bg-dark text-white p-2 m-0">
                                     {patient.patientname} <br />
                                     <span className="text" style={{ fontSize: '1rem' }}>
-                                        currently is {patient.patientname ? patient.patientname.length : 0}{' '}
-                                        years old
-                                        {patient.age && patient.age.length === 1 ? '' : 's'}
-                                    </span>
+                                        age: {patient.age }</span>
                                 </h4>
                             </div>
                         </div>

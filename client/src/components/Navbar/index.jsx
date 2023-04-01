@@ -11,9 +11,8 @@ const Navbar = () => {
             </Link>
             <ul className="nav justify-content-end">
                 <CustomLink to='/Home' className='nav-item'>home</CustomLink>
-                <CustomLink to='/Info' className='nav-item'>Your information</CustomLink>
-                {/* <CustomLink to='/profile' className='nav-item'>profile</CustomLink> */}
-                <CustomLink to='/' className='nav-item'>home</CustomLink>
+                <CustomLink to='/Info' className='nav-item'>form</CustomLink>
+                {/* <CustomLink to='/' className='nav-item'>home</CustomLink> */}
             </ul>
         </nav>
     )
