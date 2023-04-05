@@ -19,3 +19,19 @@ export const QUERY_PATIENT = gql`
         }
      }
  `;
+export const QUERY_DATES = gql`
+    query dates {
+        dates {
+            _id
+            date
+        }
+     }
+ `;
+export const QUERY_DATE = gql`
+    query date($id: ID!) {
+        date(id: $id) {
+            _id
+            date
+        }
+     }
+ `;

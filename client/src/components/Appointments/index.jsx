@@ -1,76 +1,62 @@
 import React, { useState } from 'react';
-import './index.css';
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_DATE } from "../../utils/mutations";
+import { QUERY_DATES } from '../../utils/queries';
 
-import DayTimePicker from '@mooncake-dev/react-day-time-picker';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import DateList from '../DateList';
 
 const Appointments = () => {
 
-    const [isScheduling, setIsScheduling] = useState(false);
-    const [isScheduled, setIsScheduled] = useState(false);
-    const [scheduleErr, setScheduleErr] = useState('');
+    const { data } = useQuery(QUERY_DATES);
+    const dates = data?.dates || [];
+
+    console.log(data.dates.toString());
+    
+    const [date, setDate] = useState(new Date());
+
+    const [addDate, { loading, error }] = useMutation(ADD_DATE);
 
 
-    const handleScheduled = (dateTime, date) => {
-        setIsScheduling(true);
-        setScheduleErr('');
-        console.log('scheduled: ', dateTime);
+    if (loading) return 'Submitting...';
+    if (error) return `Submission error! ${error.message}`;
 
-        fakeRequest(date)
-            .then(json => {
-                setScheduleErr('');
-                setIsScheduled(true);
-                console.log('fake response: ', json);
-            })
-            .catch(err => {
-                setScheduleErr(err);
-            })
-            .finally(() => {
-                setIsScheduling(false);
-            });
-    };
+    const onChange = async () => {
 
-    function fakeRequest(data) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Uncomment below to trigger error:
-                // return reject('Error: KABOOM!');
-                resolve({
-                    status: 'ok',
-                    scheduled: data
-                });
-            }, 2e3);
-        });
-    };
+        setDate(date);
 
-    function timeSlotValidator(slotTime) {
-        const eveningTime = new Date(
-            slotTime.getFullYear(),
-            slotTime.getMonth(),
-            slotTime.getDate(),
-            18,
-            0,
-            0
-        );
-        const isValid = slotTime.getTime() > eveningTime.getTime();
-        return isValid;
+        console.log(date);
+
+        try {
+            await addDate({ variables: { date: date } });
+            
+
+            console.log(`success adding ${date}`);
+            // const { data } = useQuery(QUERY_DATES);
+            // const dates = data?.dates || [];
+
+        } catch (err) {
+            console.error(err);
+        }
     }
-
-
     return (
         <div className='container'>
-            <h3>Pick a Day and Time</h3>
-            <DayTimePicker
-                timeSlotSizeMinutes={15}
-                onConfirm={handleScheduled}
-                isLoading={isScheduling}
-                isDone={isScheduled}
-                err={scheduleErr}
-                timeSlotValidator={timeSlotValidator} />
-
-        </div>
-    );
-}
-
+          <DatePicker
+                    onChange={onChange}
+                    value={date}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    timeCaption="time"
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    placeholder="last name..."
+                />
+                <DateList dates={dates} />
+                </div>
+         
+    )
+};
 
 export default Appointments;
+

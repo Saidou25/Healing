@@ -1,3 +1,4 @@
-const Patient= require('./Patient');
+const Patient = require('./Patient');
+const Date = require('./Date');
 
-module.exports = Patient;
+module.exports = { Patient, Date };

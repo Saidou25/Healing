@@ -9,3 +9,11 @@ export const ADD_PATIENT = gql`
              }
     }
 `;
+export const ADD_DATE= gql`
+    mutation addDate($date: String!) {
+          addDate(date: $date) { 
+             _id          
+             date
+             }
+    }
+`;
