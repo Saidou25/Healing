@@ -10,10 +10,10 @@ export const ADD_PATIENT = gql`
     }
 `;
 export const ADD_DATE= gql`
-    mutation addDate($date: String!) {
-          addDate(date: $date) { 
+    mutation addDate($startDate: String!) {
+          addDate(startDate: $startDate) { 
              _id          
-             date
+             startDate
              }
     }
 `;

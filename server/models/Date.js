@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const dateSchema = new Schema({
-    date: {
+    startDate: {
         type: String,
         repuire: true,
         trim: true,

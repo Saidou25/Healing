@@ -23,7 +23,7 @@ export const QUERY_DATES = gql`
     query dates {
         dates {
             _id
-            date
+            startDate
         }
      }
  `;
@@ -31,7 +31,7 @@ export const QUERY_DATE = gql`
     query date($id: ID!) {
         date(id: $id) {
             _id
-            date
+            startDate
         }
      }
  `;

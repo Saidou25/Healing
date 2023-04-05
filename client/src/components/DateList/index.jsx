@@ -15,9 +15,9 @@ const DateList = ({ dates }) => {
                         <div key={date._id} className="col-12 col-xl-6">
                             <div className="card mb-3">
                                 <h4 className="card-header bg-dark text-white p-2 m-0">
-                                    {date.date.toString()} <br />
+                                    {date.startDate.toString()} <br />
                                     <span className="text" style={{ fontSize: '1rem' }}>
-                                        appointment: {date.date.toString()}</span>
+                                        appointment: {date.startDate.toString()}</span>
                                 </h4>
                             </div>
                         </div>

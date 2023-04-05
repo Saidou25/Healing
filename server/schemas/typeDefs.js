@@ -8,7 +8,7 @@ const typeDefs = gql`
      },
      type Date {
      _id: ID!
-     date: String
+     startDate: String
      }
      
      type Query {
@@ -20,7 +20,7 @@ const typeDefs = gql`
 
      type Mutation {
      addPatient(patientname: String!, age: Int!): Patient
-     addDate(date: String!): Date
+     addDate(startDate: String!): Date
      }
      `;
 

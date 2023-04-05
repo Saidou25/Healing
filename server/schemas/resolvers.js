@@ -23,9 +23,9 @@ const resolvers = {
             return await Patient.create({ patientname: args.patientname, age: args.age });
         },
         addDate: async (_, args) => {
-            console.log('date', args.date);
+            console.log('startDate', args.startDate);
      
-            return await Date.create({ date: args.date });
+            return await Date.create({ startDate: args.startDate });
         },
     },
 };
