@@ -8,7 +8,7 @@ import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
 
 import "react-datepicker/dist/react-datepicker.css";
-import { parseISO, setHours, setMinutes } from 'date-fns';
+// import { parseISO, setHours, setMinutes } from 'date-fns';
 
 
 const Appointments = () => {
@@ -22,14 +22,14 @@ const Appointments = () => {
     const { data } = useQuery(QUERY_DATES);
 
     const dates = data?.dates || [];
-    const allAppointments = [];
+    // const allAppointments = [];
 
-    for (let i = 0; i < dates.length; i++) {
+    // for (let i = 0; i < dates.length; i++) {
 
-        const result = ((dates[i].startDate).split('').slice(0, 10).join(''));
-        const resultIso = parseISO(result.toString());
-        allAppointments.push(resultIso);
-    };
+    //     const result = ((dates[i].startDate).split('').slice(0, 10).join(''));
+    //     const resultIso = parseISO(result.toString());
+    //     allAppointments.push(resultIso);
+    // };
 
     const handleSubmit = async () => {
         try {
@@ -49,10 +49,11 @@ const Appointments = () => {
                 timeFormat="HH:mm"
                 timeIntervals={15}
                 timeCaption="time"
-                minTime={setHours(setMinutes(new Date(), 0), 9)}
-                maxTime={setHours(setMinutes(new Date(), 30), 19)}
+                // minTime={setHours(setMinutes(new Date(), 0), 9)}
+                // maxTime={setHours(setMinutes(new Date(), 30), 19)}
                 dateFormat="MMMM d, yyyy h:mm aa"
-                excludeDates={allAppointments}
+                // minDate={new Date()}
+                // excludeDates={allAppointments}
             // footer={footer}
             />
             <div>
