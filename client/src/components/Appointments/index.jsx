@@ -5,7 +5,7 @@ import { QUERY_DATES } from '../../utils/queries';
 import DateList from '../DateList';
 import DatePicker from "react-datepicker";
 import './index.css';
-import 'react-datepicker/dist/react-datepicker-cssmodules.css'
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 import "react-datepicker/dist/react-datepicker.css";
 import { parseISO, setHours, setMinutes } from 'date-fns';
