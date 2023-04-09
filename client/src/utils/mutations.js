@@ -1,11 +1,13 @@
 import { gql } from '@apollo/client';
 
 export const ADD_PATIENT = gql`
-    mutation addPatient($patientname: String!, $age: Int!) {
-          addPatient(patientname: $patientname, age: $age) { 
+    mutation addPatient($patientfirstname: String!, $patientlastname: String!, $age: Int!, $patientemail: String!) {
+          addPatient(patientfirstname: $patientfirstname, patientlastname: $patientlastname, age: $age, patientemail: $patientemail) { 
              _id          
-             patientname
+             patientfirstname
+             patientlastname
              age
+             patientemail
              }
     }
 `;

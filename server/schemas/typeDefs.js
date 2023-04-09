@@ -3,8 +3,10 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
      type Patient {
      _id: ID!
-     patientname: String
-     age: Int! 
+     patientfirstname: String
+     age: Int
+     patientemail: String
+     patientlastname: String
      },
      type Date {
      _id: ID!
@@ -19,7 +21,7 @@ const typeDefs = gql`
      }
 
      type Mutation {
-     addPatient(patientname: String!, age: Int!): Patient
+     addPatient(patientfirstname: String!, patientlastname: String!, age: Int!, patientemail: String!): Patient
      addDate(startDate: String!): Date
      }
      `;

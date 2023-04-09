@@ -18,9 +18,9 @@ const resolvers = {
 
     Mutation: {
         addPatient: async (_, args) => {
-            console.log('patientname', args.patientname, 'age', args.age);
+            
      
-            return await Patient.create({ patientname: args.patientname, age: args.age });
+            return await Patient.create({ patientfirstname: args.patientfirstname, patientlastname: args.patientlastname, age: args.age, patientemail: args.patientemail });
         },
         addDate: async (_, args) => {
             console.log('startDate', args.startDate);

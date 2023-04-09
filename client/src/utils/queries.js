@@ -4,8 +4,10 @@ export const QUERY_PATIENTS = gql`
      query patients {
          patients {
          _id
-         patientname
+         patientfirstname
+         patientlastname
          age
+         patientemail
        }
    }
 `;
@@ -14,8 +16,10 @@ export const QUERY_PATIENT = gql`
     query patient($id: ID!) {
         patient(id: $id) {
             _id
-            patientname
+            patientfirstname
+            patientlastname
             age
+            patientemail
         }
      }
  `;
