@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Info from './components/Info';
 import LandingPage from './pages/LandingPage'
 import Appointments from './components/Appointments'
+import Visit from './components/Visit'
 // import DateList from './components/DateList'
 
 
@@ -28,7 +29,7 @@ function App() {
           <Route path='/Info' element={<Info />} />
           <Route path='/Navbar' element={<Navbar />} />
           <Route path='/Appointments' element={<Appointments />} />
-          {/* <Route path='/DateList' element={<DateList />} /> */}
+          <Route path='/Visit' element={<Visit />} />
           <Route path='/' element={<LandingPage />} />
         </Routes>
       </>
