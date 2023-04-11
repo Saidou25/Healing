@@ -18,14 +18,30 @@ const typeDefs = gql`
      type Date {
      _id: ID!
      startDate: String
-     }
+     patientfirstname: String
+     patientgender: String
+     patientaddress: String
+     patientemail: String
+     patientlastname: String
+     patientcity: String
+     patientnumber: String
+     patientreason: String
+     birthdate: String
+     patientzip: Int
+     mepet: String
+     },
+     type Bookingdate {
+     _id: ID!
+     startDate: String}
      
      type Query {
      patients: [Patient]!
      patient(id: ID!): Patient
      dates: [Date]!
      date(id: ID!): Date
-     }
+     bookingdates: [Bookingdate]
+     bookingdate(id: ID!): Bookingdate
+     },
 
      type Mutation {
      addPatient(
@@ -40,7 +56,22 @@ const typeDefs = gql`
      birthdate: String 
      mepet: String
      patientzip: Int): Patient
-     addDate(startDate: String!): Date
+     addDate(
+     startDate: String
+     patientfirstname: String
+     patientgender: String
+     patientaddress: String
+     patientemail: String
+     patientlastname: String
+     patientcity: String
+     patientnumber: String
+     patientreason: String
+     birthdate: String
+     patientzip: Int
+     mepet: String): Date
+     addBookingdate(
+     startDate: String
+     ): Bookingdate
      }
      `;
 

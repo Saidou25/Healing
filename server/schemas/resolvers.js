@@ -1,4 +1,4 @@
-const { Patient, Date } = require('../models');
+const { Patient, Date, Bookingdate } = require('../models');
 
 const resolvers = {
     Query: {
@@ -13,6 +13,12 @@ const resolvers = {
         },
         date: async (_, args) => {
             return await Date.findOne({ _id: args.id });
+        },
+        bookingdate: async () => {
+            return await Bookingdate.find({});
+        },
+        bookingdate: async (_, args) => {
+            return await Bookingdate.findOne({ _id: args.id });
         },
     },
 
@@ -36,7 +42,26 @@ const resolvers = {
         addDate: async (_, args) => {
             console.log('startDate', args.startDate);
      
-            return await Date.create({ startDate: args.startDate });
+            return await Date.create({ 
+                startDate: args.startDate,
+                patientfirstname: args.patientfirstname, 
+                patientlastname: args.patientlastname, 
+                birthdate: args.birthdate, 
+                patientemail: args.patientemail,
+                patientcity: args.patientcity,
+                patientzip: args.patientzip,
+                patientnumber: args.patientnumber,
+                patientreason: args.patientreason,
+                patientaddress: args.patientaddress,
+                patientgender: args.patientgender,
+                mepet: args.mepet });
+        },
+        addBookingdate: async (_, args) => {
+            console.log('startDate', args.startDate);
+     
+            return await Bookingdate.create({ 
+                startDate: args.startDate,
+                });
         },
     },
 };
