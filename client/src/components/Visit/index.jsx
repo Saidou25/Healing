@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
 import { useMutation } from "@apollo/client";
 import { ADD_PATIENT } from "../../utils/mutations";
+import './index.css';
 
 const Visit = () => {
+    const navigate = useNavigate();
 
     const [mepet, setMePet] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
-    // const [male, setMale] = useState('');
-    // const [female, setFemale] = useState('');
     const [birthdate, setBirthDate] = useState('');
     const [patientfirstname, setPatientFirstName] = useState('');
     const [patientlastname, setPatientLastName] = useState('');
@@ -18,7 +19,6 @@ const Visit = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientemail, setPatientEmail] = useState('');
-    // const [patientnumber, setPatientNumber] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
     const [addPatient, { data, loading, error }] = useMutation(ADD_PATIENT);
@@ -27,14 +27,25 @@ const Visit = () => {
     if (error) return `Submission error! ${error.message}`;
 
     const handleChange = (e) => {
-        // e.preventDefault();
-        // setMePet(e.target.value);
-        // console.log(e.target.value);
-        // setPatientGender(e.target.value);
-        // console.log(e.target.value);
-        // setValue(e.target.value);
-        // console.log(e.target.value);
-        
+
+        const x = document.querySelector(".validate");
+        const y = document.querySelector(".invalidate");
+        const x1 = document.querySelector(".validate1");
+        const y1 = document.querySelector(".invalidate1");
+        const x2 = document.querySelector(".validate2");
+        const y2 = document.querySelector(".invalidate2");
+        const x3 = document.querySelector(".validate3");
+        const y3 = document.querySelector(".invalidate3");
+        const x4 = document.querySelector(".validate4");
+        const y4 = document.querySelector(".invalidate4");
+        const x5 = document.querySelector(".validate5");
+        const y5 = document.querySelector(".invalidate5");
+        // const x6 = document.querySelector(".validate6");
+        // const y6 = document.querySelector(".invalidate6");
+        const x7 = document.querySelector(".validate7");
+        const y7 = document.querySelector(".invalidate7");
+        // const x8 = document.querySelector(".validat8");
+        // const y8 = document.querySelector(".invalidate8");
 
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
@@ -47,53 +58,111 @@ const Visit = () => {
             setMePet(e.target.value);
             console.log(e.target.value);
         }
-
         if (name === 'birthdate') {
             setBirthDate(value);
             console.log(value);
+            // const validateAge = 2023 - value.split('').slice(6, 10).join('');
+            // console.log(validateAge);
+            // if (value.length === 10) {
+            //     x8.style.display = "block";
+            //     y8.style.display = "none";
+            // } else {
+
+            //     x8.style.display = "none";
+            //     y8.style.display = "block";
+            // }
         }
         if (name === 'patientfirstname') {
             setPatientFirstName(value);
             console.log(value);
+            if (value.length > 2) {
+                x.style.display = "block";
+                y.style.display = "none";
+            } else {
+
+                x.style.display = "none";
+                y.style.display = "block";
+                return;
+            }
         }
         if (name === 'patientlastname') {
             setPatientLastName(value);
             console.log(value);
+            if (value.length > 2) {
+                x1.style.display = "block";
+                y1.style.display = "none";
+            } else {
+
+                x1.style.display = "none";
+                y1.style.display = "block";
+            }
         }
         if (name === 'patientaddress') {
             setPatientAddress(value);
             console.log(value);
+            if (value.length > 5) {
+                x2.style.display = "block";
+                y2.style.display = "none";
+            } else {
+
+                x2.style.display = "none";
+                y2.style.display = "block";
+
+            }
         }
         if (name === 'patientcity') {
             setPatientCity(value);
             console.log(value);
+            if (value.length > 2) {
+                x3.style.display = "block";
+                y3.style.display = "none";
+            } else {
+
+                x3.style.display = "none";
+                y3.style.display = "block";
+            }
         }
         if (name === 'patientzip') {
             setPatientZip(value);
             console.log(value);
+
             if (value.length === 5) {
                 console.log('great');
+                console.log('email ok');
+                x4.style.display = "block";
+                y4.style.display = "none";
+            } else {
+
+                x4.style.display = "none";
+                y4.style.display = "block";
             }
         }
         if (name === 'patientreason') {
             setPatientReason(value);
             console.log(value);
+            if (value.length > 10) {
+                x7.style.display = "block";
+                y7.style.display = "none";
+            } else {
+
+                x7.style.display = "none";
+                y7.style.display = "block";
+            }
         }
         if (name === 'patientemail') {
 
             setPatientEmail(value);
             console.log(value);
-            if (value.length > 0 && emailRegex.test(value)) {
+            if (value.length > 5 && emailRegex.test(value)) {
                 console.log('email ok');
+                x5.style.display = "block";
+                y5.style.display = "none";
+            } else {
+
+                x5.style.display = "none";
+                y5.style.display = "block";
             }
         }
-        // if (name === 'patientnumber') {
-        //     setValue(value);
-        //     console.log(value);
-        //     if (value.length === 11) {
-        //         console.log('great');
-        //     }
-        // }
     };
 
     const handleFormSubmit = async (e) => {
@@ -108,7 +177,6 @@ const Visit = () => {
         const patientcity = e.target.patientcity.value
         const patientnumber = e.target.patientnumber.value
         const patientreason = e.target.patientreason.value
-        // const patientnumber = e.target.patientnumber.value
         const birthdate = e.target.birthdate.value
         const patientzip = e.target.patientzip.value
         const mepet = e.target.mepet.value
@@ -120,22 +188,19 @@ const Visit = () => {
 
             setPatientFirstName("");
             setPatientLastName("")
-            // setMale("");
             setPatientGender("");
-            // setMale("");
-            // setFemale("");
             setPatientReason("");
             setMePet("");
             setPatientCity("")
             setPatientAddress("");
             setPatientZip("");
             setPatientEmail("");
-            // setPatientNumber("")
             setValue("");
             setBirthDate("");
 
+            console.log(`success adding ${patientfirstname}`);
 
-            console.log(`success adding ${patientfirstname}`)
+            navigate('/Appointments');
 
         } catch (err) {
             console.error(err);
@@ -196,6 +261,14 @@ const Visit = () => {
                             onChange={handleChange}
                             placeholder="MM/DD/YYYY..."
                         />
+                        <div className='validate8'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='invalidate8'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
                     </div>
 
                     <div className="col-6">
@@ -245,11 +318,11 @@ const Visit = () => {
                             type="text"
                             name="patientaddress"
                             placeholder="address..." />
-                        <div className='validate3'>
+                        <div className='validate2'>
                             Looks good
                             <i className="fa-solid fa-check"></i>
                         </div>
-                        <div className='invalidate3'>
+                        <div className='invalidate2'>
                             required
                             <i className="fa-solid fa-check"></i>
                         </div>
@@ -264,11 +337,11 @@ const Visit = () => {
                             name="patientcity"
                             onChange={handleChange}
                             placeholder="enter city..." />
-                        <div className='validate4'>
+                        <div className='validate3'>
                             Looks good
                             <i className="fa-solid fa-check"></i>
                         </div>
-                        <div className='invalidate4'>
+                        <div className='invalidate3'>
                             required
                             <i className="fa-solid fa-check"></i>
                         </div>
@@ -283,11 +356,11 @@ const Visit = () => {
                             onChange={handleChange}
                             type="Number"
                             placeholder="zip code..." />
-                        <div className='validate5'>
+                        <div className='validate4'>
                             Looks good
                             <i className="fa-solid fa-check"></i>
                         </div>
-                        <div className='invalidate5'>
+                        <div className='invalidate4'>
                             required
                             <i className="fa-solid fa-check"></i>
                         </div>
@@ -302,11 +375,11 @@ const Visit = () => {
                             type="email"
                             name="patientemail"
                             placeholder="example@example.com" />
-                        <div className='validate2'>
+                        <div className='validate5'>
                             Looks good
                             <i className="fa-solid fa-check"></i>
                         </div>
-                        <div className='invalidate2'>
+                        <div className='invalidate5'>
                             required
                             <i className="fa-solid fa-check"></i>
                         </div>
@@ -318,13 +391,13 @@ const Visit = () => {
                             placeholder="Enter phone number"
                             name='patientnumber'
                             value={patientnumber}
-                            onChange={setValue}/>
+                            onChange={setValue} />
 
-                        <div className='validate3'>
+                        <div className='validate6'>
                             Looks good
                             <i className="fa-solid fa-check"></i>
                         </div>
-                        <div className='invalidate3'>
+                        <div className='invalidate6'>
                             required
                             <i className="fa-solid fa-check"></i>
                         </div>
@@ -339,6 +412,14 @@ const Visit = () => {
                                 placeholder='type your text here...'
                                 onChange={handleChange}>
                             </textarea>
+                            <div className='validate7'>
+                                Looks good
+                                <i className="fa-solid fa-check"></i>
+                            </div>
+                            <div className='invalidate7'>
+                                required
+                                <i className="fa-solid fa-check"></i>
+                            </div>
                         </div>
                     </div>
                     <div className="col-12">
