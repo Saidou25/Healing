@@ -10,9 +10,9 @@ const Navbar = () => {
                Healing
             </Link>
             <ul className="nav justify-content-end">
-                <CustomLink to='/Home' className='nav-item'>home</CustomLink>
-                <CustomLink to='/Info' className='nav-item'>form</CustomLink>
-                <CustomLink to='/Appointments' className='nav-item'>appointments</CustomLink>
+                {/* <CustomLink to='/Home' className='nav-item'>home</CustomLink> */}
+                {/* <CustomLink to='/Info' className='nav-item'>form</CustomLink> */}
+                {/* <CustomLink to='/Appointments' className='nav-item'>appointments</CustomLink> */}
                 <CustomLink to='/Visit' className='nav-item'>visit</CustomLink>
                 {/* <CustomLink to='/' className='nav-item'>home</CustomLink> */}
             </ul>

@@ -4,9 +4,16 @@ const typeDefs = gql`
      type Patient {
      _id: ID!
      patientfirstname: String
-     age: Int
+     patientgender: String
+     patientaddress: String
      patientemail: String
      patientlastname: String
+     patientcity: String
+     patientnumber: String
+     patientreason: String
+     birthdate: String
+     patientzip: Int
+     mepet: String
      },
      type Date {
      _id: ID!
@@ -21,7 +28,18 @@ const typeDefs = gql`
      }
 
      type Mutation {
-     addPatient(patientfirstname: String!, patientlastname: String!, age: Int!, patientemail: String!): Patient
+     addPatient(
+     patientfirstname: String
+     patientgender: String
+     patientaddress: String
+     patientemail: String
+     patientlastname: String
+     patientcity: String
+     patientnumber: String
+     patientreason: String
+     birthdate: String 
+     mepet: String
+     patientzip: Int): Patient
      addDate(startDate: String!): Date
      }
      `;

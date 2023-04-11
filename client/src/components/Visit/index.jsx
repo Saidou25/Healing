@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import 'react-phone-number-input/style.css';
+import Input from 'react-phone-number-input/input';
+import { useMutation } from "@apollo/client";
+import { ADD_PATIENT } from "../../utils/mutations";
 
 const Visit = () => {
 
     const [mepet, setMePet] = useState('');
+    const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
+    // const [male, setMale] = useState('');
+    // const [female, setFemale] = useState('');
     const [birthdate, setBirthDate] = useState('');
     const [patientfirstname, setPatientFirstName] = useState('');
     const [patientlastname, setPatientLastName] = useState('');
@@ -11,18 +18,35 @@ const Visit = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientemail, setPatientEmail] = useState('');
-    const [patientnumber, setPatientNumber] = useState('');
+    // const [patientnumber, setPatientNumber] = useState('');
     const [patientreason, setPatientReason] = useState('');
+
+    const [addPatient, { data, loading, error }] = useMutation(ADD_PATIENT);
+
+    if (loading) return 'Submitting...';
+    if (error) return `Submission error! ${error.message}`;
 
     const handleChange = (e) => {
         // e.preventDefault();
-        setMePet(e.target.value);
-        console.log(e.target.value);
-        setPatientGender(e.target.value);
-        console.log(e.target.value);
+        // setMePet(e.target.value);
+        // console.log(e.target.value);
+        // setPatientGender(e.target.value);
+        // console.log(e.target.value);
+        // setValue(e.target.value);
+        // console.log(e.target.value);
+        
 
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
+
+        if (name === 'patientgender') {
+            setPatientGender(e.target.value);
+            console.log(e.target.value);
+        }
+        if (name === 'mepet') {
+            setMePet(e.target.value);
+            console.log(e.target.value);
+        }
 
         if (name === 'birthdate') {
             setBirthDate(value);
@@ -63,19 +87,65 @@ const Visit = () => {
                 console.log('email ok');
             }
         }
-        if (name === 'patientnumber') {
-            setPatientNumber(value);
-            console.log(value);
-            if (value.length === 11) {
-                console.log('great');
-            }
+        // if (name === 'patientnumber') {
+        //     setValue(value);
+        //     console.log(value);
+        //     if (value.length === 11) {
+        //         console.log('great');
+        //     }
+        // }
+    };
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        console.log('hello');
+
+        const patientfirstname = e.target.patientfirstname.value
+        const patientgender = e.target.patientgender.value
+        const patientaddress = e.target.patientaddress.value
+        const patientemail = e.target.patientemail.value
+        const patientlastname = e.target.patientlastname.value
+        const patientcity = e.target.patientcity.value
+        const patientnumber = e.target.patientnumber.value
+        const patientreason = e.target.patientreason.value
+        // const patientnumber = e.target.patientnumber.value
+        const birthdate = e.target.birthdate.value
+        const patientzip = e.target.patientzip.value
+        const mepet = e.target.mepet.value
+
+        try {
+            await addPatient({
+                variables: { patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientemail: patientemail, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, mepet: mepet, patientzip: parseInt(patientzip) }
+            });
+
+            setPatientFirstName("");
+            setPatientLastName("")
+            // setMale("");
+            setPatientGender("");
+            // setMale("");
+            // setFemale("");
+            setPatientReason("");
+            setMePet("");
+            setPatientCity("")
+            setPatientAddress("");
+            setPatientZip("");
+            setPatientEmail("");
+            // setPatientNumber("")
+            setValue("");
+            setBirthDate("");
+
+
+            console.log(`success adding ${patientfirstname}`)
+
+        } catch (err) {
+            console.error(err);
         }
     };
 
     return (
         <div className='container'>
             <h1>Please answer few questions</h1>
-            <form>
+            <form onSubmit={handleFormSubmit}>
                 <div className='row'>
                     <div className='col-6'>
                         <div>
@@ -103,22 +173,22 @@ const Visit = () => {
                             <input
                                 type="radio"
                                 name="patientgender"
-                                value="male"
+                                value='male'
                                 checked={patientgender === 'male'}
                                 onChange={handleChange} /> male
                         </div>
                         <div>
                             <input
                                 type="radio"
-                                name="patientgender"
-                                value="female"
+                                name='patientgender'
+                                value='female'
                                 checked={patientgender === 'female'}
                                 onChange={handleChange} /> female
                         </div>
                     </div>
 
                     <div className='col-6'>
-                        <label className="form-label">Gender</label><br />
+                        <label className="form-label">Age</label><br />
                         <input
                             type='text'
                             name="birthdate"
@@ -244,13 +314,12 @@ const Visit = () => {
 
                     <div className="col-6">
                         <label className="form-label">Phone number</label>
-                        <input
-                            className="form-control"
-                            type="Number"
+                        <Input
+                            placeholder="Enter phone number"
+                            name='patientnumber'
                             value={patientnumber}
-                            onChange={handleChange}
-                            name="patientnumber"
-                            placeholder="phone number..." />
+                            onChange={setValue}/>
+
                         <div className='validate3'>
                             Looks good
                             <i className="fa-solid fa-check"></i>
@@ -271,6 +340,11 @@ const Visit = () => {
                                 onChange={handleChange}>
                             </textarea>
                         </div>
+                    </div>
+                    <div className="col-12">
+                        <button className="btn btn-primary"
+                            type="submit"
+                            value="Send">Submit</button>
                     </div>
                 </div>
             </form>
