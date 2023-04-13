@@ -14,10 +14,10 @@ const typeDefs = gql`
      birthdate: String
      patientzip: Int
      mepet: String
+   
      },
-     type Date {
+     type Visitorappointment {
      _id: ID!
-     startDate: String
      patientfirstname: String
      patientgender: String
      patientaddress: String
@@ -29,16 +29,30 @@ const typeDefs = gql`
      birthdate: String
      patientzip: Int
      mepet: String
+     isBooked: String
+      finalDateISO: String
+      appDay: String
+     appMonth: String
+     appDate: Int
+     appTime: String
+     appYear: Int
      },
      type Bookingdate {
-     _id: ID!
-     startDate: String}
+      _id: ID!
+      isBooked: String
+      finalDateISO: String
+      appDay: String
+     appMonth: String
+     appDate: Int
+     appTime: String
+     appYear: Int
+     }
      
      type Query {
      patients: [Patient]!
      patient(id: ID!): Patient
-     dates: [Date]!
-     date(id: ID!): Date
+     Visitorappointments: [Visitorappointment]!
+     Visitorappointment(id: ID!): Visitorappointment
      bookingdates: [Bookingdate]
      bookingdate(id: ID!): Bookingdate
      },
@@ -56,8 +70,8 @@ const typeDefs = gql`
      birthdate: String 
      mepet: String
      patientzip: Int): Patient
-     addDate(
-     startDate: String
+
+     addVisitorappointment(
      patientfirstname: String
      patientgender: String
      patientaddress: String
@@ -68,9 +82,23 @@ const typeDefs = gql`
      patientreason: String
      birthdate: String
      patientzip: Int
-     mepet: String): Date
+     mepet: String
+     isBooked: String
+     finalDateISO: String
+     appDay: String
+     appMonth: String
+     appDate: Int
+     appTime: String
+     appYear: Int): Visitorappointment
+
      addBookingdate(
-     startDate: String
+     isBooked: String
+     finalDateISO: String
+     appDay: String
+     appMonth: String
+     appDate: Int
+     appTime: String
+     appYear: Int
      ): Bookingdate
      }
      `;

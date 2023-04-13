@@ -1,4 +1,4 @@
-const { Patient, Date, Bookingdate } = require('../models');
+const { Patient, Visitorappointment, Bookingdate } = require('../models');
 
 const resolvers = {
     Query: {
@@ -8,13 +8,13 @@ const resolvers = {
         patient: async (_, args) => {
             return await Patient.findOne({ _id: args.id });
         },
-        dates: async () => {
-            return await Date.find({});
+        Visitorappointments: async () => {
+            return await Visitorappointment.find({});
         },
-        date: async (_, args) => {
-            return await Date.findOne({ _id: args.id });
+        Visitorappointment: async (_, args) => {
+            return await Visitorappointment.findOne({ _id: args.id });
         },
-        bookingdate: async () => {
+        bookingdates: async () => {
             return await Bookingdate.find({});
         },
         bookingdate: async (_, args) => {
@@ -24,11 +24,11 @@ const resolvers = {
 
     Mutation: {
         addPatient: async (_, args) => {
-            
-              return await Patient.create({ 
-                patientfirstname: args.patientfirstname, 
-                patientlastname: args.patientlastname, 
-                birthdate: args.birthdate, 
+
+            return await Patient.create({
+                patientfirstname: args.patientfirstname,
+                patientlastname: args.patientlastname,
+                birthdate: args.birthdate,
                 patientemail: args.patientemail,
                 patientcity: args.patientcity,
                 patientzip: args.patientzip,
@@ -37,16 +37,14 @@ const resolvers = {
                 patientaddress: args.patientaddress,
                 patientgender: args.patientgender,
                 mepet: args.mepet
-             });
+            });
         },
-        addDate: async (_, args) => {
-            console.log('startDate', args.startDate);
-     
-            return await Date.create({ 
-                startDate: args.startDate,
-                patientfirstname: args.patientfirstname, 
-                patientlastname: args.patientlastname, 
-                birthdate: args.birthdate, 
+        addVisitorappointment: async (_, args) => {
+
+            return await Visitorappointment.create({
+                patientfirstname: args.patientfirstname,
+                patientlastname: args.patientlastname,
+                birthdate: args.birthdate,
                 patientemail: args.patientemail,
                 patientcity: args.patientcity,
                 patientzip: args.patientzip,
@@ -54,14 +52,27 @@ const resolvers = {
                 patientreason: args.patientreason,
                 patientaddress: args.patientaddress,
                 patientgender: args.patientgender,
-                mepet: args.mepet });
+                mepet: args.mepet,
+                isBooked: args.isBooked,
+                finalDateISO: args.finalDateISO,
+                appDay: args.appDay,
+                appMonth: args.appMonth,
+                appDate: args.appDate,
+                appTime: args.appTime,
+                appYear: args.appYear
+            });
         },
         addBookingdate: async (_, args) => {
-            console.log('startDate', args.startDate);
-     
-            return await Bookingdate.create({ 
-                startDate: args.startDate,
-                });
+
+            return await Bookingdate.create({
+                isBooked: args.isBooked,
+                finalDateISO: args.finalDateISO,
+                appDay: args.appDay,
+                appMonth: args.appMonth,
+                appDate: args.appDate,
+                appTime: args.appTime,
+                appYear: args.appYear
+            });
         },
     },
 };

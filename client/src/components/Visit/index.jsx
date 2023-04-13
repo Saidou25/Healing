@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
-import { QUERY_BOOKINGDATE } from '../../utils/queries';
+import { QUERY_BOOKINGDATES } from '../../utils/queries';
 import DateList from '../DateList';
 import DatePicker from "react-datepicker";
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
 import "react-datepicker/dist/react-datepicker.css";
 import { parseISO, setHours, setMinutes } from 'date-fns';
 
@@ -16,26 +15,62 @@ const Visit = () => {
 
     const navigate = useNavigate();
 
-    const [startDate,  setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date());
 
     const [addBookingdate] = useMutation(ADD_BOOKINGDATE);
-    const { data } = useQuery(QUERY_BOOKINGDATE);
+    const { data } = useQuery(QUERY_BOOKINGDATES);
 
-    const dates = data?.dates || [];
-    const allAppointments = [];
+    const bookingdates = data?.bookingdates || [];
+    console.log('bookingdates', bookingdates);
 
-    for (let i = 0; i < dates.length; i++) {
+    const allAppointments = []
+    console.log('allAppointments', allAppointments);
 
-        const result = ((dates[i].startDate).split('').slice(0, 10).join(''));
-        const resultIso = parseISO(result.toString());
-        allAppointments.push(resultIso);
-    };
+    for (let bookingdate of bookingdates) {
 
-    const handleSubmit = async () => {
+        const result = (bookingdate.finalDateISO).slice(0, 10);
+
+        const resultIso = parseISO(result);
+
+        allAppointments.push(resultIso)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const isBooked = JSON.stringify(startDate);
+
+        const dateArr = isBooked.replaceAll('"', '').split(':');
+        const finalDate = dateArr[0].slice(0, 10);
+
+        const finalDateISO = parseISO(finalDate)
+
+        allAppointments.push(finalDateISO)
+
+
+        const app = (startDate.toString().split(' '));
+
+
+        const appDay = app[0];
+        const appMonth = app[1];
+        const appDate = app[2];
+        const appTime = app[4];
+        const appYear = app[3];
+
+        const navigateData = {
+            isBooked: isBooked,
+            finalDateISO: finalDateISO,
+            appDay: appDay,
+            appMonth: appMonth,
+            appDate: parseInt(appDate),
+            appTime: appTime,
+            appYear: parseInt(appYear)
+        }
         try {
-            await addBookingdate({ variables: { startDate: startDate } });
-            console.log(`success adding appointment ${startDate}`);
-            navigate('/AppointmentForm', {state: startDate});
+            await addBookingdate({ variables: { isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
+            console.log(`success adding appointment ${isBooked}`);
+       
+            navigate('/VisitorAppointment', { state: navigateData });
         } catch (err) {
             console.error(err);
         }
@@ -55,14 +90,14 @@ const Visit = () => {
                 dateFormat="MMMM d, yyyy h:mm aa"
                 minDate={new Date()}
                 excludeDates={allAppointments}
-            // footer={footer}
+            // footer={footer};
             />
             <div>
-                <button type='submit' onClick={() => handleSubmit()}>
+                <button type='submit' onClick={(e) => handleSubmit(e)}>
                     Submit
                 </button>
             </div>
-            <DateList dates={dates} />
+            <DateList bookingdates={bookingdates} />
         </div>
     )
 };

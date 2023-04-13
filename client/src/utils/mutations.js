@@ -11,7 +11,7 @@ export const ADD_PATIENT = gql`
      $patientnumber: String
      $patientreason: String
      $birthdate: String
-     $ patientzip: Int
+     $patientzip: Int
      $mepet: String) {
           addPatient(
             patientfirstname: $patientfirstname
@@ -42,16 +42,40 @@ export const ADD_PATIENT = gql`
     }
 `;
 export const ADD_BOOKINGDATE = gql`
-     mutation addBookingdate($startDate: String) {
-     addBookingdate(startDate: $startDate) {
-         _id          
-         startDate
+     mutation addBookingdate(
+     $isBooked: String
+     $finalDateISO: String
+     $appDay: String
+     $appMonth: String
+     $appDate: Int
+     $appTime: String
+     $appYear: Int
+     ) {
+     addBookingdate(
+        isBooked: $isBooked
+        finalDateISO: $finalDateISO
+        appDay: $appDay
+     appMonth: $appMonth
+     appDate: $appDate
+     appTime: $appTime
+     appYear: $appYear
+        
+         ) {
+         _id    
+         isBooked
+        finalDateISO  
+        appDay
+     appMonth
+     appTime
+     appYear
+     appDate
+         
+        
              }
       }
      `;
-export const ADD_DATE = gql`
-    mutation addDate(
-    $startDate: String
+export const ADD_VISITORAPPOINTMENT = gql`
+    mutation addVisitorappointment(
     $patientfirstname: String
      $patientgender: String
      $patientaddress: String
@@ -62,9 +86,15 @@ export const ADD_DATE = gql`
      $patientreason: String
      $birthdate: String
      $patientzip: Int
-     $mepet: String) {
-          addDate(
-          startDate: $startDate
+     $mepet: String
+     $isBooked: String
+     $finalDateISO: String
+     $appDay: String
+     $appMonth: String
+     $appDate: Int
+     $appTime: String
+     $appYear: Int) {
+        addVisitorappointment(
           patientfirstname: $patientfirstname
          patientgender: $patientgender
      patientaddress: $patientaddress
@@ -75,9 +105,22 @@ export const ADD_DATE = gql`
      patientreason: $patientreason
      birthdate: $birthdate
      patientzip: $patientzip
-     mepet: $mepet) { 
+     mepet: $mepet
+     isBooked: $isBooked
+        finalDateISO: $finalDateISO
+        appDay: $appDay
+     appMonth: $appMonth
+     appDate: $appDate
+     appTime: $appTime
+     appYear: $appYear) { 
              _id          
-             startDate
+             isBooked
+        finalDateISO  
+        appDay
+     appMonth
+     appTime
+     appYear
+     appDate
                  
              patientfirstname
          patientgender

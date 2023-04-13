@@ -6,11 +6,11 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Login from './components/Login';
-import LandingPage from './pages/LandingPage'
-import BookingDate from './components/Visit';
-import AppointmentForm from './components/AppointmentForm'
-import Visit from './components/Visit'
-// import DateList from './components/DateList'
+import LandingPage from './pages/LandingPage';
+import VisitorAppointment from './components/VisitorAppointment';
+import Visit from './components/Visit';
+import DateList from './components/DateList';
+import AppointmentConfirmation from './components/AppointmentConfirmation';
 
 
 const client = new ApolloClient({
@@ -30,8 +30,9 @@ function App() {
           <Route path='/Visit' element={<Visit />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/Navbar' element={<Navbar />} />
-          <Route path='/BookingDate' element={<BookingDate />} />
-          <Route path='/AppointmentForm' element={<AppointmentForm />} />
+         <Route path='/DateList' element={<DateList />} />
+          <Route path='/VisitorAppointment' element={<VisitorAppointment />} />
+          <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
           <Route path='/' element={<LandingPage />} />
         </Routes>
       </>

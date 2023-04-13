@@ -1,14 +1,48 @@
 const { Schema, model } = require("mongoose");
 
 const bookingdateSchema = new Schema({
-    startDate: {
+     isBooked: {
         type: String,
         repuire: true,
         trim: true,
     },
-   
+    finalDateISO: {
+        type: String,
+        repuire: true,
+        trim: true,
+    },
+   appDay: {
+        type: String,
+        repuire: true,
+        trim: true,
+    },
+        appMonth: {
+            type: String,
+            repuire: true,
+            trim: true,
+        },
+        appDate: {
+            type: Number,
+            repuire: true,
+            trim: true,
+        },
+        appTime: {
+            type: String,
+            repuire: true,
+            trim: true,
+        },
+        appointment: {
+            type: String,
+            repuire: true,
+            trim: true,
+        },
+        appYear: {
+            type: Number,
+            repuire: true,
+            trim: true,
+        }
 });
 
-const Date = model('bookingdate', bookingdateSchema);
+const Bookingdate = model('bookingdate', bookingdateSchema);
 
-module.exports = Date;
+module.exports = Bookingdate;

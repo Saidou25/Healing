@@ -1,5 +1,5 @@
 const Patient = require('./Patient');
-const Date = require('./Date');
-const Bookingdate = require('./BookingDate');
+const Visitorappointment = require('./VisitorAppointment');
+const Bookingdate = require('./Bookingdate');
 
-module.exports = { Patient, Date, Bookingdate };
+module.exports = { Patient, Visitorappointment, Bookingdate };

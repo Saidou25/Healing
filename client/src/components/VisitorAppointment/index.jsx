@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
-import { ADD_DATE } from "../../utils/mutations";
+import { ADD_VISITORAPPOINTMENT } from "../../utils/mutations";
 import './index.css';
 
-const Visit = () => {
+const VisitorAppointment = () => {
+
     const navigate = useNavigate();
+    const location = useLocation();
+    const passedData = location.state;
 
     const [mepet, setMePet] = useState('');
     const [patientnumber, setValue] = useState('');
@@ -21,7 +25,7 @@ const Visit = () => {
     const [patientemail, setPatientEmail] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
-    const [addDate, { data, loading, error }] = useMutation(ADD_DATE);
+    const [addVisitorappointment, { loading, error }] = useMutation(ADD_VISITORAPPOINTMENT);
 
     if (loading) return 'Submitting...';
     if (error) return `Submission error! ${error.message}`;
@@ -52,15 +56,15 @@ const Visit = () => {
 
         if (name === 'patientgender') {
             setPatientGender(e.target.value);
-            console.log(e.target.value);
+            // console.log(e.target.value);
         }
         if (name === 'mepet') {
             setMePet(e.target.value);
-            console.log(e.target.value);
+            // console.log(e.target.value);
         }
         if (name === 'birthdate') {
             setBirthDate(value);
-            console.log(value);
+            // console.log(value);
             // const validateAge = 2023 - value.split('').slice(6, 10).join('');
             // console.log(validateAge);
             // if (value.length === 10) {
@@ -87,7 +91,7 @@ const Visit = () => {
         }
         if (name === 'patientlastname') {
             setPatientLastName(value);
-            console.log(value);
+            // console.log(value);
             if (value.length > 2) {
                 x1.style.display = "block";
                 y1.style.display = "none";
@@ -99,7 +103,7 @@ const Visit = () => {
         }
         if (name === 'patientaddress') {
             setPatientAddress(value);
-            console.log(value);
+            // console.log(value);
             if (value.length > 5) {
                 x2.style.display = "block";
                 y2.style.display = "none";
@@ -112,7 +116,7 @@ const Visit = () => {
         }
         if (name === 'patientcity') {
             setPatientCity(value);
-            console.log(value);
+            // console.log(value);
             if (value.length > 2) {
                 x3.style.display = "block";
                 y3.style.display = "none";
@@ -124,11 +128,11 @@ const Visit = () => {
         }
         if (name === 'patientzip') {
             setPatientZip(value);
-            console.log(value);
+            // console.log(value);
 
             if (value.length === 5) {
-                console.log('great');
-                console.log('email ok');
+                // console.log('great');
+                // console.log('email ok');
                 x4.style.display = "block";
                 y4.style.display = "none";
             } else {
@@ -139,7 +143,7 @@ const Visit = () => {
         }
         if (name === 'patientreason') {
             setPatientReason(value);
-            console.log(value);
+            // console.log(value);
             if (value.length > 10) {
                 x7.style.display = "block";
                 y7.style.display = "none";
@@ -152,7 +156,7 @@ const Visit = () => {
         if (name === 'patientemail') {
 
             setPatientEmail(value);
-            console.log(value);
+            // console.log(value);
             if (value.length > 5 && emailRegex.test(value)) {
                 console.log('email ok');
                 x5.style.display = "block";
@@ -167,9 +171,10 @@ const Visit = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        console.log('hello');
+        console.log('passedData.isBooked', passedData.isBooked);
 
         const patientfirstname = e.target.patientfirstname.value
+        console.log('patientfirstname', patientfirstname)
         const patientgender = e.target.patientgender.value
         const patientaddress = e.target.patientaddress.value
         const patientemail = e.target.patientemail.value
@@ -180,12 +185,36 @@ const Visit = () => {
         const birthdate = e.target.birthdate.value
         const patientzip = e.target.patientzip.value
         const mepet = e.target.mepet.value
+        const appointment = passedData.finalDateISO
 
+       const navigateData = {
+        isBooked: passedData.isBooked, 
+        finalDateISO: passedData.finalDateISO,
+         appDay: passedData.appDay, 
+         appMonth: passedData.appMonth, 
+         appDate: parseInt(passedData.appDate), 
+         appTime: passedData.appTime, 
+         appYear: parseInt(passedData.appYear), 
+         appointment: appointment, 
+         patientnumber: patientnumber, 
+         patientfirstname: patientfirstname, 
+         patientgender: patientgender,
+          patientaddress: patientaddress, 
+          patientemail: patientemail, 
+          patientlastname: patientlastname, 
+          patientcity: patientcity, 
+          patientreason: patientreason, 
+          birthdate: birthdate, 
+          mepet: mepet, 
+          patientzip: parseInt(patientzip)
+
+       }
         try {
-            await addDate({
-                variables: { patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientemail: patientemail, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, mepet: mepet, patientzip: parseInt(patientzip) }
+            await addVisitorappointment({
+                variables: {  isBooked: passedData.isBooked, finalDateISO: passedData.finalDateISO, appDay: passedData.appDay, appMonth: passedData.appMonth, appDate: parseInt(passedData.appDate), appTime: passedData.appTime, appYear: parseInt(passedData.appYear), appointment: appointment, patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientemail: patientemail, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, mepet: mepet, patientzip: parseInt(patientzip) }
             });
-
+            navigate('/AppointmentConfirmation', { state: navigateData });
+            
             setPatientFirstName("");
             setPatientLastName("")
             setPatientGender("");
@@ -197,9 +226,9 @@ const Visit = () => {
             setPatientEmail("");
             setValue("");
             setBirthDate("");
-
-            console.log(`success adding ${patientfirstname}`);
-
+            
+            console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
+            
         } catch (err) {
             console.error(err);
         }
@@ -431,4 +460,4 @@ const Visit = () => {
     )
 };
 
-export default Visit;
+export default VisitorAppointment;
