@@ -15,7 +15,14 @@
     font-size: 4em;
  
 }
+.appointment-for {
+    display: block;
 
+}
+.gender-question {
+    display: block;
+
+}
 .profile {
     margin-left: auto;
     margin-right: auto;
