@@ -46,15 +46,26 @@ const typeDefs = gql`
      appDate: Int
      appTime: String
      appYear: Int
+     }, 
+     type Pet {
+     _id: ID!
+     petBreed: String
+     petName: String
+     petWeight: Int
+     petGender: String
+     petReason: String
+     petAge: String
      }
      
      type Query {
      patients: [Patient]!
      patient(id: ID!): Patient
-     Visitorappointments: [Visitorappointment]!
-     Visitorappointment(id: ID!): Visitorappointment
+     visitorappointments: [Visitorappointment]!
+     visitorappointment(id: ID!): Visitorappointment
      bookingdates: [Bookingdate]
      bookingdate(id: ID!): Bookingdate
+     pets: [Pet]!
+     pet(id: ID!): Pet
      },
 
      type Mutation {
@@ -100,6 +111,15 @@ const typeDefs = gql`
      appTime: String
      appYear: Int
      ): Bookingdate
+
+     addPet(
+     petName: String
+     petWeight: Int
+     petAge: String
+     petGender: String
+     petReason: String
+     petBreed: String
+     ): Pet
      }
      `;
 

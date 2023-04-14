@@ -13,7 +13,6 @@ const VisitorAppointment = () => {
     const location = useLocation();
     const passedData = location.state;
     const passedPetData = location.state;
-    console.log('pet data', passedPetData);
 
     const [mepet, setMePet] = useState('');
     const [patientnumber, setValue] = useState('');
@@ -46,12 +45,8 @@ const VisitorAppointment = () => {
         const y4 = document.querySelector(".invalidate4");
         const x5 = document.querySelector(".validate5");
         const y5 = document.querySelector(".invalidate5");
-        // const x6 = document.querySelector(".gender-question");
-        // const x8 = document.querySelector(".appointment-for");
         const x7 = document.querySelector(".validate7");
         const y7 = document.querySelector(".invalidate7");
-        // const x8 = document.querySelector(".validat8");
-        // const y8 = document.querySelector(".invalidate8");
 
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
@@ -64,7 +59,7 @@ const VisitorAppointment = () => {
             setMePet(e.target.value);
             // console.log(e.target.value);
             if (e.target.value === 'mypet')
-            navigate('/PetForm')
+                navigate('/PetForm')
         }
         if (name === 'birthdate') {
             setBirthDate(value);
@@ -82,12 +77,10 @@ const VisitorAppointment = () => {
         }
         if (name === 'patientfirstname') {
             setPatientFirstName(value);
-            console.log(value);
             if (value.length > 2) {
                 x.style.display = "block";
                 y.style.display = "none";
             } else {
-
                 x.style.display = "none";
                 y.style.display = "block";
                 return;
@@ -95,78 +88,61 @@ const VisitorAppointment = () => {
         }
         if (name === 'patientlastname') {
             setPatientLastName(value);
-            // console.log(value);
             if (value.length > 2) {
                 x1.style.display = "block";
                 y1.style.display = "none";
             } else {
-
                 x1.style.display = "none";
                 y1.style.display = "block";
             }
         }
         if (name === 'patientaddress') {
             setPatientAddress(value);
-            // console.log(value);
             if (value.length > 5) {
                 x2.style.display = "block";
                 y2.style.display = "none";
             } else {
-
                 x2.style.display = "none";
                 y2.style.display = "block";
-
             }
         }
         if (name === 'patientcity') {
             setPatientCity(value);
-            // console.log(value);
             if (value.length > 2) {
                 x3.style.display = "block";
                 y3.style.display = "none";
             } else {
-
                 x3.style.display = "none";
                 y3.style.display = "block";
             }
         }
         if (name === 'patientzip') {
             setPatientZip(value);
-            // console.log(value);
-
             if (value.length === 5) {
-                // console.log('great');
-                // console.log('email ok');
                 x4.style.display = "block";
                 y4.style.display = "none";
             } else {
-
                 x4.style.display = "none";
                 y4.style.display = "block";
             }
         }
         if (name === 'patientreason') {
             setPatientReason(value);
-            // console.log(value);
             if (value.length > 10) {
                 x7.style.display = "block";
                 y7.style.display = "none";
             } else {
-
                 x7.style.display = "none";
                 y7.style.display = "block";
             }
         }
         if (name === 'patientemail') {
-
             setPatientEmail(value);
-            // console.log(value);
             if (value.length > 5 && emailRegex.test(value)) {
                 console.log('email ok');
                 x5.style.display = "block";
                 y5.style.display = "none";
             } else {
-
                 x5.style.display = "none";
                 y5.style.display = "block";
             }
@@ -175,20 +151,7 @@ const VisitorAppointment = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        console.log('passedData.isBooked', passedData.isBooked);
 
-        const patientfirstname = e.target.patientfirstname.value
-        console.log('patientfirstname', patientfirstname)
-        const patientgender = e.target.patientgender.value
-        const patientaddress = e.target.patientaddress.value
-        const patientemail = e.target.patientemail.value
-        const patientlastname = e.target.patientlastname.value
-        const patientcity = e.target.patientcity.value
-        const patientnumber = e.target.patientnumber.value
-        const patientreason = e.target.patientreason.value
-        const birthdate = e.target.birthdate.value
-        const patientzip = e.target.patientzip.value
-        const mepet = e.target.mepet.value
         const appointment = passedData.finalDateISO
 
         const navigateData = {
@@ -199,6 +162,12 @@ const VisitorAppointment = () => {
             appDate: parseInt(passedData.appDate),
             appTime: passedData.appTime,
             appYear: parseInt(passedData.appYear),
+            petAge: passedPetData.petAge,
+            petBreed: passedPetData.petBreed,
+            petName: passedPetData.petName,
+            petGender: passedPetData.petGender,
+            petReason: passedPetData.petReason,
+            petWeight: parseInt(passedPetData.perWeight),
             appointment: appointment,
             patientnumber: patientnumber,
             patientfirstname: patientfirstname,
@@ -211,12 +180,13 @@ const VisitorAppointment = () => {
             birthdate: birthdate,
             mepet: mepet,
             patientzip: parseInt(patientzip)
-
         }
+
         try {
             await addVisitorappointment({
                 variables: { isBooked: passedData.isBooked, finalDateISO: passedData.finalDateISO, appDay: passedData.appDay, appMonth: passedData.appMonth, appDate: parseInt(passedData.appDate), appTime: passedData.appTime, appYear: parseInt(passedData.appYear), appointment: appointment, patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientemail: patientemail, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, mepet: mepet, patientzip: parseInt(patientzip) }
             });
+
             navigate('/AppointmentConfirmation', { state: navigateData });
 
             setPatientFirstName("");
@@ -242,7 +212,7 @@ const VisitorAppointment = () => {
         return (
             <div className='container'>
                 <h1>Please answer few questions about you</h1>
-                <form onSubmit={handleFormSubmit}>
+                <form onSubmit={(e) => handleFormSubmit(e)}>
                     <div className='row'>
                         <div className="col-6">
                             <label className="form-label1"> First name</label>
@@ -409,7 +379,7 @@ const VisitorAppointment = () => {
         return (
             <div className='container'>
                 <h1>Please answer few questions</h1>
-                <form onSubmit={handleFormSubmit}>
+                <form onSubmit={(e) => handleFormSubmit(e)}>
                     <div className='row'>
                         <div className='col-6'>
                             <div>

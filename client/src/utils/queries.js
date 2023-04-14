@@ -38,8 +38,8 @@ export const QUERY_PATIENT = gql`
      }
  `;
 export const QUERY_VISITORAPPOINTMENTS = gql`
-    query Visitorappointments {
-       Visitorappointments {
+    query visitorappointments {
+       visitorappointments {
      _id
      patientfirstname
      patientgender
@@ -62,8 +62,8 @@ export const QUERY_VISITORAPPOINTMENTS = gql`
      }
  `;
 export const QUERY_VISITORAPPOINTMENT = gql`
-    query Visitorappointment($id: ID!) {
-        Visitorappointment(id: $id) {
+    query visitorappointment($id: ID!) {
+        visitorappointment(id: $id) {
      _id 
      patientfirstname
      patientgender
@@ -112,3 +112,27 @@ export const QUERY_BOOKINGDATE = gql`
         }
      }
  `;
+ export const QUERY_PET = gql`
+ query pet($id: ID!) {
+ pet(id: $id) {
+    petName
+     petBreed
+     petWeight
+     petAge
+     petReason
+     petGender
+     }
+     }
+     `;
+ export const QUERY_PETS = gql`
+ query pets {
+ pets {
+    petName
+     petBreed
+     petWeight
+     petAge
+     petReason
+     petGender
+     }
+     }
+     `;

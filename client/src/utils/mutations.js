@@ -74,6 +74,32 @@ export const ADD_BOOKINGDATE = gql`
              }
       }
      `;
+     export const ADD_PET = gql`
+     mutation addPet(
+     $petName: String
+     $petWeight: Int
+     $petAge: String
+     $petGender: String
+     $petReason: String
+     $petBreed: String) {
+     addPet(
+        petName: $petName
+     petWeight: $petWeight
+     petAge:  $petAge
+     petGender: $petGender
+     petReason: $petReason
+     petBreed: $petBreed) {
+     _id
+     petName
+     petBreed
+     petWeight
+     petAge
+     petReason
+     petGender
+     }
+     }
+     `;
+
 export const ADD_VISITORAPPOINTMENT = gql`
     mutation addVisitorappointment(
     $patientfirstname: String

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_PET } from "../../utils/mutations";
 
 
 
@@ -13,6 +15,7 @@ const PetForm = () => {
     const [petReason, setPetReason] = useState('');
     const [petGender, setPetGender] = useState('');
 
+    const [addPet] = useMutation(ADD_PET);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,9 +39,18 @@ const PetForm = () => {
             setPetBreed(value);
         }
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+        try {
+            await addPet({
+                variables: { petName: petName, petGender: petGender, petWeight: parseInt(petWeight), petReason: petReason, petAge: petAge, petBreed: petBreed }
+            });
+            console.log(`${petName} added successfully`);
+
+        } catch (err) {
+            console.error(err);
+        };
         const petNavigateData = {
             petReason: petReason,
             petName: petName,
@@ -50,13 +62,11 @@ const PetForm = () => {
         navigate('/VisitorAppointment', { state: petNavigateData });
     };
 
-
     return (
         <>
             <h1>
                 Pet form
             </h1>
-
             <div className='container'>
                 <h1>Please answer few questions</h1>
                 <form>
