@@ -45,8 +45,12 @@ const VisitorAppointment = () => {
         const y4 = document.querySelector(".invalidate4");
         const x5 = document.querySelector(".validate5");
         const y5 = document.querySelector(".invalidate5");
+        const x6 = document.querySelector(".validate6");
+        const y6 = document.querySelector(".invalidate6");
         const x7 = document.querySelector(".validate7");
         const y7 = document.querySelector(".invalidate7");
+        const x8 = document.querySelector(".validate8");
+        const y8 = document.querySelector(".invalidate8");
 
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
@@ -63,17 +67,17 @@ const VisitorAppointment = () => {
         }
         if (name === 'birthdate') {
             setBirthDate(value);
-            // console.log(value);
-            // const validateAge = 2023 - value.split('').slice(6, 10).join('');
-            // console.log(validateAge);
-            // if (value.length === 10) {
-            //     x8.style.display = "block";
-            //     y8.style.display = "none";
-            // } else {
+            console.log(value);
+            const validateAge = 2023 - value.split('').slice(6, 10).join('');
+            console.log(validateAge);
+            if (value.length === 10) {
+                x8.style.display = "block";
+                y8.style.display = "none";
+            } else {
 
-            //     x8.style.display = "none";
-            //     y8.style.display = "block";
-            // }
+                x8.style.display = "none";
+                y8.style.display = "block";
+            }
         }
         if (name === 'patientfirstname') {
             setPatientFirstName(value);
@@ -145,6 +149,18 @@ const VisitorAppointment = () => {
             } else {
                 x5.style.display = "none";
                 y5.style.display = "block";
+            }
+        }
+        if (name === 'patientnumber') {
+            setValue(patientnumber);
+            console.log(patientnumber)
+            if (patientnumber.length === 3) {
+                console.log(patientnumber);
+                x6.style.display = "block";
+                y6.style.display = "none";
+            } else {
+                x6.style.display = "none";
+                y6.style.display = "block";
             }
         }
     };

@@ -75,6 +75,7 @@
 .validate3,
 .validate4,
 .validate5,
+.validate6,
 .validate7,
 .validate8 {
     display: none;
@@ -90,6 +91,7 @@
 .invalidate3,
 .invalidate4,
 .invalidate5,
+.invalidate6,
 .invalidate7,
 .invalidate8 {
     margin-top: 7px;
