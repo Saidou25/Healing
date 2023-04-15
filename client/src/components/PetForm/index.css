@@ -1,0 +1,25 @@
+.validate,
+.validate1,
+.validate2,
+.validate3,
+.validate4,
+.validate5 {
+    display: none;
+    color: green;
+    margin-top: 7px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.invalidate,
+.invalidate1,
+.invalidate2,
+.invalidate3,
+.invalidate4,
+.invalidate5 {
+    margin-top: 7px;
+    color: red;
+    margin-right: 15px;
+    margin-left: 15px;
+
+}

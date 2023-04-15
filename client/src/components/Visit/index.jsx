@@ -20,11 +20,9 @@ const Visit = () => {
     const [addBookingdate] = useMutation(ADD_BOOKINGDATE);
     const { data } = useQuery(QUERY_BOOKINGDATES);
 
-    const bookingdates = data?.bookingdates || [];
-    console.log('bookingdates', bookingdates);
+    const bookingdates = data?.bookingdates || []; 
 
     const allAppointments = []
-    console.log('allAppointments', allAppointments);
 
     for (let bookingdate of bookingdates) {
 

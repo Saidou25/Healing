@@ -8,7 +8,6 @@ const Home = () => {
 
     const { data } = useQuery(QUERY_PATIENTS);
     const patients = data?.patients || [];
-    console.log(patients);
 
     return (
         <div>

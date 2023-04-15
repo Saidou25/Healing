@@ -51,25 +51,33 @@ const VisitorAppointment = () => {
         const y7 = document.querySelector(".invalidate7");
         const x8 = document.querySelector(".validate8");
         const y8 = document.querySelector(".invalidate8");
+        const x9= document.querySelector(".validate9");
+        const y9 = document.querySelector(".invalidate9");
 
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
 
         if (name === 'patientgender') {
             setPatientGender(e.target.value);
-            // console.log(e.target.value);
+            if (e.target.value) {
+                x9.style.display = "block";
+                y9.style.display = "none";
+            } else {
+                x9.style.display = "none";
+                y9.style.display = "block";
+            }
         }
         if (name === 'mepet') {
             setMePet(e.target.value);
-            // console.log(e.target.value);
+          
             if (e.target.value === 'mypet')
                 navigate('/PetForm')
         }
         if (name === 'birthdate') {
             setBirthDate(value);
-            console.log(value);
+         
             const validateAge = 2023 - value.split('').slice(6, 10).join('');
-            console.log(validateAge);
+        
             if (value.length === 10) {
                 x8.style.display = "block";
                 y8.style.display = "none";
@@ -143,7 +151,7 @@ const VisitorAppointment = () => {
         if (name === 'patientemail') {
             setPatientEmail(value);
             if (value.length > 5 && emailRegex.test(value)) {
-                console.log('email ok');
+            
                 x5.style.display = "block";
                 y5.style.display = "none";
             } else {
@@ -153,9 +161,9 @@ const VisitorAppointment = () => {
         }
         if (name === 'patientnumber') {
             setValue(patientnumber);
-            console.log(patientnumber)
+         
             if (patientnumber.length === 3) {
-                console.log(patientnumber);
+               
                 x6.style.display = "block";
                 y6.style.display = "none";
             } else {
@@ -406,8 +414,7 @@ const VisitorAppointment = () => {
                                     value="me"
                                     checked={mepet === 'me'}
                                     onChange={handleChange} /> me
-                            </div>
-                            <div>
+                            
                                 <input
                                     type="radio"
                                     name="mepet"
@@ -426,14 +433,22 @@ const VisitorAppointment = () => {
                                     value='male'
                                     checked={patientgender === 'male'}
                                     onChange={handleChange} /> male
-                            </div>
-                            <div>
+                          
+                            
                                 <input
                                     type="radio"
                                     name='patientgender'
                                     value='female'
                                     checked={patientgender === 'female'}
                                     onChange={handleChange} /> female
+                            </div>
+                            <div className='validate9'>
+                                Looks good
+                                <i className="fa-solid fa-check"></i>
+                            </div>
+                            <div className='invalidate9'>
+                                required
+                                <i className="fa-solid fa-check"></i>
                             </div>
                         </div>
 
