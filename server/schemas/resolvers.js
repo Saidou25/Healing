@@ -1,4 +1,4 @@
-const { Patient, Visitorappointment, Bookingdate, Pet } = require('../models');
+const { Patient, Visitorappointment, Bookingdate, Pet, Petappointment } = require('../models');
 
 const resolvers = {
     Query: {
@@ -25,6 +25,12 @@ const resolvers = {
         },
         pet: async (_, args) => {
             return await Pet.findOne({ _id: args.id });
+        },
+        petappointments: async () => {
+            return await Petappointment.find({});
+        },
+        petappointment: async (_, args) => {
+            return await Petappointment.findOne({ _id: args.id });
         }
     },
 
@@ -65,7 +71,8 @@ const resolvers = {
                 appMonth: args.appMonth,
                 appDate: args.appDate,
                 appTime: args.appTime,
-                appYear: args.appYear
+                appYear: args.appYear,
+                appointment: args.appointment
             });
         },
         addBookingdate: async (_, args) => {
@@ -83,13 +90,41 @@ const resolvers = {
         addPet: async (_, args) => {
 
             return await Pet.create({
-            petName: args.petName,
-            petWeight: args.petWeight,
-            petAge: args.petAge,
-            petGender: args.petGender,
-            petReason: args.petReason,
-            petBreed: args.petBreed
-        })
+                petName: args.petName,
+                petWeight: args.petWeight,
+                petAge: args.petAge,
+                petGender: args.petGender,
+                petReason: args.petReason,
+                petBreed: args.petBreed
+            })
+        },
+        addPetappointment: async (_, args) => {
+
+            return await Petappointment.create({
+                petName: args.petName,
+                petWeight: args.petWeight,
+                petAge: args.petAge,
+                petGender: args.petGender,
+                petReason: args.petReason,
+                petBreed: args.petBreed,
+                patientgender: args.patientgender,
+                patientfirstname: args.patientfirstname,
+                patientlastname: args.patientlastname,
+                patientaddress: args.patientaddress,
+                patientzip: args.patientzip,
+                patientcity: args.patientcity,
+                patientnumber: args.patientnumber,
+                patientreason:args. patientreason,
+                patientemail: args.patientemail,
+                isBooked: args.isBooked,
+                finalDateISO: args.finalDateISO,
+                appDay: args.appDay,
+                appMonth: args.appMonth,
+                appDate: args.appDate,
+                appTime: args.appTime,
+                appointment: args.appointment,
+                appYear: args.appYear,
+            })
         }
     },
 };

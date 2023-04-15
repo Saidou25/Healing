@@ -54,6 +54,7 @@ export const QUERY_VISITORAPPOINTMENTS = gql`
      mepet
      isBooked
      finalDateISO
+     appointment
      appDay
      appMonth
      appTime
@@ -80,6 +81,7 @@ export const QUERY_VISITORAPPOINTMENT = gql`
      finalDateISO
      appDay
      appMonth
+     appointment
      appTime
      appYear
         }
@@ -136,3 +138,50 @@ export const QUERY_BOOKINGDATE = gql`
      }
      }
      `;
+      export const QUERY_PETAPPOINTMENTS = gql`
+      query petappointments {
+      petappointments {
+         petAge
+                petGender
+                petBreed
+                patientgender
+                patientlastname
+                patientaddress
+                patientzip
+                patientnumber
+                patientemail
+                isBooked
+                finalDateISO
+                appDay
+                appMonth
+                appDate
+                appTime
+                appointment
+                appYear
+          }
+          }
+          `;
+      export const QUERY_PETAPPOINTMENT = gql`
+      query petappointment($id: ID!) {
+         petappointment(id: $id) {
+         petWeight
+                petAge
+                petGender
+                petBreed
+                patientgender
+                patientlastname
+                patientaddress
+                patientzip
+                patientnumber
+                patientemail
+                isBooked
+                finalDateISO
+                appDay
+                appMonth
+                appDate
+                appTime
+                appointment
+                appYear
+          }
+          }
+          `;

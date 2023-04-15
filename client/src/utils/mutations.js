@@ -74,7 +74,7 @@ export const ADD_BOOKINGDATE = gql`
              }
       }
      `;
-     export const ADD_PET = gql`
+export const ADD_PET = gql`
      mutation addPet(
      $petName: String
      $petWeight: Int
@@ -99,6 +99,78 @@ export const ADD_BOOKINGDATE = gql`
      }
      }
      `;
+export const ADD_PETAPPOINTMENT = gql`
+     mutation addPetappointment(
+        $petBreed: String
+        $petName: String
+        $petWeight: Int
+        $petGender: String
+        $petReason: String
+        $petAge: String
+        $patientgender: String
+        $patientfirstname: String
+        $patientlastname: String
+        $patientaddress: String
+        $patientzip: Int
+        $patientcity:  String
+        $patientmunber: String
+        $patientreason: String
+        $patientemail: String
+        $isBooked: String
+        $finalDateISO: String
+        $appDay: String
+        $appMonth: String
+        $appDate: Int
+        $appTime: String
+        $appointment: String
+        $appYear: Int) {
+     addPetappointment(
+        petName: $petName
+                petWeight: $petWeight
+                petAge: $petAge
+                petGender: $petGender
+                petReason: $petReason
+                petBreed: $petBreed
+                patientgender: $patientgender
+                patientfirstname: $patientfirstname
+                patientlastname: $patientlastname
+                patientaddress: $patientaddress
+                patientzip: $patientzip
+                patientcity: $patientcity
+                patientnumber: $patientnumber
+                patientreason: $patientreason
+                patientemail: $patientemail
+                isBooked: $isBooked
+                finalDateISO: $finalDateISO
+                appDay: $appDay
+                appMonth: $appMonth
+                appDate: $appDate
+                appTime: $appTime
+                appointment: $appointment
+                appYear: $appYear) {
+     _id
+     petName
+                petWeight
+                petAge
+                petGender
+                petBreed
+                patientgender
+                patientlastname
+                patientaddress
+                patientzip
+                patientnumber
+                patientemail
+                isBooked
+                finalDateISO
+                appDay
+                appMonth
+                appDate
+                appTime
+                appointment
+                appYear
+     }
+     }
+     `;
 
 export const ADD_VISITORAPPOINTMENT = gql`
     mutation addVisitorappointment(
@@ -118,6 +190,7 @@ export const ADD_VISITORAPPOINTMENT = gql`
      $appDay: String
      $appMonth: String
      $appDate: Int
+     $appointment: String
      $appTime: String
      $appYear: Int) {
         addVisitorappointment(
@@ -138,7 +211,8 @@ export const ADD_VISITORAPPOINTMENT = gql`
      appMonth: $appMonth
      appDate: $appDate
      appTime: $appTime
-     appYear: $appYear) { 
+     appYear: $appYear
+     appointment: $appointment) { 
              _id          
              isBooked
         finalDateISO  
@@ -147,7 +221,7 @@ export const ADD_VISITORAPPOINTMENT = gql`
      appTime
      appYear
      appDate
-                 
+                 appointment
              patientfirstname
          patientgender
      patientaddress

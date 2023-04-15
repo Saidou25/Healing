@@ -30,13 +30,42 @@ const typeDefs = gql`
      patientzip: Int
      mepet: String
      isBooked: String
-      finalDateISO: String
-      appDay: String
+     finalDateISO: String
+     appDay: String
      appMonth: String
      appDate: Int
      appTime: String
      appYear: Int
+     appointment: String
      },
+     type Petappointment {
+     _id: ID!
+    petBreed: String
+    petName: String
+    petWeight: Int
+    petGender: String
+    petReason: String
+    petAge: String
+    patientgender: String
+    birthdate: String
+    patientfirstname: String
+    patientlastname: String
+    patientaddress: String
+    patientzip: Int
+    patientcity:  String
+    patientnumber: String
+    patientreason: String
+    patientemail: String
+    isBooked: String
+    finalDateISO: String
+    appDay: String
+    appMonth: String
+    appDate: Int
+    appTime: String
+    appointment: String
+    appYear: Int
+     }, 
+
      type Bookingdate {
       _id: ID!
       isBooked: String
@@ -66,6 +95,8 @@ const typeDefs = gql`
      bookingdate(id: ID!): Bookingdate
      pets: [Pet]!
      pet(id: ID!): Pet
+     petappointments: [Petappointment]!
+     petappointment(id: ID!): Petappointment
      },
 
      type Mutation {
@@ -99,6 +130,7 @@ const typeDefs = gql`
      appDay: String
      appMonth: String
      appDate: Int
+     appointment: String
      appTime: String
      appYear: Int): Visitorappointment
 
@@ -111,6 +143,33 @@ const typeDefs = gql`
      appTime: String
      appYear: Int
      ): Bookingdate
+
+     addPetappointment(
+     petBreed: String
+    petName: String
+    petWeight: Int
+    petGender: String
+    petReason: String
+    petAge: String
+    patientgender: String
+    birthdate: String
+    patientfirstname: String
+    patientlastname: String
+    patientaddress: String
+    patientzip: Int
+    patientcity:  String
+    patientnumber: String
+    patientreason: String
+    patientemail: String
+    isBooked: String
+    finalDateISO: String
+    appDay: String
+    appMonth: String
+    appDate: Int
+    appTime: String
+    appointment: String
+    appYear: Int
+     ): Petappointment
 
      addPet(
      petName: String

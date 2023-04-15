@@ -11,7 +11,7 @@ import VisitorAppointment from './components/VisitorAppointment';
 import Visit from './components/Visit';
 import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
-import PetForm from './components/PetForm';
+import PetAppointment from './components/PetAppointment';
 
 
 const client = new ApolloClient({
@@ -34,7 +34,7 @@ function App() {
          <Route path='/DateList' element={<DateList />} />
           <Route path='/VisitorAppointment' element={<VisitorAppointment />} />
           <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
-          <Route path='/PetForm' element={<PetForm />} />
+          <Route path='/PetAppointment' element={<PetAppointment />} />
           <Route path='/' element={<LandingPage />} />
         </Routes>
       </>

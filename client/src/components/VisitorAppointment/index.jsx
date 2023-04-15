@@ -11,10 +11,8 @@ const VisitorAppointment = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const passedData = location.state;
-    const passedPetData = location.state;
+    const passedVisitData = location.state;
 
-    const [mepet, setMePet] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
     const [birthdate, setBirthDate] = useState('');
@@ -26,6 +24,27 @@ const VisitorAppointment = () => {
     const [patientemail, setPatientEmail] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
+    const x = document.querySelector(".validate");
+    const y = document.querySelector(".invalidate");
+    const x1 = document.querySelector(".validate1");
+    const y1 = document.querySelector(".invalidate1");
+    const x2 = document.querySelector(".validate2");
+    const y2 = document.querySelector(".invalidate2");
+    const x3 = document.querySelector(".validate3");
+    const y3 = document.querySelector(".invalidate3");
+    const x4 = document.querySelector(".validate4");
+    const y4 = document.querySelector(".invalidate4");
+    const x5 = document.querySelector(".validate5");
+    const y5 = document.querySelector(".invalidate5");
+    const x6 = document.querySelector(".validate6");
+    const y6 = document.querySelector(".invalidate6");
+    const x7 = document.querySelector(".validate7");
+    const y7 = document.querySelector(".invalidate7");
+    const x8 = document.querySelector(".validate8");
+    const y8 = document.querySelector(".invalidate8");
+    const x9 = document.querySelector(".validate9");
+    const y9 = document.querySelector(".invalidate9");
+
     const [addVisitorappointment, { loading, error }] = useMutation(ADD_VISITORAPPOINTMENT);
 
     if (loading) return 'Submitting...';
@@ -33,32 +52,12 @@ const VisitorAppointment = () => {
 
     const handleChange = (e) => {
 
-        const x = document.querySelector(".validate");
-        const y = document.querySelector(".invalidate");
-        const x1 = document.querySelector(".validate1");
-        const y1 = document.querySelector(".invalidate1");
-        const x2 = document.querySelector(".validate2");
-        const y2 = document.querySelector(".invalidate2");
-        const x3 = document.querySelector(".validate3");
-        const y3 = document.querySelector(".invalidate3");
-        const x4 = document.querySelector(".validate4");
-        const y4 = document.querySelector(".invalidate4");
-        const x5 = document.querySelector(".validate5");
-        const y5 = document.querySelector(".invalidate5");
-        const x6 = document.querySelector(".validate6");
-        const y6 = document.querySelector(".invalidate6");
-        const x7 = document.querySelector(".validate7");
-        const y7 = document.querySelector(".invalidate7");
-        const x8 = document.querySelector(".validate8");
-        const y8 = document.querySelector(".invalidate8");
-        const x9= document.querySelector(".validate9");
-        const y9 = document.querySelector(".invalidate9");
-
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
 
         if (name === 'patientgender') {
             setPatientGender(e.target.value);
+            console.log(value)
             if (e.target.value) {
                 x9.style.display = "block";
                 y9.style.display = "none";
@@ -67,17 +66,17 @@ const VisitorAppointment = () => {
                 y9.style.display = "block";
             }
         }
-        if (name === 'mepet') {
-            setMePet(e.target.value);
-          
-            if (e.target.value === 'mypet')
-                navigate('/PetForm')
-        }
+        // if (name === 'mepet') {
+        //     setMePet(e.target.value);
+
+        //     if (e.target.value === 'mypet')
+        //         navigate('/PetForm')
+        // }
         if (name === 'birthdate') {
             setBirthDate(value);
-         
-            const validateAge = 2023 - value.split('').slice(6, 10).join('');
-        
+
+            // const validateAge = 2023 - value.split('').slice(6, 10).join('');
+
             if (value.length === 10) {
                 x8.style.display = "block";
                 y8.style.display = "none";
@@ -151,7 +150,7 @@ const VisitorAppointment = () => {
         if (name === 'patientemail') {
             setPatientEmail(value);
             if (value.length > 5 && emailRegex.test(value)) {
-            
+
                 x5.style.display = "block";
                 y5.style.display = "none";
             } else {
@@ -160,10 +159,10 @@ const VisitorAppointment = () => {
             }
         }
         if (name === 'patientnumber') {
-            setValue(patientnumber);
-         
-            if (patientnumber.length === 3) {
-               
+            setValue(e.target.value);
+
+            if (e.target.value.length === 3) {
+
                 x6.style.display = "block";
                 y6.style.display = "none";
             } else {
@@ -176,23 +175,18 @@ const VisitorAppointment = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        const appointment = passedData.finalDateISO
+        const appointment = passedVisitData.finalDateISO
 
         const navigateData = {
-            isBooked: passedData.isBooked,
-            finalDateISO: passedData.finalDateISO,
-            appDay: passedData.appDay,
-            appMonth: passedData.appMonth,
-            appDate: parseInt(passedData.appDate),
-            appTime: passedData.appTime,
-            appYear: parseInt(passedData.appYear),
-            petAge: passedPetData.petAge,
-            petBreed: passedPetData.petBreed,
-            petName: passedPetData.petName,
-            petGender: passedPetData.petGender,
-            petReason: passedPetData.petReason,
-            petWeight: parseInt(passedPetData.perWeight),
-            appointment: appointment,
+
+            isBooked: passedVisitData.isBooked,
+            finalDateISO: passedVisitData.finalDateISO,
+            appDay: passedVisitData.appDay,
+            appMonth: passedVisitData.appMonth,
+            appDate: parseInt(passedVisitData.appDate),
+            appTime: passedVisitData.appTime,
+            appYear: parseInt(passedVisitData.appYear),
+            appointment: passedVisitData.appointment,
             patientnumber: patientnumber,
             patientfirstname: patientfirstname,
             patientgender: patientgender,
@@ -202,13 +196,12 @@ const VisitorAppointment = () => {
             patientcity: patientcity,
             patientreason: patientreason,
             birthdate: birthdate,
-            mepet: mepet,
             patientzip: parseInt(patientzip)
         }
 
         try {
             await addVisitorappointment({
-                variables: { isBooked: passedData.isBooked, finalDateISO: passedData.finalDateISO, appDay: passedData.appDay, appMonth: passedData.appMonth, appDate: parseInt(passedData.appDate), appTime: passedData.appTime, appYear: parseInt(passedData.appYear), appointment: appointment, patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientemail: patientemail, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, mepet: mepet, patientzip: parseInt(patientzip) }
+                variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientemail: patientemail, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
             });
 
             navigate('/AppointmentConfirmation', { state: navigateData });
@@ -217,7 +210,6 @@ const VisitorAppointment = () => {
             setPatientLastName("")
             setPatientGender("");
             setPatientReason("");
-            setMePet("");
             setPatientCity("")
             setPatientAddress("");
             setPatientZip("");
@@ -232,407 +224,217 @@ const VisitorAppointment = () => {
         }
     };
 
-    if (passedPetData.petName) {
-        return (
-            <div className='container'>
-                <h1>Please answer few questions about you</h1>
-                <form onSubmit={(e) => handleFormSubmit(e)}>
-                    <div className='row'>
-                        <div className="col-6">
-                            <label className="form-label1"> First name</label>
+    return (
+        <div className='container'>
+            <h1>Please answer few questions about you</h1>
+            <form onSubmit={(e) => handleFormSubmit(e)}>
+                <div className='row'>
+
+                    <div className='col-6'>
+                        <div>
+                            <label className="form-label gender-question">What is your gender?</label><br />
                             <input
-                                className="form-control"
-                                onChange={handleChange}
-                                type="text"
-                                value={patientfirstname}
-                                name="patientfirstname"
-                                placeholder="first name..." />
-                            <div className='validate'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1"> Last name</label>
+                                type="radio"
+                                name="patientgender"
+                                value='male'
+                                checked={patientgender === 'male'}
+                                onChange={handleChange} /> male
                             <input
-                                className="form-control"
-                                onChange={handleChange}
-                                type="text"
-                                name="patientlastname"
-                                value={patientlastname}
-                                placeholder="last name..." />
-                            <div className='validate1'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate1'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
+                                type="radio"
+                                name='patientgender'
+                                value='female'
+                                checked={patientgender === 'female'}
+                                onChange={handleChange} /> female
                         </div>
-
-                        <div className='col-6'>
-                            <label className="form-label">Age</label><br />
-                            <input
-                                type='text'
-                                name="birthdate"
-                                value={birthdate}
-                                onChange={handleChange}
-                                placeholder="MM/DD/YYYY..."
-                            />
-                            <div className='validate8'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate8'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
+                        <div className='validate9'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
                         </div>
-
-                        <div className="col-6">
-                            <label className="form-label1">Address</label>
-                            <input
-                                className="form-control"
-                                value={patientaddress}
-                                onChange={handleChange}
-                                type="text"
-                                name="patientaddress"
-                                placeholder="address..." />
-                            <div className='validate2'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate2'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1">City</label>
-                            <input
-                                className="form-control"
-                                value={patientcity}
-                                type="text"
-                                name="patientcity"
-                                onChange={handleChange}
-                                placeholder="enter city..." />
-                            <div className='validate3'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate3'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1">zip code</label>
-                            <input
-                                className="form-control"
-                                name="patientzip"
-                                value={patientzip}
-                                onChange={handleChange}
-                                type="Number"
-                                placeholder="zip code..." />
-                            <div className='validate4'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate4'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label">Email</label>
-                            <input
-                                className="form-control"
-                                value={patientemail}
-                                onChange={handleChange}
-                                type="email"
-                                name="patientemail"
-                                placeholder="example@example.com" />
-                            <div className='validate5'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate5'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label">Phone number</label>
-                            <Input
-                                placeholder="Enter phone number"
-                                name='patientnumber'
-                                value={patientnumber}
-                                onChange={setValue} />
-
-                            <div className='validate6'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate6'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-12">
-                            <button className="btn btn-primary"
-                                type="submit"
-                                value="Send">Submit</button>
+                        <div className='invalidate9'>
+                            required
+                            <i className="fa-solid fa-check"></i>
                         </div>
                     </div>
-                </form>
-            </div>
-        )
 
-    } else {
-        return (
-            <div className='container'>
-                <h1>Please answer few questions</h1>
-                <form onSubmit={(e) => handleFormSubmit(e)}>
-                    <div className='row'>
-                        <div className='col-6'>
-                            <div>
-                                <label className="form-label appointment-for">Who is the appointment for?</label><br />
-                                <input
-                                    type="radio"
-                                    name="mepet"
-                                    value="me"
-                                    checked={mepet === 'me'}
-                                    onChange={handleChange} /> me
-                            
-                                <input
-                                    type="radio"
-                                    name="mepet"
-                                    value="mypet"
-                                    checked={mepet === 'mypet'}
-                                    onChange={handleChange} /> my pet
-                            </div>
+                    <div className='col-6'>
+                        <label className="form-label">Age</label><br />
+                        <input
+                            type='text'
+                            name="birthdate"
+                            value={birthdate}
+                            onChange={handleChange}
+                            placeholder="MM/DD/YYYY..."
+                        />
+                        <div className='validate8'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
                         </div>
-
-                        <div className='col-6'>
-                            <div>
-                                <label className="form-label gender-question">What is your gender?</label><br />
-                                <input
-                                    type="radio"
-                                    name="patientgender"
-                                    value='male'
-                                    checked={patientgender === 'male'}
-                                    onChange={handleChange} /> male
-                          
-                            
-                                <input
-                                    type="radio"
-                                    name='patientgender'
-                                    value='female'
-                                    checked={patientgender === 'female'}
-                                    onChange={handleChange} /> female
-                            </div>
-                            <div className='validate9'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate9'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className='col-6'>
-                            <label className="form-label">Age</label><br />
-                            <input
-                                type='text'
-                                name="birthdate"
-                                value={birthdate}
-                                onChange={handleChange}
-                                placeholder="MM/DD/YYYY..."
-                            />
-                            <div className='validate8'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate8'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1"> First name</label>
-                            <input
-                                className="form-control"
-                                onChange={handleChange}
-                                type="text"
-                                value={patientfirstname}
-                                name="patientfirstname"
-                                placeholder="first name..." />
-                            <div className='validate'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1"> Last name</label>
-                            <input
-                                className="form-control"
-                                onChange={handleChange}
-                                type="text"
-                                name="patientlastname"
-                                value={patientlastname}
-                                placeholder="last name..." />
-                            <div className='validate1'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate1'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1">Address</label>
-                            <input
-                                className="form-control"
-                                value={patientaddress}
-                                onChange={handleChange}
-                                type="text"
-                                name="patientaddress"
-                                placeholder="address..." />
-                            <div className='validate2'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate2'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1">City</label>
-                            <input
-                                className="form-control"
-                                value={patientcity}
-                                type="text"
-                                name="patientcity"
-                                onChange={handleChange}
-                                placeholder="enter city..." />
-                            <div className='validate3'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate3'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1">zip code</label>
-                            <input
-                                className="form-control"
-                                name="patientzip"
-                                value={patientzip}
-                                onChange={handleChange}
-                                type="Number"
-                                placeholder="zip code..." />
-                            <div className='validate4'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate4'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label">Email</label>
-                            <input
-                                className="form-control"
-                                value={patientemail}
-                                onChange={handleChange}
-                                type="email"
-                                name="patientemail"
-                                placeholder="example@example.com" />
-                            <div className='validate5'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate5'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label">Phone number</label>
-                            <Input
-                                placeholder="Enter phone number"
-                                name='patientnumber'
-                                value={patientnumber}
-                                onChange={setValue} />
-
-                            <div className='validate6'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate6'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className='col-6'>
-                            <div>
-                                <label className="form-label">What is your reason for visitint?</label>
-                                <textarea className="form-control"
-                                    name="patientreason"
-                                    value={patientreason}
-                                    placeholder='type your text here...'
-                                    onChange={handleChange}>
-                                </textarea>
-                                <div className='validate7'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='invalidate7'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12">
-                            <button className="btn btn-primary"
-                                type="submit"
-                                value="Send">Submit</button>
+                        <div className='invalidate8'>
+                            required
+                            <i className="fa-solid fa-check"></i>
                         </div>
                     </div>
-                </form>
-            </div>
-        )
-    }
 
+                    <div className="col-6">
+                        <label className="form-label1"> First name</label>
+                        <input
+                            className="form-control"
+                            onChange={handleChange}
+                            type="text"
+                            value={patientfirstname}
+                            name="patientfirstname"
+                            placeholder="first name..." />
+                        <div className='validate'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='invalidate'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1"> Last name</label>
+                        <input
+                            className="form-control"
+                            onChange={handleChange}
+                            type="text"
+                            name="patientlastname"
+                            value={patientlastname}
+                            placeholder="last name..." />
+                        <div className='validate1'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='invalidate1'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1">Address</label>
+                        <input
+                            className="form-control"
+                            value={patientaddress}
+                            onChange={handleChange}
+                            type="text"
+                            name="patientaddress"
+                            placeholder="address..." />
+                        <div className='validate2'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='invalidate2'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1">City</label>
+                        <input
+                            className="form-control"
+                            value={patientcity}
+                            type="text"
+                            name="patientcity"
+                            onChange={handleChange}
+                            placeholder="enter city..." />
+                        <div className='validate3'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='invalidate3'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1">zip code</label>
+                        <input
+                            className="form-control"
+                            name="patientzip"
+                            value={patientzip}
+                            onChange={handleChange}
+                            type="Number"
+                            placeholder="zip code..." />
+                        <div className='validate4'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='invalidate4'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label">Email</label>
+                        <input
+                            className="form-control"
+                            value={patientemail}
+                            onChange={handleChange}
+                            type="email"
+                            name="patientemail"
+                            placeholder="example@example.com" />
+                        <div className='validate5'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='invalidate5'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label">Phone number</label>
+                        <Input
+                            placeholder="Enter phone number"
+                            name='patientnumber'
+                            value={patientnumber}
+                            onChange={setValue} />
+
+                        <div className='validate6'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='invalidate6'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className='col-6'>
+                        <div>
+                            <label className="form-label">What is your reason for visitint?</label>
+                            <textarea className="form-control"
+                                name="patientreason"
+                                value={patientreason}
+                                placeholder='type your text here...'
+                                onChange={handleChange}>
+                            </textarea>
+                            <div className='validate7'>
+                                Looks good
+                                <i className="fa-solid fa-check"></i>
+                            </div>
+                            <div className='invalidate7'>
+                                required
+                                <i className="fa-solid fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12">
+                        <button className="btn btn-primary"
+                            type="submit"
+                            value="Send">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    )
 };
 
 export default VisitorAppointment;
