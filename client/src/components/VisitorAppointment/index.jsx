@@ -24,7 +24,14 @@ const VisitorAppointment = () => {
     const [patientemail, setPatientEmail] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
-    const x = document.querySelector(".validate");
+    const [addVisitorappointment, { loading, error }] = useMutation(ADD_VISITORAPPOINTMENT);
+
+    if (loading) return 'Submitting...';
+    if (error) return `Submission error! ${error.message}`;
+
+    const handleChange = (e) => {
+
+        const x = document.querySelector(".validate");
     const y = document.querySelector(".invalidate");
     const x1 = document.querySelector(".validate1");
     const y1 = document.querySelector(".invalidate1");
@@ -45,19 +52,12 @@ const VisitorAppointment = () => {
     const x9 = document.querySelector(".validate9");
     const y9 = document.querySelector(".invalidate9");
 
-    const [addVisitorappointment, { loading, error }] = useMutation(ADD_VISITORAPPOINTMENT);
-
-    if (loading) return 'Submitting...';
-    if (error) return `Submission error! ${error.message}`;
-
-    const handleChange = (e) => {
-
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
 
         if (name === 'patientgender') {
             setPatientGender(e.target.value);
-            console.log(value)
+            
             if (e.target.value) {
                 x9.style.display = "block";
                 y9.style.display = "none";

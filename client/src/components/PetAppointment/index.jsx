@@ -27,34 +27,7 @@ const PetAppointment = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientemail, setPatientEmail] = useState('');
-
-    const x = document.querySelector(".dovalidate");
-    const y = document.querySelector(".doinvalidate");
-    const x1 = document.querySelector(".dovalidate1");
-    const y1 = document.querySelector(".doinvalidate1");
-    const x2 = document.querySelector(".dovalidate2");
-    const y2 = document.querySelector(".doinvalidate2");
-    const x3 = document.querySelector(".dovalidate3");
-    const y3 = document.querySelector(".doinvalidate3");
-    const x4 = document.querySelector(".dovalidate4");
-    const y4 = document.querySelector(".doinvalidate4");
-    const x5 = document.querySelector(".dovalidate5");
-    const y5 = document.querySelector(".doinvalidate5");
-    const x6 = document.querySelector(".dovalidate6");
-    const y6 = document.querySelector(".doinvalidate6");
-    const x7 = document.querySelector(".dovalidate7");
-    const y7 = document.querySelector(".doinvalidate7");
-    const x8 = document.querySelector(".dovalidate8");
-    const y8 = document.querySelector(".doinvalidate8");
-    const x9 = document.querySelector(".dovalidate9");
-    const y9 = document.querySelector(".doinvalidate9");
-    const x11 = document.querySelector(".dovalidate11");
-    const y11 = document.querySelector(".doinvalidate11");
-    const x12 = document.querySelector(".dovalidate12");
-    const y12 = document.querySelector(".doinvalidate12");
-    const x13 = document.querySelector(".dovalidate13");
-    const y13 = document.querySelector(".doinvalidate13");
-
+   
     const [addPetappointment, { loading, error }] = useMutation(ADD_PETAPPOINTMENT);
 
     if (loading) return 'Submitting...';
@@ -62,9 +35,37 @@ const PetAppointment = () => {
 
     const handleChange = (e) => {
 
+        const x = document.querySelector(".dovalidate");
+        const y = document.querySelector(".doinvalidate");
+        const x1 = document.querySelector(".dovalidate1");
+        const y1 = document.querySelector(".doinvalidate1");
+        const x2 = document.querySelector(".dovalidate2");
+        const y2 = document.querySelector(".doinvalidate2");
+        const x3 = document.querySelector(".dovalidate3");
+        const y3 = document.querySelector(".doinvalidate3");
+        const x4 = document.querySelector(".dovalidate4");
+        const y4 = document.querySelector(".doinvalidate4");
+        const x5 = document.querySelector(".dovalidate5");
+        const y5 = document.querySelector(".doinvalidate5");
+        const x6 = document.querySelector(".dovalidate6");
+        const y6 = document.querySelector(".doinvalidate6");
+        const x7 = document.querySelector(".dovalidate7");
+        const y7 = document.querySelector(".doinvalidate7");
+        const x8 = document.querySelector(".dovalidate8");
+        const y8 = document.querySelector(".doinvalidate8");
+        const x9 = document.querySelector(".dovalidate9");
+        const y9 = document.querySelector(".doinvalidate9");
+        const x11 = document.querySelector(".dovalidate11");
+        const y11 = document.querySelector(".doinvalidate11");
+        const x12 = document.querySelector(".dovalidate12");
+        const y12 = document.querySelector(".doinvalidate12");
+        const x13 = document.querySelector(".dovalidate13");
+        const y13 = document.querySelector(".doinvalidate13");
+
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
 
+    
         if (name === 'petName') {
             setPetName(value);
             if (value.length > 2) {
@@ -76,8 +77,8 @@ const PetAppointment = () => {
             }
         }
         if (name === 'petGender') {
-            setPetGender(value);
-            if (value) {
+            setPetGender(e.target.value);
+            if (e.target.value) {
                 x1.style.display = "block";
                 y1.style.display = "none";
             } else {
@@ -189,9 +190,9 @@ const PetAppointment = () => {
             }
         }
         if (name === 'patientnumber') {
-            setValue(patientnumber);
+            setValue(e.target.value);
 
-            if (patientnumber.length === 3) {
+            if (e.target.value.length === 3) {
 
                 x13.style.display = "block";
                 y13.style.display = "none";
@@ -240,279 +241,280 @@ const PetAppointment = () => {
         }
     };
 
-    return (      
-            <div className='container'>
-                <h1>Please answer few questions bout your pet</h1>
-                <form ref={form} onSubmit={(e) => handleFormSubmit(e)}>
-                    <div className='row'>
+    return (
+        <div className='container'>
+            <h1>Please answer few questions bout your pet</h1>
+            <form ref={form} onSubmit={(e) => handleFormSubmit(e)}>
+                <div className='row'>
 
-                        <div className="col-6">
-                            <label className="form-label1"> Pet's name</label>
+                    <div className="col-6">
+                        <label className="form-label1"> Pet's name</label>
+                        <input
+                            className="form-control"
+                            onChange={handleChange}
+                            type="text"
+                            value={petName}
+                            name="petName"
+                            placeholder="pet's name..."
+                        />
+                        <div className='dovalidate'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className='col-6'>
+                        <div>
+                            <label className="form-label">What is your pet's gender?</label><br />
                             <input
-                                className="form-control"
-                                onChange={handleChange}
-                                type="text"
-                                value={petName}
-                                name="petName"
-                                placeholder="pet's name..." />
-                            <div className='dovalidate'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='doinvalidate'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
+                                type="radio"
+                                name="petGender"
+                                value='male'
+                                checked={petGender === 'male'}
+                                onChange={handleChange} /> male
 
-                        <div className='col-6'>
-                            <div>
-                                <label className="form-label">What is your pet's gender?</label><br />
-                                <input
-                                    type="radio"
-                                    name="petGender"
-                                    value='male'
-                                    checked={petGender === 'male'}
-                                    onChange={handleChange} /> male
-
-                                <input
-                                    type="radio"
-                                    name='petGender'
-                                    value='female'
-                                    checked={petGender === 'female'}
-                                    onChange={handleChange} /> female
-                            </div>
-                            <div className='dovalidate1'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='doinvalidate1'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className='col-6'>
-                            <label className="form-label">Age</label><br />
                             <input
-                                type='text'
-                                name="petAge"
-                                value={petAge}
-                                onChange={handleChange}
-                                placeholder="MM/DD/YYYY..."
-                            />
-                            <div className='dovalidate2'>
+                                type="radio"
+                                name='petGender'
+                                value='female'
+                                checked={petGender === 'female'}
+                                onChange={handleChange} /> female
+                        </div>
+                        <div className='dovalidate1'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate1'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className='col-6'>
+                        <label className="form-label">Age</label><br />
+                        <input
+                            type='text'
+                            name="petAge"
+                            value={petAge}
+                            onChange={handleChange}
+                            placeholder="MM/DD/YYYY..."
+                        />
+                        <div className='dovalidate2'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate2'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1"> Breed</label>
+                        <input
+                            className="form-control"
+                            onChange={handleChange}
+                            type="text"
+                            value={petBreed}
+                            name="petBreed"
+                            placeholder="breed..." />
+                        <div className='dovalidate3'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate3'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1"> Pet's weight</label>
+                        <input
+                            className="form-control"
+                            onChange={handleChange}
+                            type="text"
+                            name="petWeight"
+                            value={petWeight}
+                            placeholder="weight..." />
+                        <div className='dovalidate4'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate4'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className='col-6'>
+                        <div>
+                            <label className="form-label">What is the reason for visitint?</label>
+                            <textarea className="form-control"
+                                name="petReason"
+                                value={petReason}
+                                placeholder='type your text here...'
+                                onChange={handleChange}>
+                            </textarea>
+                            <div className='dovalidate5'>
                                 Looks good
                                 <i className="fa-solid fa-check"></i>
                             </div>
-                            <div className='doinvalidate2'>
+                            <div className='doinvalidate5'>
                                 required
                                 <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1"> Breed</label>
-                            <input
-                                className="form-control"
-                                onChange={handleChange}
-                                type="text"
-                                value={petBreed}
-                                name="petBreed"
-                                placeholder="breed..." />
-                            <div className='dovalidate3'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='doinvalidate3'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label1"> Pet's weight</label>
-                            <input
-                                className="form-control"
-                                onChange={handleChange}
-                                type="text"
-                                name="petWeight"
-                                value={petWeight}
-                                placeholder="weight..." />
-                            <div className='dovalidate4'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='doinvalidate4'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className='col-6'>
-                            <div>
-                                <label className="form-label">What is the reason for visitint?</label>
-                                <textarea className="form-control"
-                                    name="petReason"
-                                    value={petReason}
-                                    placeholder='type your text here...'
-                                    onChange={handleChange}>
-                                </textarea>
-                                <div className='dovalidate5'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='doinvalidate5'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='row'>
-
-                            <h1>Please answer few questions about you</h1>
-
-                            <div className="col-6">
-                                <label className="form-label1"> First name</label>
-                                <input
-                                    className="form-control"
-                                    onChange={handleChange}
-                                    type="text"
-                                    value={patientfirstname}
-                                    name="patientfirstname"
-                                    placeholder="first name..." />
-                                <div className='dovalidate6'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='doinvalidate6'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-
-                            <div className="col-6">
-                                <label className="form-label1"> Last name</label>
-                                <input
-                                    className="form-control"
-                                    onChange={handleChange}
-                                    type="text"
-                                    name="patientlastname"
-                                    value={patientlastname}
-                                    placeholder="last name..." />
-                                <div className='dovalidate7'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='doinvalidate7'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-
-                            <div className="col-6">
-                                <label className="form-label1">Address</label>
-                                <input
-                                    className="form-control"
-                                    value={patientaddress}
-                                    onChange={handleChange}
-                                    type="text"
-                                    name="patientaddress"
-                                    placeholder="address..." />
-                                <div className='dovalidate8'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='doinvalidate8'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-
-                            <div className="col-6">
-                                <label className="form-label1">City</label>
-                                <input
-                                    className="form-control"
-                                    value={patientcity}
-                                    type="text"
-                                    name="patientcity"
-                                    onChange={handleChange}
-                                    placeholder="enter city..." />
-                                <div className='dovalidate9'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='doinvalidate9'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-
-                            <div className="col-6">
-                                <label className="form-label1">zip code</label>
-                                <input
-                                    className="form-control"
-                                    name="patientzip"
-                                    value={patientzip}
-                                    onChange={handleChange}
-                                    type="Number"
-                                    placeholder="zip code..." />
-                                <div className='dovalidate11'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='doinvalidate11'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-
-                            <div className="col-6">
-                                <label className="form-label">Email</label>
-                                <input
-                                    className="form-control"
-                                    value={patientemail}
-                                    onChange={handleChange}
-                                    type="email"
-                                    name="patientemail"
-                                    placeholder="example@example.com" />
-                                <div className='dovalidate12'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='doinvalidate12'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-
-                            <div className="col-6">
-                                <label className="form-label">Phone number</label>
-                                <Input
-                                    placeholder="Enter phone number"
-                                    name='patientnumber'
-                                    value={patientnumber}
-                                    onChange={setValue} />
-
-                                <div className='dovalidate13'>
-                                    Looks good
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                                <div className='doinvalidate13'>
-                                    required
-                                    <i className="fa-solid fa-check"></i>
-                                </div>
-                            </div>
-
-                            <div className="col-12">
-                                <button className="btn btn-primary"
-                                    type="submit"
-                                    value="Send">Submit</button>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+                <div className='row'>
+
+                    <h1>Please answer few questions about you</h1>
+
+                    <div className="col-6">
+                        <label className="form-label1"> First name</label>
+                        <input
+                            className="form-control"
+                            onChange={handleChange}
+                            type="text"
+                            value={patientfirstname}
+                            name="patientfirstname"
+                            placeholder="first name..." />
+                        <div className='dovalidate6'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate6'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1"> Last name</label>
+                        <input
+                            className="form-control"
+                            onChange={handleChange}
+                            type="text"
+                            name="patientlastname"
+                            value={patientlastname}
+                            placeholder="last name..." />
+                        <div className='dovalidate7'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate7'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1">Address</label>
+                        <input
+                            className="form-control"
+                            value={patientaddress}
+                            onChange={handleChange}
+                            type="text"
+                            name="patientaddress"
+                            placeholder="address..." />
+                        <div className='dovalidate8'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate8'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1">City</label>
+                        <input
+                            className="form-control"
+                            value={patientcity}
+                            type="text"
+                            name="patientcity"
+                            onChange={handleChange}
+                            placeholder="enter city..." />
+                        <div className='dovalidate9'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate9'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label1">zip code</label>
+                        <input
+                            className="form-control"
+                            name="patientzip"
+                            value={patientzip}
+                            onChange={handleChange}
+                            type="Number"
+                            placeholder="zip code..." />
+                        <div className='dovalidate11'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate11'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label">Email</label>
+                        <input
+                            className="form-control"
+                            value={patientemail}
+                            onChange={handleChange}
+                            type="email"
+                            name="patientemail"
+                            placeholder="example@example.com" />
+                        <div className='dovalidate12'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate12'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-6">
+                        <label className="form-label">Phone number</label>
+                        <Input
+                            placeholder="Enter phone number"
+                            name='patientnumber'
+                            value={patientnumber}
+                            onChange={setValue} />
+
+                        <div className='dovalidate13'>
+                            Looks good
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        <div className='doinvalidate13'>
+                            required
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-12">
+                        <button className="btn btn-primary"
+                            type="submit"
+                            value="Send">Submit</button>
+                    </div>
+                </div>
+            </form >
+        </div >
     )
 };
 
