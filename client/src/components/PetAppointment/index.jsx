@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useRef } from "react"
 import './index.css';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
@@ -9,25 +8,25 @@ import { useMutation } from "@apollo/client";
 import { ADD_PETAPPOINTMENT } from "../../utils/mutations";
 
 const PetAppointment = () => {
-    const form = useRef()
+
     const navigate = useNavigate();
     const location = useLocation();
     const passedVisitData = location.state;
 
+    const [patientnumber, setValue] = useState('');
     const [petName, setPetName] = useState('');
     const [petWeight, setPetWeight] = useState('');
     const [petBreed, setPetBreed] = useState('');
     const [petAge, setPetAge] = useState('');
     const [petReason, setPetReason] = useState('');
     const [petGender, setPetGender] = useState('');
-    const [patientnumber, setValue] = useState('');
     const [patientfirstname, setPatientFirstName] = useState('');
     const [patientlastname, setPatientLastName] = useState('');
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientemail, setPatientEmail] = useState('');
-   
+
     const [addPetappointment, { loading, error }] = useMutation(ADD_PETAPPOINTMENT);
 
     if (loading) return 'Submitting...';
@@ -65,7 +64,7 @@ const PetAppointment = () => {
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
 
-    
+
         if (name === 'petName') {
             setPetName(value);
             if (value.length > 2) {
@@ -140,6 +139,7 @@ const PetAppointment = () => {
         }
         if (name === 'patientlastname') {
             setPatientLastName(value);
+            console.log(value)
             if (value.length > 2) {
                 x7.style.display = "block";
                 y7.style.display = "none";
@@ -191,7 +191,7 @@ const PetAppointment = () => {
         }
         if (name === 'patientnumber') {
             setValue(e.target.value);
-
+            console.log(e.target.value)
             if (e.target.value.length === 3) {
 
                 x13.style.display = "block";
@@ -224,7 +224,7 @@ const PetAppointment = () => {
             setPatientLastName("")
             setPetGender("");
             setPetReason("");
-            setPatientCity("")
+            setPatientCity("");
             setPatientAddress("");
             setPatientZip("");
             setPatientEmail("");
@@ -244,7 +244,7 @@ const PetAppointment = () => {
     return (
         <div className='container'>
             <h1>Please answer few questions bout your pet</h1>
-            <form ref={form} onSubmit={(e) => handleFormSubmit(e)}>
+            <form onSubmit={(e) => handleFormSubmit(e)}>
                 <div className='row'>
 
                     <div className="col-6">

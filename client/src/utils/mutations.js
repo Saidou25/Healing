@@ -112,8 +112,8 @@ export const ADD_PETAPPOINTMENT = gql`
         $patientlastname: String
         $patientaddress: String
         $patientzip: Int
-        $patientcity:  String
-        $patientmunber: String
+        $patientnumber: String
+        $patientcity: String
         $patientreason: String
         $patientemail: String
         $isBooked: String

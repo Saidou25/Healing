@@ -30,7 +30,8 @@ const petappointmentSchema = new Schema({
         type: String,
         required: true,
         trim: true
-    }, patientgender: {
+    }, 
+    patientgender: {
         type: String,
         repuire: true,
         trim: true,

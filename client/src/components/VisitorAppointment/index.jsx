@@ -32,32 +32,32 @@ const VisitorAppointment = () => {
     const handleChange = (e) => {
 
         const x = document.querySelector(".validate");
-    const y = document.querySelector(".invalidate");
-    const x1 = document.querySelector(".validate1");
-    const y1 = document.querySelector(".invalidate1");
-    const x2 = document.querySelector(".validate2");
-    const y2 = document.querySelector(".invalidate2");
-    const x3 = document.querySelector(".validate3");
-    const y3 = document.querySelector(".invalidate3");
-    const x4 = document.querySelector(".validate4");
-    const y4 = document.querySelector(".invalidate4");
-    const x5 = document.querySelector(".validate5");
-    const y5 = document.querySelector(".invalidate5");
-    const x6 = document.querySelector(".validate6");
-    const y6 = document.querySelector(".invalidate6");
-    const x7 = document.querySelector(".validate7");
-    const y7 = document.querySelector(".invalidate7");
-    const x8 = document.querySelector(".validate8");
-    const y8 = document.querySelector(".invalidate8");
-    const x9 = document.querySelector(".validate9");
-    const y9 = document.querySelector(".invalidate9");
+        const y = document.querySelector(".invalidate");
+        const x1 = document.querySelector(".validate1");
+        const y1 = document.querySelector(".invalidate1");
+        const x2 = document.querySelector(".validate2");
+        const y2 = document.querySelector(".invalidate2");
+        const x3 = document.querySelector(".validate3");
+        const y3 = document.querySelector(".invalidate3");
+        const x4 = document.querySelector(".validate4");
+        const y4 = document.querySelector(".invalidate4");
+        const x5 = document.querySelector(".validate5");
+        const y5 = document.querySelector(".invalidate5");
+        const x6 = document.querySelector(".validate6");
+        const y6 = document.querySelector(".invalidate6");
+        const x7 = document.querySelector(".validate7");
+        const y7 = document.querySelector(".invalidate7");
+        const x8 = document.querySelector(".validate8");
+        const y8 = document.querySelector(".invalidate8");
+        const x9 = document.querySelector(".validate9");
+        const y9 = document.querySelector(".invalidate9");
 
         const emailRegex = /^\S+@\S+\.\S+$/;
         const { name, value } = e.target;
 
         if (name === 'patientgender') {
             setPatientGender(e.target.value);
-            
+
             if (e.target.value) {
                 x9.style.display = "block";
                 y9.style.display = "none";
@@ -160,7 +160,7 @@ const VisitorAppointment = () => {
         }
         if (name === 'patientnumber') {
             setValue(e.target.value);
-
+            console(e.target.value)
             if (e.target.value.length === 3) {
 
                 x6.style.display = "block";
