@@ -1,3 +1,15 @@
+.container-pet {
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+}
+h1 {
+   margin: 5%;
+   text-align: center;
+}
+.card-pet {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .dovalidate,
 .dovalidate1,
 .dovalidate2,

@@ -42,15 +42,15 @@ const Visit = () => {
 
         if (name === 'mepet') {
             setMePet(value);
-           
+
             if (value === 'mypet') {
                 x9.style.display = "block";
                 y9.style.display = "none";
-         
+
             } else if (value === 'me') {
                 x9.style.display = "block";
                 y9.style.display = "none";
-             
+
             } else {
                 x9.style.display = "none";
                 y9.style.display = "block";
@@ -96,21 +96,26 @@ const Visit = () => {
         }
         // setMePet('');
         // setStartDate('');
-        
-        mepet === 'me' 
-        ? navigate('/VisitorAppointment', { state: navigateVisitData })
-        : navigate('/PetAppointment', { state: navigateVisitData });
+
+        mepet === 'me'
+            ? navigate('/VisitorAppointment', { state: navigateVisitData })
+            : navigate('/PetAppointment', { state: navigateVisitData });
 
     };
 
     return (
 
-        <div className='container'>
-            <div className='row'>
-                <form>
-                    <div className='col-6'>
+        // <div className='container-visit'>
+        <form>
+            <div className='card-visit'>
+                <div className='row-visit align-items-center p-5'>
+                    <div className='col-6 appointment-for'>
+                        <label className="form-label">
+                            Who is the appointment for?
+                        </label>
+                    </div>
+                    <div className='col-6 visit'>
                         <div>
-                            <label className="form-label appointment-for">Who is the appointment for?</label><br />
                             <input
                                 type="radio"
                                 name="mepet"
@@ -135,7 +140,8 @@ const Visit = () => {
                         </div>
                     </div>
 
-                    <div className='col-6'>
+
+                    <div className='col-6 date-picker'>
                         <DatePicker
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
@@ -150,15 +156,18 @@ const Visit = () => {
                             excludeDates={allAppointments}
                         // footer={footer};
                         />
-                        <div>
-                            <button type='submit' onClick={(e) => handleSubmit(e)}>
-                                Submit
-                            </button>
-                        </div>
                     </div>
-                </form>
-            </div>
-        </div>
+                    <div className='col-6 button-visit'>
+                        <button type='submit' onClick={(e) => handleSubmit(e)}>
+                            Submit
+                        </button>
+                    </div>
+
+                </div>
+            </div >
+        </form >
+
+
     )
 };
 

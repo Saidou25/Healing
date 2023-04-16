@@ -1,26 +1,48 @@
 
-/* .validate,
-.validate1,
-.validate2,
-.validate3,
-.validate4,
-.invalidate5 {
+.card-visit {
+    border-radius: 10px;
+    width: 40%;
+    margin-top: 10%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.row-visit {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.visit {
+    margin: 8%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.appointment-for {
+    width: 100%;
+    text-align: center;
+}
+.validate9 {
     display: none;
     color: green;
     margin-top: 7px;
     margin-right: 15px;
     margin-left: 15px;
 }
-
-.invalidate,
-.invalidate1,
-.invalidate2,
-.invalidate3,
-.invalidate4,
-.invalidate5 {
+.invalidate9 {
     margin-top: 7px;
     color: red;
     margin-right: 15px;
     margin-left: 15px;
 
-} */
+}
+.date-picker {
+    padding-top: 8%;
+    width: 100%;
+    text-align: center;
+}
+.button-visit {
+    padding-top: 12%;
+    width: 100%;
+    text-align: center;
+}
