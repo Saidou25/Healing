@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from './components/Header';
 import Navbar from './components/Navbar';
-import Home from './components/Home';
+import UserList from './components/UserList';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
 import VisitorAppointment from './components/VisitorAppointment';
@@ -20,6 +20,8 @@ import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
 import PetAppointment from './components/PetAppointment';
 import Signup from './components/Signup';
+
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -49,7 +51,7 @@ function App() {
         <>
           <Header />
           <Routes>
-            <Route path='/home' element={<Home />} />
+            <Route path='/UserList' element={<UserList />} />
             <Route path='/Visit' element={<Visit />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/Navbar' element={<Navbar />} />

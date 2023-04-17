@@ -373,7 +373,7 @@ const PetAppointment = () => {
                     </div>
                 </div>
                 <h1>Please answer few questions about you</h1>
-                <div className='card'>
+                <div className='card-pet'>
                     <div className='row m-5'>
 
                         <div className="col-6">

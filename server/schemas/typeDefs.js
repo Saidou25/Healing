@@ -85,14 +85,15 @@ const typeDefs = gql`
      petReason: String
      petAge: String
      },
-     type Profile {
+     type User {
     _id: ID
+    username: String
     email: String
     password: String 
   },
   type Auth {
     token: ID!
-    profile: Profile
+    user: User
   }
      
      type Query {
@@ -106,8 +107,8 @@ const typeDefs = gql`
      pet(id: ID!): Pet
      petappointments: [Petappointment]!
      petappointment(id: ID!): Petappointment
-     profiles: [Profile]!
-     profile(profileId: ID!): Profile
+     users: [User]!
+     user(id: ID!): User
      },
 
      type Mutation {
@@ -124,7 +125,7 @@ const typeDefs = gql`
      mepet: String
      patientzip: Int): Patient
 
-     addProfile(email: String, password: String): Auth
+     addUser(username: String, email: String, password: String): Auth
      login(email: String, password: String): Auth
 
      addVisitorappointment(
@@ -193,8 +194,6 @@ const typeDefs = gql`
      petReason: String
      petBreed: String
      ): Pet
-     
-     removeProfile(profileId: ID!): Profile
      }
 
      `;

@@ -1,14 +1,14 @@
-const { Patient, Visitorappointment, Bookingdate, Pet, Petappointment, Profile } = require('../models');
+const { Patient, Visitorappointment, Bookingdate, Pet, Petappointment, User } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {
-        profiles: async () => {
-            return Profile.find();
+        users: async () => {
+            return User.find();
         },
-        profile: async (_, { profileId }) => {
-            return Profile.findOne({ _id: profileId });
+        user: async (_, args) => {
+            return User.findOne({ _id: args.id });
         },
         patients: async () => {
             return await Patient.find({});
@@ -43,23 +43,24 @@ const resolvers = {
     },
 
     Mutation: {
-        addProfile: async (_, { email, password }) => {
-            const profile = await Profile.create({ email, password });
-            const token = signToken(profile);
+        addUser: async (_, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
 
-            return { token, profile };
+            return { token, user };
         },
-        login: async (_, { email, password }) => {
-            const profile = await Profile.findOne({ email, password });
-            if (!profile) {
-                throw new AuthenticationError('No profile with this email found!');
+        login: async (_, { email, username, password }) => {
+            const user = await User.findOne(email ? { email } : { username});
+           
+            if (!user) {
+                throw new AuthenticationError('No user with this email found!');
             }
-            const correctPw = await profile.isCorrectPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect password!');
             }
-            const token = signToken(profile);
-            return { token, profile };
+            const token = signToken(user);
+            return { token, user };
         },
 
         addPatient: async (_, args) => {
@@ -152,9 +153,6 @@ const resolvers = {
                 appointment: args.appointment,
                 appYear: args.appYear,
             })
-        },
-        removeProfile: async (_, { profileId }) => {
-            return Profile.findOneAndDelete({ _id: profileId });
         },
     },
 };

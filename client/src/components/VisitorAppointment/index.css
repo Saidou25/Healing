@@ -21,7 +21,7 @@
     display: block;
 
 }
-.profile {
+/* .profile {
     margin-left: auto;
     margin-right: auto;
     width: 65%;
@@ -29,7 +29,7 @@
     border-width: 5px;
     border-color: white;
     border-radius: 20px;
-}
+} */
 
 .form-control {
     font-style: oblique;

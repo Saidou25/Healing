@@ -9,7 +9,7 @@ const PatientList = ({ patients }) => {
 
     return (
         <div>
-            <h3 className="text">title</h3>
+            <h3 className="text">patient list</h3>
             <div className="flex-row justify-space-between my-4">
                 {patients &&
                     patients.map((patient) => (

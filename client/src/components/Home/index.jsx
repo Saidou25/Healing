@@ -11,6 +11,7 @@ const Home = () => {
 
     return (
         <div>
+            patient list
             <PatientList patients={patients} />
         </div>
     )
