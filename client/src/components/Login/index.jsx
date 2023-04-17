@@ -1,138 +1,95 @@
-import React from "react";
-// import { useMutation } from "@apollo/client";
-// import { ADD_PATIENT } from "../../utils/mutations";
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../../utils/mutations";
+import Auth from '../../utils/auth';
+// import './index.css';
 
-import './index.css';
+const Login = (props) => {
 
-const login = () => {
-
-    // const [patientpassword, setPatientPassword] = useState("");
-    // const [patientemail, setPatientEmail] = useState("");
-
-
-    // const [addPatient, { data, loading, error }] = useMutation(ADD_PATIENT);
+    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [login, { error, data }] = useMutation(LOGIN_USER);
 
     // if (loading) return 'Submitting...';
     // if (error) return `Submission error! ${error.message}`;
 
-    const handleInputChange = () => {
-        // const x = document.querySelector(".validate");
-        // const y = document.querySelector(".invalidate");
-        // const x1 = document.querySelector(".validate1");
-        // const y1 = document.querySelector(".invalidate1");
+    const handleChange = (event) => {
+        const { name, value } = event.target;
 
-        // const emailRegex = /^\S+@\S+\.\S+$/;
-
-        // const { name, value } = e.target;
-
-        // if (name === 'patientemail') {
-
-        //     setPatientEmail(value);
-
-        //     if (value.length > 0 && emailRegex.test(value)) {
-
-        //         x.style.display = "block";
-        //         y.style.display = "none";
-        //     } else {
-
-        //         x.style.display = "none";
-        //         y.style.display = "block";
-        //     }
-
-        // }
-        // if (name === 'password') {
-
-        //     setPatientPassword(value);
-
-        //     if (value.length > 0) {
-
-        //         x1.style.display = "block";
-        //         y1.style.display = "none";
-        //     } else {
-
-        //         x1.style.display = "none";
-        //         y1.style.display = "block";
-        //     }
-
-        // }
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
     };
 
-    const handleFormSubmit = async () => {
-        // e.preventDefault();
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
         console.log('Hello');
-        // const patientpassword = e.target.patientpassword.value;
-        // const patientemail = e.target.patientemail.value;
+        console.log('form state', formState);
 
-        // try {
-        //     await addPatient({ variables: { patientpassword: patientpassword, patientemail: patientemail } });
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+            Auth.login(data.login.token);
 
-        //     setPatientPassword("");
-        //     setPatientEmail("");
-
-        //     console.log(`success adding ${patientfirstname}`)
-
-        // } catch (err) {
-        //     console.error(err);
-        // }
+        } catch (e) {
+            console.error(e);
+        }
+        setFormState({
+            email: '',
+            password: '',
+        });
     };
 
     return (
-        <>
-            <div className="container">
-                {/* <div className='title'> */}
-                    <h1>login information form</h1>
-                {/* </div> */}
+        <main className="flex-row justify-center mb-4">
+            <div className="col-12 col-lg-10">
+                <div className="card">
+                    <h4 className="card-header bg-dark text-light p-2">Login</h4>
+                    <div className="card-body">
+                        {data ? (
+                            <p>
+                                Success! You may now head{' '}
+                                <Link to="/">back to the homepage.</Link>
+                            </p>
+                        ) : (
+                            <form onSubmit={handleFormSubmit}>
+                                <input
+                                    className="form-input"
+                                    placeholder="Your email"
+                                    name="email"
+                                    type="email"
+                                    value={formState.email}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    className="form-input"
+                                    placeholder="******"
+                                    name="password"
+                                    type="password"
+                                    value={formState.password}
+                                    onChange={handleChange}
+                                />
+                                <button
+                                    className="btn btn-block btn-info"
+                                    style={{ cursor: 'pointer' }}
+                                    type="submit"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        )}
+
+                        {error && (
+                            <div className="my-3 p-3 bg-danger text-white">
+                                {error.message}
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
-            <div>
-                <form onSubmit={handleFormSubmit} className='row profile'>
-
-
-                    <div>
-                        <label className="form-label1">Email</label>
-                        <input
-                            className="form-control"
-                            // value={patientemail}
-                            onChange={handleInputChange}
-                            type="text"
-                            name="patientemail"
-                            placeholder="" />
-                        <div className='validate'>
-                            Looks good
-                            <i className="fa-solid fa-check"></i>
-                        </div>
-                        <div className='invalidate'>
-                            required
-                            <i className="fa-solid fa-check"></i>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="form-label1">Password</label>
-                        <input
-                            className="form-control"
-                            // value={patientpassword}
-                            onChange={handleInputChange}
-                            type="text"
-                            name="patientpassword"
-                            placeholder="" />
-                        <div className='validate1'>
-                            Looks good
-                            <i className="fa-solid fa-check"></i>
-                        </div>
-                        <div className='invalidate1'>
-                            required
-                            <i className="fa-solid fa-check"></i>
-                        </div>
-                    </div>
-
-                    <div className="col-12">
-                        <button className="btn btn-primary"
-                            type="submit"
-                            value="Send">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </>
+        </main>
     );
 };
-export default login;
+export default Login;

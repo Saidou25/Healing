@@ -1,5 +1,12 @@
 import React from 'react';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+}
+  from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from './components/Header';
@@ -12,32 +19,48 @@ import Visit from './components/Visit';
 import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
 import PetAppointment from './components/PetAppointment';
+import Signup from './components/Signup';
 
-
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: '/graphql',
-  cache: new InMemoryCache({ addTypename: false }),
+})
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+
+    },
+  };
 });
 
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache({ addTypename: false }),
+});
 
 function App() {
   return (
     <ApolloProvider client={client}>
-       <Router>
-      <>
-        <Header />
-        <Routes>
-          <Route path='/home' element={<Home />} />
-          <Route path='/Visit' element={<Visit />} />
-          <Route path='/Login' element={<Login />} />
-          <Route path='/Navbar' element={<Navbar />} />
-         <Route path='/DateList' element={<DateList />} />
-          <Route path='/VisitorAppointment' element={<VisitorAppointment />} />
-          <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
-          <Route path='/PetAppointment' element={<PetAppointment />} />
-          <Route path='/' element={<LandingPage />} />
-        </Routes>
-      </>
+      <Router>
+        <>
+          <Header />
+          <Routes>
+            <Route path='/home' element={<Home />} />
+            <Route path='/Visit' element={<Visit />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/Navbar' element={<Navbar />} />
+            <Route path='/DateList' element={<DateList />} />
+            <Route path='/Signup' element={<Signup />} />
+            <Route path='/VisitorAppointment' element={<VisitorAppointment />} />
+            <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
+            <Route path='/PetAppointment' element={<PetAppointment />} />
+            <Route path='/' element={<LandingPage />} />
+          </Routes>
+        </>
       </Router>
     </ApolloProvider>
   );

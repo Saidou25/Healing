@@ -1,7 +1,15 @@
-const { Patient, Visitorappointment, Bookingdate, Pet, Petappointment } = require('../models');
+const { Patient, Visitorappointment, Bookingdate, Pet, Petappointment, Profile } = require('../models');
+const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {
+        profiles: async () => {
+            return Profile.find();
+        },
+        profile: async (_, { profileId }) => {
+            return Profile.findOne({ _id: profileId });
+        },
         patients: async () => {
             return await Patient.find({});
         },
@@ -35,6 +43,25 @@ const resolvers = {
     },
 
     Mutation: {
+        addProfile: async (_, { email, password }) => {
+            const profile = await Profile.create({ email, password });
+            const token = signToken(profile);
+
+            return { token, profile };
+        },
+        login: async (_, { email, password }) => {
+            const profile = await Profile.findOne({ email, password });
+            if (!profile) {
+                throw new AuthenticationError('No profile with this email found!');
+            }
+            const correctPw = await profile.isCorrectPassword(password);
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect password!');
+            }
+            const token = signToken(profile);
+            return { token, profile };
+        },
+
         addPatient: async (_, args) => {
 
             return await Patient.create({
@@ -114,7 +141,7 @@ const resolvers = {
                 patientzip: args.patientzip,
                 patientcity: args.patientcity,
                 patientnumber: args.patientnumber,
-                patientreason:args. patientreason,
+                patientreason: args.patientreason,
                 patientemail: args.patientemail,
                 isBooked: args.isBooked,
                 finalDateISO: args.finalDateISO,
@@ -125,7 +152,10 @@ const resolvers = {
                 appointment: args.appointment,
                 appYear: args.appYear,
             })
-        }
+        },
+        removeProfile: async (_, { profileId }) => {
+            return Profile.findOneAndDelete({ _id: profileId });
+        },
     },
 };
 
