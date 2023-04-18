@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from "@apollo/client";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES } from '../../utils/queries';
 // import DateList from '../DateList';
@@ -11,9 +11,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { parseISO, setHours, setMinutes } from 'date-fns';
 
 
-const Visit = () => {
+const Dashboard = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const passedLogintData = location.state;
+    console.log("receive in dashboard passedLoginData", passedLogintData);
 
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
@@ -105,71 +108,74 @@ const Visit = () => {
 
     return (
 
-        // <div className='container-visit'>
-        <form>
-            <div className='card-visit'>
-                <div className='row-visit align-items-center p-5'>
-                    <div className='col-6 appointment-for'>
-                        <label className="form-label">
-                            Who is the appointment for?
-                        </label>
-                    </div>
-                    <div className='col-6 visit'>
-                        <div>
-                            <input
-                                type="radio"
-                                name="mepet"
-                                value="me"
-                                checked={mepet === 'me'}
-                                onChange={handleChange} /> me
-
-                            <input
-                                type="radio"
-                                name="mepet"
-                                value="mypet"
-                                checked={mepet === 'mypet'}
-                                onChange={handleChange} /> my pet
+        <div className='container-visit'>
+            <h1>
+                Would you like to book an appointment with us?
+            </h1>
+            <form>
+                <div className='card-visit'>
+                    <div className='row-visit align-items-center p-5'>
+                        <div className='col-6 appointment-for'>
+                            <label className="form-label">
+                                Who is the appointment for?
+                            </label>
                         </div>
-                        <div className='validate9'>
-                            Looks good
-                            <i className="fa-solid fa-check"></i>
+                        <div className='col-6 visit'>
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="mepet"
+                                    value="me"
+                                    checked={mepet === 'me'}
+                                    onChange={handleChange} /> me
+
+                                <input
+                                    type="radio"
+                                    name="mepet"
+                                    value="mypet"
+                                    checked={mepet === 'mypet'}
+                                    onChange={handleChange} /> my pet
+                            </div>
+                            <div className='validate9'>
+                                Looks good
+                                <i className="fa-solid fa-check"></i>
+                            </div>
+                            <div className='invalidate9'>
+                                required
+                                <i className="fa-solid fa-check"></i>
+                            </div>
                         </div>
-                        <div className='invalidate9'>
-                            required
-                            <i className="fa-solid fa-check"></i>
+
+
+                        <div className='col-6 date-picker'>
+                            <DatePicker
+                                selected={startDate}
+                                onChange={(date) => setStartDate(date)}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={15}
+                                timeCaption="time"
+                                minTime={setHours(setMinutes(new Date(), 0), 9)}
+                                maxTime={setHours(setMinutes(new Date(), 0), 19)}
+                                dateFormat="MMMM d, yyyy h:mm aa"
+                                minDate={new Date()}
+                                excludeDates={allAppointments}
+                            // footer={footer};
+                            />
                         </div>
+                        <div className='col-6 button-visit'>
+                            <button type='submit' onClick={(e) => handleSubmit(e)}>
+                                Submit
+                            </button>
+                        </div>
+
                     </div>
-
-
-                    <div className='col-6 date-picker'>
-                        <DatePicker
-                            selected={startDate}
-                            onChange={(date) => setStartDate(date)}
-                            showTimeSelect
-                            timeFormat="HH:mm"
-                            timeIntervals={15}
-                            timeCaption="time"
-                            minTime={setHours(setMinutes(new Date(), 0), 9)}
-                            maxTime={setHours(setMinutes(new Date(), 0), 19)}
-                            dateFormat="MMMM d, yyyy h:mm aa"
-                            minDate={new Date()}
-                            excludeDates={allAppointments}
-                        // footer={footer};
-                        />
-                    </div>
-                    <div className='col-6 button-visit'>
-                        <button type='submit' onClick={(e) => handleSubmit(e)}>
-                            Submit
-                        </button>
-                    </div>
-
-                </div>
-            </div >
-        </form >
-
+                </div >
+            </form >
+        </div>
 
     )
 };
 
-export default Visit;
+export default Dashboard;
 

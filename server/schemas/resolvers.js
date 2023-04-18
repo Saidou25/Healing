@@ -81,7 +81,8 @@ const resolvers = {
         },
         addVisitorappointment: async (_, args) => {
 
-            return await Visitorappointment.create({
+            return await addVisitorappointment.create({
+                user: args.user,
                 patientfirstname: args.patientfirstname,
                 patientlastname: args.patientlastname,
                 birthdate: args.birthdate,

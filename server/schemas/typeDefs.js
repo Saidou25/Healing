@@ -18,6 +18,7 @@ const typeDefs = gql`
      },
      type Visitorappointment {
      _id: ID!
+     user: User
      patientfirstname: String
      patientgender: String
      patientaddress: String
@@ -87,9 +88,10 @@ const typeDefs = gql`
      },
      type User {
     _id: ID
-    username: String
     email: String
     password: String 
+    username: String
+    visitorappointments: [Visitorappointment]
   },
   type Auth {
     token: ID!
@@ -109,45 +111,47 @@ const typeDefs = gql`
      petappointment(id: ID!): Petappointment
      users: [User]!
      user(id: ID!): User
+   
      },
 
      type Mutation {
      addPatient(
-     patientfirstname: String
-     patientgender: String
-     patientaddress: String
-     patientemail: String
-     patientlastname: String
-     patientcity: String
-     patientnumber: String
-     patientreason: String
-     birthdate: String 
-     mepet: String
+     patientfirstname: String,
+     patientgender: String,
+     patientaddress: String,
+     patientemail: String,
+     patientlastname: String,
+     patientcity: String,
+     patientnumber: String,
+     patientreason: String,
+     birthdate: String ,
+     mepet: String,
      patientzip: Int): Patient
 
-     addUser(username: String, email: String, password: String): Auth
+     addUser(username: String!, email: String!, password: String!): Auth
      login(email: String, password: String): Auth
 
      addVisitorappointment(
-     patientfirstname: String
-     patientgender: String
-     patientaddress: String
-     patientemail: String
-     patientlastname: String
-     patientcity: String
-     patientnumber: String
-     patientreason: String
-     birthdate: String
-     patientzip: Int
-     mepet: String
-     isBooked: String
-     finalDateISO: String
-     appDay: String
-     appMonth: String
-     appDate: Int
-     appointment: String
-     appTime: String
-     appYear: Int): Visitorappointment
+     user: ID!,
+     patientfirstname: String,
+     patientgender: String,
+     patientaddress: String,
+     patientemail: String,
+     patientlastname: String,
+     patientcity: String,
+     patientnumber: String,
+     patientreason: String,
+     birthdate: String,
+     patientzip: Int,
+     mepet: String,
+     isBooked: String,
+     finalDateISO: String,
+     appDay: String,
+     appMonth: String,
+     appDate: Int,
+     appointment: String,
+     appTime: String,
+     appYear: Int): User
 
      addBookingdate(
      isBooked: String

@@ -20,6 +20,32 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_USERVISITORAPPOINTMENTS = gql`
+  query userVisitorappointments {
+   userVisitorappointments {
+       isBooked
+       finalDateISO  
+       appDay
+       appMonth
+       appTime
+       appYear
+       appDate
+       appointment
+       patientfirstname
+       patientgender
+       patientaddress
+       patientemail
+       patientlastname
+       patientcity
+       patientnumber
+       patientreason
+       birthdate
+       patientzip
+       mepet
+    }
+  }
+`;
+
 export const QUERY_PATIENTS = gql`
      query patients {
      patients {
@@ -134,7 +160,7 @@ export const QUERY_BOOKINGDATE = gql`
         }
      }
  `;
- export const QUERY_PET = gql`
+export const QUERY_PET = gql`
  query pet($id: ID!) {
  pet(id: $id) {
     petName
@@ -146,7 +172,7 @@ export const QUERY_BOOKINGDATE = gql`
      }
      }
      `;
- export const QUERY_PETS = gql`
+export const QUERY_PETS = gql`
  query pets {
  pets {
     petName
@@ -158,7 +184,7 @@ export const QUERY_BOOKINGDATE = gql`
      }
      }
      `;
-      export const QUERY_PETAPPOINTMENTS = gql`
+export const QUERY_PETAPPOINTMENTS = gql`
       query petappointments {
       petappointments {
          petAge
@@ -181,7 +207,7 @@ export const QUERY_BOOKINGDATE = gql`
           }
           }
           `;
-      export const QUERY_PETAPPOINTMENT = gql`
+export const QUERY_PETAPPOINTMENT = gql`
       query petappointment($id: ID!) {
          petappointment(id: $id) {
          petWeight

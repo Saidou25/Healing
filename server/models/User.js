@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+// const Visitorappointment = require('./VisitorAppoinmtent');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -17,7 +18,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 5,
-  }
+  },
+  visitorappointment: [{
+    type: Schema.Types.ObjectId,
+    ref: 'visitorappointment'
+  }]
 });
 
 userSchema.pre('save', async function (next) {
@@ -25,7 +30,6 @@ userSchema.pre('save', async function (next) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
   next();
 });
 

@@ -1,9 +1,15 @@
 import React from "react";
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import Auth from "../../utils/auth";
 
 import './index.css';
 
 const Navbar = () => {
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+        console.log('logout success!')
+      };
     return (
         <nav className="nav">
             <Link className="site-title" to="/">
@@ -13,8 +19,8 @@ const Navbar = () => {
                 <CustomLink to='/UserList' className='nav-item'>users</CustomLink>
                 <CustomLink to='/Login' className='nav-item'>login</CustomLink>
                 <CustomLink to='/Signup' className='nav-item'>signup</CustomLink>
-                <CustomLink to='/Visit' className='nav-item'>visit</CustomLink>
-                {/* <CustomLink to='/patients' className='nav-item'>patients</CustomLink> */}
+                <CustomLink to='/Dashboard' className='nav-item'>dashboard</CustomLink>
+                <CustomLink to='/' className='nav-item' onSubmit={logout} >logout</CustomLink>
             </ul>
         </nav>
     )

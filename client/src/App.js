@@ -15,11 +15,11 @@ import UserList from './components/UserList';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
 import VisitorAppointment from './components/VisitorAppointment';
-import Visit from './components/Visit';
 import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
 import PetAppointment from './components/PetAppointment';
 import Signup from './components/Signup';
+import Dashboard from './components/Dashboard';
 
 
 
@@ -52,7 +52,6 @@ function App() {
           <Header />
           <Routes>
             <Route path='/UserList' element={<UserList />} />
-            <Route path='/Visit' element={<Visit />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/Navbar' element={<Navbar />} />
             <Route path='/DateList' element={<DateList />} />
@@ -60,6 +59,7 @@ function App() {
             <Route path='/VisitorAppointment' element={<VisitorAppointment />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
             <Route path='/PetAppointment' element={<PetAppointment />} />
+            <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/' element={<LandingPage />} />
           </Routes>
         </>
