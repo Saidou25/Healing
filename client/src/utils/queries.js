@@ -10,13 +10,85 @@ export const QUERY_USERS = gql`
   }
 `;
 
-export const QUERY_USER = gql`
-  query user($id: ID!) {
-    user(id: $id) {
+export const QUERY_ME = gql`
+   query me {
+     me {
       _id
       username
       email
+     }
+     bookingdates {
+     _id
+     isBooked
+     finalDateISO
+     appDay
+     appMonth
+     appTime
+     appYear
+        
+     }
+     }
+     `;
+
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      bookingdates {
+     _id
+     isBooked
+     finalDateISO
+     appDay
+     appMonth
+     appTime
+     appYear
+        
+     }
     }
+  }
+`;
+
+export const QUERY_BOOKINGDATES = gql`
+ query bookingdates {
+     bookingdates {
+     _id
+     isBooked
+     finalDateISO
+     appDay
+     appMonth
+     appTime
+     appYear
+        
+     }
+  }
+`;
+export const QUERY_BOOKINGDATE = gql`
+    query bookingdate($id: ID!) {
+         bookingdate(id: $id) {
+     _id
+     isBooked
+     finalDateISO
+     appDay
+     appMonth
+     appTime
+     appYear
+        }
+     }
+ `;
+
+export const QUERY_USERBOOKINGDATES = gql`
+ query userBookingdates {
+     userBookingdates {
+     isBooked
+     finalDateISO
+     appDay
+     appMonth
+     appTime
+     appYear
+        
+     }
   }
 `;
 
@@ -34,7 +106,6 @@ export const QUERY_USERVISITORAPPOINTMENTS = gql`
        patientfirstname
        patientgender
        patientaddress
-       patientemail
        patientlastname
        patientcity
        patientnumber
@@ -90,7 +161,6 @@ export const QUERY_VISITORAPPOINTMENTS = gql`
      patientfirstname
      patientgender
      patientaddress
-     patientemail
      patientlastname
      patientcity
      patientnumber
@@ -133,33 +203,7 @@ export const QUERY_VISITORAPPOINTMENT = gql`
         }
      }
  `;
-export const QUERY_BOOKINGDATES = gql`
- query bookingdates {
-     bookingdates {
-     _id
-     isBooked
-     finalDateISO
-     appDay
-     appMonth
-     appTime
-     appYear
-        
-     }
-  }
-`;
-export const QUERY_BOOKINGDATE = gql`
-    query bookingdate($id: ID!) {
-         bookingdate(id: $id) {
-     _id
-     isBooked
-     finalDateISO
-     appDay
-     appMonth
-     appTime
-     appYear
-        }
-     }
- `;
+
 export const QUERY_PET = gql`
  query pet($id: ID!) {
  pet(id: $id) {

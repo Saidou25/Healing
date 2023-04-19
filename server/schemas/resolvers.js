@@ -5,10 +5,19 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find();
+            return User.find().populate('bookingdates');
         },
         user: async (_, args) => {
-            return User.findOne({ _id: args.id });
+            return User.findOne({ username: args.username }).populate('bookingdates');
+        },
+        me: async (_, _args, context) => {
+            if (context.user) {
+                return User.findOne({ _id: context.user._id }).populate('bookingdates');
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        userBookingdates: async (_, _args, context) => {
+            return Bookingdate.find({ user: context.user._id });
         },
         patients: async () => {
             return await Patient.find({});
@@ -22,8 +31,10 @@ const resolvers = {
         visitorappointment: async (_, args) => {
             return await Visitorappointment.findOne({ _id: args.id });
         },
-        bookingdates: async () => {
-            return await Bookingdate.find({});
+        bookingdates: async (_, args) => {
+            const username = args.username;
+            const params = username ? { username } : {}
+            return Bookingdate.find(params);
         },
         bookingdate: async (_, args) => {
             return await Bookingdate.findOne({ _id: args.id });
@@ -50,8 +61,8 @@ const resolvers = {
             return { token, user };
         },
         login: async (_, { email, username, password }) => {
-            const user = await User.findOne(email ? { email } : { username});
-           
+            const user = await User.findOne(email ? { email } : { username });
+
             if (!user) {
                 throw new AuthenticationError('No user with this email found!');
             }
@@ -61,6 +72,29 @@ const resolvers = {
             }
             const token = signToken(user);
             return { token, user };
+        },
+
+        addBookingdate: async (_, args, context) => {
+            if (context.user) {
+              const bookingdate = await Bookingdate.create({
+                    isBooked: args.isBooked,
+                    finalDateISO: args.finalDateISO,
+                    appDay: args.appDay,
+                    appMonth: args.appMonth,
+                    appDate: args.appDate,
+                    appTime: args.appTime,
+                    appYear: args.appYear
+                });
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { bookingdates: bookingdate._id } }
+                );
+
+                return bookingdate;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+
         },
 
         addPatient: async (_, args) => {
@@ -81,8 +115,7 @@ const resolvers = {
         },
         addVisitorappointment: async (_, args) => {
 
-            return await addVisitorappointment.create({
-                user: args.user,
+            return await Visitorappointment.create({
                 patientfirstname: args.patientfirstname,
                 patientlastname: args.patientlastname,
                 birthdate: args.birthdate,
@@ -104,18 +137,7 @@ const resolvers = {
                 appointment: args.appointment
             });
         },
-        addBookingdate: async (_, args) => {
-
-            return await Bookingdate.create({
-                isBooked: args.isBooked,
-                finalDateISO: args.finalDateISO,
-                appDay: args.appDay,
-                appMonth: args.appMonth,
-                appDate: args.appDate,
-                appTime: args.appTime,
-                appYear: args.appYear
-            });
-        },
+        
         addPet: async (_, args) => {
 
             return await Pet.create({

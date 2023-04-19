@@ -25,47 +25,7 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_PATIENT = gql`
-    mutation addPatient(
-     $patientfirstname: String,
-     $patientgender: String,
-     $patientaddress: String,
-     $patientemail: String,
-     $patientlastname: String,
-     $patientcity: String,
-     $patientnumber: String,
-     $patientreason: String,
-     $birthdate: String,
-     $patientzip: Int,
-     $mepet: String) {
-          addPatient(
-            patientfirstname: $patientfirstname,
-         patientgender: $patientgender,
-     patientaddress: $patientaddress,
-     patientemail: $patientemail,
-     patientlastname: $patientlastname,
-     patientcity: $patientcity,
-     patientnumber: $patientnumber,
-     patientreason: $patientreason,
-     birthdate: $birthdate,
-     patientzip: $patientzip,
-     mepet: $mepet
-          ) { 
-             _id          
-             patientfirstname
-         patientgender
-     patientaddress
-     patientemail
-     patientlastname
-     patientcity
-     patientnumber
-     patientreason
-     birthdate
-     patientzip
-     mepet
-             }
-    }
-`;
+
 export const ADD_BOOKINGDATE = gql`
      mutation addBookingdate(
      $isBooked: String,
@@ -196,14 +156,54 @@ export const ADD_PETAPPOINTMENT = gql`
      }
      }
      `;
+     export const ADD_PATIENT = gql`
+     mutation addPatient(
+      $patientfirstname: String,
+      $patientgender: String,
+      $patientaddress: String,
+      $patientemail: String,
+      $patientlastname: String,
+      $patientcity: String,
+      $patientnumber: String,
+      $patientreason: String,
+      $birthdate: String,
+      $patientzip: Int,
+      $mepet: String) {
+           addPatient(
+             patientfirstname: $patientfirstname,
+          patientgender: $patientgender,
+      patientaddress: $patientaddress,
+      patientemail: $patientemail,
+      patientlastname: $patientlastname,
+      patientcity: $patientcity,
+      patientnumber: $patientnumber,
+      patientreason: $patientreason,
+      birthdate: $birthdate,
+      patientzip: $patientzip,
+      mepet: $mepet
+           ) { 
+              _id          
+              patientfirstname
+          patientgender
+      patientaddress
+      patientemail
+      patientlastname
+      patientcity
+      patientnumber
+      patientreason
+      birthdate
+      patientzip
+      mepet
+              }
+     }
+ `;
 
 export const ADD_VISITORAPPOINTMENT = gql`
     mutation addVisitorappointment(
-    $user: ID!
+    
     $patientfirstname: String,
      $patientgender: String,
      $patientaddress: String,
-     $patientemail: String,
      $patientlastname: String,
      $patientcity: String,
      $patientnumber: String,
@@ -220,11 +220,10 @@ export const ADD_VISITORAPPOINTMENT = gql`
      $appTime: String,
      $appYear: Int) {
         addVisitorappointment(
-        user: $user,
+        
           patientfirstname: $patientfirstname,
          patientgender: $patientgender,
      patientaddress: $patientaddress,
-     patientemail: $patientemail,
      patientlastname: $patientlastname,
      patientcity: $patientcity,
      patientnumber: $patientnumber,
@@ -252,8 +251,7 @@ export const ADD_VISITORAPPOINTMENT = gql`
              patientfirstname
          patientgender
      patientaddress
-     patientemail
-     patientlastname
+      patientlastname
      patientcity
      patientnumber
      patientreason

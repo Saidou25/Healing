@@ -21,7 +21,6 @@ const VisitorAppointment = () => {
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
-    const [patientemail, setPatientEmail] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
     const [addVisitorappointment, { loading, error }] = useMutation(ADD_VISITORAPPOINTMENT);
@@ -41,8 +40,6 @@ const VisitorAppointment = () => {
         const y3 = document.querySelector(".invalidate3");
         const x4 = document.querySelector(".validate4");
         const y4 = document.querySelector(".invalidate4");
-        const x5 = document.querySelector(".validate5");
-        const y5 = document.querySelector(".invalidate5");
         const x6 = document.querySelector(".validate6");
         const y6 = document.querySelector(".invalidate6");
         const x7 = document.querySelector(".validate7");
@@ -52,7 +49,7 @@ const VisitorAppointment = () => {
         const x9 = document.querySelector(".validate9");
         const y9 = document.querySelector(".invalidate9");
 
-        const emailRegex = /^\S+@\S+\.\S+$/;
+     
         const { name, value } = e.target;
 
         if (name === 'patientgender') {
@@ -147,17 +144,7 @@ const VisitorAppointment = () => {
                 y7.style.display = "block";
             }
         }
-        if (name === 'patientemail') {
-            setPatientEmail(value);
-            if (value.length > 5 && emailRegex.test(value)) {
-
-                x5.style.display = "block";
-                y5.style.display = "none";
-            } else {
-                x5.style.display = "none";
-                y5.style.display = "block";
-            }
-        }
+       
         if (name === 'patientnumber') {
             setValue(e.target.value);
             console(e.target.value)
@@ -191,8 +178,7 @@ const VisitorAppointment = () => {
             patientfirstname: patientfirstname,
             patientgender: patientgender,
             patientaddress: patientaddress,
-            patientemail: patientemail,
-            patientlastname: patientlastname,
+           patientlastname: patientlastname,
             patientcity: patientcity,
             patientreason: patientreason,
             birthdate: birthdate,
@@ -201,7 +187,7 @@ const VisitorAppointment = () => {
 
         try {
             await addVisitorappointment({
-                variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientemail: patientemail, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
+                variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
             });
 
             navigate('/AppointmentConfirmation', { state: navigateData });
@@ -213,7 +199,6 @@ const VisitorAppointment = () => {
             setPatientCity("")
             setPatientAddress("");
             setPatientZip("");
-            setPatientEmail("");
             setValue("");
             setBirthDate("");
 
@@ -365,25 +350,6 @@ const VisitorAppointment = () => {
                                 <i className="fa-solid fa-check"></i>
                             </div>
                             <div className='invalidate4'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <label className="form-label">Email</label>
-                            <input
-                                className="form-control"
-                                value={patientemail}
-                                onChange={handleChange}
-                                type="email"
-                                name="patientemail"
-                                placeholder="example@example.com" />
-                            <div className='validate5'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate5'>
                                 required
                                 <i className="fa-solid fa-check"></i>
                             </div>

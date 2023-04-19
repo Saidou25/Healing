@@ -18,7 +18,6 @@ const typeDefs = gql`
      },
      type Visitorappointment {
      _id: ID!
-     user: User
      patientfirstname: String
      patientgender: String
      patientaddress: String
@@ -90,8 +89,9 @@ const typeDefs = gql`
     _id: ID
     email: String
     password: String 
+    bookingdates: [Bookingdate]
     username: String
-    visitorappointments: [Visitorappointment]
+   
   },
   type Auth {
     token: ID!
@@ -103,14 +103,16 @@ const typeDefs = gql`
      patient(id: ID!): Patient
      visitorappointments: [Visitorappointment]!
      visitorappointment(id: ID!): Visitorappointment
-     bookingdates: [Bookingdate]
+     bookingdates(username: String): [Bookingdate]
      bookingdate(id: ID!): Bookingdate
      pets: [Pet]!
      pet(id: ID!): Pet
      petappointments: [Petappointment]!
      petappointment(id: ID!): Petappointment
      users: [User]!
-     user(id: ID!): User
+     user(username: String): User
+     me: User
+     userBookingdates: [Bookingdate]
    
      },
 
@@ -132,8 +134,7 @@ const typeDefs = gql`
      login(email: String, password: String): Auth
 
      addVisitorappointment(
-     user: ID!,
-     patientfirstname: String,
+    patientfirstname: String,
      patientgender: String,
      patientaddress: String,
      patientemail: String,
@@ -151,7 +152,7 @@ const typeDefs = gql`
      appDate: Int,
      appointment: String,
      appTime: String,
-     appYear: Int): User
+     appYear: Int): Visitorappointment
 
      addBookingdate(
      isBooked: String
