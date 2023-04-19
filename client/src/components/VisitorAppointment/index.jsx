@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { ADD_VISITORAPPOINTMENT } from "../../utils/mutations";
+import { QUERY_VISITORAPPOINTMENTS, QUERY_ME } from '../../utils/queries';
 import './index.css';
 
 const VisitorAppointment = () => {
@@ -23,10 +23,32 @@ const VisitorAppointment = () => {
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
-    const [addVisitorappointment, { loading, error }] = useMutation(ADD_VISITORAPPOINTMENT);
 
-    if (loading) return 'Submitting...';
-    if (error) return `Submission error! ${error.message}`;
+
+    // if (loading) return 'Submitting...';
+    // if (error) return `Submission error! ${error.message}`;
+
+    const [addVisitorappointment] = useMutation(ADD_VISITORAPPOINTMENT, {
+        update(cache, { data: { addVisitorappointment } }) {
+            try {
+                const { visitorappointments } = cache.readQuery({ query: QUERY_VISITORAPPOINTMENTS });
+
+                cache.writeQuery({
+                    query: QUERY_VISITORAPPOINTMENTS,
+                    data: { visitorappointments: [addVisitorappointment, ...visitorappointments] },
+                });
+            } catch (e) {
+                console.error(e);
+            }
+
+            // update me object's cache
+            const { me } = cache.readQuery({ query: QUERY_ME });
+            cache.writeQuery({
+                query: QUERY_ME,
+                data: { me: { ...me, visitorappointments: [...me.visitorappointments, addVisitorappointment] } },
+            });
+        },
+    });
 
     const handleChange = (e) => {
 
@@ -49,7 +71,7 @@ const VisitorAppointment = () => {
         const x9 = document.querySelector(".validate9");
         const y9 = document.querySelector(".invalidate9");
 
-     
+
         const { name, value } = e.target;
 
         if (name === 'patientgender') {
@@ -144,7 +166,7 @@ const VisitorAppointment = () => {
                 y7.style.display = "block";
             }
         }
-       
+
         if (name === 'patientnumber') {
             setValue(e.target.value);
             console(e.target.value)
@@ -178,7 +200,7 @@ const VisitorAppointment = () => {
             patientfirstname: patientfirstname,
             patientgender: patientgender,
             patientaddress: patientaddress,
-           patientlastname: patientlastname,
+            patientlastname: patientlastname,
             patientcity: patientcity,
             patientreason: patientreason,
             birthdate: birthdate,
@@ -186,7 +208,7 @@ const VisitorAppointment = () => {
         }
 
         try {
-            await addVisitorappointment({
+            const { data } = await addVisitorappointment({
                 variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
             });
 

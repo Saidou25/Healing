@@ -18,10 +18,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  bookingdates: [
+  visitorappointments: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'bookingdate',
+      ref: 'visitorappointment',
     },
   ],
   

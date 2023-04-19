@@ -9,7 +9,35 @@ export const QUERY_USERS = gql`
     }
   }
 `;
-
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      visitorappointments {
+ _id
+ patientfirstname
+ patientgender
+ patientaddress
+ patientlastname
+ patientcity
+ patientnumber
+ patientreason
+ birthdate
+ patientzip
+ mepet
+ isBooked
+ finalDateISO
+ appointment
+ appDay
+ appMonth
+ appTime
+ appYear
+    }
+    }
+  }
+`;
 export const QUERY_ME = gql`
    query me {
      me {
@@ -17,39 +45,28 @@ export const QUERY_ME = gql`
       username
       email
      }
-     bookingdates {
-     _id
-     isBooked
-     finalDateISO
-     appDay
-     appMonth
-     appTime
-     appYear
-        
-     }
+     visitorappointments {
+ _id
+ patientfirstname
+ patientgender
+ patientaddress
+ patientlastname
+ patientcity
+ patientnumber
+ patientreason
+ birthdate
+ patientzip
+ mepet
+ isBooked
+ finalDateISO
+ appointment
+ appDay
+ appMonth
+ appTime
+ appYear
+    }
      }
      `;
-
-export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
-      _id
-      username
-      email
-      bookingdates {
-     _id
-     isBooked
-     finalDateISO
-     appDay
-     appMonth
-     appTime
-     appYear
-        
-     }
-    }
-  }
-`;
-
 export const QUERY_BOOKINGDATES = gql`
  query bookingdates {
      bookingdates {
@@ -77,6 +94,54 @@ export const QUERY_BOOKINGDATE = gql`
         }
      }
  `;
+export const QUERY_VISITORAPPOINTMENTS = gql`
+query visitorappointments {
+   visitorappointments {
+ _id
+ patientfirstname
+ patientgender
+ patientaddress
+ patientlastname
+ patientcity
+ patientnumber
+ patientreason
+ birthdate
+ patientzip
+ mepet
+ isBooked
+ finalDateISO
+ appointment
+ appDay
+ appMonth
+ appTime
+ appYear
+    }
+ }
+`;
+export const QUERY_VISITORAPPOINTMENT = gql`
+query visitorappointment($id: ID!) {
+    visitorappointment(id: $id) {
+ _id 
+ patientfirstname
+ patientgender
+ patientaddress
+ patientlastname
+ patientcity
+ patientnumber
+ patientreason
+ birthdate
+ patientzip
+ mepet
+ isBooked
+ finalDateISO
+ appDay
+ appMonth
+ appointment
+ appTime
+ appYear
+    }
+ }
+`;
 
 export const QUERY_USERBOOKINGDATES = gql`
  query userBookingdates {
@@ -92,30 +157,6 @@ export const QUERY_USERBOOKINGDATES = gql`
   }
 `;
 
-export const QUERY_USERVISITORAPPOINTMENTS = gql`
-  query userVisitorappointments {
-   userVisitorappointments {
-       isBooked
-       finalDateISO  
-       appDay
-       appMonth
-       appTime
-       appYear
-       appDate
-       appointment
-       patientfirstname
-       patientgender
-       patientaddress
-       patientlastname
-       patientcity
-       patientnumber
-       patientreason
-       birthdate
-       patientzip
-       mepet
-    }
-  }
-`;
 
 export const QUERY_PATIENTS = gql`
      query patients {
@@ -151,55 +192,6 @@ export const QUERY_PATIENT = gql`
      birthdate
      patientzip
      mepet
-        }
-     }
- `;
-export const QUERY_VISITORAPPOINTMENTS = gql`
-    query visitorappointments {
-       visitorappointments {
-     _id
-     patientfirstname
-     patientgender
-     patientaddress
-     patientlastname
-     patientcity
-     patientnumber
-     patientreason
-     birthdate
-     patientzip
-     mepet
-     isBooked
-     finalDateISO
-     appointment
-     appDay
-     appMonth
-     appTime
-     appYear
-        }
-     }
- `;
-export const QUERY_VISITORAPPOINTMENT = gql`
-    query visitorappointment($id: ID!) {
-        visitorappointment(id: $id) {
-     _id 
-     patientfirstname
-     patientgender
-     patientaddress
-     patientemail
-     patientlastname
-     patientcity
-     patientnumber
-     patientreason
-     birthdate
-     patientzip
-     mepet
-     isBooked
-     finalDateISO
-     appDay
-     appMonth
-     appointment
-     appTime
-     appYear
         }
      }
  `;

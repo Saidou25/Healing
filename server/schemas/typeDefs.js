@@ -89,8 +89,8 @@ const typeDefs = gql`
     _id: ID
     email: String
     password: String 
-    bookingdates: [Bookingdate]
     username: String
+    visitorappointments: [Visitorappointment]
    
   },
   type Auth {
@@ -101,9 +101,9 @@ const typeDefs = gql`
      type Query {
      patients: [Patient]!
      patient(id: ID!): Patient
-     visitorappointments: [Visitorappointment]!
+     visitorappointments(username: String): [Visitorappointment]
      visitorappointment(id: ID!): Visitorappointment
-     bookingdates(username: String): [Bookingdate]
+     bookingdates: [Bookingdate]
      bookingdate(id: ID!): Bookingdate
      pets: [Pet]!
      pet(id: ID!): Pet

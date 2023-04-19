@@ -54,11 +54,69 @@ export const ADD_BOOKINGDATE = gql`
      appTime
      appYear
      appDate
-         
-        
-             }
+                 }
       }
      `;
+     export const ADD_VISITORAPPOINTMENT = gql`
+     mutation addVisitorappointment(
+     $patientfirstname: String,
+      $patientgender: String,
+      $patientaddress: String,
+      $patientlastname: String,
+      $patientcity: String,
+      $patientnumber: String,
+      $patientreason: String,
+      $birthdate: String,
+      $patientzip: Int,
+      $mepet: String,
+      $isBooked: String,
+      $finalDateISO: String,
+      $appDay: String,
+      $appMonth: String,
+      $appDate: Int,
+      $appointment: String,
+      $appTime: String,
+      $appYear: Int) {
+         addVisitorappointment(
+          patientfirstname: $patientfirstname,
+          patientgender: $patientgender,
+      patientaddress: $patientaddress,
+      patientlastname: $patientlastname,
+      patientcity: $patientcity,
+      patientnumber: $patientnumber,
+      patientreason: $patientreason,
+      birthdate: $birthdate,
+      patientzip: $patientzip,
+      mepet: $mepet,
+      isBooked: $isBooked,
+         finalDateISO: $finalDateISO,
+         appDay: $appDay,
+      appMonth: $appMonth,
+      appDate: $appDate,
+      appTime: $appTime,
+      appYear: $appYear,
+      appointment: $appointment) { 
+         isBooked
+         finalDateISO  
+         appDay
+      appMonth
+      appTime
+      appYear
+      appDate
+        appointment
+        patientfirstname
+        patientgender
+      patientaddress
+       patientlastname
+      patientcity
+      patientnumber
+      patientreason
+      birthdate
+      patientzip
+      mepet
+              }
+     }
+ `;
 export const ADD_PET = gql`
      mutation addPet(
      $petName: String,
@@ -198,66 +256,3 @@ export const ADD_PETAPPOINTMENT = gql`
      }
  `;
 
-export const ADD_VISITORAPPOINTMENT = gql`
-    mutation addVisitorappointment(
-    
-    $patientfirstname: String,
-     $patientgender: String,
-     $patientaddress: String,
-     $patientlastname: String,
-     $patientcity: String,
-     $patientnumber: String,
-     $patientreason: String,
-     $birthdate: String,
-     $patientzip: Int,
-     $mepet: String,
-     $isBooked: String,
-     $finalDateISO: String,
-     $appDay: String,
-     $appMonth: String,
-     $appDate: Int,
-     $appointment: String,
-     $appTime: String,
-     $appYear: Int) {
-        addVisitorappointment(
-        
-          patientfirstname: $patientfirstname,
-         patientgender: $patientgender,
-     patientaddress: $patientaddress,
-     patientlastname: $patientlastname,
-     patientcity: $patientcity,
-     patientnumber: $patientnumber,
-     patientreason: $patientreason,
-     birthdate: $birthdate,
-     patientzip: $patientzip,
-     mepet: $mepet,
-     isBooked: $isBooked,
-        finalDateISO: $finalDateISO,
-        appDay: $appDay,
-     appMonth: $appMonth,
-     appDate: $appDate,
-     appTime: $appTime,
-     appYear: $appYear,
-     appointment: $appointment) { 
-                   
-             isBooked
-        finalDateISO  
-        appDay
-     appMonth
-     appTime
-     appYear
-     appDate
-                 appointment
-             patientfirstname
-         patientgender
-     patientaddress
-      patientlastname
-     patientcity
-     patientnumber
-     patientreason
-     birthdate
-     patientzip
-     mepet
-             }
-    }
-`;

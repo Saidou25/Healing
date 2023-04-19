@@ -2,19 +2,36 @@ const { Patient, Visitorappointment, Bookingdate, Pet, Petappointment, User } = 
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
+
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find().populate('bookingdates');
+            return User.find().populate('visitorappointments');
         },
         user: async (_, args) => {
-            return User.findOne({ username: args.username }).populate('bookingdates');
+            return User.findOne({ username: args.username }).populate('visitorappointments');
         },
         me: async (_, _args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('bookingdates');
+                return User.findOne({ _id: context.user._id }).populate('visitorappointments');
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+        visitorappointments: async (_, args) => {
+            const username = args.username;
+            const params = username ? { username } : {}
+            return await Visitorappointment.find(params);
+        },
+        visitorappointment: async (_, args) => {
+            return await Visitorappointment.findOne({ _id: args._id });
+        },
+        bookingdates: async () => {
+            // const username = args.username;
+            // const params = username ? { username } : {}
+            return Bookingdate.find({});
+        },
+        bookingdate: async (_, args) => {
+            return await Bookingdate.findOne({ _id: args._id });
         },
         userBookingdates: async (_, _args, context) => {
             return Bookingdate.find({ user: context.user._id });
@@ -23,33 +40,19 @@ const resolvers = {
             return await Patient.find({});
         },
         patient: async (_, args) => {
-            return await Patient.findOne({ _id: args.id });
-        },
-        visitorappointments: async () => {
-            return await Visitorappointment.find({});
-        },
-        visitorappointment: async (_, args) => {
-            return await Visitorappointment.findOne({ _id: args.id });
-        },
-        bookingdates: async (_, args) => {
-            const username = args.username;
-            const params = username ? { username } : {}
-            return Bookingdate.find(params);
-        },
-        bookingdate: async (_, args) => {
-            return await Bookingdate.findOne({ _id: args.id });
+            return await Patient.findOne({ _id: args._id });
         },
         pets: async () => {
             return await Pet.find({});
         },
         pet: async (_, args) => {
-            return await Pet.findOne({ _id: args.id });
+            return await Pet.findOne({ _id: args._id });
         },
         petappointments: async () => {
             return await Petappointment.find({});
         },
         petappointment: async (_, args) => {
-            return await Petappointment.findOne({ _id: args.id });
+            return await Petappointment.findOne({ _id: args._id });
         }
     },
 
@@ -76,7 +79,7 @@ const resolvers = {
 
         addBookingdate: async (_, args, context) => {
             if (context.user) {
-              const bookingdate = await Bookingdate.create({
+                const bookingdate = await Bookingdate.create({
                     isBooked: args.isBooked,
                     finalDateISO: args.finalDateISO,
                     appDay: args.appDay,
@@ -97,87 +100,95 @@ const resolvers = {
 
         },
 
-        addPatient: async (_, args) => {
-
-            return await Patient.create({
-                patientfirstname: args.patientfirstname,
-                patientlastname: args.patientlastname,
-                birthdate: args.birthdate,
-                patientemail: args.patientemail,
-                patientcity: args.patientcity,
-                patientzip: args.patientzip,
-                patientnumber: args.patientnumber,
-                patientreason: args.patientreason,
-                patientaddress: args.patientaddress,
-                patientgender: args.patientgender,
-                mepet: args.mepet
-            });
-        },
-        addVisitorappointment: async (_, args) => {
-
-            return await Visitorappointment.create({
-                patientfirstname: args.patientfirstname,
-                patientlastname: args.patientlastname,
-                birthdate: args.birthdate,
-                patientemail: args.patientemail,
-                patientcity: args.patientcity,
-                patientzip: args.patientzip,
-                patientnumber: args.patientnumber,
-                patientreason: args.patientreason,
-                patientaddress: args.patientaddress,
-                patientgender: args.patientgender,
-                mepet: args.mepet,
-                isBooked: args.isBooked,
-                finalDateISO: args.finalDateISO,
-                appDay: args.appDay,
-                appMonth: args.appMonth,
-                appDate: args.appDate,
-                appTime: args.appTime,
-                appYear: args.appYear,
-                appointment: args.appointment
-            });
-        },
-        
-        addPet: async (_, args) => {
-
-            return await Pet.create({
-                petName: args.petName,
-                petWeight: args.petWeight,
-                petAge: args.petAge,
-                petGender: args.petGender,
-                petReason: args.petReason,
-                petBreed: args.petBreed
-            })
-        },
-        addPetappointment: async (_, args) => {
-
-            return await Petappointment.create({
-                petName: args.petName,
-                petWeight: args.petWeight,
-                petAge: args.petAge,
-                petGender: args.petGender,
-                petReason: args.petReason,
-                petBreed: args.petBreed,
-                patientgender: args.patientgender,
-                patientfirstname: args.patientfirstname,
-                patientlastname: args.patientlastname,
-                patientaddress: args.patientaddress,
-                patientzip: args.patientzip,
-                patientcity: args.patientcity,
-                patientnumber: args.patientnumber,
-                patientreason: args.patientreason,
-                patientemail: args.patientemail,
-                isBooked: args.isBooked,
-                finalDateISO: args.finalDateISO,
-                appDay: args.appDay,
-                appMonth: args.appMonth,
-                appDate: args.appDate,
-                appTime: args.appTime,
-                appointment: args.appointment,
-                appYear: args.appYear,
-            })
-        },
+        addVisitorappointment: async (_, args, context) => {
+            if (context.user) {
+                const visitorappointment = await Visitorappointment.create({
+                    patientfirstname: args.patientfirstname,
+                    patientlastname: args.patientlastname,
+                    birthdate: args.birthdate,
+                    patientcity: args.patientcity,
+                    patientzip: args.patientzip,
+                    patientnumber: args.patientnumber,
+                    patientreason: args.patientreason,
+                    patientaddress: args.patientaddress,
+                    patientgender: args.patientgender,
+                    mepet: args.mepet,
+                    isBooked: args.isBooked,
+                    finalDateISO: args.finalDateISO,
+                    appDay: args.appDay,
+                    appMonth: args.appMonth,
+                    appDate: args.appDate,
+                    appTime: args.appTime,
+                    appYear: args.appYear,
+                    appointment: args.appointment
+                });
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { visitorappointments: visitorappointment._id } }
+                );
+                return visitorappointment;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+       
     },
+
+    addPatient: async (_, args) => {
+
+        return await Patient.create({
+            patientfirstname: args.patientfirstname,
+            patientlastname: args.patientlastname,
+            birthdate: args.birthdate,
+            patientemail: args.patientemail,
+            patientcity: args.patientcity,
+            patientzip: args.patientzip,
+            patientnumber: args.patientnumber,
+            patientreason: args.patientreason,
+            patientaddress: args.patientaddress,
+            patientgender: args.patientgender,
+            mepet: args.mepet
+        });
+    },
+
+    addPet: async (_, args) => {
+
+        return await Pet.create({
+            petName: args.petName,
+            petWeight: args.petWeight,
+            petAge: args.petAge,
+            petGender: args.petGender,
+            petReason: args.petReason,
+            petBreed: args.petBreed
+        })
+    },
+    addPetappointment: async (_, args) => {
+
+        return await Petappointment.create({
+            petName: args.petName,
+            petWeight: args.petWeight,
+            petAge: args.petAge,
+            petGender: args.petGender,
+            petReason: args.petReason,
+            petBreed: args.petBreed,
+            patientgender: args.patientgender,
+            patientfirstname: args.patientfirstname,
+            patientlastname: args.patientlastname,
+            patientaddress: args.patientaddress,
+            patientzip: args.patientzip,
+            patientcity: args.patientcity,
+            patientnumber: args.patientnumber,
+            patientreason: args.patientreason,
+            patientemail: args.patientemail,
+            isBooked: args.isBooked,
+            finalDateISO: args.finalDateISO,
+            appDay: args.appDay,
+            appMonth: args.appMonth,
+            appDate: args.appDate,
+            appTime: args.appTime,
+            appointment: args.appointment,
+            appYear: args.appYear,
+        })
+    },
+},
 };
 
 module.exports = resolvers;
