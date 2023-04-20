@@ -18,34 +18,12 @@ const Dashboard = () => {
     const location = useLocation();
     const passedLogintData = location.state;
     console.log("receive in dashboard passedLoginData", passedLogintData);
-    
+
 
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
 
     const [addBookingdate] = useMutation(ADD_BOOKINGDATE)
-//     (ADD_BOOKINGDATE, {
-
-//     update(cache, { data: { addBookingdate } }) {
-//       try {
-//         const { bookingdates } = cache.readQuery({ query: QUERY_BOOKINGDATES });
-
-//         cache.writeQuery({
-//           query: QUERY_BOOKINGDATES,
-//           data: { bookingdates: [addBookingdate, ...bookingdates] },
-//         });
-//       } catch (e) {
-//         console.error(e);
-//       }
-
-//       // update me object's cache
-//       const { me } = cache.readQuery({ query: QUERY_ME });
-//       cache.writeQuery({
-//         query: QUERY_ME,
-//         data: { me: { ...me, bookingdates: [...me.bookingdates, addBookingdate] } },
-//       });
-//     },
-//   });
 
     const { data } = useQuery(QUERY_BOOKINGDATES);
 
@@ -87,7 +65,7 @@ const Dashboard = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-      
+
         const isBooked = JSON.stringify(startDate);
 
         const dateArr = isBooked.replaceAll('"', '').split(':');
@@ -139,8 +117,8 @@ const Dashboard = () => {
             <h1>
                 Would you like to book an appointment with us?
             </h1>
-            <form>
-                <div className='card-visit'>
+            <div className='card-visit'>
+                <form>
                     <div className='row-visit align-items-center p-5'>
                         <div className='col-6 appointment-for'>
                             <label className="form-label">
@@ -163,6 +141,7 @@ const Dashboard = () => {
                                     checked={mepet === 'mypet'}
                                     onChange={handleChange} /> my pet
                             </div>
+                    
                             <div className='validate9'>
                                 Looks good
                                 <i className="fa-solid fa-check"></i>
@@ -172,9 +151,12 @@ const Dashboard = () => {
                                 <i className="fa-solid fa-check"></i>
                             </div>
                         </div>
-
-
+                   
                         <div className='col-6 date-picker'>
+                        <label className="form-label">
+                        Choose your appointment date
+                            </label>
+                           <div className='choose-date'>
                             <DatePicker
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
@@ -189,6 +171,7 @@ const Dashboard = () => {
                                 excludeDates={allAppointments}
                             // footer={footer};
                             />
+                            </div>
                         </div>
                         <div className='col-6 button-visit'>
                             <button type='submit' onClick={(e) => handleSubmit(e)}>
@@ -197,8 +180,8 @@ const Dashboard = () => {
                         </div>
 
                     </div>
-                </div >
-            </form >
+                </form >
+            </div >
         </div>
 
     )

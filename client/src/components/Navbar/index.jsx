@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import Auth from "../../utils/auth";
+import profileIcon from '../../assets/images/profileicon.png'
 
 import './index.css';
 
@@ -9,11 +10,11 @@ const Navbar = () => {
         event.preventDefault();
         Auth.logout();
         console.log('logout success!')
-      };
+    };
     return (
         <nav className="nav">
             <Link className="site-title" to="/">
-               Healing
+                Healing
             </Link>
             <ul className="nav justify-content-end">
                 <CustomLink to='/UserList' className='nav-item'>users</CustomLink>
@@ -21,6 +22,9 @@ const Navbar = () => {
                 <CustomLink to='/Signup' className='nav-item'>signup</CustomLink>
                 <CustomLink to='/Dashboard' className='nav-item'>dashboard</CustomLink>
                 <CustomLink to='/' className='nav-item' onSubmit={logout} >logout</CustomLink>
+                <Link className='profile-icon' to="/Profile">
+                    <img src={profileIcon} alt='profile icon' height={40} />
+                </Link>
             </ul>
         </nav>
     )

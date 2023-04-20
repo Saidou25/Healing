@@ -6,6 +6,7 @@ import {
   createHttpLink,
 }
   from '@apollo/client';
+  import 'bootswatch/dist/lux/bootstrap.min.css';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -20,6 +21,7 @@ import AppointmentConfirmation from './components/AppointmentConfirmation';
 import PetAppointment from './components/PetAppointment';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
+import Profile from './components/Profile';
 
 
 
@@ -60,6 +62,7 @@ function App() {
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
             <Route path='/PetAppointment' element={<PetAppointment />} />
             <Route path='/Dashboard' element={<Dashboard />} />
+            <Route path='/Profile' element={<Profile />} />
             <Route path='/' element={<LandingPage />} />
           </Routes>
         </>

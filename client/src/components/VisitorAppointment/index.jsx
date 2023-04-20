@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
+import SelectUSState from 'react-select-us-states';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { ADD_VISITORAPPOINTMENT } from "../../utils/mutations";
@@ -12,7 +13,7 @@ const VisitorAppointment = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const passedVisitData = location.state;
-
+    const [newValue, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
     const [birthdate, setBirthDate] = useState('');
@@ -234,8 +235,8 @@ const VisitorAppointment = () => {
     return (
         <div className='container-visitor'>
             <h1>Please answer few questions about you</h1>
-            <form onSubmit={(e) => handleFormSubmit(e)}>
-                <div className='card-visitor'>
+            <div className='card-visitor'>
+                <form onSubmit={(e) => handleFormSubmit(e)}>
                     <div className='row m-5'>
                         <div className='col-6'>
                             <div>
@@ -358,6 +359,9 @@ const VisitorAppointment = () => {
                             </div>
                         </div>
 
+                        <div className='col-6'>
+                            Select a state: <SelectUSState id="myId" className="myClassName" onChange={setNewValue} />
+                        </div>
                         <div className="col-6">
                             <label className="form-label1">zip code</label>
                             <input
@@ -420,8 +424,8 @@ const VisitorAppointment = () => {
                                 value="Send">Submit</button>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     )
 };

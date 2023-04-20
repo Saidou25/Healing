@@ -1,48 +1,64 @@
-
 .card-visit {
     border-radius: 10px;
     width: 40%;
-    margin-top: 10%;
     margin-right: auto;
     margin-left: auto;
     height: 500px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .row-visit {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
 }
+
 .visit {
-    margin: 8%;
+    margin: 5%;
     margin-right: auto;
     margin-left: auto;
+    width: 100%;
+    border: none;
+    text-align: center;
 }
+
 .appointment-for {
     width: 100%;
     text-align: center;
 }
+
 .validate9 {
     display: none;
     color: green;
-    margin-top: 7px;
+    /* margin-top: 7px; */
     margin-right: 15px;
     margin-left: 15px;
 }
+
 .invalidate9 {
-    margin-top: 7px;
+    /* margin-top: 7px; */
     color: red;
     margin-right: 15px;
     margin-left: 15px;
 
 }
+
 .date-picker {
-    padding-top: 8%;
+    margin: 5%;
     width: 100%;
     text-align: center;
+    margin-right: auto;
+    margin-left: auto;
 }
+
+.choose-date {
+    margin-top: 10%;
+}
+
 .button-visit {
-    padding-top: 12%;
+    margin-top: 9%;
     width: 100%;
     text-align: center;
+    /* margin-bottom: 15%; */
+
 }
