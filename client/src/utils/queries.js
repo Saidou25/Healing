@@ -6,7 +6,27 @@ export const QUERY_USERS = gql`
       _id
       username
       email
+      visitorappointments {
+ _id
+ patientfirstname
+ patientgender
+ patientaddress
+ patientlastname
+ patientcity
+ patientnumber
+ patientreason
+ birthdate
+ patientzip
+ mepet
+ isBooked
+ finalDateISO
+ appointment
+ appDay
+ appMonth
+ appTime
+ appYear
     }
+  }
   }
 `;
 export const QUERY_USER = gql`

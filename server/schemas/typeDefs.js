@@ -90,8 +90,7 @@ const typeDefs = gql`
     email: String
     password: String 
     username: String
-    visitorappointments: [Visitorappointment]
-   
+    visitorappointments: [Visitorappointment]  
   },
   type Auth {
     token: ID!
@@ -112,8 +111,7 @@ const typeDefs = gql`
      users: [User]!
      user(username: String): User
      me: User
-     userBookingdates: [Bookingdate]
-   
+     userBookingdates: [Bookingdate]  
      },
 
      type Mutation {
@@ -200,7 +198,6 @@ const typeDefs = gql`
      petBreed: String
      ): Pet
      }
-
      `;
 
 module.exports = typeDefs;

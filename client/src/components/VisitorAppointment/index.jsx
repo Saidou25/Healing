@@ -3,9 +3,9 @@ import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
 import SelectUSState from 'react-select-us-states';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ADD_VISITORAPPOINTMENT } from "../../utils/mutations";
-import { QUERY_VISITORAPPOINTMENTS, QUERY_ME } from '../../utils/queries';
+import { QUERY_VISITORAPPOINTMENTS, QUERY_USERS, QUERY_ME } from '../../utils/queries';
 import './index.css';
 
 const VisitorAppointment = () => {
@@ -24,12 +24,12 @@ const VisitorAppointment = () => {
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
+    const { data } = useQuery(QUERY_USERS);
+    const users = data?.users || [];
+    console.log('users', users);
 
-
-    // if (loading) return 'Submitting...';
-    // if (error) return `Submission error! ${error.message}`;
-
-    const [addVisitorappointment] = useMutation(ADD_VISITORAPPOINTMENT, {
+    
+    const [addVisitorappointment, { error }] = useMutation(ADD_VISITORAPPOINTMENT, {
         update(cache, { data: { addVisitorappointment } }) {
             try {
                 const { visitorappointments } = cache.readQuery({ query: QUERY_VISITORAPPOINTMENTS });
@@ -49,7 +49,55 @@ const VisitorAppointment = () => {
                 data: { me: { ...me, visitorappointments: [...me.visitorappointments, addVisitorappointment] } },
             });
         },
+        
     });
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        const appointment = passedVisitData.finalDateISO
+
+        // const navigateData = {
+
+        //     isBooked: passedVisitData.isBooked,
+        //     finalDateISO: passedVisitData.finalDateISO,
+        //     appDay: passedVisitData.appDay,
+        //     appMonth: passedVisitData.appMonth,
+        //     appDate: parseInt(passedVisitData.appDate),
+        //     appTime: passedVisitData.appTime,
+        //     appYear: parseInt(passedVisitData.appYear),
+        //     appointment: passedVisitData.appointment,
+        //     patientnumber: patientnumber,
+        //     patientfirstname: patientfirstname,
+        //     patientgender: patientgender,
+        //     patientaddress: patientaddress,
+        //     patientlastname: patientlastname,
+        //     patientcity: patientcity,
+        //     patientreason: patientreason,
+        //     birthdate: birthdate,
+        //     patientzip: parseInt(patientzip)
+        // }
+
+        try {
+            const { data } = await addVisitorappointment({
+                variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
+            });
+            setPatientFirstName("");
+            setPatientLastName("")
+            setPatientGender("");
+            setPatientReason("");
+            setPatientCity("")
+            setPatientAddress("");
+            setPatientZip("");
+            setValue("");
+            setBirthDate("");
+            // navigate('/AppointmentConfirmation', { state: navigateData });
+
+            console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
+
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     const handleChange = (e) => {
 
@@ -179,56 +227,6 @@ const VisitorAppointment = () => {
                 x6.style.display = "none";
                 y6.style.display = "block";
             }
-        }
-    };
-
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-
-        const appointment = passedVisitData.finalDateISO
-
-        const navigateData = {
-
-            isBooked: passedVisitData.isBooked,
-            finalDateISO: passedVisitData.finalDateISO,
-            appDay: passedVisitData.appDay,
-            appMonth: passedVisitData.appMonth,
-            appDate: parseInt(passedVisitData.appDate),
-            appTime: passedVisitData.appTime,
-            appYear: parseInt(passedVisitData.appYear),
-            appointment: passedVisitData.appointment,
-            patientnumber: patientnumber,
-            patientfirstname: patientfirstname,
-            patientgender: patientgender,
-            patientaddress: patientaddress,
-            patientlastname: patientlastname,
-            patientcity: patientcity,
-            patientreason: patientreason,
-            birthdate: birthdate,
-            patientzip: parseInt(patientzip)
-        }
-
-        try {
-            const { data } = await addVisitorappointment({
-                variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
-            });
-
-            navigate('/AppointmentConfirmation', { state: navigateData });
-
-            setPatientFirstName("");
-            setPatientLastName("")
-            setPatientGender("");
-            setPatientReason("");
-            setPatientCity("")
-            setPatientAddress("");
-            setPatientZip("");
-            setValue("");
-            setBirthDate("");
-
-            console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
-
-        } catch (err) {
-            console.error(err);
         }
     };
 
