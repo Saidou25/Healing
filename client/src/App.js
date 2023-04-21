@@ -18,7 +18,7 @@ import LandingPage from './pages/LandingPage';
 import VisitorAppointment from './components/VisitorAppointment';
 import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
-import PetAppointment from './components/PetAppointment';
+// import PetAppointment from './components/PetAppointment';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
@@ -43,7 +43,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 function App() {
@@ -60,7 +60,7 @@ function App() {
             <Route path='/Signup' element={<Signup />} />
             <Route path='/VisitorAppointment' element={<VisitorAppointment />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
-            <Route path='/PetAppointment' element={<PetAppointment />} />
+            {/* <Route path='/PetAppointment' element={<PetAppointment />} /> */}
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/Profile' element={<Profile />} />
             <Route path='/' element={<LandingPage />} />

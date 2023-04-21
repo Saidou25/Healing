@@ -15,11 +15,7 @@ import { parseISO, setHours, setMinutes } from 'date-fns';
 const Dashboard = () => {
 
     const navigate = useNavigate();
-    const location = useLocation();
-    const passedLogintData = location.state;
-    console.log("receive in dashboard passedLoginData", passedLogintData);
-
-
+    
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
 
@@ -97,7 +93,7 @@ const Dashboard = () => {
         }
         try {
             await addBookingdate({ variables: { mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
-            console.log(`success adding appointment ${isBooked}`);
+            console.log(`success booking a date ${isBooked}`);
 
         } catch (err) {
             console.error(err);

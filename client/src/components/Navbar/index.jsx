@@ -17,7 +17,7 @@ const Navbar = () => {
                 Healing
             </Link>
             <ul className="nav justify-content-end">
-                <CustomLink to='/UserList' className='nav-item'>users</CustomLink>
+                <CustomLink to='/UserList' className='nav-item active'>users</CustomLink>
                 <CustomLink to='/Login' className='nav-item'>login</CustomLink>
                 <CustomLink to='/Signup' className='nav-item'>signup</CustomLink>
                 <CustomLink to='/Dashboard' className='nav-item'>dashboard</CustomLink>

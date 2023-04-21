@@ -5,25 +5,25 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    trim: true,
+    trim: true
   },
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
     // match: [/.+@.+\..+/, 'Must match an email address!'],
   },
   password: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 5
   },
   visitorappointments: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'visitorappointment',
-    },
-  ],
+      ref: 'visitorappointment'
+    }
+  ]
   
 });
 

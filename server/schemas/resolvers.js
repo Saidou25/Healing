@@ -1,4 +1,4 @@
-const { Patient, Visitorappointment, Bookingdate, Pet, Petappointment, User } = require('../models');
+const { Visitorappointment, Bookingdate, User } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -35,24 +35,6 @@ const resolvers = {
         },
         userBookingdates: async (_, _args, context) => {
             return Bookingdate.find({ user: context.user._id });
-        },
-        patients: async () => {
-            return await Patient.find({});
-        },
-        patient: async (_, args) => {
-            return await Patient.findOne({ _id: args._id });
-        },
-        pets: async () => {
-            return await Pet.find({});
-        },
-        pet: async (_, args) => {
-            return await Pet.findOne({ _id: args._id });
-        },
-        petappointments: async () => {
-            return await Petappointment.find({});
-        },
-        petappointment: async (_, args) => {
-            return await Petappointment.findOne({ _id: args._id });
         }
     },
 
@@ -124,69 +106,13 @@ const resolvers = {
                 });
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { visitorappointments: visitorappointment._id } }
-                );
+                    { $addToSet: { visitorappointments: visitorappointment._id } },
+                    { new: true}                  
+                    )
                 return visitorappointment;
             }
             throw new AuthenticationError('You need to be logged in!');
        
-    },
-
-    addPatient: async (_, args) => {
-
-        return await Patient.create({
-            patientfirstname: args.patientfirstname,
-            patientlastname: args.patientlastname,
-            birthdate: args.birthdate,
-            patientemail: args.patientemail,
-            patientcity: args.patientcity,
-            patientzip: args.patientzip,
-            patientnumber: args.patientnumber,
-            patientreason: args.patientreason,
-            patientaddress: args.patientaddress,
-            patientgender: args.patientgender,
-            mepet: args.mepet
-        });
-    },
-
-    addPet: async (_, args) => {
-
-        return await Pet.create({
-            petName: args.petName,
-            petWeight: args.petWeight,
-            petAge: args.petAge,
-            petGender: args.petGender,
-            petReason: args.petReason,
-            petBreed: args.petBreed
-        })
-    },
-    addPetappointment: async (_, args) => {
-
-        return await Petappointment.create({
-            petName: args.petName,
-            petWeight: args.petWeight,
-            petAge: args.petAge,
-            petGender: args.petGender,
-            petReason: args.petReason,
-            petBreed: args.petBreed,
-            patientgender: args.patientgender,
-            patientfirstname: args.patientfirstname,
-            patientlastname: args.patientlastname,
-            patientaddress: args.patientaddress,
-            patientzip: args.patientzip,
-            patientcity: args.patientcity,
-            patientnumber: args.patientnumber,
-            patientreason: args.patientreason,
-            patientemail: args.patientemail,
-            isBooked: args.isBooked,
-            finalDateISO: args.finalDateISO,
-            appDay: args.appDay,
-            appMonth: args.appMonth,
-            appDate: args.appDate,
-            appTime: args.appTime,
-            appointment: args.appointment,
-            appYear: args.appYear,
-        })
     },
 },
 };

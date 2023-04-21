@@ -24,9 +24,17 @@ const VisitorAppointment = () => {
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
-    const { data } = useQuery(QUERY_USERS);
-    const users = data?.users || [];
-    console.log('users', users);
+    // const { data } = useQuery (QUERY_USERS);
+    // const users = data?.users || [];
+    // console.log('users', users);
+
+    // const { data } = useQuery  (QUERY_ME);
+    // const me = data?.me || [];
+    // console.log('me', me);
+
+    const { data } = useQuery (QUERY_VISITORAPPOINTMENTS);
+    const visitorappointments = data?.visitorappointments || [];
+    console.log('visitorappointments', visitorappointments);
 
     
     const [addVisitorappointment, { error }] = useMutation(ADD_VISITORAPPOINTMENT, {
@@ -36,68 +44,21 @@ const VisitorAppointment = () => {
 
                 cache.writeQuery({
                     query: QUERY_VISITORAPPOINTMENTS,
-                    data: { visitorappointments: [addVisitorappointment, ...visitorappointments] },
+                    data: { visitorappointments: [...visitorappointments, addVisitorappointment] },
                 });
             } catch (e) {
                 console.error(e);
             }
 
             // update me object's cache
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: { me: { ...me, visitorappointments: [...me.visitorappointments, addVisitorappointment] } },
-            });
+            // const { me } = cache.readQuery({ query: QUERY_ME });
+            // cache.writeQuery({
+            //     query: QUERY_ME,
+            //     data: { me: { ...me, visitorappointments: [...me.visitorappointments, addVisitorappointment._id] } },
+            // });
         },
         
     });
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-
-        const appointment = passedVisitData.finalDateISO
-
-        // const navigateData = {
-
-        //     isBooked: passedVisitData.isBooked,
-        //     finalDateISO: passedVisitData.finalDateISO,
-        //     appDay: passedVisitData.appDay,
-        //     appMonth: passedVisitData.appMonth,
-        //     appDate: parseInt(passedVisitData.appDate),
-        //     appTime: passedVisitData.appTime,
-        //     appYear: parseInt(passedVisitData.appYear),
-        //     appointment: passedVisitData.appointment,
-        //     patientnumber: patientnumber,
-        //     patientfirstname: patientfirstname,
-        //     patientgender: patientgender,
-        //     patientaddress: patientaddress,
-        //     patientlastname: patientlastname,
-        //     patientcity: patientcity,
-        //     patientreason: patientreason,
-        //     birthdate: birthdate,
-        //     patientzip: parseInt(patientzip)
-        // }
-
-        try {
-            const { data } = await addVisitorappointment({
-                variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
-            });
-            setPatientFirstName("");
-            setPatientLastName("")
-            setPatientGender("");
-            setPatientReason("");
-            setPatientCity("")
-            setPatientAddress("");
-            setPatientZip("");
-            setValue("");
-            setBirthDate("");
-            // navigate('/AppointmentConfirmation', { state: navigateData });
-
-            console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
-
-        } catch (err) {
-            console.error(err);
-        }
-    };
 
     const handleChange = (e) => {
 
@@ -227,6 +188,53 @@ const VisitorAppointment = () => {
                 x6.style.display = "none";
                 y6.style.display = "block";
             }
+        }
+    };
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        const appointment = passedVisitData.finalDateISO
+
+        const navigateData = {
+
+            isBooked: passedVisitData.isBooked,
+            finalDateISO: passedVisitData.finalDateISO,
+            appDay: passedVisitData.appDay,
+            appMonth: passedVisitData.appMonth,
+            appDate: parseInt(passedVisitData.appDate),
+            appTime: passedVisitData.appTime,
+            appYear: parseInt(passedVisitData.appYear),
+            appointment: passedVisitData.appointment,
+            patientnumber: patientnumber,
+            patientfirstname: patientfirstname,
+            patientgender: patientgender,
+            patientaddress: patientaddress,
+            patientlastname: patientlastname,
+            patientcity: patientcity,
+            patientreason: patientreason,
+            birthdate: birthdate,
+            patientzip: parseInt(patientzip)
+        }
+
+        try {
+            const { data } = await addVisitorappointment({
+                variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
+            });
+            setPatientFirstName("");
+            setPatientLastName("")
+            setPatientGender("");
+            setPatientReason("");
+            setPatientCity("")
+            setPatientAddress("");
+            setPatientZip("");
+            setValue("");
+            setBirthDate("");
+            navigate('/AppointmentConfirmation', { state: navigateData });
+
+            console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
+
+        } catch (err) {
+            console.error(err);
         }
     };
 
