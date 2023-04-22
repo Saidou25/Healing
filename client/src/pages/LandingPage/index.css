@@ -35,3 +35,6 @@
     padding: 10px;
 
 }
+.visit-item:hover {
+    color: gray;
+}
