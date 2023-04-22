@@ -1,27 +1,37 @@
-.main {
+.mainlandingpage {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    /* height: 100%; */
+    height: 100%;
     z-index: 9999;
-    background-image: url('../../assets/images/compressed.jpeg');
+    background-image: url('../../assets/images/reidigreen4mb.jpg');
     min-height: 100vh;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.visit {
-    border: 2px solid black;
-    background-color: white;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    border-color: #04AA6D;
-    color: green;
-  
+.mainlandingpage .landing-page {
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    margin-right: auto;
+    margin-left: auto;
 }
+
+.landig-column {
+    text-align: center;
+}
+
 .visit-item {
-    color: black;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 10px;
+
 }
