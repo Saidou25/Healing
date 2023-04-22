@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import style from './index.css';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 
@@ -41,63 +41,71 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/Login">lets now login.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
+    <div className='container-signup'>
+      <div className="card-signup">
+        <h4 className="card-header bg-dark text-light p-4" style={{ fontSize: '1.7rem', borderRadius: '20px', textAlign: 'center' }}>Sign Up</h4>
+        <div className="card-body">
+          {data ? (
+            <p>
+              Success! You may now head{' '}
+              <Link to="/Login">lets now login.</Link>
+            </p>
+          ) : (
+            <form onSubmit={handleFormSubmit}>
+              <label className='text-label' style={{ fontSize: '1.7rem' }}>
+                Username
+              </label><br />
+              <input
+                className="form-input"
+                placeholder="Your name"
+                style={{ fontSize: '1.5rem', borderRadius: '20px' }}
+                name="username"
+                type="username"
+                value={formState.username}
+                onChange={handleChange}
+              /><br />
+              <label className='text-label' style={{ fontSize: '1.7rem' }}>
+                Email
+              </label><br />
+              <input
+                className="form-input"
+                placeholder="Your email"
+                style={{ fontSize: '1.5rem', borderRadius: '20px' }}
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange}
+              /><br />
+              <label className='text-label' style={{ fontSize: '1.7rem' }}>
+                Password
+              </label><br />
+              <input
+                className="form-input"
+                placeholder="******"
+                style={{ fontSize: '1.5rem', borderRadius: '20px' }}
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange}
+              /><br />
+              <button
+                className="btn btn-block btn-info m-10"
+                style={{ cursor: 'pointer', fontSize: '1.5rem', margin: '15px', borderRadius: '20px' }}
+                type="submit"
+              >
+                Submit
+              </button>
+            </form>
+          )}
 
-                <input
-                  className="form-input"
-                  placeholder="Your name"
-                  name="username"
-                  type="username"
-                  value={formState.username}
-                  onChange={handleChange}
-                />
-
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
-
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
+          {error && (
+            <div className="my-3 p-3 bg-danger text-white">
+              {error.message}
+            </div>
+          )}
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 export default Signup;

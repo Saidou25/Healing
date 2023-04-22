@@ -94,6 +94,8 @@ const typeDefs = gql`
      appTime: String
      appYear: Int
      ): Bookingdate
+
+     deleteUser(_id: ID!): User
      }
      `;
 

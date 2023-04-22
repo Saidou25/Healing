@@ -114,6 +114,10 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
        
     },
+    // deletUser: async (_, _args, context) => {
+    //   return await User.findOneAndDelete({ _id: context.user._id });
+       
+    // }
 },
 };
 

@@ -5,7 +5,7 @@ import SelectUSState from 'react-select-us-states';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_VISITORAPPOINTMENT } from "../../utils/mutations";
-import { QUERY_VISITORAPPOINTMENTS, QUERY_USERS, QUERY_ME } from '../../utils/queries';
+import { QUERY_VISITORAPPOINTMENTS } from '../../utils/queries';
 import './index.css';
 
 const VisitorAppointment = () => {
@@ -24,13 +24,6 @@ const VisitorAppointment = () => {
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
 
-    // const { data } = useQuery (QUERY_USERS);
-    // const users = data?.users || [];
-    // console.log('users', users);
-
-    // const { data } = useQuery  (QUERY_ME);
-    // const me = data?.me || [];
-    // console.log('me', me);
 
     const { data } = useQuery (QUERY_VISITORAPPOINTMENTS);
     const visitorappointments = data?.visitorappointments || [];
@@ -50,8 +43,6 @@ const VisitorAppointment = () => {
                 console.error(e);
             }
 
-            // update me object's cache
-            // const { me } = cache.readQuery({ query: QUERY_ME });
             // cache.writeQuery({
             //     query: QUERY_ME,
             //     data: { me: { ...me, visitorappointments: [...me.visitorappointments, addVisitorappointment._id] } },

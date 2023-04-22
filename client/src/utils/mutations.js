@@ -24,6 +24,15 @@ export const ADD_USER = gql`
   }
   }
 `;
+export const DELETE_USER = gql`
+   mutation deleteUser($id: ID!) {
+   deleteUser(id: $id) {
+   _id
+   username
+   }
+   }
+   `;
+
 
 
 export const ADD_BOOKINGDATE = gql`
@@ -115,9 +124,10 @@ export const ADD_BOOKINGDATE = gql`
       birthdate
       patientzip
       mepet
-              }
+              }             
      }
  `;
+ 
 
      
 

@@ -64,6 +64,26 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      visitorappointments {
+ _id
+ patientfirstname
+ patientgender
+ patientaddress
+ patientlastname
+ patientcity
+ patientnumber
+ patientreason
+ birthdate
+ patientzip
+ mepet
+ isBooked
+ finalDateISO
+ appointment
+ appDay
+ appMonth
+ appTime
+ appYear
+    }
      
      }
    }
