@@ -17,16 +17,15 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        visitorappointments: async (_, args) => {
-            const username = args.username;
-            const params = username ? { username } : {}
-            return await Visitorappointment.find(params);
+        visitorappointments: async () => {
+         
+            return await Visitorappointment.find();
         },
         visitorappointment: async (_, args) => {
-            return await Visitorappointment.findOne({ _id: args._id });
+            return await Visitorappointment.findOne({ _id: args.id });
         },
         userVisitorappointments: async (_, args, context) => {
-            return Visitorappointment.find({ user: context.user._id })
+            return User.findOne({ _id: context.user._id }).populate('visitorappointments')
         },
         bookingdates: async () => {
             // const username = args.username;

@@ -10,10 +10,13 @@ const Profile = () => {
   const { data } = useQuery(QUERY_ME);
   const user = data?.me || [];
   console.log('user', user);
-  const myName = user.username;
-  console.log('userName', myName);
-  // const myProfileData = user.visitorappointments;
-  // console.log('myProfileData', myProfileData);
+  const visitorappointments = data?.me.visitorappointments || [];
+  console.log('visiitorinfo', visitorappointments)
+  for ( let i = 0; i < visitorappointments.length; i ++) {
+    const oneApp = (visitorappointments[0])
+    console.log( 'one appointment', oneApp)
+  }
+
 
 
   const [deleteUser, { error }] = useMutation(DELETE_USER, {
@@ -33,48 +36,38 @@ const Profile = () => {
   });
 
 
+  <button onClick={deleteUser}>Submit</button>
 
-  return (
-    <div className='container-profile'>
-      <h3 className="text-profile-title">My profile</h3>
-      <div className='title-profile' style={{ fontSize: '1.9rem' }}>
-        General
-      </div>
-      <div className="card-profile mb-3">
-
-        <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-          Username: {user.username}</span> <br />
-        {/* <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-            First name: {myProfileData.patientfirstname}</span> <br />
-          <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-            Last name: {myProfileData.patientlastname}</span> <br />
-          <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-            Date of birth: {myProfileData.birthdate}</span> <br />
-          <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-            Gender: {myProfileData.patientgender}</span> <br /> */}
-      </div>
-      <button onClick={deleteUser}>Submit</button>
-      <div>
-        <div className='title-profile ' style={{ fontSize: '1.9rem' }}>
-          Contact information
-        </div>
-        <div className="card-profile mb-3">
-          <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-            Email: {user.email}</span> <br />
-          {/* <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-              Phone number: {myProfileData.patientnumber}</span> <br />
-            <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-              Address: {myProfileData.patientaddress}</span> <br />
-            <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-              City: {myProfileData.patientcity}</span> <br />
-            <span className="text-profile" style={{ fontSize: '1.7rem' }}>
-               State: {bookingdate.patientstate}</span> <br />
-            <span className="text-profile m-3 mt-4" style={{ fontSize: '1.7rem' }}>
-              Zip code: {myProfileData.patientzip}</span> <br /> */}
-
-        </div>
-      </div>
-    </div>
+  return  (
+  <div>
+  <h3 className="text">Appointment List</h3>
+  <div className="flex-row justify-space-between my-4">
+     
+                  <div className="card mb-3">
+                      <h4 className="card-header bg-dark text-white p-2 m-0">
+                          {visitorappointment.finalDateISO.toString()} <br />
+                          <span className="text" style={{ fontSize: '1rem' }}>
+                              Username: {user.username}</span> <br />
+                          <span className="text" style={{ fontSize: '1rem' }}>
+                              First name: {oneApp.patientfirstname}</span> <br />
+                          <span className="text" style={{ fontSize: '1rem' }}>
+                              Last name: {oneApp.patientlastname}</span> <br />
+                          <span className="text" style={{ fontSize: '1rem' }}>
+                              Date of birth: {oneApp.birthdate}</span> <br />
+                          <span className="text" style={{ fontSize: '1rem' }}>
+                              Email: {oneApp.patieintemail}</span> <br />
+                          <span className="text" style={{ fontSize: '1rem' }}>
+                              Phone number: {oneApp.patientnumber}</span> <br />
+                          <span className="text" style={{ fontSize: '1rem' }}>
+                              Address: {oneApp.patientaddress}</span> <br />
+                          <span className="text" style={{ fontSize: '1rem' }}>
+                              City: {oneApp.patientcity}</span>
+                      </h4>
+                  </div>
+              </div>
+        
+ 
+</div>
   )
 };
 export default Profile;

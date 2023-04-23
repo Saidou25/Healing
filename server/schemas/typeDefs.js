@@ -53,12 +53,12 @@ const typeDefs = gql`
      users: [User]!
      user(username: String): User
      me: User
-     visitorappointments(username: String): [Visitorappointment]
-     visitorappointment(id: ID!): Visitorappointment
+     visitorappointments: [Visitorappointment]
+     visitorappointment(id: String!): Visitorappointment
      bookingdates: [Bookingdate]
-     bookingdate(id: ID!): Bookingdate
+     bookingdate(id: String!): Bookingdate
      userBookingdates: [Bookingdate]  
-     userVisitorappointments: [Visitorappointment]
+     userVisitorappointments(username: String): [Visitorappointment]
      },
 
      type Mutation {
