@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES } from '../../utils/queries';
 // import Auth from '../../utils/auth';
-// import DateList from '../DateList';
+import MyAppointments from '../MyAppointments';
 import DatePicker from "react-datepicker";
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -15,7 +15,7 @@ import { parseISO, setHours, setMinutes } from 'date-fns';
 const Dashboard = () => {
 
     const navigate = useNavigate();
-    
+
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
 
@@ -110,73 +110,80 @@ const Dashboard = () => {
     return (
 
         <div className='container-visit'>
-            <h1>
-                Would you like to book an appointment with us?
-            </h1>
-            <div className='card-visit'>
-                <form>
-                    <div className='row-visit align-items-center p-5'>
-                        <div className='col-6 appointment-for'>
-                            <label className="form-label">
-                                Who is the appointment for?
-                            </label>
-                        </div>
-                        <div className='col-6 visit'>
-                            <div>
-                                <input
-                                    type="radio"
-                                    name="mepet"
-                                    value="me"
-                                    checked={mepet === 'me'}
-                                    onChange={handleChange} /> me
+            <div className='row app-window'>
+                <div className='col-9'>
+                    <h1>
+                        Would you like to book an appointment with us?
+                    </h1>
+                    <div className='card-visit'>
+                        <form>
+                            <div className='row-visit align-items-center p-5'>
+                                <div className='col-6 appointment-for'>
+                                    <label className="form-label">
+                                        Who is the appointment for?
+                                    </label>
+                                </div>
+                                <div className='col-6 visit'>
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            name="mepet"
+                                            value="me"
+                                            checked={mepet === 'me'}
+                                            onChange={handleChange} /> me
 
-                                <input
-                                    type="radio"
-                                    name="mepet"
-                                    value="mypet"
-                                    checked={mepet === 'mypet'}
-                                    onChange={handleChange} /> my pet
-                            </div>
-                    
-                            <div className='validate9'>
-                                Looks good
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                            <div className='invalidate9'>
-                                required
-                                <i className="fa-solid fa-check"></i>
-                            </div>
-                        </div>
-                   
-                        <div className='col-6 date-picker'>
-                        <label className="form-label">
-                        Choose your appointment date
-                            </label>
-                           <div className='choose-date'>
-                            <DatePicker
-                                selected={startDate}
-                                onChange={(date) => setStartDate(date)}
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={15}
-                                timeCaption="time"
-                                minTime={setHours(setMinutes(new Date(), 0), 9)}
-                                maxTime={setHours(setMinutes(new Date(), 0), 19)}
-                                dateFormat="MMMM d, yyyy h:mm aa"
-                                minDate={new Date()}
-                                excludeDates={allAppointments}
-                            // footer={footer};
-                            />
-                            </div>
-                        </div>
-                        <div className='col-6 button-visit'>
-                            <button type='submit' onClick={(e) => handleSubmit(e)}>
-                                Submit
-                            </button>
-                        </div>
+                                        <input
+                                            type="radio"
+                                            name="mepet"
+                                            value="mypet"
+                                            checked={mepet === 'mypet'}
+                                            onChange={handleChange} /> my pet
+                                    </div>
 
-                    </div>
-                </form >
+                                    <div className='validate9'>
+                                        Looks good
+                                        <i className="fa-solid fa-check"></i>
+                                    </div>
+                                    <div className='invalidate9'>
+                                        required
+                                        <i className="fa-solid fa-check"></i>
+                                    </div>
+                                </div>
+
+                                <div className='col-6 date-picker'>
+                                    <label className="form-label">
+                                        Choose your appointment date
+                                    </label>
+                                    <div className='choose-date'>
+                                        <DatePicker
+                                            selected={startDate}
+                                            onChange={(date) => setStartDate(date)}
+                                            showTimeSelect
+                                            timeFormat="HH:mm"
+                                            timeIntervals={15}
+                                            timeCaption="time"
+                                            minTime={setHours(setMinutes(new Date(), 0), 9)}
+                                            maxTime={setHours(setMinutes(new Date(), 0), 19)}
+                                            dateFormat="MMMM d, yyyy h:mm aa"
+                                            minDate={new Date()}
+                                            excludeDates={allAppointments}
+                                        // footer={footer};
+                                        />
+                                    </div>
+                                </div>
+                                <div className='col-6 button-visit'>
+                                    <button type='submit' onClick={(e) => handleSubmit(e)}>
+                                        Submit
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form >
+                    </div >
+                </div >
+                <div className='col-4'>
+                  <MyAppointments />
+                </div>
             </div >
         </div>
 

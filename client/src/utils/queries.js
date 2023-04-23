@@ -88,6 +88,22 @@ export const QUERY_ME = gql`
      }
    }
      `;
+
+     export const QUERY_USERVISITORAPPOINTMENTS = gql`
+      query userVisitorappointments {
+         userVisitorappointments {
+          mepet
+          patientfirstname
+ isBooked
+ finalDateISO
+ appointment
+ appDay
+ appMonth
+ appTime
+ appYear}
+ }
+ `;
+ 
 export const QUERY_BOOKINGDATES = gql`
  query bookingdates {
      bookingdates {

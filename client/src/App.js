@@ -18,7 +18,7 @@ import LandingPage from './pages/LandingPage';
 import VisitorAppointment from './components/VisitorAppointment';
 import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
-// import PetAppointment from './components/PetAppointment';
+import MyAppointments from './components/MyAppointments';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
@@ -60,7 +60,7 @@ function App() {
             <Route path='/Signup' element={<Signup />} />
             <Route path='/VisitorAppointment' element={<VisitorAppointment />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
-            {/* <Route path='/PetAppointment' element={<PetAppointment />} /> */}
+            <Route path='/MyAppointments' element={<MyAppointments />} />
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/Profile' element={<Profile />} />
             <Route path='/' element={<LandingPage />} />

@@ -2,7 +2,12 @@ const { Schema, model } = require("mongoose");
 // const bcrypt = require("bcrypt");
 
 const visitorappointmentSchema = new Schema({
-    mepet: {
+   
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+       mepet: {
         type: String,
         repuire: true,
         trim: true,

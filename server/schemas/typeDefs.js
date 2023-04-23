@@ -4,6 +4,7 @@ const typeDefs = gql`
  
      type Visitorappointment {
      _id: ID!
+     user: User
      patientfirstname: String
      patientgender: String
      patientaddress: String
@@ -57,6 +58,7 @@ const typeDefs = gql`
      bookingdates: [Bookingdate]
      bookingdate(id: ID!): Bookingdate
      userBookingdates: [Bookingdate]  
+     userVisitorappointments: [Visitorappointment]
      },
 
      type Mutation {
@@ -94,8 +96,9 @@ const typeDefs = gql`
      appTime: String
      appYear: Int
      ): Bookingdate
-
-     deleteUser(_id: ID!): User
+    
+    deleteUser(username: String!): User
+    deleteVisitorappointment(id: String): Visitorappointment
      }
      `;
 

@@ -25,8 +25,8 @@ export const ADD_USER = gql`
   }
 `;
 export const DELETE_USER = gql`
-   mutation deleteUser($id: ID!) {
-   deleteUser(id: $id) {
+   mutation deleteUser($username: String!) {
+   deleteUser(username: $username) {
    _id
    username
    }

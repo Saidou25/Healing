@@ -25,6 +25,9 @@ const resolvers = {
         visitorappointment: async (_, args) => {
             return await Visitorappointment.findOne({ _id: args._id });
         },
+        userVisitorappointments: async (_, args, context) => {
+            return Visitorappointment.find({ user: context.user._id })
+        },
         bookingdates: async () => {
             // const username = args.username;
             // const params = username ? { username } : {}
@@ -107,18 +110,21 @@ const resolvers = {
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { visitorappointments: visitorappointment._id } },
-                    { new: true}                  
-                    )
+                    { new: true }
+                )
                 return visitorappointment;
             }
             throw new AuthenticationError('You need to be logged in!');
-       
-    },
-    // deletUser: async (_, _args, context) => {
-    //   return await User.findOneAndDelete({ _id: context.user._id });
-       
-    // }
-},
+
+        },
+        deleteUser: async (_, args) => {
+            return await User.findOneAndDelete({ username: args.username });
+
+        },
+        deleteVisitorappointment: async (_, args) => {
+            return await Visitorappointment.findOneAndDelete({ id: args._id })
+        }
+    }
 };
 
 module.exports = resolvers;
