@@ -6,7 +6,7 @@ export const QUERY_USERS = gql`
       _id
       username
       email
-      visitorappointments {
+      profiles {
  _id
  patientfirstname
  patientgender
@@ -35,7 +35,7 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      visitorappointments {
+      profiles {
  _id
  patientfirstname
  patientgender
@@ -64,7 +64,7 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      visitorappointments {
+      profiles {
  _id
  patientfirstname
  patientgender
@@ -89,20 +89,7 @@ export const QUERY_ME = gql`
    }
      `;
 
-     export const QUERY_USERVISITORAPPOINTMENTS = gql`
-      query userVisitorappointments {
-         userVisitorappointments {
-          mepet
-          patientfirstname
- isBooked
- finalDateISO
- appointment
- appDay
- appMonth
- appTime
- appYear}
- }
- `;
+   
  
 export const QUERY_BOOKINGDATES = gql`
  query bookingdates {
@@ -131,9 +118,9 @@ export const QUERY_BOOKINGDATE = gql`
         }
      }
  `;
-export const QUERY_VISITORAPPOINTMENTS = gql`
-query visitorappointments {
-   visitorappointments {
+export const QUERY_PROFILES = gql`
+query profiles {
+   profiles {
  _id
  patientfirstname
  patientgender
@@ -155,9 +142,9 @@ query visitorappointments {
     }
  }
 `;
-export const QUERY_VISITORAPPOINTMENT = gql`
-query visitorappointment($id: ID!) {
-    visitorappointment(id: $id) {
+export const QUERY_PROFILE = gql`
+query profile($id: ID!) {
+    profile(id: $id) {
  _id 
  patientfirstname
  patientgender

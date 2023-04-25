@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
  
-     type Visitorappointment {
+     type Profile {
      _id: ID!
      user: User
      patientfirstname: String
@@ -42,7 +42,7 @@ const typeDefs = gql`
     email: String
     password: String 
     username: String
-    visitorappointments: [Visitorappointment]  
+    profiles: [Profile]  
   },
   type Auth {
     token: ID!
@@ -53,12 +53,12 @@ const typeDefs = gql`
      users: [User]!
      user(username: String): User
      me: User
-     visitorappointments: [Visitorappointment]
-     visitorappointment(id: String!): Visitorappointment
+     profiles: [Profile]
+     profile(id: String!): Profile
      bookingdates: [Bookingdate]
      bookingdate(id: String!): Bookingdate
      userBookingdates: [Bookingdate]  
-     userVisitorappointments(username: String): [Visitorappointment]
+     
      },
 
      type Mutation {
@@ -66,7 +66,7 @@ const typeDefs = gql`
      addUser(username: String!, email: String!, password: String!): Auth
      login(email: String, password: String): Auth
 
-     addVisitorappointment(
+     addProfile(
      patientfirstname: String,
      patientgender: String,
      patientaddress: String,
@@ -85,7 +85,7 @@ const typeDefs = gql`
      appDate: Int,
      appointment: String,
      appTime: String,
-     appYear: Int): Visitorappointment
+     appYear: Int): Profile
 
      addBookingdate(
      isBooked: String
@@ -98,7 +98,7 @@ const typeDefs = gql`
      ): Bookingdate
     
     deleteUser(username: String!): User
-    deleteVisitorappointment(id: String): Visitorappointment
+    deleteProfile(id: String): Profile
      }
      `;
 

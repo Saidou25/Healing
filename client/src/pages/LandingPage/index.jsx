@@ -16,12 +16,12 @@ const LandingPage = () => {
                         </div>
                         <div className="col-4 landig-column">
                             <button className="btn but-landing" >
-                                <Link to='/Signup' className='visit-item'>signup</Link>
+                                <Link to='/Signup' className='visit-item'>Signup</Link>
                             </button>
                         </div>
                         <div className="col-4 landig-column">
                             <button className="btn but-landing" >
-                                <Link to='/Visit' className='visit-item'>Visit</Link>
+                                <Link to='/About' className='visit-item'>About</Link>
                             </button>
                         </div>
                     </div>

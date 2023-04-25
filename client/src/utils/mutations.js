@@ -66,8 +66,8 @@ export const ADD_BOOKINGDATE = gql`
                  }
       }
      `;
-     export const ADD_VISITORAPPOINTMENT = gql`
-     mutation addVisitorappointment(
+     export const ADD_PROFILE = gql`
+     mutation addProfile(
      $patientfirstname: String,
       $patientgender: String,
       $patientaddress: String,
@@ -86,7 +86,7 @@ export const ADD_BOOKINGDATE = gql`
       $appointment: String,
       $appTime: String,
       $appYear: Int) {
-         addVisitorappointment(
+         addProfile(
           patientfirstname: $patientfirstname,
           patientgender: $patientgender,
       patientaddress: $patientaddress,

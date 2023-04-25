@@ -1,4 +1,4 @@
-const { Visitorappointment, Bookingdate, User } = require('../models');
+const { Profile, Bookingdate, User } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -6,27 +6,25 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find().populate('visitorappointments');
+            return User.find().populate('profiles');
         },
         user: async (_, args) => {
-            return User.findOne({ username: args.username }).populate('visitorappointments');
+            return User.findOne({ username: args.username }).populate('profiles');
         },
         me: async (_, _args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('visitorappointments');
+                return User.findOne({ _id: context.user._id }).populate('profiles');
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        visitorappointments: async () => {
+        profiles: async () => {
          
-            return await Visitorappointment.find();
+            return await Profile.find();
         },
-        visitorappointment: async (_, args) => {
-            return await Visitorappointment.findOne({ _id: args.id });
+        profile: async (_, args) => {
+            return await Profile.findOne({ _id: args.id });
         },
-        userVisitorappointments: async (_, args, context) => {
-            return User.findOne({ _id: context.user._id }).populate('visitorappointments')
-        },
+       
         bookingdates: async () => {
             // const username = args.username;
             // const params = username ? { username } : {}
@@ -84,9 +82,9 @@ const resolvers = {
 
         },
 
-        addVisitorappointment: async (_, args, context) => {
+        addProfile: async (_, args, context) => {
             if (context.user) {
-                const visitorappointment = await Visitorappointment.create({
+                const profile = await Profile.create({
                     patientfirstname: args.patientfirstname,
                     patientlastname: args.patientlastname,
                     birthdate: args.birthdate,
@@ -108,10 +106,10 @@ const resolvers = {
                 });
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { visitorappointments: visitorappointment._id } },
+                    { $addToSet: { profiles: profile._id } },
                     { new: true }
                 )
-                return visitorappointment;
+                return profile;
             }
             throw new AuthenticationError('You need to be logged in!');
 
@@ -120,8 +118,8 @@ const resolvers = {
             return await User.findOneAndDelete({ username: args.username });
 
         },
-        deleteVisitorappointment: async (_, args) => {
-            return await Visitorappointment.findOneAndDelete({ id: args._id })
+        deleteProfile: async (_, args) => {
+            return await Profile.findOneAndDelete({ id: args._id })
         }
     }
 };

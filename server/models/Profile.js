@@ -1,12 +1,7 @@
 const { Schema, model } = require("mongoose");
 // const bcrypt = require("bcrypt");
 
-const profileSchama = new Schema({
-   
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: "user",
-      },
+const profileSchema = new Schema({
        mepet: {
         type: String,
         repuire: true,
@@ -112,6 +107,6 @@ const profileSchama = new Schema({
         }
 });
 
-const Profile = model('profile', profileSchama);
+const Profile = model('profile', profileSchema);
 
 module.exports = Profile;

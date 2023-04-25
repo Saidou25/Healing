@@ -6,22 +6,22 @@ import {
   createHttpLink,
 }
   from '@apollo/client';
-  import 'bootswatch/dist/lux/bootstrap.min.css';
+import 'bootswatch/dist/lux/bootstrap.min.css';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Header from './components/Header';
-import Navbar from './components/Navbar';
+// import Header from './components/Header';
+// import Navbar from './components/Navbar';
 import UserList from './components/UserList';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
-import VisitorAppointment from './components/VisitorAppointment';
+import Info from './components/Info';
 import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
-import MyAppointments from './components/MyAppointments';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
+import About from './components/About';
 
 
 
@@ -51,17 +51,17 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <Header />
+          {/* <Header /> */}
           <Routes>
             <Route path='/UserList' element={<UserList />} />
             <Route path='/Login' element={<Login />} />
-            <Route path='/Navbar' element={<Navbar />} />
+            {/* <Route path='/Navbar' element={<Navbar />} /> */}
             <Route path='/DateList' element={<DateList />} />
             <Route path='/Signup' element={<Signup />} />
-            <Route path='/VisitorAppointment' element={<VisitorAppointment />} />
+            <Route path='/Info' element={<Info />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
-            <Route path='/MyAppointments' element={<MyAppointments />} />
             <Route path='/Dashboard' element={<Dashboard />} />
+            <Route path='/About' element={<About />} />
             <Route path='/Profile' element={<Profile />} />
             <Route path='/' element={<LandingPage />} />
           </Routes>

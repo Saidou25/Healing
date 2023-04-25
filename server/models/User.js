@@ -5,6 +5,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
     trim: true
   },
   email: {
@@ -16,12 +17,13 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
+    unique: true,
     minlength: 5
   },
-  visitorappointments: [
+  profiles: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'visitorappointment'
+      ref: 'profile'
     }
   ]
   
