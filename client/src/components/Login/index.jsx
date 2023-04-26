@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
@@ -35,12 +33,12 @@ const Login = () => {
         } catch (e) {
             console.error(e);
         }
-
         navigate('/Dashboard', { state: formState });
         setFormState({
             email: '',
             password: '',
         });
+        console.log('formState', formState)
     };
 
     return (

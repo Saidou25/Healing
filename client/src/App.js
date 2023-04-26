@@ -10,14 +10,14 @@ import 'bootswatch/dist/lux/bootstrap.min.css';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// import Header from './components/Header';
-// import Navbar from './components/Navbar';
+
+import ProfileForm from './components/ProfileForm';
 import UserList from './components/UserList';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
-import Info from './components/Info';
 import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
+import AppointmentForm from './components/AppointmentForm';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
@@ -51,15 +51,14 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          {/* <Header /> */}
-          <Routes>
+           <Routes>
             <Route path='/UserList' element={<UserList />} />
             <Route path='/Login' element={<Login />} />
-            {/* <Route path='/Navbar' element={<Navbar />} /> */}
-            <Route path='/DateList' element={<DateList />} />
+           <Route path='/DateList' element={<DateList />} />
             <Route path='/Signup' element={<Signup />} />
-            <Route path='/Info' element={<Info />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
+            <Route path='/AppointmentForm' element={<AppointmentForm />} />
+            <Route path='/ProfileForm' element={<ProfileForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/About' element={<About />} />
             <Route path='/Profile' element={<Profile />} />

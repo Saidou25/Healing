@@ -5,7 +5,10 @@ import './index.css';
 const LandingPage = () => {
     return (
         <div className="mainlandingpage">
-            <h1 className='reiki text-white m-4' style={{ fontSize: '7rem' }}>Reiki</h1>
+            <Link className="site-title text-white m-5" to="/" style={{ fontSize: '7rem' }}>
+                    Healing
+                </Link>
+            {/* <h1 className='reiki text-white m-4' style={{ fontSize: '7rem' }}>Healing</h1> */}
             <div className="landing-parent">
                 <div className="card landing-page">
                     <div className="row landing-row">
