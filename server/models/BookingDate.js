@@ -1,6 +1,11 @@
 const { Schema, model } = require("mongoose");
 
 const bookingdateSchema = new Schema({
+     username: {
+        type: String,
+        repuire: true,
+        trim: true,
+    },
      isBooked: {
         type: String,
         repuire: true,

@@ -33,8 +33,8 @@ const resolvers = {
         bookingdate: async (_, args) => {
             return await Bookingdate.findOne({ _id: args._id });
         },
-        userBookingdates: async (_, _args, context) => {
-            return Bookingdate.find({ user: context.user._id });
+        userbookingdates: async (_, args) => {
+            return Bookingdate.find({ username: args.username });
         }
     },
 
@@ -62,6 +62,7 @@ const resolvers = {
         addBookingdate: async (_, args, context) => {
             if (context.user) {
                 const bookingdate = await Bookingdate.create({
+                    username: args.username,
                     isBooked: args.isBooked,
                     finalDateISO: args.finalDateISO,
                     appDay: args.appDay,
@@ -90,6 +91,7 @@ const resolvers = {
                     birthdate: args.birthdate,
                     patientcity: args.patientcity,
                     patientzip: args.patientzip,
+                    patientState: args.patientState,
                     patientnumber: args.patientnumber,
                     patientreason: args.patientreason,
                     patientaddress: args.patientaddress,

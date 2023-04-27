@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './index.css';
+import Navbar from '../../components/Navbar';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
-
 import Auth from '../../utils/auth';
-import Navbar from '../Navbar';
+
 
 const Signup = () => {
   const [formState, setFormState] = useState({

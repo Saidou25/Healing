@@ -12,6 +12,7 @@ const typeDefs = gql`
      patientlastname: String
      patientcity: String
      patientnumber: String
+     patientState: String
      patientreason: String
      birthdate: String
      patientzip: Int
@@ -29,6 +30,7 @@ const typeDefs = gql`
 
      type Bookingdate {
       _id: ID!
+      username: String
       isBooked: String
       finalDateISO: String
       appDay: String
@@ -57,7 +59,7 @@ const typeDefs = gql`
      profile(id: String!): Profile
      bookingdates: [Bookingdate]
      bookingdate(id: String!): Bookingdate
-     userBookingdates: [Bookingdate]  
+     userbookingdates(username: String): [Bookingdate]  
      
      },
 

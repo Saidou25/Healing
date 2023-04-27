@@ -37,6 +37,7 @@ export const DELETE_USER = gql`
 
 export const ADD_BOOKINGDATE = gql`
      mutation addBookingdate(
+     $username: String,
      $isBooked: String,
      $finalDateISO: String,
      $appDay: String,
@@ -46,6 +47,7 @@ export const ADD_BOOKINGDATE = gql`
      $appYear: Int
      ) {
      addBookingdate(
+     username: $username,
         isBooked: $isBooked,
         finalDateISO: $finalDateISO,
         appDay: $appDay,
@@ -56,6 +58,7 @@ export const ADD_BOOKINGDATE = gql`
         
          ) {
          _id    
+         username
          isBooked
         finalDateISO  
         appDay
@@ -76,6 +79,7 @@ export const ADD_BOOKINGDATE = gql`
       $patientnumber: String,
       $patientreason: String,
       $birthdate: String,
+      $patientState: String,
       $patientzip: Int,
       $mepet: String,
       $isBooked: String,
@@ -87,6 +91,7 @@ export const ADD_BOOKINGDATE = gql`
       $appTime: String,
       $appYear: Int) {
          addProfile(
+         patientState: $patientState,
           patientfirstname: $patientfirstname,
           patientgender: $patientgender,
       patientaddress: $patientaddress,
@@ -107,6 +112,7 @@ export const ADD_BOOKINGDATE = gql`
       appointment: $appointment) { 
         _id
          isBooked
+         patientState
          finalDateISO  
          appDay
       appMonth

@@ -1,12 +1,16 @@
-/* .container-profile {
-    width: 60%;
+.container-profile {
+    width: 40%;
     margin-right: auto;
     margin-left: auto;
-}.card-profile {
+}
+.my-profile {
+    text-align: center;
+}
+/* .card-profile {
     padding-top: 1%;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+} */
 .title-profile {
   margin-top: 50px;
     margin-bottom: 50px;
@@ -15,4 +19,4 @@
     text-align: center;
     margin-top: 50px;
     margin-bottom: 50px;
-} */
+}

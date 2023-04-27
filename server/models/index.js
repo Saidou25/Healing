@@ -1,5 +1,5 @@
 
-const Profile = require('./Profile');
+const Profile = require('./MyProfile');
 const Bookingdate = require('./Bookingdate');
 const User = require('./User');
 

@@ -21,7 +21,7 @@ const Navbar = () => {
                     <CustomLink to='/UserList' className='nav-item active' style={{ fontSize: '1.5rem' }}>users</CustomLink>
                     <CustomLink to='/Dashboard' className='nav-item' style={{ fontSize: '1.5rem' }}>dashboard</CustomLink>{/* <CustomLink to='/AppointmentForm' className='nav-item' style={{ fontSize: '1.5rem' }}>dashboard</CustomLink> */}
                     <button className='nav-item' onClick={logout} style={{ fontSize: '1.5rem' }}>logout</button>
-                    <Link className='profile-icon' to="/Profile">
+                    <Link className='profile-icon' to="/MyProfile">
                         <img src={profileIcon} alt='profile icon' height={40} />
                     </Link>
                 </ul>

@@ -16,6 +16,7 @@ export const QUERY_USERS = gql`
  patientnumber
  patientreason
  birthdate
+ patientState
  patientzip
  mepet
  isBooked
@@ -39,6 +40,7 @@ export const QUERY_USER = gql`
  _id
  patientfirstname
  patientgender
+ patientState
  patientaddress
  patientlastname
  patientcity
@@ -66,6 +68,7 @@ export const QUERY_ME = gql`
       email
       profiles {
  _id
+ patientState
  patientfirstname
  patientgender
  patientaddress
@@ -96,8 +99,10 @@ export const QUERY_BOOKINGDATES = gql`
      bookingdates {
      _id
      isBooked
+     username
      finalDateISO
      appDay
+     appDate
      appMonth
      appTime
      appYear
@@ -109,8 +114,25 @@ export const QUERY_BOOKINGDATE = gql`
     query bookingdate($id: ID!) {
          bookingdate(id: $id) {
      _id
+     username
      isBooked
      finalDateISO
+     appDay
+     appDate
+     appMonth
+     appTime
+     appYear
+        }
+     }
+ `;
+export const QUERY_USERBOOKINGDATES= gql`
+    query userbookingdates($username: String) {
+      userbookingdates(username: $usermane) {
+     _id
+     username
+     isBooked
+     finalDateISO
+     appDate
      appDay
      appMonth
      appTime
@@ -129,6 +151,7 @@ query profiles {
  patientcity
  patientnumber
  patientreason
+ patientState
  birthdate
  patientzip
  mepet
@@ -137,6 +160,7 @@ query profiles {
  appointment
  appDay
  appMonth
+ appDate
  appTime
  appYear
     }
@@ -149,6 +173,7 @@ query profile($id: ID!) {
  patientfirstname
  patientgender
  patientaddress
+ patientState
  patientlastname
  patientcity
  patientnumber
@@ -159,6 +184,7 @@ query profile($id: ID!) {
  isBooked
  finalDateISO
  appDay
+ appDate
  appMonth
  appointment
  appTime

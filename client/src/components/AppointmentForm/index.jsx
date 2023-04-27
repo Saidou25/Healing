@@ -126,7 +126,7 @@ const AppointmentForm = () => {
 
     return (
         <>
-            <Navbar />
+           
             <div className='container-visit'>
                 <div className='row app-window'>
                     <div className='col-9'>
@@ -218,9 +218,7 @@ const AppointmentForm = () => {
                             </form >
                         </div >
                     </div >
-                    <div className='col-4'>
-                        hello
-                    </div>
+                    
                 </div >
             </div>
         </>

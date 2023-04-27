@@ -85,6 +85,11 @@ const profileSchema = new Schema({
             repuire: true,
             trim: true,
         },
+    patientState: {
+            type: String,
+            repuire: true,
+            trim: true,
+        },
         appDate: {
             type: Number,
             repuire: true,

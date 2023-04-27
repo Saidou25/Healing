@@ -18,7 +18,7 @@ const ProfileForm = () => {
     const passedVisitData = location.state;
     const [email, setEmail] = useState('');
     const [profileId, setProfileId] = useState('');
-    const [newValue, setNewValue] = useState('');
+    const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
     const [birthdate, setBirthDate] = useState('');
@@ -228,7 +228,7 @@ const ProfileForm = () => {
 
         try {
             const { data } = await addProfile({
-                variables: { appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
+                variables: { patientState: patientState, appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
             });
             setPatientFirstName("");
             setPatientLastName("")

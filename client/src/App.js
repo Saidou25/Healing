@@ -18,9 +18,9 @@ import LandingPage from './pages/LandingPage';
 import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
 import AppointmentForm from './components/AppointmentForm';
-import Signup from './components/Signup';
+import Signup from './pages/Signup';
 import Dashboard from './components/Dashboard';
-import Profile from './components/Profile';
+import MyProfile from './pages/MyProfile';
 import About from './components/About';
 
 
@@ -61,7 +61,7 @@ function App() {
             <Route path='/ProfileForm' element={<ProfileForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/About' element={<About />} />
-            <Route path='/Profile' element={<Profile />} />
+            <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/' element={<LandingPage />} />
           </Routes>
         </>
