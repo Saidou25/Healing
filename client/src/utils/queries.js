@@ -127,7 +127,7 @@ export const QUERY_BOOKINGDATE = gql`
  `;
 export const QUERY_USERBOOKINGDATES= gql`
     query userbookingdates($username: String) {
-      userbookingdates(username: $usermane) {
+      userbookingdates(username: $username) {
      _id
      username
      isBooked

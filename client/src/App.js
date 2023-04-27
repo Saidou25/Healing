@@ -19,7 +19,7 @@ import DateList from './components/DateList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
 import AppointmentForm from './components/AppointmentForm';
 import Signup from './pages/Signup';
-import Dashboard from './components/Dashboard';
+import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/MyProfile';
 import About from './components/About';
 
