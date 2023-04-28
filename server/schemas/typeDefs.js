@@ -44,7 +44,8 @@ const typeDefs = gql`
     email: String
     password: String 
     username: String
-    profiles: [Profile]  
+    profiles: [Profile] 
+    bookingdates: [Bookingdate] 
   },
   type Auth {
     token: ID!

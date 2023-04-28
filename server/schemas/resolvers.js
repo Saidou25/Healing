@@ -6,14 +6,14 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find().populate('profiles');
+            return User.find().populate('profiles').populate('bookingdates');
         },
         user: async (_, args) => {
-            return User.findOne({ username: args.username }).populate('profiles');
+            return User.findOne({ username: args.username }).populate('profiles').populate('bookingdates');
         },
         me: async (_, _args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('profiles');
+                return User.findOne({ _id: context.user._id }).populate('profiles').populate('bookingdates');
             }
             throw new AuthenticationError('You need to be logged in!');
         },
@@ -74,7 +74,8 @@ const resolvers = {
 
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { bookingdates: bookingdate._id } }
+                    { $addToSet: { bookingdates: bookingdate._id } },
+                    { new: true }
                 );
 
                 return bookingdate;
