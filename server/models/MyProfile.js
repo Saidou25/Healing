@@ -80,12 +80,12 @@ const profileSchema = new Schema({
         repuire: true,
         trim: true,
     },
-    appMonth: {
+    patientState: {
             type: String,
             repuire: true,
             trim: true,
         },
-    patientState: {
+    appMonth: {
             type: String,
             repuire: true,
             trim: true,

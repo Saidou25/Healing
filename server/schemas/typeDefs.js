@@ -71,6 +71,7 @@ const typeDefs = gql`
 
      addProfile(
      patientfirstname: String,
+     patientState: String,
      patientgender: String,
      patientaddress: String,
      patientemail: String,

@@ -91,10 +91,10 @@ export const ADD_BOOKINGDATE = gql`
       $appTime: String,
       $appYear: Int) {
          addProfile(
-         patientState: $patientState,
           patientfirstname: $patientfirstname,
           patientgender: $patientgender,
       patientaddress: $patientaddress,
+         patientState: $patientState,
       patientlastname: $patientlastname,
       patientcity: $patientcity,
       patientnumber: $patientnumber,
@@ -112,8 +112,8 @@ export const ADD_BOOKINGDATE = gql`
       appointment: $appointment) { 
         _id
          isBooked
-         patientState
          finalDateISO  
+         patientState
          appDay
       appMonth
       appTime

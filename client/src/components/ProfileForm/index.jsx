@@ -34,7 +34,7 @@ const ProfileForm = () => {
     const mapProfile = (profiles) => {
         profiles.map((Profile) => {
             const profileId = Profile._id;
-            console.log('profileId', profileId);
+           
             return setProfileId(profileId);
         })
     };
@@ -42,11 +42,11 @@ const ProfileForm = () => {
     useEffect(() => {
         if (meData) {
             const user = meData?.me || [];
-            console.log('user', user);
+          
             const profiles = user.profiles;
-            console.log('profiles', profiles);
+          
             const email = user.email;
-            console.log('email', email);
+          
             setEmail(email)
             mapProfile(profiles);
         }
@@ -96,7 +96,7 @@ const ProfileForm = () => {
         const x9 = document.querySelector(".validate9");
         const y9 = document.querySelector(".invalidate9");
 
-
+console.log('patient state', patientState);
         const { name, value } = e.target;
 
         if (name === 'patientgender') {
@@ -113,7 +113,7 @@ const ProfileForm = () => {
         
         if (name === 'birthdate') {
             setBirthDate(value);
-
+console.log('birthdate', value);
             // const validateAge = 2023 - value.split('').slice(6, 10).join('');
 
             if (value.length === 10) {
@@ -202,7 +202,7 @@ const ProfileForm = () => {
     };
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
+        console.log('patient state', patientState);
         const appointment = passedVisitData.finalDateISO
 
         const navigateData = {
@@ -228,7 +228,7 @@ const ProfileForm = () => {
 
         try {
             const { data } = await addProfile({
-                variables: { patientState: patientState, appointment: appointment, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
+                variables: { appointment: appointment, patientState: patientState, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
             });
             setPatientFirstName("");
             setPatientLastName("")
