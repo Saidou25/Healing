@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from "@apollo/client";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES } from '../../utils/queries';
 import DatePicker from "react-datepicker";
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
-import { parseISO, setHours, setMinutes } from 'date-fns';
-import Navbar from '../Navbar';
+import { parseISO, setHours, setMinutes } from 'date-fns'
 
 
 const AppointmentForm = () => {

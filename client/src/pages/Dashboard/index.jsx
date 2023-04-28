@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_USERBOOKINGDATES } from '../../utils/queries';
-// import AppointmentForm from '../../components/AppointmentForm';
+import AppointmentForm from '../../components/AppointmentForm';
 import MyAppointmentsList from '../../components/MyAppointmentsList';
 import Navbar from '../../components/Navbar';
 
@@ -38,8 +38,8 @@ const Dashboard = () => {
             <Navbar />
             <div className='row'>
                 <div className='col-6'>
-                    {/* <AppointmentForm /> */}
-                    AppointmentForm
+                    <AppointmentForm />
+                   
                 </div>
                 <div className='col-6'>
                     <MyAppointmentsList username={username} myAppointments={myAppointments} />
