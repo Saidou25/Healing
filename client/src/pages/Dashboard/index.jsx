@@ -38,7 +38,7 @@ const Dashboard = () => {
             <Navbar />
             <div className='row'>
                 <div className='col-6'>
-                    <AppointmentForm />
+                    <AppointmentForm username={username} />
                    
                 </div>
                 <div className='col-6'>

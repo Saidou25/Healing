@@ -90,6 +90,7 @@ const typeDefs = gql`
      appYear: Int): Profile
 
      addBookingdate(
+     username: String
      isBooked: String
      finalDateISO: String
      appDay: String

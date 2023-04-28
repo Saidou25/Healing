@@ -10,8 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { parseISO, setHours, setMinutes } from 'date-fns'
 
 
-const AppointmentForm = () => {
-
+const AppointmentForm = (props) => {
+    const username = props.username;
 
     const navigate = useNavigate();
 
@@ -76,7 +76,7 @@ const AppointmentForm = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+console.log('username', username);
         const isBooked = JSON.stringify(startDate);
 
         const dateArr = isBooked.replaceAll('"', '').split(':');
@@ -107,7 +107,7 @@ const AppointmentForm = () => {
             appYear: parseInt(appYear)
         }
         try {
-            await addBookingdate({ variables: { reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
+            await addBookingdate({ variables: { username: username, reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
             console.log(`success booking a date ${isBooked}`);
 
         } catch (err) {
@@ -125,7 +125,7 @@ const AppointmentForm = () => {
 
     return (
         <>
-           
+
             <div className='container-visit'>
                 <div className='row app-window'>
                     <div className='col-9'>
@@ -217,7 +217,7 @@ const AppointmentForm = () => {
                             </form >
                         </div >
                     </div >
-                    
+
                 </div >
             </div>
         </>
