@@ -12,7 +12,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
 import ProfileForm from './components/ProfileForm';
+import ReviewForm from './components/ReviewForm';
 import UserList from './components/UserList';
+import MyReviewsList from './components/MyReviewsList';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
 import DateList from './components/DateList';
@@ -55,10 +57,12 @@ function App() {
             <Route path='/UserList' element={<UserList />} />
             <Route path='/Login' element={<Login />} />
            <Route path='/DateList' element={<DateList />} />
+           <Route path='/MyReviewsList' element={<MyReviewsList />} />
             <Route path='/Signup' element={<Signup />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
+            <Route path='/ReviewForm' element={<ReviewForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />

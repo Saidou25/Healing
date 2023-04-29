@@ -24,6 +24,26 @@ export const ADD_USER = gql`
   }
   }
 `;
+
+export const ADD_REVIEW = gql`
+  mutation addReview($title: String!, $reviewText: String!) {
+    addReview(title: $title, reviewText: $reviewText) {
+        _id
+        title
+        reviewText
+    }
+ }
+`;
+
+export const DELETE_REVIEW = gql`
+  mutation deleteReview($id: String!) {
+    deleteReview(id: $id) {
+        _id
+        title
+        reviewText
+    }
+  }
+`;
 export const DELETE_USER = gql`
    mutation deleteUser($username: String!) {
    deleteUser(username: $username) {

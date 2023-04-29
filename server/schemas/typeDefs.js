@@ -27,6 +27,12 @@ const typeDefs = gql`
      appointment: String
      },
    
+     type Review {
+      _id: ID!
+      username: String
+     reviewText: String
+     title: String
+     }, 
 
      type Bookingdate {
       _id: ID!
@@ -45,6 +51,7 @@ const typeDefs = gql`
     password: String 
     username: String
     profiles: [Profile] 
+    reviews: [Review]
     bookingdates: [Bookingdate] 
   },
   type Auth {
@@ -60,6 +67,8 @@ const typeDefs = gql`
      profile(id: String!): Profile
      bookingdates: [Bookingdate]
      bookingdate(id: String!): Bookingdate
+     reviews: [Review]
+     review(username: String): Review
      userbookingdates(username: String): [Bookingdate]  
      
      },
@@ -101,9 +110,17 @@ const typeDefs = gql`
      appTime: String
      appYear: Int
      ): Bookingdate
+
+     addReview(
+     username: String
+     reviewText: String
+     title: String
+     ): Review
     
-    deleteUser(username: String!): User
+    deleteUser(id: String!): User
     deleteProfile(id: String): Profile
+    deleteReview(id: String): Review
+    deleteBookingdate(id: String): Bookingdate
      }
      `;
 

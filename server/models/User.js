@@ -26,6 +26,12 @@ const userSchema = new Schema({
       ref: 'profile'
     }
   ],
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Review'
+    }
+  ],
   bookingdates: [
     {
       type: Schema.Types.ObjectId,

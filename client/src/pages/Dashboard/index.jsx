@@ -1,50 +1,54 @@
 import React from 'react';
 import { useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_USERBOOKINGDATES } from '../../utils/queries';
+import { QUERY_ME, QUERY_USERBOOKINGDATES, QUERY_REVIEWS } from '../../utils/queries';
+import { useNavigate } from 'react-router-dom';
 import AppointmentForm from '../../components/AppointmentForm';
 import MyAppointmentsList from '../../components/MyAppointmentsList';
+import MyReviewsList from '../../components/MyReviewsList';
 import Navbar from '../../components/Navbar';
 
 
 
 const Dashboard = () => {
-    // const [myAppointments, setMyAppointments] = useState('');
-    // const [username, setUsername] = useState('');
+    const navigate = useNavigate();
 
     const { data } = useQuery(QUERY_ME);
 
     const me = data?.me || [];
     const username = me.username;
-    console.log('username', username);
+
+    const { data: reviewsData } = useQuery(QUERY_REVIEWS);
+    const reviews = reviewsData?.reviews || [];
+
 
     const { data: userbookingdatesData } = useQuery(QUERY_USERBOOKINGDATES, {
         variables: { username: username },
     });
     const myAppointments = userbookingdatesData?.userbookingdates || [];
-    console.log('myAppointments', myAppointments);
 
-
-    // const { data: bookingdatesData, error } = useQuery(QUERY_USERBOOKINGDATES, {
-    //     variables: { username: "Symanou" }
-    // });
-    // const myAppointments = bookingdatesData?.bookingdates || [];
-    // console.error(error)
-    // console.log(myAppointments);
-
+    const handleSubmit = () => {
+        navigate('/ReviewForm');
+    };
 
 
     return (
         <>
             <Navbar />
             <div className='row'>
-                <div className='col-6'>
-                    <AppointmentForm username={username} />
-                   
-                </div>
-                <div className='col-6'>
+                <div className='col-4'>
                     <MyAppointmentsList username={username} myAppointments={myAppointments} />
                 </div>
+                <div className='col-4'>
+                    <AppointmentForm username={username} />
+                </div>
+                <div className='col-4'>
+                    <MyReviewsList reviews={reviews} /> <br />
+                    <button className='review-button' onClick={handleSubmit}>
+                        add a review
+                    </button>
+                </div>
             </div>
+
         </>
     )
 };

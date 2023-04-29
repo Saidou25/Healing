@@ -110,6 +110,15 @@ export const QUERY_BOOKINGDATES = gql`
      }
   }
 `;
+export const QUERY_REVIEWS = gql`
+ query reviews {
+     reviews {
+     _id
+    title
+    reviewText
+     }
+  }
+`;
 export const QUERY_BOOKINGDATE = gql`
     query bookingdate($id: ID!) {
          bookingdate(id: $id) {
