@@ -20,6 +20,10 @@ const userSchema = new Schema({
     unique: true,
     minlength: 5
   },
+  note: {
+    type: Schema.Types.ObjectId,
+    ref: 'Note'
+  },
   profiles: [
     {
       type: Schema.Types.ObjectId,

@@ -38,7 +38,7 @@ const Login = () => {
             email: '',
             password: '',
         });
-        console.log('formState', formState)
+      
     };
 
     return (

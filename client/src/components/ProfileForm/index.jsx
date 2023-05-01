@@ -56,8 +56,7 @@ const ProfileForm = () => {
 
     const { data: profiledata } = useQuery(QUERY_PROFILES);
     const profiles = profiledata?.profiles || [];
-    console.log('profiles', profiles)
-
+    
 
     const [addProfile, { error }] = useMutation(ADD_PROFILE, {
         update(cache, { data: { addProfile } }) {
@@ -96,7 +95,7 @@ const ProfileForm = () => {
         const x9 = document.querySelector(".validate9");
         const y9 = document.querySelector(".invalidate9");
 
-console.log('patient state', patientState);
+
         const { name, value } = e.target;
 
         if (name === 'patientgender') {
@@ -113,7 +112,7 @@ console.log('patient state', patientState);
         
         if (name === 'birthdate') {
             setBirthDate(value);
-console.log('birthdate', value);
+
             // const validateAge = 2023 - value.split('').slice(6, 10).join('');
 
             if (value.length === 10) {
@@ -202,7 +201,7 @@ console.log('birthdate', value);
     };
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        console.log('patient state', patientState);
+       
         const appointment = passedVisitData.finalDateISO
 
         const navigateData = {

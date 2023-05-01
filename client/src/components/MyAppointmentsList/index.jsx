@@ -7,6 +7,22 @@ const AppointmentList = (props) => {
     // const username = props.username;
     const myAppointments = props.myAppointments;
 
+
+    // const [deleteUser, { error }] = useMutation(DELETE_USER, {
+    //     variables: { username: user.username },
+    //     update(cache, { data: { deleteUser } }) {
+    //         try {
+    //             const { users } = cache.readQuery({ query: QUERY_USERS });
+
+    //             cache.writeQuery({
+    //                 query: QUERY_USERS,
+    //                 data: { users: [...users, deleteUser] },
+    //             })
+    //         } catch (e) {
+    //             console.error(e);
+    //         }
+    //     }
+    // });
     // const [username, setUsername] = useState('');
     // const [myAppointments, setMyAppointments] = useState('');
 
@@ -56,6 +72,9 @@ const AppointmentList = (props) => {
                                         Time: {Bookingdate.appTime}</span> <br />
                                 </h4>
                             </div>
+                            <button className='button-appointments'>
+                                delete
+                            </button>
                         </div>
                     ))}
             </div>

@@ -34,6 +34,14 @@ export const ADD_REVIEW = gql`
     }
  }
 `;
+export const ADD_NOTE = gql`
+  mutation addNote($noteTitle: String!) {
+    addNote(noteTitle: $noteTitle) {
+        _id
+        noteTitle
+    }
+ }
+`;
 
 export const DELETE_REVIEW = gql`
   mutation deleteReview($id: String!) {

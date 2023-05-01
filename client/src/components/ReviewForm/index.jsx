@@ -26,7 +26,7 @@ const navigate = useNavigate();
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log('form state', formState);
+   
 
         try {
             const { data } = await addReview({
@@ -43,7 +43,7 @@ const navigate = useNavigate();
             title: '',
             reviewText: '',
         });
-        console.log('formState', formState)
+    
     };
 
     return (

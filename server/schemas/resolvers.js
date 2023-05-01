@@ -1,4 +1,4 @@
-const { Profile, Bookingdate, User, Review } = require('../models');
+const { Profile, Bookingdate, User, Review, Note, Number } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -6,17 +6,30 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find().populate('profiles').populate('bookingdates').populate('reviews');
+            return User.find().populate('note').populate('bookingdates').populate('reviews')
+            ;
         },
         user: async (_, args) => {
-            return User.findOne({ username: args.username }).populate('profiles').populate('bookingdates').populate('reviews');
+            return User.findOne({ username: args.username }).populate('note').populate('bookingdates').populate('reviews');
         },
         me: async (_, _args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('profiles').populate('bookingdates').populate('reviews');
+                return User.findOne({ _id: context.user._id }).populate('note').populate('bookingdates').populate('reviews');
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        notes: async () => {
+            return await Note.find().populate('numbers');
+        },
+        note: async (_, args) => {
+            return Note.findOne({ _id: args.id }).populate('nunbers');
+        },
+        // numbers: async () => {
+        //     return await Number.find();
+        // },
+        // number: async (_, args) => {
+        //     return Number.findOne({ _id: args.id });
+        // },
         profiles: async () => {
 
             return await Profile.find();
@@ -87,6 +100,50 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
 
         },
+        // addNumber: async (_, args, context) => {
+        //     if (context.note) {
+        //         const number = await Number.create({
+        //             num: args.num
+        //         });
+
+        //         await Note.findOneAndUpdate(
+        //             { _id: context.note._id },
+        //             { $addToSet: { numbers: number._id } },
+        //             { new: true }
+        //         );
+
+        //         return number;
+        //     }
+        //     throw new AuthenticationError('You need to be logged in!');
+
+        // },
+        updateNote: async (_, args) => {
+
+            return await Note.findOneAndUpdate(
+                { _id: args.id },
+                { noteTitle: args.noteTitle }
+            );
+        },
+        deleteNote: async (_, args) => {
+            return await Note.findOneAndDelete({ _id: args.id });
+        },
+        addNote: async (_, args, context) => {
+            if (context.user) {
+                const note = await Note.create({
+                    noteTitle: args.noteTitle
+                });
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $set: { note: note._id } },
+                    { new: true }
+                );
+
+                return note;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+
+        },
 
         addProfile: async (_, args, context) => {
             if (context.user) {
@@ -140,8 +197,9 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
 
         },
+
         deleteReview: async (_, args) => {
-            return await Review.findOneAndDelete({ _id: args.id});
+            return await Review.findOneAndDelete({ _id: args.id });
         },
         deleteUser: async (_, args) => {
             return await User.findOneAndDelete({ _id: args.id });

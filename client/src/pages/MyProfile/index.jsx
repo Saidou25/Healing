@@ -23,11 +23,11 @@ const MyProfile = () => {
     useEffect(() => {
         if (data) {
             const user = data?.me || [];
-            console.log('user', user);
+        
             const profiles = user.profiles;
-            console.log('profiles', profiles);
+         
             const email = user.email;
-            console.log('email', email);
+          
             const username = user.username;
             setEmail(email);
             setUsername(username);

@@ -24,6 +24,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/MyProfile';
 import About from './components/About';
+import Note from './components/Note';
 
 
 
@@ -64,6 +65,7 @@ function App() {
             <Route path='/ProfileForm' element={<ProfileForm />} />
             <Route path='/ReviewForm' element={<ReviewForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
+            <Route path='/Note' element={<Note />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/' element={<LandingPage />} />

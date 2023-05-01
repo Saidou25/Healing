@@ -33,6 +33,16 @@ const typeDefs = gql`
      reviewText: String
      title: String
      }, 
+     
+     type Note {
+      _id: ID!
+     noteTitle: String
+     numbers: [Number]
+     }, 
+    type Number {
+       _id: ID!
+       num: String
+       }
 
      type Bookingdate {
       _id: ID!
@@ -50,6 +60,7 @@ const typeDefs = gql`
     email: String
     password: String 
     username: String
+    note: Note
     profiles: [Profile] 
     reviews: [Review]
     bookingdates: [Bookingdate] 
@@ -70,6 +81,10 @@ const typeDefs = gql`
      reviews: [Review]
      review(username: String): Review
      userbookingdates(username: String): [Bookingdate]  
+     notes: [Note]
+     note(id: String!): Note
+     numbers: [Number]
+     number(id: String): Number
      
      },
 
@@ -116,7 +131,11 @@ const typeDefs = gql`
      reviewText: String
      title: String
      ): Review
-    
+
+    addNumber(num: String): Number
+    addNote(noteTitle: String): Note
+    updateNote(id: String, noteTitle: String): Note
+    deleteNote(id: String): Note
     deleteUser(id: String!): User
     deleteProfile(id: String): Profile
     deleteReview(id: String): Review

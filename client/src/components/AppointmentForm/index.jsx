@@ -77,7 +77,7 @@ const AppointmentForm = (props) => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-console.log('username', username);
+
         const isBooked = JSON.stringify(startDate);
 
         const dateArr = isBooked.replaceAll('"', '').split(':');
