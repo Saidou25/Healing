@@ -6,23 +6,23 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find().populate('note').populate('bookingdates').populate('reviews')
-            ;
+            return User.find().populate('note').populate('profile').populate('bookingdates').populate('reviews')
+                ;
         },
         user: async (_, args) => {
-            return User.findOne({ username: args.username }).populate('note').populate('bookingdates').populate('reviews');
+            return User.findOne({ username: args.username }).populate('note').populate('profile').populate('bookingdates').populate('reviews');
         },
         me: async (_, _args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('note').populate('bookingdates').populate('reviews');
+                return User.findOne({ _id: context.user._id }).populate('note').populate('profile').populate('bookingdates').populate('reviews');
             }
             throw new AuthenticationError('You need to be logged in!');
         },
         notes: async () => {
-            return await Note.find().populate('numbers');
+            return await Note.find();
         },
         note: async (_, args) => {
-            return Note.findOne({ _id: args.id }).populate('nunbers');
+            return Note.findOne({ _id: args.id });
         },
         // numbers: async () => {
         //     return await Number.find();
@@ -130,6 +130,7 @@ const resolvers = {
         addNote: async (_, args, context) => {
             if (context.user) {
                 const note = await Note.create({
+                    // _id: context.user._id,
                     noteTitle: args.noteTitle
                 });
 
@@ -170,7 +171,7 @@ const resolvers = {
                 });
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { profiles: profile._id } },
+                    { $set: { profile: profile._id } },
                     { new: true }
                 )
                 return profile;
@@ -197,7 +198,20 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
 
         },
+        updateProfile: async (_, args) => {
 
+            return await Profile.findOneAndUpdate(
+                { _id: args.id },
+                {
+                    patientlastname: args.patientlastname,
+                    patientcity: args.patientcity,
+                    patientzip: args.patientzip,
+                    patientState: args.patientState,
+                    patientnumber: args.patientnumber,
+                    patientaddress: args.patientaddress
+                }
+            );
+        },
         deleteReview: async (_, args) => {
             return await Review.findOneAndDelete({ _id: args.id });
         },
@@ -210,7 +224,7 @@ const resolvers = {
 
         },
         deleteProfile: async (_, args) => {
-            return await Profile.findOneAndDelete({ id: args._id });
+            return await Profile.findOneAndDelete({ id: args.id });
         }
     }
 };

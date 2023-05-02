@@ -6,7 +6,11 @@ export const QUERY_USERS = gql`
       _id
       username
       email
-      profiles {
+      note {
+        _id
+      noteTitle
+      }
+      profile {
  _id
  patientfirstname
  patientgender
@@ -36,7 +40,11 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      profiles {
+      note {
+        _id
+      noteTitle
+      }
+      profile {
  _id
  patientfirstname
  patientgender
@@ -66,7 +74,11 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      profiles {
+      note {
+      _id
+      noteTitle
+      }
+      profile {
  _id
  patientState
  patientfirstname
@@ -116,6 +128,14 @@ export const QUERY_REVIEWS = gql`
      _id
     title
     reviewText
+     }
+  }
+`;
+export const QUERY_NOTES = gql`
+ query notes {
+     notes {
+     _id
+    noteTitle
      }
   }
 `;

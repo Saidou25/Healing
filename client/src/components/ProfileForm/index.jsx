@@ -17,7 +17,7 @@ const ProfileForm = () => {
     const location = useLocation();
     const passedVisitData = location.state;
     const [email, setEmail] = useState('');
-    const [profileId, setProfileId] = useState('');
+    // const [profileId, setProfileId] = useState('');
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
@@ -28,51 +28,42 @@ const ProfileForm = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
+    const [profileId, setProfileId] = useState('');
 
     const { data: meData } = useQuery(QUERY_ME);
+   
+    
+    // const profileId = me.Profile._id;
+    // console.log('profileId', profileId);
 
-    const mapProfile = (profiles) => {
-        profiles.map((Profile) => {
-            const profileId = Profile._id;
-           
-            return setProfileId(profileId);
-        })
-    };
+    // const mapProfile = (profiles) => {
+    //     profiles.map((Profile) => {
+    //         const profileId = Profile._id;
+
+    //         return setProfileId(profileId);
+    //     })
+    // };
 
     useEffect(() => {
         if (meData) {
-            const user = meData?.me || [];
-          
-            const profiles = user.profiles;
-          
-            const email = user.email;
-          
+           const me = meData?.me || [];
+            const email = me.email;
+            const profileId = me.profile;
+
             setEmail(email)
-            mapProfile(profiles);
+            setProfileId(profileId);
         }
 
     }, [meData]);
 
 
-    const { data: profiledata } = useQuery(QUERY_PROFILES);
-    const profiles = profiledata?.profiles || [];
-    
+    // const { data: profiledata } = useQuery(QUERY_PROFILES);
+    // const profiles = profiledata?.profiles || [];
 
-    const [addProfile, { error }] = useMutation(ADD_PROFILE, {
-        update(cache, { data: { addProfile } }) {
-            try {
-                const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
 
-                cache.writeQuery({
-                    query: QUERY_PROFILES,
-                    data: { profiles: [...profiles, addProfile] },
-                });
-            } catch (e) {
-                console.error(e);
-            }
-        },
+    const [addProfile, { error }] = useMutation(ADD_PROFILE);
 
-    });
+    // };
 
     const handleChange = (e) => {
 
@@ -109,7 +100,7 @@ const ProfileForm = () => {
                 y9.style.display = "block";
             }
         }
-        
+
         if (name === 'birthdate') {
             setBirthDate(value);
 
@@ -201,7 +192,7 @@ const ProfileForm = () => {
     };
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-       
+
         const appointment = passedVisitData.finalDateISO
 
         const navigateData = {
@@ -429,7 +420,7 @@ const ProfileForm = () => {
                 ) : (
                     <div>Reasons</div>
                 )}
-            </div >
+            </div>
         </>
 
     );

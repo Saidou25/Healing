@@ -61,7 +61,7 @@ const typeDefs = gql`
     password: String 
     username: String
     note: Note
-    profiles: [Profile] 
+    profile: Profile 
     reviews: [Review]
     bookingdates: [Bookingdate] 
   },
@@ -133,8 +133,18 @@ const typeDefs = gql`
      ): Review
 
     addNumber(num: String): Number
-    addNote(noteTitle: String): Note
+    addNote(id: String, noteTitle: String): Note
     updateNote(id: String, noteTitle: String): Note
+
+    updateProfile(
+    id: String,
+     patientlastname: String, 
+                    patientcity: String,
+                    patientzip: Int,
+                    patientState: String,
+                    patientnumber: String,
+                    patientaddress: String): Profile
+                    
     deleteNote(id: String): Note
     deleteUser(id: String!): User
     deleteProfile(id: String): Profile

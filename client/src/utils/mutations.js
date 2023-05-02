@@ -42,6 +42,14 @@ export const ADD_NOTE = gql`
     }
  }
 `;
+export const UPDATE_NOTE = gql`
+  mutation updateNote($id: String!, $noteTitle: String!) {
+    updateNote(id: $id, noteTitle: $noteTitle) {
+        _id
+        noteTitle
+    }
+ }
+`;
 
 export const DELETE_REVIEW = gql`
   mutation deleteReview($id: String!) {
@@ -53,8 +61,8 @@ export const DELETE_REVIEW = gql`
   }
 `;
 export const DELETE_USER = gql`
-   mutation deleteUser($username: String!) {
-   deleteUser(username: $username) {
+   mutation deleteUser($id: String!) {
+   deleteUser(id: $id) {
    _id
    username
    }
@@ -138,6 +146,46 @@ export const ADD_BOOKINGDATE = gql`
       appTime: $appTime,
       appYear: $appYear,
       appointment: $appointment) { 
+        _id
+         isBooked
+         finalDateISO  
+         patientState
+         appDay
+      appMonth
+      appTime
+      appYear
+      appDate
+        appointment
+        patientfirstname
+        patientgender
+      patientaddress
+       patientlastname
+      patientcity
+      patientnumber
+      patientreason
+      birthdate
+      patientzip
+      mepet
+              }             
+     }
+ `;
+     export const UPDATE_PROFILE = gql`
+     mutation updateProfile($id: String,
+      $patientaddress: String,
+      $patientlastname: String,
+      $patientcity: String,
+      $patientState: String,
+      $patientzip: Int,
+      $patientnumber: String
+      ) {
+         updateProfile(
+        id: $id
+      patientaddress: $patientaddress,
+         patientState: $patientState,
+      patientlastname: $patientlastname,
+      patientcity: $patientcity,
+      patientnumber: $patientnumber,
+      patientzip: $patientzip,) { 
         _id
          isBooked
          finalDateISO  

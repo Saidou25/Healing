@@ -19,6 +19,7 @@ const Navbar = () => {
                 <ul className="nav justify-content-end">
                     <CustomLink to='/About' className='nav-item' style={{ fontSize: '1.5rem' }}>About</CustomLink>
                     <CustomLink to='/UserList' className='nav-item active' style={{ fontSize: '1.5rem' }}>users</CustomLink>
+                    {/* <CustomLink to='/UpdateMyProfile' className='nav-item active' style={{ fontSize: '1.5rem' }}>update profile</CustomLink> */}
                     <CustomLink to='/Note' className='nav-item active' style={{ fontSize: '1.5rem' }}>note</CustomLink>
                     <CustomLink to='/Dashboard' className='nav-item' style={{ fontSize: '1.5rem' }}>dashboard</CustomLink>{/* <CustomLink to='/AppointmentForm' className='nav-item' style={{ fontSize: '1.5rem' }}>dashboard</CustomLink> */}
                     <button className='nav-item' onClick={logout} style={{ fontSize: '1.5rem' }}>logout</button>

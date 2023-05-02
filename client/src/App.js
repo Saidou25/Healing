@@ -23,8 +23,10 @@ import AppointmentForm from './components/AppointmentForm';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/MyProfile';
+import UpdateMyProfile from './components/UpdateMyProfile';
 import About from './components/About';
 import Note from './components/Note';
+import UpdateNote from './components/UpdateNote';
 
 
 
@@ -59,6 +61,7 @@ function App() {
             <Route path='/Login' element={<Login />} />
            <Route path='/DateList' element={<DateList />} />
            <Route path='/MyReviewsList' element={<MyReviewsList />} />
+           <Route path='/UpdateMyProfile' element={<UpdateMyProfile />} />
             <Route path='/Signup' element={<Signup />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
@@ -66,6 +69,7 @@ function App() {
             <Route path='/ReviewForm' element={<ReviewForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/Note' element={<Note />} />
+            <Route path='/UpdateNote' element={<UpdateNote />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/' element={<LandingPage />} />

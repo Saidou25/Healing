@@ -24,12 +24,10 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Note'
   },
-  profiles: [
-    {
+  profile: {
       type: Schema.Types.ObjectId,
       ref: 'profile'
-    }
-  ],
+    },
   reviews: [
     {
       type: Schema.Types.ObjectId,
