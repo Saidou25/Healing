@@ -81,7 +81,7 @@ const typeDefs = gql`
      reviews: [Review]
      review(username: String): Review
      userbookingdates(username: String): [Bookingdate]  
-     notes: [Note]
+     notes: [Note]!
      note(id: String!): Note
      numbers: [Number]
      number(id: String): Number

@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
 import SelectUSState from 'react-select-us-states';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { UPDATE_PROFILE } from "../../utils/mutations";
-import { QUERY_ME } from '../../utils/queries';
+import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 
 // import './index.css';
 import Navbar from '../Navbar';
 
 
 const UpdateMyProfile = () => {
-
+    const navigate = useNavigate();
+    const [profile, setProfile] = useState('');
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientlastname, setPatientLastName] = useState('');
@@ -21,10 +23,39 @@ const UpdateMyProfile = () => {
     // const [email, setEmail] = useState('');
 
     const { data: meData } = useQuery(QUERY_ME);
-    const me = meData?.me || [];
-    const profile = me.profile;
-    // const profileId = profile._id;
+    // const profile = me.profile;
+    const profileId = profile._id;
     const patientzip = parseInt(zip);
+    console.log('profile update foorm', profile);
+    console.log('profile id form update form', profileId)
+
+    const [updateProfile, { error }] = useMutation(UPDATE_PROFILE, {
+        update(cache, { data: { updateProfile } }) {
+            try {
+                const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
+
+                cache.writeQuery({
+                    query: QUERY_PROFILES,
+                    data: { profiles: [...profiles, updateProfile] },
+                });
+            } catch (e) {
+                console.error(e);
+            }
+
+            const { me } = cache.readQuery({ query: QUERY_ME });
+            cache.writeQuery({
+                query: QUERY_ME,
+                data: { me: { ...me, profile: { ...me.profile, updateProfile } } },
+            });
+        },
+    });
+    useEffect(() => {
+        if (meData) {
+            const me = meData?.me || [];
+            const profile = me.profile;
+            setProfile(profile);
+        }
+    }, [meData]);
 
     const handleChange = (e) => {
 
@@ -95,7 +126,34 @@ const UpdateMyProfile = () => {
             }
         }
     };
-    
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const { data } = await updateProfile({
+                variables: {
+                    id: profileId,
+                    patientlastname: patientlastname,
+                    patientaddress: patientaddress,
+                    patientnumber: patientnumber,
+                    patientcity: patientcity,
+                    patientzip: patientzip,
+                    patientState: patientState
+                },
+            });
+            console.log('success updating profile');
+            setNewValue('');
+            setPatientCity('');
+            setPatientAddress('');
+            setzip('');
+            setValue('');
+            setPatientLastName('');
+        } catch (err) {
+            console.error(err);
+        }
+        navigate('/AppointmentConfirmation');
+    };
 
     return (
         <>
@@ -103,9 +161,9 @@ const UpdateMyProfile = () => {
             <div>
                 {/* {(email && !profileId) ? ( */}
                 <div className='container-visitor'>
-                    <h1>Please answer few questions about you</h1>
+                    <h1>Updating your profile</h1>
                     <div className='card-visitor'>
-                        <form >
+                        <form className='profile-update'>
                             <div className='row m-5'>
 
 
@@ -117,7 +175,7 @@ const UpdateMyProfile = () => {
                                         type="text"
                                         name="patientlastname"
                                         value={patientlastname}
-                                        placeholder="last name..." />
+                                        placeholder={profile.patientlastname} />
                                     <div className='validate1'>
                                         Looks good
                                         <i className="fa-solid fa-check"></i>
@@ -136,7 +194,7 @@ const UpdateMyProfile = () => {
                                         onChange={handleChange}
                                         type="text"
                                         name="patientaddress"
-                                        placeholder="address..." />
+                                        placeholder={profile.patientaddress} />
                                     <div className='validate2'>
                                         Looks good
                                         <i className="fa-solid fa-check"></i>
@@ -155,7 +213,7 @@ const UpdateMyProfile = () => {
                                         type="text"
                                         name="patientcity"
                                         onChange={handleChange}
-                                        placeholder="enter city..." />
+                                        placeholder={profile.patientcity} />
                                     <div className='validate3'>
                                         Looks good
                                         <i className="fa-solid fa-check"></i>
@@ -177,7 +235,7 @@ const UpdateMyProfile = () => {
                                         value={zip}
                                         onChange={handleChange}
                                         type="Number"
-                                        placeholder="zip code..." />
+                                        placeholder={profile.patientzip} />
                                     <div className='validate4'>
                                         Looks good
                                         <i className="fa-solid fa-check"></i>
@@ -191,7 +249,7 @@ const UpdateMyProfile = () => {
                                 <div className="col-6">
                                     <label className="form-label">Phone number</label>
                                     <Input
-                                        placeholder="Enter phone number"
+                                        placeholder={profile.patientnumber}
                                         name='patientnumber'
                                         value={patientnumber}
                                         onChange={setValue} />
@@ -209,7 +267,11 @@ const UpdateMyProfile = () => {
                                 <div className="col-12">
                                     <button className="btn btn-primary"
                                         type="submit"
-                                        value="Send">Submit</button>
+                                        onClick={handleSubmit}
+                                        value="Send">
+                                        Submit
+                                    </button>
+
                                 </div>
                             </div>
                         </form>

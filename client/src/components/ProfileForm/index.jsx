@@ -31,18 +31,6 @@ const ProfileForm = () => {
     const [profileId, setProfileId] = useState('');
 
     const { data: meData } = useQuery(QUERY_ME);
-   
-    
-    // const profileId = me.Profile._id;
-    // console.log('profileId', profileId);
-
-    // const mapProfile = (profiles) => {
-    //     profiles.map((Profile) => {
-    //         const profileId = Profile._id;
-
-    //         return setProfileId(profileId);
-    //     })
-    // };
 
     useEffect(() => {
         if (meData) {
@@ -56,14 +44,7 @@ const ProfileForm = () => {
 
     }, [meData]);
 
-
-    // const { data: profiledata } = useQuery(QUERY_PROFILES);
-    // const profiles = profiledata?.profiles || [];
-
-
     const [addProfile, { error }] = useMutation(ADD_PROFILE);
-
-    // };
 
     const handleChange = (e) => {
 

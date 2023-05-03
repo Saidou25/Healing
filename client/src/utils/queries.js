@@ -139,6 +139,14 @@ export const QUERY_NOTES = gql`
      }
   }
 `;
+export const QUERY_NOTE = gql`
+ query note($id: ID!) {
+     note(id: $id) {
+     _id
+    noteTitle
+     }
+  }
+`;
 export const QUERY_BOOKINGDATE = gql`
     query bookingdate($id: ID!) {
          bookingdate(id: $id) {
