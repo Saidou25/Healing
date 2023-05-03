@@ -7,7 +7,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { UPDATE_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 
-// import './index.css';
+import './index.css';
 import Navbar from '../Navbar';
 
 
@@ -20,10 +20,11 @@ const UpdateMyProfile = () => {
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [zip, setzip] = useState('');
-    // const [email, setEmail] = useState('');
+    const [patientemail, setPatientEmail] = useState('');
+    const emailRegex = /^\S+@\S+\.\S+$/;
+   
 
     const { data: meData } = useQuery(QUERY_ME);
-    // const profile = me.profile;
     const profileId = profile._id;
     const patientzip = parseInt(zip);
     console.log('profile update foorm', profile);
@@ -53,6 +54,8 @@ const UpdateMyProfile = () => {
         if (meData) {
             const me = meData?.me || [];
             const profile = me.profile;
+            const email = me.email;
+            setPatientEmail(email);
             setProfile(profile);
         }
     }, [meData]);
@@ -67,6 +70,8 @@ const UpdateMyProfile = () => {
         const y3 = document.querySelector(".invalidate3");
         const x4 = document.querySelector(".validate4");
         const y4 = document.querySelector(".invalidate4");
+        const x5 = document.querySelector(".validate5");
+        const y5 = document.querySelector(".invalidate5");
         const x6 = document.querySelector(".validate6");
         const y6 = document.querySelector(".invalidate6");
 
@@ -102,6 +107,16 @@ const UpdateMyProfile = () => {
                 y3.style.display = "block";
             }
         }
+        if (name === 'patientemail') {
+            setPatientEmail(value);
+            if (emailRegex.test(value)) {
+                x5.style.display = "block";
+                y5.style.display = "none";
+            } else {
+                x5.style.display = "none";
+                y5.style.display = "block";
+            }
+        }
         if (name === 'zip') {
             setzip(value);
             if (value.length === 5) {
@@ -113,18 +128,19 @@ const UpdateMyProfile = () => {
             }
         }
 
-        if (name === 'patientnumber') {
-            setValue(e.target.value);
-            console(e.target.value)
-            if (e.target.value.length === 3) {
+        // if (name === 'patientnumber') {
+        //     const number = e.target.value;
+        //     setValue(e.target.value);
+        //     console(e.target.value)
+        //     if (number.length === 3) {
 
-                x6.style.display = "block";
-                y6.style.display = "none";
-            } else {
-                x6.style.display = "none";
-                y6.style.display = "block";
-            }
-        }
+        //         x6.style.display = "block";
+        //         y6.style.display = "none";
+        //     } else {
+        //         x6.style.display = "none";
+        //         y6.style.display = "block";
+        //     }
+        // }
     };
 
     const handleSubmit = async (e) => {
@@ -165,8 +181,6 @@ const UpdateMyProfile = () => {
                     <div className='card-visitor'>
                         <form className='profile-update'>
                             <div className='row m-5'>
-
-
                                 <div className="col-6">
                                     <label className="form-label1"> Last name</label>
                                     <input
@@ -181,6 +195,24 @@ const UpdateMyProfile = () => {
                                         <i className="fa-solid fa-check"></i>
                                     </div>
                                     <div className='invalidate1'>
+                                        required
+                                        <i className="fa-solid fa-check"></i>
+                                    </div>
+                                </div>
+                                <div className="col-6">
+                                    <label className="form-label1"> Email</label>
+                                    <input
+                                        className="form-control"
+                                        onChange={handleChange}
+                                        type="text"
+                                        name="patientemail"
+                                        value={patientemail}
+                                        placeholder={profile.patientemail} />
+                                    <div className='validate5'>
+                                        Looks good
+                                        <i className="fa-solid fa-check"></i>
+                                    </div>
+                                    <div className='invalidate5'>
                                         required
                                         <i className="fa-solid fa-check"></i>
                                     </div>

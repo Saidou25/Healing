@@ -1,7 +1,11 @@
 .container-profile {
-    width: 40%;
+    width: 60%;
     margin-right: auto;
     margin-left: auto;
+}
+.my-profile-box {
+    border-radius: 0;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .my-profile {
     text-align: center;
@@ -11,6 +15,11 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 } */
+.row-profile {
+    /* border: solid; */
+    padding: 3%;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
 .title-profile {
   margin-top: 50px;
     margin-bottom: 50px;

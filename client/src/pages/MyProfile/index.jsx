@@ -47,14 +47,14 @@ const MyProfile = () => {
         return (
             <div>
                 <Navbar />
-                <div className='container-profile'>
+                <div className='container-profile mt-5'>
                     <h3 className="text my-profile" style={{ fontSize: '2.5rem' }}>My profile</h3>
                     <div className="flex-row justify-space-between my-4">
 
                         <div className='col-12 '>
                             <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.5rem' }}>Login</h3>
                             <div className="card mb-3">
-                                <h4 className="card-header bg-dark text-white p-2 m-0">
+                                <h4 className="card-header text-dark p-2 m-0">
                                     <span className="text" style={{ fontSize: '1rem' }}>
                                         Username: {me.username}</span> <br />
                                     <span className="text" style={{ fontSize: '1rem' }}>
@@ -70,13 +70,13 @@ const MyProfile = () => {
         return (
             <div>
                 <Navbar />
-                <div className='container-profile'>
+                <div className='container-profile mt-5'>
                     <h3 className="text my-profile" style={{ fontSize: '2.5rem' }}>My profile</h3>
-                    <div className="flex-row justify-space-between my-4">
+                    <div className="flex-row row-profile justify-space-between my-4">
                         <div className='col-12 '>
                             <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.5rem' }}>Login</h3>
                             <div className="card mb-3">
-                                <h4 className="card-header bg-dark text-white p-2 m-0">
+                                <h4 className="card my-profile-box text-dark p-2 m-0">
                                     <span className="text" style={{ fontSize: '1rem' }}>
                                         Username: {username}</span> <br />
                                     <span className="text" style={{ fontSize: '1rem' }}>
@@ -87,7 +87,7 @@ const MyProfile = () => {
                         <div className="col-12">
                             <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.5rem' }}>General</h3>
                             <div className="card mb-3">
-                                <h4 className="card-header bg-dark text-white p-2 m-0">
+                                <h4 className="card my-profile-box text-dark p-2 m-0">
 
                                     <span className="text" style={{ fontSize: '1rem' }}>
                                         First name: {profile.patientfirstname}</span> <br />
@@ -99,7 +99,7 @@ const MyProfile = () => {
                             </div>
                             <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.5.5rem' }}>Contact</h3>
                             <div className="card mb-3">
-                                <h4 className="card-header bg-dark text-white p-2 m-0">
+                                <h4 className="card my-profile-box text-dark p-2 m-0">
                                     <span className="text" style={{ fontSize: '1rem' }}>
                                         Address: {profile.patientaddress}</span> <br />
                                     <span className="text" style={{ fontSize: '1rem' }}>

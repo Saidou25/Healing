@@ -6,7 +6,7 @@ import AppointmentForm from '../../components/AppointmentForm';
 import MyAppointmentsList from '../../components/MyAppointmentsList';
 import MyReviewsList from '../../components/MyReviewsList';
 import Navbar from '../../components/Navbar';
-
+import './index.css';
 
 
 const Dashboard = () => {
@@ -34,18 +34,18 @@ const Dashboard = () => {
     return (
         <>
             <Navbar />
-            <div className='row'>
-                <div className='col-4'>
+            <div className='row mt-5'>
+                <div className='col-6'>
                     <MyAppointmentsList username={username} myAppointments={myAppointments} />
                 </div>
-                <div className='col-4'>
-                    <AppointmentForm username={username} />
-                </div>
-                <div className='col-4'>
+                <div className='col-6'>
                     <MyReviewsList reviews={reviews} /> <br />
                     <button className='review-button' onClick={handleSubmit}>
                         add a review
                     </button>
+                </div>
+                <div className='col-12'>
+                    <AppointmentForm username={username} />
                 </div>
             </div>
 

@@ -63,7 +63,8 @@ const profileSchema = new Schema({
     patientemail: {
         type: String,
         require: true,
-        trim: true
+        trim: true,
+        match: [/.+@.+\..+/, 'Must match an email address!']
     },
      isBooked: {
         type: String,

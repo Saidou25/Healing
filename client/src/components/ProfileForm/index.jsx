@@ -7,7 +7,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 
-// import './index.css';
+import './index.css';
 import Navbar from '../Navbar';
 
 

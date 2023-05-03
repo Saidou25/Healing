@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background-image: url('../../assets/images/reidigreen4mb.jpg');
+    background-image: url('../../assets/images/jumbo.jpeg');
     min-height: 100vh;
     background-position: center;
     background-size: cover;
@@ -36,5 +36,5 @@
 
 }
 .visit-item:hover {
-    color: gray;
+    color: black;
 }

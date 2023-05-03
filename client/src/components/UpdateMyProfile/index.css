@@ -76,10 +76,7 @@
 .validate3,
 .validate4,
 .validate5,
-.validate6,
-.validate7,
-.validate9,
-.validate8 {
+.validate6 {
     display: none;
     color: green;
     margin-top: 7px;
@@ -93,10 +90,7 @@
 .invalidate3,
 .invalidate4,
 .invalidate5,
-.invalidate6,
-.invalidate7,
-.invalidate9,
-.invalidate8 {
+.invalidate6 {
     margin-top: 7px;
     color: red;
     margin-right: 15px;

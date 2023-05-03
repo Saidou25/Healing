@@ -13,7 +13,7 @@ const reviews = props.reviews;
             <div className="flex-row justify-space-between my-4">
                 {reviews &&
                     reviews.map((review) => (
-                        <div key={review._id} className="col-12 col-xl-6">
+                        <div key={review._id} className="col-12 col-xl-6 p-4">
                             <div className="card mb-3">
                                 <h4 className="card-header bg-dark text-white p-2 m-0">
 
