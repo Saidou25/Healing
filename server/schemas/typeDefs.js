@@ -61,6 +61,7 @@ const typeDefs = gql`
       finalDateISO: String
       appDay: String
      appMonth: String
+     reason: String
      appDate: Int
      appTime: String
      appYear: Int
@@ -135,6 +136,7 @@ const typeDefs = gql`
      appMonth: String
      appDate: Int
      appTime: String
+     reason: String
      appYear: Int
      ): Bookingdate
 

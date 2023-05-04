@@ -45,6 +45,11 @@ const bookingdateSchema = new Schema({
             type: Number,
             repuire: true,
             trim: true,
+        },
+        reason: {
+            type: String,
+            repuire: true,
+            trim: true,
         }
 });
 

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
 import SelectUSState from 'react-select-us-states';
+import Navbar from '../Navbar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 
 import './index.css';
-import Navbar from '../Navbar';
 
 
 const ProfileForm = () => {

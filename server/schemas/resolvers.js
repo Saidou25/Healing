@@ -95,6 +95,7 @@ const resolvers = {
                     isBooked: args.isBooked,
                     finalDateISO: args.finalDateISO,
                     appDay: args.appDay,
+                    reason: args.reason,
                     appMonth: args.appMonth,
                     appDate: args.appDate,
                     appTime: args.appTime,

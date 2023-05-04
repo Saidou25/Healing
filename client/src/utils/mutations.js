@@ -25,6 +25,32 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_PET = gql`
+     mutation addPet(
+     $profileId: String
+     $petName: String
+     $petWeight: Int
+     $petAge: String
+     $petGender: String
+     $petBreed: String) {
+     addPet(
+     profileId: $profileId
+        petName: $petName
+     petWeight: $petWeight
+     petAge:  $petAge
+     petGender: $petGender
+     petBreed: $petBreed) {
+     _id
+     petName
+     petBreed
+     petWeight
+     petAge
+     petGender
+     profileId
+     }
+     }
+     `;
+
 export const ADD_REVIEW = gql`
   mutation addReview($title: String!, $reviewText: String!) {
     addReview(title: $title, reviewText: $reviewText) {
@@ -77,6 +103,7 @@ export const ADD_BOOKINGDATE = gql`
      $isBooked: String,
      $finalDateISO: String,
      $appDay: String,
+     $reason: String,
      $appMonth: String,
      $appDate: Int,
      $appTime: String,
@@ -88,6 +115,7 @@ export const ADD_BOOKINGDATE = gql`
         finalDateISO: $finalDateISO,
         appDay: $appDay,
      appMonth: $appMonth,
+     reason: $reason,
      appDate: $appDate,
      appTime: $appTime,
      appYear: $appYear
@@ -102,6 +130,7 @@ export const ADD_BOOKINGDATE = gql`
      appTime
      appYear
      appDate
+     reason
                  }
       }
      `;

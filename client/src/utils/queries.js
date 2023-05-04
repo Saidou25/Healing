@@ -30,6 +30,12 @@ export const QUERY_USERS = gql`
  appMonth
  appTime
  appYear
+ pets {
+ petName
+ petAge
+ petGender
+ petBreed
+ petWeight}
     }
   }
   }
@@ -64,6 +70,12 @@ export const QUERY_USER = gql`
  appMonth
  appTime
  appYear
+ pets {
+ petName
+ petAge
+ petGender
+ petBreed
+ petWeight}
     }
     }
   }
@@ -98,6 +110,12 @@ export const QUERY_ME = gql`
  appMonth
  appTime
  appYear
+ pets {
+ petName
+ petAge
+ petGender
+ petBreed
+ petWeight}
     }
      
      }
@@ -147,6 +165,7 @@ export const QUERY_NOTE = gql`
      }
   }
 `;
+
 export const QUERY_BOOKINGDATE = gql`
     query bookingdate($id: ID!) {
          bookingdate(id: $id) {

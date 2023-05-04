@@ -107,28 +107,26 @@ const AppointmentForm = (props) => {
             appTime: appTime,
             appYear: parseInt(appYear)
         }
-        if (mepet && reason)  {
+        if (mepet && reason) {
             try {
                 await addBookingdate({ variables: { username: username, reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
                 console.log(`success booking a date ${isBooked}`);
-    
+
             } catch (err) {
                 console.error(err);
             }
             setMePet('');
             setStartDate('');
             setReason('');
-    
+
             mepet === 'me'
                 ? navigate('/ProfileForm', { state: navigateVisitData })
-                : navigate('/PetAppointment', { state: navigateVisitData });
+                : navigate('/PetProfileForm', { state: navigateVisitData });
 
         } else {
             console.log('you need to fill up the form correctly');
 
         }
-        
-
     };
 
     return (

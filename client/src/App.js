@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
 import ProfileForm from './components/ProfileForm';
+import PetProfileForm from './components/PetProfileForm';
 import ReviewForm from './components/ReviewForm';
 import UserList from './components/UserList';
 import MyReviewsList from './components/MyReviewsList';
@@ -66,6 +67,7 @@ function App() {
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
+            <Route path='/PetProfileForm' element={<PetProfileForm />} />
             <Route path='/ReviewForm' element={<ReviewForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/Note' element={<Note />} />
