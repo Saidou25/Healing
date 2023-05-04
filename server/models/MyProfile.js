@@ -110,7 +110,13 @@ const profileSchema = new Schema({
             type: Number,
             repuire: true,
             trim: true,
-        }
+        },
+        pets: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Pet'
+            }
+        ]
 });
 
 const Profile = model('Profile', profileSchema);

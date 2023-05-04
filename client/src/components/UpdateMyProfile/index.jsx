@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'react-phone-number-input/style.css';
-import Input from 'react-phone-number-input/input';
+// import Input from 'react-phone-number-input/input';
+import { PatternFormat } from 'react-number-format';
 import SelectUSState from 'react-select-us-states';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
@@ -15,14 +16,15 @@ const UpdateMyProfile = () => {
     const navigate = useNavigate();
     const [profile, setProfile] = useState('');
     const [patientState, setNewValue] = useState('');
-    const [patientnumber, setValue] = useState('');
+    const [patientnumber, setPatientNumber] = useState('');
     const [patientlastname, setPatientLastName] = useState('');
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [zip, setzip] = useState('');
     const [patientemail, setPatientEmail] = useState('');
     const emailRegex = /^\S+@\S+\.\S+$/;
-   
+    const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
 
     const { data: meData } = useQuery(QUERY_ME);
     const profileId = profile._id;
@@ -33,21 +35,16 @@ const UpdateMyProfile = () => {
     const [updateProfile, { error }] = useMutation(UPDATE_PROFILE, {
         update(cache, { data: { updateProfile } }) {
             try {
-                const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
-
+                const { me } = cache.readQuery({ query: QUERY_ME });
                 cache.writeQuery({
-                    query: QUERY_PROFILES,
-                    data: { profiles: [...profiles, updateProfile] },
+                    query: QUERY_ME,
+                    data: { me: { ...me, profile: { ...me.profile, updateProfile } } },
                 });
             } catch (e) {
                 console.error(e);
             }
 
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: { me: { ...me, profile: { ...me.profile, updateProfile } } },
-            });
+            
         },
     });
     useEffect(() => {
@@ -117,6 +114,18 @@ const UpdateMyProfile = () => {
                 y5.style.display = "block";
             }
         }
+        if (name === 'patientnumber') {
+            console.log(value)
+            setPatientNumber(value);
+            if (phoneRegex.test(value)) {
+
+                x6.style.display = "block";
+                y6.style.display = "none";
+            } else {
+                x6.style.display = "none";
+                y6.style.display = "block";
+            }
+        }
         if (name === 'zip') {
             setzip(value);
             if (value.length === 5) {
@@ -128,19 +137,6 @@ const UpdateMyProfile = () => {
             }
         }
 
-        // if (name === 'patientnumber') {
-        //     const number = e.target.value;
-        //     setValue(e.target.value);
-        //     console(e.target.value)
-        //     if (number.length === 3) {
-
-        //         x6.style.display = "block";
-        //         y6.style.display = "none";
-        //     } else {
-        //         x6.style.display = "none";
-        //         y6.style.display = "block";
-        //     }
-        // }
     };
 
     const handleSubmit = async (e) => {
@@ -163,7 +159,7 @@ const UpdateMyProfile = () => {
             setPatientCity('');
             setPatientAddress('');
             setzip('');
-            setValue('');
+            setPatientNumber('');
             setPatientLastName('');
         } catch (err) {
             console.error(err);
@@ -176,7 +172,7 @@ const UpdateMyProfile = () => {
             <Navbar />
             <div>
                 {/* {(email && !profileId) ? ( */}
-                <div className='container-visitor'>
+                <div className='container-visitor mt-5'>
                     <h1>Updating your profile</h1>
                     <div className='card-visitor'>
                         <form className='profile-update'>
@@ -280,11 +276,23 @@ const UpdateMyProfile = () => {
 
                                 <div className="col-6">
                                     <label className="form-label">Phone number</label>
-                                    <Input
-                                        placeholder={profile.patientnumber}
+
+                                    <PatternFormat
+                                        format="+1 (###) ### ####" allowEmptyFormatting mask="_"
+                                        value={profile.patientnumber}
+                                        name='patientnumber'
+                                        // prefix="$"
+                                        // placeholder={profile.patientnumber}
+                                        onValueChange={(values, sourceInfo) => {
+                                            setPatientNumber(values.value);
+                                            console.log('values', values.value, values);
+                                        }} />
+                                    {/* <input
+                                        type='tel'
                                         name='patientnumber'
                                         value={patientnumber}
-                                        onChange={setValue} />
+                                        onChange={handleChange}
+                                        /> */}
 
                                     <div className='validate6'>
                                         Looks good

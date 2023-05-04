@@ -25,6 +25,7 @@ const typeDefs = gql`
      appTime: String
      appYear: Int
      appointment: String
+     pets: [Pet]
      },
    
      type Review {
@@ -34,6 +35,15 @@ const typeDefs = gql`
      title: String
      }, 
      
+     type Pet {
+     _id: ID!
+     petBreed: String
+     petName: String
+     petWeight: Int
+     petGender: String
+     petKind: String
+     petAge: String
+     }
      type Note {
       _id: ID!
      noteTitle: String
@@ -83,6 +93,8 @@ const typeDefs = gql`
      userbookingdates(username: String): [Bookingdate]  
      notes: [Note]!
      note(id: String!): Note
+     pets: [Pet]
+     pet(id: String!): Pet
      numbers: [Number]
      number(id: String): Number
      
@@ -132,9 +144,19 @@ const typeDefs = gql`
      title: String
      ): Review
 
-    addNumber(num: String): Number
+  
     addNote(id: String, noteTitle: String): Note
     updateNote(id: String, noteTitle: String): Note
+
+    addPet(
+    profileId: String
+     petBreed: String
+     petName: String
+     petWeight: Int
+     petGender: String
+     petKind: String
+     petAge: String
+     ):Pet
 
     updateProfile(
     id: String,

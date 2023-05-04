@@ -1,4 +1,4 @@
-const { Profile, Bookingdate, User, Review, Note, Number } = require('../models');
+const { Profile, Bookingdate, User, Review, Note, Pet } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -6,15 +6,24 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find().populate('note').populate('profile').populate('bookingdates').populate('reviews')
-                ;
+            return User.find()
+                .populate('note').populate('profile').populate('bookingdates').populate('reviews').populate({
+                    path: 'profile',
+                    populate: 'pets'
+                });
         },
         user: async (_, args) => {
-            return User.findOne({ username: args.username }).populate('note').populate('profile').populate('bookingdates').populate('reviews');
+            return User.findOne({ username: args.username }).populate('note').populate('profile').populate('bookingdates').populate('reviews').populate({
+                path: 'profile',
+                populate: 'pets'
+            });
         },
         me: async (_, _args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('note').populate('profile').populate('bookingdates').populate('reviews');
+                return User.findOne({ _id: context.user._id }).populate('note').populate('profile').populate('bookingdates').populate('reviews').populate({
+                    path: 'profile',
+                    populate: 'pets'
+                });
             }
             throw new AuthenticationError('You need to be logged in!');
         },
@@ -24,18 +33,21 @@ const resolvers = {
         note: async (_, args) => {
             return Note.findOne({ _id: args.id });
         },
-        // numbers: async () => {
-        //     return await Number.find();
-        // },
-        // number: async (_, args) => {
-        //     return Number.findOne({ _id: args.id });
-        // },
         profiles: async () => {
 
-            return await Profile.find();
+            return await Profile.find().populate('pets');
         },
         profile: async (_, args) => {
+
             return await Profile.findOne({ _id: args.id });
+
+        },
+        pets: async () => {
+
+            return await Pet.find();
+        },
+        pet: async (_, args) => {
+            return await Pet.findOne({ _id: args.id });
         },
 
         bookingdates: async () => {
@@ -100,23 +112,6 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
 
         },
-        // addNumber: async (_, args, context) => {
-        //     if (context.note) {
-        //         const number = await Number.create({
-        //             num: args.num
-        //         });
-
-        //         await Note.findOneAndUpdate(
-        //             { _id: context.note._id },
-        //             { $addToSet: { numbers: number._id } },
-        //             { new: true }
-        //         );
-
-        //         return number;
-        //     }
-        //     throw new AuthenticationError('You need to be logged in!');
-
-        // },
         updateNote: async (_, args) => {
 
             return await Note.findOneAndUpdate(
@@ -143,6 +138,26 @@ const resolvers = {
                 return note;
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+
+        addPet: async (_, args) => {
+            const pet = await Pet.create(
+                {
+                    profileId: args.profileId,
+                    petName: args.petName,
+                    petGender: args.petGender,
+                    petAge: args.petAge,
+                    petKind: args.petKind,
+                    petBreed: args.petBreed,
+                    petWeight: args.petWeight
+                }
+            );
+            await Profile.findOneAndUpdate(
+                { _id: args.profileId },
+                { $addToSet:{ pets: pet._id }}
+            )
+            return pet;
+
 
         },
 
@@ -209,7 +224,8 @@ const resolvers = {
                     patientState: args.patientState,
                     patientnumber: args.patientnumber,
                     patientaddress: args.patientaddress
-                }
+                },
+                { new: true }
             );
         },
         deleteReview: async (_, args) => {

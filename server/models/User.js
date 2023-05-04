@@ -25,9 +25,9 @@ const userSchema = new Schema({
     ref: 'Note'
   },
   profile: {
-      type: Schema.Types.ObjectId,
-      ref: 'Profile'
-    },
+    type: Schema.Types.ObjectId,
+    ref: 'Profile'
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
@@ -40,7 +40,7 @@ const userSchema = new Schema({
       ref: 'bookingdate'
     }
   ]
-  
+
 });
 
 userSchema.pre('save', async function (next) {
