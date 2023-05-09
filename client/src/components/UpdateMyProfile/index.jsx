@@ -29,22 +29,21 @@ const UpdateMyProfile = () => {
     const { data: meData } = useQuery(QUERY_ME);
     const profileId = profile._id;
     const patientzip = parseInt(zip);
-    console.log('profile update foorm', profile);
-    console.log('profile id form update form', profileId)
+    // console.log('profile update foorm', profile);
+    // console.log('profile id form update form', profileId)
 
     const [updateProfile, { error }] = useMutation(UPDATE_PROFILE, {
         update(cache, { data: { updateProfile } }) {
             try {
                 const { me } = cache.readQuery({ query: QUERY_ME });
+              
                 cache.writeQuery({
                     query: QUERY_ME,
                     data: { me: { ...me, profile: { ...me.profile, updateProfile } } },
                 });
             } catch (e) {
                 console.error(e);
-            }
-
-            
+            }      
         },
     });
     useEffect(() => {

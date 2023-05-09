@@ -90,7 +90,7 @@ const typeDefs = gql`
      bookingdates: [Bookingdate]
      bookingdate(id: String!): Bookingdate
      reviews: [Review]
-     review(username: String): Review
+     review(id: String): Review
      userbookingdates(username: String): [Bookingdate]  
      notes: [Note]!
      note(id: String!): Note
@@ -172,7 +172,7 @@ const typeDefs = gql`
     deleteNote(id: String): Note
     deleteUser(id: String!): User
     deleteProfile(id: String): Profile
-    deleteReview(id: String): Review
+    deleteReview(id: String!): Review
     deleteBookingdate(id: String): Bookingdate
      }
      `;

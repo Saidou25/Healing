@@ -49,7 +49,20 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          reviews: {
+            merge(existing, incoming) {
+              return incoming;
+            }
+          }
+        }
+      }
+    }
+
+  })
 });
 
 function App() {
@@ -57,12 +70,12 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-           <Routes>
+          <Routes>
             <Route path='/UserList' element={<UserList />} />
             <Route path='/Login' element={<Login />} />
-           <Route path='/DateList' element={<DateList />} />
-           <Route path='/MyReviewsList' element={<MyReviewsList />} />
-           <Route path='/UpdateMyProfile' element={<UpdateMyProfile />} />
+            <Route path='/DateList' element={<DateList />} />
+            <Route path='/MyReviewsList' element={<MyReviewsList />} />
+            <Route path='/UpdateMyProfile' element={<UpdateMyProfile />} />
             <Route path='/Signup' element={<Signup />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />

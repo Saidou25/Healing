@@ -20,7 +20,7 @@ const AppointmentForm = (props) => {
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
 
-    const [addBookingdate] = useMutation(ADD_BOOKINGDATE)
+    // const [addBookingdate] = useMutation(ADD_BOOKINGDATE)
 
     const { data } = useQuery(QUERY_BOOKINGDATES);
 
@@ -37,6 +37,20 @@ const AppointmentForm = (props) => {
         allAppointments.push(resultIso)
     };
 
+    const [addBookingdate, { error }] = useMutation(ADD_BOOKINGDATE, {
+        update(cache, { data: { addBookingdate } }) {
+            try {
+                const { bookingdates } = cache.readQuery({ query: QUERY_BOOKINGDATES });
+
+                cache.writeQuery({
+                    query: QUERY_BOOKINGDATES,
+                    data: { bookingdates: [addBookingdate, ...bookingdates] },
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    });
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -118,16 +132,19 @@ const AppointmentForm = (props) => {
             setMePet('');
             setStartDate('');
             setReason('');
-
-            mepet === 'me'
-                ? navigate('/ProfileForm', { state: navigateVisitData })
-                : navigate('/PetProfileForm', { state: navigateVisitData });
-
-        } else {
-            console.log('you need to fill up the form correctly');
-
         }
-    };
+        if (mepet === 'me' && !allAppointments.length && reason) {
+            navigate('/ProfileForm', { state: navigateVisitData })
+            
+        }
+        if (mepet === 'pet' && !allAppointments.length && reason) {
+            navigate('/PetProfileForm', { state: navigateVisitData });
+            
+        } 
+        console.log('you need to fill up the form correctly');
+        document.getElementById("appointment-form").reset();
+        
+    }
 
     return (
         <>
@@ -138,7 +155,7 @@ const AppointmentForm = (props) => {
                         Would you like to book an appointment with us?
                     </h1>
                     <div className='card-visit'>
-                        <form>
+                        <form id='appointment-form'>
                             <div className='row-visit align-items-center p-5'>
                                 <div className='col-6 appointment-for'>
                                     <label className="form-label">

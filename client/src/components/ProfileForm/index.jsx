@@ -5,8 +5,8 @@ import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_PROFILE } from "../../utils/mutations";
-import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import { ADD_PROFILE, UPDATE_PROFILE } from "../../utils/mutations";
+import { QUERY_ME, QUERY_USER } from '../../utils/queries';
 
 import './index.css';
 
@@ -16,8 +16,9 @@ const ProfileForm = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const passedVisitData = location.state;
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    // const [profileId, setProfileId] = useState('');
+    const [profileId, setProfileId] = useState('');
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
@@ -28,23 +29,25 @@ const ProfileForm = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
-    const [profileId, setProfileId] = useState('');
-
+    // const [profileId, setProfileId] = useState('');
+    
     const { data: meData } = useQuery(QUERY_ME);
+    const [addProfile] = useMutation(ADD_PROFILE);
 
     useEffect(() => {
         if (meData) {
-           const me = meData?.me || [];
-            const email = me.email;
+            const me = meData?.me || [];
+            const username = me.username || [];
             const profileId = me.profile;
-
-            setEmail(email)
+            const email = me.email;
+            console.log('profileId', profileId);
+            console.log('username from profile form', username);
+            setUsername(username);
+            setEmail(email);
             setProfileId(profileId);
         }
 
     }, [meData]);
-
-    const [addProfile, { error }] = useMutation(ADD_PROFILE);
 
     const handleChange = (e) => {
 
@@ -171,7 +174,7 @@ const ProfileForm = () => {
             }
         }
     };
-    const handleFormSubmit = async (e) => {
+    const handleFormSubmit = (e) => {
         e.preventDefault();
 
         const appointment = passedVisitData.finalDateISO
@@ -198,9 +201,10 @@ const ProfileForm = () => {
         }
 
         try {
-            const { data } = await addProfile({
+            const { data } = addProfile({
                 variables: { appointment: appointment, patientState: patientState, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
             });
+        //    updateProfile();
             setPatientFirstName("");
             setPatientLastName("")
             setPatientGender("");
@@ -210,7 +214,7 @@ const ProfileForm = () => {
             setPatientZip("");
             setValue("");
             setBirthDate("");
-            navigate('/AppointmentConfirmation', { state: navigateData });
+            navigate('/UserList', { state: navigateData });
 
             console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
 
@@ -222,7 +226,7 @@ const ProfileForm = () => {
         <>
             <Navbar />
             <div>
-                {(email && !profileId) ? (
+                {(!profileId.length) ? (
                     <div className='container-visitor'>
                         <h1>Please answer few questions about you</h1>
                         <div className='card-visitor'>

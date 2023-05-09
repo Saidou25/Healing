@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar';
-import { ADD_NOTE } from '../../utils/mutations';
+import { ADD_NOTE, DELETE_NOTE } from '../../utils/mutations';
 import { QUERY_ME, QUERY_NOTE } from '../../utils/queries';
 import { useQuery, useMutation } from "@apollo/client";
 import UpdateNote from '../UpdateNote';
@@ -18,6 +18,19 @@ const Note = () => {
             cache.writeQuery({
                 query: QUERY_ME,
                 data: { me: { ...me, note: { ...me.note, addNote } } },
+            });
+            } catch (e) {
+                console.error(e);
+            }
+        },
+    });
+    const [deleteNote] = useMutation(ADD_NOTE, {
+        update(cache, { data: { deleteNote } }) {
+            try {
+                const { me } = cache.readQuery({ query: QUERY_ME });
+            cache.writeQuery({
+                query: QUERY_ME,
+                data: { me: { ...me, note: { ...me.note, deleteNote } } },
             });
             } catch (e) {
                 console.error(e);

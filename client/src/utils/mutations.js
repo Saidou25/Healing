@@ -24,6 +24,39 @@ export const ADD_USER = gql`
   }
   }
 `;
+export const UPDATE_USER = gql`
+  mutation updateUser($username: String!, $email: String!, $profile: Profile!) {
+    updateUser(username: $username, email: $email, profile: $profile) {
+      token
+      user {
+        _id
+        username
+    }
+    profile {
+      _id
+         isBooked
+         finalDateISO  
+         patientState
+         appDay
+      appMonth
+      appTime
+      appYear
+      appDate
+        appointment
+        patientfirstname
+        patientgender
+      patientaddress
+       patientlastname
+      patientcity
+      patientnumber
+      patientreason
+      birthdate
+      patientzip
+      mepet
+    }
+  }
+  }
+`;
 
 export const ADD_PET = gql`
      mutation addPet(
@@ -52,9 +85,10 @@ export const ADD_PET = gql`
      `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($title: String!, $reviewText: String!) {
-    addReview(title: $title, reviewText: $reviewText) {
+  mutation addReview($username: String, $title: String!, $reviewText: String!) {
+    addReview(username: $username, title: $title, reviewText: $reviewText) {
         _id
+        username
         title
         reviewText
     }
@@ -81,6 +115,7 @@ export const DELETE_REVIEW = gql`
   mutation deleteReview($id: String!) {
     deleteReview(id: $id) {
         _id
+        username
         title
         reviewText
     }
@@ -198,6 +233,8 @@ export const ADD_BOOKINGDATE = gql`
               }             
      }
  `;
+
+
      export const UPDATE_PROFILE = gql`
      mutation updateProfile($id: String,
       $patientaddress: String,

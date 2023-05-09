@@ -7,20 +7,20 @@ const resolvers = {
     Query: {
         users: async () => {
             return User.find()
-                .populate('note').populate('profile').populate('bookingdates').populate('reviews').populate({
+            .populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
                     path: 'profile',
                     populate: 'pets'
                 });
         },
         user: async (_, args) => {
-            return User.findOne({ username: args.username }).populate('note').populate('profile').populate('bookingdates').populate('reviews').populate({
+            return User.findOne({ username: args.username }).populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
                 path: 'profile',
                 populate: 'pets'
             });
         },
         me: async (_, _args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('note').populate('profile').populate('bookingdates').populate('reviews').populate({
+                return User.findOne({ _id: context.user._id }).populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
                     path: 'profile',
                     populate: 'pets'
                 });
@@ -54,13 +54,13 @@ const resolvers = {
             return Bookingdate.find({});
         },
         bookingdate: async (_, args) => {
-            return await Bookingdate.findOne({ _id: args._id });
+            return await Bookingdate.findOne({ _id: args.id });
         },
         reviews: async () => {
-            return Review.find({});
+            return Review.find();
         },
         review: async (_, args) => {
-            return await Review.findOne({ _id: args._id });
+            return await Review.findOne({ _id: args.id });
         },
         userbookingdates: async (_, args) => {
             return Bookingdate.find({ username: args.username });
@@ -229,8 +229,25 @@ const resolvers = {
                 { new: true }
             );
         },
-        deleteReview: async (_, args) => {
-            return await Review.findOneAndDelete({ _id: args.id });
+        // deleteReview: async (_, args) => {
+        //     return await Review.findOneAndDelete({ _id: args.id });
+        // },
+        deleteReview: async (_, args, context) => {
+            if (context.user) {
+                const review = await Review.findOneAndDelete(
+                   { _id: args.id }
+                );
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { reviews: review._id } },
+                    { new: true }
+                );
+
+                return review;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+
         },
         deleteUser: async (_, args) => {
             return await User.findOneAndDelete({ _id: args.id });

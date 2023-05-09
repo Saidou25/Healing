@@ -1,0 +1,15 @@
+.card-body {
+    border-radius: 0;
+}
+.card {
+    border-radius: 0;
+}
+.review-form-input {
+    width: 100%;
+}
+.review-textarea {
+    width: 100%;
+}
+.btn-info {
+    width: 100%;
+}

@@ -8,22 +8,41 @@ import { DELETE_USER } from '../../utils/mutations';
 import style from './index.css';
 
 const MyProfile = () => {
+
+    const [profile, setProfile] = useState('');
+    const [email, setPatientEmail] = useState('');
+    const [username, setUserName] = useState('');
+    const [profileId, setProfileId] = useState('');
+    const [me, setMe] = useState('');
     const { data } = useQuery(QUERY_ME);
 
-    const me = data?.me || [];
-    // console.log('me', me);
-    const profile = me.profile;
-    const email = me.email;
-    const username = me.username;
-    const profileId = me._id;
-    // console.log('profileId', profileId);
-
+   
+    // const profile = me.profile;
+    console.log('profile from MyProfile', profile);
+    // const email = me.email;
+    // const username = me.username;
+    // const profileId = me._id;
+    console.log('profileId', profileId);
+    console.log('meme', me)
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
         console.log('logout success!')
-
+        
     };
+    
+    useEffect(() => {
+        if (data) {
+            const me = data?.me || [];
+            console.log('me', me);
+            const profile = me.profile;
+            console.log('profile from useEffect in MyProfile', profile);
+            const email = me.email;
+            setPatientEmail(email);
+            setProfile(profile);
+            setMe(me);
+        }
+    }, [data]);
 
     const [deleteUser] = useMutation(DELETE_USER, {
         variables: { id: profileId },

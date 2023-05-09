@@ -10,6 +10,23 @@ export const QUERY_USERS = gql`
         _id
       noteTitle
       }
+      bookingdates {
+      _id
+     isBooked
+     username
+     finalDateISO
+     appDay
+     appDate
+     appMonth
+     appTime
+     appYear
+        }
+        reviews {
+     _id
+     username
+    title
+    reviewText
+     }
       profile {
  _id
  patientfirstname
@@ -50,6 +67,23 @@ export const QUERY_USER = gql`
         _id
       noteTitle
       }
+      reviews {
+     _id
+     username
+    title
+    reviewText
+     }
+      bookingdates {
+      _id
+     isBooked
+     username
+     finalDateISO
+     appDay
+     appDate
+     appMonth
+     appTime
+     appYear
+        }
       profile {
  _id
  patientfirstname
@@ -90,6 +124,23 @@ export const QUERY_ME = gql`
       _id
       noteTitle
       }
+      reviews {
+     _id
+    title
+    username
+    reviewText
+     }
+      bookingdates {
+      _id
+     isBooked
+     username
+     finalDateISO
+     appDay
+     appDate
+     appMonth
+     appTime
+     appYear
+        }
       profile {
  _id
  patientState
@@ -144,6 +195,17 @@ export const QUERY_REVIEWS = gql`
  query reviews {
      reviews {
      _id
+     username
+    title
+    reviewText
+     }
+  }
+`;
+export const QUERY_REVIEW = gql`
+ query review($id: ID!) {
+     review(id: $id) {
+     _id
+     username
     title
     reviewText
      }
@@ -225,6 +287,32 @@ query profiles {
 export const QUERY_PROFILE = gql`
 query profile($id: ID!) {
     profile(id: $id) {
+ _id 
+ patientfirstname
+ patientgender
+ patientaddress
+ patientState
+ patientlastname
+ patientcity
+ patientnumber
+ patientreason
+ birthdate
+ patientzip
+ mepet
+ isBooked
+ finalDateISO
+ appDay
+ appDate
+ appMonth
+ appointment
+ appTime
+ appYear
+    }
+ }
+`;
+export const QUERY_READPROFILE = gql`
+query readProfile {
+  readProfile {
  _id 
  patientfirstname
  patientgender
