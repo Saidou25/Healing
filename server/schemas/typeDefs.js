@@ -88,7 +88,7 @@ const typeDefs = gql`
      profiles: [Profile]
      profile(id: String!): Profile
      bookingdates: [Bookingdate]
-     bookingdate(id: String!): Bookingdate
+     bookingdate(username: String!): Bookingdate
      reviews: [Review]
      review(id: String): Review
      userbookingdates(username: String): [Bookingdate]  
@@ -173,7 +173,7 @@ const typeDefs = gql`
     deleteUser(id: String!): User
     deleteProfile(id: String): Profile
     deleteReview(id: String!): Review
-    deleteBookingdate(id: String): Bookingdate
+    deleteBookingdate(username: String!): Bookingdate
      }
      `;
 

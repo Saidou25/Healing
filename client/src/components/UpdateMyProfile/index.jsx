@@ -114,7 +114,7 @@ const UpdateMyProfile = () => {
             }
         }
         if (name === 'patientnumber') {
-            console.log(value)
+            // console.log(value)
             setPatientNumber(value);
             if (phoneRegex.test(value)) {
 

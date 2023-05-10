@@ -16,27 +16,23 @@ const MyProfile = () => {
     const [me, setMe] = useState('');
     const { data } = useQuery(QUERY_ME);
 
-   
     // const profile = me.profile;
-    console.log('profile from MyProfile', profile);
+    // console.log('profile from MyProfile', profile);
     // const email = me.email;
     // const username = me.username;
     // const profileId = me._id;
-    console.log('profileId', profileId);
-    console.log('meme', me)
+    // console.log('profileId', profileId);
+    // console.log('meme', me)
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
-        console.log('logout success!')
-        
+        console.log('logout success!');
     };
-    
+
     useEffect(() => {
         if (data) {
             const me = data?.me || [];
-            console.log('me', me);
             const profile = me.profile;
-            console.log('profile from useEffect in MyProfile', profile);
             const email = me.email;
             setPatientEmail(email);
             setProfile(profile);
@@ -60,7 +56,7 @@ const MyProfile = () => {
         }
     }
     );
-    
+
     if (!profile) {
 
         return (
@@ -133,13 +129,13 @@ const MyProfile = () => {
                                 </h4>
                             </div>
                         </div>
-                        <button className='btt-profile-delete' onClick={(event) => {deleteUser(); logout(event)}}>
+                        <button className='btt-profile-delete' onClick={(event) => { deleteUser(); logout(event) }}>
                             delete
                         </button>
                         <Link to='/UpdateMyProfile' className='nav-item'>
-                        <button className='btt-profile-update'>
-                            update
-                        </button>
+                            <button className='btt-profile-update'>
+                                update
+                            </button>
                         </Link>
                     </div>
                 </div>

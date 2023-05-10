@@ -44,7 +44,7 @@ const MyReviewsList = (props) => {
     const handleSubmit = (review) => {
         const reviewId = review._id;
         const reviewIdStr = reviewId.toString();
-        console.log('id of review', reviewIdStr);
+        // console.log('id of review', reviewIdStr);
         
         try {
             const { data } = deleteReview({

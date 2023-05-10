@@ -39,7 +39,7 @@ const PetForm = () => {
             const email = me.email;
             const profileId = me.profile;
             const petExists = me.profile.pets
-console.log(me.profile.pets)
+// console.log(me.profile.pets)
             setEmail(email)
             setProfileId(profileId);
             setPetExist(petExists)

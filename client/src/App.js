@@ -18,7 +18,7 @@ import UserList from './components/UserList';
 import MyReviewsList from './components/MyReviewsList';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
-import DateList from './components/DateList';
+import MyAppointmentsList from './components/MyAppointmentsList';
 import AppointmentConfirmation from './components/AppointmentConfirmation';
 import AppointmentForm from './components/AppointmentForm';
 import Signup from './pages/Signup';
@@ -73,7 +73,7 @@ function App() {
           <Routes>
             <Route path='/UserList' element={<UserList />} />
             <Route path='/Login' element={<Login />} />
-            <Route path='/DateList' element={<DateList />} />
+            <Route path='/MyAppointmentsList' element={<MyAppointmentsList />} />
             <Route path='/MyReviewsList' element={<MyReviewsList />} />
             <Route path='/UpdateMyProfile' element={<UpdateMyProfile />} />
             <Route path='/Signup' element={<Signup />} />

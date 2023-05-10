@@ -51,10 +51,10 @@ const resolvers = {
         },
 
         bookingdates: async () => {
-            return Bookingdate.find({});
+            return Bookingdate.find();
         },
         bookingdate: async (_, args) => {
-            return await Bookingdate.findOne({ _id: args.id });
+            return await Bookingdate.findOne({ usename: args.usename });
         },
         reviews: async () => {
             return Review.find();

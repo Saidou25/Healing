@@ -229,7 +229,7 @@ export const QUERY_NOTE = gql`
 `;
 
 export const QUERY_BOOKINGDATE = gql`
-    query bookingdate($id: ID!) {
+    query bookingdate($username: String!) {
          bookingdate(id: $id) {
      _id
      username
@@ -244,7 +244,7 @@ export const QUERY_BOOKINGDATE = gql`
      }
  `;
 export const QUERY_USERBOOKINGDATES= gql`
-    query userbookingdates($username: String) {
+    query userbookingdates($username: String!) {
       userbookingdates(username: $username) {
      _id
      username

@@ -5,20 +5,16 @@ import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_PROFILE, UPDATE_PROFILE } from "../../utils/mutations";
-import { QUERY_ME, QUERY_USER } from '../../utils/queries';
+import { ADD_PROFILE } from "../../utils/mutations";
+import { QUERY_ME } from '../../utils/queries';
 
 import './index.css';
 
-
 const ProfileForm = () => {
-
     const navigate = useNavigate();
     const location = useLocation();
     const passedVisitData = location.state;
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [profileId, setProfileId] = useState('');
+
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
@@ -29,24 +25,17 @@ const ProfileForm = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
-    // const [profileId, setProfileId] = useState('');
-    
+    const [profile, setProfile] = useState('');
+
     const { data: meData } = useQuery(QUERY_ME);
     const [addProfile] = useMutation(ADD_PROFILE);
 
     useEffect(() => {
         if (meData) {
             const me = meData?.me || [];
-            const username = me.username || [];
-            const profileId = me.profile;
-            const email = me.email;
-            console.log('profileId', profileId);
-            console.log('username from profile form', username);
-            setUsername(username);
-            setEmail(email);
-            setProfileId(profileId);
+            const profile = me.profile;
+            setProfile(profile);
         }
-
     }, [meData]);
 
     const handleChange = (e) => {
@@ -69,7 +58,6 @@ const ProfileForm = () => {
         const y8 = document.querySelector(".invalidate8");
         const x9 = document.querySelector(".validate9");
         const y9 = document.querySelector(".invalidate9");
-
 
         const { name, value } = e.target;
 
@@ -163,7 +151,7 @@ const ProfileForm = () => {
 
         if (name === 'patientnumber') {
             setValue(e.target.value);
-            console(e.target.value)
+            // console(e.target.value)
             if (e.target.value.length === 3) {
 
                 x6.style.display = "block";
@@ -204,7 +192,7 @@ const ProfileForm = () => {
             const { data } = addProfile({
                 variables: { appointment: appointment, patientState: patientState, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
             });
-        //    updateProfile();
+            //    updateProfile();
             setPatientFirstName("");
             setPatientLastName("")
             setPatientGender("");
@@ -214,8 +202,8 @@ const ProfileForm = () => {
             setPatientZip("");
             setValue("");
             setBirthDate("");
-            navigate('/UserList', { state: navigateData });
-
+            // navigate('/UserList', { state: navigateData });
+            window.location.reload();
             console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
 
         } catch (err) {
@@ -226,7 +214,7 @@ const ProfileForm = () => {
         <>
             <Navbar />
             <div>
-                {(!profileId.length) ? (
+                {(!profile) ? (
                     <div className='container-visitor'>
                         <h1>Please answer few questions about you</h1>
                         <div className='card-visitor'>

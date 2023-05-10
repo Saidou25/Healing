@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
-
-import { QUERY_BOOKINGDATES } from '../../utils/queries';
+import { QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
 import DatePicker from "react-datepicker";
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -20,7 +19,9 @@ const AppointmentForm = (props) => {
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
 
-    // const [addBookingdate] = useMutation(ADD_BOOKINGDATE)
+    const { data: meData } = useQuery(QUERY_ME);
+    const me = meData?.me || [];
+    const profile = me.profile;
 
     const { data } = useQuery(QUERY_BOOKINGDATES);
 
@@ -65,11 +66,9 @@ const AppointmentForm = (props) => {
             if (value === 'mypet') {
                 x.style.display = "block";
                 y.style.display = "none";
-
             } else if (value === 'me') {
                 x.style.display = "block";
                 y.style.display = "none";
-
             } else {
                 x.style.display = "none";
                 y.style.display = "block";
@@ -77,15 +76,12 @@ const AppointmentForm = (props) => {
         }
         if (name === 'reason') {
             setReason(value);
-
             if (value.lenght > 10) {
                 x1.style.display = "block";
                 y1.style.display = "none";
-
             } else {
                 x1.style.display = "block";
                 y1.style.display = "none";
-
             }
         }
     };
@@ -111,6 +107,7 @@ const AppointmentForm = (props) => {
 
         const navigateVisitData = {
             // email: email,
+            profile: profile,
             reason: reason,
             mepet: mepet,
             isBooked: isBooked,
@@ -132,23 +129,17 @@ const AppointmentForm = (props) => {
             setMePet('');
             setStartDate('');
             setReason('');
+        } else {
+            console.log('you need to fill up the form correctly');
         }
-        if (mepet === 'me' && !allAppointments.length && reason) {
-            navigate('/ProfileForm', { state: navigateVisitData })
-            
-        }
-        if (mepet === 'pet' && !allAppointments.length && reason) {
+        mepet === 'me' ?
+            navigate('/ProfileForm', { state: navigateVisitData }) :
             navigate('/PetProfileForm', { state: navigateVisitData });
-            
-        } 
-        console.log('you need to fill up the form correctly');
-        document.getElementById("appointment-form").reset();
-        
-    }
+        // document.getElementById("appointment-form").reset();
+    };
 
     return (
         <>
-
             <div className='container-visit'>
                 <div className='row app-window'>
                     <h1 className='visit-title'>
@@ -234,11 +225,10 @@ const AppointmentForm = (props) => {
                                         Submit
                                     </button>
                                 </div>
-
                             </div>
-                        </form >
-                    </div >
-                </div >
+                        </form>
+                    </div>
+                </div>
             </div>
         </>
     )

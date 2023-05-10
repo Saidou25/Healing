@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_USERBOOKINGDATES } from '../../utils/queries';
+import { QUERY_ME, QUERY_BOOKINGDATES } from '../../utils/queries';
 import AppointmentForm from '../../components/AppointmentForm';
 import MyAppointmentsList from '../../components/MyAppointmentsList';
 import MyReviewsList from '../../components/MyReviewsList';
@@ -10,37 +10,32 @@ import './index.css';
 
 
 const Dashboard = () => {
-  
-    const [isShown, setIsShown] = useState(false);
-    const { data } = useQuery(QUERY_ME);
 
+    const [isShown, setIsShown] = useState(false);
+    const [isShown1, setIsShown1] = useState(false);
+
+    const { data } = useQuery(QUERY_ME);
     const me = data?.me || [];
     const username = me.username;
 
-    const { data: userbookingdatesData } = useQuery(QUERY_USERBOOKINGDATES, {
-        variables: { username: username },
-    });
-    const myAppointments = userbookingdatesData?.userbookingdates || [];
+    const { data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
+    const bookingdates = appointmentsData?.bookingdates || [];
+    const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === username);
 
     const handleSubmit = (e) => {
-      
-        setIsShown(current => !current);
+        e === 'appointment' ? setIsShown1(current => !current) : setIsShown(current => !current);
     };
-
 
     return (
         <>
             <Navbar />
             <div className='row mt-5'>
-                <div className='col-6'>
-                    <MyAppointmentsList username={username} me={me} myAppointments={myAppointments} />
-                </div>
                 <div className='col-6 col-lg-5'>
                     <h3>Add your own review</h3><br />
-                    <button 
-                    type='button'
-                    className='btn review-button btn-primary mb-5' 
-                    onClick={handleSubmit}>
+                    <button
+                        type='button'
+                        className='btn review-button btn-primary mb-5'
+                        onClick={() => handleSubmit('review')}>
                         add a review
                     </button>
                     {isShown ? (
@@ -50,11 +45,22 @@ const Dashboard = () => {
                     {isShown ? <ReviewForm username={username} /> : null}
                     <MyReviewsList username={username} /> <br />
                 </div>
-                <div className='col-12'>
-                    <AppointmentForm username={username} />
+                <div className='col-6 col-lg-5'>
+                    <h3>Book an appointment</h3><br />
+                    <button
+                        type='button'
+                        className='btn review-button btn-primary mb-5'
+                        onClick={() => handleSubmit('appointment')}>
+                        start
+                    </button>
+                    {isShown1 ? (
+                        <>
+                        </>
+                    ) : null}
+                    {isShown1 ? <AppointmentForm username={username} /> : null}
+                    <MyAppointmentsList myAppointments={myAppointments} /> <br />
                 </div>
             </div>
-
         </>
     )
 };

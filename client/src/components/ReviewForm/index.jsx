@@ -10,7 +10,7 @@ import './index.css';
 
 const ReviewForm = (props) => {
    const username = props.username;
-   console.log('username', username);
+//    console.log('username', username);
     //    const navigate = useNavigate();
     const [formState, setFormState] = useState({ title: '', reviewText: '' });
     // const [disapear, setDisapear] = useState('');
