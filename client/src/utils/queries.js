@@ -191,11 +191,25 @@ export const QUERY_REVIEW = gql`
      }
   }
 `;
+
 export const QUERY_NOTES = gql`
  query notes {
      notes {
      _id
     noteTitle
+     }
+  }
+`;
+export const QUERY_PETS = gql`
+ query pets {
+     pets {
+     _id
+    petName
+    petGender
+    petAge
+    petBreed
+    petWeight
+    ProfileId
      }
   }
 `;

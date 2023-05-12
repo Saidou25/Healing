@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar';
-import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import { QUERY_ME, QUERY_PETS } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
 import { useMutation, useQuery } from '@apollo/client';
 import './index.css';
@@ -35,8 +35,31 @@ const PetForm = () => {
     const { loading, data: meData } = useQuery(QUERY_ME);
     // const { data: profileData } = useQuery(QUERY_PROFILES);
 
-    const [addPet] = useMutation(ADD_PET);
+    // const [addPet] = useMutation(ADD_PET);
 
+    const [addPet, { error }] = useMutation(ADD_PET, {
+      variables: { petName, profileId, petGender, petWeight: parseInt(petWeight), petAge, petBreed },
+       
+        update(cache, { data: { addPet } }) {
+            try {
+                const { pets } = cache.readQuery({ query: QUERY_PETS });
+
+                cache.writeQuery({
+                    query: QUERY_PETS,
+                    data: { pets: [addPet, ...pets] },
+                });
+            } catch (e) {
+                console.error(e);
+            }
+            console.log(`Appointment for ${petName} booked successfully`);
+            setPetName('');
+            setPetGender('');
+            setPetAge('');
+            setPetWeight('');
+            setPetBreed('');
+            navigate('/Dashboard');
+        }
+     } );
     useEffect(() => {
         if (meData) {
             const me = meData?.me || [];
@@ -148,21 +171,21 @@ const PetForm = () => {
         console.log('petBreed', petBreed);
         console.log('profile from addPet', profile);
         console.log('profileId', profileId);
-        try {
-            await addPet({
-                variables: { petName: petName, profileId: profileId, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
-            });
-            console.log(`Appointment for ${petName} booked successfully`);
-            setPetName('');
-            setPetGender('');
-            setPetAge('');
-            setPetWeight('');
-            setPetBreed('');
+        // try {
+        //     await addPet({
+        //         variables: { petName: petName, profileId: profileId, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
+        //     });
+            // console.log(`Appointment for ${petName} booked successfully`);
+            // setPetName('');
+            // setPetGender('');
+            // setPetAge('');
+            // setPetWeight('');
+            // setPetBreed('');
+            // navigate('/Dashboard');
 
-        } catch (err) {
-            console.error(err);
-        };
-        navigate('/Dashboard');
+        // } catch (err) {
+        //     console.error(err);
+        // };
     };
 
     if (loading) {
@@ -312,7 +335,7 @@ const PetForm = () => {
                                     <button className="btn btn-primary"
                                         type="submit"
                                         value="Send"
-                                        onClick={handleSubmit}>
+                                        onClick={(e) => addPet(e)}>
                                         Submit
                                     </button>
                                 </div>
