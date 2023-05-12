@@ -15,7 +15,7 @@ const PetOwnerProfileForm = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const passedVisitData = location.state;
-    console.log('passedVisitData', passedVisitData);
+    // console.log('passedVisitData', passedVisitData);
 
     const [profile, setProfile] = useState('');
     const [patientState, setNewValue] = useState('');
@@ -25,10 +25,10 @@ const PetOwnerProfileForm = () => {
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
-    console.log('profile from pet owner form', profile);
+    // console.log('profile from pet owner form', profile);
 
     const [addProfile] = useMutation(ADD_PROFILE);
-    const { data: meData } = useQuery(QUERY_ME);
+    const { loading, data: meData } = useQuery(QUERY_ME);
     // const [addProfile] = useMutation(ADD_PROFILE, {
     //     variables: { patientState: patientState, patientnumber: patientnumber, patientfirstname: patientfirstname, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientzip: patientzip },
     //     update(cache, { data: { addProfile }}) {
@@ -183,12 +183,20 @@ const PetOwnerProfileForm = () => {
 
             navigate('/PetProfileForm', { state: navigateData });
             console.log(`success adding ${patientfirstname} appointment`);
-            // window.location.reload();
+            window.location.reload();
 
         } catch (err) {
             console.error(err);
         }
     };
+
+    if (loading) {
+        return (
+          <main>
+            <h2>Loading . . . . . . </h2>
+          </main>
+        )
+      }
     return (
         <>
         <Navbar />

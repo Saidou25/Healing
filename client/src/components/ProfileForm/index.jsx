@@ -27,7 +27,7 @@ const ProfileForm = () => {
     const [patientreason, setPatientReason] = useState('');
     const [profile, setProfile] = useState('');
 
-    const { data: meData } = useQuery(QUERY_ME);
+    const { loading, data: meData } = useQuery(QUERY_ME);
     const [addProfile] = useMutation(ADD_PROFILE);
 
     useEffect(() => {
@@ -210,6 +210,14 @@ const ProfileForm = () => {
             console.error(err);
         }
     };
+
+    if (loading) {
+        return (
+          <main>
+            <h2>Loading . . . . . . </h2>
+          </main>
+        )
+      }
     return (
         <>
             <Navbar />

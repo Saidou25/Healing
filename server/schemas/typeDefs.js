@@ -156,7 +156,7 @@ const typeDefs = gql`
      petGender: String
      petKind: String
      petAge: String
-     ): Profile
+     ): Pet
 
     updateProfile(
     id: String,

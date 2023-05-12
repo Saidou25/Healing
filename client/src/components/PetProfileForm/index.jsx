@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar';
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
@@ -6,9 +7,9 @@ import { useMutation, useQuery } from '@apollo/client';
 import './index.css';
 
 const PetForm = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [profileId, setProfileId] = useState('');
-    // const [email, setEmail] = useState('');
+    const [profile, setProfile] = useState('');
     const [petName, setPetName] = useState('');
     const [petWeight, setPetWeight] = useState('');
     const [petBreed, setPetBreed] = useState('');
@@ -17,6 +18,7 @@ const PetForm = () => {
     const [petKind, setPetKind] = useState('');
     const [petExist, setPetExist] = useState('');
 
+    console.log('profile from petProfileForm', profile);
     const x = document.querySelector(".validate");
     const y = document.querySelector(".invalidate");
     const x1 = document.querySelector(".validate1");
@@ -30,35 +32,43 @@ const PetForm = () => {
     const x5 = document.querySelector(".validate5");
     const y5 = document.querySelector(".invalidate5");
 
-    const { data: meData } = useQuery(QUERY_ME);
-    const { data: profileData } = useQuery(QUERY_PROFILES);
-    
+    const { loading, data: meData } = useQuery(QUERY_ME);
+    // const { data: profileData } = useQuery(QUERY_PROFILES);
+
     const [addPet] = useMutation(ADD_PET);
 
     useEffect(() => {
-        if (profileData) {
-            const profile = profileData?.profile || [];
-            console.log('profile', profile);
+        if (meData) {
+            const me = meData?.me || [];
+            console.log('me', me);
+            const profile = me.profile;
+            console.log('profile from useEffect', profile);
+            const id = profile._id;
+            console.log('id', id);
+            setProfileId(id);
             // const email = me.email;
-            const existingProfile = profile._id;
-            if (!profile.length) {
-                console.log('no profile')
-                setPetExist();
-                setProfileId(existingProfile);
-            } else {
-                console.log('there is aprofile');
-                console.log('profile', profile);
-                const petExists = profile.pets;
-                console.log(petExists)
-                setPetExist(petExists);
-                setProfileId(existingProfile);
+            // const existingProfile = profile._id;
+            // if (!profile.length) {
+            //     console.log('no profile')
 
-            }
+            //     setPetExist();
+            //     setProfileId(existingProfile);
+            //     setProfile(profile);
+            // } else {
+            //     console.log('there is aprofile');
+            //     console.log('profile', profile);
+            //     const petExists = profile.pets;
+            //     console.log(petExists)
+            //     setPetExist(petExists);
+            //     setProfile(profile);
+            //     setProfileId(existingProfile);
+
+            // }
 
             // setEmail(email)
         }
 
-    }, [profileData]);
+    }, [meData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -109,7 +119,7 @@ const PetForm = () => {
         }
         if (name === 'petBreed') {
             setPetBreed(value);
-            console.log(value);
+
             if (value) {
                 x4.style.display = "block";
                 y4.style.display = "none";
@@ -133,17 +143,35 @@ const PetForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log('e', e.target.value);
+        console.log('petName', petName);
+        console.log('petBreed', petBreed);
+        console.log('profile from addPet', profile);
+        console.log('profileId', profileId);
         try {
             await addPet({
-                variables: { profileId: profileId, petKind: petKind, petName: petName, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
+                variables: { petName: petName, profileId: profileId, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
             });
-            console.log(`Appointment for ${petName} booking successfully`);
+            console.log(`Appointment for ${petName} booked successfully`);
+            setPetName('');
+            setPetGender('');
+            setPetAge('');
+            setPetWeight('');
+            setPetBreed('');
 
         } catch (err) {
             console.error(err);
         };
+        navigate('/Dashboard');
     };
+
+    if (loading) {
+        return (
+          <main>
+            <h2>Loading . . . . . . </h2>
+          </main>
+        )
+      }
     return (
         <>
             <Navbar />
@@ -284,7 +312,7 @@ const PetForm = () => {
                                     <button className="btn btn-primary"
                                         type="submit"
                                         value="Send"
-                                        onClick={addPet}>
+                                        onClick={handleSubmit}>
                                         Submit
                                     </button>
                                 </div>

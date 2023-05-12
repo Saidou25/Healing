@@ -22,7 +22,7 @@ const ProfileModal = () => {
         // const y1 = document.querySelector(".invalidate1");
         // const x2 = document.querySelector(".validate2");
         // const y2 = document.querySelector(".invalidate2");
-        const emailRegex = /^\S+@\S+\.\S+$/;
+        // const emailRegex = /^\S+@\S+\.\S+$/;
 
         const { name, value } = event.target;
 
@@ -78,7 +78,7 @@ const ProfileModal = () => {
             }, (error) => {
                 console.log(error.text);
             })
-        console.log('heloo');
+       
         setMessage('');
         setEmail('');
         setUser('');
@@ -95,7 +95,7 @@ const ProfileModal = () => {
                 Contact
             </button>
 
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div className="modal-content">
@@ -105,7 +105,7 @@ const ProfileModal = () => {
                             </div>
                             <div className="modal-body">
 
-                                <form ref={form} >
+                                <form ref={form} onClick={sendEmail}>
                                     <label className="form-label">Name</label>
                                     <input
                                         className="form-control"
@@ -154,15 +154,15 @@ const ProfileModal = () => {
                                                     <i className="fa-solid fa-check"></i>
                                                 </div> */}
 
-                                </form>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button onClick={sendEmail}
+                                    <button
                                         type="button"
                                         className="btn btn-primary">
                                         Save changes
                                     </button>
                                 </div>
+                                </form>
                             </div>
 
                         </div>

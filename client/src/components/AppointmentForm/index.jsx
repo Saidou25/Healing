@@ -23,7 +23,7 @@ const AppointmentForm = (props) => {
     const me = meData?.me || [];
     const profile = me.profile;
 
-    const { data } = useQuery(QUERY_BOOKINGDATES);
+    const { data, loading } = useQuery(QUERY_BOOKINGDATES);
 
     const bookingdates = data?.bookingdates || [];
 
@@ -138,6 +138,13 @@ const AppointmentForm = (props) => {
         // document.getElementById("appointment-form").reset();
     };
 
+    if (loading) {
+        return (
+          <main>
+            <h2>Loading . . . . . . </h2>
+          </main>
+        )
+      }
     return (
         <>
             <div className='container-visit'>
