@@ -37,7 +37,7 @@ const PetForm = () => {
 
     // const [addPet] = useMutation(ADD_PET);
 
-    const [addPet, { error }] = useMutation(ADD_PET, {
+    const [addPet, { data, error }] = useMutation(ADD_PET, {
       variables: { petName, profileId, petGender, petWeight: parseInt(petWeight), petAge, petBreed },
        
         update(cache, { data: { addPet } }) {
@@ -199,7 +199,7 @@ const PetForm = () => {
         <>
             <Navbar />
             <div>
-                {(!petExist) ? (
+                {!data ? (
                     <div className='container'>
                         <h1>Please answer few questions about your pet</h1>
                         <form>
