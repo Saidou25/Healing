@@ -48,11 +48,9 @@ export const QUERY_USERS = gql`
  appTime
  appYear
  pets {
- petName
- petAge
- petGender
- petBreed
- petWeight}
+ _id
+ 
+ }
     }
   }
   }
@@ -98,18 +96,15 @@ export const QUERY_USER = gql`
  patientzip
  mepet
  isBooked
- finalDateISO
  appointment
  appDay
  appMonth
  appTime
  appYear
  pets {
- petName
- petAge
- petGender
- petBreed
- petWeight}
+ _id
+
+ }
     }
     }
   }
@@ -155,20 +150,16 @@ export const QUERY_ME = gql`
  patientzip
  mepet
  isBooked
- finalDateISO
  appointment
  appDay
  appMonth
  appTime
  appYear
  pets {
- petName
- petAge
- petGender
- petBreed
- petWeight}
-    }
-     
+ _id
+
+ }
+    }   
      }
    }
      `;
@@ -274,13 +265,16 @@ query profiles {
  patientzip
  mepet
  isBooked
- finalDateISO
  appointment
  appDay
  appMonth
  appDate
  appTime
  appYear
+ pets {
+ _id
+ 
+ }
     }
  }
 `;
@@ -300,13 +294,16 @@ query profile($id: ID!) {
  patientzip
  mepet
  isBooked
- finalDateISO
  appDay
  appDate
  appMonth
  appointment
  appTime
  appYear
+ pets {
+ _id
+ 
+ }
     }
  }
 `;

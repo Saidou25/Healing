@@ -8,14 +8,14 @@ const AppointmentList = ({ myAppointments }) => {
     }
     return (
         <div>
-            <h3 className="text">Upcoming myAppointments</h3>
-            <div className="flex-row justify-center my-4">
+            <h3 className="appointment-list-title mt-4 mb-5">Upcoming myAppointments</h3>
+            <div className="row">
                 {myAppointments &&
                     myAppointments.map((Bookingdate) => (
-                        <div key={Bookingdate._id} className="col-12 col-lg-10 p-4">
-                            <div className="card mb-3">
-
-                                <h4 className="card-header bg-primary text-white p-2">
+                        <div key={Bookingdate._id} className="col-12">
+                            <div className="text-white bg-primary mb-3">
+                                <div className="card-header">Header</div>
+                                <div className='card-body'>
                                     <span className="text" style={{ fontSize: '1rem' }}>
                                         Username: {Bookingdate.username}</span> <br />
                                     <span className="text" style={{ fontSize: '1rem' }}>
@@ -28,11 +28,10 @@ const AppointmentList = ({ myAppointments }) => {
                                         Year: {Bookingdate.appYear}</span>
                                     <span className="text" style={{ fontSize: '1rem' }}>
                                         Time: {Bookingdate.appTime}</span> <br />
-                                    <button type='button' className='btn delete-appointment btn-danger mt-4'>
+                                    <button type='button' className='btn delete-appointment mt-4 btn-danger'>
                                         delete
                                     </button>
-                                </h4>
-
+                                </div>
                             </div>
                         </div>
                     ))}

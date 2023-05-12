@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 import Navbar from "../Navbar";
-// import './index.css';
+import './index.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -44,10 +44,12 @@ const Login = () => {
     return (
         <>
             <Navbar />
-            <main className="flex-row justify-center mb-4">
-                <div className="col-12 col-lg-10">
-                    <div className="card">
-                        <h4 className="card-header bg-dark text-light p-2">Login</h4>
+            <main className='container-login'>
+               
+                    <div className="card login">
+                        <h4 className="card-header bg-primary rounded-0 text-light p-4"
+                        style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                            Login</h4>
                         <div className="card-body">
                             {/* {data ?  */}
                             {/* <p>
@@ -63,7 +65,7 @@ const Login = () => {
                                     type="email"
                                     value={formState.email}
                                     onChange={handleChange}
-                                />
+                                /> <br />
                                 <input
                                     className="form-input"
                                     placeholder="******"
@@ -71,12 +73,11 @@ const Login = () => {
                                     type="password"
                                     value={formState.password}
                                     onChange={handleChange}
-                                />
+                                /> <br />
                                 <button
                                     className="btn btn-block btn-info"
                                     style={{ cursor: 'pointer' }}
-                                    type="submit"
-                                >
+                                    type="submit">
                                     Submit
                                 </button>
                             </form>
@@ -89,7 +90,6 @@ const Login = () => {
                             )}
                         </div>
                     </div>
-                </div>
             </main>
         </>
     );

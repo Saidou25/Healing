@@ -35,7 +35,6 @@ export const UPDATE_USER = gql`
     profile {
       _id
          isBooked
-         finalDateISO  
          patientState
          appDay
       appMonth
@@ -183,7 +182,6 @@ export const ADD_BOOKINGDATE = gql`
       $patientzip: Int,
       $mepet: String,
       $isBooked: String,
-      $finalDateISO: String,
       $appDay: String,
       $appMonth: String,
       $appDate: Int,
@@ -203,7 +201,6 @@ export const ADD_BOOKINGDATE = gql`
       patientzip: $patientzip,
       mepet: $mepet,
       isBooked: $isBooked,
-         finalDateISO: $finalDateISO,
          appDay: $appDay,
       appMonth: $appMonth,
       appDate: $appDate,
@@ -211,8 +208,7 @@ export const ADD_BOOKINGDATE = gql`
       appYear: $appYear,
       appointment: $appointment) { 
         _id
-         isBooked
-         finalDateISO  
+         isBooked 
          patientState
          appDay
       appMonth
@@ -230,6 +226,15 @@ export const ADD_BOOKINGDATE = gql`
       birthdate
       patientzip
       mepet
+      pets {
+      _id
+      petName
+      petGender
+      petAge
+      petWeight
+      petBreed
+      profileId
+      }
               }             
      }
  `;

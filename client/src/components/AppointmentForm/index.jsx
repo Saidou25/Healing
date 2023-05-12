@@ -134,7 +134,7 @@ const AppointmentForm = (props) => {
         }
         mepet === 'me' ?
             navigate('/ProfileForm', { state: navigateVisitData }) :
-            navigate('/PetProfileForm', { state: navigateVisitData });
+            navigate('/PetOwnerProfileForm', { state: navigateVisitData });
         // document.getElementById("appointment-form").reset();
     };
 
@@ -142,10 +142,9 @@ const AppointmentForm = (props) => {
         <>
             <div className='container-visit'>
                 <div className='row app-window'>
-                    <h1 className='visit-title'>
-                        Would you like to book an appointment with us?
-                    </h1>
+        
                     <div className='card-visit'>
+                        
                         <form id='appointment-form'>
                             <div className='row-visit align-items-center p-5'>
                                 <div className='col-6 appointment-for'>

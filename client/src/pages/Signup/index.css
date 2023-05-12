@@ -3,24 +3,24 @@
     margin-right: auto;
     margin-left: auto;
 } */
-.card-signup {
+.signup {
     width: 40%;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 1%;
-    border-radius: 10px;
+    /* padding-top: 1%; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.form-input {
-    /* margin: 15px; */
-    width: 70%;
+.form-input { 
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
-   
+    padding: 5px;
+    font-style: oblique;
 }
 .text-label {
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
     margin: 15px;
-    text-align: center;
-    
+    /* text-align: center; */
 }

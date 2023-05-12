@@ -6,29 +6,39 @@ import Navbar from '../Navbar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
-import { QUERY_ME } from '../../utils/queries';
+import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 
-import './index.css';
+// import './index.css';
 
-const ProfileForm = () => {
+const PetOwnerProfileForm = () => {
+    
     const navigate = useNavigate();
     const location = useLocation();
     const passedVisitData = location.state;
+    console.log('passedVisitData', passedVisitData);
 
+    const [profile, setProfile] = useState('');
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
-    const [patientgender, setPatientGender] = useState('');
-    const [birthdate, setBirthDate] = useState('');
     const [patientfirstname, setPatientFirstName] = useState('');
     const [patientlastname, setPatientLastName] = useState('');
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
-    const [patientreason, setPatientReason] = useState('');
-    const [profile, setProfile] = useState('');
+    console.log('profile from pet owner form', profile);
 
-    const { data: meData } = useQuery(QUERY_ME);
     const [addProfile] = useMutation(ADD_PROFILE);
+    const { data: meData } = useQuery(QUERY_ME);
+    // const [addProfile] = useMutation(ADD_PROFILE, {
+    //     variables: { patientState: patientState, patientnumber: patientnumber, patientfirstname: patientfirstname, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientzip: patientzip },
+    //     update(cache, { data: { addProfile }}) {
+    //         const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
+    //         cache.writeQuery({
+    //             query: QUERY_PROFILES,
+    //             data: { profiles: profiles.concat([addProfile])},
+    //         });
+    //     }
+    // });
 
     useEffect(() => {
         if (meData) {
@@ -37,6 +47,7 @@ const ProfileForm = () => {
             setProfile(profile);
         }
     }, [meData]);
+
 
     const handleChange = (e) => {
 
@@ -54,39 +65,9 @@ const ProfileForm = () => {
         const y6 = document.querySelector(".invalidate6");
         const x7 = document.querySelector(".validate7");
         const y7 = document.querySelector(".invalidate7");
-        const x8 = document.querySelector(".validate8");
-        const y8 = document.querySelector(".invalidate8");
-        const x9 = document.querySelector(".validate9");
-        const y9 = document.querySelector(".invalidate9");
 
         const { name, value } = e.target;
 
-        if (name === 'patientgender') {
-            setPatientGender(e.target.value);
-
-            if (e.target.value) {
-                x9.style.display = "block";
-                y9.style.display = "none";
-            } else {
-                x9.style.display = "none";
-                y9.style.display = "block";
-            }
-        }
-
-        if (name === 'birthdate') {
-            setBirthDate(value);
-
-            // const validateAge = 2023 - value.split('').slice(6, 10).join('');
-
-            if (value.length === 10) {
-                x8.style.display = "block";
-                y8.style.display = "none";
-            } else {
-
-                x8.style.display = "none";
-                y8.style.display = "block";
-            }
-        }
         if (name === 'patientfirstname') {
             setPatientFirstName(value);
             if (value.length > 2) {
@@ -138,16 +119,16 @@ const ProfileForm = () => {
                 y4.style.display = "block";
             }
         }
-        if (name === 'patientreason') {
-            setPatientReason(value);
-            if (value.length > 10) {
-                x7.style.display = "block";
-                y7.style.display = "none";
-            } else {
-                x7.style.display = "none";
-                y7.style.display = "block";
-            }
-        }
+        // if (name === 'patientreason') {
+        //     setPatientReason(value);
+        //     if (value.length > 10) {
+        //         x7.style.display = "block";
+        //         y7.style.display = "none";
+        //     } else {
+        //         x7.style.display = "none";
+        //         y7.style.display = "block";
+        //     }
+        // }
 
         if (name === 'patientnumber') {
             setValue(e.target.value);
@@ -165,12 +146,12 @@ const ProfileForm = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        const appointment = passedVisitData.finalDateISO
+        // const appointment = passedVisitData.finalDateISO
 
         const navigateData = {
 
             isBooked: passedVisitData.isBooked,
-            finalDateISO: passedVisitData.finalDateISO,
+            // finalDateISO: passedVisitData.finalDateISO,
             appDay: passedVisitData.appDay,
             appMonth: passedVisitData.appMonth,
             appDate: parseInt(passedVisitData.appDate),
@@ -179,32 +160,30 @@ const ProfileForm = () => {
             appointment: passedVisitData.appointment,
             patientnumber: patientnumber,
             patientfirstname: patientfirstname,
-            patientgender: patientgender,
             patientaddress: patientaddress,
             patientlastname: patientlastname,
             patientcity: patientcity,
-            patientreason: patientreason,
-            birthdate: birthdate,
+            patientState: patientState,
+            patientreason: passedVisitData.patientreason,
             patientzip: parseInt(patientzip)
         }
 
         try {
             const { data } = addProfile({
-                variables: { appointment: appointment, patientState: patientState, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
+                variables: { patientState: patientState, patientnumber: patientnumber, patientfirstname: patientfirstname, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity }
             });
             //    updateProfile();
             setPatientFirstName("");
-            setPatientLastName("")
-            setPatientGender("");
-            setPatientReason("");
+            setPatientLastName("");
+            // setPatientReason("");
             setPatientCity("")
             setPatientAddress("");
             setPatientZip("");
             setValue("");
-            setBirthDate("");
-            // navigate('/UserList', { state: navigateData });
-            window.location.reload();
-            console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
+
+            navigate('/PetProfileForm', { state: navigateData });
+            console.log(`success adding ${patientfirstname} appointment`);
+            // window.location.reload();
 
         } catch (err) {
             console.error(err);
@@ -212,59 +191,14 @@ const ProfileForm = () => {
     };
     return (
         <>
-            <Navbar />
+        <Navbar />
             <div>
                 {!profile ? (
                     <div className='container-visitor'>
                         <h1>Please answer few questions about you</h1>
                         <div className='card-visitor'>
-                            <form onSubmit={(e) => handleFormSubmit(e)}>
+                            <form onSubmit={handleFormSubmit}>
                                 <div className='row m-5'>
-                                    <div className='col-6'>
-                                        <div>
-                                            <label className="form-label gender-question">What is your gender?</label><br />
-                                            <input
-                                                type="radio"
-                                                name="patientgender"
-                                                value='male'
-                                                checked={patientgender === 'male'}
-                                                onChange={handleChange} /> male
-                                            <input
-                                                type="radio"
-                                                name='patientgender'
-                                                value='female'
-                                                checked={patientgender === 'female'}
-                                                onChange={handleChange} /> female
-                                        </div>
-                                        <div className='validate9'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate9'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                    </div>
-
-                                    <div className='col-6'>
-                                        <label className="form-label">Age</label><br />
-                                        <input
-                                            type='text'
-                                            name="birthdate"
-                                            value={birthdate}
-                                            onChange={handleChange}
-                                            placeholder="MM/DD/YYYY..."
-                                        />
-                                        <div className='validate8'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate8'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                    </div>
-
                                     <div className="col-6">
                                         <label className="form-label1"> First name</label>
                                         <input
@@ -394,8 +328,10 @@ const ProfileForm = () => {
                     <div>Reasons</div>
                 )}
             </div>
+
         </>
 
-    );
+    )
 };
-export default ProfileForm;
+
+export default PetOwnerProfileForm;

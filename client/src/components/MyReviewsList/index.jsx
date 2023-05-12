@@ -9,7 +9,7 @@ const MyReviewsList = (props) => {
     // const reviews = props.reviews;
     // console.log('reviews', reviews);
     // const me = props.me;
-    
+
     const [reviewId, setReviewId] = useState('');
     const [reviews, setReviews] = useState('');
     const [review, setReview] = useState('');
@@ -25,8 +25,8 @@ const MyReviewsList = (props) => {
                 const { reviews } = cache.readQuery({ query: QUERY_REVIEWS });
 
                 cache.writeQuery({
-                    query: QUERY_REVIEWS, 
-                     data: {reviews: reviews.filter(review => review._id !== deleteReview._id)},
+                    query: QUERY_REVIEWS,
+                    data: { reviews: reviews.filter(review => review._id !== deleteReview._id) },
                 });
             } catch (error) {
                 console.error(error);
@@ -45,7 +45,7 @@ const MyReviewsList = (props) => {
         const reviewId = review._id;
         const reviewIdStr = reviewId.toString();
         // console.log('id of review', reviewIdStr);
-        
+
         try {
             const { data } = deleteReview({
                 variables: { id: reviewId }
@@ -64,25 +64,26 @@ const MyReviewsList = (props) => {
     }
     return (
         <div>
-            <h3 className="text">My Reviews</h3>
-            <div className="flex-row justify-center">
+            <h3 className="review-list-title mt-4 mb-5">My Reviews</h3>
+            <div className="row justify-context-space-between">
                 {reviews &&
                     reviews.map((review, i) => (
-                        <div key={i} className="col-12 col-lg-10">
-                            <div className="card mb-3">
-                                <h4 className="card-header bg-primary text-white p-2">
-                                    <span className="text" style={{ fontSize: '1rem' }}>
-                                        Title: {review.title}</span> <br />
-                                    <span className="text" style={{ fontSize: '1rem' }}>
-                                        Text: {review.reviewText}</span> <br />
+                        <div key={i} className="col-12">
+                            <div className="card text-white bg-primary mb-3">
+                                <div className="card-header">Header</div>
+                                <div className='card-body'>
+                                    <p className="card-text" style={{ fontSize: '1rem' }}>
+                                        Title: {review.title}</p> <br />
+                                    <p className="card-text" style={{ fontSize: '1rem' }}>
+                                        Text: {review.reviewText}</p> <br />
                                     <span className="text" style={{ fontSize: '1rem' }}>
                                         Created: fake date</span> <br />
                                     <span className="text" style={{ fontSize: '1rem' }}>
                                         Author: {review.username}</span> < br />
-                                    <button type='button' className='btn delete-review mt-4 btn-danger' onClick={() => handleSubmit(review)}>
+                                    <button type='button' className='btn delete-review mt-4 btn-danger rounded-0' onClick={() => handleSubmit(review)}>
                                         delete
                                     </button>
-                                </h4>
+                                </div>
                             </div>
                         </div>
                     ))}

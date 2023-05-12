@@ -43,8 +43,10 @@ const Signup = () => {
     <>
       <Navbar />
       <div className='container-signup'>
-        <div className="card-signup">
-          <h4 className="card-header bg-dark text-light p-4" style={{ fontSize: '1.7rem', borderRadius: '20px', textAlign: 'center' }}>Sign Up</h4>
+        <div className="card signup">
+          <h4 className="card-header bg-primary rounded-0 text-light p-4" 
+          style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+            Sign Up</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -58,8 +60,8 @@ const Signup = () => {
                 </label><br />
                 <input
                   className="form-input"
-                  placeholder="Your name"
-                  style={{ fontSize: '1.5rem', borderRadius: '20px' }}
+                  placeholder="your name..."
+                  style={{ fontSize: '1.5rem' }}
                   name="username"
                   type="username"
                   value={formState.username}
@@ -70,8 +72,8 @@ const Signup = () => {
                 </label><br />
                 <input
                   className="form-input"
-                  placeholder="Your email"
-                  style={{ fontSize: '1.5rem', borderRadius: '20px' }}
+                  placeholder="your email.."
+                  style={{ fontSize: '1.5rem' }}
                   name="email"
                   type="email"
                   value={formState.email}
@@ -83,17 +85,16 @@ const Signup = () => {
                 <input
                   className="form-input"
                   placeholder="******"
-                  style={{ fontSize: '1.5rem', borderRadius: '20px' }}
+                  style={{ fontSize: '1.5rem' }}
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
                 /><br />
                 <button
-                  className="btn btn-block btn-info m-10"
-                  style={{ cursor: 'pointer', fontSize: '1.5rem', margin: '15px', borderRadius: '20px' }}
-                  type="submit"
-                >
+                  className="btn btn-info rounded-0 mt-5" 
+                  type="button"
+                  onClick={handleFormSubmit}>
                   Submit
                 </button>
               </form>

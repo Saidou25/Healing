@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import ProfileForm from './components/ProfileForm';
 import PetProfileForm from './components/PetProfileForm';
+import PetOwnerProfileForm from './components/PetOwnerProfileForm';
 import ReviewForm from './components/ReviewForm';
 import UserList from './components/UserList';
 import MyReviewsList from './components/MyReviewsList';
@@ -24,10 +25,12 @@ import AppointmentForm from './components/AppointmentForm';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/MyProfile';
+import ContactModal from './components/ContactModal';
 import UpdateMyProfile from './components/UpdateMyProfile';
 import About from './components/About';
 import Note from './components/Note';
 import UpdateNote from './components/UpdateNote';
+// import Header from './components/Header';
 
 
 
@@ -74,12 +77,14 @@ function App() {
             <Route path='/UserList' element={<UserList />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/MyAppointmentsList' element={<MyAppointmentsList />} />
+            <Route path='/PetOwnerProfileForm' element={<PetOwnerProfileForm />} />
             <Route path='/MyReviewsList' element={<MyReviewsList />} />
             <Route path='/UpdateMyProfile' element={<UpdateMyProfile />} />
             <Route path='/Signup' element={<Signup />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
+            <Route path='/ContactModal' element={<ContactModal />} />
             <Route path='/PetProfileForm' element={<PetProfileForm />} />
             <Route path='/ReviewForm' element={<ReviewForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />

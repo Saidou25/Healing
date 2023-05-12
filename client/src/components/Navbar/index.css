@@ -1,43 +1,47 @@
 .bg-img {
-   
+
     background-image: url("../../assets/images/jumbo.jpeg");
-    min-height: 380px;
-   background-position: center;
+    min-height: 440px;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-  }
-  .nav {
-    height: 20%;
+}
+
+.nav {
+    /* height: 20%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5%;
-  
+
 }
+
 .site-title {
     margin-left: 30px;
     text-decoration: none;
     color: black;
-    
+
     /* font-size: 4em; */
 }
+
 .nav {
     margin-right: 20px;
     text-decoration: none;
-    
+
 }
+
 .nav-item {
     /* color: black; */
     text-decoration: none;
     margin: 6px;
 }
-.profile-icon {
-    margin-left: 16px;
-}
+
 .btt-logout {
     border: none;
     background-color: Transparent;
 }
 
-
+.profile-icon {
+    margin-left: 16px;
+}

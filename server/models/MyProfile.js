@@ -4,19 +4,19 @@ const { Schema, model } = require("mongoose");
 const profileSchema = new Schema({
        mepet: {
         type: String,
-        repuire: true,
+        repuire: false,
         trim: true,
 
     },
     patientgender: {
         type: String,
-        repuire: true,
+        repuire: false,
         trim: true,
 
     },
     birthdate: {
         type: String,
-        repuire: true,
+        repuire: false,
         trim: true,
 
     },
@@ -68,17 +68,12 @@ const profileSchema = new Schema({
     },
      isBooked: {
         type: String,
-        repuire: true,
-        trim: true,
-    },
-    finalDateISO: {
-        type: String,
-        repuire: true,
+        repuire: false,
         trim: true,
     },
    appDay: {
         type: String,
-        repuire: true,
+        repuire: false,
         trim: true,
     },
     patientState: {
@@ -88,27 +83,27 @@ const profileSchema = new Schema({
         },
     appMonth: {
             type: String,
-            repuire: true,
+            repuire: false,
             trim: true,
         },
         appDate: {
             type: Number,
-            repuire: true,
+            repuire: false,
             trim: true,
         },
         appTime: {
             type: String,
-            repuire: true,
+            repuire: false,
             trim: true,
         },
         appointment: {
             type: String,
-            repuire: true,
+            repuire: false,
             trim: true,
         },
         appYear: {
             type: Number,
-            repuire: true,
+            repuire: false,
             trim: true,
         },
         pets: [

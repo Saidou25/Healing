@@ -148,14 +148,14 @@ const resolvers = {
                     petName: args.petName,
                     petGender: args.petGender,
                     petAge: args.petAge,
-                    petKind: args.petKind,
                     petBreed: args.petBreed,
                     petWeight: args.petWeight
                 }
             );
             await Profile.findOneAndUpdate(
                 { _id: args.profileId },
-                { $addToSet:{ pets: pet._id }}
+                { $addToSet:{ pets: pet._id }},
+                { new: true }
             )
             return pet;
 
@@ -177,7 +177,6 @@ const resolvers = {
                     patientgender: args.patientgender,
                     mepet: args.mepet,
                     isBooked: args.isBooked,
-                    finalDateISO: args.finalDateISO,
                     appDay: args.appDay,
                     appMonth: args.appMonth,
                     appDate: args.appDate,

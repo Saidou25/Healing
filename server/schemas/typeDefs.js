@@ -18,7 +18,6 @@ const typeDefs = gql`
      patientzip: Int
      mepet: String
      isBooked: String
-     finalDateISO: String
      appDay: String
      appMonth: String
      appDate: Int
@@ -37,11 +36,11 @@ const typeDefs = gql`
      
      type Pet {
      _id: ID!
+     profileId: ID
      petBreed: String
      petName: String
      petWeight: Int
      petGender: String
-     petKind: String
      petAge: String
      }
      type Note {
@@ -86,7 +85,7 @@ const typeDefs = gql`
      user(username: String): User
      me: User
      profiles: [Profile]
-     profile(id: String!): Profile
+     profile(profileId: String!): Profile
      bookingdates: [Bookingdate]
      bookingdate(username: String!): Bookingdate
      reviews: [Review]
@@ -120,7 +119,6 @@ const typeDefs = gql`
      patientzip: Int,
      mepet: String,
      isBooked: String,
-     finalDateISO: String,
      appDay: String,
      appMonth: String,
      appDate: Int,
@@ -158,7 +156,7 @@ const typeDefs = gql`
      petGender: String
      petKind: String
      petAge: String
-     ):Pet
+     ): Profile
 
     updateProfile(
     id: String,

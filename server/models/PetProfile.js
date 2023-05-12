@@ -1,7 +1,14 @@
 const { Schema, model } = require('mongoose');
 
 const petSchema = new Schema({
+
     petBreed: {
+        type: String,
+        required: true,
+        trim: true,
+
+    },
+    profileId: {
         type: String,
         required: true,
         trim: true,
@@ -23,11 +30,6 @@ const petSchema = new Schema({
         trim: true,
     },
     petAge: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    petKind: {
         type: String,
         required: true,
         trim: true
