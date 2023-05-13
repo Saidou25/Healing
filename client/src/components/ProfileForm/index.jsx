@@ -6,7 +6,7 @@ import Navbar from '../Navbar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
-import { QUERY_ME } from '../../utils/queries';
+import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 
 import './index.css';
 
@@ -28,8 +28,24 @@ const ProfileForm = () => {
     const [profile, setProfile] = useState('');
 
     const { loading, data: meData } = useQuery(QUERY_ME);
-    const [addProfile] = useMutation(ADD_PROFILE);
+    // const [addProfile] = useMutation(ADD_PROFILE);
 
+    const [addProfile, { error, data }] = useMutation(ADD_PROFILE, {
+
+        update(cache, { data: { addProfile } }) {
+            try {
+                const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
+                cache.writeQuery({
+                    query: QUERY_PROFILES,
+                    data: { profiles: profiles.concat([addProfile]) },
+                });
+                console.log(`success adding ${patientfirstname} appointment`);
+
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    });
     useEffect(() => {
         if (meData) {
             const me = meData?.me || [];
@@ -190,7 +206,7 @@ const ProfileForm = () => {
 
         try {
             const { data } = addProfile({
-                variables: { appointment: appointment, patientState: patientState, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, finalDateISO: passedVisitData.finalDateISO, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
+                variables: { appointment: appointment, patientState: patientState, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
             });
             //    updateProfile();
             setPatientFirstName("");
@@ -202,13 +218,12 @@ const ProfileForm = () => {
             setPatientZip("");
             setValue("");
             setBirthDate("");
-            // navigate('/UserList', { state: navigateData });
-            window.location.reload();
-            console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
-
+            
         } catch (err) {
             console.error(err);
         }
+        console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
+        navigate('/Dashboard', { state: navigateData });
     };
 
     if (loading) {
@@ -399,7 +414,9 @@ const ProfileForm = () => {
                         </div>
                     </div>
                 ) : (
-                    <div>Reasons</div>
+                    <div>
+                       Success component
+                    </div>
                 )}
             </div>
         </>

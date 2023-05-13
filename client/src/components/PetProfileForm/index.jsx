@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar';
-import { QUERY_ME, QUERY_PETS } from '../../utils/queries';
+import { QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
 import { useMutation, useQuery } from '@apollo/client';
 import './index.css';
@@ -32,12 +32,12 @@ const PetForm = () => {
     const x5 = document.querySelector(".validate5");
     const y5 = document.querySelector(".invalidate5");
 
-    const { loading, data: meData } = useQuery(QUERY_ME);
-    // const { data: profileData } = useQuery(QUERY_PROFILES);
+    // const { loading, data: meData } = useQuery(QUERY_ME);
+    const { data: profileData } = useQuery(QUERY_PROFILES);
 
     // const [addPet] = useMutation(ADD_PET);
 
-    const [addPet, { data, error }] = useMutation(ADD_PET, {
+    const [addPet, { data, error, loading }] = useMutation(ADD_PET, {
       variables: { petName, profileId, petGender, petWeight: parseInt(petWeight), petAge, petBreed },
        
         update(cache, { data: { addPet } }) {
@@ -61,14 +61,12 @@ const PetForm = () => {
         }
      } );
     useEffect(() => {
-        if (meData) {
-            const me = meData?.me || [];
-            console.log('me', me);
-            const profile = me.profile;
+        if (profileData) {
+            const profile = profileData?.profiles || [];
             console.log('profile from useEffect', profile);
-            const id = profile._id;
-            console.log('id', id);
-            setProfileId(id);
+            const profileId = profile[0]._id;
+            console.log('id', profileId);
+            setProfileId(profileId);
             // const email = me.email;
             // const existingProfile = profile._id;
             // if (!profile.length) {
@@ -91,7 +89,7 @@ const PetForm = () => {
             // setEmail(email)
         }
 
-    }, [meData]);
+    }, [profileData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -164,28 +162,28 @@ const PetForm = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
         console.log('e', e.target.value);
         console.log('petName', petName);
         console.log('petBreed', petBreed);
         console.log('profile from addPet', profile);
         console.log('profileId', profileId);
-        // try {
-        //     await addPet({
-        //         variables: { petName: petName, profileId: profileId, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
-        //     });
-            // console.log(`Appointment for ${petName} booked successfully`);
-            // setPetName('');
-            // setPetGender('');
-            // setPetAge('');
-            // setPetWeight('');
-            // setPetBreed('');
-            // navigate('/Dashboard');
+        try {
+            await addPet({
+                variables: { petName: petName, profileId: profileId, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
+            });
+            console.log(`Appointment for ${petName} booked successfully`);
+            setPetName('');
+            setPetGender('');
+            setPetAge('');
+            setPetWeight('');
+            setPetBreed('');
+            navigate('/Dashboard');
 
-        // } catch (err) {
-        //     console.error(err);
-        // };
+        } catch (err) {
+            console.error(err);
+        };
     };
 
     if (loading) {
@@ -202,7 +200,7 @@ const PetForm = () => {
                 {!data ? (
                     <div className='container'>
                         <h1>Please answer few questions about your pet</h1>
-                        <form>
+                        <form onSubmit={handleFormSubmit}>
                             <div className='row'>
                                 <div className='col-6'>
                                     <div>
@@ -334,8 +332,7 @@ const PetForm = () => {
                                 <div className="col-12">
                                     <button className="btn btn-primary"
                                         type="submit"
-                                        value="Send"
-                                        onClick={(e) => addPet(e)}>
+                                       >
                                         Submit
                                     </button>
                                 </div>

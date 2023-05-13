@@ -259,7 +259,6 @@ export const ADD_BOOKINGDATE = gql`
       patientzip: $patientzip,) { 
         _id
          isBooked
-         finalDateISO  
          patientState
          appDay
       appMonth
