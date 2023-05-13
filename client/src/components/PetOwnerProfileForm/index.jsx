@@ -3,7 +3,7 @@ import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
@@ -28,7 +28,7 @@ const PetOwnerProfileForm = () => {
     const { loading, data: meData } = useQuery(QUERY_ME);
 
 
-    const [addProfile] = useMutation(ADD_PROFILE, {
+    const [addProfile, { error, data }] = useMutation(ADD_PROFILE, {
         variables: { patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip: parseInt(patientzip) },
         update(cache, { data: { addProfile } }) {
             try {
@@ -47,11 +47,11 @@ const PetOwnerProfileForm = () => {
             setPatientZip("");
             setValue("");
 
-            navigate('/PetProfileForm', { state: profile });
+            // navigate('/PetProfileForm', { state: profile });
             console.log(`success adding ${patientfirstname} appointment`);
         }
     });
-
+    console.log('data from pet owner form', data);
     useEffect(() => {
         if (meData) {
             const me = meData?.me || [];
@@ -153,139 +153,157 @@ const PetOwnerProfileForm = () => {
         <>
             <Navbar />
             <div>
-                {/* {!patientState ? ( */}
+                {/* {!profile ? ( */}
                 <div className='container-visitor'>
-                    <h1>Please answer few questions about you</h1>
-                    <div className='card-visitor'>
-                        <form onSubmit={(e) => addProfile(e)}>
-                            <div className='row m-5'>
-                                <div className="col-6">
-                                    <label className="form-label1"> First name</label>
-                                    <input
-                                        className="form-control"
-                                        onChange={handleChange}
-                                        type="text"
-                                        value={patientfirstname}
-                                        name="patientfirstname"
-                                        placeholder="first name..." />
-                                    <div className='validate'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
+                    <h4 className="card-header bg-primary rounded-0 text-light p-4"
+                        style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                        Please answer few questions about you</h4>
+                    <div className="card-body">
+                        {profile.length ? (
+                            <p>
+                                Success! You may now head{' '}
+                                {/* <Link to="/Login">lets now login.</Link> */}
+                                <Link to="/PetProfileForm">lets go</Link>
+                            </p>
+                        ) : (
+                            <form onSubmit={(e) => addProfile(e)}>
+                                <div className='row m-5'>
+                                    <div className="col-6">
+                                        <label className="form-label1"> First name</label>
+                                        <input
+                                            className="form-control"
+                                            onChange={handleChange}
+                                            type="text"
+                                            value={patientfirstname}
+                                            name="patientfirstname"
+                                            placeholder="first name..." />
+                                        <div className='validate'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div className='invalidate'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
 
-                                <div className="col-6">
-                                    <label className="form-label1"> Last name</label>
-                                    <input
-                                        className="form-control"
-                                        onChange={handleChange}
-                                        type="text"
-                                        name="patientlastname"
-                                        value={patientlastname}
-                                        placeholder="last name..." />
-                                    <div className='validate1'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
+                                    <div className="col-6">
+                                        <label className="form-label1"> Last name</label>
+                                        <input
+                                            className="form-control"
+                                            onChange={handleChange}
+                                            type="text"
+                                            name="patientlastname"
+                                            value={patientlastname}
+                                            placeholder="last name..." />
+                                        <div className='validate1'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate1'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div className='invalidate1'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
 
-                                <div className="col-6">
-                                    <label className="form-label1">Address</label>
-                                    <input
-                                        className="form-control"
-                                        value={patientaddress}
-                                        onChange={handleChange}
-                                        type="text"
-                                        name="patientaddress"
-                                        placeholder="address..." />
-                                    <div className='validate2'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
+                                    <div className="col-6">
+                                        <label className="form-label1">Address</label>
+                                        <input
+                                            className="form-control"
+                                            value={patientaddress}
+                                            onChange={handleChange}
+                                            type="text"
+                                            name="patientaddress"
+                                            placeholder="address..." />
+                                        <div className='validate2'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate2'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div className='invalidate2'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
 
-                                <div className="col-6">
-                                    <label className="form-label1">City</label>
-                                    <input
-                                        className="form-control"
-                                        value={patientcity}
-                                        type="text"
-                                        name="patientcity"
-                                        onChange={handleChange}
-                                        placeholder="enter city..." />
-                                    <div className='validate3'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
+                                    <div className="col-6">
+                                        <label className="form-label1">City</label>
+                                        <input
+                                            className="form-control"
+                                            value={patientcity}
+                                            type="text"
+                                            name="patientcity"
+                                            onChange={handleChange}
+                                            placeholder="enter city..." />
+                                        <div className='validate3'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate3'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div className='invalidate3'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
 
-                                <div className='col-6'>
-                                    Select a state: <SelectUSState id="myId" className="myClassName" onChange={setNewValue} />
-                                </div>
-                                <div className="col-6">
-                                    <label className="form-label1">zip code</label>
-                                    <input
-                                        className="form-control"
-                                        name="patientzip"
-                                        value={patientzip}
-                                        onChange={handleChange}
-                                        type="Number"
-                                        placeholder="zip code..." />
-                                    <div className='validate4'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
+                                    <div className='col-6'>
+                                        Select a state: <SelectUSState id="myId" className="myClassName" onChange={setNewValue} />
                                     </div>
-                                    <div className='invalidate4'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
+                                    <div className="col-6">
+                                        <label className="form-label1">zip code</label>
+                                        <input
+                                            className="form-control"
+                                            name="patientzip"
+                                            value={patientzip}
+                                            onChange={handleChange}
+                                            type="Number"
+                                            placeholder="zip code..." />
+                                        <div className='validate4'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate4'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="col-6">
-                                    <label className="form-label">Phone number</label>
-                                    <Input
-                                        placeholder="Enter phone number"
-                                        name='patientnumber'
-                                        value={patientnumber}
-                                        onChange={setValue} />
+                                    <div className="col-6">
+                                        <label className="form-label">Phone number</label>
+                                        <Input
+                                            placeholder="Enter phone number"
+                                            name='patientnumber'
+                                            value={patientnumber}
+                                            onChange={setValue} />
 
-                                    <div className='validate6'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
+                                        <div className='validate6'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate6'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div className='invalidate6'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
+
+                                    <div className="col-12">
+                                        <button className="btn btn-primary"
+                                            type="submit"
+                                            value="Send">Submit</button>
                                     </div>
                                 </div>
+                            </form>
+                        )}
 
-                                <div className="col-12">
-                                    <button className="btn btn-primary"
-                                        type="submit"
-                                        value="Send">Submit</button>
-                                </div>
+                        {error && (
+                            <div className="my-3 p-3 bg-danger text-white">
+                                {error.message}
                             </div>
-                        </form>
+                        )}
                     </div>
                 </div>
-                {/* ) : ( */}
-                {/* <div>Reasons</div> */}
+                {/* ) : (  */}
+                {/* <div> */}
+                {/* <Link to='/PetProfileForm'></Link> */}
+                {/* </div>  */}
                 {/* )} */}
             </div>
         </>
