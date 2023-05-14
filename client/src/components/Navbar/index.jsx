@@ -19,7 +19,7 @@ const Navbar = () => {
                     <Link className="site-title" to="/" style={{ fontSize: '7rem' }}>Healing</Link>
                     <ul className="nav justify-content-end">
                         <CustomLink to='/About' className='nav-item' style={{ fontSize: '1.5rem' }}>About</CustomLink>
-                        <CustomLink to='/UserList' className='nav-item ' style={{ fontSize: '1.5rem' }}>users</CustomLink>
+                        <CustomLink to='/UserList' className='nav-item ' style={{ fontSize: '1.5rem' }}>userList</CustomLink>
                         {/* <CustomLink to='/UpdateMyProfile' className='nav-item ' style={{ fontSize: '1.5rem' }}>update profile</CustomLink> */}
                         <CustomLink to='/Note' className='nav-item ' style={{ fontSize: '1.5rem' }}>note</CustomLink>
                         {/* <CustomLink to='/ProfileModal' className='nav-item ' style={{ fontSize: '1.5rem' }}>modal</CustomLink> */}

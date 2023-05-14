@@ -144,7 +144,7 @@ const resolvers = {
         addPet: async (_, args) => {
             const pet = await Pet.create(
                 {
-                    profileId: args.profileId,
+                    username: args.username,
                     petName: args.petName,
                     petGender: args.petGender,
                     petAge: args.petAge,
@@ -165,6 +165,7 @@ const resolvers = {
         addProfile: async (_, args, context) => {
             if (context.user) {
                 const profile = await Profile.create({
+                    username: args.username,
                     patientfirstname: args.patientfirstname,
                     patientlastname: args.patientlastname,
                     birthdate: args.birthdate,

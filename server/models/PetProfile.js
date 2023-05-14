@@ -8,7 +8,7 @@ const petSchema = new Schema({
         trim: true,
 
     },
-    profileId: {
+    username: {
         type: String,
         required: true,
         trim: true,

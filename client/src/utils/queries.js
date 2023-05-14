@@ -30,6 +30,7 @@ export const QUERY_USERS = gql`
       profile {
  _id
  patientfirstname
+ username
  patientgender
  patientaddress
  patientlastname
@@ -80,6 +81,7 @@ export const QUERY_USER = gql`
       profile {
  _id
  patientfirstname
+ username
  patientgender
  patientState
  patientaddress
@@ -132,6 +134,7 @@ export const QUERY_ME = gql`
  _id
  patientState
  patientfirstname
+ username
  patientgender
  patientaddress
  patientlastname
@@ -209,7 +212,7 @@ export const QUERY_PETS = gql`
     petAge
     petBreed
     petWeight
-    ProfileId
+    username
      }
   }
 `;
@@ -261,6 +264,7 @@ query profiles {
  patientaddress
  patientlastname
  patientcity
+ username
  patientnumber
  patientreason
  patientState
@@ -284,6 +288,7 @@ query profile($id: ID!) {
  _id 
  patientfirstname
  patientgender
+ username
  patientaddress
  patientState
  patientlastname

@@ -34,6 +34,7 @@ export const UPDATE_USER = gql`
     }
     profile {
       _id
+      username
          isBooked
          patientState
          appDay
@@ -59,14 +60,14 @@ export const UPDATE_USER = gql`
 
 export const ADD_PET = gql`
      mutation addPet(
-     $profileId: String
+     $username: String!
      $petName: String
      $petWeight: Int
      $petAge: String
      $petGender: String
      $petBreed: String) {
      addPet(
-     profileId: $profileId
+     username: $username
         petName: $petName
      petWeight: $petWeight
      petAge:  $petAge
@@ -78,7 +79,7 @@ export const ADD_PET = gql`
      petWeight
      petAge
      petGender
-     profileId
+    username
      }
      }
      `;
@@ -170,16 +171,17 @@ export const ADD_BOOKINGDATE = gql`
      `;
      export const ADD_PROFILE = gql`
      mutation addProfile(
-     $patientfirstname: String,
+     $username: String!,
+     $patientfirstname: String!,
       $patientgender: String,
-      $patientaddress: String,
-      $patientlastname: String,
-      $patientcity: String,
-      $patientnumber: String,
+      $patientaddress: String!,
+      $patientlastname: String!,
+      $patientcity: String!,
+      $patientnumber: String!,
       $patientreason: String,
       $birthdate: String,
-      $patientState: String,
-      $patientzip: Int,
+      $patientState: String!,
+      $patientzip: Int!,
       $mepet: String,
       $isBooked: String,
       $appDay: String,
@@ -189,6 +191,7 @@ export const ADD_BOOKINGDATE = gql`
       $appTime: String,
       $appYear: Int) {
          addProfile(
+         username: $username,
           patientfirstname: $patientfirstname,
           patientgender: $patientgender,
       patientaddress: $patientaddress,
@@ -208,6 +211,7 @@ export const ADD_BOOKINGDATE = gql`
       appYear: $appYear,
       appointment: $appointment) { 
         _id
+        username
          isBooked 
          patientState
          appDay
@@ -229,11 +233,12 @@ export const ADD_BOOKINGDATE = gql`
       pets {
       _id
       petName
+      username
       petGender
       petAge
       petWeight
       petBreed
-      profileId
+     
       }
               }             
      }
@@ -242,6 +247,7 @@ export const ADD_BOOKINGDATE = gql`
 
      export const UPDATE_PROFILE = gql`
      mutation updateProfile($id: String,
+     $username: String,
       $patientaddress: String,
       $patientlastname: String,
       $patientcity: String,
@@ -250,7 +256,8 @@ export const ADD_BOOKINGDATE = gql`
       $patientnumber: String
       ) {
          updateProfile(
-        id: $id
+        id: $id,
+        username: $username,
       patientaddress: $patientaddress,
          patientState: $patientState,
       patientlastname: $patientlastname,
@@ -262,6 +269,7 @@ export const ADD_BOOKINGDATE = gql`
          patientState
          appDay
       appMonth
+      username
       appTime
       appYear
       appDate

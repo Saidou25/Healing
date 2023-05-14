@@ -3,10 +3,10 @@ import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, useParams, Link } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
-import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import { QUERY_ME, QUERY_USERS, QUERY_PROFILES } from '../../utils/queries';
 
 // import './index.css';
 
@@ -15,6 +15,7 @@ const PetOwnerProfileForm = () => {
     const navigate = useNavigate();
 
     const [profile, setProfile] = useState('');
+    // const [profileId, setProfileId] = useState('');
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientfirstname, setPatientFirstName] = useState('');
@@ -22,36 +23,45 @@ const PetOwnerProfileForm = () => {
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
-    console.log('profile from pet owner form', profile);
 
     // const [addProfile] = useMutation(ADD_PROFILE);
     const { loading, data: meData } = useQuery(QUERY_ME);
+    const me = meData?.me || [];
+    const username = me.username;
+    console.log('me from pet owner', me);
 
+    const profileInfo = me.profile;
+    // setProfile(profileInfo);
+    console.log('profileInfo from pet owner', profileInfo);
+    // const id = profileInfo._id;
+    // console.log('profileId', id);
+    // setProfileId(id)
+const { id } = useParams();
 
     const [addProfile, { error, data }] = useMutation(ADD_PROFILE, {
-
+        variables: { username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip },
+       
         update(cache, { data: { addProfile } }) {
             try {
                 const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
+
                 cache.writeQuery({
                     query: QUERY_PROFILES,
-                    data: { profiles: profiles.concat([addProfile]) },
+                    data: { profiles: [addProfile, ...profiles] },
                 });
                 console.log(`success adding ${patientfirstname} appointment`);
 
             } catch (e) {
                 console.error(e);
             }
+            // const { me } = cache.readQuery({ query: QUERY_ME });
+            // cache.writeQuery({
+            //   query: QUERY_ME,
+            //   data: { me: { ...me, profile: [addProfile, ...me.profile] } },
+            // });
         }
     });
-    console.log('data from pet owner form', data);
-    useEffect(() => {
-        if (meData) {
-            const me = meData?.me || [];
-            const profile = me.profile;
-            setProfile(profile);
-        }
-    }, [meData]);
+    // console.log('data from pet owner form', data);
 
     const handleChange = (e) => {
 
@@ -82,7 +92,7 @@ const PetOwnerProfileForm = () => {
             // }
         }
         if (name === 'patientlastname') {
-            // setPatientLastName(value);
+            setPatientLastName(value);
             // if (value.length > 2) {
             //     x1.style.display = "block";
             //     y1.style.display = "none";
@@ -92,7 +102,7 @@ const PetOwnerProfileForm = () => {
             // }
         }
         if (name === 'patientaddress') {
-            // setPatientAddress(value);
+            setPatientAddress(value);
             // if (value.length > 5) {
             //     x2.style.display = "block";
             //     y2.style.display = "none";
@@ -137,22 +147,22 @@ const PetOwnerProfileForm = () => {
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        try {
-            const { data } = await addProfile({
-                variables: { patientState: patientState, patientnumber: patientnumber, patientfirstname: patientfirstname, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientzip: patientzip },
-            });
-            setPatientFirstName("");
-            setPatientLastName("");
-            setPatientCity("")
-            setPatientAddress("");
-            setPatientZip("");
-            setValue("");
-        } catch (e) {
-            console.error(e);
-        }
+        addProfile(username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip)
+        // try {
+        //     const { data } = await addProfile({
+        //         // variables: { patientState: patientState, patientnumber: patientnumber, patientfirstname: patientfirstname, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientzip: patientzip },
+        //     });
+        // setPatientFirstName("");
+        // setPatientLastName("");
+        // setPatientCity("")
+        // setPatientAddress("");
+        // setPatientZip("");
+        // setValue("");
+        // } catch (e) {
+        //     console.error(e);
+        // }
         console.log(`success adding your info ${patientfirstname} !`)
-        navigate('/PetProfileForm', { state: profile });
+        navigate('/PetProfileForm', { state: username });
 
     };
 
@@ -168,7 +178,7 @@ const PetOwnerProfileForm = () => {
         <>
             <Navbar />
             <div>
-                {!profile ? (
+                {!profileInfo ? (
                     <div className='container-visitor'>
                         <h4 className="card-header bg-primary rounded-0 text-light p-4"
                             style={{ fontSize: '1.7rem', textAlign: 'center' }}>

@@ -6,9 +6,10 @@ import { ADD_PET } from "../../utils/mutations";
 import { useMutation, useQuery } from '@apollo/client';
 import './index.css';
 
-const PetForm = () => {
+const PetForm = (props) => {
+    // const username = props.username;
     const navigate = useNavigate();
-    const [profileId, setProfileId] = useState('');
+    // const [profileId, setProfileId] = useState('');
     const [profile, setProfile] = useState('');
     const [petName, setPetName] = useState('');
     const [petWeight, setPetWeight] = useState('');
@@ -18,7 +19,6 @@ const PetForm = () => {
     const [petKind, setPetKind] = useState('');
     const [petExist, setPetExist] = useState('');
 
-    console.log('profile from petProfileForm', profile);
     const x = document.querySelector(".validate");
     const y = document.querySelector(".invalidate");
     const x1 = document.querySelector(".validate1");
@@ -32,64 +32,28 @@ const PetForm = () => {
     const x5 = document.querySelector(".validate5");
     const y5 = document.querySelector(".invalidate5");
 
-    // const { loading, data: meData } = useQuery(QUERY_ME);
-    const { data: profileData } = useQuery(QUERY_PROFILES);
+    const { data } = useQuery(QUERY_ME);
+    const me = data?.me || [];
+    console.log('me', me);
+  
+    const username = me.username;
+    console.log('username', username);
+  
+  
+    const { data: profilesData } = useQuery(QUERY_PROFILES);
+    const profiles = profilesData?.profiles || [];
+    console.log('all profiles', profiles);
+  
+    // const myProfile = profiles.filter(profile => profile.username === myUserName);
+    // console.log('myProfile', myProfile);
+    // const userProfile = myProfile[0];
+    // console.log('userProfile', userProfile);
+    // // const username = userProfile.username;
+    // console.log('username', username);
 
-    // const [addPet] = useMutation(ADD_PET);
 
-    const [addPet, { data, error, loading }] = useMutation(ADD_PET, {
-      variables: { petName, profileId, petGender, petWeight: parseInt(petWeight), petAge, petBreed },
-       
-        update(cache, { data: { addPet } }) {
-            try {
-                const { pets } = cache.readQuery({ query: QUERY_PETS });
 
-                cache.writeQuery({
-                    query: QUERY_PETS,
-                    data: { pets: [addPet, ...pets] },
-                });
-            } catch (e) {
-                console.error(e);
-            }
-            console.log(`Appointment for ${petName} booked successfully`);
-            setPetName('');
-            setPetGender('');
-            setPetAge('');
-            setPetWeight('');
-            setPetBreed('');
-            navigate('/Dashboard');
-        }
-     } );
-    useEffect(() => {
-        if (profileData) {
-            const profile = profileData?.profiles || [];
-            console.log('profile from useEffect', profile);
-            const profileId = profile[0]._id;
-            console.log('id', profileId);
-            setProfileId(profileId);
-            // const email = me.email;
-            // const existingProfile = profile._id;
-            // if (!profile.length) {
-            //     console.log('no profile')
-
-            //     setPetExist();
-            //     setProfileId(existingProfile);
-            //     setProfile(profile);
-            // } else {
-            //     console.log('there is aprofile');
-            //     console.log('profile', profile);
-            //     const petExists = profile.pets;
-            //     console.log(petExists)
-            //     setPetExist(petExists);
-            //     setProfile(profile);
-            //     setProfileId(existingProfile);
-
-            // }
-
-            // setEmail(email)
-        }
-
-    }, [profileData]);
+    const [addPet] = useMutation(ADD_PET);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -164,14 +128,14 @@ const PetForm = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        console.log('e', e.target.value);
-        console.log('petName', petName);
-        console.log('petBreed', petBreed);
-        console.log('profile from addPet', profile);
-        console.log('profileId', profileId);
+        // console.log('e', e.target.value);
+        // console.log('petName', petName);
+        // console.log('petBreed', petBreed);
+        // console.log('profile from addPet', profile);
+        // console.log('profileId', profileId);
         try {
             await addPet({
-                variables: { petName: petName, profileId: profileId, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
+                variables: { petName: petName, username: username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
             });
             console.log(`Appointment for ${petName} booked successfully`);
             setPetName('');
@@ -186,18 +150,18 @@ const PetForm = () => {
         };
     };
 
-    if (loading) {
-        return (
-          <main>
-            <h2>Loading . . . . . . </h2>
-          </main>
-        )
-      }
+    // if (loading) {
+    //     return (
+    //       <main>
+    //         <h2>Loading . . . . . . </h2>
+    //       </main>
+    //     )
+    //   }
     return (
         <>
             <Navbar />
             <div>
-                {!data ? (
+                {/* {!data ? ( */}
                     <div className='container'>
                         <h1>Please answer few questions about your pet</h1>
                         <form onSubmit={handleFormSubmit}>
@@ -339,9 +303,9 @@ const PetForm = () => {
                             </div>
                         </form>
                     </div>
-                ) : (
+                {/* ) : ( */}
                     <div>Appointment booked</div>
-                )}
+                {/* )} */}
             </div>
         </>
     )

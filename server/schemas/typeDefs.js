@@ -5,6 +5,7 @@ const typeDefs = gql`
      type Profile {
      _id: ID!
      user: User
+     username: String
      patientfirstname: String
      patientgender: String
      patientaddress: String
@@ -36,7 +37,7 @@ const typeDefs = gql`
      
      type Pet {
      _id: ID!
-     profileId: ID
+     username: String!
      petBreed: String
      petName: String
      petWeight: Int
@@ -81,7 +82,7 @@ const typeDefs = gql`
   },
      
      type Query {
-     users: [User]!
+     users: [User]
      user(username: String): User
      me: User
      profiles: [Profile]
@@ -106,17 +107,18 @@ const typeDefs = gql`
      login(email: String, password: String): Auth
 
      addProfile(
-     patientfirstname: String,
-     patientState: String,
+     username: String!,
+     patientfirstname: String!,
+     patientState: String!,
      patientgender: String,
-     patientaddress: String,
+     patientaddress: String!,
      patientemail: String,
-     patientlastname: String,
-     patientcity: String,
-     patientnumber: String,
+     patientlastname: String!,
+     patientcity: String!,
+     patientnumber: String!,
      patientreason: String,
      birthdate: String,
-     patientzip: Int,
+     patientzip: Int!,
      mepet: String,
      isBooked: String,
      appDay: String,
@@ -149,7 +151,7 @@ const typeDefs = gql`
     updateNote(id: String, noteTitle: String): Note
 
     addPet(
-    profileId: String
+    username: String!
      petBreed: String
      petName: String
      petWeight: Int

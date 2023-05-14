@@ -8,6 +8,12 @@ const profileSchema = new Schema({
         trim: true,
 
     },
+       username: {
+        type: String,
+        repuire: true,
+        trim: true,
+
+    },
     patientgender: {
         type: String,
         repuire: false,
@@ -56,13 +62,13 @@ const profileSchema = new Schema({
     },
     patientreason: {
         type: String,
-        repuire: true,
+        repuire: false,
         trim: true,
 
     },
     patientemail: {
         type: String,
-        require: true,
+        require: false,
         trim: true,
         match: [/.+@.+\..+/, 'Must match an email address!']
     },
