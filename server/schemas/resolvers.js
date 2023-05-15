@@ -13,7 +13,7 @@ const resolvers = {
                 });
         },
         user: async (_, args) => {
-            return User.findOne({ username: args.username }).populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
+            return User.findOne({ id: args._id }).populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
                 path: 'profile',
                 populate: 'pets'
             });

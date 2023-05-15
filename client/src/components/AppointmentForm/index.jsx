@@ -50,6 +50,11 @@ const AppointmentForm = (props) => {
             } catch (e) {
                 console.error(e);
             }
+            const { me } = cache.readQuery({ query: QUERY_ME });
+            cache.writeQuery({
+              query: QUERY_ME,
+              data: { me: { ...me, bookingdates: [...me.bookingdates, addBookingdate] } },
+            });
         }
     });
     const handleChange = (e) => {

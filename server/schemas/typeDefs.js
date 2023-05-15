@@ -67,7 +67,7 @@ const typeDefs = gql`
      appYear: Int
      }, 
      type User {
-    _id: ID
+    _id: ID!
     email: String
     password: String 
     username: String
@@ -83,7 +83,7 @@ const typeDefs = gql`
      
      type Query {
      users: [User]
-     user(username: String): User
+     user(id: String!): User
      me: User
      profiles: [Profile]
      profile(profileId: String!): Profile

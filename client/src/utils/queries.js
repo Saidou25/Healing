@@ -47,13 +47,22 @@ export const QUERY_USERS = gql`
  appMonth
  appTime
  appYear
+ pets {
+     _id
+    petName
+    petGender
+    petAge
+    petBreed
+    petWeight
+    username
+     }
     }
   }
   }
 `;
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query user($id: String!) {
+    user(id: $id) {
       _id
       username
       email
@@ -98,7 +107,15 @@ export const QUERY_USER = gql`
  appMonth
  appTime
  appYear
- 
+ pets {
+     _id
+    petName
+    petGender
+    petAge
+    petBreed
+    petWeight
+    username
+     }
     }
     }
   }
@@ -150,7 +167,15 @@ export const QUERY_ME = gql`
  appMonth
  appTime
  appYear
- 
+ pets {
+     _id
+    petName
+    petGender
+    petAge
+    petBreed
+    petWeight
+    username
+     }
     }   
      }
    }
@@ -278,7 +303,15 @@ query profiles {
  appDate
  appTime
  appYear
- 
+ pets {
+     _id
+    petName
+    petGender
+    petAge
+    petBreed
+    petWeight
+    username
+     }
     }
  }
 `;
@@ -305,7 +338,15 @@ query profile($id: ID!) {
  appointment
  appTime
  appYear
- 
+ pets {
+     _id
+    petName
+    petGender
+    petAge
+    petBreed
+    petWeight
+    username
+     }
     }
  }
 `;
