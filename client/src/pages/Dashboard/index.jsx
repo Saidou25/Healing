@@ -18,6 +18,8 @@ const Dashboard = () => {
     const { data } = useQuery(QUERY_ME);
     const me = data?.me || [];
     const username = me.username;
+    const myReviews = me.reviews;
+    console.log('myReviews from dashboard', myReviews);
 
     const { data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
     const bookingdates = appointmentsData?.bookingdates || [];
@@ -73,7 +75,7 @@ const Dashboard = () => {
                             </>
                         ) : null}
                         {isShown ? <ReviewForm username={username} /> : null}
-                        <MyReviewsList username={username} /> <br />
+                        <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
                 </div>
             </div>
