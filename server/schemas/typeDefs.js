@@ -162,6 +162,7 @@ const typeDefs = gql`
 
     updateProfile(
     id: String,
+    username: String,
      patientlastname: String, 
                     patientcity: String,
                     patientzip: Int,

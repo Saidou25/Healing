@@ -10,11 +10,14 @@ import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 
 import './index.css';
 
-const ProfileForm = () => {
+const ProfileForm = (props) => {
+    const userProfile = props.userProfile;
+    const mepet = props.mepet;
+    
     const navigate = useNavigate();
-    // const location = useLocation();
-    // const passedVisitData = location.state;
-
+    const location = useLocation();
+    const profile = location.state;
+console.log('profile', profile);
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
@@ -229,7 +232,7 @@ const ProfileForm = () => {
         // setBirthDate("");
 
         console.log(`success adding ${patientfirstname}' appointment`);
-        navigate('/Dashboard');
+        (mepet === 'me') ? navigate('/Dashboard') : navigate('/PetProfileForm');
     };
 
     if (loading) {
@@ -243,7 +246,7 @@ const ProfileForm = () => {
         <>
             <Navbar />
             <div>
-                {!profileInfo ? (
+                {!userProfile ? (
                     <div className='container-profile'>
                         <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5"
                             style={{ fontSize: '1.7rem', textAlign: 'center' }}>

@@ -7,7 +7,7 @@ const resolvers = {
     Query: {
         users: async () => {
             return User.find()
-            .populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
+                .populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
                     path: 'profile',
                     populate: 'pets'
                 });
@@ -154,7 +154,7 @@ const resolvers = {
             );
             await Profile.findOneAndUpdate(
                 { _id: args.profileId },
-                { $addToSet:{ pets: pet._id }},
+                { $addToSet: { pets: pet._id } },
                 { new: true }
             )
             return pet;
@@ -219,6 +219,7 @@ const resolvers = {
             return await Profile.findOneAndUpdate(
                 { _id: args.id },
                 {
+                    username: args.username,
                     patientlastname: args.patientlastname,
                     patientcity: args.patientcity,
                     patientzip: args.patientzip,
@@ -235,7 +236,7 @@ const resolvers = {
         deleteReview: async (_, args, context) => {
             if (context.user) {
                 const review = await Review.findOneAndDelete(
-                   { _id: args.id }
+                    { _id: args.id }
                 );
 
                 await User.findOneAndUpdate(

@@ -137,9 +137,11 @@ const AppointmentForm = () => {
         } else {
             console.log('you need to fill up the form correctly');
         }
-        mepet === 'me' ?
-            navigate('/ProfileForm', { state: navigateVisitData }) :
-            navigate('/PetOwnerProfileForm', { state: navigateVisitData });
+        console.log('mepet', mepet);
+        navigate('/PreloadProfile', { state: mepet })
+        // mepet === 'me' ?
+        //     navigate('/ProfileForm', { state: profile }) :
+        //     navigate('/PetOwnerProfileForm', { state: profile });
     };
 
     if (loading) {

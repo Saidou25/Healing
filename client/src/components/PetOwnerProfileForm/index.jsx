@@ -10,8 +10,9 @@ import { QUERY_ME, QUERY_USERS, QUERY_PROFILES } from '../../utils/queries';
 
 import './index.css';
 
-const PetOwnerProfileForm = () => {
-
+const PetOwnerProfileForm = (props) => {
+    const userProfile = props.userProfile;
+    const mepet = props.mepet;
     const navigate = useNavigate();
 
     const [profile, setProfile] = useState('');
@@ -154,8 +155,9 @@ const PetOwnerProfileForm = () => {
         // } catch (e) {
         //     console.error(e);
         // }
-        console.log(`success adding your info ${patientfirstname} !`)
-        navigate('/PetProfileForm', { state: username });
+        console.log(`success adding your info ${patientfirstname} !`);
+        (mepet === 'pet') ? navigate('/PetProfileForm', { state: username }) : navigate('/Dashboard');
+
 
     };
 
@@ -171,7 +173,7 @@ const PetOwnerProfileForm = () => {
         <>
             <Navbar />
             <div>
-                {!profileInfo ? (
+                {!userProfile ? (
                     <div className='container-visitor mt-5'>
                         <h4 className="card-header bg-primary rounded-0 text-light p-4"
                             style={{ fontSize: '1.7rem', textAlign: 'center' }}>
@@ -270,9 +272,9 @@ const PetOwnerProfileForm = () => {
                                         <SelectUSState
                                             id="myId"
                                             className="myClassName"
-                                            onChange={setNewValue} 
-                                            
-                                            />
+                                            onChange={setNewValue}
+
+                                        />
                                     </div>
 
                                     <div className="col-6">
@@ -300,7 +302,7 @@ const PetOwnerProfileForm = () => {
                                         </label>
                                         <div>
                                             <Input
-                                            className='phone-number'
+                                                className='phone-number'
                                                 placeholder="Enter phone number..."
                                                 name='patientnumber'
                                                 value={patientnumber}
