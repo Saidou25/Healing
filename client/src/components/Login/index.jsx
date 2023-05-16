@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from '../../utils/auth';
@@ -51,12 +51,12 @@ const Login = () => {
                         style={{ fontSize: '1.7rem', textAlign: 'center' }}>
                             Login</h4>
                         <div className="card-body">
-                            {/* {data ?  */}
-                            {/* <p>
+                            {data ?  
+                          <p>
                 Success! You may now head{' '}
                 <Link to="/Dashboard">to your Dashboard.</Link>
               </p>
-            :  ( */}
+            :  (
                             <form onSubmit={handleFormSubmit}>
                                 <input
                                     className="form-input"
@@ -81,7 +81,7 @@ const Login = () => {
                                     Submit
                                 </button>
                             </form>
-                            {/* )} */}
+                          )} 
 
                             {error && (
                                 <div className="my-3 p-3 bg-danger text-white">

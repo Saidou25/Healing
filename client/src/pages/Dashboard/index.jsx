@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_BOOKINGDATES } from '../../utils/queries';
-import AppointmentForm from '../../components/AppointmentForm';
+import { useNavigate, Link } from 'react-router-dom';
 import ContactModal from '../../components/ContactModal';
 import MyAppointmentsList from '../../components/MyAppointmentsList';
 import MyReviewsList from '../../components/MyReviewsList';
@@ -11,9 +11,9 @@ import './index.css';
 
 
 const Dashboard = () => {
+    const navigate = useNavigate();
 
     const [isShown, setIsShown] = useState(false);
-    const [isShown1, setIsShown1] = useState(false);
 
     const { data } = useQuery(QUERY_ME);
     const me = data?.me || [];
@@ -26,7 +26,8 @@ const Dashboard = () => {
     const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === username);
 
     const handleSubmit = (e) => {
-        e === 'appointment' ? setIsShown1(current => !current) : setIsShown(current => !current);
+        e === 'review' ? setIsShown(current => !current) : navigate('/AppointmentForm');
+
     };
 
     return (
@@ -35,17 +36,17 @@ const Dashboard = () => {
             <div className='container-fluid'>
                 <div className='row justify-content-evenly mt-5'>
 
-                <div className='col-6 col-lg-5'>
+                    <div className='col-6 col-lg-5'>
                         <MyAppointmentsList myAppointments={myAppointments} /> <br />
 
                     </div>
 
                     <div className='col-6 col-lg-5'>
                         <h3 className='book-title'>Message your practitioner</h3><br />
-                      <ContactModal />
+                        <ContactModal />
                     </div>
 
-                    
+
 
                     <div className='col-6 col-lg-5'>
                         <h3 className='book-title'>Book an appointment</h3><br />
@@ -55,11 +56,6 @@ const Dashboard = () => {
                             onClick={() => handleSubmit('appointment')}>
                             start
                         </button>
-                        {isShown1 ? (
-                            <>
-                            </>
-                        ) : null}
-                        {isShown1 ? <AppointmentForm username={username} /> : null}
                     </div>
 
                     <div className='col-6 col-lg-5'>
@@ -75,6 +71,8 @@ const Dashboard = () => {
                             </>
                         ) : null}
                         {isShown ? <ReviewForm username={username} /> : null}
+                    </div>
+                    <div className='col-12'>
                         <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
                 </div>

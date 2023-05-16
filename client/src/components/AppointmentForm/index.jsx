@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
 import DatePicker from "react-datepicker";
+import Navbar from '../Navbar';
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
 import { parseISO, setHours, setMinutes } from 'date-fns'
 
 
-const AppointmentForm = (props) => {
-    const username = props.username;
-
+const AppointmentForm = () => {
     const navigate = useNavigate();
 
     const [startDate, setStartDate] = useState(new Date());
@@ -22,6 +21,7 @@ const AppointmentForm = (props) => {
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const profile = me.profile;
+    const username = me.username;
 
     const { data, loading } = useQuery(QUERY_BOOKINGDATES);
 
@@ -52,8 +52,8 @@ const AppointmentForm = (props) => {
             }
             const { me } = cache.readQuery({ query: QUERY_ME });
             cache.writeQuery({
-              query: QUERY_ME,
-              data: { me: { ...me, bookingdates: [...me.bookingdates, addBookingdate] } },
+                query: QUERY_ME,
+                data: { me: { ...me, bookingdates: [...me.bookingdates, addBookingdate] } },
             });
         }
     });
@@ -140,105 +140,108 @@ const AppointmentForm = (props) => {
         mepet === 'me' ?
             navigate('/ProfileForm', { state: navigateVisitData }) :
             navigate('/PetOwnerProfileForm', { state: navigateVisitData });
-        // document.getElementById("appointment-form").reset();
     };
 
     if (loading) {
         return (
-          <main>
-            <h2>Loading . . . . . . </h2>
-          </main>
+            <main>
+                <h2>Loading . . . . . . </h2>
+            </main>
         )
-      }
+    }
     return (
         <>
-            <div className='container-visit'>
-                <div className='row app-window'>
-        
-                    <div className='card-visit'>
-                        
-                        <form id='appointment-form'>
-                            <div className='row-visit align-items-center p-5'>
-                                <div className='col-6 appointment-for'>
-                                    <label className="form-label">
-                                        Who is the appointment for?
-                                    </label>
+            {/* <Navbar /> */}
+            <div className='container-appointment'>
+                <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5"
+                    style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                    Please answer few questions and choose your appointment's date</h4>
+                <div className="card-body">
+                    <form id='appointment-form'>
+                        <div className='row'>
+                            <div className='col-6 appointment-column'>
+                                <label className="form-label">
+                                    Who is the appointment for?
+                                </label>
+                            </div>
+                            <div className='col-6 visit'>
+                                <div>
+                                    <input
+                                        className='radio m-2 ms-4'
+                                        type="radio"
+                                        name="mepet"
+                                        value="me"
+                                        checked={mepet === 'me'}
+                                        onChange={handleChange} /> me
+
+                                    <input
+                                        className='radio m-2 ms-4'
+                                        type="radio"
+                                        name="mepet"
+                                        value="mypet"
+                                        checked={mepet === 'mypet'}
+                                        onChange={handleChange} /> my pet
                                 </div>
-                                <div className='col-6 visit'>
-                                    <div>
-                                        <input
-                                            type="radio"
-                                            name="mepet"
-                                            value="me"
-                                            checked={mepet === 'me'}
-                                            onChange={handleChange} /> me
 
-                                        <input
-                                            type="radio"
-                                            name="mepet"
-                                            value="mypet"
-                                            checked={mepet === 'mypet'}
-                                            onChange={handleChange} /> my pet
-                                    </div>
+                                <div className='validate'>
+                                    Looks good
+                                    <i className="fa-solid fa-check"></i>
+                                </div>
+                                <div className='invalidate'>
+                                    required
+                                    <i className="fa-solid fa-check"></i>
+                                </div>
+                            </div>
 
-                                    <div className='validate'>
+                            <div className='col-6 date-picker'>
+                                <label className="form-label">
+                                    Choose your appointment date
+                                </label>
+                                <div className='choose-date'>
+                                    <DatePicker
+                                        selected={startDate}
+                                        onChange={(date) => setStartDate(date)}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        timeCaption="time"
+                                        minTime={setHours(setMinutes(new Date(), 0), 9)}
+                                        maxTime={setHours(setMinutes(new Date(), 0), 19)}
+                                        dateFormat="MMMM d, yyyy h:mm aa"
+                                        minDate={new Date()}
+                                        excludeDates={allAppointments}
+                                    // footer={footer};
+                                    />
+                                </div>
+                            </div>
+                            <div className='col-6 appointment-column'>
+                                <div>
+                                    <label className="form-label">What is your reason for visiting?</label>
+                                    <textarea className="form-control type-your-text mt-4"
+                                        name="reason"
+                                        value={reason}
+                                        placeholder='type your text here...'
+                                        onChange={handleChange}>
+                                    </textarea>
+                                    <div className='validate1'>
                                         Looks good
                                         <i className="fa-solid fa-check"></i>
                                     </div>
-                                    <div className='invalidate'>
+                                    <div className='invalidate1'>
                                         required
                                         <i className="fa-solid fa-check"></i>
                                     </div>
                                 </div>
-
-                                <div className='col-6 date-picker'>
-                                    <label className="form-label">
-                                        Choose your appointment date
-                                    </label>
-                                    <div className='choose-date'>
-                                        <DatePicker
-                                            selected={startDate}
-                                            onChange={(date) => setStartDate(date)}
-                                            showTimeSelect
-                                            timeFormat="HH:mm"
-                                            timeIntervals={15}
-                                            timeCaption="time"
-                                            minTime={setHours(setMinutes(new Date(), 0), 9)}
-                                            maxTime={setHours(setMinutes(new Date(), 0), 19)}
-                                            dateFormat="MMMM d, yyyy h:mm aa"
-                                            minDate={new Date()}
-                                            excludeDates={allAppointments}
-                                        // footer={footer};
-                                        />
-                                    </div>
-                                </div>
-                                <div className='col-6-reason'>
-                                    <div>
-                                        <label className="form-label-reason">What is your reason for visitint?</label>
-                                        <textarea className="form-control-reason"
-                                            name="reason"
-                                            value={reason}
-                                            placeholder='type your text here...'
-                                            onChange={handleChange}>
-                                        </textarea>
-                                        <div className='validate1'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate1'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='col-6 button-visit'>
-                                    <button type='submit' onClick={(e) => handleSubmit(e)}>
-                                        Submit
-                                    </button>
-                                </div>
                             </div>
-                        </form>
-                    </div>
+                            <div className="col-12" >
+                                <button className="btn button-visit btn-primary rounded-0"
+                                    type='submit'
+                                    onClick={(e) => handleSubmit(e)}>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </>

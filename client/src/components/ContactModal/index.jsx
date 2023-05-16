@@ -27,7 +27,7 @@ const ProfileModal = () => {
         const { name, value } = event.target;
 
         if (name === "user_name") {
-            console.log(value);
+          
             setUser(value);
             //   if (value.length > 0) {
             //     console.log(value.length);
@@ -41,7 +41,7 @@ const ProfileModal = () => {
             //   }
         }
         if (name === "user_email") {
-            console.log(value);
+           
             setEmail(value);
             //   if (emailRegex.test(value)) {
             //     console.log(value);
@@ -55,7 +55,7 @@ const ProfileModal = () => {
             //   }
         }
         if (name === "message") {
-            console.log(value);
+           
             setMessage(value);
             //   if (value.length > 0) {
             //     console.log(value);

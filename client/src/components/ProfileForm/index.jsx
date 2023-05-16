@@ -3,7 +3,7 @@ import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
@@ -12,8 +12,8 @@ import './index.css';
 
 const ProfileForm = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const passedVisitData = location.state;
+    // const location = useLocation();
+    // const passedVisitData = location.state;
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
@@ -25,39 +25,45 @@ const ProfileForm = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
-    const [profile, setProfile] = useState('');
+    // const [profile, setProfile] = useState('');
+    // const [username, setUserName] = useState('');
 
     const { loading, data: meData } = useQuery(QUERY_ME);
+    const me = meData?.me || [];
+    const profileInfo = me.profile;
+    const username = me.username;
     // const [addProfile] = useMutation(ADD_PROFILE);
 
     const [addProfile, { error, data }] = useMutation(ADD_PROFILE, {
-
+        variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
         update(cache, { data: { addProfile } }) {
             try {
                 const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
                 cache.writeQuery({
                     query: QUERY_PROFILES,
-                    data: { profiles: profiles.concat([addProfile]) },
+                    data: { profiles: [addProfile, ...profiles] },
                 });
                 console.log(`success adding ${patientfirstname} appointment`);
 
             } catch (e) {
                 console.error(e);
             }
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-              query: QUERY_ME,
-              data: { me: { ...me, profile: [...me.profile, addProfile] } },
-            });
+            // const { me } = cache.readQuery({ query: QUERY_ME });
+            // cache.writeQuery({
+            //     query: QUERY_ME,
+            //     data: { me: { ...me, profile: [...me.profile, addProfile] } },
+            // });
         }
     });
-    useEffect(() => {
-        if (meData) {
-            const me = meData?.me || [];
-            const profile = me.profile;
-            setProfile(profile);
-        }
-    }, [meData]);
+    // useEffect(() => {
+    //     if (meData) {
+    // const me = meData?.me || [];
+    // const profile = me.profile;
+    // const username = me.username;
+    // setProfile(profile);
+    // setUserName(username);
+    //     }
+    // }, [meData]);
 
     const handleChange = (e) => {
 
@@ -150,7 +156,8 @@ const ProfileForm = () => {
             }
         }
         if (name === 'patientzip') {
-            setPatientZip(value);
+            const zip = parseInt(value);
+            setPatientZip(zip);
             if (value.length === 5) {
                 x4.style.display = "block";
                 y4.style.display = "none";
@@ -183,81 +190,80 @@ const ProfileForm = () => {
             }
         }
     };
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
 
-        const appointment = passedVisitData.finalDateISO
+        addProfile(username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip);
 
-        const navigateData = {
+        // const appointment = passedVisitData.finalDateISO
 
-            isBooked: passedVisitData.isBooked,
-            finalDateISO: passedVisitData.finalDateISO,
-            appDay: passedVisitData.appDay,
-            appMonth: passedVisitData.appMonth,
-            appDate: parseInt(passedVisitData.appDate),
-            appTime: passedVisitData.appTime,
-            appYear: parseInt(passedVisitData.appYear),
-            appointment: passedVisitData.appointment,
-            patientnumber: patientnumber,
-            patientfirstname: patientfirstname,
-            patientgender: patientgender,
-            patientaddress: patientaddress,
-            patientlastname: patientlastname,
-            patientcity: patientcity,
-            patientreason: patientreason,
-            birthdate: birthdate,
-            patientzip: parseInt(patientzip)
-        }
+        // const navigateData = {
 
-        try {
-            const { data } = addProfile({
-                variables: { appointment: appointment, patientState: patientState, mepet: passedVisitData.mepet, isBooked: passedVisitData.isBooked, appDay: passedVisitData.appDay, appMonth: passedVisitData.appMonth, appDate: parseInt(passedVisitData.appDate), appTime: passedVisitData.appTime, appYear: parseInt(passedVisitData.appYear), patientnumber: patientnumber, patientfirstname: patientfirstname, patientgender: patientgender, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientreason: patientreason, birthdate: birthdate, patientzip: parseInt(patientzip) }
-            });
-            //    updateProfile();
-            setPatientFirstName("");
-            setPatientLastName("")
-            setPatientGender("");
-            setPatientReason("");
-            setPatientCity("")
-            setPatientAddress("");
-            setPatientZip("");
-            setValue("");
-            setBirthDate("");
-            
-        } catch (err) {
-            console.error(err);
-        }
-        console.log(`success adding ${patientfirstname} appointment on ${appointment}`);
-        navigate('/Dashboard', { state: navigateData });
+        //     isBooked: passedVisitData.isBooked,
+        //     finalDateISO: passedVisitData.finalDateISO,
+        //     appDay: passedVisitData.appDay,
+        //     appMonth: passedVisitData.appMonth,
+        //     appDate: parseInt(passedVisitData.appDate),
+        //     appTime: passedVisitData.appTime,
+        //     appYear: parseInt(passedVisitData.appYear),
+        //     appointment: passedVisitData.appointment,
+        //     patientnumber: patientnumber,
+        //     patientfirstname: patientfirstname,
+        //     patientgender: patientgender,
+        //     patientaddress: patientaddress,
+        //     patientlastname: patientlastname,
+        //     patientcity: patientcity,
+        //     patientreason: patientreason,
+        //     birthdate: birthdate,
+        //     patientzip: patientzip
+        // }
+
+        // setPatientFirstName("");
+        // setPatientLastName("")
+        // setPatientGender("");
+        // setPatientReason("");
+        // setPatientCity("")
+        // setPatientAddress("");
+        // setPatientZip("");
+        // setValue("");
+        // setBirthDate("");
+
+        console.log(`success adding ${patientfirstname}' appointment`);
+        navigate('/Dashboard');
     };
 
     if (loading) {
         return (
-          <main>
-            <h2>Loading . . . . . . </h2>
-          </main>
+            <main>
+                <h2>Loading . . . . . . </h2>
+            </main>
         )
-      }
+    }
     return (
         <>
             <Navbar />
             <div>
-                {!profile ? (
-                    <div className='container-visitor'>
-                        <h1>Please answer few questions about you</h1>
-                        <div className='card-visitor'>
+                {!profileInfo ? (
+                    <div className='container-profile'>
+                        <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5"
+                            style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                            Please answer few questions about you</h4>
+
+                        <div className='card-body'>
                             <form onSubmit={(e) => handleFormSubmit(e)}>
                                 <div className='row m-5'>
                                     <div className='col-6'>
                                         <div>
                                             <label className="form-label gender-question">What is your gender?</label><br />
                                             <input
+                                                className='radio m-2 ms-4'
                                                 type="radio"
                                                 name="patientgender"
                                                 value='male'
                                                 checked={patientgender === 'male'}
                                                 onChange={handleChange} /> male
                                             <input
+                                                className='radio m-2 ms-4'
                                                 type="radio"
                                                 name='patientgender'
                                                 value='female'
@@ -277,6 +283,7 @@ const ProfileForm = () => {
                                     <div className='col-6'>
                                         <label className="form-label">Age</label><br />
                                         <input
+                                        className='age'
                                             type='text'
                                             name="birthdate"
                                             value={birthdate}
@@ -370,7 +377,13 @@ const ProfileForm = () => {
                                     </div>
 
                                     <div className='col-6'>
-                                        Select a state: <SelectUSState id="myId" className="myClassName" onChange={setNewValue} />
+                                        <label className='form-label'>
+                                            Select a state
+                                        </label>
+                                        <SelectUSState 
+                                        id="myId" 
+                                        className="myClassName" 
+                                        onChange={setNewValue} />
                                     </div>
                                     <div className="col-6">
                                         <label className="form-label1">zip code</label>
@@ -392,25 +405,30 @@ const ProfileForm = () => {
                                     </div>
 
                                     <div className="col-6">
-                                        <label className="form-label">Phone number</label>
-                                        <Input
-                                            placeholder="Enter phone number"
-                                            name='patientnumber'
-                                            value={patientnumber}
-                                            onChange={setValue} />
+                                        <label className="form-label">
+                                            Phone number
+                                        </label>
+                                        <div>
+                                            <Input
+                                            className='phone-number'
+                                                placeholder="Enter phone number"
+                                                name='patientnumber'
+                                                value={patientnumber}
+                                                onChange={setValue} />
 
-                                        <div className='validate6'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate6'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
+                                            <div className='validate6'>
+                                                Looks good
+                                                <i className="fa-solid fa-check"></i>
+                                            </div>
+                                            <div className='invalidate6'>
+                                                required
+                                                <i className="fa-solid fa-check"></i>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div className="col-12">
-                                        <button className="btn btn-primary"
+                                        <button className="btn button-profile btn-primary rounded-0"
                                             type="submit"
                                             value="Send">Submit</button>
                                     </div>
@@ -420,7 +438,10 @@ const ProfileForm = () => {
                     </div>
                 ) : (
                     <div>
-                       Success component
+                        <p>
+                            Success! You may now head{' '}
+                            <Link to='/Dashboard'>Appointment booked</Link>
+                        </p>
                     </div>
                 )}
             </div>

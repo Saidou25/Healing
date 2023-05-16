@@ -134,7 +134,7 @@ export const DELETE_USER = gql`
 
 export const ADD_BOOKINGDATE = gql`
      mutation addBookingdate(
-     $username: String,
+     $username: String!,
      $isBooked: String,
      $finalDateISO: String,
      $appDay: String,

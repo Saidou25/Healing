@@ -9,19 +9,19 @@ const UserList = () => {
   // const [profileForDisplay, setProfileForDisplay] = useState('');
   const { data } = useQuery(QUERY_ME);
   const me = data?.me || [];
-  console.log('me', me);
+  // console.log('me', me);
 
   const myUserName = me.username;
-  console.log('myUserName', myUserName);
+  // console.log('myUserName', myUserName);
 
 
   const { meLoading, data: profilesData } = useQuery(QUERY_PROFILES);
   
   const profiles = profilesData?.profiles || [];
-  console.log('all profiles', profiles);
+  // console.log('all profiles', profiles);
 
   const myProfile = profiles.filter(profile => profile.username === myUserName);
-  console.log('myProfile', myProfile);
+  // console.log('myProfile', myProfile);
   const userProfile = myProfile[0]
 
   if (!userProfile) {

@@ -4,11 +4,11 @@
     margin-left: auto;
    
 }
-.card-visitor {
+/* .card-visitor {
     padding-top: 1%;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+} */
 .title {
     display: block;
     text-align: center;
@@ -101,5 +101,13 @@
     color: red;
     margin-right: 15px;
     margin-left: 15px;
+
+}
+.button-owner {
+    margin-top: 10%;
+    width: 25%;
+    background-color: blue;
+    text-align: center;
+    margin-bottom: 15%;
 
 }

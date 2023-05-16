@@ -41,7 +41,7 @@ const Note = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === 'title') {
-            // console.log('title', value);
+           
             setNoteTitle(value);
         }
     };

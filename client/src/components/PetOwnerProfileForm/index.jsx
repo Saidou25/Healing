@@ -8,7 +8,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_USERS, QUERY_PROFILES } from '../../utils/queries';
 
-// import './index.css';
+import './index.css';
 
 const PetOwnerProfileForm = () => {
 
@@ -28,19 +28,12 @@ const PetOwnerProfileForm = () => {
     const { loading, data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const username = me.username;
-    console.log('me from pet owner', me);
 
     const profileInfo = me.profile;
-    // setProfile(profileInfo);
-    console.log('profileInfo from pet owner', profileInfo);
-    // const id = profileInfo._id;
-    // console.log('profileId', id);
-    // setProfileId(id)
-const { id } = useParams();
 
     const [addProfile, { error, data }] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip },
-       
+
         update(cache, { data: { addProfile } }) {
             try {
                 const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
@@ -179,7 +172,7 @@ const { id } = useParams();
             <Navbar />
             <div>
                 {!profileInfo ? (
-                    <div className='container-visitor'>
+                    <div className='container-visitor mt-5'>
                         <h4 className="card-header bg-primary rounded-0 text-light p-4"
                             style={{ fontSize: '1.7rem', textAlign: 'center' }}>
                             Please answer few questions about you</h4>
@@ -194,7 +187,7 @@ const { id } = useParams();
                             <form onSubmit={(e) => handleSubmit(e)}>
                                 <div className='row m-5'>
                                     <div className="col-6">
-                                        <label className="form-label1"> First name</label>
+                                        <label className="form-label"> First name</label>
                                         <input
                                             className="form-control"
                                             onChange={handleChange}
@@ -213,7 +206,7 @@ const { id } = useParams();
                                     </div>
 
                                     <div className="col-6">
-                                        <label className="form-label1"> Last name</label>
+                                        <label className="form-label"> Last name</label>
                                         <input
                                             className="form-control"
                                             onChange={handleChange}
@@ -232,7 +225,7 @@ const { id } = useParams();
                                     </div>
 
                                     <div className="col-6">
-                                        <label className="form-label1">Address</label>
+                                        <label className="form-label">Address</label>
                                         <input
                                             className="form-control"
                                             value={patientaddress}
@@ -251,7 +244,7 @@ const { id } = useParams();
                                     </div>
 
                                     <div className="col-6">
-                                        <label className="form-label1">City</label>
+                                        <label className="form-label">City</label>
                                         <input
                                             className="form-control"
                                             value={patientcity}
@@ -270,10 +263,20 @@ const { id } = useParams();
                                     </div>
 
                                     <div className='col-6'>
-                                        Select a state: <SelectUSState id="myId" className="myClassName" onChange={setNewValue} />
+                                        <label className='form-label'>
+                                            Select a state
+                                        </label>
+
+                                        <SelectUSState
+                                            id="myId"
+                                            className="myClassName"
+                                            onChange={setNewValue} 
+                                            
+                                            />
                                     </div>
+
                                     <div className="col-6">
-                                        <label className="form-label1">zip code</label>
+                                        <label className="form-label">Zip code</label>
                                         <input
                                             className="form-control"
                                             name="patientzip"
@@ -292,14 +295,18 @@ const { id } = useParams();
                                     </div>
 
                                     <div className="col-6">
-                                        <label className="form-label">Phone number</label>
-                                        <Input
-                                            placeholder="Enter phone number"
-                                            name='patientnumber'
-                                            value={patientnumber}
-                                            onChange={setValue} />
+                                        <label className="form-label">
+                                            Phone number
+                                        </label>
+                                        <div>
+                                            <Input
+                                            className='phone-number'
+                                                placeholder="Enter phone number..."
+                                                name='patientnumber'
+                                                value={patientnumber}
+                                                onChange={setValue} />
 
-                                        {/* <div className='validate6'>
+                                            {/* <div className='validate6'>
                                             Looks good
                                             <i className="fa-solid fa-check"></i>
                                         </div>
@@ -307,10 +314,11 @@ const { id } = useParams();
                                             required
                                             <i className="fa-solid fa-check"></i>
                                         </div> */}
+                                        </div>
                                     </div>
 
                                     <div className="col-12">
-                                        <button className="btn btn-primary"
+                                        <button className="btn button-owner rounded-0 btn-primary"
                                             type="submit"
                                             value="Send">Submit</button>
                                     </div>
@@ -318,12 +326,15 @@ const { id } = useParams();
                             </form>
 
                         </div>
-                    </div>
+                    </div >
                 ) : (
-                    <div>Reasons
-                    </div>
+                    <p>
+                        Success! You may now head{' '}
+                        <Link to='/Dashboard'>Appointment booked</Link>
+                    </p>
+
                 )}
-            </div>
+            </div >
         </>
     )
 

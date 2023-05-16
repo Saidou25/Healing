@@ -81,6 +81,8 @@ const ReviewForm = (props) => {
               </p>
             :  ( 
                             <form onSubmit={handleFormSubmit}>
+                                 <label className="form-label">Title</label><br />
+                                           
                                 <input
                                     className="form-input review-form-input mb-3"
                                     placeholder="title"
@@ -89,6 +91,8 @@ const ReviewForm = (props) => {
                                     value={formState.title}
                                     onChange={handleChange}
                                 />
+                                 <label className="form-label">Text</label><br />
+                                           
                                 <textarea
                                     className="form-input review-textarea mb-3"
                                     placeholder="write your text"
@@ -98,7 +102,7 @@ const ReviewForm = (props) => {
                                     onChange={handleChange}
                                 /><br />
                                 <button
-                                    className="btn btn-block btn-info"
+                                    className="btn btn-block rounded-0 btn-info"
                                     style={{ cursor: 'pointer' }}
                                     type="submit"
                                 >

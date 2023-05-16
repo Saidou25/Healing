@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 import { QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
@@ -34,16 +34,13 @@ const PetForm = (props) => {
 
     const { data } = useQuery(QUERY_ME);
     const me = data?.me || [];
-    console.log('me', me);
-  
     const username = me.username;
-    console.log('username', username);
-  
-  
+
+
     const { data: profilesData } = useQuery(QUERY_PROFILES);
     const profiles = profilesData?.profiles || [];
-    console.log('all profiles', profiles);
-  
+
+
     // const myProfile = profiles.filter(profile => profile.username === myUserName);
     // console.log('myProfile', myProfile);
     // const userProfile = myProfile[0];
@@ -115,7 +112,7 @@ const PetForm = (props) => {
         }
         if (name === 'petWeight') {
             setPetWeight(value);
-            console.log(value);
+
             if (value) {
                 x5.style.display = "block";
                 y5.style.display = "none";
@@ -161,151 +158,157 @@ const PetForm = (props) => {
         <>
             <Navbar />
             <div>
-                {/* {!data ? ( */}
-                    <div className='container'>
-                        <h1>Please answer few questions about your pet</h1>
-                        <form onSubmit={handleFormSubmit}>
-                            <div className='row'>
-                                <div className='col-6'>
-                                    <div>
-                                        <label className="form-label">What kind of pet?</label><br />
+                {!(props.profile) ? (
+                    <div className='container-pet mt-5'>
+                        <h4 className="card-header bg-primary rounded-0 text-light p-4"
+                            style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                            Please answer few questions about your pet</h4>
+                        <div className="card-body">
+                            <form onSubmit={handleFormSubmit}>
+                                <div className='row m-5'>
+                                    <div className='col-6'>
+                                        <div>
+                                            <label className="form-label">What kind of pet?</label><br />
+                                            <input
+                                                className='radio m-2 ms-4'
+                                                type="radio"
+                                                name="petKind"
+                                                value='dog'
+                                                checked={petKind === 'dog'}
+                                                onChange={handleChange} /> dog
+                                            <input
+                                                className='radio m-2 ms-4'
+                                                type="radio"
+                                                name='petKind'
+                                                value='cat'
+                                                checked={petKind === 'cat'}
+                                                onChange={handleChange} /> cat
+                                        </div>
+                                        <div className='validate'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <label className="form-label"> Name</label>
                                         <input
-                                            type="radio"
-                                            name="petKind"
-                                            value='dog'
-                                            checked={petKind === 'dog'}
-                                            onChange={handleChange} /> dog
+                                            className="form-control"
+                                            onChange={handleChange}
+                                            type="text"
+                                            value={petName}
+                                            name="petName"
+                                            placeholder="pet's name..." />
+                                        <div className='validate1'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate1'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div>
+                                    <div className='col-6'>
+                                        <div>
+                                            <label className="form-label">What is your pet's gender?</label><br />
+                                            <input
+                                                className='radio m-2 ms-4'
+                                                type="radio"
+                                                name="petGender"
+                                                value='male'
+                                                checked={petGender === 'male'}
+                                                onChange={handleChange} /> male
+                                            <input
+                                                className='radio m-2 ms-4'
+                                                type="radio"
+                                                name='petGender'
+                                                value='female'
+                                                checked={petGender === 'female'}
+                                                onChange={handleChange} /> female
+                                        </div>
+                                        <div className='validate2'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate2'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                    </div>
+                                    <div className='col-6'>
+                                        <label className="form-label">Age</label><br />
                                         <input
-                                            type="radio"
-                                            name='petKind'
-                                            value='cat'
-                                            checked={petKind === 'cat'}
-                                            onChange={handleChange} /> cat
+                                            className='age'
+                                            type='text'
+                                            name="petAge"
+                                            value={petAge}
+                                            onChange={handleChange}
+                                            placeholder="MM/DD/YYYY..."
+                                        />
+                                        <div className='validate3'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate3'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div className='validate'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                    <div className='invalidate'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
-                                <div className="col-6">
-                                    <label className="form-label1"> Name</label>
-                                    <input
-                                        className="form-control"
-                                        onChange={handleChange}
-                                        type="text"
-                                        value={petName}
-                                        name="petName"
-                                        placeholder="pet's name..." />
-                                    <div className='validate1'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                    <div className='invalidate1'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
-                                <div className='col-6'>
-                                    <div>
-                                        <label className="form-label">What is your pet's gender?</label><br />
+                                    <div className="col-6">
+                                        <label className="form-label"> Breed</label>
                                         <input
-                                            type="radio"
-                                            name="petGender"
-                                            value='male'
-                                            checked={petGender === 'male'}
-                                            onChange={handleChange} /> male
+                                            className="form-control"
+                                            onChange={handleChange}
+                                            type="text"
+                                            value={petBreed}
+                                            name="petBreed"
+                                            placeholder="breeed..." />
+                                        <div className='validate4'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate4'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div>
+                                    <div className="col-6">
+                                        <label className="form-label"> Pet's weight</label>
                                         <input
-                                            type="radio"
-                                            name='petGender'
-                                            value='female'
-                                            checked={petGender === 'female'}
-                                            onChange={handleChange} /> female
+                                            className="form-control"
+                                            onChange={handleChange}
+                                            type="text"
+                                            name="petWeight"
+                                            value={petWeight}
+                                            placeholder="weight..." />
+                                        <div className='validate5'>
+                                            Looks good
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
+                                        <div className='invalidate5'>
+                                            required
+                                            <i className="fa-solid fa-check"></i>
+                                        </div>
                                     </div>
-                                    <div className='validate2'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                    <div className='invalidate2'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
-                                <div className='col-6'>
-                                    <label className="form-label">Age</label><br />
-                                    <input
-                                        type='text'
-                                        name="petAge"
-                                        value={petAge}
-                                        onChange={handleChange}
-                                        placeholder="MM/DD/YYYY..."
-                                    />
-                                    <div className='validate3'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                    <div className='invalidate3'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
-                                <div className="col-6">
-                                    <label className="form-label1"> Breed</label>
-                                    <input
-                                        className="form-control"
-                                        onChange={handleChange}
-                                        type="text"
-                                        value={petBreed}
-                                        name="petBreed"
-                                        placeholder="breeed..." />
-                                    <div className='validate4'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                    <div className='invalidate4'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
-                                <div className="col-6">
-                                    <label className="form-label1"> Pet's weight</label>
-                                    <input
-                                        className="form-control"
-                                        onChange={handleChange}
-                                        type="text"
-                                        name="petWeight"
-                                        value={petWeight}
-                                        placeholder="weight..." />
-                                    <div className='validate5'>
-                                        Looks good
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                    <div className='invalidate5'>
-                                        required
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                </div>
 
-                                <div className="col-12">
-                                    <button className="btn btn-primary"
-                                        type="submit"
-                                       >
-                                        Submit
-                                    </button>
+                                    <div className="col-12">
+                                        <button className="btn rounded-0 button-pet btn-primary"
+                                            type="submit"
+                                        >
+                                            Submit
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                {/* ) : ( */}
-                    <div>Appointment booked</div>
-                {/* )} */}
+                ) : (
+                    <></>
+                    // <Link to='/Dashboard'>Appointment booked</Link>
+                )}
             </div>
         </>
     )

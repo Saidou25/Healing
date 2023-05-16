@@ -6,9 +6,9 @@ import './index.css';
 
 const MyReviewsList = (props) => {
     const myUserName = props.username;
-    console.log('username from list', myUserName);
+   
     const myReviews = props.myReviews;
-    console.log('my reviews from list', myReviews);
+   
     const [reviewId, setReviewId] = useState('');
     // const [reviews, setReviews] = useState('');
 
@@ -50,7 +50,7 @@ const MyReviewsList = (props) => {
             setReviewId(review._id);
             // setReview(review);
             // setReviews(reviews);
-            console.log('great');
+            console.log('Review deletes successfully');
         } catch (err) {
             console.error(err);
         }
@@ -64,11 +64,11 @@ const MyReviewsList = (props) => {
     }
     return (
         <div>
-            <h3 className="review-list-title mt-4 mb-5">My Reviews</h3>
+            <h3 className="review-list-title mt-4 mb-5">Reviews</h3>
             <div className="row justify-context-space-between">
                 {reviews &&
                     reviews.map((review) => (
-                        <div key={review._id} className="col-12">
+                        <div key={review._id} className="col-4">
                             <div className="card text-white bg-primary mb-3">
                                 <div className="card-header">Header</div>
                                 <div className='card-body'>
