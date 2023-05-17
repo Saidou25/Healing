@@ -8,6 +8,12 @@ const petSchema = new Schema({
         trim: true,
 
     },
+    profileId: {
+        type: String,
+        required: false,
+        trim: true,
+
+    },
     username: {
         type: String,
         required: true,
@@ -29,11 +35,17 @@ const petSchema = new Schema({
         required: true,
         trim: true,
     },
+    petKind: {
+        type: String,
+        required: false,
+        trim: true,
+    },
     petAge: {
         type: String,
         required: true,
         trim: true
-    }
+    },
+    
 
 });
 

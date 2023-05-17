@@ -14,10 +14,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProfileForm from './components/ProfileForm';
 import PetProfileForm from './components/PetProfileForm';
 import PetOwnerProfileForm from './components/PetOwnerProfileForm';
-import PreloadProfile from './components/PreloadProfile';
 import ReviewForm from './components/ReviewForm';
 import MyReviewsList from './components/MyReviewsList';
 import ProfileDisplay from './components/ProfileDisplay';
+import Appointment from './components/Appointment';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
 import MyAppointmentsList from './components/MyAppointmentsList';
@@ -85,8 +85,8 @@ function App() {
             <Route path='/Signup' element={<Signup />} />
             <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
-            <Route path='/PreloadProfile' element={<PreloadProfile />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
+            <Route path='/Appointment' element={<Appointment />} />
             <Route path='/Profile' element={<Profile />} />
             <Route path='/ContactModal' element={<ContactModal />} />
             <Route path='/PetProfileForm' element={<PetProfileForm />} />

@@ -7,7 +7,10 @@ import { useMutation, useQuery } from '@apollo/client';
 import './index.css';
 
 const PetForm = (props) => {
-    // const username = props.username;
+    const userProfile = props.userProfile;
+    const myPet = props.myPet;
+    const profileId = props.profileId;
+    console.log('profileId from petProfile form');
     const navigate = useNavigate();
     // const [profileId, setProfileId] = useState('');
     const [profile, setProfile] = useState('');
@@ -41,16 +44,24 @@ const PetForm = (props) => {
     const profiles = profilesData?.profiles || [];
 
 
-    // const myProfile = profiles.filter(profile => profile.username === myUserName);
-    // console.log('myProfile', myProfile);
-    // const userProfile = myProfile[0];
-    // console.log('userProfile', userProfile);
-    // // const username = userProfile.username;
-    // console.log('username', username);
+    const [addPet, { error }] = useMutation(ADD_PET, {
+        update(cache, { data: { addPet } }) {
+            try {
+                const { pets } = cache.readQuery({ query: QUERY_PETS });
+
+                cache.writeQuery({
+                    query: QUERY_PETS,
+                    data: { pets: [addPet, ...pets] },
+                });
+            } catch (e) {
+                console.error(e);
+            }
+            navigate('/Dashboard');
+        }
+    });
 
 
-
-    const [addPet] = useMutation(ADD_PET);
+    // const [addPet] = useMutation(ADD_PET);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -132,7 +143,7 @@ const PetForm = (props) => {
         // console.log('profileId', profileId);
         try {
             await addPet({
-                variables: { petName: petName, username: username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
+                variables: { profileId: profileId, petName: petName, username: username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
             });
             console.log(`Appointment for ${petName} booked successfully`);
             setPetName('');
@@ -147,18 +158,13 @@ const PetForm = (props) => {
         };
     };
 
-    // if (loading) {
-    //     return (
-    //       <main>
-    //         <h2>Loading . . . . . . </h2>
-    //       </main>
-    //     )
-    //   }
     return (
         <>
             <Navbar />
             <div>
-                {!(props.profile) ? (
+                {myPet?.username ? (
+                    <Link to='/AppointmentConfirmation'>Success booking</Link>
+                ) : (
                     <div className='container-pet mt-5'>
                         <h4 className="card-header bg-primary rounded-0 text-light p-4"
                             style={{ fontSize: '1.7rem', textAlign: 'center' }}>
@@ -305,9 +311,6 @@ const PetForm = (props) => {
                             </form>
                         </div>
                     </div>
-                ) : (
-                    <></>
-                    // <Link to='/Dashboard'>Appointment booked</Link>
                 )}
             </div>
         </>

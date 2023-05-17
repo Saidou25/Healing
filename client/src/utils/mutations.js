@@ -61,22 +61,28 @@ export const UPDATE_USER = gql`
 export const ADD_PET = gql`
      mutation addPet(
      $username: String!
+     $profileId: String
      $petName: String
      $petWeight: Int
      $petAge: String
+     $petKind: String
      $petGender: String
      $petBreed: String) {
      addPet(
      username: $username
+     profileId: $profileId
         petName: $petName
      petWeight: $petWeight
      petAge:  $petAge
+     petKind: $petKind
      petGender: $petGender
      petBreed: $petBreed) {
      _id
      petName
      petBreed
      petWeight
+     profileId
+    petKind
      petAge
      petGender
     username

@@ -17,7 +17,7 @@ const ProfileForm = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const profile = location.state;
-console.log('profile', profile);
+// console.log('profile', profile);
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
@@ -232,7 +232,7 @@ console.log('profile', profile);
         // setBirthDate("");
 
         console.log(`success adding ${patientfirstname}' appointment`);
-        (mepet === 'me') ? navigate('/Dashboard') : navigate('/PetProfileForm');
+        navigate('/Dashboard');
     };
 
     if (loading) {
@@ -246,7 +246,6 @@ console.log('profile', profile);
         <>
             <Navbar />
             <div>
-                {!userProfile ? (
                     <div className='container-profile'>
                         <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5"
                             style={{ fontSize: '1.7rem', textAlign: 'center' }}>
@@ -438,15 +437,7 @@ console.log('profile', profile);
                                 </div>
                             </form>
                         </div>
-                    </div>
-                ) : (
-                    <div>
-                        <p>
-                            Success! You may now head{' '}
-                            <Link to='/Dashboard'>Appointment booked</Link>
-                        </p>
-                    </div>
-                )}
+                    </div>Í
             </div>
         </>
 

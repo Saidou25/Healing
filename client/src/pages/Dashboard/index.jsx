@@ -26,7 +26,7 @@ const Dashboard = () => {
     const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === username);
 
     const handleSubmit = (e) => {
-        e === 'review' ? setIsShown(current => !current) : navigate('/AppointmentForm');
+        e === 'review' ? setIsShown(current => !current) : navigate('/Appointment');
 
     };
 

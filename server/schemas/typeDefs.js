@@ -43,6 +43,8 @@ const typeDefs = gql`
      petWeight: Int
      petGender: String
      petAge: String
+     petKind: String
+     profileId: String
      }
      type Note {
       _id: ID!
@@ -152,6 +154,7 @@ const typeDefs = gql`
 
     addPet(
     username: String!
+    profileId: String
      petBreed: String
      petName: String
      petWeight: Int

@@ -11,8 +11,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { parseISO, setHours, setMinutes } from 'date-fns'
 
 
-const AppointmentForm = () => {
+const AppointmentForm = (props) => {
     const navigate = useNavigate();
+    const userProfile = props.userProfile;
+    const myPet = props.myPet;
 
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
@@ -110,19 +112,7 @@ const AppointmentForm = () => {
         const appTime = app[4];
         const appYear = app[3];
 
-        const navigateVisitData = {
-            // email: email,
-            profile: profile,
-            reason: reason,
-            mepet: mepet,
-            isBooked: isBooked,
-            finalDateISO: finalDateISO,
-            appDay: appDay,
-            appMonth: appMonth,
-            appDate: parseInt(appDate),
-            appTime: appTime,
-            appYear: parseInt(appYear)
-        }
+      
         if (mepet && reason) {
             try {
                 await addBookingdate({ variables: { username: username, reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
@@ -137,11 +127,28 @@ const AppointmentForm = () => {
         } else {
             console.log('you need to fill up the form correctly');
         }
-        console.log('mepet', mepet);
-        navigate('/PreloadProfile', { state: mepet })
-        // mepet === 'me' ?
-        //     navigate('/ProfileForm', { state: profile }) :
-        //     navigate('/PetOwnerProfileForm', { state: profile });
+        
+
+        if (mepet === 'mypet' && userProfile && myPet.length) {
+            navigate('/Dashboard');
+            console.log('case 1');
+        }
+        if (mepet === 'mypet' && userProfile && !myPet.length) {
+            navigate('/PetProfileForm');
+            console.log('case 2');
+        }
+        if (mepet === 'mypet' && !userProfile) {
+            navigate('/PetOwnerProfileForm');
+            console.log('case 3');
+        }
+        if (mepet === 'me' && !userProfile) {
+           navigate('/ProfileForm', { state: profile });
+           console.log('case 4');
+        }
+        if (mepet === 'me' && userProfile) {
+           navigate('/Dashboard', { state: profile });
+           console.log('case 5');
+        }
     };
 
     if (loading) {
@@ -153,7 +160,7 @@ const AppointmentForm = () => {
     }
     return (
         <>
-            {/* <Navbar /> */}
+            <Navbar />
             <div className='container-appointment'>
                 <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5"
                     style={{ fontSize: '1.7rem', textAlign: 'center' }}>

@@ -11,12 +11,9 @@ const AppointmentConfirmation = () => {
 
     return (
         <>
-            <div>
-                <Navbar />
-            </div>
-            <h1>Your appointment was successfully created.{' '} Lets navigate to your</h1>
+         
+            <h1>Your appointment was successfully created.{' '} </h1>
             <Link to="/Dashboard">Lets navigate to your Dashboard.</Link>
-            <div>{passedDateStringifyied}</div>
         </>
     )
 };

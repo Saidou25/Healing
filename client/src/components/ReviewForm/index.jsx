@@ -1,20 +1,13 @@
 import React, { useState } from "react";
-// import { useNavigate } from 'react-router-dom';
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { ADD_REVIEW } from "../../utils/mutations";
 import { QUERY_REVIEWS, QUERY_ME } from '../../utils/queries';
-import MyReviewsList from "../MyReviewsList";
-// import Dashboard from "../../pages/Dashboard";
 import './index.css';
 
-
 const ReviewForm = (props) => {
-   const username = props.username;
-//    console.log('username', username);
-    //    const navigate = useNavigate();
-    const [formState, setFormState] = useState({ title: '', reviewText: '' });
-    // const [disapear, setDisapear] = useState('');
-    // const [addReview] = useMutation(ADD_REVIEW);
+    const username = props.username;
+
+    const [formState, setFormState] = useState({ title: '', reviewText: '' }); // const [addReview] = useMutation(ADD_REVIEW);
 
     const [addReview, { error }] = useMutation(ADD_REVIEW, {
         update(cache, { data: { addReview } }) {
@@ -30,8 +23,8 @@ const ReviewForm = (props) => {
             }
             const { me } = cache.readQuery({ query: QUERY_ME });
             cache.writeQuery({
-              query: QUERY_ME,
-              data: { me: { ...me, reviews: [...me.reviews, addReview] } },
+                query: QUERY_ME,
+                data: { me: { ...me, reviews: [...me.reviews, addReview] } },
             });
         }
     });
@@ -53,12 +46,9 @@ const ReviewForm = (props) => {
                 variables: { username: username, ...formState },
             });
 
-            // setDisapear('disapear')
-
         } catch (e) {
             console.error(e);
         }
-        // navigate('/AppointmentConfirmation', { state: formState });
 
         setFormState({
             title: '',
@@ -74,42 +64,42 @@ const ReviewForm = (props) => {
                     <div className="card">
                         <h4 className="card-header bg-primary text-light p-2">Write your review</h4>
                         <div className="card-body">
-                           {formState.length ?  
-                          <p>
-                Success! 
-                {/* <Link to="/Dashboard">to your Dashboard.</Link> */}
-              </p>
-            :  ( 
-                            <form onSubmit={handleFormSubmit}>
-                                 <label className="form-label">Title</label><br />
-                                           
-                                <input
-                                    className="form-input review-form-input mb-3"
-                                    placeholder="title"
-                                    name="title"
-                                    type="text"
-                                    value={formState.title}
-                                    onChange={handleChange}
-                                />
-                                 <label className="form-label">Text</label><br />
-                                           
-                                <textarea
-                                    className="form-input review-textarea mb-3"
-                                    placeholder="write your text"
-                                    name="reviewText"
-                                    type="text"
-                                    value={formState.reviewText}
-                                    onChange={handleChange}
-                                /><br />
-                                <button
-                                    className="btn btn-block rounded-0 btn-info"
-                                    style={{ cursor: 'pointer' }}
-                                    type="submit"
-                                >
-                                    Submit
-                                </button>
-                            </form>
-                          )} 
+                            {formState.length ?
+                                <p>
+                                    Success!
+                                    {/* <Link to="/Dashboard">to your Dashboard.</Link> */}
+                                </p>
+                                : (
+                                    <form onSubmit={handleFormSubmit}>
+                                        <label className="form-label">Title</label><br />
+
+                                        <input
+                                            className="form-input review-form-input mb-3"
+                                            placeholder="title"
+                                            name="title"
+                                            type="text"
+                                            value={formState.title}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-label">Text</label><br />
+
+                                        <textarea
+                                            className="form-input review-textarea mb-3"
+                                            placeholder="write your text"
+                                            name="reviewText"
+                                            type="text"
+                                            value={formState.reviewText}
+                                            onChange={handleChange}
+                                        /><br />
+                                        <button
+                                            className="btn btn-block rounded-0 btn-info"
+                                            style={{ cursor: 'pointer' }}
+                                            type="submit"
+                                        >
+                                            Submit
+                                        </button>
+                                    </form>
+                                )}
 
                             {error && (
                                 <div className="my-3 p-3 bg-danger text-white">

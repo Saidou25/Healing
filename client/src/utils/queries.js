@@ -238,6 +238,8 @@ export const QUERY_PETS = gql`
     petBreed
     petWeight
     username
+    petKind
+    profileId
      }
   }
 `;
