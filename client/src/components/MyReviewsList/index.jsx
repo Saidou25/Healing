@@ -10,7 +10,6 @@ const MyReviewsList = (props) => {
     const myReviews = props.myReviews;
    
     const [reviewId, setReviewId] = useState('');
-    // const [reviews, setReviews] = useState('');
 
     const { data: reviewsData, loading } = useQuery(QUERY_REVIEWS);
     const reviews = reviewsData?.reviews || [];
@@ -32,33 +31,21 @@ const MyReviewsList = (props) => {
         }
     });
 
-    // useEffect(() => {
-    //     if (reviewsData) {
-    // const reviews = reviewsData?.reviews || [];
-    // setReviews(reviews);
-    //     }
-    // }, [reviewsData]);
 
     const handleSubmit = (review) => {
         const reviewId = review._id;
-        // const reviewIdStr = reviewId.toString();
 
         try {
             const { data } = deleteReview({
                 variables: { id: reviewId }
             });
             setReviewId(review._id);
-            // setReview(review);
-            // setReviews(reviews);
-            console.log('Review deletes successfully');
+            console.log('Review deleted successfully');
         } catch (err) {
             console.error(err);
         }
     };
 
-    // if (!reviews.length) {
-    //     return <h3>No reviews Yet</h3>
-    // }
     if (loading) {
         return <h3>loading...</h3>
     }

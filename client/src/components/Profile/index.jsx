@@ -110,7 +110,7 @@ if (!userProfile) {
                             </h4>
                         </div>
                     </div>
-                    <Link to='/UpdateMyProfile' className='nav-item'>
+                    <Link to='/UpdateProfile' className='nav-item'>
                         <button className='btn delete-review mt-4 btn-info rounded-0'>
                             update
                         </button> <br />

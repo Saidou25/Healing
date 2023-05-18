@@ -19,7 +19,6 @@ const Dashboard = () => {
     const me = data?.me || [];
     const username = me.username;
     const myReviews = me.reviews;
-    console.log('myReviews from dashboard', myReviews);
 
     const { data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
     const bookingdates = appointmentsData?.bookingdates || [];
@@ -35,19 +34,13 @@ const Dashboard = () => {
             <Navbar />
             <div className='container-fluid'>
                 <div className='row justify-content-evenly mt-5'>
-
                     <div className='col-6 col-lg-5'>
                         <MyAppointmentsList myAppointments={myAppointments} /> <br />
-
                     </div>
-
                     <div className='col-6 col-lg-5'>
                         <h3 className='book-title'>Message your practitioner</h3><br />
                         <ContactModal />
                     </div>
-
-
-
                     <div className='col-6 col-lg-5'>
                         <h3 className='book-title'>Book an appointment</h3><br />
                         <button
@@ -57,7 +50,6 @@ const Dashboard = () => {
                             start
                         </button>
                     </div>
-
                     <div className='col-6 col-lg-5'>
                         <h3 className='review-title'>Add your own review</h3><br />
                         <button

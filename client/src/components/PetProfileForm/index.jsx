@@ -7,20 +7,15 @@ import { useMutation, useQuery } from '@apollo/client';
 import './index.css';
 
 const PetForm = (props) => {
-    const userProfile = props.userProfile;
     const myPet = props.myPet;
     const profileId = props.profileId;
-    console.log('profileId from petProfile form');
     const navigate = useNavigate();
-    // const [profileId, setProfileId] = useState('');
-    const [profile, setProfile] = useState('');
     const [petName, setPetName] = useState('');
     const [petWeight, setPetWeight] = useState('');
     const [petBreed, setPetBreed] = useState('');
     const [petAge, setPetAge] = useState('');
     const [petGender, setPetGender] = useState('');
     const [petKind, setPetKind] = useState('');
-    const [petExist, setPetExist] = useState('');
 
     const x = document.querySelector(".validate");
     const y = document.querySelector(".invalidate");
@@ -59,9 +54,6 @@ const PetForm = (props) => {
             navigate('/Dashboard');
         }
     });
-
-
-    // const [addPet] = useMutation(ADD_PET);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -136,11 +128,6 @@ const PetForm = (props) => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        // console.log('e', e.target.value);
-        // console.log('petName', petName);
-        // console.log('petBreed', petBreed);
-        // console.log('profile from addPet', profile);
-        // console.log('profileId', profileId);
         try {
             await addPet({
                 variables: { profileId: profileId, petName: petName, username: username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }

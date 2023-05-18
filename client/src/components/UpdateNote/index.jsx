@@ -8,9 +8,7 @@ const UpdateNote = () => {
     const [noteTitle, setNoteTitle] = useState('');
     const { data } = useQuery(QUERY_ME);
     const me = data?.me || [];
-    // console.log('me', me)
     const noteId = me.note?._id;
-    // console.log('noteId', noteId);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

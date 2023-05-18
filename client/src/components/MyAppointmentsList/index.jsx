@@ -3,9 +3,6 @@ import './index.css';
 
 const AppointmentList = (props) => {
     const myAppointments = props.myAppointments;
-    console.log('appointments', myAppointments);
-
-
 
     if (!myAppointments.length) {
         return (

@@ -21,14 +21,6 @@ const MyProfile = () => {
 
   const userProfile = myProfileInfo[0]
 
-  // if (!userProfile) {
-  //   return (
-  //     <>
-  //      <Navbar />
-  //       {myUserName}
-  //     </>
-  //   )
-  // } 
   return (
     <div>
       <Navbar />

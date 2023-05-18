@@ -31,12 +31,10 @@ const PetOwnerProfileForm = (props) => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
 
-    // const [addProfile] = useMutation(ADD_PROFILE);
     const { loading, data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const username = me.username;
 
-    const profileInfo = me.profile;
 
     const [addProfile, { error, data }] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip },
@@ -56,7 +54,6 @@ const PetOwnerProfileForm = (props) => {
             }
         }
     });
-    // console.log('data from pet owner form', data);
 
     const handleChange = (e) => {
 
@@ -143,37 +140,11 @@ const PetOwnerProfileForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         addProfile(username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip)
-        // try {
-        //     const { data } = await addProfile({
-        //         // variables: { patientState: patientState, patientnumber: patientnumber, patientfirstname: patientfirstname, patientaddress: patientaddress, patientlastname: patientlastname, patientcity: patientcity, patientzip: patientzip },
-        //     });
-        // setPatientFirstName("");
-        // setPatientLastName("");
-        // setPatientCity("")
-        // setPatientAddress("");
-        // setPatientZip("");
-        // setValue("");
-        // } catch (e) {
-        //     console.error(e);
-        // }
+       
         console.log(`success adding your info ${patientfirstname} !`);
         (mepet === 'mypet') ? navigate('/Appointment', { state: username, userProfile }) : navigate('/Dashboard');
     };
 
-    // if (loading) {
-    //     return (
-    //         <main>
-    //             <h2>Loading . . . . . . </h2>
-    //         </main>
-    //     )
-    // }
-    // if (userProfile && !myPet) {
-    //     return (
-    //         <div>
-    //             <PetProfileForm userProfile={userProfile} myPet={myPet} profileId={profileId} />
-    //         </div>
-    //     )
-    // }
     return (
         <>
             <Navbar />

@@ -16,8 +16,6 @@ const ProfileForm = (props) => {
     
     const navigate = useNavigate();
     const location = useLocation();
-    const profile = location.state;
-// console.log('profile', profile);
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setValue] = useState('');
     const [patientgender, setPatientGender] = useState('');
@@ -28,14 +26,10 @@ const ProfileForm = (props) => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [patientreason, setPatientReason] = useState('');
-    // const [profile, setProfile] = useState('');
-    // const [username, setUserName] = useState('');
 
     const { loading, data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
-    const profileInfo = me.profile;
     const username = me.username;
-    // const [addProfile] = useMutation(ADD_PROFILE);
 
     const [addProfile, { error, data }] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
@@ -51,22 +45,8 @@ const ProfileForm = (props) => {
             } catch (e) {
                 console.error(e);
             }
-            // const { me } = cache.readQuery({ query: QUERY_ME });
-            // cache.writeQuery({
-            //     query: QUERY_ME,
-            //     data: { me: { ...me, profile: [...me.profile, addProfile] } },
-            // });
         }
     });
-    // useEffect(() => {
-    //     if (meData) {
-    // const me = meData?.me || [];
-    // const profile = me.profile;
-    // const username = me.username;
-    // setProfile(profile);
-    // setUserName(username);
-    //     }
-    // }, [meData]);
 
     const handleChange = (e) => {
 
@@ -198,38 +178,15 @@ const ProfileForm = (props) => {
 
         addProfile(username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip);
 
-        // const appointment = passedVisitData.finalDateISO
-
-        // const navigateData = {
-
-        //     isBooked: passedVisitData.isBooked,
-        //     finalDateISO: passedVisitData.finalDateISO,
-        //     appDay: passedVisitData.appDay,
-        //     appMonth: passedVisitData.appMonth,
-        //     appDate: parseInt(passedVisitData.appDate),
-        //     appTime: passedVisitData.appTime,
-        //     appYear: parseInt(passedVisitData.appYear),
-        //     appointment: passedVisitData.appointment,
-        //     patientnumber: patientnumber,
-        //     patientfirstname: patientfirstname,
-        //     patientgender: patientgender,
-        //     patientaddress: patientaddress,
-        //     patientlastname: patientlastname,
-        //     patientcity: patientcity,
-        //     patientreason: patientreason,
-        //     birthdate: birthdate,
-        //     patientzip: patientzip
-        // }
-
-        // setPatientFirstName("");
-        // setPatientLastName("")
-        // setPatientGender("");
-        // setPatientReason("");
-        // setPatientCity("")
-        // setPatientAddress("");
-        // setPatientZip("");
-        // setValue("");
-        // setBirthDate("");
+        setPatientFirstName("");
+        setPatientLastName("")
+        setPatientGender("");
+        setPatientReason("");
+        setPatientCity("")
+        setPatientAddress("");
+        setPatientZip("");
+        setValue("");
+        setBirthDate("");
 
         console.log(`success adding ${patientfirstname}' appointment`);
         navigate('/Dashboard');

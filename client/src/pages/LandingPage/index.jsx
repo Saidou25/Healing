@@ -6,9 +6,8 @@ const LandingPage = () => {
     return (
         <div className="mainlandingpage">
             <Link className="site-title text-primary m-5" to="/" style={{ fontSize: '7rem' }}>
-                    Healing
-                </Link>
-            {/* <h1 className='reiki text-white m-4' style={{ fontSize: '7rem' }}>Healing</h1> */}
+                Healing
+            </Link>
             <div className="landing-parent rounded-0">
                 <div className="card landing-page">
                     <div className="row landing-row">
