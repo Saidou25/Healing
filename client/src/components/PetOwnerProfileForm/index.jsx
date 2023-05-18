@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
-import AppointmentConfirmation from '../AppointmentConfirmation';
+import Confirmation from '../Confirmation';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
 import { useNavigate, Link } from 'react-router-dom';
@@ -150,7 +150,7 @@ const PetOwnerProfileForm = (props) => {
             <Navbar />
             <div>
                 {userProfile ? (
-                    <AppointmentConfirmation myPet={myPet} />
+                    <Confirmation myPet={myPet} />
                 ) : (
                     <div>
                         <div className='container-visitor mt-5'>

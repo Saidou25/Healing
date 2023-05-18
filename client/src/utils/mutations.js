@@ -127,16 +127,6 @@ export const DELETE_REVIEW = gql`
     }
   }
 `;
-export const DELETE_USER = gql`
-   mutation deleteUser($id: String!) {
-   deleteUser(id: $id) {
-   _id
-   username
-   }
-   }
-   `;
-
-
 
 export const ADD_BOOKINGDATE = gql`
      mutation addBookingdate(
@@ -175,6 +165,46 @@ export const ADD_BOOKINGDATE = gql`
                  }
       }
      `;
+     export const DELETE_USER = gql`
+     mutation deleteUser($id: String!) {
+     deleteUser(id: $id) {
+     _id
+     username
+     }
+     }
+     `;
+export const DELETE_BOOKINGDATE = gql`
+     mutation deleteBookingdate($username: String!) {
+       deleteBookingdate(username: $username) {
+         _id    
+         username
+         isBooked
+        finalDateISO  
+        appDay
+     appMonth
+     appTime
+     appYear
+     appDate
+     reason
+                 }
+      }
+     `;
+
+export const DELETE_PET = gql`
+mutation deletePet($username: String!) {
+    deletePet(username: $username) {
+    _id
+   petName
+   petGender
+   petAge
+   petBreed
+   petWeight
+   username
+   petKind
+   profileId
+    }
+ }
+`;
      export const ADD_PROFILE = gql`
      mutation addProfile(
      $username: String!,
@@ -270,6 +300,33 @@ export const ADD_BOOKINGDATE = gql`
       patientcity: $patientcity,
       patientnumber: $patientnumber,
       patientzip: $patientzip,) { 
+        _id
+         isBooked
+         patientState
+         appDay
+      appMonth
+      username
+      appTime
+      appYear
+      appDate
+        appointment
+        patientfirstname
+        patientgender
+      patientaddress
+       patientlastname
+      patientcity
+      patientnumber
+      patientreason
+      birthdate
+      patientzip
+      mepet
+              }             
+     }
+ `;
+
+   export const DELETE_PROFILE = gql`
+     mutation deleteProfile($id: String!) {
+         deleteProfile(id: $id) { 
         _id
          isBooked
          patientState

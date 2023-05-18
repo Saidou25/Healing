@@ -47,7 +47,7 @@ const resolvers = {
             return await Pet.find();
         },
         pet: async (_, args) => {
-            return await Pet.findOne({ _id: args.id });
+            return await Pet.findOne({ username: args.uername });
         },
 
         bookingdates: async () => {
@@ -155,7 +155,7 @@ const resolvers = {
             );
             await Profile.findOneAndUpdate(
                 { _id: args.profileId },
-                { $addToSet: { pets: pet._id } },
+                { $addToSet: { pets: pet } },
                 { new: true }
             )
             return pet;
@@ -252,15 +252,18 @@ const resolvers = {
 
         },
         deleteUser: async (_, args) => {
-            return await User.findOneAndDelete({ _id: args.id });
+            return await User.findOneAndDelete({ _id: args._id });
 
         },
         deleteBookingdate: async (_, args) => {
-            return await Bookingdate.findOneAndDelete({ _id: args.id });
+            return await Bookingdate.findOneAndDelete({ username: args.username });
 
         },
         deleteProfile: async (_, args) => {
-            return await Profile.findOneAndDelete({ id: args.id });
+            return await Profile.findOneAndDelete({ id: args._id });
+        },
+        deletePet: async (_, args) => {
+            return await Pet.findOneAndDelete({ username: args.username });
         }
     }
 };

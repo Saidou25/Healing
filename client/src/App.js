@@ -20,7 +20,7 @@ import Appointment from './components/Appointment';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
 import MyAppointmentsList from './components/MyAppointmentsList';
-import AppointmentConfirmation from './components/AppointmentConfirmation';
+import Confirmation from './components/Confirmation';
 import AppointmentForm from './components/AppointmentForm';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
@@ -82,7 +82,7 @@ function App() {
             <Route path='/UpdateMyProfileForm' element={<UpdateMyProfileForm />} />
             <Route path='/UpdateProfile' element={<UpdateProfile />} />
             <Route path='/Signup' element={<Signup />} />
-            <Route path='/AppointmentConfirmation' element={<AppointmentConfirmation />} />
+            <Route path='/Confirmation' element={<Confirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
             <Route path='/Appointment' element={<Appointment />} />

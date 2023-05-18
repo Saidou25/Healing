@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Profile from '../../components/Profile';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import { QUERY_ME, QUERY_PROFILES, QUERY_PETS, QUERY_BOOKINGDATES } from '../../utils/queries';
 import Navbar from '../../components/Navbar';
 
 const MyProfile = () => {
@@ -9,25 +9,30 @@ const MyProfile = () => {
   const { data } = useQuery(QUERY_ME);
   const meUser = data?.me || [];
   const userId = meUser._id;
-  console.log('id', userId);
-
   const myUserName = meUser.username;
 
   const { meLoading, data: profilesData } = useQuery(QUERY_PROFILES);
 
   const profiles = profilesData?.profiles || [];
-
   const myProfileInfo = profiles.filter(profile => profile.username === myUserName);
+  
+  const userProfile = myProfileInfo[0];
+  const profileId = userProfile?._id;
 
-  const userProfile = myProfileInfo[0]
+  const { data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
+    const bookingdates = appointmentsData?.bookingdates || [];
+    const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === myUserName);
+
+  const { data: petsData } = useQuery(QUERY_PETS);
+    const pets = petsData?.pets || [];
+    const myPets = pets.filter(pet => pet.username === myUserName);
 
   return (
     <div>
       <Navbar />
-      <Profile userProfile={userProfile} userId={userId} />
+      <Profile userProfile={userProfile} userId={userId} profileId={profileId} bookingdates={bookingdates} myPets={myPets} myUserName={myUserName} />
     </div>
   )
-
 };
 
 export default MyProfile;

@@ -243,6 +243,22 @@ export const QUERY_PETS = gql`
      }
   }
 `;
+export const QUERY_PET = gql`
+ query pet($username: String!) {
+     pet(username: $username) {
+     _id
+    petName
+    petGender
+    petAge
+    petBreed
+    petWeight
+    username
+    petKind
+    profileId
+     }
+  }
+`;
+
 export const QUERY_NOTE = gql`
  query note($id: ID!) {
      note(id: $id) {
@@ -267,6 +283,7 @@ export const QUERY_BOOKINGDATE = gql`
         }
      }
  `;
+
 export const QUERY_USERBOOKINGDATES= gql`
     query userbookingdates($username: String!) {
       userbookingdates(username: $username) {

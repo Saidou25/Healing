@@ -97,7 +97,7 @@ const typeDefs = gql`
      notes: [Note]!
      note(id: String!): Note
      pets: [Pet]
-     pet(id: String!): Pet
+     pet(username: String!): Pet
      numbers: [Number]
      number(id: String): Number
      
@@ -175,9 +175,10 @@ const typeDefs = gql`
                     
     deleteNote(id: String): Note
     deleteUser(id: String!): User
-    deleteProfile(id: String): Profile
+    deleteProfile(id: String!): Profile
     deleteReview(id: String!): Review
     deleteBookingdate(username: String!): Bookingdate
+    deletePet(username: String!): Pet
      }
      `;
 

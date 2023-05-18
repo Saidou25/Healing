@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 
 
-const AppointmentConfirmation = () => {
+const Confirmation = () => {
     const location = useLocation();
     const passedData = location.state;
 
@@ -17,4 +17,4 @@ const AppointmentConfirmation = () => {
     )
 };
 
-export default AppointmentConfirmation;
+export default Confirmation;
