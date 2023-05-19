@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEnvelope, FaPhone, FaIdBadge } from 'react-icons/fa'
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME, QUERY_BOOKINGDATES } from '../../utils/queries';
+import { QUERY_ME } from '../../utils/queries';
 import Auth from "../../utils/auth";
 import { DELETE_USER, DELETE_PET, DELETE_PROFILE, DELETE_BOOKINGDATE } from '../../utils/mutations';
 import style from './index.css';
@@ -10,8 +10,7 @@ import style from './index.css';
 const Profile = (props) => {
     const userProfile = props.userProfile;
     const userId = props.userId;
-    const myUserName = props.myUserName;
-    const bookingdates = props.bookingdates;
+    const myAppointments = props.myAppointments;
     const profileId = props.profileId;
     const myPets = props.myPets;
 
@@ -31,15 +30,15 @@ const Profile = (props) => {
         console.log('logout success!');
     };
 
-    const deleteAll = async () => {
-        for (let bookingdate of bookingdates) {
-            const { data } = await deleteBookingdate({
-                variables: { username: bookingdate.username }
-            });
-        }
+    const deleteAll = async (event) => {
         for (let pet of myPets) {
             const { data } = await deletePet({
                 variables: { username: pet.username }
+            });
+        }
+        for (let bookingdate of myAppointments) {
+            const { data } = await deleteBookingdate({
+                variables: { username: bookingdate.username }
             });
         }
 
@@ -47,20 +46,19 @@ const Profile = (props) => {
             const { data } = await deleteProfile({
                 variables: { id: profileId }
             })
-            // logout(event);
         } catch (e) {
             console.error(e);
         }
-        // console.log('userId', userId);
-        // try {
-        //     const { data } = await deleteUser({
-        //         variables: { id: userId }
-        //     })
-        //     // logout(event);
-        // } catch (e) {
-        //     console.error(e);
-        // }
+        console.log('userId', userId);
+        try {
+            const { data } = await deleteUser({
+                variables: { id: userId }
+            })
+        } catch (e) {
+            console.error(e);
+        }
         console.log('success');
+        logout(event);
     };
 
     const handleSubmit = async (event) => {

@@ -58,7 +58,7 @@ const typeDefs = gql`
 
      type Bookingdate {
       _id: ID!
-      username: String!
+      username: String
       isBooked: String
       finalDateISO: String
       appDay: String

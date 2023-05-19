@@ -15,22 +15,22 @@ const MyProfile = () => {
 
   const profiles = profilesData?.profiles || [];
   const myProfileInfo = profiles.filter(profile => profile.username === myUserName);
-  
   const userProfile = myProfileInfo[0];
   const profileId = userProfile?._id;
 
+
   const { data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
-    const bookingdates = appointmentsData?.bookingdates || [];
-    const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === myUserName);
+  const bookingdates = appointmentsData?.bookingdates || [];
+  const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === myUserName);
 
   const { data: petsData } = useQuery(QUERY_PETS);
-    const pets = petsData?.pets || [];
-    const myPets = pets.filter(pet => pet.username === myUserName);
+  const pets = petsData?.pets || [];
+  const myPets = pets.filter(pet => pet.username === myUserName);
 
   return (
     <div>
       <Navbar />
-      <Profile userProfile={userProfile} userId={userId} profileId={profileId} bookingdates={bookingdates} myPets={myPets} myUserName={myUserName} />
+      <Profile userProfile={userProfile} userId={userId} profileId={profileId} myAppointments={myAppointments} myPets={myPets} myUserName={myUserName} />
     </div>
   )
 };

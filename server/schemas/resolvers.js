@@ -252,7 +252,7 @@ const resolvers = {
 
         },
         deleteUser: async (_, args) => {
-            return await User.findOneAndDelete({ _id: args._id });
+            return await User.findOneAndDelete({ _id: args.id });
 
         },
         deleteBookingdate: async (_, args) => {

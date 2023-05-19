@@ -168,8 +168,60 @@ export const ADD_BOOKINGDATE = gql`
      export const DELETE_USER = gql`
      mutation deleteUser($id: String!) {
      deleteUser(id: $id) {
+      _id
+      username
+      email
+      note {
+        _id
+      noteTitle
+      }
+      reviews {
      _id
      username
+    title
+    reviewText
+     }
+      bookingdates {
+      _id
+     isBooked
+     username
+     finalDateISO
+     appDay
+     appDate
+     appMonth
+     appTime
+     appYear
+        }
+      profile {
+ _id
+ patientfirstname
+ username
+ patientgender
+ patientState
+ patientaddress
+ patientlastname
+ patientcity
+ patientnumber
+ patientreason
+ birthdate
+ patientzip
+ mepet
+ isBooked
+ appointment
+ appDay
+ appMonth
+ appTime
+ appYear
+ pets {
+     _id
+    petName
+    petGender
+    petAge
+    petBreed
+    petWeight
+    username
+     }
+    }
      }
      }
      `;
