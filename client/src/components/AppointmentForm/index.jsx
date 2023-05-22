@@ -20,6 +20,7 @@ const AppointmentForm = (props) => {
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
 
+
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const profile = me.profile;
@@ -100,22 +101,24 @@ const AppointmentForm = (props) => {
         const dateArr = isBooked.replaceAll('"', '').split(':');
         const finalDate = dateArr[0].slice(0, 10);
 
-        const finalDateISO = parseISO(finalDate)
+        const finalDateISO = parseISO(finalDate);
 
+        const digitMonth = isBooked.slice(6, 8);
+        
         allAppointments.push(finalDateISO)
 
         const app = (startDate.toString().split(' '));
 
         const appDay = app[0];
-        const appMonth = app[1];
+        const appMonth = app[1] - 1;
         const appDate = app[2];
         const appTime = app[4];
         const appYear = app[3];
+        const digitalAppointment = `${digitMonth}/${appDate}/${appYear}`;
 
-      
         if (mepet && reason) {
             try {
-                await addBookingdate({ variables: { username: username, reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
+                await addBookingdate({ variables: { username: username, digitalAppointment: digitalAppointment, digitMonth: digitMonth, reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
                 console.log(`success booking a date ${isBooked}`);
 
             } catch (err) {
@@ -127,7 +130,7 @@ const AppointmentForm = (props) => {
         } else {
             console.log('you need to fill up the form correctly');
         }
-        
+
 
         if (mepet === 'mypet' && userProfile && myPet.length) {
             navigate('/Dashboard');
@@ -142,12 +145,12 @@ const AppointmentForm = (props) => {
             console.log('case 3');
         }
         if (mepet === 'me' && !userProfile) {
-           navigate('/ProfileForm', { state: profile });
-           console.log('case 4');
+            navigate('/ProfileForm', { state: profile });
+            console.log('case 4');
         }
         if (mepet === 'me' && userProfile) {
-           navigate('/Dashboard', { state: profile });
-           console.log('case 5');
+            navigate('/Dashboard', { state: profile });
+            console.log('case 5');
         }
     };
 

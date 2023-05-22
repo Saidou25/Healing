@@ -7,7 +7,7 @@ import './index.css';
 const ReviewForm = (props) => {
     const username = props.username;
 
-    const [formState, setFormState] = useState({ title: '', reviewText: '' }); // const [addReview] = useMutation(ADD_REVIEW);
+    const [formState, setFormState] = useState({ title: '', reviewText: '' }); 
 
     const [addReview, { error }] = useMutation(ADD_REVIEW, {
         update(cache, { data: { addReview } }) {

@@ -17,9 +17,11 @@ import PetOwnerProfileForm from './components/PetOwnerProfileForm';
 import ReviewForm from './components/ReviewForm';
 import MyReviewsList from './components/MyReviewsList';
 import Appointment from './components/Appointment';
+import AppointmentHistory from './components/AppointmentHistory';
 import Login from './components/Login';
 import LandingPage from './pages/LandingPage';
-import MyAppointmentsList from './components/MyAppointmentsList';
+// import History from './components/History';
+import UpcomingAppointments from './components/UpcomingAppointments';
 import Confirmation from './components/Confirmation';
 import AppointmentForm from './components/AppointmentForm';
 import Signup from './pages/Signup';
@@ -61,11 +63,22 @@ const client = new ApolloClient({
             merge(existing, incoming) {
               return incoming;
             }
+          },
+          bookingdates: {
+            merge(existing, incoming) {
+              return incoming;
+            }
+          },
+          user: {
+            bookingdates: {
+              merge(existing = [], incoming) {
+                return [incoming];
+              }
+            }
           }
         }
       }
     }
-
   })
 });
 
@@ -76,7 +89,7 @@ function App() {
         <>
           <Routes>
             <Route path='/Login' element={<Login />} />
-            <Route path='/MyAppointmentsList' element={<MyAppointmentsList />} />
+            <Route path='/UpcomingAppointments' element={<UpcomingAppointments />} />
             <Route path='/PetOwnerProfileForm' element={<PetOwnerProfileForm />} />
             <Route path='/MyReviewsList' element={<MyReviewsList />} />
             <Route path='/UpdateMyProfileForm' element={<UpdateMyProfileForm />} />
@@ -85,7 +98,9 @@ function App() {
             <Route path='/Confirmation' element={<Confirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
+            {/* <Route path='/History' element={<History />} /> */}
             <Route path='/Appointment' element={<Appointment />} />
+            <Route path='/AppointmentHistory' element={<AppointmentHistory />} />
             <Route path='/Profile' element={<Profile />} />
             <Route path='/ContactModal' element={<ContactModal />} />
             <Route path='/PetProfileForm' element={<PetProfileForm />} />

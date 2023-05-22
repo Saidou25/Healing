@@ -59,6 +59,8 @@ const typeDefs = gql`
      type Bookingdate {
       _id: ID!
       username: String
+      digitMonth: String
+      digitalAppointment: String
       isBooked: String
       finalDateISO: String
       appDay: String
@@ -90,7 +92,7 @@ const typeDefs = gql`
      profiles: [Profile]
      profile(profileId: String!): Profile
      bookingdates: [Bookingdate]
-     bookingdate(username: String!): Bookingdate
+     bookingdate(id: String): Bookingdate
      reviews: [Review]
      review(id: String): Review
      userbookingdates(username: String): [Bookingdate]  
@@ -131,11 +133,13 @@ const typeDefs = gql`
      appYear: Int): Profile
 
      addBookingdate(
-     username: String!
+     username: String
      isBooked: String
+     digitMonth: String
      finalDateISO: String
      appDay: String
      appMonth: String
+     digitalAppointment: String
      appDate: Int
      appTime: String
      reason: String
@@ -177,7 +181,7 @@ const typeDefs = gql`
     deleteUser(id: String!): User
     deleteProfile(id: String!): Profile
     deleteReview(id: String!): Review
-    deleteBookingdate(username: String!): Bookingdate
+    deleteBookingdate(id: String!): Bookingdate
     deletePet(username: String!): Pet
      }
      `;

@@ -10,7 +10,6 @@ import { UPDATE_PROFILE } from "../../utils/mutations";
 import './index.css';
 import Navbar from '../Navbar';
 
-
 const UpdateMyProfileForm = (props) => {
     const profileId = props.profileId;
     const [updateProfile] = useMutation(UPDATE_PROFILE);

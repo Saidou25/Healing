@@ -38,10 +38,9 @@ const Profile = (props) => {
         }
         for (let bookingdate of myAppointments) {
             const { data } = await deleteBookingdate({
-                variables: { username: bookingdate.username }
+                variables: { id: bookingdate._id }
             });
         }
-
          try {
             const { data } = await deleteProfile({
                 variables: { id: profileId }
@@ -49,7 +48,6 @@ const Profile = (props) => {
         } catch (e) {
             console.error(e);
         }
-        console.log('userId', userId);
         try {
             const { data } = await deleteUser({
                 variables: { id: userId }
@@ -158,7 +156,7 @@ const Profile = (props) => {
 
                         ) : (
                             <div>
-                                <h3>This operation is irreverible... Please confirm.</h3>
+                                <h3>This operation is irreversible... Please confirm.</h3>
                                 <button
                                     className='btn delete-user mt-4 btn-danger rounded-0'
                                     onClick={(event) => { deleteAll(event) }}>

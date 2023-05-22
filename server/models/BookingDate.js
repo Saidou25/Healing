@@ -11,6 +11,16 @@ const bookingdateSchema = new Schema({
         repuire: true,
         trim: true,
     },
+     digitalAppointment: {
+        type: String,
+        repuire: true,
+        trim: true,
+    },
+    digitMonth: {
+        type: String,
+        repuire: true,
+        trim: true,
+    },
     finalDateISO: {
         type: String,
         repuire: true,

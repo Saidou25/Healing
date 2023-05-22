@@ -15,7 +15,9 @@ export const QUERY_USERS = gql`
      isBooked
      username
      finalDateISO
+     digitMonth
      appDay
+     digitalAppointment
      appDate
      appMonth
      appTime
@@ -81,6 +83,8 @@ export const QUERY_USER = gql`
      isBooked
      username
      finalDateISO
+     digitMonth
+     digitalAppointment
      appDay
      appDate
      appMonth
@@ -140,9 +144,11 @@ export const QUERY_ME = gql`
       _id
      isBooked
      username
+     digitMonth
      finalDateISO
      appDay
      appDate
+     digitalAppointment
      appMonth
      appTime
      appYear
@@ -190,7 +196,9 @@ export const QUERY_BOOKINGDATES = gql`
      isBooked
      username
      finalDateISO
+     digitMonth
      appDay
+     digitalAppointment
      appDate
      appMonth
      appTime
@@ -219,6 +227,23 @@ export const QUERY_REVIEW = gql`
      }
   }
 `;
+export const QUERY_BOOKINGDATE = gql`
+    query bookingdate($id: ID!) {
+         bookingdate(id: $id) {
+     _id
+     username
+     isBooked
+     finalDateISO
+     appDay
+     appDate
+     digitalAppointment
+     digitMonth
+     appMonth
+     appTime
+     appYear
+        }
+     }
+ `;
 
 export const QUERY_NOTES = gql`
  query notes {
@@ -267,22 +292,6 @@ export const QUERY_NOTE = gql`
      }
   }
 `;
-
-export const QUERY_BOOKINGDATE = gql`
-    query bookingdate($username: String!) {
-         bookingdate(id: $id) {
-     _id
-     username
-     isBooked
-     finalDateISO
-     appDay
-     appDate
-     appMonth
-     appTime
-     appYear
-        }
-     }
- `;
 
 export const QUERY_USERBOOKINGDATES= gql`
     query userbookingdates($username: String!) {

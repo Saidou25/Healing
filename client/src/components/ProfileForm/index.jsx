@@ -162,7 +162,6 @@ const ProfileForm = (props) => {
 
         if (name === 'patientnumber') {
             setValue(e.target.value);
-            // console(e.target.value)
             if (e.target.value.length === 3) {
 
                 x6.style.display = "block";

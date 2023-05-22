@@ -127,12 +127,32 @@ export const DELETE_REVIEW = gql`
     }
   }
 `;
+export const DELETE_BOOKINGDATE = gql`
+     mutation deleteBookingdate($id: String!) {
+       deleteBookingdate(id: $id) {
+         _id    
+         username
+         isBooked
+        finalDateISO  
+        appDay
+     appMonth
+     digitMonth
+     digitalAppointment
+     appTime
+     appYear
+     appDate
+     reason
+                 }
+      }
+     `;
 
 export const ADD_BOOKINGDATE = gql`
      mutation addBookingdate(
      $username: String!,
+     $digitMonth: String,
      $isBooked: String,
      $finalDateISO: String,
+     $digitalAppointment: String,
      $appDay: String,
      $reason: String,
      $appMonth: String,
@@ -143,7 +163,9 @@ export const ADD_BOOKINGDATE = gql`
      addBookingdate(
      username: $username,
         isBooked: $isBooked,
+        digitalAppointment: $digitalAppointment,
         finalDateISO: $finalDateISO,
+        digitMonth: $digitMonth,
         appDay: $appDay,
      appMonth: $appMonth,
      reason: $reason,
@@ -155,9 +177,11 @@ export const ADD_BOOKINGDATE = gql`
          _id    
          username
          isBooked
+         digitMonth
         finalDateISO  
         appDay
      appMonth
+     digitalAppointment
      appTime
      appYear
      appDate
@@ -186,6 +210,8 @@ export const ADD_BOOKINGDATE = gql`
      isBooked
      username
      finalDateISO
+     digitMonth
+     digitalAppointment
      appDay
      appDate
      appMonth
@@ -224,22 +250,6 @@ export const ADD_BOOKINGDATE = gql`
     }
      }
      }
-     `;
-export const DELETE_BOOKINGDATE = gql`
-     mutation deleteBookingdate($username: String!) {
-       deleteBookingdate(username: $username) {
-         _id    
-         username
-         isBooked
-        finalDateISO  
-        appDay
-     appMonth
-     appTime
-     appYear
-     appDate
-     reason
-                 }
-      }
      `;
 
 export const DELETE_PET = gql`
@@ -294,6 +304,7 @@ mutation deletePet($username: String!) {
       isBooked: $isBooked,
          appDay: $appDay,
       appMonth: $appMonth,
+
       appDate: $appDate,
       appTime: $appTime,
       appYear: $appYear,

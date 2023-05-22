@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME, QUERY_REVIEWS } from '../../utils/queries';
 import { DELETE_REVIEW } from '../../utils/mutations';
@@ -6,9 +6,9 @@ import './index.css';
 
 const MyReviewsList = (props) => {
     const myUserName = props.username;
-   
+
     const myReviews = props.myReviews;
-   
+
     const [reviewId, setReviewId] = useState('');
 
     const { data: reviewsData, loading } = useQuery(QUERY_REVIEWS);
@@ -70,7 +70,10 @@ const MyReviewsList = (props) => {
                                     <div>
                                         {(review.username === myUserName) ? (
                                             <div>
-                                                <button type='button' className='btn delete-review mt-4 btn-danger rounded-0' onClick={() => handleSubmit(review)}>
+                                                <button 
+                                                type='button' 
+                                                className='btn delete-review mt-4 btn-danger rounded-0'
+                                                 onClick={() => handleSubmit(review)}>
                                                     delete
                                                 </button>
                                             </div>) : (

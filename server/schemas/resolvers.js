@@ -54,7 +54,7 @@ const resolvers = {
             return Bookingdate.find();
         },
         bookingdate: async (_, args) => {
-            return await Bookingdate.findOne({ usename: args.usename });
+            return await Bookingdate.findOne({ _id: args.id });
         },
         reviews: async () => {
             return Review.find();
@@ -95,6 +95,8 @@ const resolvers = {
                     isBooked: args.isBooked,
                     finalDateISO: args.finalDateISO,
                     appDay: args.appDay,
+                    digitalAppointment: args.digitalAppointment,
+                    digitMonth: args.digitMonth,
                     reason: args.reason,
                     appMonth: args.appMonth,
                     appDate: args.appDate,
@@ -231,9 +233,6 @@ const resolvers = {
                 { new: true }
             );
         },
-        // deleteReview: async (_, args) => {
-        //     return await Review.findOneAndDelete({ _id: args.id });
-        // },
         deleteReview: async (_, args, context) => {
             if (context.user) {
                 const review = await Review.findOneAndDelete(
@@ -249,16 +248,28 @@ const resolvers = {
                 return review;
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+        deleteBookingdate: async (_, args, context) => {
+            if (context.user) {
+                const bookingdate = await Bookingdate.findOneAndDelete(
+                    { _id: args.id }
+                );
 
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { bookingdates: bookingdate._id } },
+                    { new: true }
+                );
+
+                return bookingdate;
+            }
+            throw new AuthenticationError('You need to be logged in!');
         },
         deleteUser: async (_, args) => {
             return await User.findOneAndDelete({ _id: args.id });
 
         },
-        deleteBookingdate: async (_, args) => {
-            return await Bookingdate.findOneAndDelete({ username: args.username });
 
-        },
         deleteProfile: async (_, args) => {
             return await Profile.findOneAndDelete({ id: args._id });
         },

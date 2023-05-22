@@ -13,13 +13,9 @@ import './index.css';
 
 const PetOwnerProfileForm = (props) => {
     const userProfile = props.userProfile;
-    console.log('user profile from pet owner');
     const myPet = props.myPet;
-    console.log('my pet from pet owner', myPet);
     const mepet = props.mepet;
-    console.log('mepet from pet owner', mepet);
     const profileId = props.profileId;
-    console.log('profileId from pet owner form');
 
     const navigate = useNavigate();
 

@@ -20,9 +20,7 @@ const UpdateProfile = () => {
   const myProfileInfo = profiles.filter(profile => profile.username === myUserName);
 
   const userProfile = myProfileInfo[0];
-  console.log('user profile frmo update profile', userProfile);
   const profileId = userProfile._id;
-  console.log('profileId from UpdateProfile', profileId);
   
 
   return (

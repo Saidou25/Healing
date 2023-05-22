@@ -11,13 +11,12 @@ const MyProfile = () => {
   const userId = meUser._id;
   const myUserName = meUser.username;
 
-  const { meLoading, data: profilesData } = useQuery(QUERY_PROFILES);
+  const { data: profilesData } = useQuery(QUERY_PROFILES);
 
   const profiles = profilesData?.profiles || [];
   const myProfileInfo = profiles.filter(profile => profile.username === myUserName);
   const userProfile = myProfileInfo[0];
   const profileId = userProfile?._id;
-
 
   const { data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
   const bookingdates = appointmentsData?.bookingdates || [];
