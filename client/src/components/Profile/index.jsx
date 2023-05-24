@@ -41,7 +41,7 @@ const Profile = (props) => {
                 variables: { id: bookingdate._id }
             });
         }
-         try {
+        try {
             const { data } = await deleteProfile({
                 variables: { id: profileId }
             })
@@ -72,16 +72,19 @@ const Profile = (props) => {
                 <div className='container-profile mt-5'>
                     <h3 className="text my-profile" style={{ fontSize: '2.5rem' }}>My profile</h3>
                     <div className="flex-row justify-space-between my-4">
-
                         <div className='col-12 '>
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.5rem' }}>Login</h3>
-                            <div className="card mb-3">
-                                <h4 className="card-header text-dark p-2 m-0">
-                                    <span className="text" style={{ fontSize: '1rem' }}>
-                                        Username: {me.username}</span> <br />
-                                    <span className="text" style={{ fontSize: '1rem' }}>
-                                        Email: {me.email}</span>
-                                </h4>
+                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.6rem' }}>Login</h3>
+                            <div className="card profile-card mb-3">
+                                <div className="card-body profile-body">
+                                    <div className="card-header">
+                                        <div className="text" style={{ fontSize: '1.2rem' }}>
+                                            <FaIdBadge className="icon m-2" style={{ fontSize: '1.2rem' }} />
+                                            Username: {me.username}</div> <br />
+                                        <div className="text" style={{ fontSize: '1.2rem' }}>
+                                            <FaEnvelope className="icon m-2" style={{ fontSize: '1.2rem' }} />
+                                            Email: {me.email}</div> <br />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -95,70 +98,73 @@ const Profile = (props) => {
                 <div className='container-profile mt-5'>
                     <h3 className="text my-profile" style={{ fontSize: '2.5rem' }}>
                         My profile</h3>
-                    <div className="flex-row row-profile justify-space-between my-4">
+                    <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.5rem' }}>
+                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.6rem' }}>
                                 Login</h3>
-                            <div className="card text-white bg-primary mb-3">
-                                <h4 className="card-body">
-                                    <span className="text" style={{ fontSize: '1rem' }}>
-                                        <FaIdBadge className="icon m-2" style={{ fontSize: '1.6rem' }} />
-                                        Username: {userProfile.username}</span> <br />
-                                    <span className="text" style={{ fontSize: '1rem' }}>
-                                        <FaEnvelope className="icon m-2" style={{ fontSize: '1.6rem' }} />
-                                        Email: {me.email}</span> <br />
-                                    <span className="text" style={{ fontSize: '1rem' }}>
-                                        <FaPhone className="icon m-2" style={{ fontSize: '1.6rem' }} />
-                                        Phone number: {userProfile.patientnumber}</span>
-                                </h4>
+                            <div className="card profile-body p-3">
+                                <div className="card-header">
+                                    <div className="text" style={{ fontSize: '1.2rem' }}>
+                                        <FaIdBadge className="icon m-2" style={{ fontSize: '1.2rem' }} />
+                                        Username: {userProfile.username}</div> <br />
+                                    <div className="text" style={{ fontSize: '1.2rem' }}>
+                                        <FaEnvelope className="icon m-2" style={{ fontSize: '1.2rem' }} />
+                                        Email: {me.email}</div> <br />
+                                    <div className="text" style={{ fontSize: '1.2rem' }}>
+                                        <FaPhone className="icon m-2" style={{ fontSize: '1.2rem' }} />
+                                        Phone number: {userProfile.patientnumber}</div>
+                                </div>
                             </div>
                         </div>
                         <div className="col-12">
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.5rem' }}>General</h3>
-                            <div className="card text-white bg-primary mb-3">
-                                <h4 className="card-body ">
-
-                                    <span className="text m-2" style={{ fontSize: '1rem' }}>
-                                        First name: {userProfile.patientfirstname}</span> <br />
-                                    <span className="text m-2" style={{ fontSize: '1rem' }}>
-                                        Last name: {userProfile.patientlastname}</span> <br />
-                                    <span className="text m-2" style={{ fontSize: '1rem' }}>
-                                        Birth date: {userProfile.birthdate}</span>
-                                </h4>
+                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.6rem' }}>General</h3>
+                            <div className="card profile-body p-3 ">
+                                <div className="card-header">
+                                    <div className="text-profile m-2" style={{ fontSize: '1.2rem' }}>
+                                        First name: {userProfile.patientfirstname}</div> <br />
+                                    <div className="text m-2" style={{ fontSize: '1.2rem' }}>
+                                        Last name: {userProfile.patientlastname}</div> <br />
+                                    <div className="text m-2" style={{ fontSize: '1.2rem' }}>
+                                        Birth date: {userProfile.birthdate}</div>
+                                </div>
                             </div>
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.5.5rem' }}>Contact</h3>
-                            <div className="card text-white bg-primary mb-3">
-                                <h4 className="card-body">
-                                    <span className="text m-2" style={{ fontSize: '1rem' }}>
-                                        Address: {userProfile.patientaddress}</span> <br />
-                                    <span className="text m-2" style={{ fontSize: '1rem' }}>
-                                        City: {userProfile.patientcity}</span> <br />
-                                    <span className="text m-2" style={{ fontSize: '1rem' }}>
-                                        State: {userProfile.patientState}</span> <br />
-                                    <span className="text m-2" style={{ fontSize: '1rem' }}>
-                                        Zip code: {userProfile.patientzip}</span> <br />
-                                </h4>
+                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.6.5rem' }}>Contact</h3>
+
+                            <div className="card profile-body p-3">
+                                <div className="card-header">
+                                    <div className="text m-2" style={{ fontSize: '1.2rem' }}>
+                                        Address: {userProfile.patientaddress}</div> <br />
+                                    <div className="text m-2" style={{ fontSize: '1.2rem' }}>
+                                        City: {userProfile.patientcity}</div> <br />
+                                    <div className="text m-2" style={{ fontSize: '1.2rem' }}>
+                                        State: {userProfile.patientState}</div> <br />
+                                    <div className="text m-2" style={{ fontSize: '1.2rem' }}>
+                                        Zip code: {userProfile.patientzip}</div> <br />
+                                </div>
                             </div>
                         </div>
-                        <Link to='/UpdateProfile' className='nav-item'>
-                            <button className='btn delete-review mt-4 btn-info rounded-0'>
+                        <Link to='/UpdateProfile' state={{ userProfile }} className='nav-item'>
+                            <button className='btn update-profile mt-5 btn-info rounded-0'>
                                 update
                             </button> <br />
                         </Link>
 
                         {!toConfirm ? (
-                            <button
-                                className='btn delete-user mt-4 btn-danger rounded-0'
-                                onClick={(event) => { handleSubmit(event) }}
-                            >
-                                delete
-                            </button>
-
+                            <div className='d-flex justify-content-end'>
+                                <button
+                                    type='button'
+                                    className='btn delete-user btn-danger rounded-0'
+                                    onClick={(event) => handleSubmit(event)}
+                                >
+                                    delete
+                                </button>
+                            </div>
                         ) : (
                             <div>
                                 <h3>This operation is irreversible... Please confirm.</h3>
+
                                 <button
-                                    className='btn delete-user mt-4 btn-danger rounded-0'
+                                    className='btn confirm-delete mt-4 btn-danger rounded-0'
                                     onClick={(event) => { deleteAll(event) }}>
                                     confirm
                                 </button>

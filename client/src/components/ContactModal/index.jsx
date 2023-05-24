@@ -16,57 +16,27 @@ const ProfileModal = () => {
 
     const handleInputChange = (event) => {
 
-        // const x = document.querySelector(".validate");
-        // const y = document.querySelector(".invalidate");
-        // const x1 = document.querySelector(".validate1");
-        // const y1 = document.querySelector(".invalidate1");
-        // const x2 = document.querySelector(".validate2");
-        // const y2 = document.querySelector(".invalidate2");
         // const emailRegex = /^\S+@\S+\.\S+$/;
 
         const { name, value } = event.target;
 
         if (name === "user_name") {
-          
+
             setUser(value);
             //   if (value.length > 0) {
-            //     console.log(value.length);
-            //     console.log('good');
-            //     x.style.display = "block";
-            //     y.style.display = "none";
-            //   } else {
-            //     console.log('no name');
-            //     x.style.display = "none";
-            //     y.style.display = "block";
-            //   }
+
         }
         if (name === "user_email") {
-           
+
             setEmail(value);
             //   if (emailRegex.test(value)) {
-            //     console.log(value);
-            //     console.log('good');
-            //     x1.style.display = "block";
-            //     y1.style.display = "none";
-            //   } else {
-            //     console.log('no name');
-            //     x1.style.display = "none";
-            //     y1.style.display = "block";
-            //   }
+
         }
         if (name === "message") {
-           
+
             setMessage(value);
             //   if (value.length > 0) {
-            //     console.log(value);
-            //     console.log('good');
-            //     x2.style.display = "block";
-            //     y2.style.display = "none";
-            //   } else {
-            //     console.log('no name');
-            //     x2.style.display = "none";
-            //     y2.style.display = "block";
-            //   }
+
         }
     };
 
@@ -78,7 +48,7 @@ const ProfileModal = () => {
             }, (error) => {
                 console.log(error.text);
             })
-       
+
         setMessage('');
         setEmail('');
         setUser('');
@@ -89,10 +59,10 @@ const ProfileModal = () => {
         <>
             <button
                 type="button"
-                className="btn btn-primary btn-modal rounded-0"
+                className="btn btn-primary btn-modal m-2"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
-                Contact
+                Direct message
             </button>
 
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -114,14 +84,7 @@ const ProfileModal = () => {
                                         value={user}
                                         name="user_name"
                                         placeholder="Name" />
-                                    {/* <div className='validate'>
-                                                    Looks good
-                                                    <i className="fa-solid fa-check"></i>
-                                                </div>
-                                                <div className='invalidate'>
-                                                    required
-                                                    <i className="fa-solid fa-check"></i>
-                                                </div> */}
+
                                     <label className="form-label">Email</label>
                                     <input
                                         className="form-control"
@@ -130,14 +93,7 @@ const ProfileModal = () => {
                                         type="email"
                                         name="user_email"
                                         placeholder="example@example.com" />
-                                    {/* <div className='validate1'>
-                                                    Looks good
-                                                    <i className="fa-solid fa-check"></i>
-                                                </div>
-                                                <div className='invalidate1'>
-                                                    required
-                                                    <i className="fa-solid fa-check"></i>
-                                                </div> */}
+
                                     <label className="form-label">Message</label>
                                     <textarea
                                         className="form-control message"
@@ -145,23 +101,16 @@ const ProfileModal = () => {
                                         value={message}
                                         onChange={handleInputChange}
                                         placeholder="type your message..." />
-                                    {/* <div className='validate2'>
-                                                    Looks good
-                                                    <i className="fa-solid fa-check"></i>
-                                                </div>
-                                                <div className='invalidate2'>
-                                                    required
-                                                    <i className="fa-solid fa-check"></i>
-                                                </div> */}
 
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button
-                                        type="button"
-                                        className="btn btn-primary">
-                                        Save changes
-                                    </button>
-                                </div>
+
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary">
+                                            Save changes
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
 

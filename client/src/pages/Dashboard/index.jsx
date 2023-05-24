@@ -29,52 +29,64 @@ const Dashboard = () => {
     const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === username);
 
     const handleSubmit = (e) => {
+        //  setIsShown(current => !current);
         e === 'review' ? setIsShown(current => !current) : navigate('/Appointment');
     };
+
 
     return (
         <>
             <Navbar />
-            <div className='container-fluid'>
-                <div className='row justify-content-evenly mt-5'>
+            <div className='container'>
+                <div className='row mt-5 mb-5'>
+                    <div className='d-flex col-12'>
+
+                        <div>
+                            <Link to='/Appointment' className='btn btn-primary m-2' state={{ username }} >
+                                Book an appointment
+                            </Link>
+
+                        </div>
+
+                        <div>
+                            <Link to='/AppointmentHistory' className='btn btn-primary m-2' state={{ username }} >
+                                History
+                            </Link>
+                        </div>
+
+                        <div>
+                            <ContactModal />
+                        </div>
+                    </div>
+                </div>
+                <div className='row justify-content-between'>
                     <div className='col-6 col-lg-5'>
                         <UpcomingAppointments myAppointments={myAppointments} /> <br />
                     </div>
-                    <div className='col-6 col-lg-5'>
-                        {/* <AppointmentHistory pastAppointments={pastAppointments} username={username} /> <br /> */}
-                        <Link to='/AppointmentHistory' state={{ username }} >
-                            <h3>history</h3>
-                        </Link>
+
+                    <div className='col-6 col-lg-5 mt-5'>
+                        <p>
+                            For appointment cancelation please use our "direct message form".<br />
+                        </p>
                     </div>
-                    <div className='col-6 col-lg-5'>
-                        <h3 className='book-title'>Message your practitioner</h3><br />
-                        <ContactModal />
+                </div>
+                <div className='row'>
+                    <div className='col-8 border-end'>
+                        <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
-                    <div className='col-6 col-lg-5'>
-                        <h3 className='book-title'>Book an appointment</h3><br />
+                    <div className='col-4 border-start'>
+                        <h3 className="review-list-title mt-4">Write your own review </h3>
                         <button
                             type='button'
-                            className='btn review-button btn-primary mb-5'
-                            onClick={() => handleSubmit('appointment')}>
-                            start
-                        </button>
-                    </div>
-                    <div className='col-6 col-lg-5'>
-                        <h3 className='review-title'>Add your own review</h3><br />
-                        <button
-                            type='button'
-                            className='btn review-button btn-primary mb-5'
+                            className='btn bt-write btn-primary mb-5'
                             onClick={() => handleSubmit('review')}>
-                            add a review
+                            Click to start
                         </button>
                         {isShown ? (
                             <>
                             </>
                         ) : null}
                         {isShown ? <ReviewForm username={username} /> : null}
-                    </div>
-                    <div className='col-12'>
-                        <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
                 </div>
             </div>

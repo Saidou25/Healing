@@ -38,58 +38,66 @@ const Login = () => {
             email: '',
             password: '',
         });
-      
+
     };
 
     return (
         <>
             <Navbar />
             <main className='container-login'>
-               
-                    <div className="card login">
-                        <h4 className="card-header bg-primary rounded-0 text-light p-4"
-                        style={{ fontSize: '1.7rem', textAlign: 'center' }}>
-                            Login</h4>
-                        <div className="card-body">
-                            {data ?  
-                          <p>
-                Success! You may now head{' '}
-                <Link to="/Dashboard">to your Dashboard.</Link>
-              </p>
-            :  (
-                            <form onSubmit={handleFormSubmit}>
-                                <input
-                                    className="form-input"
-                                    placeholder="Your email"
-                                    name="email"
-                                    type="email"
-                                    value={formState.email}
-                                    onChange={handleChange}
-                                /> <br />
-                                <input
-                                    className="form-input"
-                                    placeholder="******"
-                                    name="password"
-                                    type="password"
-                                    value={formState.password}
-                                    onChange={handleChange}
-                                /> <br />
-                                <button
-                                    className="btn btn-block btn-info"
-                                    style={{ cursor: 'pointer' }}
-                                    type="submit">
-                                    Submit
-                                </button>
-                            </form>
-                          )} 
 
-                            {error && (
-                                <div className="my-3 p-3 bg-danger text-white">
-                                    {error.message}
-                                </div>
+                <div className="card login">
+                    <h4 className="card-header bg-primary rounded-0 text-light p-4"
+                        style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                        Login</h4>
+                    <div className="card-body">
+                        {data ?
+                            <p>
+                                Success! You may now head{' '}
+                                <Link to="/Dashboard">to your Dashboard.</Link>
+                            </p>
+                            : (
+                                <form onSubmit={handleFormSubmit}>
+                                    <label className='text-label' style={{ fontSize: '1.5rem' }}>
+                                        Email
+                                    </label><br />
+                                    <input
+                                        style={{ fontSize: '1.3rem' }}
+                                        className="form-input"
+                                        placeholder="Your email"
+                                        name="email"
+                                        type="email"
+                                        value={formState.email}
+                                        onChange={handleChange}
+                                    /> <br />
+                                    <label className='text-label' style={{ fontSize: '1.5rem' }}>
+                                        Password
+                                    </label><br />
+                                    <input
+                                        style={{ fontSize: '1.3rem' }}
+                                        className="form-input mt-4"
+                                        placeholder="******"
+                                        name="password"
+                                        type="password"
+                                        value={formState.password}
+                                        onChange={handleChange}
+                                    /> <br />
+                                    <button
+                                        className="btn btn-block rounded-0 mt-5 btn-info"
+                                        style={{ cursor: 'pointer' }}
+                                        type="submit">
+                                        Submit
+                                    </button>
+                                </form>
                             )}
-                        </div>
+
+                        {error && (
+                            <div className="my-3 p-3 bg-danger text-white">
+                                {error.message}
+                            </div>
+                        )}
                     </div>
+                </div>
             </main>
         </>
     );

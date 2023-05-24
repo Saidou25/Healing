@@ -12,43 +12,36 @@ const UpcomingAppointments = (props) => {
     let newMonth;
 
     if (todaysMonthStr.length === 1) {
-       newMonth = `0${todaysMonth}`;
+        newMonth = `0${todaysMonth}`;
     } else {
         newMonth = todaysMonthStr;
     };
 
     const today = `${newMonth}/${todaysDate}/${todaysYear}`;
-    console.log('today', today);
 
-    if (!myAppointments.length) {
+    const futureAppointments = myAppointments.filter(bookingdate => today < bookingdate.digitalAppointment);
+
+    if (!futureAppointments.length) {
         return (
             <>
-                hello
             </>
         )
     }
 
     return (
         <div>
-            <h3 className="appointment-list-title mt-4 mb-5">Upcoming appointments</h3>
-            <div className="row justify-context-space-between">
-                {myAppointments &&
-                    myAppointments.map((bookingdate) => (
-                        <div key={bookingdate._id} className="col-12">
-                            {today < bookingdate.digitalAppointment ? (
-                                <div className="text-white bg-primary m-3">
-                                    {/* <div className="card-header">
-                                    {Bookingdate.username}, you have an appointment 
-                                </div> */}
-                                    <div className='card-body m-3'>
-                                        <p className="text " style={{ fontSize: '1.4rem' }}>
-                                            today: {today} digitalApp: {bookingdate.digitalAppointment} {bookingdate.appDay} {bookingdate.appMonth} {bookingdate.appDate} , {bookingdate.appYear} at {bookingdate.appTime}.
-                                        </p> <br />
-                                    </div>
+            <div className="row">
+                {futureAppointments &&
+                    futureAppointments.map((bookingdate) => (
+                        <div key={bookingdate._id} className="col-12 mt-5">
+                            <div className="card mb-3">
+                                <div className="card-header" style={{ fontSize: '1.3rem' }} >You have an appointment:</div>
+                                <div className='card-body m-3'>
+                                    <div className="text pt-3" style={{ fontSize: '1.3rem' }}>
+                                        {bookingdate.appDay}, {bookingdate.appMonth} {bookingdate.appDate}, {bookingdate.appYear} at {bookingdate.appTime}.
+                                    </div> <br />
                                 </div>
-                            ) : (
-                                <></>
-                            )}
+                            </div>
                         </div>
                     ))}
             </div>

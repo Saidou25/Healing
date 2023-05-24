@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_BOOKINGDATES } from '../../utils/queries';
 import { DELETE_BOOKINGDATE } from '../../utils/mutations';
 import Navbar from '../Navbar';
-// import './index.css';
+import './index.css';
 
 const AppointmentHistory = () => {
 
@@ -79,28 +79,35 @@ const AppointmentHistory = () => {
     return (
         <div>
             <Navbar />
-            <h3 className="appointment-list-title mt-4 mb-5">Appointments history</h3>
-            <div className="row justify-context-space-between">
-                {history &&
-                    history.map((bookingdate) => (
-                        <div key={bookingdate._id} className="col-12">
-                            <div className="text-white bg-primary m-3">
-                                <h3 className="appointment-list-title mt-4 mb-5">Appointments history</h3>
-                                <div className='card-body m-3'>
-                                    <p className="text " style={{ fontSize: '1.4rem' }}>
-                                        today: {today} digitalApp: {bookingdate.digitalAppointment} {bookingdate.appDay} {bookingdate.appMonth} {bookingdate.appDate}, {bookingdate.appYear} at {bookingdate.appTime}.
-                                    </p> <br />
+            <div className='container-history'>
+                <h1 className="appointment-list-title mt-4 mb-5">Appointments history</h1>
+                <div className="row">
+                    {history &&
+                        history.map((bookingdate) => (
+                            <div key={bookingdate._id} className="col-12 mt-5">
+                                <div className="card mb-3">
+                                    <div className="card-header" style={{ fontSize: '1.3rem' }} >Your past appointments:</div>
+                                    <div className='card-body m-3'>
+                                        <div className='appointment-text mt-4'>
+                                            <div className="text pt-3" style={{ fontSize: '1.4rem' }}>
+                                                {bookingdate.appDay}, {bookingdate.appMonth} {bookingdate.appDate}, {bookingdate.appYear} at {bookingdate.appTime}.
+                                            </div>
+                                        </div>
+                                        <div className='d-flex justify-content-end'>
+                                            <button
+                                                type='button'
+                                                className='btn delete-appointment btn-danger rounded-0'
+                                                onClick={() => handleSubmit(bookingdate)}
+                                            >
+                                                delete
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button
-                                    type='button'
-                                    className='btn delete-appointment mt-4 btn-danger rounded-0'
-                                    onClick={() => handleSubmit(bookingdate)}
-                                >
-                                    delete
-                                </button>
+
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                </div>
             </div>
         </div>
     )

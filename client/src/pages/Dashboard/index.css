@@ -1,9 +1,11 @@
 .review-button {
     width: 100%;
 }
-.book-title {
-    text-align: center;
+
+.border-end {
+    padding-right: 3%;
+   
 }
-.review-title {
-    text-align: center;
+.border-start {
+    padding-left: 3%;
 }

@@ -1,5 +1,7 @@
 .container-appointment {
-   width: 60%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 60%;
     margin-right: auto;
     margin-left: auto;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
@@ -13,38 +15,23 @@
     border: none;
     text-align: center;
 }
+
 .type-your-text {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
+
 .appointment-column {
     width: 100%;
     text-align: center;
 }
 
-.validate 
-.validate1 {
-    display: none;
-    color: green;
-    /* margin-top: 7px; */
-    margin-right: 15px;
-    margin-left: 15px;
-}
-
-.invalidate
-.invalidate1 {
-    /* margin-top: 7px; */
-    color: red;
-    margin-right: 15px;
-    margin-left: 15px;
-
-}
 .form-label {
     margin-top: 5%;
 }
+
 .date-picker {
-    /* margin-top: 5%; */
     width: 100%;
     text-align: center;
     margin-right: auto;
@@ -55,9 +42,9 @@
     margin-top: 2%;
 }
 
-.button-visit {
-    margin-top: 10%;
-    width: 25%;
+.button-appointment {
+ 
+    /* width: 25%; */
     text-align: center;
     margin-bottom: 15%;
 

@@ -1,17 +1,9 @@
-/* .container-login{
-    background-image: url('../../assets/images/purple.jpeg');
-    min-height: 36vh;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-   
-} */
-
 .login {
-    width: 40%;
+    width: 30%;
+    margin-top: 10%;
     margin-right: auto;
     margin-left: auto;
+    /* padding-top: 1%; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .form-input { 
@@ -26,5 +18,4 @@
     margin-right: auto;
     margin-left: auto;
     margin: 15px;
-   
 }

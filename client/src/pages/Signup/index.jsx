@@ -55,37 +55,37 @@ const Signup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <label className='text-label' style={{ fontSize: '1.7rem' }}>
+                <label className='text-label' style={{ fontSize: '1.5rem' }}>
                   Username
                 </label><br />
                 <input
                   className="form-input"
-                  placeholder="your name..."
-                  style={{ fontSize: '1.5rem' }}
+                  placeholder="choose a username..."
+                  style={{ fontSize: '1.3rem' }}
                   name="username"
                   type="username"
                   value={formState.username}
                   onChange={handleChange}
                 /><br />
-                <label className='text-label' style={{ fontSize: '1.7rem' }}>
+                <label className='text-label' style={{ fontSize: '1.5rem' }}>
                   Email
                 </label><br />
                 <input
                   className="form-input"
                   placeholder="your email.."
-                  style={{ fontSize: '1.5rem' }}
+                  style={{ fontSize: '1.3rem' }}
                   name="email"
                   type="email"
                   value={formState.email}
                   onChange={handleChange}
                 /><br />
-                <label className='text-label' style={{ fontSize: '1.7rem' }}>
+                <label className='text-label' style={{ fontSize: '1.5rem' }}>
                   Password
                 </label><br />
                 <input
                   className="form-input"
                   placeholder="******"
-                  style={{ fontSize: '1.5rem' }}
+                  style={{ fontSize: '1.3rem' }}
                   name="password"
                   type="password"
                   value={formState.password}
@@ -94,6 +94,7 @@ const Signup = () => {
                 <button
                   className="btn btn-info rounded-0 mt-5" 
                   type="button"
+                  style={{ cursor: 'pointer' }}
                   onClick={handleFormSubmit}>
                   Submit
                 </button>

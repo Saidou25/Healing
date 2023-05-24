@@ -1,10 +1,7 @@
-/* .container-signup {
-    width: 40%;
-    margin-right: auto;
-    margin-left: auto;
-} */
+
 .signup {
-    width: 40%;
+    width: 30%;
+    margin-top: 10%;
     margin-right: auto;
     margin-left: auto;
     /* padding-top: 1%; */
@@ -22,5 +19,4 @@
     margin-right: auto;
     margin-left: auto;
     margin: 15px;
-    /* text-align: center; */
 }
