@@ -18,11 +18,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^8.19.2"
-  },
   "bugs": {
     "url": "https://github.com/Saidou25/Healing/issues"
   },
-  "homepage": "https://github.com/Saidou25/Healing#readme"
+  "homepage": "https://github.com/Saidou25/Healing#readme",
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  }
 }
