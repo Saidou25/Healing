@@ -13,7 +13,6 @@ const Appointment = () => {
     const { petsLoading, data: petsData } = useQuery(QUERY_PETS);
     const pets = petsData?.pets || [];
     const myPet = pets.filter(pet => pet.username === myUserName);
-    
 
     const { meLoading, data: profilesData } = useQuery(QUERY_PROFILES);
     const profiles = profilesData?.profiles || [];
