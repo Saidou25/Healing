@@ -5,23 +5,26 @@ import './index.css';
 const LandingPage = () => {
     return (
         <div className="mainlandingpage">
-            <Link className="site-title text-primary m-5" to="/" style={{ fontSize: '7rem' }}>
+            <div className="landing-title">
+            <Link className="landing text-primary" to="/" style={{ fontSize: '7rem' }}>
                 Healing
             </Link>
-            <div className="landing-parent rounded-0">
-                <div className="card landing-page">
+
+            </div>
+            <div className="landing-parent">
+                <div className="card landing-page rounded-0">
                     <div className="row landing-row">
-                        <div className="col-4 landig-column">
+                        <div className="col-4 landing-column">
                             <button className="btn but-landing" >
                                 <Link to='/Login' className='visit-item'>Login</Link>
                             </button>
                         </div>
-                        <div className="col-4 landig-column">
+                        <div className="col-4 landing-column">
                             <button className="btn but-landing" >
                                 <Link to='/Signup' className='visit-item'>Signup</Link>
                             </button>
                         </div>
-                        <div className="col-4 landig-column">
+                        <div className="col-4 landing-column">
                             <button className="btn but-landing" >
                                 <Link to='/About' className='visit-item'>About</Link>
                             </button>

@@ -74,7 +74,7 @@ const ReviewForm = (props) => {
 
                                         <input
                                             className="form-input review-form-input mb-3"
-                                            placeholder="title"
+                                            placeholder="title..."
                                             name="title"
                                             type="text"
                                             value={formState.title}
@@ -84,7 +84,7 @@ const ReviewForm = (props) => {
 
                                         <textarea
                                             className="form-input review-textarea mb-3"
-                                            placeholder="write your text"
+                                            placeholder="write your text here..."
                                             name="reviewText"
                                             type="text"
                                             value={formState.reviewText}

@@ -45,6 +45,7 @@ const UpcomingAppointments = (props) => {
                         </div>
                     ))}
             </div>
+
         </div>
     )
 };

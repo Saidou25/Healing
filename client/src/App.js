@@ -34,6 +34,7 @@ import UpdateProfile from './components/UpdateProfile';
 import About from './components/About';
 import Note from './components/Note';
 import UpdateNote from './components/UpdateNote';
+import Footer from './components/Footer';
 
 
 
@@ -110,8 +111,10 @@ function App() {
             <Route path='/UpdateNote' element={<UpdateNote />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />
+            {/* <Route path='/Footer' element={<Footer />} /> */}
             <Route path='/' element={<LandingPage />} />
           </Routes>
+          <Footer />
         </>
       </Router>
     </ApolloProvider>

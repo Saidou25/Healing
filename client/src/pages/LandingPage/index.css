@@ -20,9 +20,17 @@
     padding: 20px;
     margin-right: auto;
     margin-left: auto;
+    margin-top: 4%;
 }
-
-.landig-column {
+.landing-title {
+    margin-top: 3%;
+    margin-left: 30px;
+    color: black;
+}
+.landing {
+    text-decoration: none;
+}
+.landing-column {
     text-align: center;
 }
 

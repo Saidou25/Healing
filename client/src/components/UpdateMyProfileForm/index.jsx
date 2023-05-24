@@ -89,14 +89,14 @@ const UpdateMyProfileForm = (props) => {
             <Navbar />
             <div>
                 <div className='container-update mt-5'>
-                    <h1>Updating your profile</h1>
+                    <h3 className='update-title'>Please fill up the fields you would like to update.</h3>
                     <div className='card-update'>
                         <form className='profile-update'>
-                            <div className='row m-5'>
-                                <div className="col-6">
+                            <div className='row mt-5'>
+                                <div className="col-6 update-fields">
                                     <label className="form-label"> Last name</label>
                                     <input
-                                        className="form-control"
+                                        className="form-control update-control"
                                         onChange={handleChange}
                                         type="text"
                                         name="patientlastname"
@@ -105,7 +105,7 @@ const UpdateMyProfileForm = (props) => {
                                          />
 
                                 </div>
-                                {/* <div className="col-6">
+                                {/* <div className="col-6 update-fields">
                                     <label className="form-label"> Email</label>
                                     <input
                                         className="form-control"
@@ -117,7 +117,7 @@ const UpdateMyProfileForm = (props) => {
 
                                 </div> */}
 
-                                <div className="col-6">
+                                <div className="col-6  ">
                                     <label className="form-label">Address</label>
                                     <input
                                         className="form-control"
@@ -129,7 +129,7 @@ const UpdateMyProfileForm = (props) => {
 
                                 </div>
 
-                                <div className="col-6">
+                                <div className="col-6 update-fields">
                                     <label className="form-label">City</label>
                                     <input
                                         className="form-control"
@@ -141,7 +141,7 @@ const UpdateMyProfileForm = (props) => {
 
                                 </div>
 
-                                <div className='col-6'>
+                                <div className='col-6 update-fields'>
                                     <label className='form-label'>
                                         Select a state
                                     </label>
@@ -150,7 +150,7 @@ const UpdateMyProfileForm = (props) => {
                                         className="myClassName"
                                         onChange={setNewValue} />
                                 </div>
-                                <div className="col-6">
+                                <div className="col-6 update-fields">
                                     <label className="form-label">zip code</label>
                                     <input
                                         className="form-control"
@@ -161,7 +161,7 @@ const UpdateMyProfileForm = (props) => {
                                         placeholder={userProfile.patientzip} />
                                 </div>
 
-                                <div className="col-6">
+                                <div className="col-6 update-fields">
                                     <label className="form-label">Phone number</label>
 
                                     <PatternFormat

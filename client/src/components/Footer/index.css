@@ -1,0 +1,14 @@
+.footer {
+    margin-top: 5%;
+    height: 150px;
+    align-items: center;
+}
+.text {
+    margin-top: 1%;
+    font-size: 1.3rem;
+    align-items: center; 
+}
+.number {
+    align-items: center;
+    font-size: 1.2rem;
+}

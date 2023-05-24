@@ -149,7 +149,7 @@ const PetOwnerProfileForm = (props) => {
                     <Confirmation myPet={myPet} />
                 ) : (
                     <div>
-                        <div className='container-visitor mt-5'>
+                        <div className='container-owner'>
                             <h4 className="card-header bg-primary rounded-0 text-light p-4"
                                 style={{ fontSize: '1.7rem', textAlign: 'center' }}>
                                 Please answer few questions about you</h4>
@@ -158,12 +158,12 @@ const PetOwnerProfileForm = (props) => {
                                 <p>
                                     Success! You may now head{' '}
                                     {/* <Link to="/Login">lets now login.</Link> */}
-                                <Link to="/PetProfileForm">lets go</Link>
+                                <Link to="/PetProfileForm"></Link>
                                 {/* </p> */}
                                 {/* ) : ( */}
                                 <form onSubmit={(e) => handleSubmit(e)}>
-                                    <div className='row m-5'>
-                                        <div className="col-6">
+                                    <div className='row mt-5'>
+                                        <div className="col-6 owner-fields">
                                             <label className="form-label"> First name</label>
                                             <input
                                                 className="form-control"
@@ -182,7 +182,7 @@ const PetOwnerProfileForm = (props) => {
                                             </div> */}
                                         </div>
 
-                                        <div className="col-6">
+                                        <div className="col-6 owner-fields">
                                             <label className="form-label"> Last name</label>
                                             <input
                                                 className="form-control"
@@ -201,7 +201,7 @@ const PetOwnerProfileForm = (props) => {
                                             </div> */}
                                         </div>
 
-                                        <div className="col-6">
+                                        <div className="col-6 owner-fields">
                                             <label className="form-label">Address</label>
                                             <input
                                                 className="form-control"
@@ -220,7 +220,7 @@ const PetOwnerProfileForm = (props) => {
                                             </div> */}
                                         </div>
 
-                                        <div className="col-6">
+                                        <div className="col-6 owner-fields">
                                             <label className="form-label">City</label>
                                             <input
                                                 className="form-control"
@@ -239,7 +239,7 @@ const PetOwnerProfileForm = (props) => {
                                             </div> */}
                                         </div>
 
-                                        <div className='col-6'>
+                                        <div className='col-6 owner-fields'>
                                             <label className='form-label'>
                                                 Select a state
                                             </label>
@@ -252,7 +252,7 @@ const PetOwnerProfileForm = (props) => {
                                             />
                                         </div>
 
-                                        <div className="col-6">
+                                        <div className="col-6 owner-fields">
                                             <label className="form-label">Zip code</label>
                                             <input
                                                 className="form-control"
@@ -271,7 +271,7 @@ const PetOwnerProfileForm = (props) => {
                                             </div> */}
                                         </div>
 
-                                        <div className="col-6">
+                                        <div className="col-6 owner-fields">
                                             <label className="form-label">
                                                 Phone number
                                             </label>

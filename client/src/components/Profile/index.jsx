@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
 import Auth from "../../utils/auth";
 import { DELETE_USER, DELETE_PET, DELETE_PROFILE, DELETE_BOOKINGDATE } from '../../utils/mutations';
-import style from './index.css';
+import './index.css';
 
 const Profile = (props) => {
     const userProfile = props.userProfile;
@@ -68,23 +68,22 @@ const Profile = (props) => {
 
         return (
             <div>
-                {/* <Navbar /> */}
-                <div className='container-profile mt-5'>
-                    <h3 className="text my-profile" style={{ fontSize: '2.5rem' }}>My profile</h3>
+                <div className='container-profile'>
+                    <h3 className="text my-profile" style={{ fontSize: '2.5rem' }}>Profile</h3>
                     <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
                             <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.6rem' }}>Login</h3>
                             <div className="card profile-card mb-3">
+                                {/* <div className="card"> */}
                                 <div className="card-body profile-body">
-                                    <div className="card-header">
-                                        <div className="text" style={{ fontSize: '1.2rem' }}>
-                                            <FaIdBadge className="icon m-2" style={{ fontSize: '1.2rem' }} />
-                                            Username: {me.username}</div> <br />
-                                        <div className="text" style={{ fontSize: '1.2rem' }}>
-                                            <FaEnvelope className="icon m-2" style={{ fontSize: '1.2rem' }} />
-                                            Email: {me.email}</div> <br />
-                                    </div>
+                                    <div className="text" style={{ fontSize: '1.2rem' }}>
+                                        <FaIdBadge className="icon m-2" style={{ fontSize: '1.2rem' }} />
+                                        Username: {me.username}</div> <br />
+                                    <div className="text" style={{ fontSize: '1.2rem' }}>
+                                        <FaEnvelope className="icon m-2" style={{ fontSize: '1.2rem' }} />
+                                        Email: {me.email}</div> <br />
                                 </div>
+                                {/* </div> */}
                             </div>
                         </div>
                     </div>

@@ -66,7 +66,10 @@ const Dashboard = () => {
 
                     <div className='col-6 col-lg-5 mt-5'>
                         <p>
-                            For appointment cancelation please use our "direct message form".<br />
+                            You can use direct message to send more information about your upcomming visit. <br />
+                        </p>
+                        <p>
+                            This can also be used to cancel an appointment. Then book again if you would like to reschedule.
                         </p>
                     </div>
                 </div>
