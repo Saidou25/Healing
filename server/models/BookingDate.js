@@ -63,6 +63,6 @@ const bookingdateSchema = new Schema({
         }
 });
 
-const Bookingdate = model('bookingdate', bookingdateSchema);
+const Bookingdate = model('Bookingdate', bookingdateSchema);
 
 module.exports = Bookingdate;
