@@ -41,7 +41,7 @@ const AppointmentForm = (props) => {
         allAppointments.push(resultIso)
     };
 
-    const [addBookingdate, { error }] = useMutation(ADD_BOOKINGDATE, {
+    const [addBookingdate] = useMutation(ADD_BOOKINGDATE, {
         update(cache, { data: { addBookingdate } }) {
             try {
                 const { bookingdates } = cache.readQuery({ query: QUERY_BOOKINGDATES });
