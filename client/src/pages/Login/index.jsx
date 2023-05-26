@@ -45,7 +45,6 @@ const Login = () => {
         <>
             <Navbar />
             <main className='container-login'>
-
                 <div className="card login">
                     <h4 className="card-header bg-primary rounded-0 text-light p-4"
                         style={{ fontSize: '1.7rem', textAlign: 'center' }}>

@@ -16,8 +16,8 @@ const Navbar = () => {
         return (
             <div className="bg-img">
                 <nav className="nav">
-                    <Link className="site-title" to="/" style={{ fontSize: '7rem' }}>Healing</Link>
-                    <ul className="nav justify-content-end">
+                    <Link className="landing-title" to="/">Healing</Link>
+                    <ul className="nav links justify-content-end">
                         <CustomLink to='/About' className='nav-item' style={{ fontSize: '1.5rem' }}>About</CustomLink>
                         <CustomLink to='/Note' className='nav-item ' style={{ fontSize: '1.5rem' }}>note</CustomLink>
                         <CustomLink to='/Dashboard' className='nav-item' style={{ fontSize: '1.5rem' }}>dashboard</CustomLink>

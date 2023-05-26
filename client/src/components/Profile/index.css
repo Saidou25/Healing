@@ -24,5 +24,18 @@
 .confirm-delete {
     margin-top: 6%;
 }
-
-/* text-white bg-primary */
+@media screen and (max-width: 414px) {
+    .container-profile {
+        margin-top: 8%;
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    /* .profile-card {
+        width: 90%;
+        margin-top: 10%;
+        margin-right: auto;
+        margin-left: auto;
+        box-shadow: none;
+    } */
+}

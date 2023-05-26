@@ -2,6 +2,7 @@
 
     background-image: url("../../assets/images/jumbo.jpeg");
     min-height: 400px;
+    width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -9,7 +10,7 @@
 }
 
 .nav {
-    /* height: 20%; */
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,8 +21,9 @@
 .site-title {
     margin-top: 3%;
     margin-left: 30px;
-    text-decoration: none;
+    /* text-decoration: none; */
     color: black;
+    font-size: 5rem;
 }
 
 .nav {
@@ -43,4 +45,30 @@
 
 .profile-icon {
     margin-left: 16px;
+}
+
+@media screen and (max-width: 414px) {
+    .landing-title {
+        margin-top: 0;
+        margin-left: 0;
+        font-size: 5rem;
+        text-decoration: none;
+        color: black;
+    }
+    .bg-img {
+
+        background-image: url("../../assets/images/jumbo.jpeg");
+        min-height: 250px;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .nav {
+        margin-right: 20px;
+        text-decoration: none;
+        flex-direction: column;
+    
+    }
 }

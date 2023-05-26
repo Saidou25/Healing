@@ -33,33 +33,37 @@ const About = () => {
                     conventional medical treatment. There is no proof of the effectiveness of reiki therapy compared
                     to placebo. Studies reporting positive effects have had methodological flaws.
                 </p>
+                <h3 className='team-title'>Our team</h3>
                 <div className='row'>
-                    <h3 className='team-title'>Our team</h3>
-                    <div className='col-3'>
-                        <div className='card'>
+                    {/* <div className='col-lg-3 col-sm-12'>
+                        <div className='card mt-3 mb-3'>
                             <div className='card-header'> Isa</div>
-                            <img src={nurseIcon} alt='nurse icon' height={300} />
+                            <img className='profile-picture' src={nurseIcon} alt='nurse icon' height={300} />
                             <div className='card-body'>
                                 <i className="bi bi-person-fill"></i>
                                 <div>10 years experience. Studied in Japan since age 14.</div>
                             </div>
                         </div>
-                    </div>
-                    <div className='col-3'>
-                        <div className='card'>
+                    </div> */}
+                    <div className='col-lg-3 col-sm-12'>
+                        <div className='card mt-3 mb-3'>
                             <div className='card-header'> Peter</div>
                             <div className='card-body'>
-                            <img src={nurseGuy} alt='nurse icon' height={300} />
-                                10 years experience. Studied in Japan since she was 14.
+                                <img src={nurseGuy} alt='nurse icon' height={300} />
+                                <p>
+                                    10 years experience. Studied in Japan since she was 14.
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div className='col-3'>
-                        <div className='card'>
+                    <div className='col-lg-3 col-sm-12'>
+                        <div className='card mt-3 mb-3'>
                             <div className='card-header'> Nancy</div>
                             <div className='card-body'>
-                            <img src={nurseLady} alt='nurse icon' height={300} />
-                                10 years experience. Studied in Japan since she was 14.
+                                <img src={nurseLady} alt='nurse icon' height={300} />
+                                <p>
+                                    Born in Reiki
+                                </p>
                             </div>
                         </div>
                     </div>

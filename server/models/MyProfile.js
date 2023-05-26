@@ -43,7 +43,7 @@ const profileSchema = new Schema({
 
     },
     patientzip: {
-        type: Number,
+        type: String,
         require: true,
         trim: true,
 

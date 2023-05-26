@@ -70,8 +70,7 @@ const ProfileForm = () => {
             setPatientCity(value);
         }
         if (name === 'patientzip') {
-            const zip = parseInt(value);
-            setPatientZip(zip);
+            setPatientZip(value);
         }
         if (name === 'patientnumber') {
             setValue(e.target.value);
@@ -199,7 +198,7 @@ const ProfileForm = () => {
                                         name="patientzip"
                                         value={patientzip}
                                         onChange={handleChange}
-                                        type="Number"
+                                        type="text"
                                         placeholder="zip code..." />
                                 </div>
                                 <div className="col-6">

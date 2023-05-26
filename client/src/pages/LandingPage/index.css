@@ -46,3 +46,12 @@
 .visit-item:hover {
     color: black;
 }
+@media screen and (max-width: 414px) {
+    .landing-title {
+     margin: 0px;
+    }
+    .landing-column {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

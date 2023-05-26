@@ -17,45 +17,60 @@ const UpdateMyProfileForm = (props) => {
     const location = useLocation();
     const userProfile = location.state.userProfile;
 
-    const [patientState, setNewValue] = useState(userProfile.patientState);
-    const [patientnumber, setPatientNumber] = useState(userProfile.patientnumber);
-    const [patientlastname, setPatientLastName] = useState(userProfile.patientlastname);
-    const [patientaddress, setPatientAddress] = useState(userProfile.patientaddress);
-    const [patientcity, setPatientCity] = useState(userProfile.patientcity);
-    const [zip, setzip] = useState(userProfile.patientzip);
+    const [patientState, setNewValue] = useState('');
+    const [patientnumber, setPatientNumber] = useState('');
+    const [patientlastname, setPatientLastName] = useState('');
+    const [patientaddress, setPatientAddress] = useState('');
+    const [patientcity, setPatientCity] = useState('');
+    const [patientzip, setPatientZip] = useState('');
     // const emailRegex = /^\S+@\S+\.\S+$/;
     const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
     const [updateProfile] = useMutation(UPDATE_PROFILE);
-    const patientzip = parseInt(zip);
 
     const handleChange = (e) => {
 
         const { name, value } = e.target;
 
-        if (name === 'patientlastname') {
-            if (value.length > 2)
-                setPatientLastName(value);
+        if (name === 'patientlastname' && value.length) {
+            console.log('value length', value.length);
+            setPatientLastName(value);
+            
+            if (!value.length) {
+                console.log('value length', value.length);
+                console.log(value.length);
+                console.log(userProfile.patientlastname);
+                setPatientLastName(userProfile.patientlastname);
+            }
         }
-        if (name === 'patientaddress') {
-            if (value.length > 5)
-                setPatientAddress(value);
+        if (name === 'patientaddress' && value.length) {
+            setPatientAddress(value);
         }
-        if (name === 'patientcity') {
-            if (value.length > 2)
-                setPatientCity(value);
+        if (name === 'patientaddress' && !value.length) {
+            setPatientAddress(userProfile.patientaddress);
+        }
+        if (name === 'patientcity' && value.length) {
+            setPatientCity(value);
+        }
+        if (name === 'patientcity' && !value.length) {
+            setPatientCity(userProfile.patientcity);
         }
         // if (name === 'patientemail') {
         //     if (emailRegex.test(value))
         //         setPatientEmail(value);
         // }
-        if (name === 'patientnumber') {
-            if (phoneRegex.test(value))
-                setPatientNumber(value);
+        if (name === 'patientnumber' && value.length) {
+            // if (phoneRegex.test(value))
+            setPatientNumber(value);
         }
-        if (name === 'zip') {
-            if (value.length === 5)
-                setzip(value);
+        if (name === 'patientnumber' && !value.length) {
+            setPatientNumber(userProfile.patientnumber);
+        }
+        if (name === 'patientzip' && value.length) { 
+            setPatientZip(value);
+        }
+        if (name === 'patientzip' && !value.length) {
+            setPatientZip(userProfile.patientzip);
         }
     };
 
@@ -70,13 +85,13 @@ const UpdateMyProfileForm = (props) => {
             setNewValue('');
             setPatientCity('');
             setPatientAddress('');
-            setzip('');
+            setPatientZip('');
             setPatientNumber('');
             setPatientLastName('');
         } catch (err) {
             console.error(err);
         }
-        navigate('/Dashboard');
+        navigate('/MyProfile');
     };
 
     return (
@@ -95,8 +110,7 @@ const UpdateMyProfileForm = (props) => {
                                         onChange={handleChange}
                                         type="text"
                                         name="patientlastname"
-                                        value={patientlastname}
-                                    // placeholder={userProfile.patientlastname}
+                                        placeholder={userProfile.patientlastname}
                                     />
                                 </div>
                                 {/* <div className="col-6 update-fields">
@@ -118,7 +132,7 @@ const UpdateMyProfileForm = (props) => {
                                         onChange={handleChange}
                                         type="text"
                                         name="patientaddress"
-                                    // placeholder={userProfile.patientaddress}
+                                        placeholder={userProfile.patientaddress}
                                     />
                                 </div>
                                 <div className="col-6 update-fields">
@@ -129,7 +143,7 @@ const UpdateMyProfileForm = (props) => {
                                         type="text"
                                         name="patientcity"
                                         onChange={handleChange}
-                                    // placeholder={userProfile.patientcity}
+                                        placeholder={userProfile.patientcity}
                                     />
                                 </div>
                                 <div className='col-6 update-fields'>
@@ -145,11 +159,11 @@ const UpdateMyProfileForm = (props) => {
                                     <label className="form-label">zip code</label>
                                     <input
                                         className="form-control"
-                                        name="zip"
-                                        value={zip}
+                                        name="patientzip"
+                                        value={patientzip}
+                                        type="text"
                                         onChange={handleChange}
-                                        type="Number"
-                                    // placeholder={userProfile.patientzip}
+                                        placeholder={userProfile.patientzip}
                                     />
                                 </div>
                                 <div className="col-6 update-fields">
@@ -158,7 +172,7 @@ const UpdateMyProfileForm = (props) => {
                                         className='phone-update'
                                         format="(###) ### ####"
                                         allowEmptyFormatting mask="_"
-                                        value={patientnumber}
+                                        value={userProfile.patientnumber}
                                         name='patientnumber'
                                         // placeholder={userProfile.patientnumber}
                                         onValueChange={(values, sourceInfo) => {

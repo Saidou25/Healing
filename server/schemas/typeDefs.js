@@ -16,7 +16,7 @@ const typeDefs = gql`
      patientState: String
      patientreason: String
      birthdate: String
-     patientzip: Int
+     patientzip: String
      mepet: String
      isBooked: String
      appDay: String
@@ -122,7 +122,7 @@ const typeDefs = gql`
      patientnumber: String!,
      patientreason: String,
      birthdate: String,
-     patientzip: Int!,
+     patientzip: String!,
      mepet: String,
      isBooked: String,
      appDay: String,
@@ -172,7 +172,7 @@ const typeDefs = gql`
     username: String,
      patientlastname: String, 
                     patientcity: String,
-                    patientzip: Int,
+                    patientzip: String,
                     patientState: String,
                     patientnumber: String,
                     patientaddress: String): Profile

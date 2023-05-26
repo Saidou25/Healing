@@ -103,7 +103,7 @@ const AppointmentHistory = () => {
                                                     className='btn delete-appointment rounded-0'
                                                     onClick={() => handleSubmit(bookingdate)}
                                                 >
-                                                    <img clasName='trash-can' src={trash} alt='trash-can' height={60} />
+                                                    <img className='trash-can' src={trash} alt='trash-can' height={60} />
                                                 </button>
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@ const AppointmentHistory = () => {
                                                 className='btn delete-appointment rounded-0'
                                                 onClick={() => handleSubmit(bookingdate)}
                                             >
-                                               <img clasName='trash-can' src={trash} alt='trash-can' height={60} />
+                                               <img className='trash-can' src={trash} alt='trash-can' height={60} />
                                             </button>
                                         </div> */}
                                     </div>

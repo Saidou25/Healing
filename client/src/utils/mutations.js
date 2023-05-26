@@ -279,7 +279,7 @@ mutation deletePet($username: String!) {
       $patientreason: String,
       $birthdate: String,
       $patientState: String!,
-      $patientzip: Int!,
+      $patientzip: String!,
       $mepet: String,
       $isBooked: String,
       $appDay: String,
@@ -351,7 +351,7 @@ mutation deletePet($username: String!) {
       $patientlastname: String,
       $patientcity: String,
       $patientState: String,
-      $patientzip: Int,
+      $patientzip: String,
       $patientnumber: String
       ) {
          updateProfile(

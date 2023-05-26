@@ -1,3 +1,8 @@
 .btn-modal {
     width: 100%;
 }
+@media screen and (max-width: 414px) {
+    .btn-modal {
+        width: 97%;
+    }
+}

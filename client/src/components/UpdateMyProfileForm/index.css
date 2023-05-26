@@ -46,3 +46,10 @@
     margin-left: auto;
     margin-right: auto;
 }
+@media screen and (max-width: 414px) {
+    .container-update {
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}

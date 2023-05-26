@@ -59,11 +59,13 @@ const Dashboard = () => {
         <>
             <Navbar />
             <div className='container'>
-                <div className='row mt-5 mb-5'>
-                    <div className='d-flex col-12'>
-                        <div>
+                <div className='row buttons mt-5 mb-5'>
+                    <div className='d-flex buttons col-lg-12 '>
+                        <div >
                             <Link to='/Appointment' className='btn btn-primary m-2' state={{ username }} >
+                                <div className='text-wrap'>
                                 Book an appointment
+                                    </div>
                             </Link>
                         </div>
 
@@ -79,11 +81,11 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className='row justify-content-between'>
-                    <div className='col-6'>
+                    <div className='col-lg-6 col-sm-12'>
                         <UpcomingAppointments myAppointments={myAppointments} /> <br />
                     </div>
                     {futureAppointments.length ? (
-                        <div className='col-6 col-lg-5 mt-5'>
+                        <div className='col-lg-6 col-sm-12 mt-5'>
                             <p>
                                We suggest comming 15 minutes prior to your appointment. <br />
                             </p>
@@ -100,10 +102,10 @@ const Dashboard = () => {
                     )}
                 </div>
                 <div className='row'>
-                    <div className='col-8 border-end'>
+                    <div className='col-lg-8 col-sm-12 border-end'>
                         <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
-                    <div className='col-4 border-start'>
+                    <div className='col-lg-4  col-sm-12 border-start'>
                         <h3 className="write-review-title mt-4">Write a review </h3>
                         <button
                             type='button'

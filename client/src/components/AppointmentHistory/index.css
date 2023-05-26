@@ -7,3 +7,11 @@
 .delete-appointment {
     margin-bottom: 2%;
 }
+@media screen and (max-width: 414px) {
+    .container-history {
+        margin-top: 7%;
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
