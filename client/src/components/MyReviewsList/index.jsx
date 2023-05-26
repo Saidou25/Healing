@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from "@apollo/client";
-import { useNavigate } from 'react-router-dom';
 import { QUERY_REVIEWS } from '../../utils/queries';
 import { DELETE_REVIEW } from '../../utils/mutations';
 import './index.css';
@@ -8,14 +7,12 @@ import './index.css';
 const MyReviewsList = (props) => {
     const myUserName = props.username;
 
-    const navigate = useNavigate();
-
     const [reviewId, setReviewId] = useState('');
 
     const { data: reviewsData, loading } = useQuery(QUERY_REVIEWS);
     const reviews = reviewsData?.reviews || [];
 
-    const [deleteReview, error] = useMutation(DELETE_REVIEW, {
+    const [deleteReview] = useMutation(DELETE_REVIEW, {
         variables: { id: reviewId },
         update(cache, { data: { deleteReview } }) {
             try {
@@ -56,14 +53,18 @@ const MyReviewsList = (props) => {
                     reviews.map((review) => (
                         <div key={review._id} className="col-12">
                             <div className="card mb-3">
-                                <div className="card-header">Header</div>
+                                <div className="card-header" style={{ fontSize: '1.2rem' }}>{review.title}</div>
                                 <div className='card-body'>
-                                    <span className="card-text" style={{ fontSize: '1rem' }}>
-                                        Title: {review.title}</span> <br />
-                                    <span className="card-text" style={{ fontSize: '1rem' }}>
-                                        Text: {review.reviewText}</span> <br />
-                                    <span className="text" style={{ fontSize: '1rem' }}>
-                                        Created: fake date</span> <br />
+                                    <div className='row'>
+                                        <div className='col-12'>
+                                            <span className="card-text" style={{ fontSize: '1rem' }}>
+                                                {review.reviewText}</span> <br />
+                                        </div>
+                                        <div className='col-6 mt-3'>
+                                            <span className="text" style={{ fontSize: '1rem' }}>
+                                                Created: fake date</span> <br />
+                                        </div>
+                                    </div>
                                     <div>
                                         {(review.username === myUserName) ? (
                                             <div className='d-flex justify-content-end'>
@@ -75,8 +76,10 @@ const MyReviewsList = (props) => {
                                                 </button>
                                             </div>) : (
                                             <>
-                                                <span className="text" style={{ fontSize: '1rem' }}>
-                                                    Author: {review.username}</span> < br />
+                                                <div className='col-6 mt-3'>
+                                                    <span className="text" style={{ fontSize: '1rem' }}>
+                                                        Author: {review.username}</span> < br />
+                                                </div>
                                             </>
                                         )}
                                     </div>

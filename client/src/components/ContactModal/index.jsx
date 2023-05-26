@@ -27,16 +27,10 @@ const ProfileModal = () => {
 
         }
         if (name === "user_email") {
-
             setEmail(value);
-            //   if (emailRegex.test(value)) {
-
         }
         if (name === "message") {
-
             setMessage(value);
-            //   if (value.length > 0) {
-
         }
     };
 
@@ -64,7 +58,6 @@ const ProfileModal = () => {
                 data-bs-target="#exampleModal">
                 Direct message
             </button>
-
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -74,7 +67,6 @@ const ProfileModal = () => {
                                 <button type="button" className="btn-close btn btn-primary mb-5" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
-
                                 <form ref={form} onClick={sendEmail}>
                                     <label className="form-label">Name</label>
                                     <input
@@ -84,7 +76,6 @@ const ProfileModal = () => {
                                         value={user}
                                         name="user_name"
                                         placeholder="Name" />
-
                                     <label className="form-label">Email</label>
                                     <input
                                         className="form-control"
@@ -101,8 +92,6 @@ const ProfileModal = () => {
                                         value={message}
                                         onChange={handleInputChange}
                                         placeholder="type your message..." />
-
-
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button
@@ -113,7 +102,6 @@ const ProfileModal = () => {
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>

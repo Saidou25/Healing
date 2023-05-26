@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from '../../utils/auth';
-import Navbar from "../Navbar";
+import Navbar from "../../components/Navbar";
 import './index.css';
 
 const Login = () => {
@@ -30,15 +30,15 @@ const Login = () => {
 
             Auth.login(data.login.token);
 
+            navigate('/Dashboard', { state: formState });
+            setFormState({
+                email: '',
+                password: '',
+            });
         } catch (e) {
             console.error(e);
+            // navigate('/');
         }
-        navigate('/Dashboard', { state: formState });
-        setFormState({
-            email: '',
-            password: '',
-        });
-
     };
 
     return (
@@ -90,7 +90,6 @@ const Login = () => {
                                     </button>
                                 </form>
                             )}
-
                         {error && (
                             <div className="my-3 p-3 bg-danger text-white">
                                 {error.message}

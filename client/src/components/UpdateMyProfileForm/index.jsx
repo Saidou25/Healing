@@ -12,29 +12,24 @@ import Navbar from '../Navbar';
 
 const UpdateMyProfileForm = (props) => {
     const profileId = props.profileId;
-    // console.log('profileId', profileId);
 
     const navigate = useNavigate();
     const location = useLocation();
     const userProfile = location.state.userProfile;
-    // console.log('userProfile', userProfile);
 
-    const [profile, setProfile] = useState('');
-    const [patientState, setNewValue] = useState('');
-    const [patientnumber, setPatientNumber] = useState('');
-    const [patientlastname, setPatientLastName] = useState('');
-    const [patientaddress, setPatientAddress] = useState('');
-    const [patientcity, setPatientCity] = useState('');
-    const [zip, setzip] = useState('');
-    const [patientemail, setPatientEmail] = useState('');
-    const emailRegex = /^\S+@\S+\.\S+$/;
+    const [patientState, setNewValue] = useState(userProfile.patientState);
+    const [patientnumber, setPatientNumber] = useState(userProfile.patientnumber);
+    const [patientlastname, setPatientLastName] = useState(userProfile.patientlastname);
+    const [patientaddress, setPatientAddress] = useState(userProfile.patientaddress);
+    const [patientcity, setPatientCity] = useState(userProfile.patientcity);
+    const [zip, setzip] = useState(userProfile.patientzip);
+    // const emailRegex = /^\S+@\S+\.\S+$/;
     const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
     const [updateProfile] = useMutation(UPDATE_PROFILE);
     const patientzip = parseInt(zip);
 
     const handleChange = (e) => {
-
 
         const { name, value } = e.target;
 
@@ -50,10 +45,10 @@ const UpdateMyProfileForm = (props) => {
             if (value.length > 2)
                 setPatientCity(value);
         }
-        if (name === 'patientemail') {
-            if (emailRegex.test(value))
-                setPatientEmail(value);
-        }
+        // if (name === 'patientemail') {
+        //     if (emailRegex.test(value))
+        //         setPatientEmail(value);
+        // }
         if (name === 'patientnumber') {
             if (phoneRegex.test(value))
                 setPatientNumber(value);
@@ -101,9 +96,8 @@ const UpdateMyProfileForm = (props) => {
                                         type="text"
                                         name="patientlastname"
                                         value={patientlastname}
-                                        placeholder={userProfile.patientlastname}
-                                         />
-
+                                    // placeholder={userProfile.patientlastname}
+                                    />
                                 </div>
                                 {/* <div className="col-6 update-fields">
                                     <label className="form-label"> Email</label>
@@ -116,7 +110,6 @@ const UpdateMyProfileForm = (props) => {
                                         placeholder={userProfile.patientemail} />
 
                                 </div> */}
-
                                 <div className="col-6  ">
                                     <label className="form-label">Address</label>
                                     <input
@@ -125,10 +118,9 @@ const UpdateMyProfileForm = (props) => {
                                         onChange={handleChange}
                                         type="text"
                                         name="patientaddress"
-                                        placeholder={userProfile.patientaddress} />
-
+                                    // placeholder={userProfile.patientaddress}
+                                    />
                                 </div>
-
                                 <div className="col-6 update-fields">
                                     <label className="form-label">City</label>
                                     <input
@@ -137,10 +129,9 @@ const UpdateMyProfileForm = (props) => {
                                         type="text"
                                         name="patientcity"
                                         onChange={handleChange}
-                                        placeholder={userProfile.patientcity} />
-
+                                    // placeholder={userProfile.patientcity}
+                                    />
                                 </div>
-
                                 <div className='col-6 update-fields'>
                                     <label className='form-label'>
                                         Select a state
@@ -158,23 +149,21 @@ const UpdateMyProfileForm = (props) => {
                                         value={zip}
                                         onChange={handleChange}
                                         type="Number"
-                                        placeholder={userProfile.patientzip} />
+                                    // placeholder={userProfile.patientzip}
+                                    />
                                 </div>
-
                                 <div className="col-6 update-fields">
                                     <label className="form-label">Phone number</label>
-
                                     <PatternFormat
-                                     className='phone-update'
+                                        className='phone-update'
                                         format="(###) ### ####"
                                         allowEmptyFormatting mask="_"
-                                        value={profile.patientnumber}
+                                        value={patientnumber}
                                         name='patientnumber'
-                                        placeholder={userProfile.patientnumber}
+                                        // placeholder={userProfile.patientnumber}
                                         onValueChange={(values, sourceInfo) => {
                                             setPatientNumber(values.value);
                                         }} />
-
                                 </div>
                                 <div className="col-12">
                                     <button className="btn btn-primary"
@@ -183,7 +172,6 @@ const UpdateMyProfileForm = (props) => {
                                         value="Send">
                                         Submit
                                     </button>
-
                                 </div>
                             </div>
                         </form>

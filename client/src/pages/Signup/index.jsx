@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import style from './index.css';
+import './index.css';
 import Navbar from '../../components/Navbar';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -36,7 +35,6 @@ const Signup = () => {
     } catch (e) {
       console.error(e);
     }
-
   };
 
   return (
@@ -44,8 +42,8 @@ const Signup = () => {
       <Navbar />
       <div className='container-signup'>
         <div className="card signup">
-          <h4 className="card-header bg-primary rounded-0 text-light p-4" 
-          style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+          <h4 className="card-header bg-primary rounded-0 text-light p-4"
+            style={{ fontSize: '1.7rem', textAlign: 'center' }}>
             Sign Up</h4>
           <div className="card-body">
             {data ? (
@@ -92,7 +90,7 @@ const Signup = () => {
                   onChange={handleChange}
                 /><br />
                 <button
-                  className="btn btn-info rounded-0 mt-5" 
+                  className="btn btn-info rounded-0 mt-5"
                   type="button"
                   style={{ cursor: 'pointer' }}
                   onClick={handleFormSubmit}>
@@ -100,7 +98,6 @@ const Signup = () => {
                 </button>
               </form>
             )}
-
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
                 {error.message}

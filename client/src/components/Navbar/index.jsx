@@ -10,8 +10,8 @@ const Navbar = () => {
         event.preventDefault();
         Auth.logout();
         console.log('logout success!')
-
     };
+
     if (Auth.loggedIn()) {
         return (
             <div className="bg-img">

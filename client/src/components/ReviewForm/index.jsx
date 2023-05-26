@@ -81,7 +81,6 @@ const ReviewForm = (props) => {
                                             onChange={handleChange}
                                         />
                                         <label className="form-label">Text</label><br />
-
                                         <textarea
                                             className="form-input review-textarea mb-3"
                                             placeholder="write your text here..."
@@ -99,7 +98,6 @@ const ReviewForm = (props) => {
                                         </button>
                                     </form>
                                 )}
-
                             {error && (
                                 <div className="my-3 p-3 bg-danger text-white">
                                     {error.message}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import Input from 'react-phone-number-input/input';
 import Confirmation from '../Confirmation';
@@ -15,7 +15,6 @@ const PetOwnerProfileForm = (props) => {
     const userProfile = props.userProfile;
     const myPet = props.myPet;
     const mepet = props.mepet;
-    const profileId = props.profileId;
 
     const navigate = useNavigate();
 
@@ -27,12 +26,12 @@ const PetOwnerProfileForm = (props) => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
 
-    const { loading, data: meData } = useQuery(QUERY_ME);
+    const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const username = me.username;
 
 
-    const [addProfile, { error, data }] = useMutation(ADD_PROFILE, {
+    const [addProfile] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip },
 
         update(cache, { data: { addProfile } }) {
@@ -136,7 +135,7 @@ const PetOwnerProfileForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         addProfile(username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip)
-       
+
         console.log(`success adding your info ${patientfirstname} !`);
         (mepet === 'mypet') ? navigate('/Appointment', { state: username, userProfile }) : navigate('/Dashboard');
     };
@@ -181,7 +180,6 @@ const PetOwnerProfileForm = (props) => {
                                                 <i className="fa-solid fa-check"></i>
                                             </div> */}
                                         </div>
-
                                         <div className="col-6 owner-fields">
                                             <label className="form-label"> Last name</label>
                                             <input
@@ -200,7 +198,6 @@ const PetOwnerProfileForm = (props) => {
                                                 <i className="fa-solid fa-check"></i>
                                             </div> */}
                                         </div>
-
                                         <div className="col-6 owner-fields">
                                             <label className="form-label">Address</label>
                                             <input
@@ -219,7 +216,6 @@ const PetOwnerProfileForm = (props) => {
                                                 <i className="fa-solid fa-check"></i>
                                             </div> */}
                                         </div>
-
                                         <div className="col-6 owner-fields">
                                             <label className="form-label">City</label>
                                             <input
@@ -238,20 +234,16 @@ const PetOwnerProfileForm = (props) => {
                                                 <i className="fa-solid fa-check"></i>
                                             </div> */}
                                         </div>
-
                                         <div className='col-6 owner-fields'>
                                             <label className='form-label'>
                                                 Select a state
                                             </label>
-
                                             <SelectUSState
                                                 id="myId"
                                                 className="myClassName"
                                                 onChange={setNewValue}
-
                                             />
                                         </div>
-
                                         <div className="col-6 owner-fields">
                                             <label className="form-label">Zip code</label>
                                             <input
@@ -270,7 +262,6 @@ const PetOwnerProfileForm = (props) => {
                                                 <i className="fa-solid fa-check"></i>
                                             </div> */}
                                         </div>
-
                                         <div className="col-6 owner-fields">
                                             <label className="form-label">
                                                 Phone number
@@ -293,7 +284,6 @@ const PetOwnerProfileForm = (props) => {
                                             </div> */}
                                             </div>
                                         </div>
-
                                         <div className="col-12">
                                             <button className="btn button-owner rounded-0 btn-primary"
                                                 type="submit"

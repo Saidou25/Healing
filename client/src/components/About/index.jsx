@@ -1,5 +1,8 @@
 import React from 'react';
 import Navbar from '../Navbar';
+import nurseIcon from '../../assets/images/nurseIcon.jpeg';
+import nurseGuy from '../../assets/images/nurseGuy.jpeg';
+import nurseLady from '../../assets/images/nurseLady.jpeg';
 
 import './index.css';
 
@@ -35,28 +38,27 @@ const About = () => {
                     <div className='col-3'>
                         <div className='card'>
                             <div className='card-header'> Isa</div>
+                            <img src={nurseIcon} alt='nurse icon' height={300} />
                             <div className='card-body'>
-                            <i className="bi bi-person-fill"></i>
-                                <div>10 years experience. Studied in Japan since she was 14.</div>
+                                <i className="bi bi-person-fill"></i>
+                                <div>10 years experience. Studied in Japan since age 14.</div>
                             </div>
                         </div>
                     </div>
-
-
                     <div className='col-3'>
                         <div className='card'>
                             <div className='card-header'> Peter</div>
                             <div className='card-body'>
+                            <img src={nurseGuy} alt='nurse icon' height={300} />
                                 10 years experience. Studied in Japan since she was 14.
                             </div>
                         </div>
                     </div>
-
-
                     <div className='col-3'>
                         <div className='card'>
                             <div className='card-header'> Nancy</div>
                             <div className='card-body'>
+                            <img src={nurseLady} alt='nurse icon' height={300} />
                                 10 years experience. Studied in Japan since she was 14.
                             </div>
                         </div>

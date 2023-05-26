@@ -1,9 +1,8 @@
 import React from 'react';
-import { FaEnvelope, FaPhone, FaIdBadge } from 'react-icons/fa'
+import { FaEnvelope, FaPhone } from 'react-icons/fa'
 import './index.css';
 
 const Footer = () => {
-
 
     return (
         <div className='row footer bg-primary text-white'>
@@ -15,7 +14,6 @@ const Footer = () => {
                 <FaPhone className="icon m-2" />
                 +1 (123) 456 7891</div>
             <br />
-
         </div>
     )
 };

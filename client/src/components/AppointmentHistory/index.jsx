@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_BOOKINGDATES } from '../../utils/queries';
 import { DELETE_BOOKINGDATE } from '../../utils/mutations';
 import Navbar from '../Navbar';
+import trash from '../../assets/images/trash.png';
 import './index.css';
 
 const AppointmentHistory = () => {
@@ -87,21 +88,36 @@ const AppointmentHistory = () => {
                             <div key={bookingdate._id} className="col-12 mt-5">
                                 <div className="card mb-3">
                                     <div className="card-header" style={{ fontSize: '1.3rem' }} >Your past appointments:</div>
-                                    <div className='card-body m-3'>
-                                        <div className='appointment-text mt-4'>
-                                            <div className="text pt-3" style={{ fontSize: '1.4rem' }}>
-                                                {bookingdate.appDay}, {bookingdate.appMonth} {bookingdate.appDate}, {bookingdate.appYear} at {bookingdate.appTime}.
+                                    <div className='card-body'>
+                                        <div className='row'>
+                                            <div className='col-6 d-flex align-items-center'>
+                                                <div className='appointment-text'>
+                                                    <div className="text" style={{ fontSize: '1.4rem' }}>
+                                                        {bookingdate.appDay}, {bookingdate.appMonth} {bookingdate.appDate}, {bookingdate.appYear} at {bookingdate.appTime}.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='col-6 d-flex justify-content-end'>
+                                                <button
+                                                    type='button'
+                                                    className='btn delete-appointment rounded-0'
+                                                    onClick={() => handleSubmit(bookingdate)}
+                                                >
+                                                    <img clasName='trash-can' src={trash} alt='trash-can' height={60} />
+                                                </button>
                                             </div>
                                         </div>
-                                        <div className='d-flex justify-content-end'>
+
+
+                                        {/* <div className='d-flex justify-content-end'>
                                             <button
                                                 type='button'
-                                                className='btn delete-appointment btn-danger rounded-0'
+                                                className='btn delete-appointment rounded-0'
                                                 onClick={() => handleSubmit(bookingdate)}
                                             >
-                                                delete
+                                               <img clasName='trash-can' src={trash} alt='trash-can' height={60} />
                                             </button>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
 

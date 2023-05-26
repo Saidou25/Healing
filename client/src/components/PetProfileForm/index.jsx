@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 import { QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
@@ -7,9 +7,11 @@ import { useMutation, useQuery } from '@apollo/client';
 import './index.css';
 
 const PetForm = (props) => {
+    const navigate = useNavigate();
+
     const myPet = props.myPet;
     const profileId = props.profileId;
-    const navigate = useNavigate();
+
     const [petName, setPetName] = useState('');
     const [petWeight, setPetWeight] = useState('');
     const [petBreed, setPetBreed] = useState('');
@@ -17,29 +19,15 @@ const PetForm = (props) => {
     const [petGender, setPetGender] = useState('');
     const [petKind, setPetKind] = useState('');
 
-    // const x = document.querySelector(".validate");
-    // const y = document.querySelector(".invalidate");
-    // const x1 = document.querySelector(".validate1");
-    // const y1 = document.querySelector(".invalidate1");
-    // const x2 = document.querySelector(".validate2");
-    // const y2 = document.querySelector(".invalidate2");
-    // const x3 = document.querySelector(".validate3");
-    // const y3 = document.querySelector(".invalidate3");
-    // const x4 = document.querySelector(".validate4");
-    // const y4 = document.querySelector(".invalidate4");
-    // const x5 = document.querySelector(".validate5");
-    // const y5 = document.querySelector(".invalidate5");
-
     const { data } = useQuery(QUERY_ME);
     const me = data?.me || [];
     const username = me.username;
-
 
     const { data: profilesData } = useQuery(QUERY_PROFILES);
     const profiles = profilesData?.profiles || [];
 
 
-    const [addPet, { error }] = useMutation(ADD_PET, {
+    const [addPet] = useMutation(ADD_PET, {
         update(cache, { data: { addPet } }) {
             try {
                 const { pets } = cache.readQuery({ query: QUERY_PETS });
@@ -51,7 +39,7 @@ const PetForm = (props) => {
             } catch (e) {
                 console.error(e);
             }
-            
+
             navigate('/Dashboard');
         }
     });
@@ -61,69 +49,21 @@ const PetForm = (props) => {
 
         if (name === 'petKind') {
             setPetKind(value);
-
-            // if (value) {
-            //     x.style.display = "block";
-            //     y.style.display = "none";
-            // } else {
-            //     x.style.display = "none";
-            //     y.style.display = "block";
-            // }
         }
         if (name === 'petName') {
             setPetName(value);
-
-            // if (value) {
-            //     x1.style.display = "block";
-            //     y1.style.display = "none";
-            // } else {
-            //     x1.style.display = "none";
-            //     y1.style.display = "block";
-            // }
         }
         if (name === 'petGender') {
             setPetGender(value);
-
-            // if (value) {
-            //     x2.style.display = "block";
-            //     y2.style.display = "none";
-            // } else {
-            //     x2.style.display = "none";
-            //     y2.style.display = "block";
-            // }
         }
         if (name === 'petAge') {
             setPetAge(value);
-
-            // if (value) {
-            //     x3.style.display = "block";
-            //     y3.style.display = "none";
-            // } else {
-            //     x3.style.display = "none";
-            //     y3.style.display = "block";
-            // }
         }
         if (name === 'petBreed') {
             setPetBreed(value);
-
-            // if (value) {
-            //     x4.style.display = "block";
-            //     y4.style.display = "none";
-            // } else {
-            //     x4.style.display = "none";
-            //     y4.style.display = "block";
-            // }
         }
         if (name === 'petWeight') {
             setPetWeight(value);
-
-            // if (value) {
-            //     x5.style.display = "block";
-            //     y5.style.display = "none";
-            // } else {
-            //     x5.style.display = "none";
-            //     y5.style.display = "block";
-            // }
         }
     };
 
@@ -134,16 +74,16 @@ const PetForm = (props) => {
                 variables: { profileId: profileId, petName: petName, username: username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
             });
             console.log(`Appointment for ${petName} booked successfully`);
-            setPetName('');
-            setPetGender('');
-            setPetAge('');
-            setPetWeight('');
-            setPetBreed('');
-            navigate('/Dashboard');
 
         } catch (err) {
             console.error(err);
-        };
+        }
+        setPetName('');
+        setPetGender('');
+        setPetAge('');
+        setPetWeight('');
+        setPetBreed('');
+        navigate('/Dashboard');
     };
 
     return (
@@ -178,16 +118,7 @@ const PetForm = (props) => {
                                                 checked={petKind === 'cat'}
                                                 onChange={handleChange} /> cat
                                         </div>
-                                        {/* <div className='validate'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div> */}
                                     </div>
-                                  
                                     <div className='col-6'>
                                         <div>
                                             <label className="form-label">What is your pet's gender?</label><br />
@@ -206,14 +137,6 @@ const PetForm = (props) => {
                                                 checked={petGender === 'female'}
                                                 onChange={handleChange} /> female
                                         </div>
-                                        {/* <div className='validate2'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate2'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div> */}
                                     </div>
                                     <div className="col-6">
                                         <label className="form-label"> Name</label>
@@ -224,14 +147,6 @@ const PetForm = (props) => {
                                             value={petName}
                                             name="petName"
                                             placeholder="pet's name..." />
-                                        {/* <div className='validate1'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate1'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div> */}
                                     </div>
                                     <div className='col-6'>
                                         <label className="form-label">Age</label><br />
@@ -243,14 +158,6 @@ const PetForm = (props) => {
                                             onChange={handleChange}
                                             placeholder="MM/DD/YYYY..."
                                         />
-                                        {/* <div className='validate3'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate3'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div> */}
                                     </div>
                                     <div className="col-6">
                                         <label className="form-label"> Breed</label>
@@ -261,14 +168,6 @@ const PetForm = (props) => {
                                             value={petBreed}
                                             name="petBreed"
                                             placeholder="breeed..." />
-                                        {/* <div className='validate4'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate4'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div> */}
                                     </div>
                                     <div className="col-6">
                                         <label className="form-label"> Pet's weight</label>
@@ -279,16 +178,7 @@ const PetForm = (props) => {
                                             name="petWeight"
                                             value={petWeight}
                                             placeholder="weight..." />
-                                        {/* <div className='validate5'>
-                                            Looks good
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className='invalidate5'>
-                                            required
-                                            <i className="fa-solid fa-check"></i>
-                                        </div> */}
                                     </div>
-
                                     <div className="col-12">
                                         <button className="btn rounded-0 button-pet btn-primary"
                                             type="submit"

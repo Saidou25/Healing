@@ -65,7 +65,6 @@ const Profile = (props) => {
     };
 
     if (!userProfile) {
-
         return (
             <div>
                 <div className='container-profile'>
@@ -128,7 +127,6 @@ const Profile = (props) => {
                                 </div>
                             </div>
                             <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.6.5rem' }}>Contact</h3>
-
                             <div className="card profile-body p-3">
                                 <div className="card-header">
                                     <div className="text m-2" style={{ fontSize: '1.2rem' }}>
@@ -147,7 +145,6 @@ const Profile = (props) => {
                                 update
                             </button> <br />
                         </Link>
-
                         {!toConfirm ? (
                             <div className='d-flex justify-content-end'>
                                 <button
@@ -161,7 +158,6 @@ const Profile = (props) => {
                         ) : (
                             <div>
                                 <h3>This operation is irreversible... Please confirm.</h3>
-
                                 <button
                                     className='btn confirm-delete mt-4 btn-danger rounded-0'
                                     onClick={(event) => { deleteAll(event) }}>

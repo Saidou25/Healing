@@ -29,7 +29,7 @@ const UpcomingAppointments = (props) => {
     }
 
     return (
-        <div>
+        <div className='container-upcoming-appointment'>
             <div className="row">
                 {futureAppointments &&
                     futureAppointments.map((bookingdate) => (
@@ -45,7 +45,6 @@ const UpcomingAppointments = (props) => {
                         </div>
                     ))}
             </div>
-
         </div>
     )
 };

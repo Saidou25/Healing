@@ -10,7 +10,6 @@ import 'bootswatch/dist/lux/bootstrap.min.css';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-
 import ProfileForm from './components/ProfileForm';
 import PetProfileForm from './components/PetProfileForm';
 import PetOwnerProfileForm from './components/PetOwnerProfileForm';
@@ -18,9 +17,8 @@ import ReviewForm from './components/ReviewForm';
 import MyReviewsList from './components/MyReviewsList';
 import Appointment from './components/Appointment';
 import AppointmentHistory from './components/AppointmentHistory';
-import Login from './components/Login';
+import Login from './pages/Login';
 import LandingPage from './pages/LandingPage';
-// import History from './components/History';
 import UpcomingAppointments from './components/UpcomingAppointments';
 import Confirmation from './components/Confirmation';
 import AppointmentForm from './components/AppointmentForm';
@@ -36,11 +34,9 @@ import Note from './components/Note';
 import UpdateNote from './components/UpdateNote';
 import Footer from './components/Footer';
 
-
-
 const httpLink = createHttpLink({
   uri: '/graphql',
-})
+});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -54,33 +50,28 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache({
-    typePolicies: {
-      Query: {
-        fields: {
-          reviews: {
-            merge(existing, incoming) {
-              return incoming;
-            }
-          },
-          bookingdates: {
-            merge(existing, incoming) {
-              return incoming;
-            }
-          },
-          user: {
-            bookingdates: {
-              merge(existing = [], incoming) {
-                return [incoming];
-              }
-            }
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        reviews: {
+          merge(existing, incoming) {
+            return incoming;
+          }
+        },
+        bookingdates: {
+          merge(existing, incoming) {
+            return incoming;
           }
         }
       }
     }
-  })
+  },
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache,
 });
 
 function App() {

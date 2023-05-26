@@ -1,7 +1,9 @@
 .review-button {
     width: 100%;
 }
-
+.write-review-title {
+    text-align: center;
+}
 .border-end {
     padding-right: 3%;
    

@@ -153,7 +153,6 @@ const AppointmentForm = (props) => {
                                 </label>
                             </div>
                             <div >
-                                
                             </div>
                             <div className='col-6 visit'>
                                 <div>

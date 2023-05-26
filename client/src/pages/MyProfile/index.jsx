@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Profile from '../../components/Profile';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_PROFILES, QUERY_PETS, QUERY_BOOKINGDATES } from '../../utils/queries';

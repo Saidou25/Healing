@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import './index.css';
 
 const LandingPage = () => {
+    
     return (
         <div className="mainlandingpage">
             <div className="landing-title">
             <Link className="landing text-primary" to="/" style={{ fontSize: '7rem' }}>
                 Healing
             </Link>
-
             </div>
             <div className="landing-parent">
                 <div className="card landing-page rounded-0">
