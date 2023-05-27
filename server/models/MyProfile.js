@@ -70,7 +70,7 @@ const profileSchema = new Schema({
         type: String,
         require: false,
         trim: true,
-        match: [/.+@.+\..+/, 'Must match an email address!']
+        // match: [/.+@.+\..+/, 'Must match an email address!']
     },
      isBooked: {
         type: String,
