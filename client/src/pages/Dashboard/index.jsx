@@ -86,7 +86,8 @@ const Dashboard = () => {
                     </div>
                     {futureAppointments.length ? (
                         <div className='col-lg-6 col-sm-12 mt-5'>
-                            <p>
+                           <div className='card suggestion p-3'>
+                           <p>
                                We suggest comming 15 minutes prior to your appointment. <br />
                             </p>
                             <p>
@@ -95,6 +96,7 @@ const Dashboard = () => {
                             <p>
                                 This can also be used appointment cancelation (48 hours notice is appreciated). Then book again if you would like to reschedule.
                             </p>
+                            </div>
                         </div>
                     ) : (
                         <>
@@ -102,10 +104,10 @@ const Dashboard = () => {
                     )}
                 </div>
                 <div className='row'>
-                    <div className='col-lg-8 col-sm-12 border-end'>
+                    <div className='col-lg-8 col-sm-12 border-end mt-5'>
                         <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
-                    <div className='col-lg-4  col-sm-12 border-start'>
+                    <div className='col-lg-4 col-sm-12 border-start mt-5'>
                         <h3 className="write-review-title mt-4">Write a review </h3>
                         <button
                             type='button'

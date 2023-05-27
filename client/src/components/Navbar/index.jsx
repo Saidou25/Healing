@@ -33,7 +33,7 @@ const Navbar = () => {
     return (
         <div className="bg-img">
             <nav className="nav">
-                <Link className="site-title" to="/" style={{ fontSize: '7rem' }}>
+                <Link className="landing-title" to="/">
                     Healing
                 </Link>
                 <ul className="nav justify-content-end">

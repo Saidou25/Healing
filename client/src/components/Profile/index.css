@@ -21,9 +21,7 @@
 .delete-user {
     margin-top: 6%;
 }
-.confirm-delete {
-    margin-top: 6%;
-}
+
 @media screen and (max-width: 414px) {
     .container-profile {
         margin-top: 8%;

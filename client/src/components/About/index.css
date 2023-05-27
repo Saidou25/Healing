@@ -8,6 +8,10 @@
     margin: 5%;
     text-align: center;
 }
+.responsive {
+    max-width: 100%;
+    height: auto;
+  }
 @media screen and (max-width: 414px) {
     .about {
         width: 90%;

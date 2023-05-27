@@ -22,9 +22,12 @@
     margin-left: auto;
     margin-top: 4%;
 }
+
 .landing-title {
     margin-top: 3%;
     margin-left: 30px;
+    text-decoration: none;
+    font-size: 7rem;
     color: black;
 }
 .landing {
@@ -33,22 +36,26 @@
 .landing-column {
     text-align: center;
 }
-
-.visit-item {
+.landing-item {
     text-align: center;
     color: white;
     text-decoration: none;
     font-size: 25px;
     cursor: pointer;
     padding: 10px;
-
 }
 .visit-item:hover {
     color: black;
 }
+
 @media screen and (max-width: 414px) {
     .landing-title {
-     margin: 0px;
+        text-align: center;
+        margin-top: 0;
+        margin-left: 0;
+        font-size: 5rem;
+        text-decoration: none;
+        color: black;
     }
     .landing-column {
         display: flex;

@@ -32,7 +32,6 @@ import UpdateProfile from './components/UpdateProfile';
 import About from './components/About';
 import Note from './components/Note';
 import UpdateNote from './components/UpdateNote';
-import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -105,7 +104,6 @@ function App() {
             {/* <Route path='/Footer' element={<Footer />} /> */}
             <Route path='/' element={<LandingPage />} />
           </Routes>
-          <Footer />
         </>
       </Router>
     </ApolloProvider>

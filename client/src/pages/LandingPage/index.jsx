@@ -16,17 +16,17 @@ const LandingPage = () => {
                     <div className="row landing-row">
                         <div className="col-4 landing-column">
                             <button className="btn but-landing" >
-                                <Link to='/Login' className='visit-item'>Login</Link>
+                                <Link to='/Login' className='landing-item'>Login</Link>
                             </button>
                         </div>
                         <div className="col-4 landing-column">
                             <button className="btn but-landing" >
-                                <Link to='/Signup' className='visit-item'>Signup</Link>
+                                <Link to='/Signup' className='landing-item'>Signup</Link>
                             </button>
                         </div>
                         <div className="col-4 landing-column">
                             <button className="btn but-landing" >
-                                <Link to='/About' className='visit-item'>About</Link>
+                                <Link to='/About' className='landing-item'>About</Link>
                             </button>
                         </div>
                     </div>
