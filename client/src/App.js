@@ -89,7 +89,6 @@ function App() {
             <Route path='/Confirmation' element={<Confirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
-            {/* <Route path='/History' element={<History />} /> */}
             <Route path='/Appointment' element={<Appointment />} />
             <Route path='/AppointmentHistory' element={<AppointmentHistory />} />
             <Route path='/Profile' element={<Profile />} />
@@ -101,7 +100,6 @@ function App() {
             <Route path='/UpdateNote' element={<UpdateNote />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />
-            {/* <Route path='/Footer' element={<Footer />} /> */}
             <Route path='/' element={<LandingPage />} />
           </Routes>
         </>

@@ -5,7 +5,7 @@ import { QUERY_ME, QUERY_PROFILES, QUERY_PETS, QUERY_BOOKINGDATES } from '../../
 import Navbar from '../../components/Navbar';
 
 const MyProfile = () => {
-
+  
   const { data } = useQuery(QUERY_ME);
   const meUser = data?.me || [];
   const userId = meUser._id;

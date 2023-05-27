@@ -6,13 +6,8 @@ import { QUERY_ME } from '../../utils/queries';
 import DeleteModal from '../DeleteModal';
 import './index.css';
 
-const Profile = (props) => {
-    const userProfile = props.userProfile;
-    const userId = props.userId;
-    const myAppointments = props.myAppointments;
-    const profileId = props.profileId;
-    const myPets = props.myPets;
-
+const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => {
+    
     const { data } = useQuery(QUERY_ME);
     const me = data?.me || [];
 
@@ -56,10 +51,10 @@ const Profile = (props) => {
                                         Username: {userProfile.username}</div> <br />
                                     <div className="text" style={{ fontSize: '1.2rem' }}>
                                         <FaEnvelope className="icon m-2" style={{ fontSize: '1.2rem' }} />
-                                        Email: {me.email}</div> <br />
+                                       {me.email}</div> <br />
                                     <div className="text" style={{ fontSize: '1.2rem' }}>
                                         <FaPhone className="icon m-2" style={{ fontSize: '1.2rem' }} />
-                                        Phone number: {userProfile.patientnumber}</div>
+                                        {userProfile.patientnumber}</div>
                                 </div>
                             </div>
                         </div>

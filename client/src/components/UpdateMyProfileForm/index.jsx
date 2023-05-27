@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
-// import Input from 'react-phone-number-input/input';
 import { PatternFormat } from 'react-number-format';
 import SelectUSState from 'react-select-us-states';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -16,70 +15,30 @@ const UpdateMyProfileForm = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const userProfile = location.state.userProfile;
-
-    const [patientState, setNewValue] = useState('');
-    const [patientnumber, setPatientNumber] = useState('');
-    const [patientlastname, setPatientLastName] = useState('');
-    const [patientaddress, setPatientAddress] = useState('');
-    const [patientcity, setPatientCity] = useState('');
-    const [patientzip, setPatientZip] = useState('');
+    const [patientState, setNewValue] = useState(userProfile.patientState);
+    const [patientnumber, setPatientNumber] = useState(userProfile.patientnumber);
+    const [patientlastname, setPatientLastName] = useState(userProfile.patientlastname);
+    const [patientaddress, setPatientAddress] = useState(userProfile.patientaddress);
+    const [patientcity, setPatientCity] = useState(userProfile.patientcity);
+    const [patientzip, setPatientZip] = useState(userProfile.patientzip);
     // const emailRegex = /^\S+@\S+\.\S+$/;
     const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
     const [updateProfile] = useMutation(UPDATE_PROFILE);
 
-    const handleChange = (e) => {
-
-        const { name, value } = e.target;
-
-        if (name === 'patientlastname' && value.length) {
-            console.log('value length', value.length);
-            setPatientLastName(value);
-            
-            if (!value.length) {
-                console.log('value length', value.length);
-                console.log(value.length);
-                console.log(userProfile.patientlastname);
-                setPatientLastName(userProfile.patientlastname);
-            }
-        }
-        if (name === 'patientaddress' && value.length) {
-            setPatientAddress(value);
-        }
-        if (name === 'patientaddress' && !value.length) {
-            setPatientAddress(userProfile.patientaddress);
-        }
-        if (name === 'patientcity' && value.length) {
-            setPatientCity(value);
-        }
-        if (name === 'patientcity' && !value.length) {
-            setPatientCity(userProfile.patientcity);
-        }
-        // if (name === 'patientemail') {
-        //     if (emailRegex.test(value))
-        //         setPatientEmail(value);
-        // }
-        if (name === 'patientnumber' && value.length) {
-            // if (phoneRegex.test(value))
-            setPatientNumber(value);
-        }
-        if (name === 'patientnumber' && !value.length) {
-            setPatientNumber(userProfile.patientnumber);
-        }
-        if (name === 'patientzip' && value.length) { 
-            setPatientZip(value);
-        }
-        if (name === 'patientzip' && !value.length) {
-            setPatientZip(userProfile.patientzip);
-        }
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const { data } = await updateProfile({
-                variables: { id: profileId, patientlastname: patientlastname, patientaddress: patientaddress, patientnumber: patientnumber, patientcity: patientcity, patientzip: patientzip, patientState: patientState }
+                variables: {
+                    id: profileId,
+                    patientlastname: patientlastname,
+                    patientaddress: patientaddress,
+                    patientnumber: patientnumber,
+                    patientcity: patientcity,
+                    patientzip: patientzip,
+                    patientState: patientState
+                }
             });
             console.log('success updating profile');
             setNewValue('');
@@ -107,32 +66,20 @@ const UpdateMyProfileForm = (props) => {
                                     <label className="form-label"> Last name</label>
                                     <input
                                         className="form-control update-control"
-                                        onChange={handleChange}
+                                        onChange={(e) => setPatientLastName(e.target.value)}
                                         type="text"
+                                        value={patientlastname}
                                         name="patientlastname"
-                                        placeholder={userProfile.patientlastname}
                                     />
                                 </div>
-                                {/* <div className="col-6 update-fields">
-                                    <label className="form-label"> Email</label>
-                                    <input
-                                        className="form-control"
-                                        onChange={handleChange}
-                                        type="text"
-                                        name="patientemail"
-                                        value={patientemail}
-                                        placeholder={userProfile.patientemail} />
-
-                                </div> */}
                                 <div className="col-6  ">
                                     <label className="form-label">Address</label>
                                     <input
                                         className="form-control"
                                         value={patientaddress}
-                                        onChange={handleChange}
+                                        onChange={(e) => setPatientAddress(e.target.value)}
                                         type="text"
                                         name="patientaddress"
-                                        placeholder={userProfile.patientaddress}
                                     />
                                 </div>
                                 <div className="col-6 update-fields">
@@ -142,8 +89,7 @@ const UpdateMyProfileForm = (props) => {
                                         value={patientcity}
                                         type="text"
                                         name="patientcity"
-                                        onChange={handleChange}
-                                        placeholder={userProfile.patientcity}
+                                        onChange={(e) => setPatientCity(e.target.value)}
                                     />
                                 </div>
                                 <div className='col-6 update-fields'>
@@ -153,7 +99,7 @@ const UpdateMyProfileForm = (props) => {
                                     <SelectUSState
                                         id="myId"
                                         className="myClassName"
-                                        onChange={setNewValue} />
+                                        onChange={(e) => setNewValue(e)} />
                                 </div>
                                 <div className="col-6 update-fields">
                                     <label className="form-label">zip code</label>
@@ -162,8 +108,7 @@ const UpdateMyProfileForm = (props) => {
                                         name="patientzip"
                                         value={patientzip}
                                         type="text"
-                                        onChange={handleChange}
-                                        placeholder={userProfile.patientzip}
+                                        onChange={(e) => setPatientZip(e.target.value)}
                                     />
                                 </div>
                                 <div className="col-6 update-fields">
@@ -172,11 +117,9 @@ const UpdateMyProfileForm = (props) => {
                                         className='phone-update'
                                         format="(###) ### ####"
                                         allowEmptyFormatting mask="_"
-                                        value={userProfile.patientnumber}
                                         name='patientnumber'
-                                        // placeholder={userProfile.patientnumber}
                                         onValueChange={(values, sourceInfo) => {
-                                            setPatientNumber(values.value);
+                                            setPatientNumber(values.formattedValue);
                                         }} />
                                 </div>
                                 <div className="col-12">

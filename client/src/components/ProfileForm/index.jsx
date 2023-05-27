@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
-import Input from 'react-phone-number-input/input';
+import { PatternFormat } from 'react-number-format';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ const ProfileForm = () => {
 
     const navigate = useNavigate();
     const [patientState, setNewValue] = useState('');
-    const [patientnumber, setValue] = useState('');
+    const [patientnumber, setPatientNumber] = useState('');
     const [patientgender, setPatientGender] = useState('');
     const [birthdate, setBirthDate] = useState('');
     const [patientfirstname, setPatientFirstName] = useState('');
@@ -44,38 +44,38 @@ const ProfileForm = () => {
         }
     });
 
-    const handleChange = (e) => {
+    // const handleChange = (e) => {
 
 
-        const { name, value } = e.target;
+    //     const { name, value } = e.target;
 
-        if (name === 'patientgender') {
-            setPatientGender(e.target.value);
-        }
+    //     if (name === 'patientgender') {
+    //         setPatientGender(e.target.value);
+    //     }
 
-        if (name === 'birthdate') {
-            setBirthDate(value);
+    //     if (name === 'birthdate') {
+    //         setBirthDate(value);
             // const validateAge = 2023 - value.split('').slice(6, 10).join('');
-        }
-        if (name === 'patientfirstname') {
-            setPatientFirstName(value);
-        }
-        if (name === 'patientlastname') {
-            setPatientLastName(value);
-        }
-        if (name === 'patientaddress') {
-            setPatientAddress(value);
-        }
-        if (name === 'patientcity') {
-            setPatientCity(value);
-        }
-        if (name === 'patientzip') {
-            setPatientZip(value);
-        }
-        if (name === 'patientnumber') {
-            setValue(e.target.value);
-        }
-    };
+    //     }
+    //     if (name === 'patientfirstname') {
+    //         setPatientFirstName(value);
+    //     }
+    //     if (name === 'patientlastname') {
+    //         setPatientLastName(value);
+    //     }
+    //     if (name === 'patientaddress') {
+    //         setPatientAddress(value);
+    //     }
+    //     if (name === 'patientcity') {
+    //         setPatientCity(value);
+    //     }
+    //     if (name === 'patientzip') {
+    //         setPatientZip(value);
+    //     }
+    //     if (name === 'patientnumber') {
+    //         setValue(e.target.value);
+    //     }
+    // };
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
@@ -87,7 +87,7 @@ const ProfileForm = () => {
         setPatientCity("")
         setPatientAddress("");
         setPatientZip("");
-        setValue("");
+        setPatientNumber("");
         setBirthDate("");
 
         console.log(`success adding ${patientfirstname}' appointment`);
@@ -121,14 +121,14 @@ const ProfileForm = () => {
                                             name="patientgender"
                                             value='male'
                                             checked={patientgender === 'male'}
-                                            onChange={handleChange} /> male
+                                            onChange={(e) => setPatientGender(e.target.value)} /> male
                                         <input
                                             className='radio m-2 ms-4'
                                             type="radio"
                                             name='patientgender'
                                             value='female'
                                             checked={patientgender === 'female'}
-                                            onChange={handleChange} /> female
+                                            onChange={(e) => setPatientGender(e.target.value)} /> female
                                     </div>
                                 </div>
                                 <div className='col-6'>
@@ -138,7 +138,7 @@ const ProfileForm = () => {
                                         type='text'
                                         name="birthdate"
                                         value={birthdate}
-                                        onChange={handleChange}
+                                        onChange={(e) => setBirthDate(e.target.value)}
                                         placeholder="MM/DD/YYYY..."
                                     />
                                 </div>
@@ -146,7 +146,7 @@ const ProfileForm = () => {
                                     <label className="form-label1"> First name</label>
                                     <input
                                         className="form-control"
-                                        onChange={handleChange}
+                                        onChange={(e) => setPatientFirstName(e.target.value)}
                                         type="text"
                                         value={patientfirstname}
                                         name="patientfirstname"
@@ -156,7 +156,7 @@ const ProfileForm = () => {
                                     <label className="form-label1"> Last name</label>
                                     <input
                                         className="form-control"
-                                        onChange={handleChange}
+                                        onChange={(e) => setPatientLastName(e.target.value)}
                                         type="text"
                                         name="patientlastname"
                                         value={patientlastname}
@@ -167,7 +167,7 @@ const ProfileForm = () => {
                                     <input
                                         className="form-control"
                                         value={patientaddress}
-                                        onChange={handleChange}
+                                        onChange={(e) => setPatientAddress(e.target.value)}
                                         type="text"
                                         name="patientaddress"
                                         placeholder="address..." />
@@ -179,7 +179,7 @@ const ProfileForm = () => {
                                         value={patientcity}
                                         type="text"
                                         name="patientcity"
-                                        onChange={handleChange}
+                                        onChange={(e) => setPatientCity(e.target.value)}
                                         placeholder="enter city..." />
                                 </div>
                                 <div className='col-6'>
@@ -197,7 +197,7 @@ const ProfileForm = () => {
                                         className="form-control"
                                         name="patientzip"
                                         value={patientzip}
-                                        onChange={handleChange}
+                                        onChange={(e) => setPatientZip(e.target.value)}
                                         type="text"
                                         placeholder="zip code..." />
                                 </div>
@@ -206,12 +206,14 @@ const ProfileForm = () => {
                                         Phone number
                                     </label>
                                     <div>
-                                        <Input
-                                            className='phone-number'
-                                            placeholder="Enter phone number"
-                                            name='patientnumber'
-                                            value={patientnumber}
-                                            onChange={setValue} />
+                                    <PatternFormat
+                                                    className='phone-update'
+                                                    format="(###) ### ####"
+                                                    allowEmptyFormatting mask="_"
+                                                    name='patientnumber'
+                                                    onValueChange={(values, sourceInfo) => {
+                                                        setPatientNumber(values.formattedValue);
+                                                    }} />
                                     </div>
                                 </div>
                                 <div className="col-12">
