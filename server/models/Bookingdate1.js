@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const bookingdateSchema = new Schema({
+const bookingdate1Schema = new Schema({
      username: {
         type: String,
         repuire: true,
@@ -63,6 +63,6 @@ const bookingdateSchema = new Schema({
         }
 });
 
-const Bookingdate = model('Bookingdate', bookingdateSchema);
+const Bookingdate1 = model('Bookingdate1', bookingdate1Schema);
 
-module.exports = Bookingdate;
+module.exports = Bookingdate1;
