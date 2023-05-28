@@ -11,18 +11,12 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Saidou25/Healing.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Saidou25/Healing/issues"
-  },
-  "homepage": "https://github.com/Saidou25/Healing#readme",
   "dependencies": {
+    "bootstrap": "^5.2.3",
+    "bootswatch": "^5.2.3",
     "concurrently": "^8.0.1"
   }
 }
