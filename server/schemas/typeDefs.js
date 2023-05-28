@@ -45,7 +45,7 @@ const typeDefs = gql`
      petAge: String
      petKind: String
      profileId: String
-     }
+     },
      type Note {
       _id: ID!
      noteTitle: String
@@ -54,9 +54,9 @@ const typeDefs = gql`
     type Number {
        _id: ID!
        num: String
-       }
+       },
 
-     type Bookingdate1 {
+     type Bookingdate {
       _id: ID!
       username: String
       digitMonth: String
@@ -78,7 +78,7 @@ const typeDefs = gql`
     note: Note
     profile: Profile 
     reviews: [Review]
-    bookingdates: [Bookingdate1] 
+    bookingdates: [Bookingdate] 
   },
   type Auth {
     token: ID!
@@ -91,8 +91,8 @@ const typeDefs = gql`
      me: User
      profiles: [Profile]
      profile(profileId: String!): Profile
-     bookingdates: [Bookingdate1]
-     bookingdate(id: String): Bookingdate1
+     bookingdates: [Bookingdate]
+     bookingdate(id: String): Bookingdate
      reviews: [Review]
      review(id: String): Review
      userbookingdates(username: String): [Bookingdate]  
@@ -144,7 +144,7 @@ const typeDefs = gql`
      appTime: String
      reason: String
      appYear: Int
-     ): Bookingdate1
+     ): Bookingdate
 
      addReview(
      username: String
@@ -181,7 +181,7 @@ const typeDefs = gql`
     deleteUser(id: String!): User
     deleteProfile(id: String!): Profile
     deleteReview(id: String!): Review
-    deleteBookingdate(id: String!): Bookingdate1
+    deleteBookingdate(id: String!): Bookingdate
     deletePet(username: String!): Pet
      }
      `;

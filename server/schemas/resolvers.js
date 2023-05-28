@@ -1,4 +1,4 @@
-const { Profile, Bookingdate1, User, Review, Note, Pet } = require('../models');
+const { Profile, Bookingdate, User, Review, Note, Pet } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -51,10 +51,10 @@ const resolvers = {
         },
 
         bookingdates: async () => {
-            return Bookingdate1.find();
+            return Bookingdate.find();
         },
         bookingdate: async (_, args) => {
-            return await Bookingdate1.findOne({ _id: args.id });
+            return await Bookingdate.findOne({ _id: args.id });
         },
         reviews: async () => {
             return Review.find();
@@ -90,7 +90,7 @@ const resolvers = {
 
         addBookingdate: async (_, args, context) => {
             if (context.user) {
-                const bookingdate = await Bookingdate1.create({
+                const bookingdate = await Bookingdate.create({
                     username: args.username,
                     isBooked: args.isBooked,
                     finalDateISO: args.finalDateISO,
@@ -251,7 +251,7 @@ const resolvers = {
         },
         deleteBookingdate: async (_, args, context) => {
             if (context.user) {
-                const bookingdate = await Bookingdate1.findOneAndDelete(
+                const bookingdate = await Bookingdate.findOneAndDelete(
                     { _id: args.id }
                 );
 
