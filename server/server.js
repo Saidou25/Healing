@@ -8,6 +8,8 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
+const app = express();
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -18,7 +20,6 @@ const server = new ApolloServer({
   }
 });
 
-const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -32,7 +33,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
     app.use(express.static(path.join(__dirname, '../client/build')));
   }
 
-  app.get('/', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 
