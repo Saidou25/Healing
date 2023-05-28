@@ -7,7 +7,7 @@ const LandingPage = () => {
     return (
         <div className="mainlandingpage">
             <div className="landing-title">
-            <Link className="landing text-primary" to="/">
+            <Link className="landing text-primary" to="/LandingPage">
                 Healing
             </Link>
             </div>

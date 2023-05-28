@@ -16,7 +16,7 @@ const Navbar = () => {
         return (
             <div className="bg-img">
                 <nav className="nav">
-                    <Link className="landing-title" to="/">Healing</Link>
+                    <Link className="landing-title" to="/LandingPage">Healing</Link>
                     <ul className="nav links justify-content-end">
                         <CustomLink to='/About' className='nav-item' style={{ fontSize: '1.5rem' }}>About</CustomLink>
                         <CustomLink to='/Note' className='nav-item ' style={{ fontSize: '1.5rem' }}>note</CustomLink>
@@ -33,7 +33,7 @@ const Navbar = () => {
     return (
         <div className="bg-img">
             <nav className="nav">
-                <Link className="landing-title" to="/">
+                <Link className="landing-title" to="/LandingPage">
                     Healing
                 </Link>
                 <ul className="nav justify-content-end">

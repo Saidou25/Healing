@@ -100,7 +100,7 @@ function App() {
             <Route path='/UpdateNote' element={<UpdateNote />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />
-            <Route path='/' element={<LandingPage />} />
+            <Route path='/LandingPage' element={<LandingPage />} />
           </Routes>
         </>
       </Router>
