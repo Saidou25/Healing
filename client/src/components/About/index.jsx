@@ -14,7 +14,7 @@ const About = () => {
             <div className='container about'>
                 <h3 className='reiki-title'>What is Reiki</h3>
                 <p>
-                    From Wikipedia, the free encyclopedia
+                    From Wikipedia, the free encyclopedia.
                 </p>
                 <p>
                     Reiki is a Japanese form of energy healing, a type of alternative medicine.
