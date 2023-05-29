@@ -18,17 +18,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "concurrently": "^8.0.1"
   },
   "devDependencies": {
     "dotenv": "^16.0.3"
-=======
-    "bootstrap": "^5.2.3",
-    "bootswatch": "^5.2.3",
-    "concurrently": "^8.0.1",
-    "dotenv": "^16.0.3",
-    "mongodb": "^5.5.0"
->>>>>>> cd06d6662d7c6264ac8ecd18f04b66aaf409baaa
   }
 }
