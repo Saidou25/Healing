@@ -24,10 +24,6 @@ app.use(express.json());
       return error;
     }
   });
-<<<<<<< HEAD
-
-=======
->>>>>>> cd06d6662d7c6264ac8ecd18f04b66aaf409baaa
   await server.start();
   server.applyMiddleware({ app });
 
@@ -46,7 +42,3 @@ app.use(express.json());
     })
   })
 })();
-<<<<<<< HEAD
-=======
-
->>>>>>> cd06d6662d7c6264ac8ecd18f04b66aaf409baaa
