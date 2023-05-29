@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-require("dotenv").config();
+// require("dotenv").config();
+
 mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/healing',
   {
@@ -7,7 +8,7 @@ mongoose.connect(
     useUnifiedTopology: true,
   }
 ).then(() => {
-    console.log('connected to MongoDB...', MONGODB_URI);
+    console.log('connected to MongoDB...');
   })
   .catch((err) => {
     console.log(err);

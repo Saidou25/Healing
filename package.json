@@ -24,5 +24,8 @@
   "homepage": "https://github.com/Saidou25/Healing#readme",
   "dependencies": {
     "concurrently": "^8.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
   }
 }
