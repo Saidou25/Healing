@@ -26,6 +26,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/MyProfile';
 import Profile from './components/Profile';
+import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
 import UpdateMyProfileForm from './components/UpdateMyProfileForm';
 import UpdateProfile from './components/UpdateProfile';
@@ -102,6 +103,7 @@ function App() {
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/' element={<LandingPage />} />
           </Routes>
+          <Footer />
         </>
       </Router>
     </ApolloProvider>

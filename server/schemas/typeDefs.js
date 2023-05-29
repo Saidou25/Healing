@@ -45,7 +45,7 @@ const typeDefs = gql`
      petAge: String
      petKind: String
      profileId: String
-     }
+     },
      type Note {
       _id: ID!
      noteTitle: String
@@ -54,7 +54,7 @@ const typeDefs = gql`
     type Number {
        _id: ID!
        num: String
-       }
+       },
 
      type Bookingdate {
       _id: ID!

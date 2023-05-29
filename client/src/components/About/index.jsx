@@ -14,17 +14,17 @@ const About = () => {
             <div className='container about'>
                 <h3 className='reiki-title'>What is Reiki</h3>
                 <p>
-                    From Wikipedia, the free encyclopedia
+                    From Wikipedia, the free encyclopedia.
                 </p>
                 <p>
-                    Reiki (霊気, reɪki) is a Japanese form of energy healing, a type of alternative medicine.
+                    Reiki is a Japanese form of energy healing, a type of alternative medicine.
                     Reiki practitioners use a technique called palm healing or hands-on healing through which a
                     "universal energy" is said to be transferred through the palms of the practitioner to the
                     patient in order to encourage emotional or physical healing.
                 </p>
                 <p>
                     Reiki is a pseudoscience, and is used as an illustrative example of pseudoscience in scholarly
-                    texts and academic journal articles. It is based on qi ("chi"), which practitioners say is a universal
+                    texts and academic journal articles. It is based on qi "chi", which practitioners say is a universal
                     life force, although there is no empirical evidence that such a life force exists.
                 </p>
                 <p>

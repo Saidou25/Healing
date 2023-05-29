@@ -39,12 +39,22 @@
     background-clip: padding-box;
     border: 0 solid #ced4da;
 }
-
 .btn-primary {
     margin: 10%;
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+.success {
+    margin-top: 40%;
+    margin-bottom: 60%;
+    font-size: 2rem;
+}
+.fa-check {
+    color: green;
+    border: solid;
+    padding: 3%;
+    border-radius: 50%;
 }
 @media screen and (max-width: 414px) {
     .container-update {

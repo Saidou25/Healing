@@ -6,12 +6,5 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }
-).then(() => {
-    console.log('connected to MongoDB...');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-  
-
+);
 module.exports = mongoose.connection;
