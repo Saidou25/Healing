@@ -20,6 +20,7 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "bootswatch": "^5.2.3",
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "dotenv": "^16.0.3"
   }
 }
