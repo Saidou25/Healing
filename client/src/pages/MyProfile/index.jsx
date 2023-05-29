@@ -1,11 +1,12 @@
 import React from 'react';
 import Profile from '../../components/Profile';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_PROFILES, QUERY_PETS, QUERY_BOOKINGDATES } from '../../utils/queries';
 import Navbar from '../../components/Navbar';
 
 const MyProfile = () => {
-  
+
   const { data } = useQuery(QUERY_ME);
   const meUser = data?.me || [];
   const userId = meUser._id;
@@ -29,7 +30,13 @@ const MyProfile = () => {
   return (
     <div>
       <Navbar />
-      <Profile userProfile={userProfile} userId={userId} profileId={profileId} myAppointments={myAppointments} myPets={myPets} myUserName={myUserName} />
+      <Profile 
+      userProfile={userProfile} 
+      userId={userId} 
+      profileId={profileId} 
+      myAppointments={myAppointments} 
+      myPets={myPets} 
+      myUserName={myUserName} />
     </div>
   )
 };

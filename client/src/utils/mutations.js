@@ -343,27 +343,10 @@ mutation deletePet($username: String!) {
      }
  `;
 
-
      export const UPDATE_PROFILE = gql`
-     mutation updateProfile($id: String,
-     $username: String,
-      $patientaddress: String,
-      $patientlastname: String,
-      $patientcity: String,
-      $patientState: String,
-      $patientzip: String,
-      $patientnumber: String
-      ) {
-         updateProfile(
-        id: $id,
-        username: $username,
-      patientaddress: $patientaddress,
-         patientState: $patientState,
-      patientlastname: $patientlastname,
-      patientcity: $patientcity,
-      patientnumber: $patientnumber,
-      patientzip: $patientzip,) { 
-        _id
+     mutation updateProfile($id: String, $username: String, $patientaddress: String, $patientlastname: String, $patientcity: String, $patientState: String, $patientzip: String, $patientnumber: String) {
+         updateProfile(id: $id, username: $username, patientaddress: $patientaddress, patientState: $patientState, patientlastname: $patientlastname, patientcity: $patientcity, patientnumber: $patientnumber, patientzip: $patientzip,) { 
+         _id
          isBooked
          patientState
          appDay
@@ -383,7 +366,7 @@ mutation deletePet($username: String!) {
       birthdate
       patientzip
       mepet
-              }             
+      }             
      }
  `;
 

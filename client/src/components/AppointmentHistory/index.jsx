@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_BOOKINGDATES } from '../../utils/queries';
 import { DELETE_BOOKINGDATE } from '../../utils/mutations';
 import Navbar from '../Navbar';
-import trash from '../../assets/images/trash.png';
+import trashIcon from '../../assets/images/trashIcon.png';
 import './index.css';
 
 const AppointmentHistory = () => {
@@ -103,7 +103,7 @@ const AppointmentHistory = () => {
                                                     className='btn delete-appointment rounded-0'
                                                     onClick={() => handleSubmit(bookingdate)}
                                                 >
-                                                    <img className='trash-can' src={trash} alt='trash-can' height={60} />
+                                                    <img className='trash-can' src={trashIcon} alt='trash-can' height={60} />
                                                 </button>
                                             </div>
                                         </div>
