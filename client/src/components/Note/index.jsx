@@ -11,7 +11,7 @@ const Note = () => {
     const me = meData?.me || [];
     const profileId = me._id;
 
-    const [addNote, { error }] = useMutation(ADD_NOTE, {
+    const [addNote] = useMutation(ADD_NOTE, {
         update(cache, { data: { addNote } }) {
             try {
                 const { me } = cache.readQuery({ query: QUERY_ME });

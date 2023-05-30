@@ -107,17 +107,6 @@ const AppointmentHistory = () => {
                                                 </button>
                                             </div>
                                         </div>
-
-
-                                        {/* <div className='d-flex justify-content-end'>
-                                            <button
-                                                type='button'
-                                                className='btn delete-appointment rounded-0'
-                                                onClick={() => handleSubmit(bookingdate)}
-                                            >
-                                               <img className='trash-can' src={trash} alt='trash-can' height={60} />
-                                            </button>
-                                        </div> */}
                                     </div>
                                 </div>
 

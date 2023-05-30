@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../Navbar';
-import nurseIcon from '../../assets/images/nurseIcon.jpeg';
 import nurseGuy from '../../assets/images/nurseGuy.jpeg';
 import nurseLady from '../../assets/images/nurseLady.jpeg';
 
@@ -35,16 +34,6 @@ const About = () => {
                 </p>
                 <h3 className='team-title'>Our team</h3>
                 <div className='row'>
-                    {/* <div className='col-lg-3 col-sm-12'>
-                        <div className='card mt-3 mb-3'>
-                            <div className='card-header'> Isa</div>
-                            <img className='profile-picture' src={nurseIcon} alt='nurse icon' height={300} />
-                            <div className='card-body'>
-                                <i className="bi bi-person-fill"></i>
-                                <div>10 years experience. Studied in Japan since age 14.</div>
-                            </div>
-                        </div>
-                    </div> */}
                     <div className='col-lg-4 col-sm-12'>
                         <div className='card mt-3 mb-3'>
                             <div className='card-header'> Peter</div>

@@ -39,7 +39,6 @@ const PetForm = (props) => {
             } catch (e) {
                 console.error(e);
             }
-
             navigate('/Dashboard');
         }
     });

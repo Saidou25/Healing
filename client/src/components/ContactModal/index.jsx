@@ -21,10 +21,7 @@ const ProfileModal = () => {
         const { name, value } = event.target;
 
         if (name === "user_name") {
-
             setUser(value);
-            //   if (value.length > 0) {
-
         }
         if (name === "user_email") {
             setEmail(value);

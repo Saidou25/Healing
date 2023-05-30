@@ -43,39 +43,7 @@ const ProfileForm = () => {
             }
         }
     });
-
-    // const handleChange = (e) => {
-
-
-    //     const { name, value } = e.target;
-
-    //     if (name === 'patientgender') {
-    //         setPatientGender(e.target.value);
-    //     }
-
-    //     if (name === 'birthdate') {
-    //         setBirthDate(value);
-            // const validateAge = 2023 - value.split('').slice(6, 10).join('');
-    //     }
-    //     if (name === 'patientfirstname') {
-    //         setPatientFirstName(value);
-    //     }
-    //     if (name === 'patientlastname') {
-    //         setPatientLastName(value);
-    //     }
-    //     if (name === 'patientaddress') {
-    //         setPatientAddress(value);
-    //     }
-    //     if (name === 'patientcity') {
-    //         setPatientCity(value);
-    //     }
-    //     if (name === 'patientzip') {
-    //         setPatientZip(value);
-    //     }
-    //     if (name === 'patientnumber') {
-    //         setValue(e.target.value);
-    //     }
-    // };
+    
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
