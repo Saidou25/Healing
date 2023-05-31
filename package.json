@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "servers/server.js",
-  "homepage": "http://saidou25.github.io/Healing",
+  "homepage": "https://saidou25.github.io/Healing",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
