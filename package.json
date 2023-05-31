@@ -2,7 +2,7 @@
   "name": "healing",
   "version": "1.0.0",
   "description": "",
-  "main": "server/server.js",
+  "main": "servers/server.js",
   "homepage": "http://saidou25.github.io/Healing",
   "scripts": {
     "predeploy": "npm run build",
