@@ -60,7 +60,7 @@ const bookingdateSchema = new Schema({
             type: String,
             repuire: true,
             trim: true,
-        }
+        },
 });
 
 const Bookingdate = model('Bookingdate', bookingdateSchema);
