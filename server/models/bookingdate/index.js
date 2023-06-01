@@ -59,8 +59,8 @@ const bookingdateSchema = new Schema({
         reason: {
             type: String,
             repuire: true,
-            trim: true,
-        },
+            trim: true
+        }
 });
 
 const Bookingdate = model('Bookingdate', bookingdateSchema);
