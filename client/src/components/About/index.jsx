@@ -17,7 +17,7 @@ const About = () => {
                     From Wikipedia, the free encyclopedia
                 </p>
                 <p>
-                    Reiki (霊気, reɪki) is a Japanese form of energy healing, a type of alternative medicine.
+                    Reiki reɪki is a Japanese form of energy healing, a type of alternative medicine.
                     Reiki practitioners use a technique called palm healing or hands-on healing through which a
                     "universal energy" is said to be transferred through the palms of the practitioner to the
                     patient in order to encourage emotional or physical healing.
