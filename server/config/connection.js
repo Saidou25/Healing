@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/healing',
+  process.env.MONGODB_URI || 3001,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
