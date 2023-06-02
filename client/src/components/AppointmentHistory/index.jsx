@@ -13,7 +13,9 @@ const AppointmentHistory = () => {
     const todaysYear = date.getFullYear();
     const todaysMonth = date.getMonth() + 1;
     const todaysMonthStr = todaysMonth.toString();
+    const todaysDateStr = todaysDate.toString();
 
+    let newDay;
     let newMonth;
 
     if (todaysMonthStr.length === 1) {
@@ -21,8 +23,13 @@ const AppointmentHistory = () => {
     } else {
         newMonth = todaysMonth;
     };
+    if (todaysDateStr.length === 1) {
+        newDay = `0${todaysDate}`;
+    } else {
+        newDay = todaysDate;
+    }
 
-    const today = `${newMonth}/${todaysDate}/${todaysYear}`;
+    const today = `${newMonth}/${newDay}/${todaysYear}`;
 
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
@@ -51,7 +58,7 @@ const AppointmentHistory = () => {
     });
 
     const history = myAppointments.filter(bookingdate => today >= bookingdate.digitalAppointment);
-
+    
     const handleSubmit = (bookingdate) => {
         const bookingdateId = bookingdate._id;
 

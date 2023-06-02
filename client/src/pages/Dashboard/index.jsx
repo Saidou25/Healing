@@ -23,16 +23,24 @@ const Dashboard = () => {
     const todaysYear = date.getFullYear();
     const todaysMonth = date.getMonth() + 1;
     const todaysMonthStr = todaysMonth.toString();
+    const todaysDateStr = todaysDate.toString();
 
     let newMonth;
+    let newDay;
 
     if (todaysMonthStr.length === 1) {
         newMonth = `0${todaysMonth}`;
     } else {
-        newMonth = todaysMonthStr;
+        newMonth = todaysMonth;
+    };
+    if (todaysDateStr.length === 1) {
+        newDay = `0${todaysDate}`;
+    } else {
+        newDay = todaysDate;
     };
 
-    const today = `${newMonth}/${todaysDate}/${todaysYear}`;
+    const today = `${newMonth}/${newDay}/${todaysYear}`;
+    console.log('today', today);
 
     const [isShown, setIsShown] = useState(false);
 
@@ -42,9 +50,13 @@ const Dashboard = () => {
     const myReviews = me.reviews;
 
     const { loading, error, data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
+
     const bookingdates = appointmentsData?.bookingdates || [];
+
     const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === username);
-    const futureAppointments = myAppointments.filter(bookingdate => today < bookingdate.digitalAppointment);
+
+    const futureAppointments = myAppointments.filter(bookingdate => bookingdate.digitalAppointment > today);
+    console.log('future appoitnments from dashboard', futureAppointments);
 
     const handleSubmit = (e) => {
         //  setIsShown(current => !current);
@@ -64,8 +76,8 @@ const Dashboard = () => {
                         <div >
                             <Link to='/Appointment' className='btn btn-primary m-2' state={{ username }} >
                                 <div className='text-wrap'>
-                                Book an appointment
-                                    </div>
+                                    Book an appointment
+                                </div>
                             </Link>
                         </div>
 
@@ -82,20 +94,20 @@ const Dashboard = () => {
                 </div>
                 <div className='row justify-content-between'>
                     <div className='col-lg-6 col-sm-12'>
-                        <UpcomingAppointments myAppointments={myAppointments} /> <br />
+                        <UpcomingAppointments futureAppointments={futureAppointments} today={today}/>
                     </div>
                     {futureAppointments.length ? (
                         <div className='col-lg-6 col-sm-12 mt-5'>
-                           <div className='card suggestion p-3'>
-                           <p>
-                               We suggest comming 15 minutes prior to your appointment. <br />
-                            </p>
-                            <p>
-                                You can use direct message to provide more information about your upcomming visit. <br />
-                            </p>
-                            <p>
-                                This can also be used appointment cancelation (48 hours notice is appreciated). Then book again if you would like to reschedule.
-                            </p>
+                            <div className='card suggestion p-3'>
+                                <p>
+                                    We suggest comming 15 minutes prior to your appointment. <br />
+                                </p>
+                                <p>
+                                    You can use direct message to provide more information about your upcomming visit. <br />
+                                </p>
+                                <p>
+                                    This can also be used appointment cancelation (48 hours notice is appreciated). Then book again if you would like to reschedule.
+                                </p>
                             </div>
                         </div>
                     ) : (

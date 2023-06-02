@@ -2,26 +2,9 @@ import React from 'react';
 import './index.css';
 
 const UpcomingAppointments = (props) => {
-    const myAppointments = props.myAppointments;
-    const date = new Date();
-    const todaysDate = date.getDate();
-    const todaysYear = date.getFullYear();
-    const todaysMonth = date.getMonth() + 1;
-    const todaysMonthStr = todaysMonth.toString();
+    const futureAppointments = props.futureAppointments;
 
-    let newMonth;
-
-    if (todaysMonthStr.length === 1) {
-        newMonth = `0${todaysMonth}`;
-    } else {
-        newMonth = todaysMonthStr;
-    };
-
-    const today = `${newMonth}/${todaysDate}/${todaysYear}`;
-
-    const futureAppointments = myAppointments.filter(bookingdate => today < bookingdate.digitalAppointment);
-
-    if (!futureAppointments.length) {
+    if (!futureAppointments) {
         return (
             <>
             </>
