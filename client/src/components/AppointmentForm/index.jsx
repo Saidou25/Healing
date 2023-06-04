@@ -141,9 +141,9 @@ const AppointmentForm = (props) => {
         <>
             <Navbar />
             <div className='container-appointment'>
-                <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5"
+                <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5 mb-5"
                     style={{ fontSize: '1.7rem', textAlign: 'center' }}>
-                    Please answer few questions and choose your appointment's date</h4>
+                    Book your appointment</h4>
                 <div className="card-body">
                     <form id='appointment-form'>
                         <div className='row'>
@@ -173,11 +173,11 @@ const AppointmentForm = (props) => {
                                         onChange={handleChange} /> my pet
                                 </div>
                             </div>
-                            <div className='col-6 date-picker'>
+                            <div className='col-6 date-picker mb-2'>
                                 <label className="form-label">
                                     Choose your appointment date
                                 </label>
-                                <div className='choose-date'>
+                                <div className='choose-date mt-5 mb-3'>
                                     <DatePicker
                                         selected={startDate}
                                         onChange={(date) => setStartDate(date)}
@@ -196,7 +196,7 @@ const AppointmentForm = (props) => {
                             </div>
                             <div className='col-6 appointment-column'>
                                 <div>
-                                    <label className="form-label">What is your reason for visiting?</label>
+                                    <label className="form-label mb-4">What is your reason for visiting?</label>
                                     <textarea className="form-control type-your-text mt-4"
                                         name="reason"
                                         value={reason}

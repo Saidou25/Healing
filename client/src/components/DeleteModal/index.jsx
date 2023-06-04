@@ -51,7 +51,8 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
          <div className='d-flex justify-content-end'>
             <button
                 type="button"
-                className="btn btn-danger btn-modal rounded-0 delete-user m-2 mt-4"
+                className="btn btn-danger btn-modal delete-user mt-5"
+                style={{ fontSize: '1.4em' }}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
                 delete

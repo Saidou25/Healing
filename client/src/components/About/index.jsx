@@ -13,21 +13,24 @@ const About = () => {
             <Navbar />
             <div className='container about'>
                 <h3 className='reiki-title'>What is Reiki</h3>
-                <p>
+                <p style={{ fontSize: '1.2rem' }}>
+                        Please modify the fields you would like to update with your new information.</p>
+                   
+                <p style={{ fontSize: '1.2rem' }}>
                     From Wikipedia, the free encyclopedia.
                 </p>
-                <p>
+                <p style={{ fontSize: '1.2rem' }}>
                     Reiki reɪki is a Japanese form of energy healing, a type of alternative medicine.
                     Reiki practitioners use a technique called palm healing or hands-on healing through which a
                     "universal energy" is said to be transferred through the palms of the practitioner to the
                     patient in order to encourage emotional or physical healing.
                 </p>
-                <p>
+                <p style={{ fontSize: '1.2rem' }}>
                     Reiki is a pseudoscience, and is used as an illustrative example of pseudoscience in scholarly
                     texts and academic journal articles. It is based on qi ("chi"), which practitioners say is a universal
                     life force, although there is no empirical evidence that such a life force exists.
                 </p>
-                <p>
+                <p style={{ fontSize: '1.2rem' }}>
                     Clinical research does not show reiki to be effective as a treatment for any medical condition,
                     including cancer, diabetic neuropathy, anxiety or depression; therefore it should not replace
                     conventional medical treatment. There is no proof of the effectiveness of reiki therapy compared
@@ -47,10 +50,10 @@ const About = () => {
                     </div> */}
                     <div className='col-lg-4 col-sm-12'>
                         <div className='card mt-3 mb-3'>
-                            <div className='card-header'> Peter</div>
+                            <div className='card-header' style={{ fontSize: '1.2rem' }}> Peter</div>
                             <div className='card-body'>
                                 <img className="responsive" src={nurseGuy} alt='nurse icon' height={300} />
-                                <p>
+                                <p style={{ fontSize: '1.2rem' }}>
                                     10 years experience. Studied in Japan since she was 14.
                                 </p>
                             </div>
@@ -58,10 +61,10 @@ const About = () => {
                     </div>
                     <div className='col-lg-4 col-sm-12'>
                         <div className='card mt-3 mb-3'>
-                            <div className='card-header'> Nancy</div>
+                            <div className='card-header' style={{ fontSize: '1.2rem' }}> Nancy</div>
                             <div className='card-body'>
                                 <img className="responsive" src={nurseLady} alt='nurse icon' height={300} />
-                                <p>
+                                <p style={{ fontSize: '1.2rem' }}>
                                     Born in Reiki
                                 </p>
                             </div>

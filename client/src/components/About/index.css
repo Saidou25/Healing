@@ -1,21 +1,25 @@
 .about {
     width: 70%;
     margin-top: 5%;
-    margin-bottom:10%;
+    margin-bottom: 10%;
 }
+
 .reiki-title,
 .team-title {
-    margin: 5%;
+    margin-top: 7%;
+    margin-bottom: 7%;
     text-align: center;
 }
+
 .responsive {
     max-width: 100%;
     height: auto;
-  }
+}
+
 @media screen and (max-width: 414px) {
     .about {
         width: 90%;
-        margin-top: 5%;
-        margin-bottom:10%;
+        margin-top: 10%;
+        margin-bottom: 5%;
     }
 }

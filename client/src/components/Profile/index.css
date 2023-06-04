@@ -8,18 +8,18 @@
     text-align: center;
     /* margin: 10%; */
 }
-/* .profile-card {
+.card-header {
+    border: 0;
+}
+.profile-body {
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-} */
+}
 .profile {
     width: 100%;
 }
-/* .profile-body {
-   background-color: rgba(0, 0, 0, 0.03);
-} */
-.delete-user {
-    margin-top: 6%;
+.update-profile {
+width: 100%;
 }
 
 @media screen and (max-width: 414px) {

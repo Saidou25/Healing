@@ -58,8 +58,12 @@ const UpdateMyProfileForm = (props) => {
             <Navbar />
             <div>
                 <div className='container-update mt-5'>
-                    <h3 className='update-title'>Please fill up the fields you would like to update.</h3>
-                    <div className='card-update'>
+                    <p className='update-p mb-5' style={{ fontSize: '1.2rem' }}>
+                        Please modify the fields you would like to update with your new information.</p>
+                    <h4 className="card-header bg-primary rounded-0 text-light p-4"
+                        style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                        Update profile</h4>
+                         <div className='card-update'>
                         <form className='profile-update'>
                             <div className='row mt-5'>
                                 <div className="col-6 update-fields">
@@ -123,7 +127,7 @@ const UpdateMyProfileForm = (props) => {
                                         }} />
                                 </div>
                                 <div className="col-12">
-                                    <button className="btn btn-primary"
+                                    <button className="btn btn-primary rounded-0"
                                         type="submit"
                                         onClick={(e) => handleSubmit(e)}
                                         value="Send">
