@@ -15,20 +15,14 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
         return (
             <div>
                 <div className='container-profile mt-5'>
-                    <p style={{ fontSize: '1.2rem', textAlign: 'center' }}>
-                        Our practitioner will be driving to the address provided in the form below.
-                        Please don't hesitate to add any useful information in the address field.
-                    </p><br />
                     <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.8rem' }}>
-                                Login</h3>
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.8rem' }}>Login</h3>
+                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.7rem' }}>Login</h3>
                             <div className="card profile-body p-3">
                                 <div className="card-header">
                                     <div className="text" style={{ fontSize: '1.4em' }}>
                                         <FaIdBadge className="icon m-2" style={{ fontSize: '1.4em' }} />
-                                        Username: {me.username}</div> <br />
+                                        {me.username}</div> <br />
                                     <div className="text" style={{ fontSize: '1.4em' }}>
                                         <FaEnvelope className="icon m-2" style={{ fontSize: '1.4em' }} />
                                         Email: {me.email}</div> <br />
@@ -45,7 +39,7 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                 <div className='container-profile mt-5'>
                     <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.8rem' }}>
+                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.7rem' }}>
                                 Login</h3>
                             <div className="card profile-body p-3">
                                 <div className="card-header">
@@ -62,7 +56,7 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                             </div>
                         </div>
                         <div className="col-12">
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.8rem' }}>General</h3>
+                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.7rem' }}>General</h3>
                             <div className="card profile-body p-3 ">
                                 <div className="card-header">
                                     <div className="text-profile m-2" style={{ fontSize: '1.4em' }}>
@@ -81,7 +75,7 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                         </div>
 
                         <div className="col-12">
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.6.5rem' }}>Contact</h3>
+                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.7rem' }}>Contact</h3>
                             <div className="card profile-body p-3">
                                 <div className="card-header">
                                     <div className="text m-2" style={{ fontSize: '1.4em' }}>

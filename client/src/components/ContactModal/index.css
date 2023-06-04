@@ -1,6 +1,11 @@
 
 @media screen and (max-width: 414px) {
-    .btn-modal {
+    .container-dashboard {
+        width: 98%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .direct-message {
         width: 97%;
     }
 }

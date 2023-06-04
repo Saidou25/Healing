@@ -13,9 +13,6 @@ const About = () => {
             <div className='container about'>
                 <h3 className='reiki-title'>What is Reiki</h3>
                 <p style={{ fontSize: '1.2rem' }}>
-                    Please modify the fields you would like to update with your new information.</p>
-
-                <p style={{ fontSize: '1.2rem' }}>
                     From Wikipedia, the free encyclopedia.
                 </p>
                 <p style={{ fontSize: '1.2rem' }}>

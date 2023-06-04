@@ -96,14 +96,15 @@ const PetForm = (props) => {
                     <div className='container-pet mt-5'>
                         <h4 className="card-header bg-primary rounded-0 text-light p-4"
                             style={{ fontSize: '1.7rem', textAlign: 'center' }}>
-                            Please answer few questions about your pet</h4>
+                            About your pet</h4>
                         <div className="card-body">
                             <form onSubmit={handleFormSubmit}>
-                                <div className='row m-5'>
-                                    <div className='col-6'>
+                                <div className='row mt-5'>
+                                    <div className='col-lg-6 col-sm-12 mb-3'>
                                         <div>
-                                            <label className="form-label">What kind of pet?</label><br />
+                                            <label className="form-label" style={{ fontSize: '1.2rem' }}>What kind of pet?</label><br />
                                             <input
+                                                style={{ fontSize: '1.1rem' }}
                                                 className='radio m-2 ms-4'
                                                 type="radio"
                                                 name="petKind"
@@ -111,6 +112,7 @@ const PetForm = (props) => {
                                                 checked={petKind === 'dog'}
                                                 onChange={handleChange} /> dog
                                             <input
+                                                style={{ fontSize: '1.1rem' }}
                                                 className='radio m-2 ms-4'
                                                 type="radio"
                                                 name='petKind'
@@ -119,10 +121,11 @@ const PetForm = (props) => {
                                                 onChange={handleChange} /> cat
                                         </div>
                                     </div>
-                                    <div className='col-6'>
+                                    <div className='col-lg-6 col-sm-12 mb-3'>
                                         <div>
-                                            <label className="form-label">What is your pet's gender?</label><br />
+                                            <label className="form-label" style={{ fontSize: '1.2rem' }}>What is your pet's gender?</label><br />
                                             <input
+                                                style={{ fontSize: '1.1rem' }}
                                                 className='radio m-2 ms-4'
                                                 type="radio"
                                                 name="petGender"
@@ -130,6 +133,7 @@ const PetForm = (props) => {
                                                 checked={petGender === 'male'}
                                                 onChange={handleChange} /> male
                                             <input
+                                                style={{ fontSize: '1.1rem' }}
                                                 className='radio m-2 ms-4'
                                                 type="radio"
                                                 name='petGender'
@@ -138,9 +142,10 @@ const PetForm = (props) => {
                                                 onChange={handleChange} /> female
                                         </div>
                                     </div>
-                                    <div className="col-6">
-                                        <label className="form-label"> Name</label>
+                                    <div className="col-lg-6 col-sm-12 mb-3">
+                                        <label className="form-label" style={{ fontSize: '1.2rem' }}> Name</label>
                                         <input
+                                            style={{ fontSize: '1.1rem' }}
                                             className="form-control"
                                             onChange={handleChange}
                                             type="text"
@@ -148,9 +153,10 @@ const PetForm = (props) => {
                                             name="petName"
                                             placeholder="pet's name..." />
                                     </div>
-                                    <div className='col-6'>
-                                        <label className="form-label">Age</label><br />
+                                    <div className='col-lg-6 col-sm-12 mb-3'>
+                                        <label className="form-label" style={{ fontSize: '1.2rem' }}>Age</label><br />
                                         <input
+                                            style={{ fontSize: '1.1rem' }}
                                             className='age'
                                             type='text'
                                             name="petAge"
@@ -159,19 +165,21 @@ const PetForm = (props) => {
                                             placeholder="MM/DD/YYYY..."
                                         />
                                     </div>
-                                    <div className="col-6">
-                                        <label className="form-label"> Breed</label>
+                                    <div className="col-lg-6 col-sm-12 mb-3">
+                                        <label className="form-label" style={{ fontSize: '1.2rem' }}> Breed</label>
                                         <input
+                                            style={{ fontSize: '1.1rem' }}
                                             className="form-control"
                                             onChange={handleChange}
                                             type="text"
                                             value={petBreed}
                                             name="petBreed"
-                                            placeholder="breeed..." />
+                                            placeholder="breed..." />
                                     </div>
-                                    <div className="col-6">
-                                        <label className="form-label"> Pet's weight</label>
+                                    <div className="col-lg-6 col-sm-12 mb-3">
+                                        <label className="form-label" style={{ fontSize: '1.2rem' }}> Pet's weight</label>
                                         <input
+                                            style={{ fontSize: '1.1rem' }}
                                             className="form-control"
                                             onChange={handleChange}
                                             type="text"
@@ -182,6 +190,7 @@ const PetForm = (props) => {
                                     <div className="col-12">
                                         <button className="btn rounded-0 button-pet btn-primary"
                                             type="submit"
+                                            style={{ fontSize: '1.2rem' }}
                                         >
                                             Submit
                                         </button>

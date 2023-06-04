@@ -52,8 +52,9 @@ const ProfileModal = () => {
     return (
         <>
             <button
+                style={{ fontSize: '1.2rem' }}
                 type="button"
-                className="btn btn-primary btn-modal m-2"
+                className="btn btn-primary direct-message rounded-0 m-2"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
                 Direct message
@@ -63,13 +64,14 @@ const ProfileModal = () => {
                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">Contact Me</h1>
+                                <h1 className="modal-title fs-5" style={{ fontSize: '1.7rem' }} id="exampleModalLabel">Contact Me</h1>
                                 <button type="button" className="btn-close btn btn-primary mb-5" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
                                 <form ref={form} onClick={sendEmail}>
-                                    <label className="form-label">Name</label>
+                                    <label className="form-label" mstyle={{ fontSize: '1.2rem' }}>Name</label>
                                     <input
+                                        style={{ fontSize: '1.2rem' }}
                                         className="form-control"
                                         onChange={handleInputChange}
                                         type="text"
@@ -78,6 +80,7 @@ const ProfileModal = () => {
                                         placeholder="Name" />
                                     <label className="form-label">Email</label>
                                     <input
+                                        style={{ fontSize: '1.2rem' }}
                                         className="form-control"
                                         value={email}
                                         onChange={handleInputChange}
@@ -87,6 +90,7 @@ const ProfileModal = () => {
 
                                     <label className="form-label">Message</label>
                                     <textarea
+                                        style={{ fontSize: '1.1rem' }}
                                         className="form-control message"
                                         name="message"
                                         value={message}
@@ -94,11 +98,13 @@ const ProfileModal = () => {
                                         placeholder="type your message..." />
                                     <div className="modal-footer">
                                         <button type="button"
+                                            style={{ fontSize: '1.2rem' }}
                                             className="btn btn-secondary"
                                             data-bs-dismiss="modal">
                                             Close
                                         </button>
                                         <button
+                                            style={{ fontSize: '1.2rem' }}
                                             type="button"
                                             className="btn btn-primary">
                                             Save changes

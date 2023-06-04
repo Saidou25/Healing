@@ -1,12 +1,13 @@
+.container-dashboard {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
 .suggestion {
     width: 70%;
     margin-right: auto;
     margin-left: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.review-button {
-    width: 100%;
 }
 
 .write-review-title {
@@ -24,9 +25,19 @@
 
 
 @media screen and (max-width: 414px) {
+    .container-dashboard {
+        width: 96%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .direct-message {
+        width: 97%;
+    }
     .buttons {
         flex-direction: column;
         width: 100%;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     .suggestion {

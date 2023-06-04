@@ -43,39 +43,7 @@ const ProfileForm = () => {
             }
         }
     });
-
-    // const handleChange = (e) => {
-
-
-    //     const { name, value } = e.target;
-
-    //     if (name === 'patientgender') {
-    //         setPatientGender(e.target.value);
-    //     }
-
-    //     if (name === 'birthdate') {
-    //         setBirthDate(value);
-            // const validateAge = 2023 - value.split('').slice(6, 10).join('');
-    //     }
-    //     if (name === 'patientfirstname') {
-    //         setPatientFirstName(value);
-    //     }
-    //     if (name === 'patientlastname') {
-    //         setPatientLastName(value);
-    //     }
-    //     if (name === 'patientaddress') {
-    //         setPatientAddress(value);
-    //     }
-    //     if (name === 'patientcity') {
-    //         setPatientCity(value);
-    //     }
-    //     if (name === 'patientzip') {
-    //         setPatientZip(value);
-    //     }
-    //     if (name === 'patientnumber') {
-    //         setValue(e.target.value);
-    //     }
-    // };
+    
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
@@ -106,9 +74,13 @@ const ProfileForm = () => {
             <Navbar />
             <div>
                 <div className='container-profile'>
+                    <p style={{ fontSize: '1.2rem', textAlign: 'center' }}>
+                        Our practitioner will be driving to the address provided in the form below.
+                        Please don't hesitate to add any useful information in the address field.
+                    </p><br />
                     <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5"
                         style={{ fontSize: '1.7rem', textAlign: 'center' }}>
-                        Please answer few questions about you</h4>
+                        Please answer few questions about yourself</h4>
                     <div className='card-body'>
                         <form onSubmit={(e) => handleFormSubmit(e)}>
                             <div className='row mt-5'>
@@ -206,14 +178,14 @@ const ProfileForm = () => {
                                         Phone number
                                     </label>
                                     <div>
-                                    <PatternFormat
-                                                    className='phone-update'
-                                                    format="(###) ### ####"
-                                                    allowEmptyFormatting mask="_"
-                                                    name='patientnumber'
-                                                    onValueChange={(values, sourceInfo) => {
-                                                        setPatientNumber(values.formattedValue);
-                                                    }} />
+                                        <PatternFormat
+                                            className='phone-update'
+                                            format="(###) ### ####"
+                                            allowEmptyFormatting mask="_"
+                                            name='patientnumber'
+                                            onValueChange={(values, sourceInfo) => {
+                                                setPatientNumber(values.formattedValue);
+                                            }} />
                                     </div>
                                 </div>
                                 <div className="col-12">

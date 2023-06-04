@@ -70,34 +70,40 @@ const Dashboard = () => {
         // {!loading && !error && }
         <>
             <Navbar />
-            <div className='container'>
-                <div className='row buttons mt-5 mb-5'>
-                    <div className='d-flex buttons col-lg-12 '>
+            <div className='container-dashboard'>
+                <div className='row buttons mt-5'>
+                    <div className='btn buttons col-lg-3 '>
                         <div >
-                            <Link to='/Appointment' className='btn btn-primary m-2' state={{ username }} >
-                                <div className='text-wrap' style={{ fontSize: '1.2rem' }}>
+                            <Link to='/Appointment'
+                                className='btn btn-primary rounded-0 m-2'
+                                state={{ username }} >
+                                <div style={{ fontSize: '1.2rem' }}>
                                     Book an appointment
                                 </div>
                             </Link>
                         </div>
+                    </div>
 
-                        <div>
-                            <Link to='/AppointmentHistory' style={{ fontSize: '1.2rem' }} className='btn btn-primary m-2' state={{ username }} >
-                                History
-                            </Link>
-                        </div>
+                    <div className='btn buttons col-lg-3'>
+                        <Link to='/AppointmentHistory'
+                            style={{ fontSize: '1.2rem' }}
+                            className='btn btn-primary rounded-0 m-2'
+                            state={{ username }} >
+                            appointment History
+                        </Link>
+                    </div>
 
-                        <div>
-                            <ContactModal />
-                        </div>
+                    <div className='btn buttons col-lg-3'>
+                        <ContactModal />
                     </div>
                 </div>
-                <div className='row justify-content-between'>
+
+                <div className='row'>
                     <div className='col-lg-6 col-sm-12'>
-                        <UpcomingAppointments futureAppointments={futureAppointments} today={today}/>
+                        <UpcomingAppointments futureAppointments={futureAppointments} today={today} />
                     </div>
                     {futureAppointments.length ? (
-                        <div className='col-lg-6 col-sm-12 mt-5'>
+                        <div className='col-lg-6 col-sm-12 mt-5 mb-5'>
                             <div className='card suggestion p-3'>
                                 <p style={{ fontSize: '1.2rem' }}>
                                     We suggest comming 15 minutes prior to your appointment. <br />
@@ -115,14 +121,17 @@ const Dashboard = () => {
                         </>
                     )}
                 </div>
-                <div className='row'>
-                    <div className='col-lg-8 col-sm-12 border-end mt-5'>
+                <div className='row mt-4'>
+                    <div className='col-lg-8 col-sm-12 border-end'>
                         <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
-                    <div className='col-lg-4 col-sm-12 border-start mt-5'>
-                        <h3 className="write-review-title mt-4" style={{ fontSize: '1.4rem' }}>Write a review </h3>
+                    <div className='col-lg-4 col-sm-12 border-start mt-4'>
+                        <h3 className="write-review-title mt-4"
+                            style={{ fontSize: '1.4rem' }}>
+                            Write a review
+                        </h3>
                         <button
-                        style={{ fontSize: '1.2rem' }}
+                            style={{ fontSize: '1.2rem' }}
                             type='button'
                             className='btn bt-write btn-primary mb-5'
                             onClick={() => handleSubmit('review')}>
@@ -136,6 +145,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+
         </>
     )
 };
