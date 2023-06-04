@@ -141,7 +141,7 @@ const AppointmentForm = (props) => {
         <>
             <Navbar />
             <div className='container-appointment'>
-                <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5 mb-5"
+                <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-4 mb-5"
                     style={{ fontSize: '1.7rem', textAlign: 'center' }}>
                     Book your appointment</h4>
                 <div className="card-body">

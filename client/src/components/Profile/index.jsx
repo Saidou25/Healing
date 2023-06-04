@@ -15,6 +15,10 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
         return (
             <div>
                 <div className='container-profile mt-5'>
+                    <p style={{ fontSize: '1.2rem', textAlign: 'center' }}>
+                        Our practitioner will be driving to the address provided in the form below.
+                        Please don't hesitate to add any useful information in the address field.
+                    </p><br />
                     <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
                             <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.8rem' }}>
@@ -65,8 +69,13 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                                         First name: {userProfile.patientfirstname}</div> <br />
                                     <div className="text m-2" style={{ fontSize: '1.4em' }}>
                                         Last name: {userProfile.patientlastname}</div> <br />
-                                    <div className="text m-2" style={{ fontSize: '1.4em' }}>
-                                        Birth date: {userProfile.birthdate}</div>
+                                    {userProfile.birthdate ?
+                                        <div className="text m-2" style={{ fontSize: '1.4em' }}>
+                                            Birth date: {userProfile.birthdate}</div>
+                                        :
+                                        <>
+                                        </>
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -75,14 +75,14 @@ const Dashboard = () => {
                     <div className='d-flex buttons col-lg-12 '>
                         <div >
                             <Link to='/Appointment' className='btn btn-primary m-2' state={{ username }} >
-                                <div className='text-wrap'>
+                                <div className='text-wrap' style={{ fontSize: '1.2rem' }}>
                                     Book an appointment
                                 </div>
                             </Link>
                         </div>
 
                         <div>
-                            <Link to='/AppointmentHistory' className='btn btn-primary m-2' state={{ username }} >
+                            <Link to='/AppointmentHistory' style={{ fontSize: '1.2rem' }} className='btn btn-primary m-2' state={{ username }} >
                                 History
                             </Link>
                         </div>
@@ -99,14 +99,14 @@ const Dashboard = () => {
                     {futureAppointments.length ? (
                         <div className='col-lg-6 col-sm-12 mt-5'>
                             <div className='card suggestion p-3'>
-                                <p>
+                                <p style={{ fontSize: '1.2rem' }}>
                                     We suggest comming 15 minutes prior to your appointment. <br />
+                                </p >
+                                <p style={{ fontSize: '1.2rem' }}>
+                                    Use direct message to provide additional information about your upcomming visit. <br />
                                 </p>
-                                <p>
-                                    You can use direct message to provide more information about your upcomming visit. <br />
-                                </p>
-                                <p>
-                                    This can also be used appointment cancelation (48 hours notice is appreciated). Then book again if you would like to reschedule.
+                                <p style={{ fontSize: '1.2rem' }}>
+                                    For appointment cancelation please provide a 48 hours notice. Book a new appointment if you would like to reschedule.
                                 </p>
                             </div>
                         </div>
@@ -120,8 +120,9 @@ const Dashboard = () => {
                         <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
                     <div className='col-lg-4 col-sm-12 border-start mt-5'>
-                        <h3 className="write-review-title mt-4">Write a review </h3>
+                        <h3 className="write-review-title mt-4" style={{ fontSize: '1.4rem' }}>Write a review </h3>
                         <button
+                        style={{ fontSize: '1.2rem' }}
                             type='button'
                             className='btn bt-write btn-primary mb-5'
                             onClick={() => handleSubmit('review')}>

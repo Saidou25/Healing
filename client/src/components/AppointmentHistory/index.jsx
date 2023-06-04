@@ -92,14 +92,14 @@ const AppointmentHistory = () => {
                 <div className="row">
                     {history &&
                         history.map((bookingdate) => (
-                            <div key={bookingdate._id} className="col-12 mt-5">
-                                <div className="card mb-3">
-                                    <div className="card-header" style={{ fontSize: '1.3rem' }} >Your past appointments:</div>
+                            <div key={bookingdate._id} className="col-12 history-column">
+                                <div className="card history mb-3">
+                                    <div className="card-header" style={{ fontSize: '1.4rem' }} >Your past appointments:</div>
                                     <div className='card-body'>
                                         <div className='row'>
                                             <div className='col-6 d-flex align-items-center'>
                                                 <div className='appointment-text'>
-                                                    <div className="text" style={{ fontSize: '1.4rem' }}>
+                                                    <div className="text" style={{ fontSize: '1.2rem' }}>
                                                         {bookingdate.appDay}, {bookingdate.appMonth} {bookingdate.appDate}, {bookingdate.appYear} at {bookingdate.appTime}.
                                                     </div>
                                                 </div>

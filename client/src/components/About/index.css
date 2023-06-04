@@ -10,7 +10,12 @@
     margin-bottom: 7%;
     text-align: center;
 }
-
+.about-card {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .responsive {
     max-width: 100%;
     height: auto;
@@ -21,5 +26,9 @@
         width: 90%;
         margin-top: 10%;
         margin-bottom: 5%;
+    }
+    .about-card {
+        width: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 }

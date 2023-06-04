@@ -4,8 +4,14 @@
     margin-right: auto;
     margin-left: auto;
 }
+.history-column {
+    margin-top: 4%;
+}
 .delete-appointment {
     margin-bottom: 2%;
+}
+.history {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 @media screen and (max-width: 414px) {
     .container-history {
@@ -13,5 +19,8 @@
         width: 90%;
         margin-right: auto;
         margin-left: auto;
+    }
+    .history-column {
+        margin-top: 1px;
     }
 }

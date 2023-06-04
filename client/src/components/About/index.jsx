@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../Navbar';
-import nurseIcon from '../../assets/images/nurseIcon.jpeg';
 import nurseGuy from '../../assets/images/nurseGuy.jpeg';
 import nurseLady from '../../assets/images/nurseLady.jpeg';
 
@@ -14,8 +13,8 @@ const About = () => {
             <div className='container about'>
                 <h3 className='reiki-title'>What is Reiki</h3>
                 <p style={{ fontSize: '1.2rem' }}>
-                        Please modify the fields you would like to update with your new information.</p>
-                   
+                    Please modify the fields you would like to update with your new information.</p>
+
                 <p style={{ fontSize: '1.2rem' }}>
                     From Wikipedia, the free encyclopedia.
                 </p>
@@ -38,18 +37,8 @@ const About = () => {
                 </p>
                 <h3 className='team-title'>Our team</h3>
                 <div className='row'>
-                    {/* <div className='col-lg-3 col-sm-12'>
-                        <div className='card mt-3 mb-3'>
-                            <div className='card-header'> Isa</div>
-                            <img className='profile-picture' src={nurseIcon} alt='nurse icon' height={300} />
-                            <div className='card-body'>
-                                <i className="bi bi-person-fill"></i>
-                                <div>10 years experience. Studied in Japan since age 14.</div>
-                            </div>
-                        </div>
-                    </div> */}
                     <div className='col-lg-4 col-sm-12'>
-                        <div className='card mt-3 mb-3'>
+                        <div className='card about-card mt-3 mb-3'>
                             <div className='card-header' style={{ fontSize: '1.2rem' }}> Peter</div>
                             <div className='card-body'>
                                 <img className="responsive" src={nurseGuy} alt='nurse icon' height={300} />
@@ -60,7 +49,7 @@ const About = () => {
                         </div>
                     </div>
                     <div className='col-lg-4 col-sm-12'>
-                        <div className='card mt-3 mb-3'>
+                        <div className='card about-card mt-3 mb-3'>
                             <div className='card-header' style={{ fontSize: '1.2rem' }}> Nancy</div>
                             <div className='card-body'>
                                 <img className="responsive" src={nurseLady} alt='nurse icon' height={300} />

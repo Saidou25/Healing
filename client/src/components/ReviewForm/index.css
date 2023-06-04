@@ -29,3 +29,10 @@
     background-clip: padding-box;
     border: 0 solid #ced4da;
 }
+
+.card-header-review-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+}

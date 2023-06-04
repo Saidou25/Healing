@@ -52,16 +52,16 @@ const MyReviewsList = (props) => {
                 {reviews &&
                     reviews.map((review) => (
                         <div key={review._id} className="col-12">
-                            <div className="card mb-3">
-                                <div className="card-header" style={{ fontSize: '1.2rem' }}>{review.title}</div>
+                            <div className="card review-list mb-3">
+                                <div className="card-header" style={{ fontSize: '1.4rem' }}>{review.title}</div>
                                 <div className='card-body'>
                                     <div className='row'>
                                         <div className='col-12'>
-                                            <span className="card-text" style={{ fontSize: '1rem' }}>
+                                            <span className="card-text" style={{ fontSize: '1.2rem' }}>
                                                 {review.reviewText}</span> <br />
                                         </div>
                                         <div className='col-6 mt-3'>
-                                            <span className="text" style={{ fontSize: '1rem' }}>
+                                            <span className="text" style={{ fontSize: '1.2rem' }}>
                                                 Created: fake date</span> <br />
                                         </div>
                                     </div>
@@ -69,6 +69,7 @@ const MyReviewsList = (props) => {
                                         {(review.username === myUserName) ? (
                                             <div className='d-flex justify-content-end'>
                                                 <button
+                                                style={{ fontSize: '1.2rem' }}
                                                     type='button'
                                                     className='btn delete-review mt-4 btn-danger rounded-0'
                                                     onClick={() => handleSubmit(review)}>
@@ -77,7 +78,7 @@ const MyReviewsList = (props) => {
                                             </div>) : (
                                             <>
                                                 <div className='col-6 mt-3'>
-                                                    <span className="text" style={{ fontSize: '1rem' }}>
+                                                    <span className="text" style={{ fontSize: '1.2rem' }}>
                                                         Author: {review.username}</span> < br />
                                                 </div>
                                             </>
