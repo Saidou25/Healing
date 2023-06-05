@@ -21,7 +21,6 @@ const AppointmentForm = (props) => {
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
 
-
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const profile = me.profile;

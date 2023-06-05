@@ -16,7 +16,6 @@ const Signup = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormState({
       ...formState,
       [name]: value,
@@ -74,7 +73,7 @@ const Signup = () => {
                   style={{ fontSize: '1.3rem' }}
                   name="email"
                   type="email"
-                  value={formState.email}
+                  value={formState.email.toLowerCase()}
                   onChange={handleChange}
                 /><br />
                 <label className='text-label' style={{ fontSize: '1.5rem' }}>

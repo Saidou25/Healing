@@ -41,7 +41,6 @@ const Dashboard = () => {
     };
 
     const today = `${newMonth}/${newDay}/${todaysYear}`;
-    console.log('today', today);
 
     const [isShown, setIsShown] = useState(false);
 
@@ -57,7 +56,6 @@ const Dashboard = () => {
     const myAppointments = bookingdates.filter(bookingdate => bookingdate.username === username);
 
     const futureAppointments = myAppointments.filter(bookingdate => bookingdate.digitalAppointment > today);
-    console.log('future appoitnments from dashboard', futureAppointments);
 
     const handleSubmit = (e) => {
         //  setIsShown(current => !current);

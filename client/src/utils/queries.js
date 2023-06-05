@@ -16,6 +16,7 @@ export const QUERY_USERS = gql`
      username
      finalDateISO
      digitMonth
+     reason
      appDay
      digitalAppointment
      appDate
@@ -85,6 +86,7 @@ export const QUERY_USER = gql`
      finalDateISO
      digitMonth
      digitalAppointment
+     reason
      appDay
      appDate
      appMonth
@@ -145,6 +147,7 @@ export const QUERY_ME = gql`
      isBooked
      username
      digitMonth
+     reason
      finalDateISO
      appDay
      appDate
@@ -198,6 +201,7 @@ export const QUERY_BOOKINGDATES = gql`
      finalDateISO
      digitMonth
      appDay
+     reason
      digitalAppointment
      appDate
      appMonth
@@ -236,6 +240,7 @@ export const QUERY_BOOKINGDATE = gql`
      finalDateISO
      appDay
      appDate
+     reason
      digitalAppointment
      digitMonth
      appMonth
@@ -302,6 +307,7 @@ export const QUERY_USERBOOKINGDATES= gql`
      finalDateISO
      appDate
      appDay
+     reason
      appMonth
      appTime
      appYear
