@@ -3,7 +3,6 @@ import './index.css';
 
 const UpcomingAppointments = (props) => {
     const futureAppointments = props.futureAppointments;
-    console.log(props);
 
     if (!futureAppointments) {
         return (
