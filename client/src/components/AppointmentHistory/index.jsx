@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_BOOKINGDATES } from '../../utils/queries';
 import { DELETE_BOOKINGDATE } from '../../utils/mutations';
 import Navbar from '../Navbar';
+import Footer from '../Footer';
 import trash from '../../assets/images/trash.png';
 import './index.css';
 
@@ -58,7 +59,7 @@ const AppointmentHistory = () => {
     });
 
     const history = myAppointments.filter(bookingdate => today >= bookingdate.digitalAppointment);
-    
+
     const handleSubmit = (bookingdate) => {
         const bookingdateId = bookingdate._id;
 
@@ -77,10 +78,21 @@ const AppointmentHistory = () => {
         return (
             <>
                 <Navbar />
-                <h3>
-                    No history yet
-                </h3>
-
+                <div className='container-no-history'>
+                    <div className='card no-history'>
+                        <h3 className='card-header history-header'>
+                            No history yet
+                        </h3>
+                        <div className='card-body history-text'>
+                            <p style={{ fontSize: '1.2rem' }}>
+                                Your past appointments will show on here soon.
+                            </p >
+                        </div>
+                    </div>
+                </div>
+                <div className='footer-history'>
+                <Footer />
+                </div>
             </>
         )
     }
@@ -88,7 +100,7 @@ const AppointmentHistory = () => {
         <div>
             <Navbar />
             <div className='container-history'>
-                <h1 className="appointment-list-title mt-4 mb-5">Appointments history</h1>
+                <h1 className="appointment-list-title mt-4 mb-5">Appointment history</h1>
                 <div className="row">
                     {history &&
                         history.map((bookingdate) => (
@@ -114,17 +126,6 @@ const AppointmentHistory = () => {
                                                 </button>
                                             </div>
                                         </div>
-
-
-                                        {/* <div className='d-flex justify-content-end'>
-                                            <button
-                                                type='button'
-                                                className='btn delete-appointment rounded-0'
-                                                onClick={() => handleSubmit(bookingdate)}
-                                            >
-                                               <img className='trash-can' src={trash} alt='trash-can' height={60} />
-                                            </button>
-                                        </div> */}
                                     </div>
                                 </div>
 
@@ -132,7 +133,8 @@ const AppointmentHistory = () => {
                         ))}
                 </div>
             </div>
-        </div>
+                <Footer />
+            </div>
     )
 };
 

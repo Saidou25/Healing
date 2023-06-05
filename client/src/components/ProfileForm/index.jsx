@@ -3,6 +3,7 @@ import 'react-phone-number-input/style.css';
 import { PatternFormat } from 'react-number-format';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
+import Footer from '../Footer';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
@@ -196,8 +197,9 @@ const ProfileForm = () => {
                             </div>
                         </form>
                     </div>
-                </div>Í
+                </div>
             </div>
+            <Footer />
         </>
     );
 };

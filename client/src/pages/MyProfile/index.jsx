@@ -3,9 +3,10 @@ import Profile from '../../components/Profile';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_PROFILES, QUERY_PETS, QUERY_BOOKINGDATES } from '../../utils/queries';
 import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 const MyProfile = () => {
-  
+
   const { data } = useQuery(QUERY_ME);
   const meUser = data?.me || [];
   const userId = meUser._id;
@@ -30,6 +31,7 @@ const MyProfile = () => {
     <div>
       <Navbar />
       <Profile userProfile={userProfile} userId={userId} profileId={profileId} myAppointments={myAppointments} myPets={myPets} myUserName={myUserName} />
+      <Footer />
     </div>
   )
 };

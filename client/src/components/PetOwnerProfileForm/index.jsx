@@ -4,6 +4,7 @@ import { PatternFormat } from 'react-number-format';
 import Confirmation from '../Confirmation';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
+import Footer from '../Footer';
 import { useNavigate, Link } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
@@ -301,6 +302,7 @@ const PetOwnerProfileForm = (props) => {
                     </div >
                 )}
             </div >
+            <Footer />
         </>
     )
 };

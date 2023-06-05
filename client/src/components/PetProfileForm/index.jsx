@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../Navbar';
+import Footer from '../Footer';
 import { QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
 import { useMutation, useQuery } from '@apollo/client';
@@ -201,6 +202,7 @@ const PetForm = (props) => {
                     </div>
                 )}
             </div>
+            <Footer />
         </>
     )
 };

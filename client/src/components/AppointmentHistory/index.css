@@ -4,6 +4,25 @@
     margin-right: auto;
     margin-left: auto;
 }
+.container-no-history {
+    margin-top: 7%;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.history-header {
+    text-align: center;
+    height: 30%;
+}
+.no-history {
+    height: 200px;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.history-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .history-column {
     margin-top: 4%;
 }
@@ -13,14 +32,29 @@
 .history {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.footer-history {
+    position: fixed !important;
+    bottom: 0px !important;
+    width: 100%;
+}
 @media screen and (max-width: 414px) {
     .container-history {
-        margin-top: 7%;
+        margin-top: 15%;
         width: 90%;
         margin-right: auto;
         margin-left: auto;
     }
     .history-column {
         margin-top: 1px;
+    }
+    .container-no-history {
+        margin-top: 15%;
+        width: 65%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .footer-history {
+        position: fixed !important;
+        bottom: 0 !important;
     }
 }

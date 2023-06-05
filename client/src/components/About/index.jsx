@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../Navbar';
+import Footer from '../Footer'; 
 import nurseGuy from '../../assets/images/nurseGuy.jpeg';
 import nurseLady from '../../assets/images/nurseLady.jpeg';
 
@@ -58,6 +59,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 };

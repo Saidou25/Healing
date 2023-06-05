@@ -5,6 +5,7 @@ import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
 import DatePicker from "react-datepicker";
 import Navbar from '../Navbar';
+import Footer from '../Footer'; 
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -216,6 +217,7 @@ const AppointmentForm = (props) => {
                     </form>
                 </div>
             </div>
+            <Footer />
         </>
     )
 };

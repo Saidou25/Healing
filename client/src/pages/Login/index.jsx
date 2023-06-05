@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 import Navbar from "../../components/Navbar";
+import Footer from '../../components/Footer';
 import './index.css';
 
 const Login = () => {
@@ -97,6 +98,7 @@ const Login = () => {
                     </div>
                 </div>
             </main>
+            <Footer />
         </>
     );
 };

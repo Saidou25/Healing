@@ -46,7 +46,7 @@ const MyReviewsList = (props) => {
         return <h3>loading...</h3>
     }
     return (
-        <div className='container-review mt-5'>
+        <div className='container-review'>
             <h3 className="review-list-title mt-4 mb-5">Read what people say: </h3>
             <div className="row">
                 {reviews &&

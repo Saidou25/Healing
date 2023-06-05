@@ -5,9 +5,10 @@ import SelectUSState from 'react-select-us-states';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { UPDATE_PROFILE } from "../../utils/mutations";
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 import './index.css';
-import Navbar from '../Navbar';
 
 const UpdateMyProfileForm = (props) => {
     const profileId = props.profileId;
@@ -139,6 +140,7 @@ const UpdateMyProfileForm = (props) => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

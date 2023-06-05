@@ -5,7 +5,7 @@ import './index.css';
 const Footer = () => {
 
     return (
-        <div className='row footer bg-primary text-white'>
+        <div className='row footer bg-primary text-white mt-5'>
             <div className="col-12 d-flex justify-content-center text">
                 <FaEnvelope className="icon m-2" />
                 healing@healing.com

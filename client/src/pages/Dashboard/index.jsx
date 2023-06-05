@@ -8,6 +8,7 @@ import UpcomingAppointments from '../../components/UpcomingAppointments';
 import MyReviewsList from '../../components/MyReviewsList';
 import ReviewForm from '../../components/ReviewForm';
 import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import './index.css';
 
 const Dashboard = () => {
@@ -67,7 +68,6 @@ const Dashboard = () => {
     if (error) return <p>Something went wrong ...</p>
 
     return (
-        // {!loading && !error && }
         <>
             <Navbar />
             <div className='container-dashboard'>
@@ -145,7 +145,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-
+            <Footer />
         </>
     )
 };
