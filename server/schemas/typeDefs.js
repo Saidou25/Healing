@@ -45,16 +45,7 @@ const typeDefs = gql`
      petAge: String
      petKind: String
      profileId: String
-     }
-     type Note {
-      _id: ID!
-     noteTitle: String
-     numbers: [Number]
-     }, 
-    type Number {
-       _id: ID!
-       num: String
-       }
+     },
 
      type Bookingdate {
       _id: ID!
@@ -70,39 +61,35 @@ const typeDefs = gql`
      appTime: String
      appYear: Int
      }, 
+
      type User {
     _id: ID!
     email: String
     password: String 
     username: String
-    note: Note
     profile: Profile 
     reviews: [Review]
     bookingdates: [Bookingdate] 
   },
+
   type Auth {
     token: ID!
     user: User
   },
      
      type Query {
-     users: [User]
+     users: [User]!
      user(id: String!): User
      me: User
-     profiles: [Profile]
+     profiles: [Profile]!
      profile(profileId: String!): Profile
-     bookingdates: [Bookingdate]
-     bookingdate(id: String): Bookingdate
-     reviews: [Review]
-     review(id: String): Review
-     userbookingdates(username: String): [Bookingdate]  
-     notes: [Note]!
-     note(id: String!): Note
-     pets: [Pet]
+     bookingdates: [Bookingdate]!
+     bookingdate(id: String!): Bookingdate
+     reviews: [Review]!
+     review(id: String!): Review
+     userbookingdates(username: String): [Bookingdate]!
+     pets: [Pet]!
      pet(username: String!): Pet
-     numbers: [Number]
-     number(id: String): Number
-     
      },
 
      type Mutation {
@@ -133,7 +120,7 @@ const typeDefs = gql`
      appYear: Int): Profile
 
      addBookingdate(
-     username: String
+     username: String!
      isBooked: String
      digitMonth: String
      finalDateISO: String
@@ -142,42 +129,36 @@ const typeDefs = gql`
      digitalAppointment: String
      appDate: Int
      appTime: String
-     reason: String
+     reason: String!
      appYear: Int
      ): Bookingdate
 
      addReview(
      username: String
-     reviewText: String
-     title: String
+     reviewText: String!
+     title: String!
      ): Review
-
-  
-    addNote(id: String, noteTitle: String): Note
-    updateNote(id: String, noteTitle: String): Note
 
     addPet(
     username: String!
     profileId: String
-     petBreed: String
-     petName: String
-     petWeight: Int
-     petGender: String
+     petBreed: String!
+     petName: String!
+     petWeight: Int!
+     petGender: String!
      petKind: String
-     petAge: String
+     petAge: String!
      ): Pet
 
     updateProfile(
     id: String,
     username: String,
      patientlastname: String, 
-                    patientcity: String,
-                    patientzip: String,
-                    patientState: String,
-                    patientnumber: String,
-                    patientaddress: String): Profile
-                    
-    deleteNote(id: String): Note
+     patientcity: String,
+   patientzip: String,
+    patientState: String,
+    patientnumber: String!,
+     patientaddress: String): Profile
     deleteUser(id: String!): User
     deleteProfile(id: String!): Profile
     deleteReview(id: String!): Review

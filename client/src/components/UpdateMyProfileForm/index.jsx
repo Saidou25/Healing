@@ -17,18 +17,23 @@ const UpdateMyProfileForm = (props) => {
     const location = useLocation();
     const userProfile = location.state.userProfile;
     const [patientState, setNewValue] = useState(userProfile.patientState);
-    const [patientnumber, setPatientNumber] = useState(userProfile.patientnumber);
+    const [patientnumber, setPatientNumber] = useState('');
     const [patientlastname, setPatientLastName] = useState(userProfile.patientlastname);
     const [patientaddress, setPatientAddress] = useState(userProfile.patientaddress);
     const [patientcity, setPatientCity] = useState(userProfile.patientcity);
     const [patientzip, setPatientZip] = useState(userProfile.patientzip);
-    // const emailRegex = /^\S+@\S+\.\S+$/;
-    const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-
+    const [mumberVaue, setNumberValue] = useState('');
+    const [error, setError] = useState('');
     const [updateProfile] = useMutation(UPDATE_PROFILE);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!mumberVaue) {
+            console.log('no number')
+            setError('message');
+            return;
+        }
         try {
             const { data } = await updateProfile({
                 variables: {
@@ -50,8 +55,9 @@ const UpdateMyProfileForm = (props) => {
             setPatientLastName('');
         } catch (err) {
             console.error(err);
+
         }
-        navigate('/MyProfile');
+         navigate('/MyProfile');
     };
 
     return (
@@ -64,7 +70,7 @@ const UpdateMyProfileForm = (props) => {
                     <h4 className="card-header bg-primary rounded-0 text-light p-4"
                         style={{ fontSize: '1.7rem', textAlign: 'center' }}>
                         Update profile</h4>
-                         <div className='card-update'>
+                    <div className='card-update'>
                         <form className='profile-update'>
                             <div className='row mt-5'>
                                 <div className="col-6 update-fields">
@@ -125,6 +131,7 @@ const UpdateMyProfileForm = (props) => {
                                         name='patientnumber'
                                         onValueChange={(values, sourceInfo) => {
                                             setPatientNumber(values.formattedValue);
+                                            setNumberValue(values.value);
                                         }} />
                                 </div>
                                 <div className="col-12">
@@ -139,6 +146,11 @@ const UpdateMyProfileForm = (props) => {
                         </form>
                     </div>
                 </div>
+                {error && (
+                    <div className="my-3 p-3 bg-danger phone-error text-white">
+                        Please leave a phone number!
+                    </div>
+                )}
             </div>
             <Footer />
         </>

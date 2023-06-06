@@ -8,6 +8,7 @@ import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const Signup = () => {
+  const [email, setEaddress] = useState('');
   const [formState, setFormState] = useState({
     username: "",
     email: "",
@@ -17,9 +18,14 @@ const Signup = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    if (name === 'eAddress') {
+      setEaddress(value.toLowerCase());
+    }
+
     setFormState({
       ...formState,
       [name]: value,
+      email: email
     });
   };
 
@@ -72,9 +78,9 @@ const Signup = () => {
                   className="form-input"
                   placeholder="your email.."
                   style={{ fontSize: '1.3rem' }}
-                  name="email"
+                  name="eAddress"
                   type="email"
-                  value={formState.email.toLowerCase()}
+                  value={email}
                   onChange={handleChange}
                 /><br />
                 <label className='text-label' style={{ fontSize: '1.5rem' }}>

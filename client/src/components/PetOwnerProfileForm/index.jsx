@@ -130,7 +130,7 @@ const PetOwnerProfileForm = (props) => {
                                             name="patientzip"
                                             value={patientzip}
                                             onChange={(e) => setPatientZip(e.target.value)}
-                                            type="Number"
+                                            type="text"
                                             placeholder="zip code..." />
                                     </div>
                                     <div className="col-6 owner-fields">

@@ -33,11 +33,14 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .footer-history {
-    position: fixed;
-    bottom: 0px;
+    position: fixed !important;
+    bottom: 0 !important;
     width: 100%;
 }
 @media screen and (max-width: 414px) {
+    .no-history {
+         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
     .container-history {
         margin-top: 15%;
         width: 90%;
@@ -48,13 +51,19 @@
         margin-top: 1px;
     }
     .container-no-history {
-        margin-top: 15%;
+        margin-top: 30%;
         width: 65%;
         margin-right: auto;
         margin-left: auto;
     }
 }
-@media screen and (max-width: 389px) {
+@media screen and (max-width: 375px) {
+    .container-no-history {
+        margin-top: 15%;
+        width: 65%;
+        margin-right: auto;
+        margin-left: auto;
+    }
     .footer-history {
         position: relative !important;
     }

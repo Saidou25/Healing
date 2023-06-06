@@ -6,47 +6,42 @@ const petSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-
     },
     profileId: {
         type: String,
         required: false,
-        trim: true,
-
+        trim: true
     },
     username: {
         type: String,
         required: true,
-        trim: true,
-
+        trim: true
     },
     petName: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
     petWeight: {
         type: Number,
         required: true,
-        trim: true,
+        trim: true
     },
     petGender: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
     petKind: {
         type: String,
         required: false,
-        trim: true,
+        trim: true
     },
     petAge: {
         type: String,
         required: true,
         trim: true
-    },
-    
-
+    }
 });
 
 const Pet = model('Pet', petSchema);

@@ -8,13 +8,14 @@ const reviewSchema = new Schema({
   },
   title: {
     type: String,
-    required: true,
-    trim: true
+    required: 'Your review needs a title!',
+    trim: true,
+    minlength: 5
   },
   reviewText: {
   type: String,
   required: 'You need to leave a review!',
-  minlength: 1,
+  minlength: 5,
   maxlength: 280,
   trim: true,
 }

@@ -62,12 +62,12 @@ export const ADD_PET = gql`
      mutation addPet(
      $username: String!
      $profileId: String
-     $petName: String
-     $petWeight: Int
-     $petAge: String
+     $petName: String!
+     $petWeight: Int!
+     $petAge: String!
      $petKind: String
-     $petGender: String
-     $petBreed: String) {
+     $petGender: String!
+     $petBreed: String!) {
      addPet(
      username: $username
      profileId: $profileId
@@ -97,22 +97,6 @@ export const ADD_REVIEW = gql`
         username
         title
         reviewText
-    }
- }
-`;
-export const ADD_NOTE = gql`
-  mutation addNote($noteTitle: String!) {
-    addNote(noteTitle: $noteTitle) {
-        _id
-        noteTitle
-    }
- }
-`;
-export const UPDATE_NOTE = gql`
-  mutation updateNote($id: String!, $noteTitle: String!) {
-    updateNote(id: $id, noteTitle: $noteTitle) {
-        _id
-        noteTitle
     }
  }
 `;
@@ -154,7 +138,7 @@ export const ADD_BOOKINGDATE = gql`
      $finalDateISO: String,
      $digitalAppointment: String,
      $appDay: String,
-     $reason: String,
+     $reason: String!,
      $appMonth: String,
      $appDate: Int,
      $appTime: String,
@@ -195,10 +179,6 @@ export const ADD_BOOKINGDATE = gql`
       _id
       username
       email
-      note {
-        _id
-      noteTitle
-      }
       reviews {
      _id
      username
@@ -213,6 +193,7 @@ export const ADD_BOOKINGDATE = gql`
      digitMonth
      digitalAppointment
      appDay
+     reason
      appDate
      appMonth
      appTime
@@ -352,7 +333,7 @@ mutation deletePet($username: String!) {
       $patientcity: String,
       $patientState: String,
       $patientzip: String,
-      $patientnumber: String
+      $patientnumber: String!
       ) {
          updateProfile(
         id: $id,

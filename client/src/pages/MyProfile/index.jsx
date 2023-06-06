@@ -2,8 +2,6 @@ import React from 'react';
 import Profile from '../../components/Profile';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_PROFILES, QUERY_PETS, QUERY_BOOKINGDATES } from '../../utils/queries';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 
 const MyProfile = () => {
 
@@ -29,9 +27,7 @@ const MyProfile = () => {
 
   return (
     <div>
-      <Navbar />
-      <Profile userProfile={userProfile} userId={userId} profileId={profileId} myAppointments={myAppointments} myPets={myPets} myUserName={myUserName} />
-      <Footer />
+      <Profile userProfile={userProfile} userId={userId} profileId={profileId} myAppointments={myAppointments} myPets={myPets} myUserName={myUserName} />    
     </div>
   )
 };

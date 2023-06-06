@@ -64,23 +64,23 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
                         <div className="modal-content">
                             <div className='row'>
                                 <div className="col-12 modal-header">
-                                    <h1 className="modal-title-delete" id="exampleModalLabel">
+                                    <h1 className="modal-title-delete fs-1" id="exampleModalLabel">
                                         Delete Account
                                     </h1>
                                     <button type="button" className="btn-close btn btn-primary mb-5" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div className="col-12 d-flex justify-content-center modal-body mt-4 mb-4">
+                                <div className="col-12 d-flex justify-content-center modal-body fs-4 mt-4 mb-4">
                                     <p>Are you sure you want to delete your account?</p>
                                 </div>
                                 <div className='row mb-3'>
                                     <button type="button"
-                                        className="col-6 btn btn-secondary"
+                                        className="col-6 btn btn-secondary fs-4"
                                         data-bs-dismiss="modal">
                                         Close
                                     </button>
                                     <button
                                         type="button"
-                                        className="col-6 btn btn-danger"
+                                        className="col-6 btn btn-danger fs-4"
                                         onClick={(event) => { deleteAll(event) }}>
                                         confirm
                                     </button>

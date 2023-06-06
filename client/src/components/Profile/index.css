@@ -21,6 +21,11 @@
 .update-profile {
 width: 100%;
 }
+.footer-myprofile {
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 100%;
+}
 
 @media screen and (max-width: 414px) {
     .container-profile {
@@ -29,11 +34,10 @@ width: 100%;
         margin-right: auto;
         margin-left: auto;
     }
-    /* .profile-card {
-        width: 90%;
-        margin-top: 10%;
-        margin-right: auto;
-        margin-left: auto;
-        box-shadow: none;
-    } */
+}
+@media screen and (max-width: 375px) {
+    .footer-myprofile {
+        position: relative !important;
+    }
+
 }

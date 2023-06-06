@@ -64,7 +64,7 @@ const ProfileModal = () => {
                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div className="modal-content">
                             <div className="modal-header d-flex align-items-center">
-                                <h1 className="modal-title-contact fs-7" id="exampleModalLabel">Contact Me</h1>
+                                <h1 className="modal-title-contact fs-1" id="exampleModalLabel">Contact Me</h1>
                                 <button type="button" className="btn-close btn btn-primary mb-5" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">

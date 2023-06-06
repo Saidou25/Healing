@@ -5,66 +5,68 @@ const profileSchema = new Schema({
        mepet: {
         type: String,
         repuire: false,
-        trim: true,
+        trim: true
 
     },
        username: {
         type: String,
         repuire: true,
-        trim: true,
+        trim: true
 
     },
     patientgender: {
         type: String,
         repuire: false,
-        trim: true,
+        trim: true
 
     },
     birthdate: {
         type: String,
         repuire: false,
-        trim: true,
+        trim: true
 
     },
     patientfirstname: {
         type: String,
         repuire: true,
         trim: true,
+        minlength: 2
     },
     patientlastname: {
         type: String,
         require: true,
-        trim: true
+        trim: true,
+        minlength: 2
     },
     patientaddress: {
         type: String,
         repuire: true,
         trim: true,
-
+        minlength: 5
     },
     patientzip: {
         type: String,
         require: true,
         trim: true,
-
+        minlength: 5,
+        maxlength: 5
     },
     patientcity: {
         type: String,
         repuire: true,
         trim: true,
-
+        minlength: 2
     },
     patientnumber: {
         type: String,
-        require: true,
-        trim: true,
-
+        require: 'you need to leave a phone number',
+        trim: true
     },
     patientreason: {
         type: String,
         repuire: false,
         trim: true,
-
+        minlength: 5
     },
     patientemail: {
         type: String,
@@ -75,42 +77,42 @@ const profileSchema = new Schema({
      isBooked: {
         type: String,
         repuire: false,
-        trim: true,
+        trim: true
     },
    appDay: {
         type: String,
         repuire: false,
-        trim: true,
+        trim: true
     },
     patientState: {
             type: String,
             repuire: true,
-            trim: true,
+            trim: true
         },
     appMonth: {
             type: String,
             repuire: false,
-            trim: true,
+            trim: true
         },
         appDate: {
             type: Number,
             repuire: false,
-            trim: true,
+            trim: true
         },
         appTime: {
             type: String,
             repuire: false,
-            trim: true,
+            trim: true
         },
         appointment: {
             type: String,
             repuire: false,
-            trim: true,
+            trim: true
         },
         appYear: {
             type: Number,
             repuire: false,
-            trim: true,
+            trim: true
         },
         pets: [
             {

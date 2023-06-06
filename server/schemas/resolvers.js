@@ -1,55 +1,43 @@
-const { Profile, Bookingdate, User, Review, Note, Pet } = require('../models');
+const { Profile, Bookingdate, User, Review, Pet } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-
 
 const resolvers = {
     Query: {
         users: async () => {
             return User.find()
-                .populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
+                .populate('profile').populate('bookingdates').populate('reviews').populate({
                     path: 'profile',
                     populate: 'pets'
                 });
         },
         user: async (_, args) => {
-            return User.findOne({ id: args._id }).populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
+            return User.findOne({ id: args._id }).populate('profile').populate('bookingdates').populate('reviews').populate({
                 path: 'profile',
                 populate: 'pets'
             });
         },
         me: async (_, _args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('profile').populate('note').populate('bookingdates').populate('reviews').populate({
+                return User.findOne({ _id: context.user._id }).populate('profile').populate('bookingdates').populate('reviews').populate({
                     path: 'profile',
                     populate: 'pets'
                 });
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        notes: async () => {
-            return await Note.find();
-        },
-        note: async (_, args) => {
-            return Note.findOne({ _id: args.id });
-        },
         profiles: async () => {
-
             return await Profile.find().populate('pets');
         },
         profile: async (_, args) => {
-
             return await Profile.findOne({ _id: args.id });
-
         },
         pets: async () => {
-
             return await Pet.find();
         },
         pet: async (_, args) => {
             return await Pet.findOne({ username: args.uername });
         },
-
         bookingdates: async () => {
             return Bookingdate.find();
         },
@@ -71,12 +59,10 @@ const resolvers = {
         addUser: async (_, args) => {
             const user = await User.create(args);
             const token = signToken(user);
-
             return { token, user };
         },
         login: async (_, { email, username, password }) => {
             const user = await User.findOne(email ? { email } : { username });
-
             if (!user) {
                 throw new AuthenticationError('No user with this email found!');
             }
@@ -87,7 +73,6 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-
         addBookingdate: async (_, args, context) => {
             if (context.user) {
                 const bookingdate = await Bookingdate.create({
@@ -103,46 +88,15 @@ const resolvers = {
                     appTime: args.appTime,
                     appYear: args.appYear
                 });
-
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { bookingdates: bookingdate._id } },
                     { new: true }
                 );
-
                 return bookingdate;
             }
             throw new AuthenticationError('You need to be logged in!');
-
         },
-        updateNote: async (_, args) => {
-
-            return await Note.findOneAndUpdate(
-                { _id: args.id },
-                { noteTitle: args.noteTitle }
-            );
-        },
-        deleteNote: async (_, args) => {
-            return await Note.findOneAndDelete({ _id: args.id });
-        },
-        addNote: async (_, args, context) => {
-            if (context.user) {
-                const note = await Note.create({
-                    // _id: context.user._id,
-                    noteTitle: args.noteTitle
-                });
-
-                await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $set: { note: note._id } },
-                    { new: true }
-                );
-
-                return note;
-            }
-            throw new AuthenticationError('You need to be logged in!');
-        },
-
         addPet: async (_, args) => {
             const pet = await Pet.create(
                 {profileId: args.profileId,
@@ -161,10 +115,7 @@ const resolvers = {
                 { new: true }
             )
             return pet;
-
-
         },
-
         addProfile: async (_, args, context) => {
             if (context.user) {
                 const profile = await Profile.create({
@@ -196,7 +147,6 @@ const resolvers = {
                 return profile;
             }
             throw new AuthenticationError('You need to be logged in!');
-
         },
         addReview: async (_, args, context) => {
             if (context.user) {
@@ -205,20 +155,16 @@ const resolvers = {
                     reviewText: args.reviewText,
                     title: args.title
                 });
-
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { reviews: review._id } },
                     { new: true }
                 );
-
                 return review;
             }
             throw new AuthenticationError('You need to be logged in!');
-
         },
         updateProfile: async (_, args) => {
-
             return await Profile.findOneAndUpdate(
                 { _id: args.id },
                 {
@@ -238,13 +184,11 @@ const resolvers = {
                 const review = await Review.findOneAndDelete(
                     { _id: args.id }
                 );
-
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $pull: { reviews: review._id } },
                     { new: true }
                 );
-
                 return review;
             }
             throw new AuthenticationError('You need to be logged in!');
@@ -254,22 +198,18 @@ const resolvers = {
                 const bookingdate = await Bookingdate.findOneAndDelete(
                     { _id: args.id }
                 );
-
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $pull: { bookingdates: bookingdate._id } },
                     { new: true }
                 );
-
                 return bookingdate;
             }
             throw new AuthenticationError('You need to be logged in!');
         },
         deleteUser: async (_, args) => {
             return await User.findOneAndDelete({ _id: args.id });
-
         },
-
         deleteProfile: async (_, args) => {
             return await Profile.findOneAndDelete({ id: args._id });
         },

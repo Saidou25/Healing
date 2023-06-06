@@ -4,6 +4,8 @@ import { FaEnvelope, FaPhone, FaIdBadge } from 'react-icons/fa'
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
 import DeleteModal from '../DeleteModal';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import './index.css';
 
 const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => {
@@ -14,6 +16,7 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
     if (!userProfile) {
         return (
             <div>
+                <Navbar />
                 <div className='container-profile mt-5'>
                     <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
@@ -31,11 +34,15 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                         </div>
                     </div>
                 </div>
+                <div className='footer-myprofile'>
+                <Footer />
+                </div>
             </div>
         )
     } else {
         return (
             <div>
+                <Navbar />
                 <div className='container-profile mt-5'>
                     <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
@@ -106,6 +113,7 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }

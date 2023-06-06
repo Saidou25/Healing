@@ -6,10 +6,6 @@ export const QUERY_USERS = gql`
       _id
       username
       email
-      note {
-        _id
-      noteTitle
-      }
       bookingdates {
       _id
      isBooked
@@ -69,10 +65,6 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      note {
-        _id
-      noteTitle
-      }
       reviews {
      _id
      username
@@ -132,10 +124,6 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      note {
-      _id
-      noteTitle
-      }
       reviews {
      _id
     title
@@ -250,14 +238,6 @@ export const QUERY_BOOKINGDATE = gql`
      }
  `;
 
-export const QUERY_NOTES = gql`
- query notes {
-     notes {
-     _id
-    noteTitle
-     }
-  }
-`;
 export const QUERY_PETS = gql`
  query pets {
      pets {
@@ -288,16 +268,6 @@ export const QUERY_PET = gql`
      }
   }
 `;
-
-export const QUERY_NOTE = gql`
- query note($id: ID!) {
-     note(id: $id) {
-     _id
-    noteTitle
-     }
-  }
-`;
-
 export const QUERY_USERBOOKINGDATES= gql`
     query userbookingdates($username: String!) {
       userbookingdates(username: $username) {
