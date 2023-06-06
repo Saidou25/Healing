@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
 import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -105,6 +106,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

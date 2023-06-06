@@ -64,7 +64,7 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
                         <div className="modal-content">
                             <div className='row'>
                                 <div className="col-12 modal-header">
-                                    <h1 className="modal-title" id="exampleModalLabel">
+                                    <h1 className="modal-title-delete" id="exampleModalLabel">
                                         Delete Account
                                     </h1>
                                     <button type="button" className="btn-close btn btn-primary mb-5" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -57,19 +57,19 @@ const ProfileModal = () => {
                 className="btn btn-primary direct-message rounded-0 m-2"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
-                Direct message
+                message
             </button>
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div className="modal-content">
-                            <div className="modal-header">
-                                <h1 className="modal-title fs-5" style={{ fontSize: '1.7rem' }} id="exampleModalLabel">Contact Me</h1>
+                            <div className="modal-header d-flex align-items-center">
+                                <h1 className="modal-title-contact fs-7" id="exampleModalLabel">Contact Me</h1>
                                 <button type="button" className="btn-close btn btn-primary mb-5" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
                                 <form ref={form} onClick={sendEmail}>
-                                    <label className="form-label" mstyle={{ fontSize: '1.2rem' }}>Name</label>
+                                    <label className="form-label-contact fs-4">Name</label>
                                     <input
                                         style={{ fontSize: '1.2rem' }}
                                         className="form-control"
@@ -78,7 +78,7 @@ const ProfileModal = () => {
                                         value={user}
                                         name="user_name"
                                         placeholder="Name" />
-                                    <label className="form-label">Email</label>
+                                    <label className="form-label-contact fs-4">Email</label>
                                     <input
                                         style={{ fontSize: '1.2rem' }}
                                         className="form-control"
@@ -88,7 +88,7 @@ const ProfileModal = () => {
                                         name="user_email"
                                         placeholder="example@example.com" />
 
-                                    <label className="form-label">Message</label>
+                                    <label className="form-label-contact fs-4">Message</label>
                                     <textarea
                                         style={{ fontSize: '1.1rem' }}
                                         className="form-control message"

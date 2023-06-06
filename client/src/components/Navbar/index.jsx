@@ -19,7 +19,6 @@ const Navbar = () => {
                     <Link className="landing-title" to="/">Healing</Link>
                     <ul className="nav links justify-content-end">
                         <CustomLink to='/About' className='nav-item' style={{ fontSize: '1.5rem' }}>About</CustomLink>
-                        <CustomLink to='/Note' className='nav-item ' style={{ fontSize: '1.5rem' }}>note</CustomLink>
                         <CustomLink to='/Dashboard' className='nav-item' style={{ fontSize: '1.5rem' }}>dashboard</CustomLink>
                         <button className='btt-logout' onClick={logout} style={{ fontSize: '1.5rem' }}>logout</button>
                         <Link className='profile-icon' to="/MyProfile">

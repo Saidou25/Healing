@@ -30,8 +30,6 @@ import ContactModal from './components/ContactModal';
 import UpdateMyProfileForm from './components/UpdateMyProfileForm';
 import UpdateProfile from './components/UpdateProfile';
 import About from './components/About';
-import Note from './components/Note';
-import UpdateNote from './components/UpdateNote';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -96,8 +94,6 @@ function App() {
             <Route path='/PetProfileForm' element={<PetProfileForm />} />
             <Route path='/ReviewForm' element={<ReviewForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
-            <Route path='/Note' element={<Note />} />
-            <Route path='/UpdateNote' element={<UpdateNote />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/' element={<LandingPage />} />

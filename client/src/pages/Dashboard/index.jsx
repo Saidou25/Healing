@@ -76,7 +76,7 @@ const Dashboard = () => {
                                 className='btn btn-primary rounded-0 m-2'
                                 state={{ username }} >
                                 <div style={{ fontSize: '1.2rem' }}>
-                                    Book an appointment
+                                    Book 
                                 </div>
                             </Link>
                         </div>
@@ -87,7 +87,7 @@ const Dashboard = () => {
                             style={{ fontSize: '1.2rem' }}
                             className='btn btn-primary rounded-0 m-2'
                             state={{ username }} >
-                            appointment History
+                             History
                         </Link>
                     </div>
 
@@ -123,7 +123,7 @@ const Dashboard = () => {
                     <div className='col-lg-8 col-sm-12 border-end'>
                         <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
-                    <div className='col-lg-4 col-sm-12 border-start mt-4'>
+                    <div className='col-lg-4 col-sm-12 border-start'>
                         <h3 className="write-review-title mt-4"
                             style={{ fontSize: '1.4rem' }}>
                             Write a review

@@ -2,12 +2,8 @@
     width: 60%;
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 5%;
 }
-/* .card-visitor {
-    padding-top: 1%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-} */
 .update-title {
     margin-top: 10%;
 }
@@ -41,7 +37,7 @@
 }
 
 .btn-primary {
-    margin: 10%;
+    margin-top: 10%;
     display: block;
     margin-left: auto;
     margin-right: auto;

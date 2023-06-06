@@ -1,9 +1,6 @@
-.modal-title {
+.modal-title-delete {
    margin-left: 15%;
 }
-/* .btn-modal {
-   width: 100%;
-} */
 @media screen and (max-width: 414px) {
    .btn-modal {
       width: 100%;
