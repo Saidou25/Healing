@@ -3,18 +3,14 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
+import { sendEmail } from '../../utils/email.js';
 import DatePicker from "react-datepicker";
-import emailjs from '@emailjs/browser';
 import Navbar from '../Navbar';
-import Footer from '../Footer'; 
+import Footer from '../Footer';
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
-import { parseISO, setHours, setMinutes } from 'date-fns'
-
-const SERVICE_ID = 'service_ps339pa';
-const TEMPLATE_ID = 'template_rels3en';
-const USER_ID = 'RWSohpTYy2zdo_uXO';
+import { parseISO, setHours, setMinutes } from 'date-fns';
 
 const AppointmentForm = (props) => {
     const navigate = useNavigate();
@@ -75,32 +71,7 @@ const AppointmentForm = (props) => {
             setReason(value);
         }
     };
-    const sendEmail = (digitalAppointment, appTime) => {
-        console.log(digitalAppointment);
-        const sy = 'saidou.monta@yahoo.com'
-        const templateParams = {
-            digitalAppointment: digitalAppointment,
-            username: username,
-            myemail: sy,
-            appTime: appTime
-        };
- console.log(digitalAppointment);
 
-         emailjs.send(
-             SERVICE_ID, 
-             TEMPLATE_ID, 
-             templateParams,
-             USER_ID,
-             )
-             .then((result) => {
-                 console.log(result.text);
-             }, (error) => {
-                 console.log(error.text);
-             })
-         // setMessage('');
-         // setEmail('');
-         // setUser('');
-     };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -108,9 +79,7 @@ const AppointmentForm = (props) => {
 
         const dateArr = isBooked.replaceAll('"', '').split(':');
         const finalDate = dateArr[0].slice(0, 10);
-
         const finalDateISO = parseISO(finalDate);
-
         const digitMonth = isBooked.slice(6, 8);
 
         allAppointments.push(finalDateISO)
@@ -123,6 +92,14 @@ const AppointmentForm = (props) => {
         const appTime = app[4];
         const appYear = app[3];
         const digitalAppointment = `${digitMonth}/${appDate}/${appYear}`;
+
+        const sy = 'saidou.monta@yahoo.com'
+        const templateParams = {
+            digitalAppointment: digitalAppointment,
+            username: userProfile.username,
+            myemail: sy,
+            appTime: appTime
+        };
 
         if (mepet && reason) {
             try {
@@ -140,23 +117,24 @@ const AppointmentForm = (props) => {
         }
 
         if (mepet === 'mypet' && userProfile && myPet.length) {
+            sendEmail(templateParams);
             navigate('/Dashboard');
             console.log('case 1');
         }
         if (mepet === 'mypet' && userProfile && !myPet.length) {
-            navigate('/PetProfileForm');
+            navigate('/PetProfileForm', { state: templateParams });
             console.log('case 2');
         }
         if (mepet === 'mypet' && !userProfile) {
-            navigate('/PetOwnerProfileForm');
+            navigate('/PetOwnerProfileForm', { state: templateParams });
             console.log('case 3');
         }
         if (mepet === 'me' && !userProfile) {
-            navigate('/ProfileForm', { state: profile });
+            navigate('/ProfileForm', { state: templateParams });
             console.log('case 4');
         }
         if (mepet === 'me' && userProfile) {
-            sendEmail(digitalAppointment, appTime);
+            sendEmail(templateParams);
             navigate('/Dashboard', { state: profile });
             console.log('case 5');
         }

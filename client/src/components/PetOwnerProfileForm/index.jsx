@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import { PatternFormat } from 'react-number-format';
-import SelectUSState from 'react-select-us-states';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import SelectUSState from 'react-select-us-states';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 import './index.css';
 
 const PetOwnerProfileForm = (props) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    const templateParams = location.state.templateParams;
     const userProfile = props.userProfile;
     const myPet = props.myPet;
-    // const mepet = props.mepet;
-
-    const navigate = useNavigate();
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
@@ -51,10 +52,11 @@ const PetOwnerProfileForm = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         addProfile(username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip)
 
         console.log(`success adding your info ${patientfirstname} !`);
-        (!myPet) ? navigate('/PetProfileForm', { state: username, userProfile }) : navigate('/Dashboard');
+        (!myPet) ? navigate('/PetProfileForm', { state: userProfile, templateParams }) : navigate('/Dashboard');
     };
 
     return (

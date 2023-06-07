@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import { PatternFormat } from 'react-number-format';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 import SelectUSState from 'react-select-us-states';
+import { sendEmail } from '../../utils/email.js';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
@@ -13,6 +14,11 @@ import './index.css';
 const ProfileForm = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const digitalAppointment = location.state.digitalAppointment;
+    const appTime = location.state.appTime;
+
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
     const [patientgender, setPatientGender] = useState('');
@@ -43,11 +49,20 @@ const ProfileForm = () => {
             }
         }
     });
-   
+
     const handleFormSubmit = (event) => {
         event.preventDefault();
+        const sy = 'saidou.monta@yahoo.com'
+        const templateParams = {
+            digitalAppointment: digitalAppointment,
+            username: username,
+            myemail: sy,
+            appTime: appTime
+        };
 
         addProfile(username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip);
+
+        sendEmail(templateParams);
 
         setPatientFirstName("");
         setPatientLastName("")

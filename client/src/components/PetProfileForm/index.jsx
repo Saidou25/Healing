@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
 import { useMutation, useQuery } from '@apollo/client';
+import { sendEmail } from '../../utils/email.js';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 import './index.css';
 
 const PetForm = (props) => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const templateParams = location.state.templateParams;
 
     const myPet = props.myPet;
     const profileId = props.profileId;
@@ -20,12 +24,12 @@ const PetForm = (props) => {
     const [petGender, setPetGender] = useState('');
     const [petKind, setPetKind] = useState('');
 
-    const { data } = useQuery(QUERY_ME);
-    const me = data?.me || [];
-    const username = me.username;
+    // const { data } = useQuery(QUERY_ME);
+    // const me = data?.me || [];
+    // const username = me.username;
 
-    const { data: profilesData } = useQuery(QUERY_PROFILES);
-    const profiles = profilesData?.profiles || [];
+    // const { data: profilesData } = useQuery(QUERY_PROFILES);
+    // const profiles = profilesData?.profiles || [];
 
 
     const [addPet] = useMutation(ADD_PET, {
@@ -40,7 +44,6 @@ const PetForm = (props) => {
             } catch (e) {
                 console.error(e);
             }
-
             navigate('/Dashboard');
         }
     });
@@ -70,15 +73,18 @@ const PetForm = (props) => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+
         try {
             await addPet({
-                variables: { profileId: profileId, petName: petName, username: username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
+                variables: { profileId: profileId, petName: petName, username: templateParams.username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
             });
             console.log(`Appointment for ${petName} booked successfully`);
 
         } catch (err) {
             console.error(err);
-        }
+        };
+        sendEmail(templateParams);
+
         setPetName('');
         setPetGender('');
         setPetAge('');
