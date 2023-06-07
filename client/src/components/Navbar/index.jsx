@@ -18,9 +18,9 @@ const Navbar = () => {
                 <nav className="nav">
                     <Link className="landing-title" to="/">Healing</Link>
                     <ul className="nav links justify-content-end">
-                        <CustomLink to='/About' className='nav-item' style={{ fontSize: '1.5rem' }}>About</CustomLink>
-                        <CustomLink to='/Dashboard' className='nav-item' style={{ fontSize: '1.5rem' }}>dashboard</CustomLink>
-                        <button className='btt-logout' onClick={logout} style={{ fontSize: '1.5rem' }}>logout</button>
+                        <CustomLink to='/About' className='nav-item'>About</CustomLink>
+                        <CustomLink to='/Dashboard' className='nav-item'>dashboard</CustomLink>
+                        <button className='btt-logout' onClick={logout}>logout</button>
                         <Link className='profile-icon' to="/MyProfile">
                             <img src={profileIcon} alt='profile icon' height={40} />
                         </Link>
@@ -36,10 +36,10 @@ const Navbar = () => {
                     Healing
                 </Link>
                 <ul className="nav justify-content-end">
-                    <CustomLink to='/About' className='nav-item' style={{ fontSize: '1.5rem' }}>About</CustomLink>
-                    <CustomLink to='/Login' className='nav-item' style={{ fontSize: '1.5rem' }}>login</CustomLink>
-                    <CustomLink to='/Signup' className='nav-item' style={{ fontSize: '1.5rem' }}>signup</CustomLink>
-                    <button className='btt-logout' onClick={logout} style={{ fontSize: '1.5rem' }}>logout</button>
+                    <CustomLink to='/About' className='nav-item'>About</CustomLink>
+                    <CustomLink to='/Login' className='nav-item'>login</CustomLink>
+                    <CustomLink to='/Signup' className='nav-item'>signup</CustomLink>
+                    <button className='btt-logout' onClick={logout}>logout</button>
                 </ul>
             </nav>
         </div>

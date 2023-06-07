@@ -1,25 +1,26 @@
-
 .signup {
     width: 40%;
     margin-top: 5%;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 5%;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
-.form-input { 
+
+.form-input {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
     padding: 5px;
     font-style: oblique;
 }
+
 .text-label {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
     margin: 15px;
 }
+
 @media screen and (max-width: 414px) {
     .signup {
         width: 90%;

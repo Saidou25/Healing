@@ -48,8 +48,7 @@ const Signup = () => {
       <Navbar />
       <div className='container-signup'>
         <div className="card signup">
-          <h4 className="card-header bg-primary rounded-0 text-light p-4"
-            style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+          <h4 className="card-header bg-primary rounded-0 text-light p-4">
             Sign Up</h4>
           <div className="card-body">
             {data ? (
@@ -59,37 +58,35 @@ const Signup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <label className='text-label' style={{ fontSize: '1.5rem' }}>
+                <label className='text-label'>
                   Username
                 </label><br />
                 <input
                   className="form-input"
                   placeholder="choose a username..."
-                  style={{ fontSize: '1.3rem' }}
                   name="username"
                   type="username"
                   value={formState.username}
                   onChange={handleChange}
                 /><br />
-                <label className='text-label' style={{ fontSize: '1.5rem' }}>
+                <label className='text-label'>
                   Email
                 </label><br />
                 <input
                   className="form-input"
                   placeholder="your email.."
-                  style={{ fontSize: '1.3rem' }}
+                  
                   name="eAddress"
                   type="email"
                   value={email}
                   onChange={handleChange}
                 /><br />
-                <label className='text-label' style={{ fontSize: '1.5rem' }}>
+                <label className='text-label'>
                   Password
                 </label><br />
                 <input
                   className="form-input"
                   placeholder="******"
-                  style={{ fontSize: '1.3rem' }}
                   name="password"
                   type="password"
                   value={formState.password}

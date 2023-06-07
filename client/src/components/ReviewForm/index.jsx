@@ -7,7 +7,7 @@ import './index.css';
 const ReviewForm = (props) => {
     const username = props.username;
 
-    const [formState, setFormState] = useState({ title: '', reviewText: '' }); 
+    const [formState, setFormState] = useState({ title: '', reviewText: '' });
 
     const [addReview, { error }] = useMutation(ADD_REVIEW, {
         update(cache, { data: { addReview } }) {
@@ -61,7 +61,7 @@ const ReviewForm = (props) => {
             <main className="flex-row">
                 <div className="col-12 col-lg-10 review-form">
                     <div className="card">
-                        <h4 className="card-header-review-title bg-primary text-light p-2">Write your review</h4>
+                        <h4 className="card-header-review-title bg-primary text-light p-2">review</h4>
                         <div className="card-body">
                             {formState.length ?
                                 <p>
@@ -70,10 +70,10 @@ const ReviewForm = (props) => {
                                 </p>
                                 : (
                                     <form onSubmit={handleFormSubmit}>
-                                        <label className="form-label" style={{ fontSize: '1.4rem' }}>Title</label><br />
+                                        <label className="form-label">Title</label><br />
 
                                         <input
-                                        style={{ fontSize: '1.2rem' }}
+
                                             className="form-input review-form-input mb-3"
                                             placeholder="title..."
                                             name="title"
@@ -81,22 +81,19 @@ const ReviewForm = (props) => {
                                             value={formState.title}
                                             onChange={handleChange}
                                         />
-                                        <label className="form-label" style={{ fontSize: '1.2rem' }}>Text</label><br />
+                                        <label className="form-label">Text</label><br />
                                         <textarea
                                             className="form-input review-textarea mb-3"
                                             placeholder="write your text here..."
                                             name="reviewText"
                                             type="text"
-                                            style={{ fontSize: '1.1rem' }}
                                             value={formState.reviewText}
                                             onChange={handleChange}
                                         /><br />
                                         <button
                                             className="btn btn-block rounded-0 btn-info mt-4"
-                                            style={{ fontSize: '1.2rem' }}
                                             type="submit"
                                         >
-                                            
                                             Submit
                                         </button>
                                     </form>

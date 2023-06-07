@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
 import DatePicker from "react-datepicker";
+import emailjs from '@emailjs/browser';
 import Navbar from '../Navbar';
 import Footer from '../Footer'; 
 import './index.css';
@@ -11,6 +12,9 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
 import { parseISO, setHours, setMinutes } from 'date-fns'
 
+const SERVICE_ID = 'service_ps339pa';
+const TEMPLATE_ID = 'template_rels3en';
+const USER_ID = 'RWSohpTYy2zdo_uXO';
 
 const AppointmentForm = (props) => {
     const navigate = useNavigate();
@@ -25,6 +29,7 @@ const AppointmentForm = (props) => {
     const me = meData?.me || [];
     const profile = me.profile;
     const username = me.username;
+    const email = me.email;
 
     const { data, loading } = useQuery(QUERY_BOOKINGDATES);
 
@@ -70,6 +75,32 @@ const AppointmentForm = (props) => {
             setReason(value);
         }
     };
+    const sendEmail = (digitalAppointment, appTime) => {
+        console.log(digitalAppointment);
+        const sy = 'saidou.monta@yahoo.com'
+        const templateParams = {
+            digitalAppointment: digitalAppointment,
+            username: username,
+            myemail: sy,
+            appTime: appTime
+        };
+ console.log(digitalAppointment);
+
+         emailjs.send(
+             SERVICE_ID, 
+             TEMPLATE_ID, 
+             templateParams,
+             USER_ID,
+             )
+             .then((result) => {
+                 console.log(result.text);
+             }, (error) => {
+                 console.log(error.text);
+             })
+         // setMessage('');
+         // setEmail('');
+         // setUser('');
+     };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -125,6 +156,7 @@ const AppointmentForm = (props) => {
             console.log('case 4');
         }
         if (mepet === 'me' && userProfile) {
+            sendEmail(digitalAppointment, appTime);
             navigate('/Dashboard', { state: profile });
             console.log('case 5');
         }
@@ -141,8 +173,7 @@ const AppointmentForm = (props) => {
         <>
             <Navbar />
             <div className='container-appointment'>
-                <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-4 mb-5"
-                    style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-4 mb-5">
                     Book your appointment</h4>
                 <div className="card-body">
                     <form id='appointment-form'>
@@ -178,7 +209,7 @@ const AppointmentForm = (props) => {
                                     Choose your appointment date
                                 </label>
                                 <div className='choose-date mt-5 mb-3'>
-                                    <DatePicker
+                                    <DatePicker id='user_date'
                                         selected={startDate}
                                         onChange={(date) => setStartDate(date)}
                                         showTimeSelect

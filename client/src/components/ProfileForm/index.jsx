@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import { PatternFormat } from 'react-number-format';
-import SelectUSState from 'react-select-us-states';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
-
+import SelectUSState from 'react-select-us-states';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 import './index.css';
 
 const ProfileForm = () => {
@@ -44,7 +43,7 @@ const ProfileForm = () => {
             }
         }
     });
-    
+   
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
@@ -75,12 +74,11 @@ const ProfileForm = () => {
             <Navbar />
             <div>
                 <div className='container-profile'>
-                    <p style={{ fontSize: '1.2rem', textAlign: 'center' }}>
+                    <p>
                         Our practitioner will be driving to the address provided in the form below.
                         Please don't hesitate to add any useful information in the address field.
                     </p><br />
-                    <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5"
-                        style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                    <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5">
                         Please answer few questions about yourself</h4>
                     <div className='card-body'>
                         <form onSubmit={(e) => handleFormSubmit(e)}>

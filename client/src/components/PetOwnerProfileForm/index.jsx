@@ -63,12 +63,11 @@ const PetOwnerProfileForm = (props) => {
             <div>
                 <div>
                     <div className='container-owner'>
-                        <p style={{ fontSize: '1.2rem', textAlign: 'center' }}>
+                        <p>
                             Our practitioner will be driving to the address provided in the form below.
                             Please don't hesitate to add any useful information in the address field.
                         </p><br />
-                        <h4 className="card-header bg-primary rounded-0 text-light p-4"
-                            style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                        <h4 className="card-header bg-primary rounded-0 text-light p-4">
                             Please answer few questions about yourself</h4>
                         <div className="card-body">
                             <form onSubmit={(e) => handleSubmit(e)}>

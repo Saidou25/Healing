@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
+import Spinner from '../../components/Spinner';
 import Auth from '../../utils/auth';
 import Navbar from "../../components/Navbar";
 import Footer from '../../components/Footer';
@@ -9,15 +10,20 @@ import './index.css';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [email, setEaddress] = useState('');
     const [formState, setFormState] = useState({ email: '', password: '' });
-    const [login, { error, data }] = useMutation(LOGIN_USER);
+    const [login, { error, data, loading }] = useMutation(LOGIN_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
 
+    if (name === 'eAddress') {
+      setEaddress(value.toLowerCase());
+    }
         setFormState({
             ...formState,
             [name]: value,
+            email: email
         });
     };
 
@@ -38,10 +44,10 @@ const Login = () => {
             });
         } catch (e) {
             console.error(e);
-            // navigate('/');
+            navigate('/');
         }
     };
-
+    if (loading) return <Spinner />
     return (
         <>
             <Navbar />
@@ -65,7 +71,7 @@ const Login = () => {
                                         style={{ fontSize: '1.3rem' }}
                                         className="form-input"
                                         placeholder="Your email"
-                                        name="email"
+                                        name="eAddress"
                                         type="email"
                                         value={formState.email}
                                         onChange={handleChange}

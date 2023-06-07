@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMutation } from '@apollo/client';
 import { DELETE_USER, DELETE_PET, DELETE_PROFILE, DELETE_BOOKINGDATE } from '../../utils/mutations';
 import Auth from "../../utils/auth";
@@ -48,16 +48,15 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
 
     return (
         <>
-         <div className='d-flex justify-content-end'>
-            <button
-                type="button"
-                className="btn btn-danger btn-modal delete-user mt-5"
-                style={{ fontSize: '1.4em' }}
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-                delete
-            </button>
-            </div> 
+            <div className='d-flex justify-content-end'>
+                <button
+                    type="button"
+                    className="btn btn-danger btn-modal delete-user mt-5"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    delete
+                </button>
+            </div>
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -73,14 +72,13 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
                                     <p>Are you sure you want to delete your account?</p>
                                 </div>
                                 <div className='row mb-3'>
-                                    <button type="button"
-                                        className="col-6 btn btn-secondary fs-4"
+                                    <button className="col-6 btn btn-secondary fs-4"
+                                        type="button"
                                         data-bs-dismiss="modal">
                                         Close
                                     </button>
-                                    <button
+                                    <button className="col-6 btn btn-danger fs-4"
                                         type="button"
-                                        className="col-6 btn btn-danger fs-4"
                                         onClick={(event) => { deleteAll(event) }}>
                                         confirm
                                     </button>

@@ -75,7 +75,7 @@ const Dashboard = () => {
                             <Link to='/Appointment'
                                 className='btn btn-primary rounded-0 m-2'
                                 state={{ username }} >
-                                <div style={{ fontSize: '1.2rem' }}>
+                                <div>
                                     Book 
                                 </div>
                             </Link>
@@ -84,7 +84,6 @@ const Dashboard = () => {
 
                     <div className='btn buttons col-lg-3'>
                         <Link to='/AppointmentHistory'
-                            style={{ fontSize: '1.2rem' }}
                             className='btn btn-primary rounded-0 m-2'
                             state={{ username }} >
                              History
@@ -103,13 +102,13 @@ const Dashboard = () => {
                     {futureAppointments.length ? (
                         <div className='col-lg-6 col-sm-12 mt-5 mb-5'>
                             <div className='card suggestion p-3'>
-                                <p style={{ fontSize: '1.2rem' }}>
+                                <p>
                                     We suggest comming 15 minutes prior to your appointment. <br />
                                 </p >
-                                <p style={{ fontSize: '1.2rem' }}>
+                                <p>
                                     Use direct message to provide additional information about your upcomming visit. <br />
                                 </p>
-                                <p style={{ fontSize: '1.2rem' }}>
+                                <p>
                                     For appointment cancelation please provide a 48 hours notice. Book a new appointment if you would like to reschedule.
                                 </p>
                             </div>
@@ -124,12 +123,11 @@ const Dashboard = () => {
                         <MyReviewsList username={username} myReviews={myReviews} /> <br />
                     </div>
                     <div className='col-lg-4 col-sm-12 border-start'>
-                        <h3 className="write-review-title mt-4"
-                            style={{ fontSize: '1.4rem' }}>
+                        <h3 className="write-review-title mt-4">
                             Write a review
                         </h3>
                         <button
-                            style={{ fontSize: '1.2rem' }}
+                        
                             type='button'
                             className='btn bt-write btn-primary mb-5'
                             onClick={() => handleSubmit('review')}>

@@ -3,6 +3,7 @@
     margin-right: auto;
     margin-left: auto;
 }
+
 .suggestion {
     width: 70%;
     margin-right: auto;
@@ -16,13 +17,11 @@
 
 .border-end {
     padding-right: 3%;
-
 }
 
 .border-start {
     padding-left: 3%;
 }
-
 
 @media screen and (max-width: 414px) {
     .container-dashboard {
@@ -30,9 +29,11 @@
         margin-right: auto;
         margin-left: auto;
     }
+
     .direct-message {
         width: 97%;
     }
+
     .buttons {
         flex-direction: column;
         width: 100%;

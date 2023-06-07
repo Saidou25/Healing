@@ -20,14 +20,14 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                 <div className='container-profile mt-5'>
                     <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.7rem' }}>Login</h3>
+                            <h3 className="text my-profile-titles mb-5 mt-5">Login</h3>
                             <div className="card profile-body p-3">
                                 <div className="card-header">
-                                    <div className="text" style={{ fontSize: '1.4em' }}>
-                                        <FaIdBadge className="icon m-2" style={{ fontSize: '1.4em' }} />
+                                    <div className="text">
+                                        <FaIdBadge className="icon m-2" />
                                         {me.username}</div> <br />
-                                    <div className="text" style={{ fontSize: '1.4em' }}>
-                                        <FaEnvelope className="icon m-2" style={{ fontSize: '1.4em' }} />
+                                    <div className="text">
+                                        <FaEnvelope className="icon m-2" />
                                         Email: {me.email}</div> <br />
                                 </div>
                             </div>
@@ -46,32 +46,32 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                 <div className='container-profile mt-5'>
                     <div className="flex-row justify-space-between my-4">
                         <div className='col-12 '>
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.7rem' }}>
+                            <h3 className="text my-profile-titles mb-5 mt-5">
                                 Login</h3>
                             <div className="card profile-body p-3">
                                 <div className="card-header">
-                                    <div className="text" style={{ fontSize: '1.4em' }}>
-                                        <FaIdBadge className="icon m-2" style={{ fontSize: '1.4em' }} />
+                                    <div className="text">
+                                        <FaIdBadge className="icon m-2" />
                                         {userProfile.username} </div> <br />
-                                    <div className="text" style={{ fontSize: '1.4em' }}>
-                                        <FaEnvelope className="icon m-2" style={{ fontSize: '1.4em' }} />
+                                    <div className="text">
+                                        <FaEnvelope className="icon m-2" />
                                         {me.email}</div> <br />
-                                    <div className="text" style={{ fontSize: '1.4em' }}>
-                                        <FaPhone className="icon m-2" style={{ fontSize: '1.4em' }} />
+                                    <div className="text">
+                                        <FaPhone className="icon m-2" />
                                         {userProfile.patientnumber}</div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-12">
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.7rem' }}>General</h3>
+                            <h3 className="text my-profile-titles mb-5 mt-5">General</h3>
                             <div className="card profile-body p-3 ">
                                 <div className="card-header">
-                                    <div className="text-profile m-2" style={{ fontSize: '1.4em' }}>
+                                    <div className="text m-2">
                                         First name: {userProfile.patientfirstname}</div> <br />
-                                    <div className="text m-2" style={{ fontSize: '1.4em' }}>
+                                    <div className="text m-2">
                                         Last name: {userProfile.patientlastname}</div> <br />
                                     {userProfile.birthdate ?
-                                        <div className="text m-2" style={{ fontSize: '1.4em' }}>
+                                        <div className="text m-2">
                                             Birth date: {userProfile.birthdate}</div>
                                         :
                                         <>
@@ -82,23 +82,23 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                         </div>
 
                         <div className="col-12">
-                            <h3 className="text my-profile-titles mb-5 mt-5" style={{ fontSize: '1.7rem' }}>Contact</h3>
+                            <h3 className="text my-profile-titles mb-5 mt-5">Contact</h3>
                             <div className="card profile-body p-3">
                                 <div className="card-header">
-                                    <div className="text m-2" style={{ fontSize: '1.4em' }}>
+                                    <div className="text m-2">
                                         Address: {userProfile.patientaddress}</div> <br />
-                                    <div className="text m-2" style={{ fontSize: '1.4em' }}>
+                                    <div className="text m-2">
                                         City: {userProfile.patientcity}</div> <br />
-                                    <div className="text m-2" style={{ fontSize: '1.4em' }}>
+                                    <div className="text m-2">
                                         State: {userProfile.patientState}</div> <br />
-                                    <div className="text m-2" style={{ fontSize: '1.4em' }}>
+                                    <div className="text m-2">
                                         Zip code: {userProfile.patientzip}</div> <br />
                                 </div>
                             </div>
                         </div>
                         <div className="col-12">
                             <Link to='/UpdateProfile' state={{ userProfile }}>
-                                <button className='btn update-profile mt-5 btn-info' style={{ fontSize: '1.4em' }}>
+                                <button className='btn update-profile mt-5 btn-info'>
                                     update
                                 </button>
                             </Link>
