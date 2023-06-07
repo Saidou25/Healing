@@ -13,11 +13,12 @@ import './index.css';
 
 const ProfileForm = () => {
 
-    const navigate = useNavigate();
     const location = useLocation();
+    const navigate = useNavigate();
 
-    const digitalAppointment = location.state.digitalAppointment;
-    const appTime = location.state.appTime;
+    const templateParams = location.state.templateParams;
+    const username = templateParams.username;
+    console.log("from profile form", username)
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
@@ -29,9 +30,9 @@ const ProfileForm = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
 
-    const { loading, data: meData } = useQuery(QUERY_ME);
-    const me = meData?.me || [];
-    const username = me.username;
+    // const { loading, data: meData } = useQuery(QUERY_ME);
+    // const me = meData?.me || [];
+    // const username = me.username;
 
     const [addProfile] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
@@ -52,13 +53,6 @@ const ProfileForm = () => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        const sy = 'saidou.monta@yahoo.com'
-        const templateParams = {
-            digitalAppointment: digitalAppointment,
-            username: username,
-            myemail: sy,
-            appTime: appTime
-        };
 
         addProfile(username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip);
 
@@ -77,13 +71,13 @@ const ProfileForm = () => {
         navigate('/Dashboard');
     };
 
-    if (loading) {
-        return (
-            <main>
-                <h2>Loading . . . . . . </h2>
-            </main>
-        )
-    }
+    // if (loading) {
+    //     return (
+    //         <main>
+    //             <h2>Loading . . . . . . </h2>
+    //         </main>
+    //     )
+    // }
     return (
         <>
             <Navbar />

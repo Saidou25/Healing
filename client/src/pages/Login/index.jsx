@@ -37,7 +37,7 @@ const Login = () => {
 
             Auth.login(data.login.token);
 
-            navigate('/Dashboard', { state: formState });
+            navigate('/Dashboard', { state: { formState } });
             setFormState({
                 email: '',
                 password: '',

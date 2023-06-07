@@ -12,12 +12,14 @@ import Footer from '../Footer';
 import './index.css';
 
 const PetOwnerProfileForm = (props) => {
-    const navigate = useNavigate();
     const location = useLocation();
+    const navigate = useNavigate();
     
     const templateParams = location.state.templateParams;
+    const username = templateParams.username;
     const userProfile = props.userProfile;
     const myPet = props.myPet;
+    console.log("from pet owner form", templateParams)
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
@@ -27,9 +29,9 @@ const PetOwnerProfileForm = (props) => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
 
-    const { data: meData } = useQuery(QUERY_ME);
-    const me = meData?.me || [];
-    const username = me.username;
+    // const { data: meData } = useQuery(QUERY_ME);
+    // const me = meData?.me || [];
+    // const username = me.username;
 
     const [addProfile] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip },
@@ -56,7 +58,7 @@ const PetOwnerProfileForm = (props) => {
         addProfile(username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip)
 
         console.log(`success adding your info ${patientfirstname} !`);
-        (!myPet) ? navigate('/PetProfileForm', { state: userProfile, templateParams }) : navigate('/Dashboard');
+        (!myPet) ? navigate('/PetProfileForm', { state: { userProfile, templateParams } }) : navigate('/Dashboard');
     };
 
     return (

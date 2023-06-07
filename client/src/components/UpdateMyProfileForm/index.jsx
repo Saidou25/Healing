@@ -15,7 +15,9 @@ const UpdateMyProfileForm = (props) => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    
     const userProfile = location.state.userProfile;
+
     const [patientState, setNewValue] = useState(userProfile.patientState);
     const [patientnumber, setPatientNumber] = useState('');
     const [patientlastname, setPatientLastName] = useState(userProfile.patientlastname);

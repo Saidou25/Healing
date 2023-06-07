@@ -93,14 +93,14 @@ const AppointmentForm = (props) => {
         const appYear = app[3];
         const digitalAppointment = `${digitMonth}/${appDate}/${appYear}`;
 
-        const sy = 'saidou.monta@yahoo.com'
+        const sy = 'saidou.monta@yahoo.com';
         const templateParams = {
             digitalAppointment: digitalAppointment,
-            username: userProfile.username,
+            username: username,
             myemail: sy,
             appTime: appTime
         };
-
+        console.log('form app form', templateParams)
         if (mepet && reason) {
             try {
                 await addBookingdate({ variables: { username: username, digitalAppointment: digitalAppointment, digitMonth: digitMonth, reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
@@ -122,20 +122,20 @@ const AppointmentForm = (props) => {
             console.log('case 1');
         }
         if (mepet === 'mypet' && userProfile && !myPet.length) {
-            navigate('/PetProfileForm', { state: templateParams });
+            navigate('/PetProfileForm', { state: { templateParams } });
             console.log('case 2');
         }
         if (mepet === 'mypet' && !userProfile) {
-            navigate('/PetOwnerProfileForm', { state: templateParams });
+            navigate('/PetOwnerProfileForm', { state: { templateParams } });
             console.log('case 3');
         }
         if (mepet === 'me' && !userProfile) {
-            navigate('/ProfileForm', { state: templateParams });
+            navigate('/ProfileForm', { state: { templateParams } });
             console.log('case 4');
         }
         if (mepet === 'me' && userProfile) {
             sendEmail(templateParams);
-            navigate('/Dashboard', { state: profile });
+            navigate('/Dashboard', { state: { profile } });
             console.log('case 5');
         }
     };

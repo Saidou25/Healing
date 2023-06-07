@@ -13,6 +13,7 @@ const PetForm = (props) => {
     const location = useLocation();
 
     const templateParams = location.state.templateParams;
+    console.log("from pet  form", templateParams)
 
     const myPet = props.myPet;
     const profileId = props.profileId;
