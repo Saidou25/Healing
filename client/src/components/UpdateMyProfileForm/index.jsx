@@ -5,6 +5,7 @@ import SelectUSState from 'react-select-us-states';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { UPDATE_PROFILE } from "../../utils/mutations";
+import { Regex } from '../../utils/Regex';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 
@@ -15,7 +16,7 @@ const UpdateMyProfileForm = (props) => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     const userProfile = location.state.userProfile;
 
     const [patientState, setNewValue] = useState(userProfile.patientState);
@@ -24,17 +25,25 @@ const UpdateMyProfileForm = (props) => {
     const [patientaddress, setPatientAddress] = useState(userProfile.patientaddress);
     const [patientcity, setPatientCity] = useState(userProfile.patientcity);
     const [patientzip, setPatientZip] = useState(userProfile.patientzip);
-    const [mumberVaue, setNumberValue] = useState('');
+    const [numberValue, setNumberValue] = useState('');
     const [error, setError] = useState('');
     const [updateProfile] = useMutation(UPDATE_PROFILE);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!mumberVaue) {
-            console.log('no number')
-            setError('message');
+     
+        if (!Regex.zipRegex.test(patientzip) || !patientzip) {
+            setError('zip code needs to be a five digit number!');
             return;
+        };
+        if (!Regex.checkphone.test(numberValue) || !numberValue) {
+            setError('Invalid phone format');
+            return;
+        }
+        if (!patientaddress || !patientlastname || !patientcity || !patientzip) {
+            console.log('is not a number');
+            setError('All fields need to be filled!');
+            return ;
         }
         try {
             const { data } = await updateProfile({
@@ -56,10 +65,10 @@ const UpdateMyProfileForm = (props) => {
             setPatientNumber('');
             setPatientLastName('');
         } catch (err) {
-            console.error(err);
+            setError('message');
 
         }
-         navigate('/MyProfile');
+        navigate('/MyProfile');
     };
 
     return (
@@ -149,7 +158,7 @@ const UpdateMyProfileForm = (props) => {
                 </div>
                 {error && (
                     <div className="my-3 p-3 bg-danger phone-error text-white">
-                        Please leave a phone number!
+                        {error}
                     </div>
                 )}
             </div>

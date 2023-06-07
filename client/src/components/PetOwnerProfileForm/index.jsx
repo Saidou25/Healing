@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import { Regex } from '../../utils/Regex';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
@@ -28,6 +29,7 @@ const PetOwnerProfileForm = (props) => {
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
+    const [error, setError] = useState('');
 
     // const { data: meData } = useQuery(QUERY_ME);
     // const me = meData?.me || [];
@@ -54,6 +56,11 @@ const PetOwnerProfileForm = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!Regex.zipRegex.test(patientzip) || !patientzip) {
+            setError('zip code needs to be a five digit number!');
+            return;
+        };
 
         addProfile(username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip)
 
@@ -159,6 +166,11 @@ const PetOwnerProfileForm = (props) => {
                                 </div>
                             </form>
                         </div>
+                        {error && (
+                        <div className="my-3 p-3 bg-danger phone-error text-white">
+                            {error}
+                        </div>
+                    )}
                     </div >
                 </div >
             </div >

@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import { Regex } from '../../utils/Regex';
 import SelectUSState from 'react-select-us-states';
 import { sendEmail } from '../../utils/email.js';
 import Navbar from '../Navbar';
@@ -18,7 +19,6 @@ const ProfileForm = () => {
 
     const templateParams = location.state.templateParams;
     const username = templateParams.username;
-    console.log("from profile form", username)
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
@@ -29,6 +29,7 @@ const ProfileForm = () => {
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
+    const [error, setError] = useState('');
 
     // const { loading, data: meData } = useQuery(QUERY_ME);
     // const me = meData?.me || [];
@@ -54,7 +55,40 @@ const ProfileForm = () => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        addProfile(username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip);
+        if (!patientfirstname ||
+            !patientgender ||
+            !patientnumber ||
+            !patientaddress ||
+            !patientlastname ||
+            !patientcity ||
+            !patientzip ||
+            !patientState) {
+
+            setError('All fields need to be filled!');
+            return;
+        };
+        if (!Regex.ageRegex.test(birthdate) || !birthdate) {
+
+            setError('Age in needs to be a number with the following format: MM/DD/YYYY !');
+            return;
+        };
+        if (!Regex.zipRegex.test(patientzip) || !patientzip) {
+
+            setError('zip code needs to be a five digit number!');
+            return;
+        };
+        addProfile(
+            username,
+            patientState,
+            patientnumber,
+            patientfirstname,
+            patientgender,
+            patientaddress,
+            patientlastname,
+            patientcity,
+            birthdate,
+            patientzip
+        );
 
         sendEmail(templateParams);
 
@@ -204,6 +238,11 @@ const ProfileForm = () => {
                             </div>
                         </form>
                     </div>
+                    {error && (
+                        <div className="my-3 p-3 bg-danger phone-error text-white">
+                            {error}
+                        </div>
+                    )}
                 </div>
             </div>
             <Footer />
