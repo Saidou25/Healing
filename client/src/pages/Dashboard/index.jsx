@@ -48,6 +48,7 @@ const Dashboard = () => {
     const me = data?.me || [];
     const username = me.username;
     const myReviews = me.reviews;
+    const email = me.email;
 
     const { loading, error, data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
 
@@ -91,7 +92,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className='btn buttons col-lg-3'>
-                        <ContactModal />
+                        <ContactModal username={username} email={email}/>
                     </div>
                 </div>
 

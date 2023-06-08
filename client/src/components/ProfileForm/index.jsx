@@ -68,12 +68,10 @@ const ProfileForm = () => {
             return;
         };
         if (!Regex.ageRegex.test(birthdate) || !birthdate) {
-
             setError('Age in needs to be a number with the following format: MM/DD/YYYY !');
             return;
         };
         if (!Regex.zipRegex.test(patientzip) || !patientzip) {
-
             setError('zip code needs to be a five digit number!');
             return;
         };

@@ -61,6 +61,17 @@ const PetOwnerProfileForm = (props) => {
             setError('zip code needs to be a five digit number!');
             return;
         };
+        if (!patientfirstname ||
+            !patientnumber ||
+            !patientaddress ||
+            !patientlastname ||
+            !patientcity ||
+            !patientzip ||
+            !patientState) {
+
+            setError('All fields need to be filled!');
+            return;
+        };
 
         addProfile(username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip)
 

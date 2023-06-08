@@ -20,6 +20,7 @@ const AppointmentForm = (props) => {
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
+    const [error, setError] = useState('');
 
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
@@ -100,9 +101,11 @@ const AppointmentForm = (props) => {
             myemail: sy,
             appTime: appTime
         };
-        console.log('form app form', templateParams)
-        if (mepet && reason) {
-            try {
+        if (!mepet || !reason || !startDate) {
+            setError('All fields need filled!');
+            return;
+        };
+         try {
                 await addBookingdate({ variables: { username: username, digitalAppointment: digitalAppointment, digitMonth: digitMonth, reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
                 console.log(`success booking a date ${isBooked}`);
 
@@ -112,9 +115,7 @@ const AppointmentForm = (props) => {
             setMePet('');
             setStartDate('');
             setReason('');
-        } else {
-            console.log('you need to fill up the form correctly');
-        }
+      
 
         if (mepet === 'mypet' && userProfile && myPet.length) {
             sendEmail(templateParams);
@@ -224,6 +225,11 @@ const AppointmentForm = (props) => {
                         </div>
                     </form>
                 </div>
+                {error && (
+                        <div className="my-3 p-3 bg-danger phone-error text-white">
+                            {error}
+                        </div>
+                    )}
             </div>
             <Footer />
         </>
