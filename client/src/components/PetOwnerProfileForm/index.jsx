@@ -20,10 +20,10 @@ const PetOwnerProfileForm = (props) => {
     const username = templateParams.username;
     const userProfile = props.userProfile;
     const myPet = props.myPet;
-    console.log("from pet owner form", templateParams)
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
+    const [numberValue, setNumberValue] = useState('');
     const [patientfirstname, setPatientFirstName] = useState('');
     const [patientlastname, setPatientLastName] = useState('');
     const [patientaddress, setPatientAddress] = useState('');
@@ -57,19 +57,21 @@ const PetOwnerProfileForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        if (!patientfirstname ||
+            !patientaddress ||
+            !patientlastname ||
+            !patientcity ||
+            !patientState) {
+
+            setError('All fields need to be filled!');
+            return;
+        };
         if (!Regex.zipRegex.test(patientzip) || !patientzip) {
             setError('zip code needs to be a five digit number!');
             return;
         };
-        if (!patientfirstname ||
-            !patientnumber ||
-            !patientaddress ||
-            !patientlastname ||
-            !patientcity ||
-            !patientzip ||
-            !patientState) {
-
-            setError('All fields need to be filled!');
+        if (!Regex.checkphone.test(numberValue) || !patientnumber) {
+            setError('10 digits phone number is missing!');
             return;
         };
 
@@ -166,6 +168,7 @@ const PetOwnerProfileForm = (props) => {
                                                 name='patientnumber'
                                                 onValueChange={(values, sourceInfo) => {
                                                     setPatientNumber(values.formattedValue);
+                                                    setNumberValue(values.value);
                                                 }} />
                                         </div>
                                     </div>

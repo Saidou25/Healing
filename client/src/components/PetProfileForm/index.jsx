@@ -4,6 +4,7 @@ import { QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
 import { useMutation, useQuery } from '@apollo/client';
 import { sendEmail } from '../../utils/email.js';
+import { Regex } from '../../utils/Regex';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
@@ -13,7 +14,6 @@ const PetForm = (props) => {
     const location = useLocation();
 
     const templateParams = location.state.templateParams;
-    console.log("from pet  form", templateParams)
 
     const myPet = props.myPet;
     const profileId = props.profileId;
@@ -24,6 +24,7 @@ const PetForm = (props) => {
     const [petAge, setPetAge] = useState('');
     const [petGender, setPetGender] = useState('');
     const [petKind, setPetKind] = useState('');
+    const [error, setError] = useState("");
 
     // const { data } = useQuery(QUERY_ME);
     // const me = data?.me || [];
@@ -61,20 +62,23 @@ const PetForm = (props) => {
         if (name === 'petGender') {
             setPetGender(value);
         }
-        if (name === 'petAge') {
+        if (name === 'petAge' && Regex.checkAge.test(value)) {
             setPetAge(value);
         }
         if (name === 'petBreed') {
             setPetBreed(value);
         }
-        if (name === 'petWeight') {
+        if (name === 'petWeight' && Regex.checkWeight.test(value)) {
             setPetWeight(value);
         }
     };
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
+        if (!petWeight || !petBreed || !petAge || !petGender || !petName || !petKind) {
+            setError('all fields need filled!');
+            return;
+        }
         try {
             await addPet({
                 variables: { profileId: profileId, petName: petName, username: templateParams.username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
@@ -98,107 +102,108 @@ const PetForm = (props) => {
         <>
             <Navbar />
             <div>
-                {myPet?.username ? (
-                    <Link to='/AppointmentConfirmation'>Success booking</Link>
-                ) : (
-                    <div className='container-pet mt-5'>
-                        <h4 className="card-header bg-primary rounded-0 text-light p-4">
-                            About your pet</h4>
-                        <div className="card-body">
-                            <form onSubmit={handleFormSubmit}>
-                                <div className='row mt-5'>
-                                    <div className='col-lg-6 col-sm-12 mb-3'>
-                                        <div>
-                                            <label className="form-label">What kind of pet?</label><br />
-                                            <input
-                                                className='radio m-2 ms-4'
-                                                type="radio"
-                                                name="petKind"
-                                                value='dog'
-                                                checked={petKind === 'dog'}
-                                                onChange={handleChange} /> dog
-                                            <input
-                                                className='radio m-2 ms-4'
-                                                type="radio"
-                                                name='petKind'
-                                                value='cat'
-                                                checked={petKind === 'cat'}
-                                                onChange={handleChange} /> cat
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-6 col-sm-12 mb-3'>
-                                        <div>
-                                            <label className="form-label">What is your pet's gender?</label><br />
-                                            <input
-                                                className='radio m-2 ms-4'
-                                                type="radio"
-                                                name="petGender"
-                                                value='male'
-                                                checked={petGender === 'male'}
-                                                onChange={handleChange} /> male
-                                            <input
-                                                className='radio m-2 ms-4'
-                                                type="radio"
-                                                name='petGender'
-                                                value='female'
-                                                checked={petGender === 'female'}
-                                                onChange={handleChange} /> female
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 col-sm-12 mb-3">
-                                        <label className="form-label"> Name</label>
+                <div className='container-pet mt-5'>
+                    <h4 className="card-header bg-primary rounded-0 text-light p-4">
+                        About your pet</h4>
+                    <div className="card-body">
+                        <form onSubmit={handleFormSubmit}>
+                            <div className='row mt-5'>
+                                <div className='col-lg-6 col-sm-12 mb-3'>
+                                    <div>
+                                        <label className="form-label">What kind of pet?</label><br />
                                         <input
-                                            className="form-control"
-                                            onChange={handleChange}
-                                            type="text"
-                                            value={petName}
-                                            name="petName"
-                                            placeholder="pet's name..." />
-                                    </div>
-                                    <div className='col-lg-6 col-sm-12 mb-3'>
-                                        <label className="form-label">Age</label><br />
+                                            className='radio m-2 ms-4'
+                                            type="radio"
+                                            name="petKind"
+                                            value='dog'
+                                            checked={petKind === 'dog'}
+                                            onChange={handleChange} /> dog
                                         <input
-                                            className='age'
-                                            type='text'
-                                            name="petAge"
-                                            value={petAge}
-                                            onChange={handleChange}
-                                            placeholder="MM/DD/YYYY..."
-                                        />
-                                    </div>
-                                    <div className="col-lg-6 col-sm-12 mb-3">
-                                        <label className="form-label"> Breed</label>
-                                        <input
-                                            className="form-control"
-                                            onChange={handleChange}
-                                            type="text"
-                                            value={petBreed}
-                                            name="petBreed"
-                                            placeholder="breed..." />
-                                    </div>
-                                    <div className="col-lg-6 col-sm-12 mb-3">
-                                        <label className="form-label"> Pet's weight</label>
-                                        <input
-                                            className="form-control"
-                                            onChange={handleChange}
-                                            type="text"
-                                            name="petWeight"
-                                            value={petWeight}
-                                            placeholder="weight..." />
-                                    </div>
-                                    <div className="col-12">
-                                        <button className="btn rounded-0 button-pet btn-primary"
-                                            type="submit"
-                                        
-                                        >
-                                            Submit
-                                        </button>
+                                            className='radio m-2 ms-4'
+                                            type="radio"
+                                            name='petKind'
+                                            value='cat'
+                                            checked={petKind === 'cat'}
+                                            onChange={handleChange} /> cat
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div className='col-lg-6 col-sm-12 mb-3'>
+                                    <div>
+                                        <label className="form-label">What is your pet's gender?</label><br />
+                                        <input
+                                            className='radio m-2 ms-4'
+                                            type="radio"
+                                            name="petGender"
+                                            value='male'
+                                            checked={petGender === 'male'}
+                                            onChange={handleChange} /> male
+                                        <input
+                                            className='radio m-2 ms-4'
+                                            type="radio"
+                                            name='petGender'
+                                            value='female'
+                                            checked={petGender === 'female'}
+                                            onChange={handleChange} /> female
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 col-sm-12 mb-3">
+                                    <label className="form-label"> Name</label>
+                                    <input
+                                        className="form-control"
+                                        onChange={handleChange}
+                                        type="text"
+                                        value={petName}
+                                        name="petName"
+                                        placeholder="pet's name..." />
+                                </div>
+                                <div className='col-lg-6 col-sm-12 mb-3'>
+                                    <label className="form-label">Age</label><br />
+                                    <input
+                                        className='age'
+                                        type='text'
+                                        name="petAge"
+                                        value={petAge}
+                                        onChange={handleChange}
+                                        placeholder="ex: 7..."
+                                    />
+                                </div>
+                                <div className="col-lg-6 col-sm-12 mb-3">
+                                    <label className="form-label"> Breed</label>
+                                    <input
+                                        className="form-control"
+                                        onChange={handleChange}
+                                        type="text"
+                                        value={petBreed}
+                                        name="petBreed"
+                                        placeholder="breed..." />
+                                </div>
+                                <div className="col-lg-6 col-sm-12 mb-3">
+                                    <label className="form-label"> Pet's weight</label>
+                                    <input
+                                        className="form-control"
+                                        onChange={handleChange}
+                                        type="text"
+                                        name="petWeight"
+                                        value={petWeight}
+                                        placeholder="weight..." />
+                                </div>
+                                <div className="col-12">
+                                    <button className="btn rounded-0 button-pet btn-primary"
+                                        type="submit"
+
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        {error && (
+                            <div className="my-3 p-3 bg-danger text-white">
+                                {error}
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
             </div>
             <Footer />
         </>

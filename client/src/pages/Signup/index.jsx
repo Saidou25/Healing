@@ -1,48 +1,41 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './index.css';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
+import Spinner from '../../components/Spinner';
 import Auth from '../../utils/auth';
 
 const Signup = () => {
-  const [email, setEaddress] = useState('');
-  const [formState, setFormState] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [email, SetEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsename] = useState('');
+
+  const [addUser, { error, data, loading }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === 'eAddress') {
-      setEaddress(value.toLowerCase());
-    }
 
-    setFormState({
-      ...formState,
-      [name]: value,
-      email: email
-    });
+    if (name === 'email') {
+      const lowerCaseEmail = value.toLowerCase();
+      SetEmail(lowerCaseEmail);
+    }
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const { data } = await addUser({
-        variables: { ...formState },
+        variables: {username: username, password: password, email: email },
       });
-
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
   };
 
+  if (loading) return <Spinner />
   return (
     <>
       <Navbar />
@@ -51,12 +44,6 @@ const Signup = () => {
           <h4 className="card-header bg-primary rounded-0 text-light p-4">
             Sign Up</h4>
           <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/Login">lets now login.</Link>
-              </p>
-            ) : (
               <form onSubmit={handleFormSubmit}>
                 <label className='text-label'>
                   Username
@@ -66,8 +53,8 @@ const Signup = () => {
                   placeholder="choose a username..."
                   name="username"
                   type="username"
-                  value={formState.username}
-                  onChange={handleChange}
+                  value={username}
+                  onChange={(e) => setUsename(e.target.value)}
                 /><br />
                 <label className='text-label'>
                   Email
@@ -75,8 +62,7 @@ const Signup = () => {
                 <input
                   className="form-input"
                   placeholder="your email.."
-                  
-                  name="eAddress"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={handleChange}
@@ -89,8 +75,8 @@ const Signup = () => {
                   placeholder="******"
                   name="password"
                   type="password"
-                  value={formState.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 /><br />
                 <button
                   className="btn btn-info rounded-0 mt-5"
@@ -100,7 +86,6 @@ const Signup = () => {
                   Submit
                 </button>
               </form>
-            )}
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
                 {error.message}
@@ -109,7 +94,10 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <div className='footer-signup'>
       <Footer />
+
+      </div>
     </>
   );
 };

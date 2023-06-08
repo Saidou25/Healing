@@ -18,11 +18,11 @@ const Navbar = () => {
                 <nav className="nav">
                     <Link className="landing-title" to="/">Healing</Link>
                     <ul className="nav links justify-content-end">
-                        <CustomLink to='/About' className='nav-item'>About</CustomLink>
-                        <CustomLink to='/Dashboard' className='nav-item'>dashboard</CustomLink>
-                        <button className='btt-logout' onClick={logout}>logout</button>
+                        <CustomLink to='/About' className='nav-item fs-3'>About</CustomLink>
+                        <CustomLink to='/Dashboard' className='nav-item fs-3'>dashboard</CustomLink>
+                        <button className='btt-logout fs-3' onClick={logout}>logout</button>
                         <Link className='profile-icon' to="/MyProfile">
-                            <img src={profileIcon} alt='profile icon' height={40} />
+                            <img src={profileIcon} alt='profile icon' height={43} />
                         </Link>
                     </ul>
                 </nav>
@@ -36,10 +36,10 @@ const Navbar = () => {
                     Healing
                 </Link>
                 <ul className="nav justify-content-end">
-                    <CustomLink to='/About' className='nav-item'>About</CustomLink>
-                    <CustomLink to='/Login' className='nav-item'>login</CustomLink>
-                    <CustomLink to='/Signup' className='nav-item'>signup</CustomLink>
-                    <button className='btt-logout' onClick={logout}>logout</button>
+                    <CustomLink to='/About' className='nav-item fs-3'>About</CustomLink>
+                    <CustomLink to='/Login' className='nav-item fs-3'>login</CustomLink>
+                    <CustomLink to='/Signup' className='nav-item fs-3'>signup</CustomLink>
+                    <button className='btt-logout fs-3' onClick={logout}>logout</button>
                 </ul>
             </nav>
         </div>
