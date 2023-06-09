@@ -10,23 +10,19 @@ import './index.css';
 
 const Login = () => {
     const navigate = useNavigate();
-    const [email, setEaddress] = useState('');
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [login, { error, data, loading }] = useMutation(LOGIN_USER);
 
+     // update state based on form input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
 
-    if (name === 'eAddress') {
-      setEaddress(value.toLowerCase());
-    }
         setFormState({
             ...formState,
             [name]: value,
-            email: email
         });
     };
-
+// submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -38,14 +34,16 @@ const Login = () => {
             Auth.login(data.login.token);
 
             navigate('/Dashboard', { state: { formState } });
-            setFormState({
-                email: '',
-                password: '',
-            });
+           
         } catch (e) {
             console.error(e);
             navigate('/');
         }
+         // clear form values
+         setFormState({
+            email: '',
+            password: '',
+        });
     };
     if (loading) return <Spinner />
     return (
@@ -71,7 +69,7 @@ const Login = () => {
                                         style={{ fontSize: '1.3rem' }}
                                         className="form-input"
                                         placeholder="Your email"
-                                        name="eAddress"
+                                        name="email"
                                         type="email"
                                         value={formState.email}
                                         onChange={handleChange}

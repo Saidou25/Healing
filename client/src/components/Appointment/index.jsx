@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_PROFILES, QUERY_PETS, QUERY_ME } from '../../utils/queries';
 import AppointmentForm from '../AppointmentForm';
 
+// We query all info needed for AppointmentForm
 const Appointment = () => {
 
     const { data } = useQuery(QUERY_ME);

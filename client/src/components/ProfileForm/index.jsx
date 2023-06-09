@@ -29,6 +29,8 @@ const ProfileForm = () => {
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
+
+    // Tailored in simple words error message based on error context
     const [error, setError] = useState('');
 
     // const { loading, data: meData } = useQuery(QUERY_ME);

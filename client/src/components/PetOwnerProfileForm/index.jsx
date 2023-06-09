@@ -36,8 +36,17 @@ const PetOwnerProfileForm = (props) => {
     // const username = me.username;
 
     const [addProfile] = useMutation(ADD_PROFILE, {
-        variables: { username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip },
-
+        variables: { 
+            username, 
+            patientState, 
+            patientnumber, 
+            patientfirstname, 
+            patientaddress, 
+            patientlastname, 
+            patientcity, 
+            patientzip 
+        },
+//  uptdating cache with new profile
         update(cache, { data: { addProfile } }) {
             try {
                 const { profiles } = cache.readQuery({ query: QUERY_PROFILES });

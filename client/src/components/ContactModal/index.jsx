@@ -11,6 +11,7 @@ const ProfileModal = (props) => {
     const [confirm, setConfirm] = useState(false);
 
     const handleSubmit = () => {
+        // building templateParams for message confirmation email
 
         const templateParams = {
             username: username,

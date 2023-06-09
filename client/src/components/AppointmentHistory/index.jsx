@@ -8,7 +8,9 @@ import trash from '../../assets/images/trash.png';
 import './index.css';
 
 const AppointmentHistory = () => {
+// filter user appointments and compare with actual date to find out if appointment is passed
 
+// buiding today's date format 
     const date = new Date();
     const todaysDate = date.getDate();
     const todaysYear = date.getFullYear();
@@ -28,9 +30,10 @@ const AppointmentHistory = () => {
         newDay = `0${todaysDate}`;
     } else {
         newDay = todaysDate;
-    }
-
+    };
     const today = `${newMonth}/${newDay}/${todaysYear}`;
+
+    // filter user's appointment and add delete button to passed appointments
 
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];

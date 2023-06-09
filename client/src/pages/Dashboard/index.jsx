@@ -12,6 +12,8 @@ import Footer from '../../components/Footer';
 import './index.css';
 
 const Dashboard = () => {
+    //  getting all data in this page and send them to components thru props
+    
     const navigate = useNavigate();
     // const today = new Date();
     // const todaysDate = today.getDate();

@@ -24,6 +24,8 @@ const PetForm = (props) => {
     const [petAge, setPetAge] = useState('');
     const [petGender, setPetGender] = useState('');
     const [petKind, setPetKind] = useState('');
+    
+    // User friendly error message set on specific context
     const [error, setError] = useState("");
 
     // const { data } = useQuery(QUERY_ME);

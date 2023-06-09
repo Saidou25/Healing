@@ -30,19 +30,16 @@ const AppointmentForm = (props) => {
 
     const { data, loading } = useQuery(QUERY_BOOKINGDATES);
 
+    // collecting all appointments that we push into allAppointments[] to block unvailable dates in calendar.
     const bookingdates = data?.bookingdates || [];
-
     const allAppointments = []
 
     for (let bookingdate of bookingdates) {
-
         const result = (bookingdate.finalDateISO).slice(0, 10);
-
         const resultIso = parseISO(result);
-
         allAppointments.push(resultIso)
     };
-
+// Updating the cache with newly created appointment
     const [addBookingdate] = useMutation(ADD_BOOKINGDATE, {
         update(cache, { data: { addBookingdate } }) {
             try {
@@ -76,6 +73,7 @@ const AppointmentForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // building up digitalAppointment needed to display appointments date in components
         const isBooked = JSON.stringify(startDate);
 
         const dateArr = isBooked.replaceAll('"', '').split(':');
@@ -93,7 +91,8 @@ const AppointmentForm = (props) => {
         const appTime = app[4];
         const appYear = app[3];
         const digitalAppointment = `${digitMonth}/${appDate}/${appYear}`;
-
+ 
+        // building templateParams for emailing appointment confirmation
         const sy = 'saidou.monta@yahoo.com';
         const templateParams = {
             digitalAppointment: digitalAppointment,
@@ -105,18 +104,35 @@ const AppointmentForm = (props) => {
             setError('All fields need filled!');
             return;
         };
-         try {
-                await addBookingdate({ variables: { username: username, digitalAppointment: digitalAppointment, digitMonth: digitMonth, reason: reason, mepet: mepet, isBooked: isBooked, finalDateISO: finalDateISO, appDay: appDay, appMonth: appMonth, appDate: parseInt(appDate), appTime: appTime, appYear: parseInt(appYear) } });
-                console.log(`success booking a date ${isBooked}`);
+        // adding a bookingdate to database
+        try {
+            await addBookingdate({
+                variables: {
+                    username: username,
+                    digitalAppointment: digitalAppointment,
+                    digitMonth: digitMonth,
+                    reason: reason,
+                    mepet: mepet,
+                    isBooked: isBooked,
+                    finalDateISO: finalDateISO,
+                    appDay: appDay,
+                    appMonth: appMonth,
+                    appDate: parseInt(appDate),
+                    appTime: appTime,
+                    appYear: parseInt(appYear)
+                }
+            });
 
-            } catch (err) {
-                console.error(err);
-            }
-            setMePet('');
-            setStartDate('');
-            setReason('');
-      
+            console.log(`success booking a date ${isBooked}`);
 
+        } catch (err) {
+            console.error(err);
+        }
+        setMePet('');
+        setStartDate('');
+        setReason('');
+
+// redirects user to the next step in appointment process based on condilions
         if (mepet === 'mypet' && userProfile && myPet.length) {
             sendEmail(templateParams);
             navigate('/Dashboard');
@@ -226,10 +242,10 @@ const AppointmentForm = (props) => {
                     </form>
                 </div>
                 {error && (
-                        <div className="my-3 p-3 bg-danger phone-error text-white">
-                            {error}
-                        </div>
-                    )}
+                    <div className="my-3 p-3 bg-danger phone-error text-white">
+                        {error}
+                    </div>
+                )}
             </div>
             <Footer />
         </>

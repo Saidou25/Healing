@@ -5,6 +5,7 @@ import { DELETE_REVIEW } from '../../utils/mutations';
 import './index.css';
 
 const MyReviewsList = (props) => {
+    //  This page shows all reviews. User's reviews have a delete button
     const myUserName = props.username;
 
     const [reviewId, setReviewId] = useState('');
