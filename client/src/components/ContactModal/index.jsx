@@ -75,18 +75,19 @@ const ProfileModal = (props) => {
                                             Save changes
                                         </button>
                                     </div>
-                                </form>
-                            </div>
-                            {error && (
-                                <div className="my-3 p-3 bg-danger text-white">
+                                    {error && (
+                                <p className="my-3 p-3 bg-danger text-white fs-6 mt-5">
                                     {error}
-                                </div>
+                                </p>
                             )}
                             {confirm === true && (
-                                <div className="my-3 p-3 bg-success text-white">
+                                <p className="my-3 p-3 bg-success text-white fs-6 mt-5">
                                     Message sent. You can now close the window.
-                                </div>
+                                </p>
                             )}
+                                </form>
+                            </div>
+                           
                         </div>
                     </div>
                 </div>

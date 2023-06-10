@@ -134,7 +134,7 @@ const Dashboard = () => {
                             type='button'
                             className='btn bt-write btn-primary mb-5'
                             onClick={() => handleSubmit('review')}>
-                            Click to start
+                           start/close
                         </button>
                         {isShown ? (
                             <>
