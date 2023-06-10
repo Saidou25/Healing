@@ -20,6 +20,7 @@ const Navbar = () => {
                     <ul className="nav links justify-content-end">
                         <CustomLink to='/About' className='nav-item fs-3'>About</CustomLink>
                         <CustomLink to='/Dashboard' className='nav-item fs-3'>dashboard</CustomLink>
+                        <CustomLink to='/Module' className='nav-item fs-3'>Module</CustomLink>
                         <button className='btt-logout fs-3' onClick={logout}>logout</button>
                         <Link className='profile-icon' to="/MyProfile">
                             <img src={profileIcon} alt='profile icon' height={43} />

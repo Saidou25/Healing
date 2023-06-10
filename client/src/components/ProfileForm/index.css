@@ -3,24 +3,29 @@
     width: 60%;
     margin-right: auto;
     margin-left: auto;
-   
+
 }
+
 .card-visitor {
     padding-top: 1%;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .title {
     display: block;
     text-align: center;
     color: white;
 }
+
 .appointment-for {
     display: block;
 }
+
 .gender-question {
     display: block;
 }
+
 .profile {
     margin-left: auto;
     margin-right: auto;
@@ -70,6 +75,7 @@
     background-clip: padding-box;
     border: 0 solid #ced4da;
 }
+
 .phone-update {
     width: 100%;
     font-style: oblique;
@@ -83,6 +89,7 @@
     background-clip: padding-box;
     border: 0 solid #ced4da;
 }
+
 .age {
     width: 100%;
     font-style: oblique;
@@ -96,10 +103,10 @@
     background-clip: padding-box;
     border: 0 solid #ced4da;
 }
+
 .button-profie {
     margin-top: 10%;
     width: 25%;
     text-align: center;
     margin-bottom: 15%;
-
 }

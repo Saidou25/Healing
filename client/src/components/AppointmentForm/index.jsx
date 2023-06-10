@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
 import { sendEmail } from '../../utils/email.js';
+import { parseISO, setHours, setMinutes } from 'date-fns';
+import Spinner from '../../components/Spinner';
 import DatePicker from "react-datepicker";
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
-import { parseISO, setHours, setMinutes } from 'date-fns';
 
 const AppointmentForm = (props) => {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ const AppointmentForm = (props) => {
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
     const [error, setError] = useState('');
+    const [confirm, setConfirm] = useState(false);
 
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
@@ -39,7 +41,7 @@ const AppointmentForm = (props) => {
         const resultIso = parseISO(result);
         allAppointments.push(resultIso)
     };
-// Updating the cache with newly created appointment
+    // Updating the cache with newly created appointment
     const [addBookingdate] = useMutation(ADD_BOOKINGDATE, {
         update(cache, { data: { addBookingdate } }) {
             try {
@@ -91,7 +93,7 @@ const AppointmentForm = (props) => {
         const appTime = app[4];
         const appYear = app[3];
         const digitalAppointment = `${digitMonth}/${appDate}/${appYear}`;
- 
+
         // building templateParams for emailing appointment confirmation
         const sy = 'saidou.monta@yahoo.com';
         const templateParams = {
@@ -106,7 +108,7 @@ const AppointmentForm = (props) => {
         };
         // adding a bookingdate to database
         try {
-            await addBookingdate({
+            const { data } = await addBookingdate({
                 variables: {
                     username: username,
                     digitalAppointment: digitalAppointment,
@@ -123,19 +125,19 @@ const AppointmentForm = (props) => {
                 }
             });
 
+            setConfirm(true);
             console.log(`success booking a date ${isBooked}`);
 
         } catch (err) {
             console.error(err);
-        }
-        setMePet('');
-        setStartDate('');
-        setReason('');
+        };
 
-// redirects user to the next step in appointment process based on condilions
+        // redirects user to the next step in appointment process based on condilions
         if (mepet === 'mypet' && userProfile && myPet.length) {
             sendEmail(templateParams);
-            navigate('/Dashboard');
+            setTimeout(() => {
+                navigate('/Dashboard');
+            }, 3000);
             console.log('case 1');
         }
         if (mepet === 'mypet' && userProfile && !myPet.length) {
@@ -152,18 +154,35 @@ const AppointmentForm = (props) => {
         }
         if (mepet === 'me' && userProfile) {
             sendEmail(templateParams);
-            navigate('/Dashboard', { state: { profile } });
+            setTimeout(() => {
+                navigate('/Dashboard', { state: { profile } })
+            }, 1500);
             console.log('case 5');
-        }
+        };
+        setMePet('');
+        setStartDate('');
+        setReason('');
     };
 
-    if (loading) {
+    if (loading) return <Spinner />
+
+    if (confirm === true) {
         return (
-            <main>
-                <h2>Loading . . . . . . </h2>
+            <main className='row container-success'>
+                <div className="col-12 d-flex appointment-success mb-2">
+                    <i className="fa-solid fa-check d-flex">
+                    </i>
+                </div>
+                <h2 className='col-12 signup-success d-flex justify-content-center'>
+                    Success!
+                </h2>
+                <p className='col-12 signup-success d-flex justify-content-center'>
+                    Your appointment is booked...
+                </p>
             </main>
         )
     }
+
     return (
         <>
             <Navbar />

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { QUERY_PETS } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { sendEmail } from '../../utils/email.js';
 import { Regex } from '../../utils/Regex';
 import Navbar from '../Navbar';
@@ -14,8 +14,6 @@ const PetForm = (props) => {
     const location = useLocation();
 
     const templateParams = location.state.templateParams;
-
-    const myPet = props.myPet;
     const profileId = props.profileId;
 
     const [petName, setPetName] = useState('');
@@ -24,17 +22,10 @@ const PetForm = (props) => {
     const [petAge, setPetAge] = useState('');
     const [petGender, setPetGender] = useState('');
     const [petKind, setPetKind] = useState('');
-    
+    const [confirm, setConfirm] = useState(false);
+
     // User friendly error message set on specific context
     const [error, setError] = useState("");
-
-    // const { data } = useQuery(QUERY_ME);
-    // const me = data?.me || [];
-    // const username = me.username;
-
-    // const { data: profilesData } = useQuery(QUERY_PROFILES);
-    // const profiles = profilesData?.profiles || [];
-
 
     const [addPet] = useMutation(ADD_PET, {
         update(cache, { data: { addPet } }) {
@@ -48,7 +39,6 @@ const PetForm = (props) => {
             } catch (e) {
                 console.error(e);
             }
-            navigate('/Dashboard');
         }
     });
 
@@ -85,6 +75,7 @@ const PetForm = (props) => {
             await addPet({
                 variables: { profileId: profileId, petName: petName, username: templateParams.username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
             });
+            setConfirm(true);
             console.log(`Appointment for ${petName} booked successfully`);
 
         } catch (err) {
@@ -97,9 +88,28 @@ const PetForm = (props) => {
         setPetAge('');
         setPetWeight('');
         setPetBreed('');
-        navigate('/Dashboard');
+
+        setTimeout(() => {
+            navigate('/Dashboard');
+        }, 1500);
     };
 
+    if (confirm === true) {
+        return (
+            <main className='row container-success'>
+                   <div className="col-12 d-flex appointment-success mb-2">
+                    <i className="fa-solid fa-check d-flex">
+                    </i>
+                </div>
+                <h2 className='col-12 signup-success d-flex justify-content-center'>
+                    Success!
+                </h2>
+                <p className='col-12 signup-success d-flex justify-content-center'>
+                    Your appointment is booked...
+                </p>
+            </main>
+        )
+    }
     return (
         <>
             <Navbar />

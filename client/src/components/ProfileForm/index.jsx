@@ -8,6 +8,7 @@ import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 import { Regex } from '../../utils/Regex';
 import SelectUSState from 'react-select-us-states';
 import { sendEmail } from '../../utils/email.js';
+import Spinner from '../../components/Spinner';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
@@ -29,6 +30,7 @@ const ProfileForm = () => {
     const [patientaddress, setPatientAddress] = useState('');
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
+    const [confirm, setConfirm] = useState(false);
 
     // Tailored in simple words error message based on error context
     const [error, setError] = useState('');
@@ -37,7 +39,7 @@ const ProfileForm = () => {
     // const me = meData?.me || [];
     // const username = me.username;
 
-    const [addProfile] = useMutation(ADD_PROFILE, {
+    const [addProfile, loading] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
         update(cache, { data: { addProfile } }) {
             try {
@@ -89,7 +91,7 @@ const ProfileForm = () => {
             birthdate,
             patientzip
         );
-
+        setConfirm(true);
         sendEmail(templateParams);
 
         setPatientFirstName("");
@@ -102,16 +104,28 @@ const ProfileForm = () => {
         setBirthDate("");
 
         console.log(`success adding ${patientfirstname}' appointment`);
-        navigate('/Dashboard');
+        setTimeout(() => {
+            navigate('/Dashboard');
+        }, 1500);
     };
 
-    // if (loading) {
-    //     return (
-    //         <main>
-    //             <h2>Loading . . . . . . </h2>
-    //         </main>
-    //     )
-    // }
+    if (loading) return <Spinner />
+    if (confirm === true) {
+        return (
+            <main className='row container-success'>
+                <div className="col-12 d-flex appointment-success mb-2">
+                    <i className="fa-solid fa-check d-flex">
+                    </i>
+                </div>
+                <h2 className='col-12 signup-success d-flex justify-content-center'>
+                    Success!
+                </h2>
+                <p className='col-12 signup-success d-flex justify-content-center'>
+                    Your appointment is booked...
+                </p>
+            </main>
+        )
+    }
     return (
         <>
             <Navbar />

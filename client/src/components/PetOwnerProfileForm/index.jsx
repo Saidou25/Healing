@@ -15,7 +15,7 @@ import './index.css';
 const PetOwnerProfileForm = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
-    
+
     const templateParams = location.state.templateParams;
     const username = templateParams.username;
     const userProfile = props.userProfile;
@@ -30,23 +30,24 @@ const PetOwnerProfileForm = (props) => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [error, setError] = useState('');
+    const [confirm, setConfirm] = useState(false);
 
     // const { data: meData } = useQuery(QUERY_ME);
     // const me = meData?.me || [];
     // const username = me.username;
 
     const [addProfile] = useMutation(ADD_PROFILE, {
-        variables: { 
-            username, 
-            patientState, 
-            patientnumber, 
-            patientfirstname, 
-            patientaddress, 
-            patientlastname, 
-            patientcity, 
-            patientzip 
+        variables: {
+            username,
+            patientState,
+            patientnumber,
+            patientfirstname,
+            patientaddress,
+            patientlastname,
+            patientcity,
+            patientzip
         },
-//  uptdating cache with new profile
+        //  uptdating cache with new profile
         update(cache, { data: { addProfile } }) {
             try {
                 const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
@@ -84,11 +85,51 @@ const PetOwnerProfileForm = (props) => {
             return;
         };
 
-        addProfile(username, patientState, patientnumber, patientfirstname, patientaddress, patientlastname, patientcity, patientzip)
-
+        addProfile(
+            username,
+            patientState,
+            patientnumber,
+            patientfirstname,
+            patientaddress,
+            patientlastname,
+            patientcity,
+            patientzip
+        )
+        setConfirm(true);
         console.log(`success adding your info ${patientfirstname} !`);
-        (!myPet) ? navigate('/PetProfileForm', { state: { userProfile, templateParams } }) : navigate('/Dashboard');
+
+
+        (!myPet)
+            ? navigate('/PetProfileForm', { state: { userProfile, templateParams } })
+            : setTimeout(() => {
+                navigate('/Dashboard');
+            }, 1500);
+
+        setPatientFirstName('');
+        setPatientLastName('');
+        setPatientAddress('');
+        setPatientZip('');
+        setPatientCity('');
+        setNewValue('');
+        setPatientNumber('');
     };
+
+    if (confirm === true) {
+        return (
+            <main className='row container-success'>
+                  <div className="col-12 d-flex appointment-success mb-2">
+                    <i className="fa-solid fa-check d-flex">
+                    </i>
+                </div>
+                <h2 className='col-12 signup-success d-flex justify-content-center'>
+                    Success!
+                </h2>
+                <p className='col-12 signup-success d-flex justify-content-center'>
+                    Your appointment is booked...
+                </p>
+            </main>
+        )
+    }
 
     return (
         <>
@@ -190,10 +231,10 @@ const PetOwnerProfileForm = (props) => {
                             </form>
                         </div>
                         {error && (
-                        <div className="my-3 p-3 bg-danger phone-error text-white">
-                            {error}
-                        </div>
-                    )}
+                            <div className="my-3 p-3 bg-danger phone-error text-white">
+                                {error}
+                            </div>
+                        )}
                     </div >
                 </div >
             </div >
