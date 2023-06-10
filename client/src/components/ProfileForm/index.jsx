@@ -39,7 +39,7 @@ const ProfileForm = () => {
     // const me = meData?.me || [];
     // const username = me.username;
 
-    const [addProfile, loading] = useMutation(ADD_PROFILE, {
+    const [addProfile] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
         update(cache, { data: { addProfile } }) {
             try {
@@ -109,7 +109,7 @@ const ProfileForm = () => {
         }, 1500);
     };
 
-    if (loading) return <Spinner />
+    // if (loading) return <Spinner />
     if (confirm === true) {
         return (
             <main className='row container-success'>
