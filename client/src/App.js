@@ -15,7 +15,6 @@ import PetProfileForm from './components/PetProfileForm';
 import PetOwnerProfileForm from './components/PetOwnerProfileForm';
 import ReviewForm from './components/ReviewForm';
 import MyReviewsList from './components/MyReviewsList';
-import Module from './components/Module';
 import Appointment from './components/Appointment';
 import AppointmentHistory from './components/AppointmentHistory';
 import Login from './pages/Login';
@@ -98,7 +97,6 @@ function App() {
             <Route path='/PetProfileForm' element={<PetProfileForm />} />
             <Route path='/ReviewForm' element={<ReviewForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
-            <Route path='/Module' element={<Module />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/' element={<LandingPage />} />

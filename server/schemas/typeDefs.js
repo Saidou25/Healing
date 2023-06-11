@@ -33,6 +33,7 @@ const typeDefs = gql`
       username: String
      reviewText: String
      title: String
+     rating: String
      }, 
      
      type Pet {
@@ -137,6 +138,7 @@ const typeDefs = gql`
      username: String
      reviewText: String!
      title: String!
+     rating: String
      ): Review
 
     addPet(

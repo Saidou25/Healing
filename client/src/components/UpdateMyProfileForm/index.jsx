@@ -31,7 +31,7 @@ const UpdateMyProfileForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-     
+
         if (!Regex.zipRegex.test(patientzip) || !patientzip) {
             setError('zip code needs to be a five digit number!');
             return;
@@ -43,7 +43,7 @@ const UpdateMyProfileForm = (props) => {
         if (!patientaddress || !patientlastname || !patientcity || !patientzip) {
             console.log('is not a number');
             setError('All fields need to be filled!');
-            return ;
+            return;
         }
         try {
             const { data } = await updateProfile({
@@ -144,6 +144,13 @@ const UpdateMyProfileForm = (props) => {
                                             setNumberValue(values.value);
                                         }} />
                                 </div>
+                                <div className="col-12 mt-5 ">
+                                    {error && (
+                                        <div className="bg-danger phone-error text-white">
+                                            {error}
+                                        </div>
+                                    )}
+                                </div>
                                 <div className="col-12">
                                     <button className="btn btn-primary rounded-0"
                                         type="submit"
@@ -156,11 +163,6 @@ const UpdateMyProfileForm = (props) => {
                         </form>
                     </div>
                 </div>
-                {error && (
-                    <div className="my-3 p-3 bg-danger phone-error text-white">
-                        {error}
-                    </div>
-                )}
             </div>
             <Footer />
         </>

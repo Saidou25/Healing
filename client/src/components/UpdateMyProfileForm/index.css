@@ -4,12 +4,14 @@
     margin-left: auto;
     margin-bottom: 5%;
 }
+
 .phone-error {
-    width: 60%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 5%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 1%;
 }
+
 .update-title {
     margin-top: 10%;
 }
@@ -48,6 +50,7 @@
     margin-left: auto;
     margin-right: auto;
 }
+
 @media screen and (max-width: 414px) {
     .container-update {
         width: 90%;

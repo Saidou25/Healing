@@ -153,7 +153,8 @@ const resolvers = {
                 const review = await Review.create({
                     username: args.username,
                     reviewText: args.reviewText,
-                    title: args.title
+                    title: args.title,
+                    rating: args.rating
                 });
                 await User.findOneAndUpdate(
                     { _id: context.user._id },

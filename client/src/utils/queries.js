@@ -24,6 +24,7 @@ export const QUERY_USERS = gql`
      _id
      username
     title
+    rating
     reviewText
      }
       profile {
@@ -70,6 +71,7 @@ export const QUERY_USER = gql`
      username
     title
     reviewText
+    rating
      }
       bookingdates {
       _id
@@ -129,6 +131,7 @@ export const QUERY_ME = gql`
     title
     username
     reviewText
+    rating
      }
       bookingdates {
       _id
@@ -206,6 +209,7 @@ export const QUERY_REVIEWS = gql`
      username
     title
     reviewText
+    rating
      }
   }
 `;
@@ -216,6 +220,7 @@ export const QUERY_REVIEW = gql`
      username
     title
     reviewText
+    rating
      }
   }
 `;

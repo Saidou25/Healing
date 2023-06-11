@@ -16,6 +16,10 @@ const reviewSchema = new Schema({
   required: 'You need to leave a review!',
   maxlength: 280,
   trim: true,
+},
+  rating: {
+  type: String,
+  required: false,
 }
 });
 

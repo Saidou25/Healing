@@ -91,12 +91,13 @@ export const ADD_PET = gql`
      `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($username: String, $title: String!, $reviewText: String!) {
-    addReview(username: $username, title: $title, reviewText: $reviewText) {
+  mutation addReview($username: String, $title: String!, $reviewText: String!, $rating: String) {
+    addReview(username: $username, title: $title, reviewText: $reviewText, rating: $rating) {
         _id
         username
         title
         reviewText
+        rating
     }
  }
 `;
@@ -108,6 +109,7 @@ export const DELETE_REVIEW = gql`
         username
         title
         reviewText
+        rating
     }
   }
 `;
