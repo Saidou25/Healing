@@ -117,7 +117,7 @@ const PetOwnerProfileForm = (props) => {
     if (confirm === true) {
         return (
             <main className='row container-success'>
-                  <div className="col-12 d-flex appointment-success mb-2">
+                <div className="col-12 d-flex appointment-success mb-2">
                     <i className="fa-solid fa-check d-flex">
                     </i>
                 </div>
@@ -134,7 +134,7 @@ const PetOwnerProfileForm = (props) => {
     return (
         <>
             <Navbar />
-            <div>
+            <main className='main-petOwner'>
                 <div>
                     <div className='container-owner'>
                         <p>
@@ -146,7 +146,7 @@ const PetOwnerProfileForm = (props) => {
                         <div className="card-body">
                             <form onSubmit={(e) => handleSubmit(e)}>
                                 <div className='row mt-5'>
-                                    <div className="col-6 owner-fields">
+                                    <div className="col-lg-6 col-sm-12 owner-fields">
                                         <label className="form-label"> First name</label>
                                         <input
                                             className="form-control"
@@ -156,7 +156,7 @@ const PetOwnerProfileForm = (props) => {
                                             name="patientfirstname"
                                             placeholder="first name..." />
                                     </div>
-                                    <div className="col-6 owner-fields">
+                                    <div className="col-lg-6 col-sm-12 owner-fields">
                                         <label className="form-label"> Last name</label>
                                         <input
                                             className="form-control"
@@ -166,7 +166,7 @@ const PetOwnerProfileForm = (props) => {
                                             value={patientlastname}
                                             placeholder="last name..." />
                                     </div>
-                                    <div className="col-6 owner-fields">
+                                    <div className="col-lg-6 col-sm-12 owner-fields">
                                         <label className="form-label">Address</label>
                                         <input
                                             className="form-control"
@@ -176,7 +176,7 @@ const PetOwnerProfileForm = (props) => {
                                             name="patientaddress"
                                             placeholder="address..." />
                                     </div>
-                                    <div className="col-6 owner-fields">
+                                    <div className="col-lg-6 col-sm-12 owner-fields">
                                         <label className="form-label">City</label>
                                         <input
                                             className="form-control"
@@ -186,7 +186,7 @@ const PetOwnerProfileForm = (props) => {
                                             onChange={(e) => setPatientCity(e.target.value)}
                                             placeholder="enter city..." />
                                     </div>
-                                    <div className='col-6 owner-fields'>
+                                    <div className='col-lg-6 col-sm-12 owner-fields'>
                                         <label className='form-label'>
                                             Select a state
                                         </label>
@@ -196,7 +196,7 @@ const PetOwnerProfileForm = (props) => {
                                             onChange={setNewValue}
                                         />
                                     </div>
-                                    <div className="col-6 owner-fields">
+                                    <div className="col-lg-6 col-sm-12 owner-fields">
                                         <label className="form-label">Zip code</label>
                                         <input
                                             className="form-control"
@@ -206,13 +206,13 @@ const PetOwnerProfileForm = (props) => {
                                             type="text"
                                             placeholder="zip code..." />
                                     </div>
-                                    <div className="col-6 owner-fields">
+                                    <div className="col-lg-6 col-sm-12 owner-fields">
                                         <label className="form-label">
                                             Phone number
                                         </label>
                                         <div>
                                             <PatternFormat
-                                                className='phone-update'
+                                                className='phone-update mb-5'
                                                 format="(###) ### ####"
                                                 allowEmptyFormatting mask="_"
                                                 name='patientnumber'
@@ -222,7 +222,16 @@ const PetOwnerProfileForm = (props) => {
                                                 }} />
                                         </div>
                                     </div>
-                                    <div className="col-12">
+                                    <div>
+                                {error && (
+                                        <div className="bg-danger error text-white mb-5">
+                                            <p className='error m-2'>
+                                            {error}
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                                    <div className="col-12 d-flex justify-content-center">
                                         <button className="btn button-owner rounded-0 btn-primary"
                                             type="submit"
                                             value="Send">Submit</button>
@@ -230,14 +239,9 @@ const PetOwnerProfileForm = (props) => {
                                 </div>
                             </form>
                         </div>
-                        {error && (
-                            <div className="my-3 p-3 bg-danger phone-error text-white">
-                                {error}
-                            </div>
-                        )}
                     </div >
                 </div >
-            </div >
+            </main>
             <Footer />
         </>
     )

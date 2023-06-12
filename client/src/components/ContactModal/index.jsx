@@ -39,10 +39,12 @@ const ProfileModal = (props) => {
         <>
             <button
                 type="button"
-                className="btn btn-primary direct-message rounded-0 m-2"
+                className="btn btn-primary direct-message rounded-0"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
-                message
+                <div className='message-btn-modal'>
+                    message
+                </div>
             </button>
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,18 +78,18 @@ const ProfileModal = (props) => {
                                         </button>
                                     </div>
                                     {error && (
-                                <p className="my-3 p-3 bg-danger text-white fs-6 mt-5">
-                                    {error}
-                                </p>
-                            )}
-                            {confirm === true && (
-                                <p className="my-3 p-3 bg-success text-white fs-6 mt-5">
-                                    Message sent. You can now close the window.
-                                </p>
-                            )}
+                                        <p className="my-3 p-3 bg-danger text-white fs-6 mt-5">
+                                            {error}
+                                        </p>
+                                    )}
+                                    {confirm === true && (
+                                        <p className="my-3 p-3 bg-success text-white fs-6 mt-5">
+                                            Message sent. You can now close the window.
+                                        </p>
+                                    )}
                                 </form>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>

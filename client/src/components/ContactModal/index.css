@@ -1,6 +1,6 @@
-.direct-message {
+/* .direct-message {
     width: 97%;
-} 
+}  */
 .modal-title-contact {
     margin-left: 24%;
  }
@@ -10,6 +10,12 @@
     margin-top: 4%;
     margin-bottom: 4%;
 }
+.message-btn-modal {
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+
+}
 @media screen and (max-width: 414px) {
     .container-dashboard {
         width: 98%;
@@ -17,6 +23,6 @@
         margin-left: auto;
     }
     .direct-message {
-        width: 97%;
-    }
+    margin: 0;
+} 
 }

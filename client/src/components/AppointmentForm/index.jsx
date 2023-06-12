@@ -192,14 +192,14 @@ const AppointmentForm = (props) => {
                 <div className="card-body">
                     <form id='appointment-form'>
                         <div className='row'>
-                            <div className='col-6 appointment-column'>
+                            <div className='col-12 appointment-column'>
                                 <label className="form-label">
                                     Who is the appointment for?
                                 </label>
                             </div>
                             <div >
                             </div>
-                            <div className='col-6 visit'>
+                            <div className='col-12 visit'>
                                 <div>
                                     <input
                                         className='radio m-2 ms-4'
@@ -218,7 +218,7 @@ const AppointmentForm = (props) => {
                                         onChange={handleChange} /> my pet
                                 </div>
                             </div>
-                            <div className='col-6 date-picker mb-2'>
+                            <div className='col-12 date-picker mb-2'>
                                 <label className="form-label">
                                     Choose your appointment date
                                 </label>
@@ -239,10 +239,12 @@ const AppointmentForm = (props) => {
                                     />
                                 </div>
                             </div>
-                            <div className='col-6 appointment-column'>
+                            <div className='col-12 appointment-column'>
                                 <div>
-                                    <label className="form-label mb-4">What is your reason for visiting?</label>
-                                    <textarea className="form-control type-your-text mt-4"
+                                    <label className="form-label mb-4">
+                                        What is your reason for visiting?
+                                        </label>
+                                    <textarea className="form-control type-your-text mt-4 mb-5"
                                         name="reason"
                                         value={reason}
                                         placeholder='type your text here...'
@@ -250,8 +252,17 @@ const AppointmentForm = (props) => {
                                     </textarea>
                                 </div>
                             </div>
-                            <div className="col-12" >
-                                <button className="btn button-appointment btn-primary mt-5 rounded-0"
+                            <div>
+                                {error && (
+                                    <div className="bg-danger error text-white mb-4">
+                                        <p className='error m-2'>
+                                            {error}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="col-12 d-flex justify-content-center" >
+                                <button className="btn btn-primary mt-4 rounded-0"
                                     type='submit'
                                     onClick={(e) => handleSubmit(e)}>
                                     Submit
@@ -260,11 +271,6 @@ const AppointmentForm = (props) => {
                         </div>
                     </form>
                 </div>
-                {error && (
-                    <div className="my-3 p-3 bg-danger phone-error text-white">
-                        {error}
-                    </div>
-                )}
             </div>
             <Footer />
         </>

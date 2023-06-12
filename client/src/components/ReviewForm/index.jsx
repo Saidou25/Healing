@@ -142,7 +142,7 @@ const ReviewForm = (props) => {
                                     onChange={(e) => setReviewText(e.target.value)}
                                 /><br />
                             </form>
-                            <div className="col-12">
+                            <div className="col-12 mb-5">
                                 <label className="form-label">
                                     Rate
                                     <span className="optional">(optianal)</span>
@@ -200,16 +200,24 @@ const ReviewForm = (props) => {
                                     {/* </div> */}
                                 </div>
                             </div>
-                            {error && (
-                                <p className="my-3 p-3 bg-danger text-white fs-5 mt-4">
-                                    {error}
-                                </p>
-                            )}
-                            {confirm && (
-                                <p className="my-3 p-3 bg-success text-white fs-5 mt-4">
-                                    Done! You can now close the window...
-                                </p>
-                            )}
+                            <div>
+                                {error && (
+                                    <div className="bg-danger error text-white">
+                                        <p className='error m-2'>
+                                            {error}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                            <div>
+                                {confirm && (
+                                    <div className="error bg-success text-white">
+                                        <p className='error m-2'>
+                                            Done! You can now close the window...
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
                             <button
                                 className="btn btn-block rounded-0 btn-info mt-4"
                                 type="submit"

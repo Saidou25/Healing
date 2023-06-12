@@ -1,7 +1,22 @@
+.dashboard-main {
+    width: 100%;
+}
 .container-dashboard {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
+}
+
+.dashboard-text {
+    text-decoration: none;
+}
+
+.ds-btns {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: black;
 }
 
 .suggestion {
@@ -24,6 +39,9 @@
 }
 
 @media screen and (max-width: 414px) {
+    .dashboard-main {
+        margin-top: -5%;
+    }
     .container-dashboard {
         width: 96%;
         margin-right: auto;
@@ -32,13 +50,6 @@
 
     .direct-message {
         width: 97%;
-    }
-
-    .buttons {
-        flex-direction: column;
-        width: 100%;
-        margin-right: auto;
-        margin-left: auto;
     }
 
     .suggestion {

@@ -71,79 +71,76 @@ const Dashboard = () => {
     return (
         <>
             <Navbar />
-            <div className='container-dashboard'>
-                <div className='row buttons mt-5'>
-                    <div className='btn buttons col-lg-3 '>
-                        <div >
+            <main className='dashboard-main'>
+                <div className='container-buttons'>
+                    <div className='row buttons'>
+                        <div className='col-4 btn ds-btns btn-primary rounded-0'>
                             <Link to='/Appointment'
-                                className='btn btn-primary rounded-0 m-2'
+                                className='dashboard-text text-white'
                                 state={{ username }} >
-                                <div>
-                                    Book 
-                                </div>
+                                Book
                             </Link>
                         </div>
-                    </div>
-
-                    <div className='btn buttons col-lg-3'>
-                        <Link to='/AppointmentHistory'
-                            className='btn btn-primary rounded-0 m-2'
-                            state={{ username }} >
-                             History
-                        </Link>
-                    </div>
-
-                    <div className='btn buttons col-lg-3'>
-                        <ContactModal username={username} email={email}/>
-                    </div>
-                </div>
-
-                <div className='row'>
-                    <div className='col-lg-6 col-sm-12'>
-                        <UpcomingAppointments futureAppointments={futureAppointments} today={today} />
-                    </div>
-                    {futureAppointments.length ? (
-                        <div className='col-lg-6 col-sm-12 mt-5 mb-5'>
-                            <div className='card suggestion p-3'>
-                                <p>
-                                    We suggest comming 15 minutes prior to your appointment. <br />
-                                </p >
-                                <p>
-                                    Use direct message to provide additional information about your upcomming visit. <br />
-                                </p>
-                                <p>
-                                    For appointment cancelation please provide a 48 hours notice. Book a new appointment if you would like to reschedule.
-                                </p>
-                            </div>
+                        <div className='col-4 btn ds-btns btn-primary rounded-0'>
+                            <Link to='/AppointmentHistory'
+                                className='dashboard-text text-white'
+                                state={{ username }} >
+                                History
+                            </Link>
                         </div>
-                    ) : (
-                        <>
-                        </>
-                    )}
-                </div>
-                <div className='row mt-4'>
-                    <div className='col-lg-8 col-sm-12 border-end'>
-                        <MyReviewsList username={username} myReviews={myReviews} /> <br />
+                        <div className='col-4 btn btn-primary rounded-0'>
+                            <ContactModal username={username} email={email} />
+                        </div>
                     </div>
-                    <div className='col-lg-4 col-sm-12 border-start'>
-                        <h3 className="write-review-title mt-4">
-                            Write a review
-                        </h3>
-                        <button
-                        
-                            type='button'
-                            className='btn bt-write btn-primary mb-5'
-                            onClick={() => handleSubmit('review')}>
-                           start/close
-                        </button>
-                        {isShown ? (
+                </div>
+                <div className='container-dashboard'>
+                    <div className='row'>
+                        <div className='col-lg-6 col-sm-12'>
+                            <UpcomingAppointments futureAppointments={futureAppointments} today={today} />
+                        </div>
+                        {futureAppointments.length ? (
+                            <div className='col-lg-6 col-sm-12 mt-5 mb-5'>
+                                <div className='card suggestion p-3'>
+                                    <p>
+                                        We suggest comming 15 minutes prior to your appointment. <br />
+                                    </p >
+                                    <p>
+                                        Use direct message to provide additional information about your upcomming visit. <br />
+                                    </p>
+                                    <p>
+                                        For appointment cancelation please provide a 48 hours notice. Book a new appointment if you would like to reschedule.
+                                    </p>
+                                </div>
+                            </div>
+                        ) : (
                             <>
                             </>
-                        ) : null}
-                        {isShown ? <ReviewForm username={username} /> : null}
+                        )}
+                    </div>
+                    <div className='row mt-4'>
+                        <div className='col-lg-8 col-sm-12 border-end'>
+                            <MyReviewsList username={username} myReviews={myReviews} /> <br />
+                        </div>
+                        <div className='col-lg-4 col-sm-12 border-start'>
+                            <h3 className="write-review-title mt-4">
+                                Write a review
+                            </h3>
+                            <button
+
+                                type='button'
+                                className='btn col-12 d-flex btn-primary rounded-0 justify-content-center mt-5 mb-3'
+                                onClick={() => handleSubmit('review')}>
+                                start/close
+                            </button>
+                            {isShown ? (
+                                <>
+                                </>
+                            ) : null}
+                            {isShown ? <ReviewForm username={username} /> : null}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </main>
             <Footer />
         </>
     )

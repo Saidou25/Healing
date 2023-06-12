@@ -83,7 +83,7 @@ const UpdateMyProfileForm = (props) => {
                     <div className='card-update'>
                         <form className='profile-update'>
                             <div className='row mt-5'>
-                                <div className="col-6 update-fields">
+                                <div className="col-lg-6 col-sm-12 update-fields">
                                     <label className="form-label"> Last name</label>
                                     <input
                                         className="form-control update-control"
@@ -93,7 +93,7 @@ const UpdateMyProfileForm = (props) => {
                                         name="patientlastname"
                                     />
                                 </div>
-                                <div className="col-6  ">
+                                <div className="col-lg-6 col-sm-12  ">
                                     <label className="form-label">Address</label>
                                     <input
                                         className="form-control"
@@ -103,7 +103,7 @@ const UpdateMyProfileForm = (props) => {
                                         name="patientaddress"
                                     />
                                 </div>
-                                <div className="col-6 update-fields">
+                                <div className="col-lg-6 col-sm-12 update-fields">
                                     <label className="form-label">City</label>
                                     <input
                                         className="form-control"
@@ -113,7 +113,7 @@ const UpdateMyProfileForm = (props) => {
                                         onChange={(e) => setPatientCity(e.target.value)}
                                     />
                                 </div>
-                                <div className='col-6 update-fields'>
+                                <div className='col-lg-6 col-sm-12 update-fields'>
                                     <label className='form-label'>
                                         Select a state
                                     </label>
@@ -122,7 +122,7 @@ const UpdateMyProfileForm = (props) => {
                                         className="myClassName"
                                         onChange={(e) => setNewValue(e)} />
                                 </div>
-                                <div className="col-6 update-fields">
+                                <div className="col-lg-6 col-sm-12 update-fields">
                                     <label className="form-label">zip code</label>
                                     <input
                                         className="form-control"
@@ -132,10 +132,10 @@ const UpdateMyProfileForm = (props) => {
                                         onChange={(e) => setPatientZip(e.target.value)}
                                     />
                                 </div>
-                                <div className="col-6 update-fields">
+                                <div className="col-lg-6 col-sm-12 update-fields">
                                     <label className="form-label">Phone number</label>
                                     <PatternFormat
-                                        className='phone-update'
+                                        className='phone-update mb-5'
                                         format="(###) ### ####"
                                         allowEmptyFormatting mask="_"
                                         name='patientnumber'
@@ -144,15 +144,17 @@ const UpdateMyProfileForm = (props) => {
                                             setNumberValue(values.value);
                                         }} />
                                 </div>
-                                <div className="col-12 mt-5 ">
+                                  <div>
                                     {error && (
-                                        <div className="bg-danger phone-error text-white">
-                                            {error}
+                                        <div className="bg-danger error text-white">
+                                            <p className='error m-2'>
+                                                {error}
+                                            </p>
                                         </div>
                                     )}
                                 </div>
                                 <div className="col-12">
-                                    <button className="btn btn-primary rounded-0"
+                                    <button className="btn btn-update btn-primary rounded-0"
                                         type="submit"
                                         onClick={(e) => handleSubmit(e)}
                                         value="Send">

@@ -113,7 +113,7 @@ const PetForm = (props) => {
     return (
         <>
             <Navbar />
-            <div>
+            <main>
                 <div className='container-pet mt-5'>
                     <h4 className="card-header bg-primary rounded-0 text-light p-4">
                         About your pet</h4>
@@ -189,7 +189,7 @@ const PetForm = (props) => {
                                         name="petBreed"
                                         placeholder="breed..." />
                                 </div>
-                                <div className="col-lg-6 col-sm-12 mb-3">
+                                <div className="col-lg-6 col-sm-12 mb-5">
                                     <label className="form-label"> Pet's weight</label>
                                     <input
                                         className="form-control"
@@ -199,24 +199,27 @@ const PetForm = (props) => {
                                         value={petWeight}
                                         placeholder="weight..." />
                                 </div>
-                                <div className="col-12">
-                                    <button className="btn rounded-0 button-pet btn-primary"
+                                <div>
+                                {error && (
+                                        <div className="bg-danger error text-white mb-5">
+                                            <p className='error m-2'>
+                                            {error}
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="col-12 d-flex justify-content-center">
+                                    <button className="btn rounded-0 btn-primary"
                                         type="submit"
-
                                     >
                                         Submit
                                     </button>
                                 </div>
                             </div>
                         </form>
-                        {error && (
-                            <div className="my-3 p-3 bg-danger text-white">
-                                {error}
-                            </div>
-                        )}
                     </div>
                 </div>
-            </div>
+            </main>
             <Footer />
         </>
     )

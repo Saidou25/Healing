@@ -1,3 +1,6 @@
+/* .main-petOwner {
+    width: 100%;
+} */
 .container-owner {
     margin-top: 10%;
     width: 60%;
@@ -66,6 +69,11 @@
     margin-bottom: 15%;
 }
 @media screen and (max-width: 414px) {
+    .main-petOwner {
+        margin: 5px;
+        margin-right: auto;
+        margin-left: auto;
+    }
     .container-owner {
         margin-top: 10%;
         width: 96%;

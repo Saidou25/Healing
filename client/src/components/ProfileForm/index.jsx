@@ -129,7 +129,7 @@ const ProfileForm = () => {
     return (
         <>
             <Navbar />
-            <div>
+            <main>
                 <div className='container-profile'>
                     <p>
                         Our practitioner will be driving to the address provided in the form below.
@@ -140,7 +140,7 @@ const ProfileForm = () => {
                     <div className='card-body'>
                         <form onSubmit={(e) => handleFormSubmit(e)}>
                             <div className='row mt-5'>
-                                <div className='col-6'>
+                                <div className='col-lg-6 col-sm-12'>
                                     <div>
                                         <label className="form-label gender-question">What is your gender?</label><br />
                                         <input
@@ -159,7 +159,7 @@ const ProfileForm = () => {
                                             onChange={(e) => setPatientGender(e.target.value)} /> female
                                     </div>
                                 </div>
-                                <div className='col-6'>
+                                <div className='col-lg-6 col-sm-12'>
                                     <label className="form-label">Age</label><br />
                                     <input
                                         className='age'
@@ -170,7 +170,7 @@ const ProfileForm = () => {
                                         placeholder="MM/DD/YYYY..."
                                     />
                                 </div>
-                                <div className="col-6">
+                                <div className="col-lg-6 col-sm-12">
                                     <label className="form-label1"> First name</label>
                                     <input
                                         className="form-control"
@@ -180,7 +180,7 @@ const ProfileForm = () => {
                                         name="patientfirstname"
                                         placeholder="first name..." />
                                 </div>
-                                <div className="col-6">
+                                <div className="col-lg-6 col-sm-12">
                                     <label className="form-label1"> Last name</label>
                                     <input
                                         className="form-control"
@@ -190,7 +190,7 @@ const ProfileForm = () => {
                                         value={patientlastname}
                                         placeholder="last name..." />
                                 </div>
-                                <div className="col-6">
+                                <div className="col-lg-6 col-sm-12">
                                     <label className="form-label1">Address</label>
                                     <input
                                         className="form-control"
@@ -200,7 +200,7 @@ const ProfileForm = () => {
                                         name="patientaddress"
                                         placeholder="address..." />
                                 </div>
-                                <div className="col-6">
+                                <div className="col-lg-6 col-sm-12">
                                     <label className="form-label1">City</label>
                                     <input
                                         className="form-control"
@@ -210,7 +210,7 @@ const ProfileForm = () => {
                                         onChange={(e) => setPatientCity(e.target.value)}
                                         placeholder="enter city..." />
                                 </div>
-                                <div className='col-6'>
+                                <div className='col-lg-6 col-sm-12'>
                                     <label className='form-label'>
                                         Select a state
                                     </label>
@@ -219,7 +219,7 @@ const ProfileForm = () => {
                                         className="myClassName"
                                         onChange={setNewValue} />
                                 </div>
-                                <div className="col-6">
+                                <div className="col-lg-6 col-sm-12">
                                     <label className="form-label1">zip code</label>
                                     <input
                                         className="form-control"
@@ -229,13 +229,13 @@ const ProfileForm = () => {
                                         type="text"
                                         placeholder="zip code..." />
                                 </div>
-                                <div className="col-6">
+                                <div className="col-lg-6 col-sm-12">
                                     <label className="form-label">
                                         Phone number
                                     </label>
                                     <div>
                                         <PatternFormat
-                                            className='phone-update'
+                                            className='phone-update mb-5'
                                             format="(###) ### ####"
                                             allowEmptyFormatting mask="_"
                                             name='patientnumber'
@@ -244,7 +244,16 @@ const ProfileForm = () => {
                                             }} />
                                     </div>
                                 </div>
-                                <div className="col-12">
+                                <div>
+                                    {error && (
+                                        <div className="bg-danger error text-white mb-5">
+                                            <p className='error m-2'>
+                                                {error}
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="col-12 d-flex justify-content-center mt-4">
                                     <button className="btn button-profile btn-primary rounded-0"
                                         type="submit"
                                         value="Send">Submit</button>
@@ -252,13 +261,8 @@ const ProfileForm = () => {
                             </div>
                         </form>
                     </div>
-                    {error && (
-                        <div className="my-3 p-3 bg-danger phone-error text-white">
-                            {error}
-                        </div>
-                    )}
                 </div>
-            </div>
+            </main>
             <Footer />
         </>
     );

@@ -1,5 +1,5 @@
 .footer {
-    margin-top: 5%;
+    margin-top: 3%;
     height: 150px;
     align-items: center;
 }
@@ -11,4 +11,11 @@
 .number {
     align-items: center;
     font-size: 1.2rem;
+}
+@media screen and (max-width: 414px) {
+    .footer {
+        margin-top: 3%;
+        height: 120px;
+        align-items: center;
+    }
 }

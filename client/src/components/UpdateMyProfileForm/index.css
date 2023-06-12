@@ -9,7 +9,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    padding-left: 1%;
+   margin-left: 1%;
 }
 
 .update-title {
@@ -44,7 +44,7 @@
     border: 0 solid #ced4da;
 }
 
-.btn-primary {
+.btn-update {
     margin-top: 10%;
     display: block;
     margin-left: auto;

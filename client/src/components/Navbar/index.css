@@ -1,11 +1,11 @@
 .bg-img {
     background-image: url("../../assets/images/jumbo.jpeg");
     min-height: 380px;
-    width: 100%;
-    background-position: center;
+    /* width: 100%; */
+    /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    /* position: relative; */
 }
 .nav {
     display: flex;
@@ -42,7 +42,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 5%;
+        /* margin-bottom: 5%; */
         margin-right: 0; 
     }
     .landing-title {
