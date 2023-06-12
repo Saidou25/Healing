@@ -20,7 +20,6 @@ import AppointmentHistory from './components/AppointmentHistory';
 import Login from './pages/Login';
 import LandingPage from './pages/LandingPage';
 import UpcomingAppointments from './components/UpcomingAppointments';
-import Confirmation from './components/Confirmation';
 import AppointmentForm from './components/AppointmentForm';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
@@ -87,7 +86,6 @@ function App() {
             <Route path='/UpdateMyProfileForm' element={<UpdateMyProfileForm />} />
             <Route path='/UpdateProfile' element={<UpdateProfile />} />
             <Route path='/Signup' element={<Signup />} />
-            <Route path='/Confirmation' element={<Confirmation />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
             <Route path='/Appointment' element={<Appointment />} />

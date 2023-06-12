@@ -1,0 +1,9 @@
+.checked {
+    color: rgb(255, 225, 0);
+    border: black;
+}
+
+.unchecked {
+    color: grey;
+    border: black;
+}

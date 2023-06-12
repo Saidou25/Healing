@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_REVIEWS } from '../../utils/queries';
 import { DELETE_REVIEW } from '../../utils/mutations';
+import RatingList from '../RatingList';
 import './index.css';
 
 const MyReviewsList = (props) => {
@@ -59,11 +60,11 @@ const MyReviewsList = (props) => {
                                     <div className='row'>
                                         <div className='col-12'>
                                             <p className="card-text fs-4">
-                                                {review.reviewText}</p> 
+                                                {review.reviewText}</p>
                                         </div>
                                         <div className='col-6 mt-3'>
                                             <p className="review fs-5">
-                                                Created: fake date</p> 
+                                                Created: fake date</p>
                                         </div>
                                     </div>
                                     <div>
@@ -76,70 +77,13 @@ const MyReviewsList = (props) => {
                                                     delete
                                                 </button>
                                             </div>) : (
-                                            <>
                                                 <div className='col-6'>
                                                     <span className="review fs-5">
                                                         Author: {review.username}</span>
                                                 </div>
-                                            </>
                                         )}
                                     </div>
-                                    <div className='star mt-2'>
-                                        {/* <div className="col-2 stars"> */}
-                                            {(review.rating === '1') ? (
-                                                <i className="fa fa-star checked1"></i>
-                                            ) : (
-                                                <></>
-                                            )}
-                                        {/* </div> */}
-                                        {/* <div className="col-2"> */}
-                                            {(review.rating === '2') ? (
-                                                <div className='stars'>
-                                                    <i className="fa fa-star checked1"></i>
-                                                    <i className="fa fa-star unchecked2"></i>
-                                                </div>
-                                            ) : (<></>
-                                            )}
-                                        {/* </div> */}
-                                        {/* <div className="col-3"> */}
-                                            {(review.rating === '3') ? (
-                                                <>
-                                                    <i className="fa fa-star checked1"></i>
-                                                    <i className="fa fa-star checked2"></i>
-                                                    <i className="fa fa-star unchecked3"></i>
-                                                </>
-                                            ) : (
-                                                <></>
-                                            )}
-                                        {/* </div> */}
-                                        {/* <div className="col-2 stars"> */}
-                                            {(review.rating === '4') ? (
-                                                <>
-                                                    <i className="fa fa-star checked1"></i>
-                                                    <i className="fa fa-star checked2"></i>
-                                                    <i className="fa fa-star checked3"></i>
-                                                    <i className="fa fa-star checked4"></i>
-                                                </>
-                                            ) : (
-                                                <></>
-                                            )}
-
-                                        {/* </div> */}
-                                        {/* <div className="col-5"> */}
-                                            {(review.rating === '5')? (
-                                                <>
-                                                    <i className="fa fa-star checked1"></i>
-                                                    <i className="fa fa-star checked2"></i>
-                                                    <i className="fa fa-star checked3"></i>
-                                                    <i className="fa fa-star checked4"></i>
-                                                    <i className="fa fa-star checked5"></i>
-                                                </>
-                                            ) : (
-                                                <></>
-                                            )}
-
-                                        {/* </div> */}
-                                    </div>
+                                    <RatingList rating={review.rating} />
                                 </div>
                             </div>
                         </div>

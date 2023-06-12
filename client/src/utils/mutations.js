@@ -175,7 +175,7 @@ export const ADD_BOOKINGDATE = gql`
                  }
       }
      `;
-     export const DELETE_USER = gql`
+export const DELETE_USER = gql`
      mutation deleteUser($id: String!) {
      deleteUser(id: $id) {
       _id
@@ -250,7 +250,7 @@ mutation deletePet($username: String!) {
     }
  }
 `;
-     export const ADD_PROFILE = gql`
+export const ADD_PROFILE = gql`
      mutation addProfile(
      $username: String!,
      $patientfirstname: String!,
@@ -327,7 +327,7 @@ mutation deletePet($username: String!) {
  `;
 
 
-     export const UPDATE_PROFILE = gql`
+export const UPDATE_PROFILE = gql`
      mutation updateProfile($id: String,
      $username: String,
       $patientaddress: String,
@@ -370,7 +370,7 @@ mutation deletePet($username: String!) {
      }
  `;
 
-   export const DELETE_PROFILE = gql`
+export const DELETE_PROFILE = gql`
      mutation deleteProfile($id: String!) {
          deleteProfile(id: $id) { 
         _id
@@ -396,7 +396,7 @@ mutation deletePet($username: String!) {
               }             
      }
  `;
- 
 
-     
+
+
 
