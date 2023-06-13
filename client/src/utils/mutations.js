@@ -91,13 +91,14 @@ export const ADD_PET = gql`
      `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($username: String, $title: String!, $reviewText: String!, $rating: String) {
-    addReview(username: $username, title: $title, reviewText: $reviewText, rating: $rating) {
+  mutation addReview($username: String!, $title: String!, $reviewText: String!, $rating: String, $reviewDate: String!) {
+    addReview(username: $username, title: $title, reviewText: $reviewText, rating: $rating, reviewDate: $reviewDate) {
         _id
         username
         title
         reviewText
         rating
+        reviewDate
     }
  }
 `;

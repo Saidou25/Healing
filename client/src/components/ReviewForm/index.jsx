@@ -8,6 +8,9 @@ import './index.css';
 
 const ReviewForm = (props) => {
     const username = props.username;
+    const reviewDate = props.today;
+    console.log(reviewDate);
+    console.log(username)
 
     const [checked1, setChecked1] = useState(false);
     const [checked2, setChecked2] = useState(false);
@@ -93,7 +96,7 @@ const ReviewForm = (props) => {
         };
         try {
             const { data } = await addReview({
-                variables: { title: title, reviewText: reviewText, username: username, rating: rating },
+                variables: { reviewDate: reviewDate, title: title, reviewText: reviewText, username: username, rating: rating },
             });
 
         } catch (e) {

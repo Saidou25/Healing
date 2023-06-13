@@ -154,7 +154,8 @@ const resolvers = {
                     username: args.username,
                     reviewText: args.reviewText,
                     title: args.title,
-                    rating: args.rating
+                    rating: args.rating,
+                    reviewDate: args.reviewDate
                 });
                 await User.findOneAndUpdate(
                     { _id: context.user._id },

@@ -20,6 +20,10 @@ const reviewSchema = new Schema({
   rating: {
   type: String,
   required: false,
+},
+  reviewDate: {
+  type: String,
+  required: true,
 }
 });
 

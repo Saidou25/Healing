@@ -51,6 +51,8 @@ const Dashboard = () => {
     const username = me.username;
     const myReviews = me.reviews;
     const email = me.email;
+    console.log('me', me);
+    console.log('username form dashboard', username);
 
     const { loading, error, data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
 
@@ -136,7 +138,7 @@ const Dashboard = () => {
                                 <>
                                 </>
                             ) : null}
-                            {isShown ? <ReviewForm username={username} /> : null}
+                            {isShown ? <ReviewForm username={username} today={today}/> : null}
                         </div>
                     </div>
                 </div>

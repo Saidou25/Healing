@@ -30,10 +30,11 @@ const typeDefs = gql`
    
      type Review {
       _id: ID!
-      username: String
+      username: String!
      reviewText: String
      title: String
      rating: String
+     reviewDate: String!
      }, 
      
      type Pet {
@@ -135,10 +136,11 @@ const typeDefs = gql`
      ): Bookingdate
 
      addReview(
-     username: String
+     username: String!
      reviewText: String!
      title: String!
      rating: String
+     reviewDate: String!
      ): Review
 
     addPet(

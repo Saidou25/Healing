@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_REVIEWS } from '../../utils/queries';
 import { DELETE_REVIEW } from '../../utils/mutations';
+import profileIcon from '../../assets/images/profileicon.png';
+import trash from '../../assets/images/trash.png';
 import RatingList from '../RatingList';
 import './index.css';
 
@@ -62,28 +64,29 @@ const MyReviewsList = (props) => {
                                             <p className="card-text fs-4">
                                                 {review.reviewText}</p>
                                         </div>
-                                        <div className='col-6 mt-3'>
+                                        <div className='col-12 mt-3'>
                                             <p className="review fs-5">
-                                                Created: fake date</p>
+                                                Created on {review.reviewDate}</p>
                                         </div>
-                                    </div>
-                                    <div>
-                                        {(review.username === myUserName) ? (
-                                            <div className='d-flex justify-content-end'>
+                                        <div className='col-12'>
+                                            <img src={profileIcon} alt='profile icon' height={20} />
+                                            <span className="review fs-5 m-2">
+                                                {review.username}</span>
+                                        </div>
+                                        <div className='col-6 d-flex align-items-center'>
+                                            <RatingList rating={review.rating} />
+                                        </div>
+                                        {review.username === myUserName && (
+                                            <div className='col-6 d-flex justify-content-end'>
                                                 <button
                                                     type='button'
-                                                    className='btn delete-review mt-4 btn-danger rounded-0'
+                                                    className='btn delete-review'
                                                     onClick={() => handleSubmit(review)}>
-                                                    delete
+                                                    <img className='trash-can' src={trash} alt='trash-can' height={50} />
                                                 </button>
-                                            </div>) : (
-                                                <div className='col-6'>
-                                                    <span className="review fs-5">
-                                                        Author: {review.username}</span>
-                                                </div>
+                                            </div>
                                         )}
                                     </div>
-                                    <RatingList rating={review.rating} />
                                 </div>
                             </div>
                         </div>
