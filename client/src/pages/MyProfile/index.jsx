@@ -26,9 +26,9 @@ const MyProfile = () => {
   const myPets = pets.filter(pet => pet.username === myUserName);
 
   return (
-    <div>
+    <main className='profile-main'>
       <Profile userProfile={userProfile} userId={userId} profileId={profileId} myAppointments={myAppointments} myPets={myPets} myUserName={myUserName} />    
-    </div>
+    </main>
   )
 };
 

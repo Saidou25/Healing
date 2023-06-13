@@ -1,6 +1,6 @@
-/* .direct-message {
-    width: 97%;
-}  */
+.row {
+    --bs-gutter-x: 0;
+} 
 .modal-title-contact {
     margin-left: 24%;
  }
@@ -22,7 +22,4 @@
         margin-right: auto;
         margin-left: auto;
     }
-    .direct-message {
-    margin: 0;
-} 
 }

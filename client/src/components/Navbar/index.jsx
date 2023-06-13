@@ -14,6 +14,7 @@ const Navbar = () => {
 
     if (Auth.loggedIn()) {
         return (
+            <main className="main-nav">
             <div className="bg-img">
                 <nav className="nav">
                     <Link className="landing-title" to="/">Healing</Link>
@@ -27,9 +28,11 @@ const Navbar = () => {
                     </ul>
                 </nav>
             </div>
+            </main>
         )
     }
     return (
+        <main className="main-nav">
         <div className="bg-img">
             <nav className="nav">
                 <Link className="landing-title" to="/">
@@ -43,6 +46,7 @@ const Navbar = () => {
                 </ul>
             </nav>
         </div>
+        </main>
     );
 
     function CustomLink({ to, children, ...props }) {

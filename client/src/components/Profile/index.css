@@ -4,40 +4,33 @@
     margin-right: auto;
     margin-left: auto;
 }
-
 .my-profile {
     text-align: center;
     /* margin: 10%; */
 }
-
 .card-header {
     border: 0;
 }
-
 .profile-body {
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 .profile {
     width: 100%;
 }
-
 .update-profile {
-    width: 100%;
+width: 100%;
 }
-
 .footer-myprofile {
     position: fixed !important;
     bottom: 0 !important;
     width: 100%;
 }
-
 .error {
     height: 60px;
     display: flex;
     align-items: center;
-    /* margin: 1%; */
+   margin-left: 1%;
 }
 
 @media screen and (max-width: 414px) {
@@ -48,7 +41,6 @@
         margin-left: auto;
     }
 }
-
 @media screen and (max-width: 375px) {
     .footer-myprofile {
         position: relative !important;
