@@ -1,0 +1,42 @@
+.btn-side {
+    /* border-radius: 50%; */
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.lines {
+    border: 1px solid white;
+}
+
+.btn-logout {
+    border-style: none;
+    background-color: Transparent;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.col-items {
+    border-bottom-style: solid;
+}
+
+.nav-item-side {
+    text-decoration: none;
+    color: white;
+    width: 250px;
+}
+
+.show {
+    display: none;
+}
+
+.profile-icon-side {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 414px) {
+    .show {
+        display: block;
+    }
+}

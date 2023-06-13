@@ -13,7 +13,7 @@ const Login = () => {
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [login, { error, data, loading }] = useMutation(LOGIN_USER);
 
-     // update state based on form input changes
+    // update state based on form input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
 
@@ -22,7 +22,7 @@ const Login = () => {
             [name]: value,
         });
     };
-// submit form
+    // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -34,13 +34,13 @@ const Login = () => {
             Auth.login(data.login.token);
 
             navigate('/Dashboard', { state: { formState } });
-           
+
         } catch (e) {
             console.error(e);
             navigate('/');
         }
-         // clear form values
-         setFormState({
+        // clear form values
+        setFormState({
             email: '',
             password: '',
         });
@@ -86,6 +86,15 @@ const Login = () => {
                                         value={formState.password}
                                         onChange={handleChange}
                                     /> <br />
+                                    <div>
+                                        {error && (
+                                            <div className="bg-danger error text-white mb-4">
+                                                <p className='error m-2'>
+                                                    {error.message}
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
                                     <button
                                         className="btn btn-block rounded-0 mt-5 btn-info"
                                         style={{ cursor: 'pointer' }}
@@ -94,11 +103,6 @@ const Login = () => {
                                     </button>
                                 </form>
                             )}
-                        {error && (
-                            <div className="my-3 p-3 bg-danger text-white">
-                                {error.message}
-                            </div>
-                        )}
                     </div>
                 </div>
             </main>

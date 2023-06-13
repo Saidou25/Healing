@@ -9,7 +9,7 @@ const RatingList = (props) => {
             <div className='star mt-2'>
                 {rating === '' && (
                     <>
-                        <i className="fa fa-star unchecked"></i>
+                        <i className="fa fa-star-sharp unchecked"></i>
                         <i className="fa fa-star unchecked"></i>
                         <i className="fa fa-star unchecked"></i>
                         <i className="fa fa-star unchecked"></i>

@@ -1,4 +1,6 @@
-
+.main-nav {
+    display: block;
+}
 .bg-img {
     background-image: url("../../assets/images/jumbo.jpeg");
     min-height: 380px;
@@ -36,6 +38,9 @@
 .profile-icon {
     margin-left: 16px;
 }
+.hide {
+    display: show;
+}
 
 @media screen and (max-width: 414px) {
     .nav {
@@ -62,6 +67,9 @@
         background-size: cover;
         position: relative;
         width: 100%;
+    }
+    .hide {
+        display: none;
     }
    
 }
