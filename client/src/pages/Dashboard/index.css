@@ -8,7 +8,7 @@
 }
 
 .dashboard-text {
-    text-decoration: none;
+    text-decoration: hiden;
 }
 
 .ds-btns {
@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: black;
+    border-color: black;
 }
 
 .suggestion {
@@ -30,11 +30,12 @@
     text-align: center;
 }
 
-.border-end {
+.review-border {
     padding-right: 3%;
+    border-right-style: solid;
 }
 
-.border-start {
+.write-review {
     padding-left: 3%;
 }
 
@@ -55,5 +56,13 @@
     .suggestion {
         width: 100%;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .review-border {
+        padding-right: 0;
+        border-right-style: none;
+    }
+    
+    .write-review {
+        padding-left: 0;
     }
 }

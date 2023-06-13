@@ -120,10 +120,10 @@ const Dashboard = () => {
                         )}
                     </div>
                     <div className='row mt-4'>
-                        <div className='col-lg-8 col-sm-12 border-end'>
+                        <div className='col-lg-8 col-sm-12 review-border'>
                             <MyReviewsList username={username} myReviews={myReviews} /> <br />
                         </div>
-                        <div className='col-lg-4 col-sm-12 border-start'>
+                        <div className='col-lg-4 col-sm-12 write-review'>
                             <h3 className="write-review-title mt-4">
                                 Write a review
                             </h3>

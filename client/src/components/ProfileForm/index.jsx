@@ -140,18 +140,18 @@ const ProfileForm = () => {
                     <div className='card-body'>
                         <form onSubmit={(e) => handleFormSubmit(e)}>
                             <div className='row mt-5'>
-                                <div className='col-lg-6 col-sm-12'>
+                                <div className='col-lg-6 col-sm-12 p-2'>
                                     <div>
-                                        <label className="form-label gender-question">What is your gender?</label><br />
+                                        <label className="form-label">What is your gender?</label><br />
                                         <input
-                                            className='radio m-2 ms-4'
+                                            className='radio'
                                             type="radio"
                                             name="patientgender"
                                             value='male'
                                             checked={patientgender === 'male'}
                                             onChange={(e) => setPatientGender(e.target.value)} /> male
                                         <input
-                                            className='radio m-2 ms-4'
+                                            className='radio'
                                             type="radio"
                                             name='patientgender'
                                             value='female'
@@ -159,7 +159,7 @@ const ProfileForm = () => {
                                             onChange={(e) => setPatientGender(e.target.value)} /> female
                                     </div>
                                 </div>
-                                <div className='col-lg-6 col-sm-12'>
+                                <div className='col-lg-6 col-sm-12 p-2'>
                                     <label className="form-label">Age</label><br />
                                     <input
                                         className='age'
@@ -170,7 +170,7 @@ const ProfileForm = () => {
                                         placeholder="MM/DD/YYYY..."
                                     />
                                 </div>
-                                <div className="col-lg-6 col-sm-12">
+                                <div className="col-lg-6 col-sm-12 p-2">
                                     <label className="form-label1"> First name</label>
                                     <input
                                         className="form-control"
@@ -180,7 +180,7 @@ const ProfileForm = () => {
                                         name="patientfirstname"
                                         placeholder="first name..." />
                                 </div>
-                                <div className="col-lg-6 col-sm-12">
+                                <div className="col-lg-6 col-sm-12 p-2">
                                     <label className="form-label1"> Last name</label>
                                     <input
                                         className="form-control"
@@ -190,7 +190,7 @@ const ProfileForm = () => {
                                         value={patientlastname}
                                         placeholder="last name..." />
                                 </div>
-                                <div className="col-lg-6 col-sm-12">
+                                <div className="col-lg-6 col-sm-12 p-2">
                                     <label className="form-label1">Address</label>
                                     <input
                                         className="form-control"
@@ -200,7 +200,7 @@ const ProfileForm = () => {
                                         name="patientaddress"
                                         placeholder="address..." />
                                 </div>
-                                <div className="col-lg-6 col-sm-12">
+                                <div className="col-lg-6 col-sm-12 p-2">
                                     <label className="form-label1">City</label>
                                     <input
                                         className="form-control"
@@ -210,8 +210,8 @@ const ProfileForm = () => {
                                         onChange={(e) => setPatientCity(e.target.value)}
                                         placeholder="enter city..." />
                                 </div>
-                                <div className='col-lg-6 col-sm-12'>
-                                    <label className='form-label'>
+                                <div className='col-lg-6 col-sm-12 p-2'>
+                                    <label className='form-label1'>
                                         Select a state
                                     </label>
                                     <SelectUSState
@@ -219,7 +219,7 @@ const ProfileForm = () => {
                                         className="myClassName"
                                         onChange={setNewValue} />
                                 </div>
-                                <div className="col-lg-6 col-sm-12">
+                                <div className="col-lg-6 col-sm-12 p-2">
                                     <label className="form-label1">zip code</label>
                                     <input
                                         className="form-control"
@@ -229,7 +229,7 @@ const ProfileForm = () => {
                                         type="text"
                                         placeholder="zip code..." />
                                 </div>
-                                <div className="col-lg-6 col-sm-12">
+                                <div className="col-lg-6 col-sm-12 p-2">
                                     <label className="form-label">
                                         Phone number
                                     </label>

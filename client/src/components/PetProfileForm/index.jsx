@@ -120,7 +120,7 @@ const PetForm = (props) => {
                     <div className="card-body">
                         <form onSubmit={handleFormSubmit}>
                             <div className='row mt-5'>
-                                <div className='col-lg-6 col-sm-12 mb-3'>
+                                <div className='col-lg-6 col-m-6 col-sm-12 p-2'>
                                     <div>
                                         <label className="form-label">What kind of pet?</label><br />
                                         <input
@@ -139,7 +139,7 @@ const PetForm = (props) => {
                                             onChange={handleChange} /> cat
                                     </div>
                                 </div>
-                                <div className='col-lg-6 col-sm-12 mb-3'>
+                                <div className='col-lg-6 col-m-6 col-sm-12 p-2'>
                                     <div>
                                         <label className="form-label">What is your pet's gender?</label><br />
                                         <input
@@ -158,8 +158,8 @@ const PetForm = (props) => {
                                             onChange={handleChange} /> female
                                     </div>
                                 </div>
-                                <div className="col-lg-6 col-sm-12 mb-3">
-                                    <label className="form-label"> Name</label>
+                                <div className="col-lg-6 col-m-6 col-sm-12 p-2">
+                                    <label className="form-label1"> Name</label>
                                     <input
                                         className="form-control"
                                         onChange={handleChange}
@@ -168,8 +168,8 @@ const PetForm = (props) => {
                                         name="petName"
                                         placeholder="pet's name..." />
                                 </div>
-                                <div className='col-lg-6 col-sm-12 mb-3'>
-                                    <label className="form-label">Age</label><br />
+                                <div className='col-lg-6 col-m-6 col-sm-12 p-2'>
+                                    <label className="form-label1">Age</label><br />
                                     <input
                                         className='age'
                                         type='text'
@@ -179,7 +179,7 @@ const PetForm = (props) => {
                                         placeholder="ex: 7..."
                                     />
                                 </div>
-                                <div className="col-lg-6 col-sm-12 mb-3">
+                                <div className="col-lg-6 col-m-6 col-sm-12 p-2">
                                     <label className="form-label"> Breed</label>
                                     <input
                                         className="form-control"
@@ -189,7 +189,7 @@ const PetForm = (props) => {
                                         name="petBreed"
                                         placeholder="breed..." />
                                 </div>
-                                <div className="col-lg-6 col-sm-12 mb-5">
+                                <div className="col-lg-6 col-m-6 col-sm-12 p-2">
                                     <label className="form-label"> Pet's weight</label>
                                     <input
                                         className="form-control"
@@ -201,14 +201,14 @@ const PetForm = (props) => {
                                 </div>
                                 <div>
                                 {error && (
-                                        <div className="bg-danger error text-white mb-5">
+                                        <div className="bg-danger error text-white mt-5 p-2">
                                             <p className='error m-2'>
                                             {error}
                                             </p>
                                         </div>
                                     )}
                                 </div>
-                                <div className="col-12 d-flex justify-content-center">
+                                <div className="col-12 d-flex justify-content-center mt-5">
                                     <button className="btn rounded-0 btn-primary"
                                         type="submit"
                                     >
