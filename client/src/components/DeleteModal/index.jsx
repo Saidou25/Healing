@@ -71,7 +71,7 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
                                 <div className="col-12 d-flex justify-content-center modal-body fs-4 mt-4 mb-4">
                                     <p>Are you sure you want to delete your account?</p>
                                 </div>
-                                <div className='row mb-3'>
+                                <div className='row mb-3 p-3'>
                                     <button className="col-6 btn btn-secondary fs-4"
                                         type="button"
                                         data-bs-dismiss="modal">
