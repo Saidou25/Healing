@@ -1,10 +1,15 @@
 .dashboard-main {
     width: 100%;
 }
+
 .container-dashboard {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
+}
+
+.fa-bars {
+    color: white;
 }
 
 .dashboard-text {
@@ -41,6 +46,7 @@
 }
 
 @media screen and (max-width: 414px) {
+
     /* .dashboard-main {
         margin-top: -5%;
     } */
@@ -58,14 +64,16 @@
         width: 100%;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+
     .review-border {
         padding-right: 0;
         border-right-style: none;
     }
-    
+
     .write-review {
         padding-left: 0;
     }
+    
     /* .dashboard-text {
         display: flex;
         align-items: center;

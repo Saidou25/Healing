@@ -17,17 +17,23 @@ const Navbar = () => {
         return (
             <main className="main-nav">
                 <div className="bg-img">
-                    <nav className="nav">
-                        <Link className="landing-title" to="/">Healing</Link>
-                        <ul className="nav hide justify-content-end">
-                            <CustomLink to='/About' className='nav-item fs-3'>About</CustomLink>
-                            <CustomLink to='/Dashboard' className='nav-item fs-3'>dashboard</CustomLink>
-                            <button className='btt-logout fs-3' onClick={logout}>logout</button>
-                            <Link className='profile-icon' to="/MyProfile">
-                                <img src={profileIcon} alt='profile icon' height={43} />
-                            </Link>
-                        </ul>
-                        <SideMenu />
+                    <nav className="row nav">
+                        <div className="col-12 d-flex justify-content-end">
+                            <SideMenu />
+                        </div>
+                        <div className="col-lg-6 col-m-6 col-sm-12 landing-title">
+                            <Link className="landing" to="/">Healing</Link>
+                        </div>
+                        <div className="col-6">
+                            <ul className="nav hide justify-content-end">
+                                <CustomLink to='/About' className='nav-item fs-3'>About</CustomLink>
+                                <CustomLink to='/Dashboard' className='nav-item fs-3'>dashboard</CustomLink>
+                                <button className='btt-logout fs-3' onClick={logout}>logout</button>
+                                <Link className='profile-icon' to="/MyProfile">
+                                    <img src={profileIcon} alt='profile icon' height={43} />
+                                </Link>
+                            </ul>
+                        </div>
                     </nav>
                 </div>
             </main>
@@ -37,17 +43,21 @@ const Navbar = () => {
     return (
         <main className="main-nav">
             <div className="bg-img">
-                <nav className="nav">
-                    <Link className="landing-title" to="/">
-                        Healing
-                    </Link>
-                    <ul className="nav hide justify-content-end">
-                        <CustomLink to='/About' className='nav-item fs-3'>About</CustomLink>
-                        <CustomLink to='/Login' className='nav-item fs-3'>login</CustomLink>
-                        <CustomLink to='/Signup' className='nav-item fs-3'>signup</CustomLink>
-                        <button className='btt-logout fs-3' onClick={logout}>logout</button>
-                    </ul>
-                    <SideMenu />
+                <nav className="row nav">
+                    <div className="col-12 d-flex justify-content-end">
+                        <SideMenu />
+                    </div>
+                    <div className="col-lg-6 col-m-6 col-sm-12 landing-title">
+                        <Link className="landing" to="/">Healing</Link>
+                    </div>
+                    <div className="col-6">
+                        <ul className="nav hide justify-content-end">
+                            <CustomLink to='/About' className='nav-item fs-3'>About</CustomLink>
+                            <CustomLink to='/Login' className='nav-item fs-3'>login</CustomLink>
+                            <CustomLink to='/Signup' className='nav-item fs-3'>signup</CustomLink>
+                            <button className='btt-logout fs-3' onClick={logout}>logout</button>
+                        </ul>
+                    </div>
                 </nav>
             </div>
         </main>

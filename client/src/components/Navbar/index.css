@@ -1,34 +1,38 @@
 .main-nav {
     display: block;
 }
+
 .bg-img {
     background-image: url("../../assets/images/jumbo.jpeg");
     min-height: 380px;
     /* width: 100%; */
-    /* background-position: center; */
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     /* position: relative; */
 }
+
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5%;
-    margin-right: 20px;
     text-decoration: none;
 }
+
 .landing-title {
     margin-top: 3%;
-    margin-left: 30px;
+    padding-left: 30px;
     text-decoration: none;
-    color: black;
     font-size: 7rem;
+    color: black;
 }
+
 .nav-item {
     text-decoration: none;
     margin: 6px;
 }
+
 .btt-logout {
     border: none;
     background-color: Transparent;
@@ -37,20 +41,43 @@
 
 .profile-icon {
     margin-left: 16px;
+    padding-right: 10px;
 }
+
 .hide {
     display: show;
 }
 
-@media screen and (max-width: 414px) {
-    .nav {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        /* margin-bottom: 5%; */
-        margin-right: 0; 
+@media screen and (max-width: 825px) {
+    .hide {
+        display: none;
     }
+
+    .landing-title {
+        margin-top: 0;
+        padding-left: 30px;
+        text-decoration: none;
+        font-size: 7rem;
+        color: black;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .landing-title {
+        text-align: center;
+        margin-top: 0;
+        padding-left: 0;
+        font-size: 5rem;
+        text-decoration: none;
+        color: black;
+    }
+
+    .bg-img {
+        min-height: 250px;
+    }
+}
+
+@media screen and (max-width: 414px) {
     .landing-title {
         text-align: center;
         margin-top: 0;
@@ -59,6 +86,7 @@
         text-decoration: none;
         color: black;
     }
+
     .bg-img {
         background-image: url("../../assets/images/jumbo.jpeg");
         min-height: 250px;
@@ -68,8 +96,9 @@
         position: relative;
         width: 100%;
     }
+
     .hide {
         display: none;
     }
-   
+
 }

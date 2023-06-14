@@ -12,18 +12,23 @@ const SideMenu = () => {
 
     return (
         <main className="side-menu show">
-            <a className="btn btn-side btn-primary text-white"
-                data-bs-toggle="offcanvas"
-                href="#offcanvasExample"
-                role="button"
-                aria-controls="offcanvasExample">
-            </a>
+            <div>
+
+                <a className="btn btn-side"
+                    height={43}
+                    data-bs-toggle="offcanvas"
+                    href="#offcanvasExample"
+                    role="button"
+                    aria-controls="offcanvasExample">
+                    <i className="fa-solid fa-bars text-black fs-2"></i>
+                </a>
+            </div>
             <div className="offcanvas offcanvas-start bg-primary"
                 tabIndex="-1"
                 id="offcanvasExample"
                 aria-labelledby="offcanvasExampleLabel">
                 <div className="offcanvas-header text-white">
-                    <a className="landing-title text-white"
+                    <a className="landing-title-side text-white"
                         href="/">
                         Healing
                     </a>
@@ -51,23 +56,35 @@ const SideMenu = () => {
                     <nav className="nav side-nav">
                         <ul className="nav links-side">
                             <li className="col-12 col-items mt-5 pb-5">
-                                    <a className='nav-item-side fs-3'
-                                        href="/About">
-                                        About
-                                    </a>
+                                <a className='nav-item-side fs-3'
+                                    href="/About">
+                                    About
+                                </a>
                             </li>
                             <li className="col-12 col-items mt-5 pb-5">
-                                    <a className='nav-item-side fs-3'
-                                        href="Dashboard">
-                                        dashboard
-                                    </a>
+                                <a className='nav-item-side fs-3'
+                                    href="/Dashboard">
+                                    dashboard
+                                </a>
                             </li>
-                            <li className="col-12 col-items mt-5 pb-4">
-                                    <a className='btn-logout nav-item-side fs-3'
-                                        href="/"
-                                        onClick={logout}>
-                                        logout
-                                    </a>
+                            <li className="col-12 col-items mt-5 pb-5">
+                                <a className='nav-item-side fs-3'
+                                    href="/Dashboard">
+                                    visits
+                                </a>
+                            </li>
+                            <li className="col-12 col-items mt-5 pb-5">
+                                <a className='btn-logout nav-item-side fs-3'
+                                    href="/Login">
+                                    login
+                                </a>
+                            </li>
+                            <li className="col-12 col-items mt-5 pb-5">
+                                <a className='btn-logout nav-item-side fs-3'
+                                    href="/"
+                                    onClick={logout}>
+                                    logout
+                                </a>
                             </li>
                         </ul>
                     </nav>

@@ -1,15 +1,21 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import SideMenu from "../../components/SideMenu";
 import './index.css';
 
 const LandingPage = () => {
-    
+
     return (
         <div className="mainlandingpage">
+            <div className="row">
+                <div className='col-12 d-flex justify-content-end'>
+                    <SideMenu />
+                </div>
+            </div>
             <div className="landing-title">
-            <Link className="landing text-primary" to="/">
-                Healing
-            </Link>
+                <Link className="col-12 landing text-primary" to="/">
+                    Healing
+                </Link>
             </div>
             <div className="landing-parent">
                 <div className="card landing-page rounded-0">
