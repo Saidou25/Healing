@@ -26,7 +26,6 @@
 .landing-title {
     margin-top: 3%;
     padding-left: 30px;
-    text-decoration: none;
     font-size: 7rem;
     color: black;
 }
@@ -56,7 +55,6 @@
     .landing-title {
         margin-top: 0;
         padding-left: 30px;
-        text-decoration: none;
         font-size: 7rem;
         color: black;
     }
@@ -68,7 +66,6 @@
         margin-top: 0;
         padding-left: 0;
         font-size: 5rem;
-        text-decoration: none;
         color: black;
     }
 }
@@ -79,7 +76,6 @@
         margin-top: 0;
         padding-left: 0;
         font-size: 5rem;
-        text-decoration: none;
         color: black;
     }
 

@@ -17,19 +17,19 @@ const Navbar = () => {
         return (
             <main className="main-nav">
                 <div className="bg-img">
-                    <nav className="row nav">
+                    <nav className="row">
                         <div className="col-12 d-flex justify-content-end">
                             <SideMenu />
                         </div>
-                        <div className="col-lg-6 col-m-6 col-sm-12 landing-title">
-                            <Link className="landing" to="/">Healing</Link>
-                        </div>
-                        <div className="col-6">
-                            <ul className="nav hide justify-content-end">
-                                <CustomLink to='/About' className='nav-item fs-3'>About</CustomLink>
-                                <CustomLink to='/Dashboard' className='nav-item fs-3'>dashboard</CustomLink>
-                                <button className='btt-logout fs-3' onClick={logout}>logout</button>
-                                <Link className='profile-icon' to="/MyProfile">
+                        <div className="one">
+                            <div className="landing-title">
+                                <Link className="landing" to="/">Healing</Link>
+                            </div>
+                            <ul className="nav d-flex">
+                                <CustomLink to='/About' className='nav-item show-hide fs-3'>About</CustomLink>
+                                <CustomLink to='/Dashboard' className='nav-item show-hide fs-3'>dashboard</CustomLink>
+                                <button className='btt-logout show-hide fs-3' onClick={logout}>logout</button>
+                                <Link className='profile-icon nav-item show-hide fs-3' to="/MyProfile">
                                     <img src={profileIcon} alt='profile icon' height={43} />
                                 </Link>
                             </ul>
