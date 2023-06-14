@@ -69,23 +69,34 @@ const SideMenu = () => {
                             </li>
                             <li className="col-12 col-items mt-5 pb-5">
                                 <a className='nav-item-side fs-3'
-                                    href="/Dashboard">
+                                    href="/Visit">
                                     visits
                                 </a>
                             </li>
-                            <li className="col-12 col-items mt-5 pb-5">
-                                <a className='btn-logout nav-item-side fs-3'
-                                    href="/Login">
-                                    login
-                                </a>
-                            </li>
-                            <li className="col-12 col-items mt-5 pb-5">
-                                <a className='btn-logout nav-item-side fs-3'
-                                    href="/"
-                                    onClick={logout}>
-                                    logout
-                                </a>
-                            </li>
+                            {(Auth.loggedIn()) ? (
+                                <li className="col-12 col-items mt-5 pb-5">
+                                    <a className='btn-logout nav-item-side fs-3'
+                                        href="/"
+                                        onClick={logout}>
+                                        logout
+                                    </a>
+                                </li>
+                            ) : (
+                                <>
+                                <li className="col-12 col-items mt-5 pb-5">
+                                    <a className='btn-logout nav-item-side fs-3'
+                                        href="/Login">
+                                        login
+                                    </a>
+                                </li>
+                                <li className="col-12 col-items mt-5 pb-5">
+                                    <a className='btn-logout nav-item-side fs-3'
+                                        href="/Signup">
+                                        signup
+                                    </a>
+                                </li>
+                                </>
+                            )}
                         </ul>
                     </nav>
                 </div>

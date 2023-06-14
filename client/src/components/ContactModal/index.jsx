@@ -56,7 +56,7 @@ const ProfileModal = (props) => {
                             </div>
                             <div className="modal-body fs-4 m-2">
                                 <form>
-                                    <label className="form-label-contact fs-4">Message</label>
+                                    <label className="form-label-contact text-primary mb-5 fs-4">Message</label>
                                     <textarea
                                         className="form-control message"
                                         type="text"
@@ -64,7 +64,7 @@ const ProfileModal = (props) => {
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
                                         placeholder="type your message..." />
-                                    <div className='row m-2'>
+                                    <div className='row m-2 mt-5'>
                                         <button className="col-6 btn btn-primary bg-transparent text-primary fs-4"
                                             type="button"
                                             data-bs-dismiss="modal">

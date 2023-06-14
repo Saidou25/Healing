@@ -107,7 +107,7 @@ const Dashboard = () => {
                                         We suggest comming 15 minutes prior to your appointment. <br />
                                     </p >
                                     <p>
-                                        Use direct message to provide additional information about your upcomming visit. <br />
+                                        Use direct message to provide additional information about your upcoming visit. <br />
                                     </p>
                                     <p>
                                         For appointment cancelation please provide a 48 hours notice. Book a new appointment if you would like to reschedule.

@@ -27,6 +27,7 @@ import MyProfile from './pages/MyProfile';
 import Profile from './components/Profile';
 import ContactModal from './components/ContactModal';
 import UpdateMyProfileForm from './components/UpdateMyProfileForm';
+import Visit from './components/Visit';
 import UpdateProfile from './components/UpdateProfile';
 import About from './components/About';
 
@@ -97,6 +98,7 @@ function App() {
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/About' element={<About />} />
             <Route path='/MyProfile' element={<MyProfile />} />
+            <Route path='/Visit' element={<Visit />} />
             <Route path='/' element={<LandingPage />} />
           </Routes>
         </>

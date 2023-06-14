@@ -21,6 +21,16 @@
     margin: 15px;
 }
 
+@media screen and (max-width: 800px) {
+    .signup {
+        width: 90%;
+        margin-top: 10%;
+        margin-right: auto;
+        margin-left: auto;
+        box-shadow: none;
+        margin-bottom: 10%;
+    }
+}
 @media screen and (max-width: 414px) {
     .signup {
         width: 90%;
