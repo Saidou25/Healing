@@ -9,8 +9,6 @@ import './index.css';
 const ReviewForm = (props) => {
     const username = props.username;
     const reviewDate = props.today;
-    console.log(reviewDate);
-    console.log(username)
 
     const [checked1, setChecked1] = useState(false);
     const [checked2, setChecked2] = useState(false);
@@ -88,7 +86,6 @@ const ReviewForm = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('rating', rating);
         if (title.length < 2 || reviewText.length < 2) {
             setConfirm(false);
             setError('All fields need filled with two charactes minimum!');
@@ -120,13 +117,13 @@ const ReviewForm = (props) => {
 
     return (
         <>
-            <main className="flex-row">
-                <div className="col-12 col-lg-10 review-form">
+            <main className="row">
+                <div className="col-12 review-form">
                     <div className="card">
                         <h4 className="card-header-review-title bg-primary text-light p-2">review</h4>
                         <div className="card-body">
                             <form>
-                                <label className="form-label">Title</label><br />
+                                <label className="form-label-review mb-4">Title</label><br />
                                 <input
                                     className="form-input review-form-input mb-3"
                                     placeholder="title..."
@@ -135,7 +132,7 @@ const ReviewForm = (props) => {
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
-                                <label className="form-label">Text</label><br />
+                                <label className="form-label-review mb-4">Text</label><br />
                                 <textarea
                                     className="form-input review-textarea mb-3"
                                     placeholder="write your text here..."
@@ -146,12 +143,11 @@ const ReviewForm = (props) => {
                                 /><br />
                             </form>
                             <div className="col-12 mb-5">
-                                <label className="form-label">
+                                <label className="form-label-review mb-4 mt-4">
                                     Rate
                                     <span className="optional">(optianal)</span>
                                 </label>
                                 <div className='row star mt-2'>
-                                    {/* <div className="col-2"> */}
                                     <button className='col-2 btn'
                                         onClick={() => handleChange('1')}>
                                         {checked1 ? (
@@ -160,8 +156,6 @@ const ReviewForm = (props) => {
                                             <i className="fa fa-star unchecked1"></i>
                                         )}
                                     </button>
-                                    {/* </div> */}
-                                    {/* <div className="col-2"> */}
                                     <button className='col-2 btn'
                                         onClick={() => handleChange('2')}>
                                         {checked2 ? (
@@ -170,8 +164,6 @@ const ReviewForm = (props) => {
                                             <i className="fa fa-star unchecked2"></i>
                                         )}
                                     </button>
-                                    {/* </div> */}
-                                    {/* <div className="col-2"> */}
                                     <button className='col-2 btn'
                                         onClick={() => handleChange('3')}>
                                         {checked3 ? (
@@ -180,8 +172,6 @@ const ReviewForm = (props) => {
                                             <i className="fa fa-star unchecked3"></i>
                                         )}
                                     </button>
-                                    {/* </div> */}
-                                    {/* <div className="col-2"> */}
                                     <button className='col-2 btn'
                                         onClick={() => handleChange('4')}>
                                         {checked4 ? (
@@ -190,8 +180,6 @@ const ReviewForm = (props) => {
                                             <i className="fa fa-star unchecked4"></i>
                                         )}
                                     </button>
-                                    {/* </div> */}
-                                    {/* <div className="col-2"> */}
                                     <button className='col-2 btn'
                                         onClick={() => handleChange('5')}>
                                         {checked5 ? (
@@ -200,7 +188,6 @@ const ReviewForm = (props) => {
                                             <i className="fa fa-star unchecked5"></i>
                                         )}
                                     </button>
-                                    {/* </div> */}
                                 </div>
                             </div>
                             <div>
@@ -225,11 +212,9 @@ const ReviewForm = (props) => {
                                 className="btn btn-block rounded-0 btn-info mt-4"
                                 type="submit"
                                 onClick={handleSubmit}
-
                             >
                                 Submit
                             </button>
-                            {/* </form> */}
                         </div>
                     </div>
                 </div>

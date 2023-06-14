@@ -5,7 +5,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 import ContactModal from '../../components/ContactModal';
 import UpcomingAppointments from '../../components/UpcomingAppointments';
-import MyReviewsList from '../../components/MyReviewsList';
+import AllReviews from '../../components/AllReviews';
+import MyReviewList from '../../components/MyReviewList';
 import ReviewForm from '../../components/ReviewForm';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -51,8 +52,6 @@ const Dashboard = () => {
     const username = me.username;
     const myReviews = me.reviews;
     const email = me.email;
-    console.log('me', me);
-    console.log('username form dashboard', username);
 
     const { loading, error, data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
 
@@ -86,7 +85,7 @@ const Dashboard = () => {
                         <div className='col-4 btn ds-btns btn-primary rounded-0'>
                             <Link to='/AppointmentHistory'
                                 className='dashboard-text text-white'
-                                state={{ username }} >
+                                state={{ username, myReviews }} >
                                 History
                             </Link>
                         </div>
@@ -121,7 +120,8 @@ const Dashboard = () => {
                     </div>
                     <div className='row mt-4'>
                         <div className='col-lg-8 col-sm-12 review-border'>
-                            <MyReviewsList username={username} myReviews={myReviews} /> <br />
+                            {/* <MyReviewList myReviews={myReviews} username={username} /> */}
+                            <AllReviews />
                         </div>
                         <div className='col-lg-4 col-sm-12 write-review'>
                             <h3 className="write-review-title mt-4">
@@ -138,7 +138,7 @@ const Dashboard = () => {
                                 <>
                                 </>
                             ) : null}
-                            {isShown ? <ReviewForm username={username} today={today}/> : null}
+                            {isShown ? <ReviewForm username={username} today={today} /> : null}
                         </div>
                     </div>
                 </div>

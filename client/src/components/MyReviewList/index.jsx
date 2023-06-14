@@ -39,7 +39,7 @@ const MyReviewsList = (props) => {
             const { data } = deleteReview({
                 variables: { id: reviewId }
             });
-            setReviewId(review._id);
+            setReviewId(reviewId);
             console.log('Review deleted successfully');
         } catch (err) {
             console.error(err);
@@ -49,9 +49,25 @@ const MyReviewsList = (props) => {
     if (loading) {
         return <h3>loading...</h3>
     }
+if (!reviews.length) {
+    return (
+        <div className='container-no-history mt-5 mb-5'>
+                        <div className='card no-history'>
+                            <p className='card-header history-header fs-3'>
+                                You haven' t wrote a review yet
+                            </p>
+                            <div className='card-body history-text'>
+                                <p>
+                                    Your reviews will show on here soon.
+                                </p >
+                            </div>
+                        </div>
+                    </div>
+    )
+}
     return (
         <div className='container-review'>
-            <h3 className="review-list-title mt-4 mb-5">Read what people say: </h3>
+            <h3 className="review-list-title mt-5 mb-5">Your reviews</h3>
             <div className="row">
                 {reviews &&
                     reviews.map((review) => (

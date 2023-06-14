@@ -1,25 +1,16 @@
-.review-form {
-    width: 98%;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.review-form-input {
-    width: 100%;
-}
-
 .review-textarea {
     width: 100%;
 }
+
 .optional {
     color: #55595c;
     font-style: oblique;
     font-size: 1rem;
 }
+
 .btn-info {
     width: 100%;
 }
-
 
 .form-input {
     width: 100%;
@@ -41,6 +32,7 @@
     justify-content: center;
     height: 80px;
 }
+
 .fa-star {
     font-size: 20px;
     border-width: thin;

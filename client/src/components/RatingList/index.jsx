@@ -3,7 +3,6 @@ import './index.css';
 
 const RatingList = (props) => {
     const rating = props.rating;
-    console.log('rating from list', rating);
     return (
         <>
             <div className='star mt-2'>

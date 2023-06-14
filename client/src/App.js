@@ -14,7 +14,7 @@ import ProfileForm from './components/ProfileForm';
 import PetProfileForm from './components/PetProfileForm';
 import PetOwnerProfileForm from './components/PetOwnerProfileForm';
 import ReviewForm from './components/ReviewForm';
-import MyReviewsList from './components/MyReviewsList';
+import MyReviewList from './components/MyReviewList';
 import Appointment from './components/Appointment';
 import AppointmentHistory from './components/AppointmentHistory';
 import Login from './pages/Login';
@@ -26,6 +26,7 @@ import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/MyProfile';
 import Profile from './components/Profile';
 import ContactModal from './components/ContactModal';
+import AllReviews from './components/AllReviews';
 import UpdateMyProfileForm from './components/UpdateMyProfileForm';
 import Visit from './components/Visit';
 import UpdateProfile from './components/UpdateProfile';
@@ -83,7 +84,7 @@ function App() {
             <Route path='/Login' element={<Login />} />
             <Route path='/UpcomingAppointments' element={<UpcomingAppointments />} />
             <Route path='/PetOwnerProfileForm' element={<PetOwnerProfileForm />} />
-            <Route path='/MyReviewsList' element={<MyReviewsList />} />
+            <Route path='/MyReviewList' element={<MyReviewList />} />
             <Route path='/UpdateMyProfileForm' element={<UpdateMyProfileForm />} />
             <Route path='/UpdateProfile' element={<UpdateProfile />} />
             <Route path='/Signup' element={<Signup />} />
@@ -97,6 +98,7 @@ function App() {
             <Route path='/ReviewForm' element={<ReviewForm />} />
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path='/About' element={<About />} />
+            <Route path='/AllReviews' element={<AllReviews />} />
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/Visit' element={<Visit />} />
             <Route path='/' element={<LandingPage />} />
