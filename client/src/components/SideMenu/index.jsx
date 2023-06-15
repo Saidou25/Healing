@@ -13,7 +13,6 @@ const SideMenu = () => {
     return (
         <main className="side-menu show">
             <div>
-
                 <a className="btn btn-side"
                     height={43}
                     data-bs-toggle="offcanvas"
@@ -52,59 +51,61 @@ const SideMenu = () => {
                         </a>
                     </div>
                 </div>
-                <div className="row">
-                    <nav className="nav side-nav">
-                        <ul className="nav links-side">
-                            <li className="col-12 col-items mt-4 pb-4">
-                                <a className='nav-item-side fs-3'
-                                    href="/About">
-                                    about
-                                </a>
-                            </li>
-                            <li className="col-12 col-items mt-4 pb-4">
-                                <a className='nav-item-side fs-3'
-                                    href="/Dashboard">
-                                    dashboard
-                                </a>
-                            </li>
-                            <li className="col-12 col-items mt-4 pb-4">
-                                <a className='nav-item-side fs-3'
-                                    href="/AppointmentHistory">
-                                    history
-                                </a>
-                            </li>
-                            <li className="col-12 col-items mt-4 pb-4">
-                                <a className='nav-item-side fs-3'
-                                    href="/Visit">
-                                    visits
-                                </a>
-                            </li>
-                            {(Auth.loggedIn()) ? (
+                <div className="scroll">
+                    <div className="row row-items">
+                        <nav className="nav side-nav">
+                            <ul className="nav links-side">
                                 <li className="col-12 col-items mt-4 pb-4">
-                                    <a className='btn-logout nav-item-side fs-3'
-                                        href="/"
-                                        onClick={logout}>
-                                        logout
+                                    <a className='nav-item-side fs-3'
+                                        href="/About">
+                                        about
                                     </a>
                                 </li>
-                            ) : (
-                                <>
+                                <li className="col-12 col-items mt-4 pb-4">
+                                    <a className='nav-item-side fs-3'
+                                        href="/Dashboard">
+                                        dashboard
+                                    </a>
+                                </li>
+                                <li className="col-12 col-items mt-4 pb-4">
+                                    <a className='nav-item-side fs-3'
+                                        href="/AppointmentHistory">
+                                        history
+                                    </a>
+                                </li>
+                                <li className="col-12 col-items mt-4 pb-4">
+                                    <a className='nav-item-side fs-3'
+                                        href="/Visit">
+                                        visits
+                                    </a>
+                                </li>
+                                {(Auth.loggedIn()) ? (
                                     <li className="col-12 col-items mt-4 pb-4">
                                         <a className='btn-logout nav-item-side fs-3'
-                                            href="/Login">
-                                            login
+                                            href="/"
+                                            onClick={logout}>
+                                            logout
                                         </a>
                                     </li>
-                                    <li className="col-12 col-items mt-4 pb-4">
-                                        <a className='btn-logout nav-item-side fs-3'
-                                            href="/Signup">
-                                            signup
-                                        </a>
-                                    </li>
-                                </>
-                            )}
-                        </ul>
-                    </nav>
+                                ) : (
+                                    <>
+                                        <li className="col-12 col-items mt-4 pb-4">
+                                            <a className='btn-logout nav-item-side fs-3'
+                                                href="/Login">
+                                                login
+                                            </a>
+                                        </li>
+                                        <li className="col-12 col-items mt-4 pb-4">
+                                            <a className='btn-logout nav-item-side fs-3'
+                                                href="/Signup">
+                                                signup
+                                            </a>
+                                        </li>
+                                    </>
+                                )}
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </main>
