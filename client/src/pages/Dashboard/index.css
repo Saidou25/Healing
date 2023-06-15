@@ -3,7 +3,7 @@
 }
 
 .container-dashboard {
-    width: 80%;
+    width: 90%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -35,7 +35,7 @@
     text-align: center;
 }
 
-.review-border {
+.dashb-border {
     padding-right: 3%;
     border-right-style: solid;
     border-right-color: rgb(206, 200, 200);
@@ -46,12 +46,15 @@
     padding-left: 3%;
 }
 @media screen and (max-width: 993px) {
-    .review-border {
+    .dashb-border {
         padding-right: 0;
         border-right-color: white;
     }
     .write-review {
         padding-left: 0;
+    }
+    .review-row {
+        flex-direction: column-reverse;
     }
 }
 

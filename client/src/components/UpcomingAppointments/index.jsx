@@ -12,13 +12,14 @@ const UpcomingAppointments = (props) => {
     }
 
     return (
-        <div className='container-upcoming-appointment'>
+        <div className='container-upcoming-appointment mt-5'>
+            <h3>Upcoming appointments</h3>
             <div className="row">
                 {futureAppointments &&
                     futureAppointments.map((bookingdate) => (
                         <div key={bookingdate._id} className="col-12 mt-5">
                             <div className="card app-card mb-3">
-                                <div className="card-header">You have an appointment:</div>
+                                <div className="card-header fs-3">You have an appointment:</div>
                                 <div className='card-body m-3'>
                                     <div className="text">
                                         {bookingdate.appDay}, {bookingdate.appMonth} {bookingdate.appDate}, {bookingdate.appYear} at {bookingdate.appTime}.

@@ -96,14 +96,15 @@ const Dashboard = () => {
                 </div>
                 <div className='container-dashboard'>
                     <div className='row'>
-                        <div className='col-lg-6 col-sm-12'>
+                        <div className='col-lg-8 col-sm-12 dashb-border'>
                             <UpcomingAppointments futureAppointments={futureAppointments} today={today} />
                         </div>
                         {futureAppointments.length ? (
-                            <div className='col-lg-6 col-sm-12 mt-5 mb-5'>
-                                <div className='card suggestion p-3'>
+                            <div className='col-lg-4 col-sm-12 mt-5 mb-5 right-window'>
+                                <div className='card suggestion p-3'><br/>
+                                <h4 className='note mb-2'>Notes</h4><br/>
                                     <p>
-                                        We suggest comming 15 minutes prior to your appointment. <br />
+                                        We suggest arriving 15 minutes prior to your appointment. <br />
                                     </p >
                                     <p>
                                         Use direct message to provide additional information about your upcoming visit. <br />
@@ -118,19 +119,17 @@ const Dashboard = () => {
                             </>
                         )}
                     </div>
-                    <div className='row mt-4'>
-                        <div className='col-lg-8 col-sm-12 review-border'>
-                            {/* <MyReviewList myReviews={myReviews} username={username} /> */}
+                    <div className='row review-row mt-4'>
+                        <div className='col-lg-8 col-sm-12 dashb-border'>
                             <AllReviews />
                         </div>
-                        <div className='col-lg-4 col-sm-12 write-review'>
+                        <div className='col-lg-4 col-sm-12 right-window'>
                             <h3 className="write-review-title mt-4">
                                 Write a review
                             </h3>
                             <button
-
                                 type='button'
-                                className='btn col-12 d-flex btn-primary rounded-0 justify-content-center mt-5 mb-3'
+                                className='btn col-12 d-flex btn-primary rounded-0 justify-content-center mt-5 mb-5'
                                 onClick={() => handleSubmit('review')}>
                                 start/close
                             </button>

@@ -13,8 +13,8 @@ const AllReviews = () => {
 
     if (resultsDataLoading) return <Spinner />
     return (
-        <div className='container-review'>
-            <h3 className="review-list-title mt-4 mb-5">Read what people say: </h3>
+        <>
+            <h3 className="review-list-title mt-4 mb-5">Read what people say</h3>
             <div className="row">
                 {reviews &&
                     reviews.map((review) => (
@@ -45,7 +45,7 @@ const AllReviews = () => {
                         </div>
                     ))}
             </div>
-        </div>
+        </>
     )
 };
 export default AllReviews;
