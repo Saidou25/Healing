@@ -1,4 +1,5 @@
-.row {
+ /* the row was causing throwing */
+.row { 
     --bs-gutter-x: 0;
 } 
 .modal-title-contact {

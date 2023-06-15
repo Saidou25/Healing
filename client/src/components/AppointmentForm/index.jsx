@@ -15,9 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const AppointmentForm = (props) => {
     const navigate = useNavigate();
-    const userProfile = props.userProfile;
     const myPet = props.myPet;
-
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
@@ -28,7 +26,7 @@ const AppointmentForm = (props) => {
     const me = meData?.me || [];
     const profile = me.profile;
     const username = me.username;
-    const email = me.email;
+    // const myPet = profile?.pets;
 
     const { data, loading } = useQuery(QUERY_BOOKINGDATES);
 
@@ -100,7 +98,8 @@ const AppointmentForm = (props) => {
             digitalAppointment: digitalAppointment,
             username: username,
             myemail: sy,
-            appTime: appTime
+            appTime: appTime,
+            profile: profile
         };
         if (!mepet || !reason || !startDate) {
             setError('All fields need filled!');
@@ -133,26 +132,27 @@ const AppointmentForm = (props) => {
         };
 
         // redirects user to the next step in appointment process based on condilions
-        if (mepet === 'mypet' && userProfile && myPet.length) {
+        if (mepet === 'mypet' && profile && myPet.length) {
             sendEmail(templateParams);
             setTimeout(() => {
                 navigate('/Dashboard');
             }, 3000);
             console.log('case 1');
         }
-        if (mepet === 'mypet' && userProfile && !myPet.length) {
+        if (mepet === 'mypet' && profile && !myPet.length) {
             navigate('/PetProfileForm', { state: { templateParams } });
             console.log('case 2');
         }
-        if (mepet === 'mypet' && !userProfile) {
+        if (mepet === 'mypet' && !profile) {
             navigate('/PetOwnerProfileForm', { state: { templateParams } });
+            console.log(profile);
             console.log('case 3');
         }
-        if (mepet === 'me' && !userProfile) {
+        if (mepet === 'me' && !profile) {
             navigate('/ProfileForm', { state: { templateParams } });
             console.log('case 4');
         }
-        if (mepet === 'me' && userProfile) {
+        if (mepet === 'me' && profile) {
             sendEmail(templateParams);
             setTimeout(() => {
                 navigate('/Dashboard', { state: { profile } })
@@ -243,7 +243,7 @@ const AppointmentForm = (props) => {
                                 <div>
                                     <label className="form-label mb-4">
                                         What is your reason for visiting?
-                                        </label>
+                                    </label>
                                     <textarea className="form-control type-your-text mt-4 mb-5"
                                         name="reason"
                                         value={reason}
@@ -254,8 +254,8 @@ const AppointmentForm = (props) => {
                             </div>
                             <div>
                                 {error && (
-                                    <div className="bg-danger error text-white mb-4">
-                                        <p className='error m-2'>
+                                    <div className="bg-danger text-white mb-4">
+                                        <p className='appoitment-error m-2'>
                                             {error}
                                         </p>
                                     </div>

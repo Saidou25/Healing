@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from "@apollo/client";
-import { useLocation } from 'react-router-dom';
 import { QUERY_ME, QUERY_BOOKINGDATES } from '../../utils/queries';
 import { DELETE_BOOKINGDATE } from '../../utils/mutations';
 import MyReviewList from '../../components/MyReviewList';
@@ -11,9 +10,9 @@ import './index.css';
 
 const AppointmentHistory = () => {
     // filter user appointments and compare with actual date to find out if appointment is passed
-    const location = useLocation();
-    const myReviews = location.state.myReviews;
-    console.log(myReviews);
+    // const location = useLocation();
+    // const myReviews = location.state.myReviews;
+    // console.log(myReviews);
     // buiding today's date format 
     const date = new Date();
     const todaysDate = date.getDate();
@@ -42,6 +41,7 @@ const AppointmentHistory = () => {
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const username = me.username;
+    const myReviews = me.reviews;
 
     const { data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
     const bookingdates = appointmentsData?.bookingdates || [];

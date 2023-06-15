@@ -8,8 +8,12 @@ const ProfileModal = (props) => {
 
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
-    const [confirm, setConfirm] = useState(false);
+    const [confirm, setConfirm] = useState('');
 
+    // const handleClear = () => {
+    //     setError('');
+    //     setConfirm('');
+    // };
     const handleSubmit = () => {
         // building templateParams for message confirmation email
 
@@ -20,19 +24,20 @@ const ProfileModal = (props) => {
         };
         if (!message) {
             setConfirm('');
+            console.log('no message sent');
             setError('You need to leave a message')
             return;
         };
-        setConfirm(true);
+        setConfirm('Message sent. You can now close the window.');
 
         setTimeout(() => {
-            setConfirm(false);
+            setConfirm('');
         }, 5000);
 
-        console.log('message sent');
         sendMessage(templateParams);
         setError('');
         setMessage('');
+        console.log('message sent', templateParams);
     };
 
     return (
@@ -41,6 +46,7 @@ const ProfileModal = (props) => {
                 type="button"
                 className="btn btn-primary direct-message rounded-0"
                 data-bs-toggle="modal"
+                // onClick={handleClear}
                 data-bs-target="#exampleModal">
                 <div className='message-btn-modal'>
                     message
@@ -73,6 +79,7 @@ const ProfileModal = (props) => {
                                         <button className="col-6 btn btn-primary fs-4"
                                             type="button"
                                             onClick={handleSubmit}
+                                            // data-bs-dismiss="modal"
                                         >
                                             Save changes
                                         </button>
@@ -82,19 +89,17 @@ const ProfileModal = (props) => {
                                             {error}
                                         </p>
                                     )}
-                                    {confirm === true && (
+                                    {confirm && (
                                         <p className="my-3 p-3 bg-success text-white fs-6 mt-5">
-                                            Message sent. You can now close the window.
+                                            {confirm}
                                         </p>
                                     )}
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </>
     )
 };

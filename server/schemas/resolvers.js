@@ -98,17 +98,16 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         addPet: async (_, args) => {
-            const pet = await Pet.create(
-                {profileId: args.profileId,
-                    username: args.username,
-                    petName: args.petName,
-                    petGender: args.petGender,
-                    petAge: args.petAge,
-                    petKind: args.petKind,
-                    petBreed: args.petBreed,
-                    petWeight: args.petWeight
-                }
-            );
+            const pet = await Pet.create({
+                profileId: args.profileId,
+                username: args.username,
+                petName: args.petName,
+                petGender: args.petGender,
+                petAge: args.petAge,
+                petKind: args.petKind,
+                petBreed: args.petBreed,
+                petWeight: args.petWeight
+            });
             await Profile.findOneAndUpdate(
                 { _id: args.profileId },
                 { $addToSet: { pets: pet } },

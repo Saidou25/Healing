@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { QUERY_PETS } from '../../utils/queries';
+import { QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
 import { ADD_PET } from "../../utils/mutations";
 import { useMutation } from '@apollo/client';
 import { sendEmail } from '../../utils/email.js';
@@ -15,6 +15,8 @@ const PetForm = (props) => {
 
     const templateParams = location.state.templateParams;
     const profileId = props.profileId;
+    const profile = templateParams.profile;
+    console.log('profile from pet form', profile);
 
     const [petName, setPetName] = useState('');
     const [petWeight, setPetWeight] = useState('');
@@ -64,7 +66,6 @@ const PetForm = (props) => {
             setPetWeight(value);
         }
     };
-
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (!petWeight || !petBreed || !petAge || !petGender || !petName || !petKind) {
@@ -72,8 +73,16 @@ const PetForm = (props) => {
             return;
         }
         try {
-            await addPet({
-                variables: { profileId: profileId, petName: petName, username: templateParams.username, petGender: petGender, petWeight: parseInt(petWeight), petAge: petAge, petBreed: petBreed }
+            const { data } = await addPet({
+                variables: {
+                    profileId: profileId,
+                    petName: petName,
+                    username: templateParams.username,
+                    petGender: petGender,
+                    petWeight: parseInt(petWeight),
+                    petAge: petAge,
+                    petBreed: petBreed
+                },
             });
             setConfirm(true);
             console.log(`Appointment for ${petName} booked successfully`);
@@ -97,7 +106,7 @@ const PetForm = (props) => {
     if (confirm === true) {
         return (
             <main className='row container-success'>
-                   <div className="col-12 d-flex appointment-success mb-2">
+                <div className="col-12 d-flex appointment-success mb-2">
                     <i className="fa-solid fa-check d-flex">
                     </i>
                 </div>
@@ -200,10 +209,10 @@ const PetForm = (props) => {
                                         placeholder="weight..." />
                                 </div>
                                 <div>
-                                {error && (
-                                        <div className="bg-danger error text-white mt-5 p-2">
-                                            <p className='error m-2'>
-                                            {error}
+                                    {error && (
+                                        <div className="bg-danger text-white mt-5 p-2">
+                                            <p className='pet-error m-2'>
+                                                {error.text}
                                             </p>
                                         </div>
                                     )}

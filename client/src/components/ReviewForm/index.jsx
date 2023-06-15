@@ -16,7 +16,7 @@ const ReviewForm = (props) => {
     const [checked4, setChecked4] = useState(false);
     const [checked5, setChecked5] = useState(false);
     const [rating, setRating] = useState('');
-    const [confirm, setConfirm] = useState(false);
+    const [confirm, setConfirm] = useState('');
     const [error, setError] = useState(false);
     const [title, setTitle] = useState('');
     const [reviewText, setReviewText] = useState('');
@@ -99,9 +99,9 @@ const ReviewForm = (props) => {
         } catch (e) {
             console.error(e);
         }
-        setConfirm(true);
+        setConfirm('Done! You can now close the window...');
         setTimeout(() => {
-            setConfirm(false);
+            setConfirm('');
         }, 2500);
 
         setError(false);
@@ -192,8 +192,8 @@ const ReviewForm = (props) => {
                             </div>
                             <div>
                                 {error && (
-                                    <div className="bg-danger error text-white">
-                                        <p className='error m-2'>
+                                    <div className="bg-danger text-white">
+                                        <p className='message-review m-2'>
                                             {error}
                                         </p>
                                     </div>
@@ -201,9 +201,9 @@ const ReviewForm = (props) => {
                             </div>
                             <div>
                                 {confirm && (
-                                    <div className="error bg-success text-white">
-                                        <p className='error m-2'>
-                                            Done! You can now close the window...
+                                    <div className="bg-success text-white">
+                                        <p className='message-review m-2'>
+                                            {confirm}
                                         </p>
                                     </div>
                                 )}

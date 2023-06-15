@@ -22,7 +22,12 @@
     background-clip: padding-box;
     border: 0 solid #ced4da;
 }
-
+.pet-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+}
 @media screen and (max-width: 414px) {
     .container-pet {
         width: 96%;

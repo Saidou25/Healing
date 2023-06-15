@@ -55,26 +55,32 @@ const SideMenu = () => {
                 <div className="row">
                     <nav className="nav side-nav">
                         <ul className="nav links-side">
-                            <li className="col-12 col-items mt-5 pb-5">
+                            <li className="col-12 col-items mt-4 pb-4">
                                 <a className='nav-item-side fs-3'
                                     href="/About">
-                                    About
+                                    about
                                 </a>
                             </li>
-                            <li className="col-12 col-items mt-5 pb-5">
+                            <li className="col-12 col-items mt-4 pb-4">
                                 <a className='nav-item-side fs-3'
                                     href="/Dashboard">
                                     dashboard
                                 </a>
                             </li>
-                            <li className="col-12 col-items mt-5 pb-5">
+                            <li className="col-12 col-items mt-4 pb-4">
+                                <a className='nav-item-side fs-3'
+                                    href="/AppointmentHistory">
+                                    history
+                                </a>
+                            </li>
+                            <li className="col-12 col-items mt-4 pb-4">
                                 <a className='nav-item-side fs-3'
                                     href="/Visit">
                                     visits
                                 </a>
                             </li>
                             {(Auth.loggedIn()) ? (
-                                <li className="col-12 col-items mt-5 pb-5">
+                                <li className="col-12 col-items mt-4 pb-4">
                                     <a className='btn-logout nav-item-side fs-3'
                                         href="/"
                                         onClick={logout}>
@@ -83,18 +89,18 @@ const SideMenu = () => {
                                 </li>
                             ) : (
                                 <>
-                                <li className="col-12 col-items mt-5 pb-5">
-                                    <a className='btn-logout nav-item-side fs-3'
-                                        href="/Login">
-                                        login
-                                    </a>
-                                </li>
-                                <li className="col-12 col-items mt-5 pb-5">
-                                    <a className='btn-logout nav-item-side fs-3'
-                                        href="/Signup">
-                                        signup
-                                    </a>
-                                </li>
+                                    <li className="col-12 col-items mt-4 pb-4">
+                                        <a className='btn-logout nav-item-side fs-3'
+                                            href="/Login">
+                                            login
+                                        </a>
+                                    </li>
+                                    <li className="col-12 col-items mt-4 pb-4">
+                                        <a className='btn-logout nav-item-side fs-3'
+                                            href="/Signup">
+                                            signup
+                                        </a>
+                                    </li>
                                 </>
                             )}
                         </ul>

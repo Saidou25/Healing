@@ -55,3 +55,9 @@
     color: grey;
     border: black;
 }
+.message-review {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+}

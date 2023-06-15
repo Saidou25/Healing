@@ -63,6 +63,12 @@
     background-color: green;
 
 }
+.appoitment-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+}
 
 @media screen and (max-width: 414px) {
     .container-appointment {

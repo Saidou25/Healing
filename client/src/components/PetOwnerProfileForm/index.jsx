@@ -224,8 +224,8 @@ const PetOwnerProfileForm = (props) => {
                                     </div>
                                     <div>
                                 {error && (
-                                        <div className="bg-danger error text-white mb-5">
-                                            <p className='error m-2'>
+                                        <div className="bg-danger text-white mb-5">
+                                            <p className='owner-error m-2'>
                                             {error}
                                             </p>
                                         </div>

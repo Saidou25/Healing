@@ -246,8 +246,8 @@ const ProfileForm = () => {
                                 </div>
                                 <div>
                                     {error && (
-                                        <div className="bg-danger error text-white mb-5">
-                                            <p className='error m-2'>
+                                        <div className="bg-danger text-white mb-5">
+                                            <p className='profile-error m-2'>
                                                 {error}
                                             </p>
                                         </div>

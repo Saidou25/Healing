@@ -6,7 +6,6 @@ import Spinner from '../../components/Spinner';
 import ContactModal from '../../components/ContactModal';
 import UpcomingAppointments from '../../components/UpcomingAppointments';
 import AllReviews from '../../components/AllReviews';
-import MyReviewList from '../../components/MyReviewList';
 import ReviewForm from '../../components/ReviewForm';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -74,7 +73,7 @@ const Dashboard = () => {
             <Navbar />
             <main className='dashboard-main'>
                 <div className='container-buttons'>
-                    <div className='row buttons'>
+                    <div className='row buttons mb-5'>
                         <div className='col-4 btn ds-btns btn-primary rounded-0'>
                             <Link to='/Appointment'
                                 className='dashboard-text text-white'

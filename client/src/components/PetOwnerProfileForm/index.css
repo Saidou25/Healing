@@ -64,6 +64,13 @@
     text-align: center;
     margin-bottom: 15%;
 }
+.owner-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+}
+
 @media screen and (max-width: 414px) {
     .main-petOwner {
         margin: 5px;

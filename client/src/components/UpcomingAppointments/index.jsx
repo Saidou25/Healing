@@ -4,7 +4,7 @@ import './index.css';
 const UpcomingAppointments = (props) => {
     const futureAppointments = props.futureAppointments;
 
-    if (!futureAppointments) {
+    if (!futureAppointments.length) {
         return (
             <>
             </>
