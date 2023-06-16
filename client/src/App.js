@@ -11,11 +11,11 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import ProfileForm from './components/ProfileForm';
+import AppointmentReview from './components/AppointmentReview';
 import PetProfileForm from './components/PetProfileForm';
 import PetOwnerProfileForm from './components/PetOwnerProfileForm';
 import ReviewForm from './components/ReviewForm';
 import MyReviewList from './components/MyReviewList';
-import Appointment from './components/Appointment';
 import AppointmentHistory from './components/AppointmentHistory';
 import Login from './pages/Login';
 import LandingPage from './pages/LandingPage';
@@ -88,9 +88,9 @@ function App() {
             <Route path='/UpdateMyProfileForm' element={<UpdateMyProfileForm />} />
             <Route path='/UpdateProfile' element={<UpdateProfile />} />
             <Route path='/Signup' element={<Signup />} />
+            <Route path='/AppointmentReview' element={<AppointmentReview />} />
             <Route path='/AppointmentForm' element={<AppointmentForm />} />
             <Route path='/ProfileForm' element={<ProfileForm />} />
-            <Route path='/Appointment' element={<Appointment />} />
             <Route path='/AppointmentHistory' element={<AppointmentHistory />} />
             <Route path='/Profile' element={<Profile />} />
             <Route path='/ContactModal' element={<ContactModal />} />

@@ -1,0 +1,12 @@
+.app-review-header {
+    text-align: center;
+}
+.app-review-t {
+    background-color: var(--bs-card-cap-bg);
+}
+.app-review-p {
+    padding-left: 3%;
+}
+.card-body {
+    padding: 0;
+}

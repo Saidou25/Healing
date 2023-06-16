@@ -75,7 +75,7 @@ const Dashboard = () => {
                 <div className='container-buttons'>
                     <div className='row buttons mb-5'>
                         <div className='col-4 btn ds-btns btn-primary rounded-0'>
-                            <Link to='/Appointment'
+                            <Link to='/AppointmentForm'
                                 className='dashboard-text text-white'
                                 state={{ username }} >
                                 Book

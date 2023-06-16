@@ -2,25 +2,27 @@ import React, { useState } from 'react';
 import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
-import { QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
+import { QUERY_BOOKINGDATES, QUERY_ME, QUERY_PETS } from '../../utils/queries';
 import { sendEmail } from '../../utils/email.js';
 import { parseISO, setHours, setMinutes } from 'date-fns';
 import Spinner from '../../components/Spinner';
 import DatePicker from "react-datepicker";
+import AppointmentReview from "../AppointmentReview";
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import "react-datepicker/dist/react-datepicker.css";
 
-const AppointmentForm = (props) => {
+const AppointmentForm = () => {
     const navigate = useNavigate();
-    const myPet = props.myPet;
+   
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
     const [error, setError] = useState('');
     const [confirm, setConfirm] = useState(false);
+    const [reviewData, setReviewData] = useState('');
 
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
@@ -29,6 +31,10 @@ const AppointmentForm = (props) => {
     // const myPet = profile?.pets;
 
     const { data, loading } = useQuery(QUERY_BOOKINGDATES);
+
+    const { data: petsData, petsDataLoading } = useQuery(QUERY_PETS);
+  const pets = petsData?.pets || [];
+  const myPets = pets.filter(pet => pet.username === username);
 
     // collecting all appointments that we push into allAppointments[] to block unvailable dates in calendar.
     const bookingdates = data?.bookingdates || [];
@@ -99,7 +105,8 @@ const AppointmentForm = (props) => {
             username: username,
             myemail: sy,
             appTime: appTime,
-            profile: profile
+            profile: profile,
+            myPets: myPets
         };
         if (!mepet || !reason || !startDate) {
             setError('All fields need filled!');
@@ -123,8 +130,8 @@ const AppointmentForm = (props) => {
                     appYear: parseInt(appYear)
                 }
             });
+            setReviewData({ ...data, me })
 
-            setConfirm(true);
             console.log(`success booking a date ${isBooked}`);
 
         } catch (err) {
@@ -132,14 +139,11 @@ const AppointmentForm = (props) => {
         };
 
         // redirects user to the next step in appointment process based on condilions
-        if (mepet === 'mypet' && profile && myPet.length) {
-            sendEmail(templateParams);
-            setTimeout(() => {
-                navigate('/Dashboard');
-            }, 3000);
+        if (mepet === 'mypet' && profile && myPets.length) {
+            setConfirm(true);
             console.log('case 1');
         }
-        if (mepet === 'mypet' && profile && !myPet.length) {
+        if (mepet === 'mypet' && profile && !myPets.length) {
             navigate('/PetProfileForm', { state: { templateParams } });
             console.log('case 2');
         }
@@ -153,10 +157,7 @@ const AppointmentForm = (props) => {
             console.log('case 4');
         }
         if (mepet === 'me' && profile) {
-            sendEmail(templateParams);
-            setTimeout(() => {
-                navigate('/Dashboard', { state: { profile } })
-            }, 1500);
+            setConfirm(true);
             console.log('case 5');
         };
         setMePet('');
@@ -166,22 +167,13 @@ const AppointmentForm = (props) => {
 
     if (loading) return <Spinner />
 
+
     if (confirm === true) {
         return (
-            <main className='row container-success'>
-                <div className="col-12 d-flex appointment-success mb-2">
-                    <i className="fa-solid fa-check d-flex">
-                    </i>
-                </div>
-                <h2 className='col-12 signup-success d-flex justify-content-center'>
-                    Success!
-                </h2>
-                <p className='col-12 signup-success d-flex justify-content-center'>
-                    Your appointment is booked...
-                </p>
-            </main>
+            <AppointmentReview reviewData={reviewData} />
         )
     }
+
 
     return (
         <>

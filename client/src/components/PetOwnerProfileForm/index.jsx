@@ -17,6 +17,7 @@ const PetOwnerProfileForm = (props) => {
     const navigate = useNavigate();
 
     const templateParams = location.state.templateParams;
+    console.log('template from pet owner', templateParams)
     const username = templateParams.username;
     const userProfile = props.userProfile;
     const myPet = props.myPet;
