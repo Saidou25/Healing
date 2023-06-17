@@ -16,25 +16,29 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const AppointmentForm = () => {
     const navigate = useNavigate();
-   
+
     const [startDate, setStartDate] = useState(new Date());
     const [mepet, setMePet] = useState('');
     const [reason, setReason] = useState('');
     const [error, setError] = useState('');
     const [confirm, setConfirm] = useState(false);
     const [reviewData, setReviewData] = useState('');
+    const [showPetName, setShowPetName] = useState('');
+    const [petForm, setPetForm] = useState('');
+    const [newPet, setNewPet] = useState('');
 
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const profile = me.profile;
     const username = me.username;
-    // const myPet = profile?.pets;
 
     const { data, loading } = useQuery(QUERY_BOOKINGDATES);
 
     const { data: petsData, petsDataLoading } = useQuery(QUERY_PETS);
-  const pets = petsData?.pets || [];
-  const myPets = pets.filter(pet => pet.username === username);
+    const pets = petsData?.pets || [];
+    const myPets = pets.filter(pet => pet.username === username);
+    const petNames = myPets.map(myPets => myPets.petName);
+    const ohh = pets.filter(petNames => petNames.petName === petForm);
 
     // collecting all appointments that we push into allAppointments[] to block unvailable dates in calendar.
     const bookingdates = data?.bookingdates || [];
@@ -45,6 +49,7 @@ const AppointmentForm = () => {
         const resultIso = parseISO(result);
         allAppointments.push(resultIso)
     };
+
     // Updating the cache with newly created appointment
     const [addBookingdate] = useMutation(ADD_BOOKINGDATE, {
         update(cache, { data: { addBookingdate } }) {
@@ -65,15 +70,24 @@ const AppointmentForm = () => {
             });
         }
     });
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
         if (name === 'mepet') {
             setMePet(value);
-        }
+            setShowPetName(value);
+
+        };
+        if (name === 'me') {
+            setMePet(value);
+            setShowPetName('');
+            setPetForm('');
+        };
         if (name === 'reason') {
             setReason(value);
-        }
+        };
+
     };
 
     const handleSubmit = async (e) => {
@@ -139,9 +153,13 @@ const AppointmentForm = () => {
         };
 
         // redirects user to the next step in appointment process based on condilions
-        if (mepet === 'mypet' && profile && myPets.length) {
+        if (mepet === 'mypet' && profile && myPets.length && ohh) {
             setConfirm(true);
             console.log('case 1');
+        }
+        if (mepet === 'mypet' && profile && myPets.length && !ohh.length) {
+            navigate('/PetProfileForm', { state: { templateParams } });
+            console.log('case 1bis');
         }
         if (mepet === 'mypet' && profile && !myPets.length) {
             navigate('/PetProfileForm', { state: { templateParams } });
@@ -163,6 +181,8 @@ const AppointmentForm = () => {
         setMePet('');
         setStartDate('');
         setReason('');
+        setShowPetName('');
+        setPetForm('');
     };
 
     if (loading) return <Spinner />
@@ -173,7 +193,6 @@ const AppointmentForm = () => {
             <AppointmentReview reviewData={reviewData} />
         )
     }
-
 
     return (
         <>
@@ -210,6 +229,26 @@ const AppointmentForm = () => {
                                         onChange={handleChange} /> my pet
                                 </div>
                             </div>
+                            {showPetName === 'mypet' ? (
+                                <div className='col-12 appointment-column'>
+                                    <div>
+                                        <label className="form-label mb-4">
+                                            What is your pet name
+                                        </label>
+                                        <input className="form-control type-your-text mt-4 mb-5"
+                                            name="petForm"
+                                            value={petForm}
+                                            placeholder='name...'
+                                            type='text'
+                                            onChange={(e) => setPetForm(e.target.value)}
+                                        >
+                                        </input>
+                                    </div>
+                                </div>
+                            ) : (
+                                <>
+                                </>
+                            )}
                             <div className='col-12 date-picker mb-2'>
                                 <label className="form-label">
                                     Choose your appointment date
@@ -239,6 +278,7 @@ const AppointmentForm = () => {
                                     <textarea className="form-control type-your-text mt-4 mb-5"
                                         name="reason"
                                         value={reason}
+                                        type="text"
                                         placeholder='type your text here...'
                                         onChange={handleChange}>
                                     </textarea>
