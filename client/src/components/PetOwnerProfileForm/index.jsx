@@ -29,6 +29,23 @@ const PetOwnerProfileForm = (props) => {
     const [patientzip, setPatientZip] = useState('');
     const [error, setError] = useState('');
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        
+        if ( name === 'patientfirstname') {
+           const upperCase = value.charAt(0).toUpperCase();
+           const toAdd = value.split('').slice(1, ).join('');
+           const UpperCaseName = upperCase.concat('', toAdd);
+           setPatientFirstName(UpperCaseName);
+        };
+        if ( name === 'patientlastname') {
+           const upperCase = value.charAt(0).toUpperCase();
+           const toAdd = value.split('').slice(1, ).join('');
+           const UpperCaseName = upperCase.concat('', toAdd);
+            setPatientLastName(UpperCaseName);
+        };
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const ownerInfo = {
@@ -90,7 +107,7 @@ const PetOwnerProfileForm = (props) => {
                                         <label className="form-label1"> First name</label>
                                         <input
                                             className="form-control"
-                                            onChange={(e) => setPatientFirstName(e.target.value)}
+                                            onChange={handleChange}
                                             type="text"
                                             value={patientfirstname}
                                             name="patientfirstname"
@@ -100,7 +117,7 @@ const PetOwnerProfileForm = (props) => {
                                         <label className="form-label1"> Last name</label>
                                         <input
                                             className="form-control"
-                                            onChange={(e) => setPatientLastName(e.target.value)}
+                                            onChange={handleChange}
                                             type="text"
                                             name="patientlastname"
                                             value={patientlastname}

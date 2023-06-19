@@ -32,6 +32,7 @@ const PetForm = (props) => {
     const me = meData?.me || [];
     const username = me.username;
     const profileId = me.profile?._id;
+    console.log(profileId);
 
     const [addProfile] = useMutation(ADD_PROFILE);
     const [addBookingdate] = useMutation(ADD_BOOKINGDATE);
@@ -86,7 +87,10 @@ const PetForm = (props) => {
             setPetKind(value);
         }
         if (name === 'petName') {
-            setPetName(value);
+            const upperCase = value.charAt(0).toUpperCase();
+            const toAdd = value.split('').slice(1, ).join('');
+            const UpperCaseName = upperCase.concat('', toAdd);
+             setPetName(UpperCaseName);
         }
         if (name === 'petGender') {
             setPetGender(value);
@@ -178,7 +182,8 @@ const PetForm = (props) => {
     };
 
     const confirmation = async () => {
-        if (petName !== petForm) {
+        console.log(me.profile)
+        if (me.profile && (petName !== petForm)) {
             setError(`${petForm} is the pet we have in our record...`);
             return;
         };
@@ -218,7 +223,7 @@ const PetForm = (props) => {
             setError('all fields need filled!');
             return;
         };
-        if (petName !== petForm) {
+        if (me.profile && petName !== petForm) {
             setError(`${petForm} is the pet we have in our record...`);
             return;
         };

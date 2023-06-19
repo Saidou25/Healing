@@ -25,7 +25,7 @@ const Login = () => {
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
+        
         try {
             const { data } = await login({
                 variables: { ...formState },
@@ -37,7 +37,6 @@ const Login = () => {
 
         } catch (e) {
             console.error(e);
-            navigate('/');
         }
         // clear form values
         setFormState({
@@ -51,10 +50,9 @@ const Login = () => {
             <Navbar />
             <main className='container-login'>
                 <div className="card login">
-                    <h4 className="card-header bg-primary rounded-0 text-light p-4"
-                        style={{ fontSize: '1.7rem', textAlign: 'center' }}>
+                    <h4 className="card-header bg-primary rounded-0 text-light p-4">
                         Login</h4>
-                    <div className="card-body">
+                    <div className="card-body p-3">
                         {data ?
                             <p>
                                 Success! You may now head{' '}
@@ -62,24 +60,22 @@ const Login = () => {
                             </p>
                             : (
                                 <form onSubmit={handleFormSubmit}>
-                                    <label className='text-label' style={{ fontSize: '1.5rem' }}>
+                                    <label className='form-label1 mb-4'>
                                         Email
                                     </label><br />
                                     <input
-                                        style={{ fontSize: '1.3rem' }}
-                                        className="form-input"
+                                        className="form-input mb-4"
                                         placeholder="Your email"
                                         name="email"
                                         type="email"
                                         value={formState.email}
                                         onChange={handleChange}
                                     /> <br />
-                                    <label className='text-label' style={{ fontSize: '1.5rem' }}>
+                                    <label className='form-label1'>
                                         Password
                                     </label><br />
                                     <input
-                                        style={{ fontSize: '1.3rem' }}
-                                        className="form-input mt-4"
+                                        className="form-input mt-3"
                                         placeholder="******"
                                         name="password"
                                         type="password"
@@ -88,8 +84,8 @@ const Login = () => {
                                     /> <br />
                                     <div>
                                         {error && (
-                                            <div className="bg-danger error text-white mb-4">
-                                                <p className='error m-2'>
+                                            <div className="bg-danger log-error text-white mt-5">
+                                                <p className='error-message m-2 pt-3 pb-3'>
                                                     {error.message}
                                                 </p>
                                             </div>

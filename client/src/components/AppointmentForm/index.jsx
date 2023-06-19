@@ -77,9 +77,17 @@ const AppointmentForm = () => {
 
         if (name === 'mepet') {
             setMePet(value);
-            setShowPetName(value);
+            if (profile) {
+                setShowPetName(value);
+            };
 
         };
+        if ( name === 'petForm') {
+           const upperCase = value.charAt(0).toUpperCase();
+           const toAdd = value.split('').slice(1, ).join('');
+           const UpperCaseName = upperCase.concat('', toAdd);
+            setPetForm(UpperCaseName);
+        }
         if (name === 'me') {
             setMePet(value);
             setShowPetName('');
@@ -187,16 +195,16 @@ const AppointmentForm = () => {
             navigate('/PetProfileForm', { state: { appInfo, petForm } });
             console.log('case 2');
         }
-         if (mepet === 'mypet' && profile && myPets.length && existingPet) {
+        if (mepet === 'mypet' && profile && myPets.length && existingPet) {
             setConfirm(true);
             console.log('case 1');
         }
         if (mepet === 'mypet' && profile && myPets.length && !existingPet.length) {
-            navigate('/PetProfileForm', { state: {  appInfo, petForm } });
+            navigate('/PetProfileForm', { state: { appInfo, petForm } });
             console.log('case 1bis');
         }
         if (mepet === 'mypet' && !profile) {
-            navigate('/PetOwnerProfileForm', { state: { appInfo, petForm  } });
+            navigate('/PetOwnerProfileForm', { state: { appInfo, petForm } });
             console.log(profile);
             console.log('case 3');
         }
@@ -218,12 +226,12 @@ const AppointmentForm = () => {
 
 
         // // redirects user to the next step in appointment process based on condilions
-       
-        
 
-        
 
-        
+
+
+
+
         // setMePet('');
         // setStartDate('');
         // setReason('');
@@ -342,7 +350,7 @@ const AppointmentForm = () => {
                                             value={petForm}
                                             placeholder='name...'
                                             type='text'
-                                            onChange={(e) => setPetForm(e.target.value)}
+                                            onChange={handleChange}
                                         >
                                         </input>
                                     </div>

@@ -52,7 +52,7 @@ const Navbar = () => {
                         <div className="landing-title">
                             <Link className="landing" to="/">Healing</Link>
                         </div>
-                        <ul className="nav d-flex">
+                        <ul className="nav d-flex p-2">
                             <CustomLink to='/About' className='nav-item show-hide fs-3'>About</CustomLink>
                             <CustomLink to='/Visit' className='nav-item show-hide fs-3'>Visit</CustomLink>
                             <CustomLink to='/Login' className='nav-item show-hide fs-3'>login</CustomLink>

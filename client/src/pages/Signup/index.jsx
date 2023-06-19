@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './index.css';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +6,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import Spinner from '../../components/Spinner';
 import Auth from '../../utils/auth';
+import './index.css';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ const Signup = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const { data } = await addUser({
         variables: { username: username, password: password, email: email },
@@ -38,9 +39,13 @@ const Signup = () => {
     } catch (e) {
       console.error(e);
     };
-    setTimeout(() => {
-      navigate('/Dashboard');
-    }, 2500);
+    if (error) {
+      return;
+    } else {
+      setTimeout(() => {
+        navigate('/Dashboard');
+      }, 3000);
+    };
   };
 
   if (loading) return <Spinner />
@@ -66,11 +71,11 @@ const Signup = () => {
       <Navbar />
       <div className='container-signup'>
         <div className="card signup">
-          <h4 className="card-header bg-primary rounded-0 text-light p-4">
+          <h4 className="card-header signup-header bg-primary rounded-0 text-light p-4">
             Sign Up</h4>
-          <div className="card-body">
+          <div className="card-body p-4">
             <form onSubmit={handleFormSubmit}>
-              <label className='text-label'>
+              <label className='form-label1 mb-4'>
                 Username
               </label><br />
               <input
@@ -81,7 +86,7 @@ const Signup = () => {
                 value={username}
                 onChange={(e) => setUsename(e.target.value)}
               /><br />
-              <label className='text-label'>
+              <label className='form-label1 mb-4'>
                 Email
               </label><br />
               <input
@@ -92,7 +97,7 @@ const Signup = () => {
                 value={email}
                 onChange={handleChange}
               /><br />
-              <label className='text-label'>
+              <label className='form-label1 mb-4'>
                 Password
               </label><br />
               <input
@@ -103,6 +108,11 @@ const Signup = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               /><br />
+              {error && (
+                <div className="my-3 p-3 bg-danger text-white mt-5">
+                  {error.message}
+                </div>
+              )}
               <button
                 className="btn btn-info rounded-0 mt-5"
                 type="button"
@@ -111,11 +121,6 @@ const Signup = () => {
                 Submit
               </button>
             </form>
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
           </div>
         </div>
       </div>

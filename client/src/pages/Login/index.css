@@ -5,7 +5,9 @@
     margin-right: auto;
     margin-left: auto;
 }
-
+.error-message {
+    text-align: center;
+}
 .form-input {
     width: 100%;
     margin-right: auto;

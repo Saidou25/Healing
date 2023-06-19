@@ -5,20 +5,14 @@
     margin-left: auto;
     margin-bottom: 5%;
 }
-
+.signup-header {
+    text-align: center;
+}
 .form-input {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
     padding: 5px;
     font-style: oblique;
-}
-
-.text-label {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    margin: 15px;
+    background-color: #f7f7f9;
+    border-style: none;
 }
 
 @media screen and (max-width: 800px) {
