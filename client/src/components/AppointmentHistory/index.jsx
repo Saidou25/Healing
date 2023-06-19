@@ -108,14 +108,14 @@ const AppointmentHistory = () => {
         <div>
             <Navbar />
             <div className='container-history'>
-                <h3 className="appointment-list-title mt-4 mb-5">Appointment history</h3>
+                <h3 className="appointment-list-title mb-4">Appointment history</h3>
                 <div className="row">
                     {history &&
                         history.map((bookingdate) => (
                             <div key={bookingdate._id} className="col-12 history-column">
-                                <div className="card history mb-3">
+                                <div className="card history mb-4">
                                     <div className="card-header fs-3">This appointment is passed:</div>
-                                    <div className='card-body'>
+                                    <div className='card-body p-3'>
                                         <div className='row'>
                                             <div className='col-6 d-flex align-items-center'>
                                                 <div className='appointment-text'>

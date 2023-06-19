@@ -39,7 +39,7 @@ const About = () => {
                         <div className='col-lg-4 col-sm-12'>
                             <div className='card about-card mt-3 mb-3'>
                                 <div className='card-header'> Peter</div>
-                                <div className='card-body'>
+                                <div className='card-body p-2'>
                                     <img className="responsive" src={nurseGuy} alt='nurse icon' height={300} />
                                     <p>
                                         10 years experience. Studied reiki in Japan since she was 14.
@@ -50,7 +50,7 @@ const About = () => {
                         <div className='col-lg-4 col-sm-12'>
                             <div className='card about-card mt-3 mb-3'>
                                 <div className='card-header'> Nancy</div>
-                                <div className='card-body'>
+                                <div className='card-body p-2'>
                                     <img className="responsive" src={nurseLady} alt='nurse icon' height={300} />
                                     <p>
                                         Born in Reiki

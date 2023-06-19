@@ -12,10 +12,9 @@
     width: 100%;
 }
 
-.form-input {
-    width: 100%;
+.review-form-input {
+    width: 90%;
     font-style: oblique;
-    width: 100%;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: 400;

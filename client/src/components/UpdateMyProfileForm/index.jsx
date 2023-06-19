@@ -78,7 +78,7 @@ const UpdateMyProfileForm = (props) => {
                 <div className='container-update mt-5'>
                     <p className='update-p mb-5'>
                         Please modify the fields you would like to update with your new information.</p>
-                    <h4 className="card-header bg-primary rounded-0 text-light p-4">
+                    <h4 className="card-header-update bg-primary rounded-0 text-light p-4">
                         Update profile</h4>
                     <div className='card-update'>
                         <form className='profile-update'>

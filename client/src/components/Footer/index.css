@@ -1,6 +1,6 @@
 
 .footer {
-    margin-top: 3%;
+    margin-top: 5%;
     height: 150px;
     align-items: center;
 }
@@ -18,5 +18,8 @@
         margin-top: 3%;
         height: 120px;
         align-items: center;
+    }
+    .main-footer {
+        padding: 2%;
     }
 }

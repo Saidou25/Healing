@@ -16,11 +16,8 @@ const PetOwnerProfileForm = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const templateParams = location.state.templateParams;
-    console.log('template from pet owner', templateParams)
-    const username = templateParams.username;
-    const userProfile = props.userProfile;
-    const myPet = props.myPet;
+    const appInfo = location.state.appInfo;
+    const petForm = location.state.petForm;
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
@@ -31,43 +28,20 @@ const PetOwnerProfileForm = (props) => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [error, setError] = useState('');
-    const [confirm, setConfirm] = useState(false);
-
-    // const { data: meData } = useQuery(QUERY_ME);
-    // const me = meData?.me || [];
-    // const username = me.username;
-
-    const [addProfile] = useMutation(ADD_PROFILE, {
-        variables: {
-            username,
-            patientState,
-            patientnumber,
-            patientfirstname,
-            patientaddress,
-            patientlastname,
-            patientcity,
-            patientzip
-        },
-        //  uptdating cache with new profile
-        update(cache, { data: { addProfile } }) {
-            try {
-                const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
-
-                cache.writeQuery({
-                    query: QUERY_PROFILES,
-                    data: { profiles: [addProfile, ...profiles] },
-                });
-                console.log(`success adding ${patientfirstname} appointment`);
-
-            } catch (e) {
-                console.error(e);
-            }
-        }
-    });
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        const ownerInfo = {
+            patientfirstname: patientfirstname,
+            patientaddress: patientaddress,
+            patientState: patientState,
+            patientlastname: patientlastname,
+            patientcity: patientcity,
+            patientzip: patientzip,
+            patientnumber: patientnumber,
+            username: appInfo.username,
+            profile: appInfo.profile
+        };
         if (!patientfirstname ||
             !patientaddress ||
             !patientlastname ||
@@ -85,27 +59,9 @@ const PetOwnerProfileForm = (props) => {
             setError('10 digits phone number is missing!');
             return;
         };
+        console.log('ok');
 
-        addProfile(
-            username,
-            patientState,
-            patientnumber,
-            patientfirstname,
-            patientaddress,
-            patientlastname,
-            patientcity,
-            patientzip
-        )
-        setConfirm(true);
-        console.log(`success adding your info ${patientfirstname} !`);
-
-
-        (!myPet)
-            ? navigate('/PetProfileForm', { state: { userProfile, templateParams } })
-            : setTimeout(() => {
-                navigate('/Dashboard');
-            }, 1500);
-
+        navigate('/PetProfileForm', { state: { appInfo, ownerInfo, petForm } })
         setPatientFirstName('');
         setPatientLastName('');
         setPatientAddress('');
@@ -114,23 +70,6 @@ const PetOwnerProfileForm = (props) => {
         setNewValue('');
         setPatientNumber('');
     };
-
-    if (confirm === true) {
-        return (
-            <main className='row container-success'>
-                <div className="col-12 d-flex appointment-success mb-2">
-                    <i className="fa-solid fa-check d-flex">
-                    </i>
-                </div>
-                <h2 className='col-12 signup-success d-flex justify-content-center'>
-                    Success!
-                </h2>
-                <p className='col-12 signup-success d-flex justify-content-center'>
-                    Your appointment is booked...
-                </p>
-            </main>
-        )
-    }
 
     return (
         <>
@@ -142,13 +81,13 @@ const PetOwnerProfileForm = (props) => {
                             Our practitioner will be driving to the address provided in the form below.
                             Please don't hesitate to add any useful information in the address field.
                         </p><br />
-                        <h4 className="card-header bg-primary rounded-0 text-light p-4">
+                        <h4 className="card-header owner-tilte bg-primary rounded-0 text-light p-4 mt-2">
                             Please answer few questions about yourself</h4>
                         <div className="card-body">
                             <form onSubmit={(e) => handleSubmit(e)}>
-                                <div className='row mt-5'>
+                                <div className='row mt-4'>
                                     <div className="col-lg-6 col-sm-12 owner-fields">
-                                        <label className="form-label"> First name</label>
+                                        <label className="form-label1"> First name</label>
                                         <input
                                             className="form-control"
                                             onChange={(e) => setPatientFirstName(e.target.value)}
@@ -158,7 +97,7 @@ const PetOwnerProfileForm = (props) => {
                                             placeholder="first name..." />
                                     </div>
                                     <div className="col-lg-6 col-sm-12 owner-fields">
-                                        <label className="form-label"> Last name</label>
+                                        <label className="form-label1"> Last name</label>
                                         <input
                                             className="form-control"
                                             onChange={(e) => setPatientLastName(e.target.value)}
@@ -168,7 +107,7 @@ const PetOwnerProfileForm = (props) => {
                                             placeholder="last name..." />
                                     </div>
                                     <div className="col-lg-6 col-sm-12 owner-fields">
-                                        <label className="form-label">Address</label>
+                                        <label className="form-label1">Address</label>
                                         <input
                                             className="form-control"
                                             value={patientaddress}
@@ -178,7 +117,7 @@ const PetOwnerProfileForm = (props) => {
                                             placeholder="address..." />
                                     </div>
                                     <div className="col-lg-6 col-sm-12 owner-fields">
-                                        <label className="form-label">City</label>
+                                        <label className="form-label1">City</label>
                                         <input
                                             className="form-control"
                                             value={patientcity}
@@ -188,7 +127,7 @@ const PetOwnerProfileForm = (props) => {
                                             placeholder="enter city..." />
                                     </div>
                                     <div className='col-lg-6 col-sm-12 owner-fields'>
-                                        <label className='form-label'>
+                                        <label className='form-label1'>
                                             Select a state
                                         </label>
                                         <SelectUSState
@@ -198,7 +137,7 @@ const PetOwnerProfileForm = (props) => {
                                         />
                                     </div>
                                     <div className="col-lg-6 col-sm-12 owner-fields">
-                                        <label className="form-label">Zip code</label>
+                                        <label className="form-label1">Zip code</label>
                                         <input
                                             className="form-control"
                                             name="patientzip"
@@ -208,7 +147,7 @@ const PetOwnerProfileForm = (props) => {
                                             placeholder="zip code..." />
                                     </div>
                                     <div className="col-lg-6 col-sm-12 owner-fields">
-                                        <label className="form-label">
+                                        <label className="form-label1">
                                             Phone number
                                         </label>
                                         <div>
@@ -224,14 +163,14 @@ const PetOwnerProfileForm = (props) => {
                                         </div>
                                     </div>
                                     <div>
-                                {error && (
-                                        <div className="bg-danger text-white mb-5">
-                                            <p className='owner-error m-2'>
-                                            {error}
-                                            </p>
-                                        </div>
-                                    )}
-                                </div>
+                                        {error && (
+                                            <div className="bg-danger text-white mb-5">
+                                                <p className='owner-error m-2'>
+                                                    {error}
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
                                     <div className="col-12 d-flex justify-content-center">
                                         <button className="btn button-owner rounded-0 btn-primary"
                                             type="submit"

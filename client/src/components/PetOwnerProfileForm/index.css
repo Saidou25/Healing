@@ -1,16 +1,18 @@
 .container-owner {
-    margin-top: 10%;
+    margin-top: 3%;
     width: 60%;
     margin-right: auto;
     margin-left: auto;
 }
-
-.title {
+.owner-tilte {
+    text-align: center;
+}
+/* .title {
     display: block;
     text-align: center;
     color: white;
     font-size: 4em;
-}
+} */
 
 .appointment-for {
     display: block;
@@ -60,9 +62,9 @@
 }
 
 .button-owner {
-    margin-top: 10%;
+    margin-top: 5%;
     text-align: center;
-    margin-bottom: 15%;
+    margin-bottom: 5%;
 }
 .owner-error {
     display: flex;

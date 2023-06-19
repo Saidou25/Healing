@@ -20,7 +20,7 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
         setConfirm(true);
         setTimeout(() => {
             deleteAll();
-        }, 5000);
+        }, 3000);
     };
 
     const deleteAll = async () => {

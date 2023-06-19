@@ -72,9 +72,9 @@ if (!reviews.length) {
                 {reviews &&
                     reviews.map((review) => (
                         <div key={review._id} className="col-12">
-                            <div className="card review-list mb-3">
+                            <div className="card review-list mb-4">
                                 <div className="card-header fs-3">{review.title}</div>
-                                <div className='card-body'>
+                                <div className='card-body p-3'>
                                     <div className='row'>
                                         <div className='col-12'>
                                             <p className="card-text fs-4">

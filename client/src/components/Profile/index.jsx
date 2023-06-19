@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaEnvelope, FaPhone, FaIdBadge } from 'react-icons/fa'
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
+import Spinner from '../../components/Spinner';
 import DeleteModal from '../DeleteModal';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -10,9 +11,11 @@ import './index.css';
 
 const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => {
 
-    const { data } = useQuery(QUERY_ME);
+    const { data, loading } = useQuery(QUERY_ME);
     const me = data?.me || [];
 
+    if (loading) return <Spinner />
+    
     if (!userProfile) {
         return (
             <div>

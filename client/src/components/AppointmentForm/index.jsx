@@ -7,7 +7,6 @@ import { sendEmail } from '../../utils/email.js';
 import { parseISO, setHours, setMinutes } from 'date-fns';
 import Spinner from '../../components/Spinner';
 import DatePicker from "react-datepicker";
-import AppointmentReview from "../AppointmentReview";
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
@@ -22,10 +21,12 @@ const AppointmentForm = () => {
     const [reason, setReason] = useState('');
     const [error, setError] = useState('');
     const [confirm, setConfirm] = useState(false);
-    const [reviewData, setReviewData] = useState('');
+    const [appTime, setAppTime] = useState('');
     const [showPetName, setShowPetName] = useState('');
     const [petForm, setPetForm] = useState('');
-    const [newPet, setNewPet] = useState('');
+    const [digitalAppointment, setDigitalAppointment] = useState('');
+    const [appInfo, setAppInfo] = useState('');
+    const [finalize, setFinalize] = useState(false);
 
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
@@ -38,7 +39,7 @@ const AppointmentForm = () => {
     const pets = petsData?.pets || [];
     const myPets = pets.filter(pet => pet.username === username);
     const petNames = myPets.map(myPets => myPets.petName);
-    const ohh = pets.filter(petNames => petNames.petName === petForm);
+    const existingPet = pets.filter(petNames => petNames.petName === petForm);
 
     // collecting all appointments that we push into allAppointments[] to block unvailable dates in calendar.
     const bookingdates = data?.bookingdates || [];
@@ -87,12 +88,53 @@ const AppointmentForm = () => {
         if (name === 'reason') {
             setReason(value);
         };
-
     };
 
+    const cancelApp = () => {
+        setMePet('');
+        setStartDate('');
+        setReason('');
+        setShowPetName('');
+        setPetForm('');
+        navigate('/Dashboard');
+    };
+
+    const confirmation = async () => {
+        try {
+            const { data } = await addBookingdate({
+                variables: {
+                    username: appInfo.username,
+                    digitalAppointment: appInfo.digitalAppointment,
+                    digitMonth: appInfo.digitMonth,
+                    reason: reason,
+                    mepet: mepet,
+                    isBooked: appInfo.isBooked,
+                    finalDateISO: appInfo.finalDateISO,
+                    appDay: appInfo.appDay,
+                    appMonth: appInfo.appMonth,
+                    appDate: appInfo.appDate,
+                    appTime: appInfo.appTime,
+                    appYear: appInfo.appYear
+                }
+            });
+            // setReviewData({ ...data, me })
+
+            console.log(`success booking a date ${digitalAppointment}`);
+
+        } catch (err) {
+            console.error(err);
+        };
+        setFinalize(true);
+        setTimeout(() => {
+            navigate('/Dashboard');
+        }, 3000);
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        if (!mepet || !reason || !startDate) {
+            setError('All fields need filled!');
+            return;
+        };
         // building up digitalAppointment needed to display appointments date in components
         const isBooked = JSON.stringify(startDate);
 
@@ -107,98 +149,158 @@ const AppointmentForm = () => {
 
         const appDay = app[0];
         const appMonth = app[1] - 1;
-        const appDate = app[2];
+        const appDate = parseInt(app[2]);
         const appTime = app[4];
-        const appYear = app[3];
+        const appYear = parseInt(app[3]);
         const digitalAppointment = `${digitMonth}/${appDate}/${appYear}`;
 
-        // building templateParams for emailing appointment confirmation
-        const sy = 'saidou.monta@yahoo.com';
-        const templateParams = {
-            digitalAppointment: digitalAppointment,
+        setDigitalAppointment(digitalAppointment);
+        setAppTime(appTime);
+
+        const appInfo = {
             username: username,
-            myemail: sy,
+            isBooked: isBooked,
+            finalDate: finalDate,
+            finalDateISO: finalDateISO,
+            digitMonth: digitMonth,
+            appMonth: appMonth,
+            appDate: appDate,
+            appDay: appDay,
             appTime: appTime,
+            appYear: appYear,
+            digitalAppointment: digitalAppointment,
+            reason: reason,
+            mepet: mepet,
             profile: profile,
-            myPets: myPets
-        };
-        if (!mepet || !reason || !startDate) {
-            setError('All fields need filled!');
-            return;
-        };
-        // adding a bookingdate to database
-        try {
-            const { data } = await addBookingdate({
-                variables: {
-                    username: username,
-                    digitalAppointment: digitalAppointment,
-                    digitMonth: digitMonth,
-                    reason: reason,
-                    mepet: mepet,
-                    isBooked: isBooked,
-                    finalDateISO: finalDateISO,
-                    appDay: appDay,
-                    appMonth: appMonth,
-                    appDate: parseInt(appDate),
-                    appTime: appTime,
-                    appYear: parseInt(appYear)
-                }
-            });
-            setReviewData({ ...data, me })
-
-            console.log(`success booking a date ${isBooked}`);
-
-        } catch (err) {
-            console.error(err);
+            petForm: petForm
         };
 
-        // redirects user to the next step in appointment process based on condilions
-        if (mepet === 'mypet' && profile && myPets.length && ohh) {
-            setConfirm(true);
-            console.log('case 1');
-        }
-        if (mepet === 'mypet' && profile && myPets.length && !ohh.length) {
-            navigate('/PetProfileForm', { state: { templateParams } });
-            console.log('case 1bis');
-        }
-        if (mepet === 'mypet' && profile && !myPets.length) {
-            navigate('/PetProfileForm', { state: { templateParams } });
-            console.log('case 2');
-        }
-        if (mepet === 'mypet' && !profile) {
-            navigate('/PetOwnerProfileForm', { state: { templateParams } });
-            console.log(profile);
-            console.log('case 3');
-        }
         if (mepet === 'me' && !profile) {
-            navigate('/ProfileForm', { state: { templateParams } });
+            navigate('/ProfileForm', { state: { appInfo } });
             console.log('case 4');
         }
         if (mepet === 'me' && profile) {
             setConfirm(true);
             console.log('case 5');
         };
-        setMePet('');
-        setStartDate('');
-        setReason('');
-        setShowPetName('');
-        setPetForm('');
+        if (mepet === 'mypet' && profile && !myPets.length) {
+            navigate('/PetProfileForm', { state: { appInfo, petForm } });
+            console.log('case 2');
+        }
+         if (mepet === 'mypet' && profile && myPets.length && existingPet) {
+            setConfirm(true);
+            console.log('case 1');
+        }
+        if (mepet === 'mypet' && profile && myPets.length && !existingPet.length) {
+            navigate('/PetProfileForm', { state: {  appInfo, petForm } });
+            console.log('case 1bis');
+        }
+        if (mepet === 'mypet' && !profile) {
+            navigate('/PetOwnerProfileForm', { state: { appInfo, petForm  } });
+            console.log(profile);
+            console.log('case 3');
+        }
+        setConfirm(true);
+        setAppInfo(appInfo);
+
+        // // building templateParams for emailing appointment confirmation
+        // const sy = 'saidou.monta@yahoo.com';
+        // const templateParams = {
+        //     digitalAppointment: digitalAppointment,
+        //     username: username,
+        //     myemail: sy,
+        //     appTime: appTime,
+        //     profile: profile,
+        //     myPets: myPets
+        // };
+
+        // // adding a bookingdate to database
+
+
+        // // redirects user to the next step in appointment process based on condilions
+       
+        
+
+        
+
+        
+        // setMePet('');
+        // setStartDate('');
+        // setReason('');
+        // setShowPetName('');
+        // setPetForm('');
     };
 
     if (loading) return <Spinner />
 
+    if (finalize === true) {
+        return (
+            <main className='row container-success'>
+                <div className="col-12 d-flex appointment-success mb-2">
+                    <i className="fa-solid fa-check d-flex">
+                    </i>
+                </div>
+                <h2 className='col-12 signup-success d-flex justify-content-center'>
+                    Success!
+                </h2>
+                <p className='col-12 signup-success d-flex justify-content-center'>
+                    Your appointment is booked...
+                </p>
+            </main>
+        )
+    }
 
     if (confirm === true) {
         return (
-            <AppointmentReview reviewData={reviewData} />
+            <div className='container mt-5'>
+                <div className="card appointment-review-card mt-5 mb-5">
+                    <div className='card-header bg-primary app-review-header pb-4 pt-4'>
+                        <h4 className='header-text text-light mt-3 mb-3'>Please review your appointment information</h4>
+                    </div>
+                    <div className='card-body mt-4'>
+                        <p className='app-review-p text-primary'>Appointment for:</p>
+                        <p className='app-review-p'> {profile.patientfirstname} {profile.patientlastname}</p>
+                        <p className='app-review-p text-primary'>On:</p>
+                        <p className='app-review-p'>{digitalAppointment} at: {appTime}</p>
+                        <p className='app-review-p text-primary'>Reason:</p>
+                        <p className='app-review-p'>{reason}</p><br />
+                        <div className='app-review-t'>
+                            <p className='app-review-p p-3 text-primary'>Contact:</p>
+                        </div>
+                        <p className='app-review-p'>Email {me.email}</p>
+                        <p className='app-review-p'>Phone number: {profile.patientnumber}</p><br />
+                        <div className='app-review-t'>
+                            <p className='app-review-p p-3 text-primary'>Address: </p>
+                        </div>
+                        <p className='app-review-p'>address: {profile.patientaddress}</p>
+                        <p className='app-review-p'>city: {profile.patientcity} </p>
+                        <p className='app-review-p'>state: {profile.patientState} </p>
+                        <p className='app-review-p'>zip: {profile.patientzip} </p>
+                    </div>
+                    <div className='card-footer mt-4'>
+                        <div className='row mb-3 p-3 mt-4'>
+                            <button className="col-6 btn btn-app-review btn-secondary fs-5"
+                                type="button"
+                                onClick={cancelApp}>
+                                cancel
+                            </button>
+                            <button className="col-6 btn btn-app-review btn-primary fs-5"
+                                type="button"
+                                onClick={confirmation}>
+                                confirm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
-    }
+    };
 
     return (
         <>
             <Navbar />
             <div className='container-appointment'>
-                <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-4 mb-5">
+                <h4 className="card-header-appointment bg-primary rounded-0 text-light p-4 mt-4 mb-5">
                     Book your appointment</h4>
                 <div className="card-body">
                     <form id='appointment-form'>

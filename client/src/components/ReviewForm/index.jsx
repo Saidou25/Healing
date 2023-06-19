@@ -119,11 +119,11 @@ const ReviewForm = (props) => {
         <>
             <main className="row">
                 <div className="col-12 review-form">
-                    <div className="card">
+                    <div className="card p-2">
                         <h4 className="card-header-review-title bg-primary text-light p-2">review</h4>
                         <div className="card-body">
                             <form>
-                                <label className="form-label-review mb-4">Title</label><br />
+                                <label className="form-label1 mb-4">Title</label><br />
                                 <input
                                     className="form-input review-form-input mb-3"
                                     placeholder="title..."
@@ -132,9 +132,9 @@ const ReviewForm = (props) => {
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
-                                <label className="form-label-review mb-4">Text</label><br />
+                                <label className="form-label1 mb-4">Text</label><br />
                                 <textarea
-                                    className="form-input review-textarea mb-3"
+                                    className="form-input review-form-input mb-3"
                                     placeholder="write your text here..."
                                     name="reviewText"
                                     type="text"
@@ -143,7 +143,7 @@ const ReviewForm = (props) => {
                                 /><br />
                             </form>
                             <div className="col-12 mb-5">
-                                <label className="form-label-review mb-4 mt-4">
+                                <label className="form-label1 mt-4">
                                     Rate
                                     <span className="optional">(optianal)</span>
                                 </label>
@@ -209,7 +209,7 @@ const ReviewForm = (props) => {
                                 )}
                             </div>
                             <button
-                                className="btn btn-block rounded-0 btn-info mt-4"
+                                className="btn btn-block rounded-0 btn-info"
                                 type="submit"
                                 onClick={handleSubmit}
                             >

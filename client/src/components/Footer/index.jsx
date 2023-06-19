@@ -6,7 +6,7 @@ const Footer = () => {
 
     return (
         <main className='main-footer'>
-            <div className='row footer bg-primary text-white mt-5'>
+            <div className='row footer bg-primary text-white'>
                 <div className="col-12 d-flex justify-content-center text-footer">
                     <FaEnvelope className="icon m-2" />
                     healing@healing.com

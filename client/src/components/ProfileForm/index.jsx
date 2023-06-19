@@ -3,12 +3,11 @@ import 'react-phone-number-input/style.css';
 import { PatternFormat } from 'react-number-format';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_PROFILE } from "../../utils/mutations";
-import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import { ADD_PROFILE, ADD_BOOKINGDATE } from "../../utils/mutations";
+import { QUERY_PROFILES } from '../../utils/queries';
 import { Regex } from '../../utils/Regex';
 import SelectUSState from 'react-select-us-states';
 import { sendEmail } from '../../utils/email.js';
-import Spinner from '../../components/Spinner';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
@@ -18,8 +17,8 @@ const ProfileForm = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const templateParams = location.state.templateParams;
-    const username = templateParams.username;
+    const appInfo = location.state.appInfo;
+    const username = appInfo.username;
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
@@ -31,13 +30,12 @@ const ProfileForm = () => {
     const [patientcity, setPatientCity] = useState('');
     const [patientzip, setPatientZip] = useState('');
     const [confirm, setConfirm] = useState(false);
+    const [finalize, setFinalize] = useState(false);
+
+    const [addBookingdate] = useMutation(ADD_BOOKINGDATE);
 
     // Tailored in simple words error message based on error context
     const [error, setError] = useState('');
-
-    // const { loading, data: meData } = useQuery(QUERY_ME);
-    // const me = meData?.me || [];
-    // const username = me.username;
 
     const [addProfile] = useMutation(ADD_PROFILE, {
         variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
@@ -52,9 +50,74 @@ const ProfileForm = () => {
 
             } catch (e) {
                 console.error(e);
-            }
+            };
         }
     });
+    const cancelApp = () => {
+        navigate('/Dashboard');
+    };
+    const appBooking = async () => {
+        try {
+            const { data } = await addBookingdate({
+                variables: {
+                    username: appInfo.username,
+                    digitalAppointment: appInfo.digitalAppointment,
+                    digitMonth: appInfo.digitMonth,
+                    reason: appInfo.reason,
+                    mepet: appInfo.mepet,
+                    isBooked: appInfo.isBooked,
+                    finalDateISO: appInfo.finalDateISO,
+                    appDay: appInfo.appDay,
+                    appMonth: appInfo.appMonth,
+                    appDate: appInfo.appDate,
+                    appTime: appInfo.appTime,
+                    appYear: appInfo.appYear
+                }
+            });
+            console.log(`success booking a date ${appInfo.digitalAppointment}`);
+            // setReviewData({ ...data, me })
+
+        } catch (err) {
+            console.error(err);
+        };
+        // // sendEmail(templateParams);
+        setFinalize(true);
+        setTimeout(() => {
+            navigate('/Dashboard');
+        }, 3000);
+
+        setNewValue('');
+        setPatientNumber('');
+        setPatientGender('');
+        setBirthDate('');
+        setPatientFirstName('');
+        setPatientLastName('');
+        setPatientAddress('');
+        setPatientCity('');
+        setPatientZip('');
+    };
+
+    const confirmation = async () => {
+        try {
+            const { data } = await addProfile({
+                variables: {
+                    username: username,
+                    patientState: patientState,
+                    patientnumber: patientnumber,
+                    patinetfirstname: patientfirstname,
+                    patientgender: patientgender,
+                    patientaddress: patientaddress,
+                    patientlastname: patientlastname,
+                    patientcity: patientcity,
+                    birthdate: birthdate,
+                    patientzip: patientzip
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        };
+        appBooking();
+    };
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -67,7 +130,6 @@ const ProfileForm = () => {
             !patientcity ||
             !patientzip ||
             !patientState) {
-
             setError('All fields need to be filled!');
             return;
         };
@@ -79,38 +141,10 @@ const ProfileForm = () => {
             setError('zip code needs to be a five digit number!');
             return;
         };
-        addProfile(
-            username,
-            patientState,
-            patientnumber,
-            patientfirstname,
-            patientgender,
-            patientaddress,
-            patientlastname,
-            patientcity,
-            birthdate,
-            patientzip
-        );
         setConfirm(true);
-        sendEmail(templateParams);
-
-        setPatientFirstName("");
-        setPatientLastName("")
-        setPatientGender("");
-        setPatientCity("")
-        setPatientAddress("");
-        setPatientZip("");
-        setPatientNumber("");
-        setBirthDate("");
-
-        console.log(`success adding ${patientfirstname}' appointment`);
-        setTimeout(() => {
-            navigate('/Dashboard');
-        }, 1500);
     };
 
-    // if (loading) return <Spinner />
-    if (confirm === true) {
+    if (finalize === true) {
         return (
             <main className='row container-success'>
                 <div className="col-12 d-flex appointment-success mb-2">
@@ -135,14 +169,32 @@ const ProfileForm = () => {
                         Our practitioner will be driving to the address provided in the form below.
                         Please don't hesitate to add any useful information in the address field.
                     </p><br />
-                    <h4 className="card-header bg-primary rounded-0 text-light p-4 mt-5">
-                        Please answer few questions about yourself</h4>
+                    {confirm === true ? (
+                        <>
+                            <h4 className="card-header-profile bg-primary rounded-0 text-white p-4">
+                                Review your appointment info</h4>
+                        </>
+                    ) : (
+                        <>
+                            <h4 className="card-header-profile bg-primary rounded-0 text-light p-4 mt-5">
+                                Please answer few questions about yourself</h4>
+                        </>
+                    )}
                     <div className='card-body'>
+                        {confirm === true ? (
+                            <div className='info-review mt-5'>
+                                <p className='app-review-profile mt-4'>Appointment for: {patientfirstname} {patientlastname}</p>
+                                <p className='app-review-profile mt-4'>On: {appInfo.digitalAppointment} at: {appInfo.appTime}</p>
+                                <p className='app-review-profile mt-4'>Reason: {appInfo.reason}</p><br />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                         <form onSubmit={(e) => handleFormSubmit(e)}>
-                            <div className='row mt-5'>
+                            <div className='row'>
                                 <div className='col-lg-6 col-sm-12 p-2'>
                                     <div>
-                                        <label className="form-label">What is your gender?</label><br />
+                                        <label className="form-label1">Gender</label><br />
                                         <input
                                             className='radio'
                                             type="radio"
@@ -160,7 +212,7 @@ const ProfileForm = () => {
                                     </div>
                                 </div>
                                 <div className='col-lg-6 col-sm-12 p-2'>
-                                    <label className="form-label">Age</label><br />
+                                    <label className="form-label1">Age</label><br />
                                     <input
                                         className='age'
                                         type='text'
@@ -220,7 +272,7 @@ const ProfileForm = () => {
                                         onChange={setNewValue} />
                                 </div>
                                 <div className="col-lg-6 col-sm-12 p-2">
-                                    <label className="form-label1">zip code</label>
+                                    <label className="form-label1">Zip code</label>
                                     <input
                                         className="form-control"
                                         name="patientzip"
@@ -230,7 +282,7 @@ const ProfileForm = () => {
                                         placeholder="zip code..." />
                                 </div>
                                 <div className="col-lg-6 col-sm-12 p-2">
-                                    <label className="form-label">
+                                    <label className="form-label1">
                                         Phone number
                                     </label>
                                     <div>
@@ -253,11 +305,30 @@ const ProfileForm = () => {
                                         </div>
                                     )}
                                 </div>
-                                <div className="col-12 d-flex justify-content-center mt-4">
-                                    <button className="btn button-profile btn-primary rounded-0"
-                                        type="submit"
-                                        value="Send">Submit</button>
-                                </div>
+                                {confirm === true ? (
+                                    <div className='card-footer confirm-appointmen'>
+                                        <div className='row mb-3 p-3 d-flex justify-content-between'>
+                                            <button className="col-6 btn btn-app-review btn-secondary fs-5"
+                                                type="button"
+                                                onClick={cancelApp}
+                                            >
+                                                cancel
+                                            </button>
+                                            <button className="col-6 btn btn-app-review btn-primary fs-5"
+                                                type="button"
+                                                onClick={confirmation}
+                                            >
+                                                confirm
+                                            </button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="col-12 d-flex justify-content-center mt-4">
+                                        <button className="btn button-profile btn-primary rounded-0"
+                                            type="submit"
+                                            value="Send">Submit</button>
+                                    </div>
+                                )}
                             </div>
                         </form>
                     </div>
