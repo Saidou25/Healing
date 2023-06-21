@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { QUERY_PETS, QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
-import { ADD_PROFILE, ADD_PET, ADD_BOOKINGDATE } from "../../utils/mutations";
+import { ADD_PET, ADD_BOOKINGDATE } from "../../utils/mutations";
 import { useMutation, useQuery } from '@apollo/client';
-import { sendEmail } from '../../utils/email.js';
+// import { sendEmail } from '../../utils/email.js';
 import { Regex } from '../../utils/Regex';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
 
-const PetForm = (props) => {
+const PetForm = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
     const appInfo = location.state.appInfo;
     const petForm = location.state.petForm;
-    const ownerInfo = location.state.ownerInfo;
-
+    const existingPet = location.state.existingPet;
+    const myPets = location.state.myPets;
 
     const [petName, setPetName] = useState('');
     const [petWeight, setPetWeight] = useState('');
@@ -24,17 +24,17 @@ const PetForm = (props) => {
     const [petAge, setPetAge] = useState('');
     const [petGender, setPetGender] = useState('');
     const [petKind, setPetKind] = useState('');
-    const [confirm, setConfirm] = useState(false)
     const [error, setError] = useState("");
+    const [confirm, setConfirm] = useState(false)
+    const [petMessage, setPetMessage] = useState(false);
     const [finalize, setFinalize] = useState(false);
+    const [dbleMessage, setDbleMessage] = useState(false);
 
     const { data: meData } = useQuery(QUERY_ME);
     const me = meData?.me || [];
     const username = me.username;
     const profileId = me.profile?._id;
-    console.log(profileId);
 
-    const [addProfile] = useMutation(ADD_PROFILE);
     const [addBookingdate] = useMutation(ADD_BOOKINGDATE);
 
     const [addPet] = useMutation(ADD_PET, {
@@ -52,34 +52,6 @@ const PetForm = (props) => {
         }
     });
 
-    // const [addProfile] = useMutation(ADD_PROFILE, {
-    //     variables: {
-    //         username: ownerInfo.username,
-    //         patientState: ownerInfo.patientState,
-    //         patientnumber: ownerInfo.patientnumber,
-    //         patientfirstname: ownerInfo.patientfirstname,
-    //         patientgender: ownerInfo.patientgender,
-    //         patientaddress: ownerInfo.patientaddress,
-    //         patientlastname: ownerInfo.patientlastname,
-    //         patientcity: ownerInfo.patientcity,
-    //         birthdate: ownerInfo.birthdate,
-    //         patientzip: ownerInfo.patientzip
-    //     },
-    //     update(cache, { data: { addProfile } }) {
-    //         try {
-    //             const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
-    //             cache.writeQuery({
-    //                 query: QUERY_PROFILES,
-    //                 data: { profiles: [addProfile, ...profiles] },
-    //             });
-    //             console.log(`success adding ${ownerInfo.patientfirstname} appointment`);
-
-    //         } catch (e) {
-    //             console.error(e);
-    //         };
-    //     }
-    // });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -88,9 +60,9 @@ const PetForm = (props) => {
         }
         if (name === 'petName') {
             const upperCase = value.charAt(0).toUpperCase();
-            const toAdd = value.split('').slice(1, ).join('');
+            const toAdd = value.split('').slice(1,).join('');
             const UpperCaseName = upperCase.concat('', toAdd);
-             setPetName(UpperCaseName);
+            setPetName(UpperCaseName);
         }
         if (name === 'petGender') {
             setPetGender(value);
@@ -105,36 +77,38 @@ const PetForm = (props) => {
             setPetWeight(value);
         }
     };
-    const cancelApp = () => {
-        navigate('/Dashboard');
-    };
-
-    const ownerProfile = async () => {
-        console.log(ownerInfo);
+    const petProfile = async () => {
         try {
-            const { data } = await addProfile({
+            const { data } = await addPet({
                 variables: {
+                    profileId: profileId,
+                    petName: petName,
                     username: username,
-                    patientState: ownerInfo.patientState,
-                    patientnumber: ownerInfo.patientnumber,
-                    patientfirstname: ownerInfo.patientfirstname,
-                    patientgender: ownerInfo.patientgender,
-                    patientaddress: ownerInfo.patientaddress,
-                    patientlastname: ownerInfo.patientlastname,
-                    patientcity: ownerInfo.patientcity,
-                    birthdate: ownerInfo.birthdate,
-                    patientzip: ownerInfo.patientzip
-                }
+                    petGender: petGender,
+                    petWeight: parseInt(petWeight),
+                    petAge: petAge,
+                    petBreed: petBreed
+                },
             });
+            console.log(`${petName} was successfully added`);
+
         } catch (err) {
             console.error(err);
         };
-        // // sendEmail(templateParams);
-        console.log('success adding profile')
-        setFinalize(true);
+        
+        if (myPets && !existingPet.length) {
+            console.log('double message');
+            setDbleMessage(true);
+            setTimeout(() => {
+                navigate('/Dashboard');
+            }, 4000);
+        } else {
+            setPetMessage(true);
+            console.log('finalize');
+        };
         setTimeout(() => {
             navigate('/Dashboard');
-        }, 3000);
+        }, 4000);
     };
 
     const appBooking = async () => {
@@ -155,25 +129,20 @@ const PetForm = (props) => {
                     appYear: appInfo.appYear
                 }
             });
-
             console.log(`success booking a date ${appInfo.digitalAppointment}`);
-            // setReviewData({ ...data, me })
-
         } catch (err) {
             console.error(err);
         };
-        if (!me.profile) {
-            console.log("no existing profile", me.profile);
-            ownerProfile();
+        if (myPets && !existingPet.length) {
+            console.log('double message');
+            setDbleMessage(true);
         } else {
-            // sendEmail(templateParams);
-            console.log('there is a profile', me.profile);
             setFinalize(true);
-            setTimeout(() => {
-                navigate('/Dashboard');
-            }, 3000);
-        }; 
-
+            console.log('finalize');
+        };
+        setTimeout(() => {
+            navigate('/Dashboard');
+        }, 4000);
         setPetName('');
         setPetGender('');
         setPetAge('');
@@ -182,8 +151,7 @@ const PetForm = (props) => {
     };
 
     const confirmation = async () => {
-        console.log(me.profile)
-        if (me.profile && (petName !== petForm)) {
+        if (petName !== petForm) {
             setError(`${petForm} is the pet we have in our record...`);
             return;
         };
@@ -191,30 +159,22 @@ const PetForm = (props) => {
             setError('all fields need filled!');
             return;
         };
-        // console.log(ownerInfo);
-        try {
-            const { data } = await addPet({
-                variables: {
-                    profileId: profileId,
-                    petName: petName,
-                    username: username,
-                    petGender: petGender,
-                    petWeight: parseInt(petWeight),
-                    petAge: petAge,
-                    petBreed: petBreed
-                },
-            });
-            console.log(`Appointment for ${petName} booked successfully`);
-            if (data && me.profile) {
-                console.log('profile exists')
-                appBooking();
-            } else {
-                console.log('no profile yet')
-                appBooking();
-                ownerProfile();
-            }
-        } catch (err) {
-            console.error(err);
+        if (myPets && !existingPet.length) {
+            console.log('case 1');
+            console.log('my pets', myPets);
+            console.log('existing pet', existingPet);
+            appBooking();
+            petProfile();
+        };
+        if (!myPets && !existingPet.length) {
+            console.log('case 2');
+            console.log('new pet');
+            petProfile();
+        };
+        if (existingPet.length) {
+            console.log('case 3');
+            console.log('pet exists', existingPet);
+            appBooking();
         };
     };
     const handleFormSubmit = async (e) => {
@@ -223,7 +183,7 @@ const PetForm = (props) => {
             setError('all fields need filled!');
             return;
         };
-        if (me.profile && petName !== petForm) {
+        if (petName !== petForm) {
             setError(`${petForm} is the pet we have in our record...`);
             return;
         };
@@ -242,12 +202,52 @@ const PetForm = (props) => {
                 <h2 className='col-12 signup-success d-flex justify-content-center'>
                     Success!
                 </h2>
+                {petMessage === true ? (
+                    <p className='col-12 signup-success d-flex justify-content-center'>
+                        {petName}'s profile was created...
+                    </p>
+                ) : (
+                    <p className='col-12 signup-success d-flex justify-content-center'>
+                        Your appointment is booked...
+                    </p>
+                )}
+            </main>
+        )
+    };
+
+
+    if (petMessage === true) {
+        return (
+            <main className='row container-success'>
+                <div className="col-12 d-flex appointment-success mb-2">
+                    <i className="fa-solid fa-check d-flex">
+                    </i>
+                </div>
+                <h2 className='col-12 signup-success d-flex justify-content-center'>
+                    Success!
+                </h2>
                 <p className='col-12 signup-success d-flex justify-content-center'>
-                    Your appointment is booked...
+                    {petName || petForm}'s profile has been created...
                 </p>
             </main>
         )
-    }
+    };
+    if (dbleMessage === true) {
+        return (
+            <main className='row container-success'>
+                <div className="col-12 d-flex appointment-success mb-2">
+                    <i className="fa-solid fa-check d-flex">
+                    </i>
+                </div>
+                <h2 className='col-12 signup-success d-flex justify-content-center'>
+                    Success!
+                </h2>
+                <p className='col-12 signup-success d-flex justify-content-center'>
+                    Appointment booked and profile created for {petName || petForm}...
+                </p>
+            </main>
+        )
+    };
 
     return (
         <>
@@ -260,7 +260,7 @@ const PetForm = (props) => {
                                 <h4 className="card-header header-profile bg-primary rounded-0 text-white p-4 mb-3">
                                     Review your pet's appointment info</h4>
                                 <div className='info-review mt-5'>
-                                    <p className='app-review-profile mt-4'>Appointment for: {petForm}</p>
+                                    <p className='app-review-profile mt-4'>Appointment for: {petForm || petName}</p>
                                     <p className='app-review-profile mt-4'>On: {appInfo.digitalAppointment} at: {appInfo.appTime}</p>
                                     <p className='app-review-profile mt-4'>Reason: {appInfo.reason}</p><br />
                                 </div>
@@ -365,13 +365,7 @@ const PetForm = (props) => {
                                     {confirm === true ? (
                                         <div className='card-footer confirm-appointmen mt-5'>
                                             <div className='row p-3 d-flex'>
-                                                <button className="col-6 btn btn-app-review btn-secondary fs-5"
-                                                    type="button"
-                                                    onClick={cancelApp}
-                                                >
-                                                    cancel
-                                                </button>
-                                                <button className="col-6 btn btn-app-review btn-primary fs-5"
+                                                <button className="col-12 btn btn-app-review btn-primary fs-5"
                                                     type="button"
                                                     onClick={confirmation}
                                                 >

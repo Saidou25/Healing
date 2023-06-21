@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
-import { QUERY_BOOKINGDATES, QUERY_ME, QUERY_PETS } from '../../utils/queries';
-import { sendEmail } from '../../utils/email.js';
+import { QUERY_BOOKINGDATES, QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
+// import { sendEmail } from '../../utils/email.js';
 import { parseISO, setHours, setMinutes } from 'date-fns';
 import Spinner from '../../components/Spinner';
 import DatePicker from "react-datepicker";
@@ -33,6 +33,11 @@ const AppointmentForm = () => {
     const profile = me.profile;
     const username = me.username;
 
+    const { data: profilesData, profileDataLoading } = useQuery(QUERY_PROFILES);
+    const profiles = profilesData?.profiles || [];
+    const myProfileInfo = profiles.filter(profile => profile.username === username);
+    const userProfile = myProfileInfo[0];
+
     const { data, loading } = useQuery(QUERY_BOOKINGDATES);
 
     const { data: petsData, petsDataLoading } = useQuery(QUERY_PETS);
@@ -40,6 +45,7 @@ const AppointmentForm = () => {
     const myPets = pets.filter(pet => pet.username === username);
     const petNames = myPets.map(myPets => myPets.petName);
     const existingPet = pets.filter(petNames => petNames.petName === petForm);
+    
 
     // collecting all appointments that we push into allAppointments[] to block unvailable dates in calendar.
     const bookingdates = data?.bookingdates || [];
@@ -77,15 +83,12 @@ const AppointmentForm = () => {
 
         if (name === 'mepet') {
             setMePet(value);
-            if (profile) {
-                setShowPetName(value);
-            };
-
+            setShowPetName(value);
         };
-        if ( name === 'petForm') {
-           const upperCase = value.charAt(0).toUpperCase();
-           const toAdd = value.split('').slice(1, ).join('');
-           const UpperCaseName = upperCase.concat('', toAdd);
+        if (name === 'petForm') {
+            const upperCase = value.charAt(0).toUpperCase();
+            const toAdd = value.split('').slice(1,).join('');
+            const UpperCaseName = upperCase.concat('', toAdd);
             setPetForm(UpperCaseName);
         }
         if (name === 'me') {
@@ -183,29 +186,28 @@ const AppointmentForm = () => {
             petForm: petForm
         };
 
-        if (mepet === 'me' && !profile) {
+        if (mepet === 'me' && !userProfile) {
             navigate('/ProfileForm', { state: { appInfo } });
             console.log('case 4');
         }
-        if (mepet === 'me' && profile) {
+        if (mepet === 'me' && userProfile) {
             setConfirm(true);
             console.log('case 5');
         };
-        if (mepet === 'mypet' && profile && !myPets.length) {
-            navigate('/PetProfileForm', { state: { appInfo, petForm } });
+        if (mepet === 'mypet' && userProfile && !myPets) {
+            navigate('/PetProfileForm', { state: { appInfo, petForm, existingPet } });
             console.log('case 2');
         }
-        if (mepet === 'mypet' && profile && myPets.length && existingPet) {
+        if (mepet === 'mypet' && userProfile && myPets && existingPet.length) {
             setConfirm(true);
             console.log('case 1');
         }
-        if (mepet === 'mypet' && profile && myPets.length && !existingPet.length) {
-            navigate('/PetProfileForm', { state: { appInfo, petForm } });
+        if (mepet === 'mypet' && userProfile && myPets && !existingPet.length) {
+            navigate('/PetProfileForm', { state: { appInfo, petForm, existingPet, myPets } });
             console.log('case 1bis');
         }
-        if (mepet === 'mypet' && !profile) {
-            navigate('/PetOwnerProfileForm', { state: { appInfo, petForm } });
-            console.log(profile);
+        if (mepet === 'mypet' && !userProfile) {
+            navigate('/PetOwnerProfileForm', { state: { appInfo, petForm, existingPet } });
             console.log('case 3');
         }
         setConfirm(true);
@@ -267,7 +269,11 @@ const AppointmentForm = () => {
                     </div>
                     <div className='card-body mt-4'>
                         <p className='app-review-p text-primary'>Appointment for:</p>
-                        <p className='app-review-p'> {profile.patientfirstname} {profile.patientlastname}</p>
+                        {petForm ? (
+                            <p className='app-review-p'> {petForm}</p>
+                        ) : (
+                            <p className='app-review-p'> {userProfile.patientfirstname} {userProfile.patientlastname}</p>
+                        )}
                         <p className='app-review-p text-primary'>On:</p>
                         <p className='app-review-p'>{digitalAppointment} at: {appTime}</p>
                         <p className='app-review-p text-primary'>Reason:</p>
@@ -276,14 +282,14 @@ const AppointmentForm = () => {
                             <p className='app-review-p p-3 text-primary'>Contact:</p>
                         </div>
                         <p className='app-review-p'>Email {me.email}</p>
-                        <p className='app-review-p'>Phone number: {profile.patientnumber}</p><br />
+                        <p className='app-review-p'>Phone number: {userProfile.patientnumber}</p><br />
                         <div className='app-review-t'>
                             <p className='app-review-p p-3 text-primary'>Address: </p>
                         </div>
-                        <p className='app-review-p'>address: {profile.patientaddress}</p>
-                        <p className='app-review-p'>city: {profile.patientcity} </p>
-                        <p className='app-review-p'>state: {profile.patientState} </p>
-                        <p className='app-review-p'>zip: {profile.patientzip} </p>
+                        <p className='app-review-p'>address: {userProfile.patientaddress}</p>
+                        <p className='app-review-p'>city: {userProfile.patientcity} </p>
+                        <p className='app-review-p'>state: {userProfile.patientState} </p>
+                        <p className='app-review-p'>zip: {userProfile.patientzip} </p>
                     </div>
                     <div className='card-footer mt-4'>
                         <div className='row mb-3 p-3 mt-4'>

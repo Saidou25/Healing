@@ -35,17 +35,16 @@ const Signup = () => {
         variables: { username: username, password: password, email: email },
       });
       Auth.login(data.addUser.token);
-      setConfirm(true);
+      if (data) {
+        setConfirm(true);
+        setTimeout(() => {
+          navigate('/Dashboard');
+        }, 3000);
+      };
     } catch (e) {
       console.error(e);
     };
-    if (error) {
-      return;
-    } else {
-      setTimeout(() => {
-        navigate('/Dashboard');
-      }, 3000);
-    };
+
   };
 
   if (loading) return <Spinner />

@@ -4,10 +4,10 @@ import { PatternFormat } from 'react-number-format';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE, ADD_BOOKINGDATE } from "../../utils/mutations";
-import { QUERY_PROFILES } from '../../utils/queries';
+import { QUERY_PROFILES, QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
 import { Regex } from '../../utils/Regex';
 import SelectUSState from 'react-select-us-states';
-import { sendEmail } from '../../utils/email.js';
+// import { sendEmail } from '../../utils/email.js';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
@@ -31,14 +31,12 @@ const ProfileForm = () => {
     const [patientzip, setPatientZip] = useState('');
     const [confirm, setConfirm] = useState(false);
     const [finalize, setFinalize] = useState(false);
-
-    const [addBookingdate] = useMutation(ADD_BOOKINGDATE);
-
-    // Tailored in simple words error message based on error context
     const [error, setError] = useState('');
 
+    // const [addProfile] = useMutation(ADD_PROFILE);
+
     const [addProfile] = useMutation(ADD_PROFILE, {
-        variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
+        // variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
         update(cache, { data: { addProfile } }) {
             try {
                 const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
@@ -52,20 +50,41 @@ const ProfileForm = () => {
                 console.error(e);
             };
         }
+    }); 
+
+     // Updating the cache with newly created appointment
+    const [addBookingdate] = useMutation(ADD_BOOKINGDATE, {
+        update(cache, { data: { addBookingdate } }) {
+            try {
+                const { bookingdates } = cache.readQuery({ query: QUERY_BOOKINGDATES });
+
+                cache.writeQuery({
+                    query: QUERY_BOOKINGDATES,
+                    data: { bookingdates: [addBookingdate, ...bookingdates] },
+                });
+            } catch (e) {
+                console.error(e);
+            }
+            const { me } = cache.readQuery({ query: QUERY_ME });
+            cache.writeQuery({
+                query: QUERY_ME,
+                data: { me: { ...me, bookingdates: [...me.bookingdates, addBookingdate] } },
+            });
+        }
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
-        
-        if ( name === 'patientfirstname') {
-           const upperCase = value.charAt(0).toUpperCase();
-           const toAdd = value.split('').slice(1, ).join('');
-           const UpperCaseName = upperCase.concat('', toAdd);
-           setPatientFirstName(UpperCaseName);
+
+        if (name === 'patientfirstname') {
+            const upperCase = value.charAt(0).toUpperCase();
+            const toAdd = value.split('').slice(1,).join('');
+            const UpperCaseName = upperCase.concat('', toAdd);
+            setPatientFirstName(UpperCaseName);
         };
-        if ( name === 'patientlastname') {
-           const upperCase = value.charAt(0).toUpperCase();
-           const toAdd = value.split('').slice(1, ).join('');
-           const UpperCaseName = upperCase.concat('', toAdd);
+        if (name === 'patientlastname') {
+            const upperCase = value.charAt(0).toUpperCase();
+            const toAdd = value.split('').slice(1,).join('');
+            const UpperCaseName = upperCase.concat('', toAdd);
             setPatientLastName(UpperCaseName);
         };
     };
@@ -73,6 +92,7 @@ const ProfileForm = () => {
     const cancelApp = () => {
         navigate('/Dashboard');
     };
+
     const appBooking = async () => {
         try {
             const { data } = await addBookingdate({
@@ -121,7 +141,7 @@ const ProfileForm = () => {
                     username: username,
                     patientState: patientState,
                     patientnumber: patientnumber,
-                    patinetfirstname: patientfirstname,
+                    patientfirstname: patientfirstname,
                     patientgender: patientgender,
                     patientaddress: patientaddress,
                     patientlastname: patientlastname,
@@ -133,6 +153,7 @@ const ProfileForm = () => {
         } catch (err) {
             console.error(err);
         };
+        console.log(`success adding ${patientfirstname}`)
         appBooking();
     };
 

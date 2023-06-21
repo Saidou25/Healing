@@ -50,7 +50,7 @@ const Login = () => {
             <Navbar />
             <main className='container-login'>
                 <div className="card login">
-                    <h4 className="card-header bg-primary rounded-0 text-light p-4">
+                    <h4 className="card-header header-login bg-primary rounded-0 text-light p-4">
                         Login</h4>
                     <div className="card-body p-3">
                         {data ?

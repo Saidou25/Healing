@@ -11,7 +11,6 @@ const MyProfile = () => {
   const myUserName = meUser.username;
 
   const { data: profilesData, profileDataLoading } = useQuery(QUERY_PROFILES);
-
   const profiles = profilesData?.profiles || [];
   const myProfileInfo = profiles.filter(profile => profile.username === myUserName);
   const userProfile = myProfileInfo[0];

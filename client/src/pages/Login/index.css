@@ -5,6 +5,9 @@
     margin-right: auto;
     margin-left: auto;
 }
+.header-login {
+    text-align: center;
+}
 .error-message {
     text-align: center;
 }
