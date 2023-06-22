@@ -44,12 +44,14 @@ const SideMenu = () => {
                             Menu
                         </h5>
                     </div>
-                    <div className="col-6 col-top">
-                        <a className='profile-icon-side d-flex justify-content-end align-items-center mb-2 p-3'
-                            href="/MyProfile">
-                            <img src={profileIcon} alt='profile icon' height={43} />
-                        </a>
-                    </div>
+                    {(Auth.loggedIn()) && (
+                        <div className="col-6 col-top">
+                            <a className='profile-icon-side d-flex justify-content-end align-items-center mb-2 p-3'
+                                href="/MyProfile">
+                                <img src={profileIcon} alt='profile icon' height={43} />
+                            </a>
+                        </div>
+                    )}
                 </div>
                 <div className="scroll">
                     <div className="row row-items">
@@ -61,24 +63,28 @@ const SideMenu = () => {
                                         about
                                     </a>
                                 </li>
-                                <li className="col-12 col-items mt-4 pb-4">
-                                    <a className='nav-item-side fs-3'
-                                        href="/AppointmentForm">
-                                        book
-                                    </a>
-                                </li>
-                                <li className="col-12 col-items mt-4 pb-4">
-                                    <a className='nav-item-side fs-3'
-                                        href="/Dashboard">
-                                        dashboard
-                                    </a>
-                                </li>
-                                <li className="col-12 col-items mt-4 pb-4">
-                                    <a className='nav-item-side fs-3'
-                                        href="/AppointmentHistory">
-                                        history
-                                    </a>
-                                </li>
+                                {(Auth.loggedIn()) && (
+                                    <>
+                                        <li className="col-12 col-items mt-4 pb-4">
+                                            <a className='nav-item-side fs-3'
+                                                href="/AppointmentForm">
+                                                book
+                                            </a>
+                                        </li>
+                                        <li className="col-12 col-items mt-4 pb-4">
+                                            <a className='nav-item-side fs-3'
+                                                href="/Dashboard">
+                                                dashboard
+                                            </a>
+                                        </li>
+                                        <li className="col-12 col-items mt-4 pb-4">
+                                            <a className='nav-item-side fs-3'
+                                                href="/AppointmentHistory">
+                                                history
+                                            </a>
+                                        </li>
+                                    </>
+                                )}
                                 <li className="col-12 col-items mt-4 pb-4">
                                     <a className='nav-item-side fs-3'
                                         href="/Visit">
