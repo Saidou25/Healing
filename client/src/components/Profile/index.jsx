@@ -15,7 +15,7 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
     const me = data?.me || [];
 
     if (loading) return <Spinner />
-    
+
     if (!userProfile) {
         return (
             <div>
@@ -31,14 +31,14 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                                         {me.username}</div> <br />
                                     <div className="text">
                                         <FaEnvelope className="icon m-2" />
-                                        Email: {me.email}</div> <br />
+                                        {me.email}</div> <br />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='footer-myprofile'>
-                <Footer />
+                    <Footer />
                 </div>
             </div>
         )
@@ -106,7 +106,7 @@ const Profile = ({ userProfile, userId, myAppointments, profileId, myPets }) => 
                                 </button>
                             </Link>
                         </div>
-                        <div className="col-12">
+                        <div>
                             <DeleteModal
                                 userProfile={userProfile}
                                 userId={userId}

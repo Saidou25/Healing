@@ -54,10 +54,18 @@
     height: 55px;
 }
 
+@media screen and (max-width: 600px) {
+   
+    .update-error {
+        text-align: center;
+        height: 55px;
+    }
+}
 @media screen and (max-width: 414px) {
     .container-update {
         width: 90%;
         margin-right: auto;
         margin-left: auto;
     }
+
 }

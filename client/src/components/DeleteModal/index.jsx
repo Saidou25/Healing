@@ -67,8 +67,7 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
                 <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div className="modal-content">
-                            <div className='row'>
-                                <div className="col-12 modal-header">
+                                <div className="modal-header">
                                     <h1 className="modal-title-delete fs-1" id="exampleModalLabel">
                                         Delete Account
                                     </h1>
@@ -76,15 +75,10 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
                                 </div>
                                 {!confirm ? (
                                     <>
-                                        <div className="col-12 d-flex justify-content-center modal-body fs-4 mt-4 mb-4">
-                                            <p>Are you sure you want to delete your account?</p>
+                                        <div className="modal-body fs-4 mt-4 mb-4">
+                                            <p className='sure'>Are you sure you want to delete your account?</p>
                                         </div>
                                         <div className='row mb-3 p-3'>
-                                            {confirm === true && (
-                                                <p className="my-3 p-3 bg-success text-white fs-6 mt-5">
-                                                    Message sent. You can now close the window.
-                                                </p>
-                                            )}
                                             <button className="col-6 btn btn-secondary fs-4"
                                                 type="button"
                                                 data-bs-dismiss="modal">
@@ -111,7 +105,6 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
                                         </p>
                                     </main>
                                 )}
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -147,7 +147,7 @@ const UpdateMyProfileForm = (props) => {
                                   <div className='error-div p-2 mt-5'>
                                     {error && (
                                         <div className="bg-danger text-white">
-                                            <p className='update-error m-2'>
+                                            <p className='update-error'>
                                                 {error}
                                             </p>
                                         </div>

@@ -63,21 +63,7 @@ const ProfileModal = (props) => {
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
                                         placeholder="type your message..." />
-                                    <div className='row m-2 mt-5'>
-                                        <button className="col-6 btn btn-primary bg-transparent text-primary fs-4"
-                                            type="button"
-                                            data-bs-dismiss="modal">
-                                            Close
-                                        </button>
-                                        <button className="col-6 btn btn-primary fs-4"
-                                            type="button"
-                                            onClick={handleSubmit}
-                                        // data-bs-dismiss="modal"
-                                        >
-                                            Save changes
-                                        </button>
-                                    </div>
-                                    {error && (
+                                           {error && (
                                         <p className="my-3 p-3 bg-danger text-white fs-6 mt-5">
                                             {error}
                                         </p>
@@ -87,6 +73,19 @@ const ProfileModal = (props) => {
                                             {confirm}
                                         </p>
                                     )}
+                                    <div className='row m-2 mt-5'>
+                                        <button className="col-6 btn btn-primary bg-transparent text-primary fs-4"
+                                            type="button"
+                                            data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button className="col-6 btn btn-primary fs-4"
+                                            type="button"
+                                            onClick={handleSubmit}
+                                        >
+                                            Save changes
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

@@ -22,6 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 4%;
 }
 .history-column {
     margin-top: 4%;
@@ -55,7 +56,6 @@
 @media screen and (max-width: 375px) {
     .container-no-history {
         margin-top: 15%;
-        width: 65%;
         margin-right: auto;
         margin-left: auto;
     }

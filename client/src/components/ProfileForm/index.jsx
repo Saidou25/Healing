@@ -179,6 +179,7 @@ const ProfileForm = () => {
             setError('zip code needs to be a five digit number!');
             return;
         };
+        setError('');
         setConfirm(true);
     };
 
@@ -217,7 +218,7 @@ const ProfileForm = () => {
                         </>
                     ) : (
                         <>
-                            <h4 className="card-header-profile bg-primary rounded-0 text-light p-4 mt-5">
+                            <h4 className="card-header-profile bg-primary rounded-0 text-light p-4 mt-3">
                                 Please answer few questions about yourself</h4>
                         </>
                     )}

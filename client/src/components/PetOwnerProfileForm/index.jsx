@@ -121,6 +121,15 @@ const PetOwnerProfileForm = () => {
         setTimeout(() => {
             navigate('/PetProfileForm', { state: { appInfo, petForm, existingPet }});
         }, 3000);
+
+    //   clearing form inputs
+        setPatientFirstName('');
+        setPatientLastName('');
+        setPatientAddress('');
+        setPatientZip('');
+        setPatientCity('');
+        setNewValue('');
+        setPatientNumber('');
     };
 
     const confirmation = async () => {
@@ -172,16 +181,9 @@ const PetOwnerProfileForm = () => {
             setError('10 digits phone number is missing!');
             return;
         };
+        setError('');
         setConfirm(true);
-
-        // navigate('/PetProfileForm', { state: { appInfo, ownerInfo, petForm } })
-        // setPatientFirstName('');
-        // setPatientLastName('');
-        // setPatientAddress('');
-        // setPatientZip('');
-        // setPatientCity('');
-        // setNewValue('');
-        // setPatientNumber('');
+        
     };
 
     if (transition === true) {
@@ -217,7 +219,7 @@ const PetOwnerProfileForm = () => {
                         </>
                     ) : (
                         <>
-                            <h4 className="card-header-profile bg-primary rounded-0 text-light p-4 mt-5">
+                            <h4 className="card-header-profile bg-primary rounded-0 text-light p-4 mt-3">
                                 Please answer few questions about yourself</h4>
                         </>
                     )}

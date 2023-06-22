@@ -54,7 +54,7 @@ if (!reviews.length) {
         <div className='container-no-history mt-5 mb-5'>
                         <div className='card no-history'>
                             <p className='card-header history-header fs-3'>
-                                You haven' t wrote a review yet
+                                No review yet
                             </p>
                             <div className='card-body history-text'>
                                 <p>
