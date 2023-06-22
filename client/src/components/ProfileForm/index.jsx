@@ -7,7 +7,7 @@ import { ADD_PROFILE, ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_PROFILES, QUERY_BOOKINGDATES, QUERY_ME } from '../../utils/queries';
 import { Regex } from '../../utils/Regex';
 import SelectUSState from 'react-select-us-states';
-// import { sendEmail } from '../../utils/email.js';
+import { sendEmail } from '../../utils/email.js';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import './index.css';
@@ -19,6 +19,7 @@ const ProfileForm = () => {
 
     const appInfo = location.state.appInfo;
     const username = appInfo.username;
+    const templateParams = location.state.templateParams;
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
@@ -112,12 +113,11 @@ const ProfileForm = () => {
                 }
             });
             console.log(`success booking a date ${appInfo.digitalAppointment}`);
-            // setReviewData({ ...data, me })
 
         } catch (err) {
             console.error(err);
         };
-        // // sendEmail(templateParams);
+        sendEmail(templateParams);
         setFinalize(true);
         setTimeout(() => {
             navigate('/Dashboard');
@@ -194,6 +194,9 @@ const ProfileForm = () => {
                 </h2>
                 <p className='col-12 signup-success d-flex justify-content-center'>
                     Your appointment is booked...
+                </p>
+                <p className='col-12 signup-success d-flex justify-content-center'>
+                    Check your mail box for confirmation.
                 </p>
             </main>
         )

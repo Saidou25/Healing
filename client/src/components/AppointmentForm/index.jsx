@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_BOOKINGDATES, QUERY_ME, QUERY_PETS, QUERY_PROFILES } from '../../utils/queries';
-// import { sendEmail } from '../../utils/email.js';
+import { sendEmail } from '../../utils/email.js';
 import { parseISO, setHours, setMinutes } from 'date-fns';
 import Spinner from '../../components/Spinner';
 import DatePicker from "react-datepicker";
@@ -32,6 +32,7 @@ const AppointmentForm = () => {
     const me = meData?.me || [];
     const profile = me.profile;
     const username = me.username;
+    const email = me.email;
 
     const { data: profilesData, profileDataLoading } = useQuery(QUERY_PROFILES);
     const profiles = profilesData?.profiles || [];
@@ -45,7 +46,17 @@ const AppointmentForm = () => {
     const myPets = pets.filter(pet => pet.username === username);
     const petNames = myPets.map(myPets => myPets.petName);
     const existingPet = pets.filter(petNames => petNames.petName === petForm);
-    
+
+    // building templateParams for emailing appointment confirmation
+    const templateParams = {
+        digitalAppointment: digitalAppointment,
+        username: username,
+        email: email,
+        appTime: appTime,
+        profile: profile,
+        myPets: myPets,
+        petForm: petForm
+    };
 
     // collecting all appointments that we push into allAppointments[] to block unvailable dates in calendar.
     const bookingdates = data?.bookingdates || [];
@@ -111,6 +122,7 @@ const AppointmentForm = () => {
     };
 
     const confirmation = async () => {
+
         try {
             const { data } = await addBookingdate({
                 variables: {
@@ -128,13 +140,13 @@ const AppointmentForm = () => {
                     appYear: appInfo.appYear
                 }
             });
-            // setReviewData({ ...data, me })
 
             console.log(`success booking a date ${digitalAppointment}`);
 
         } catch (err) {
             console.error(err);
         };
+        sendEmail(templateParams);
         setFinalize(true);
         setTimeout(() => {
             navigate('/Dashboard');
@@ -146,6 +158,7 @@ const AppointmentForm = () => {
             setError('All fields need filled!');
             return;
         };
+
         // building up digitalAppointment needed to display appointments date in components
         const isBooked = JSON.stringify(startDate);
 
@@ -167,9 +180,10 @@ const AppointmentForm = () => {
 
         setDigitalAppointment(digitalAppointment);
         setAppTime(appTime);
-
+        // building an object with data needed for next component and to send confirmation email as well
         const appInfo = {
             username: username,
+            email: email,
             isBooked: isBooked,
             finalDate: finalDate,
             finalDateISO: finalDateISO,
@@ -187,7 +201,7 @@ const AppointmentForm = () => {
         };
 
         if (mepet === 'me' && !userProfile) {
-            navigate('/ProfileForm', { state: { appInfo } });
+            navigate('/ProfileForm', { state: { appInfo, templateParams } });
             console.log('case 4');
         }
         if (mepet === 'me' && userProfile) {
@@ -195,7 +209,7 @@ const AppointmentForm = () => {
             console.log('case 5');
         };
         if (mepet === 'mypet' && userProfile && !myPets) {
-            navigate('/PetProfileForm', { state: { appInfo, petForm, existingPet } });
+            navigate('/PetProfileForm', { state: { appInfo, petForm, existingPet, templateParams } });
             console.log('case 2');
         }
         if (mepet === 'mypet' && userProfile && myPets && existingPet.length) {
@@ -203,42 +217,15 @@ const AppointmentForm = () => {
             console.log('case 1');
         }
         if (mepet === 'mypet' && userProfile && myPets && !existingPet.length) {
-            navigate('/PetProfileForm', { state: { appInfo, petForm, existingPet, myPets } });
+            navigate('/PetProfileForm', { state: { appInfo, petForm, existingPet, myPets, templateParams } });
             console.log('case 1bis');
         }
         if (mepet === 'mypet' && !userProfile) {
-            navigate('/PetOwnerProfileForm', { state: { appInfo, petForm, existingPet } });
+            navigate('/PetOwnerProfileForm', { state: { appInfo, petForm, existingPet, templateParams } });
             console.log('case 3');
         }
         setConfirm(true);
         setAppInfo(appInfo);
-
-        // // building templateParams for emailing appointment confirmation
-        // const sy = 'saidou.monta@yahoo.com';
-        // const templateParams = {
-        //     digitalAppointment: digitalAppointment,
-        //     username: username,
-        //     myemail: sy,
-        //     appTime: appTime,
-        //     profile: profile,
-        //     myPets: myPets
-        // };
-
-        // // adding a bookingdate to database
-
-
-        // // redirects user to the next step in appointment process based on condilions
-
-
-
-
-
-
-        // setMePet('');
-        // setStartDate('');
-        // setReason('');
-        // setShowPetName('');
-        // setPetForm('');
     };
 
     if (loading) return <Spinner />
@@ -255,6 +242,9 @@ const AppointmentForm = () => {
                 </h2>
                 <p className='col-12 signup-success d-flex justify-content-center'>
                     Your appointment is booked...
+                </p>
+                <p className='col-12 signup-success d-flex justify-content-center'>
+                Just sent you a confitmation email .
                 </p>
             </main>
         )

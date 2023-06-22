@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROFILE, ADD_BOOKINGDATE  } from "../../utils/mutations";
 import { QUERY_ME, QUERY_PROFILES, QUERY_BOOKINGDATES } from '../../utils/queries';
 import { Regex } from '../../utils/Regex';
+import { sendEmail } from '../../utils/email.js';
 import SelectUSState from 'react-select-us-states';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
@@ -20,6 +21,7 @@ const PetOwnerProfileForm = () => {
     const username = appInfo.username;
     const petForm = location.state.petForm;
     const existingPet = location.state.existingPet;
+    const templateParams = location.state.templateParams;
 
     const [patientState, setNewValue] = useState('');
     const [patientnumber, setPatientNumber] = useState('');
@@ -114,6 +116,7 @@ const PetOwnerProfileForm = () => {
         } catch (err) {
             console.error(err);
         };
+        sendEmail(templateParams);
         setTransition(true);
         setTimeout(() => {
             navigate('/PetProfileForm', { state: { appInfo, petForm, existingPet }});

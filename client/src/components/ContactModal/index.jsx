@@ -4,22 +4,17 @@ import "./index.css";
 
 const ProfileModal = (props) => {
     const username = props.username;
-    // const email = props.email;
+    const email = props.email;
 
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
     const [confirm, setConfirm] = useState('');
 
-    // const handleClear = () => {
-    //     setError('');
-    //     setConfirm('');
-    // };
     const handleSubmit = () => {
         // building templateParams for message confirmation email
-
         const templateParams = {
             username: username,
-            email: 'saidou.monta@yahoo.com',
+            email: email,
             message: message
         };
         if (!message) {
@@ -29,7 +24,7 @@ const ProfileModal = (props) => {
             return;
         };
         setConfirm('Message sent. You can now close the window.');
-
+        sendMessage(templateParams);
         setTimeout(() => {
             setConfirm('');
         }, 5000);
@@ -37,7 +32,6 @@ const ProfileModal = (props) => {
         sendMessage(templateParams);
         setError('');
         setMessage('');
-        console.log('message sent', templateParams);
     };
 
     return (
@@ -46,7 +40,6 @@ const ProfileModal = (props) => {
                 type="button"
                 className="btn btn-primary direct-message rounded-0"
                 data-bs-toggle="modal"
-                // onClick={handleClear}
                 data-bs-target="#exampleModal">
                 <div className='message-btn-modal'>
                     message
@@ -79,7 +72,7 @@ const ProfileModal = (props) => {
                                         <button className="col-6 btn btn-primary fs-4"
                                             type="button"
                                             onClick={handleSubmit}
-                                            // data-bs-dismiss="modal"
+                                        // data-bs-dismiss="modal"
                                         >
                                             Save changes
                                         </button>

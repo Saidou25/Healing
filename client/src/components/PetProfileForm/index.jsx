@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { QUERY_PETS, QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
 import { ADD_PET, ADD_BOOKINGDATE } from "../../utils/mutations";
 import { useMutation, useQuery } from '@apollo/client';
-// import { sendEmail } from '../../utils/email.js';
+import { sendEmail } from '../../utils/email.js';
 import { Regex } from '../../utils/Regex';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
@@ -17,6 +17,7 @@ const PetForm = () => {
     const petForm = location.state.petForm;
     const existingPet = location.state.existingPet;
     const myPets = location.state.myPets;
+    const templateParams = location.state.templateParams;
 
     const [petName, setPetName] = useState('');
     const [petWeight, setPetWeight] = useState('');
@@ -136,8 +137,10 @@ const PetForm = () => {
         if (myPets && !existingPet.length) {
             console.log('double message');
             setDbleMessage(true);
+            sendEmail(templateParams);
         } else {
             setFinalize(true);
+            sendEmail(templateParams);
             console.log('finalize');
         };
         setTimeout(() => {
@@ -207,9 +210,14 @@ const PetForm = () => {
                         {petName}'s profile was created...
                     </p>
                 ) : (
+                    <>
                     <p className='col-12 signup-success d-flex justify-content-center'>
                         Your appointment is booked...
                     </p>
+                    <p className='col-12 signup-success d-flex justify-content-center'>
+                    Just sent you a confitmation email.
+                    </p>
+                    </>
                 )}
             </main>
         )
@@ -242,7 +250,7 @@ const PetForm = () => {
                 <h2 className='col-12 signup-success d-flex justify-content-center'>
                     Success!
                 </h2>
-                <p className='col-12 signup-success d-flex justify-content-center'>
+                <p className='col-12 signup-success d-flex justify-content-center m-2'>
                     Appointment booked and profile created for {petName || petForm}...
                 </p>
             </main>

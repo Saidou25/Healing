@@ -22,6 +22,8 @@ Profile has also been updated with new information. From this page, profile can 
 
 Deleting profile is also selected from this page by clicking 'delete'. A modal confirmation window appears, if 'confirm' is selected all data except the patient reviews are deleted from database, then logg out and back to the 'landing page'.
 
+Note: For demo purposes appointment can be booked for the current day and time so it can show in history. Also only one appointment can be booked for a single day as long as there will be only one therapist in the 'real' team.
+
 ## Table of Contents
 
 - [Technologies](#technologies)
