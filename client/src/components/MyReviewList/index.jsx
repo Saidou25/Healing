@@ -9,12 +9,13 @@ import './index.css';
 
 const MyReviewsList = (props) => {
     //  This page shows all reviews. User's reviews have a delete button
-    const myUserName = props.username;
+    const username = props.username;
 
     const [reviewId, setReviewId] = useState('');
 
     const { data: reviewsData, loading } = useQuery(QUERY_REVIEWS);
     const reviews = reviewsData?.reviews || [];
+    const myReviews = reviews.filter((reviews => reviews.username === username))
 
     const [deleteReview] = useMutation(DELETE_REVIEW, {
         variables: { id: reviewId },
@@ -49,7 +50,7 @@ const MyReviewsList = (props) => {
     if (loading) {
         return <h3>loading...</h3>
     }
-if (!reviews.length) {
+if (!myReviews.length) {
     return (
         <div className='container-no-history mt-5 mb-5'>
                         <div className='card no-history'>
@@ -69,8 +70,8 @@ if (!reviews.length) {
         <div className='container-review'>
             <h3 className="review-list-title mt-5 mb-5">Your reviews</h3>
             <div className="row">
-                {reviews &&
-                    reviews.map((review) => (
+                {myReviews &&
+                    myReviews.map((review) => (
                         <div key={review._id} className="col-12">
                             <div className="card review-list mb-4">
                                 <div className="card-header fs-3">{review.title}</div>
@@ -92,7 +93,7 @@ if (!reviews.length) {
                                         <div className='col-6 d-flex align-items-center'>
                                             <RatingList rating={review.rating} />
                                         </div>
-                                        {review.username === myUserName && (
+                                        {review.username === username && (
                                             <div className='col-6 d-flex justify-content-end'>
                                                 <button
                                                     type='button'
