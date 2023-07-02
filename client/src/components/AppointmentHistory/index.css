@@ -1,62 +1,62 @@
 .container-history {
-    margin-top: 5%;
-    width: 70%;
-    margin-right: auto;
-    margin-left: auto;
+  margin-top: 5%;
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
 }
 .container-no-history {
-    margin-top: 7%;
-    width: 50%;
-    margin-right: auto;
-    margin-left: auto;
+  margin-top: 7%;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
 }
 .history-header {
-    text-align: center;
-    height: 30%;
+  text-align: center;
+  height: 30%;
 }
 .no-history {
-    height: 200px;
-     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 200px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .history-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4%;
 }
 .history-column {
-    margin-top: 4%;
+  margin-top: 4%;
 }
 .delete-appointment {
-    margin-bottom: 2%;
+  margin-bottom: 2%;
 }
 .history {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 @media screen and (max-width: 414px) {
-    .no-history {
-         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-    .container-history {
-        margin-top: 15%;
-        width: 96%;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    .history-column {
-        margin-top: 1px;
-    }
-    .container-no-history {
-        margin-top: 15%;
-        width: 96%;
-        margin-right: auto;
-        margin-left: auto;
-    }
+  .no-history {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .container-history {
+    margin-top: 15%;
+    width: 96%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .history-column {
+    margin-top: 1px;
+  }
+  .container-no-history {
+    margin-top: 15%;
+    width: 96%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 @media screen and (max-width: 375px) {
-    .container-no-history {
-        margin-top: 15%;
-        margin-right: auto;
-        margin-left: auto;
-    }
+  .container-no-history {
+    margin-top: 15%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

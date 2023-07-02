@@ -1,11 +1,11 @@
 .container-owner {
-    margin-top: 3%;
-    width: 60%;
-    margin-right: auto;
-    margin-left: auto;
+  margin-top: 3%;
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
 }
 .owner-tilte {
-    text-align: center;
+  text-align: center;
 }
 /* .title {
     display: block;
@@ -15,74 +15,74 @@
 } */
 
 .appointment-for {
-    display: block;
+  display: block;
 }
 
 .gender-question {
-    display: block;
+  display: block;
 }
 
 .profile {
-    margin-left: auto;
-    margin-right: auto;
-    width: 65%;
-    border-style: double;
-    border-width: 5px;
-    border-color: white;
-    border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+  border-style: double;
+  border-width: 5px;
+  border-color: white;
+  border-radius: 20px;
 }
 
 .form-control {
-    font-style: oblique;
+  font-style: oblique;
 }
 
 .form-label1 {
-    color: black;
-    margin-top: 20px;
-    margin-bottom: 7px;
-    margin-right: 15px;
-    margin-left: 15px;
-    font-size: 1.2em;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 7px;
+  margin-right: 15px;
+  margin-left: 15px;
+  font-size: 1.2em;
 }
 
 .form-label {
-    color: black;
-    margin-right: 15px;
-    margin-left: 15px;
+  color: black;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .owner-fields {
-    padding: 1%;
+  padding: 1%;
 }
 
 .Message {
-    display: flex;
-    overflow: hidden;
-    height: 150px;
+  display: flex;
+  overflow: hidden;
+  height: 150px;
 }
 
 .button-owner {
-    margin-top: 5%;
-    text-align: center;
-    margin-bottom: 5%;
+  margin-top: 5%;
+  text-align: center;
+  margin-bottom: 5%;
 }
 .owner-error {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
 }
 
 @media screen and (max-width: 414px) {
-    .main-petOwner {
-        margin: 5px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    .container-owner {
-        margin-top: 10%;
-        width: 96%;
-        margin-right: auto;
-        margin-left: auto;
-    }
+  .main-petOwner {
+    margin: 5px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .container-owner {
+    margin-top: 10%;
+    width: 96%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

@@ -1,68 +1,68 @@
 const { Schema, model } = require("mongoose");
 
 const bookingdateSchema = new Schema({
-     username: {
-        type: String,
-        repuire: true,
-        trim: true,
-    },
-     isBooked: {
-        type: String,
-        repuire: true,
-        trim: true,
-    },
-     digitalAppointment: {
-        type: String,
-        repuire: true,
-        trim: true,
-    },
-    digitMonth: {
-        type: String,
-        repuire: true,
-        trim: true,
-    },
-    finalDateISO: {
-        type: String,
-        repuire: true,
-        trim: true,
-    },
-   appDay: {
-        type: String,
-        repuire: true,
-        trim: true,
-    },
-        appMonth: {
-            type: String,
-            repuire: true,
-            trim: true,
-        },
-        appDate: {
-            type: Number,
-            repuire: true,
-            trim: true,
-        },
-        appTime: {
-            type: String,
-            repuire: true,
-            trim: true,
-        },
-        appointment: {
-            type: String,
-            repuire: true,
-            trim: true,
-        },
-        appYear: {
-            type: Number,
-            repuire: true,
-            trim: true,
-        },
-        reason: {
-            type: String,
-            repuire: true,
-            trim: true
-        }
+  username: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  isBooked: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  digitalAppointment: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  digitMonth: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  finalDateISO: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  appDay: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  appMonth: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  appDate: {
+    type: Number,
+    repuire: true,
+    trim: true,
+  },
+  appTime: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  appointment: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
+  appYear: {
+    type: Number,
+    repuire: true,
+    trim: true,
+  },
+  reason: {
+    type: String,
+    repuire: true,
+    trim: true,
+  },
 });
 
-const Bookingdate = model('Bookingdate', bookingdateSchema);
+const Bookingdate = model("Bookingdate", bookingdateSchema);
 
 module.exports = Bookingdate;

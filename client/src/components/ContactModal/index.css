@@ -1,26 +1,25 @@
- /* the row was causing throwing */
-.row { 
-    --bs-gutter-x: 0;
-} 
+/* the row was causing throwing */
+.row {
+  --bs-gutter-x: 0;
+}
 .modal-title-contact {
-    margin-left: 24%;
- }
+  margin-left: 24%;
+}
 .form-label-contact {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 4%;
-    margin-bottom: 4%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 .message-btn-modal {
-    display: flex;
-    justify-content: center;
-    font-size: 1rem;
-
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
 }
 @media screen and (max-width: 414px) {
-    .container-dashboard {
-        width: 98%;
-        margin-right: auto;
-        margin-left: auto;
-    }
+  .container-dashboard {
+    width: 98%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

@@ -1,71 +1,69 @@
 .container-update {
-    width: 60%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 5%;
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 5%;
 }
 
 .phone-error {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    margin-left: 1%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  margin-left: 1%;
 }
 
 .card-header-update {
-    text-align: center;
+  text-align: center;
 }
 
 .profile {
-    margin-left: auto;
-    margin-right: auto;
-    width: 65%;
-    border-style: double;
-    border-width: 5px;
-    border-color: white;
-    border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+  border-style: double;
+  border-width: 5px;
+  border-color: white;
+  border-radius: 20px;
 }
 
 .phone-number {
-    width: 100%;
-    font-style: oblique;
-    width: 100%;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #55595c;
-    background-color: #f7f7f9;
-    background-clip: padding-box;
-    border: 0 solid #ced4da;
+  width: 100%;
+  font-style: oblique;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #55595c;
+  background-color: #f7f7f9;
+  background-clip: padding-box;
+  border: 0 solid #ced4da;
 }
 
 .btn-update {
-    margin-top: 5%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  margin-top: 5%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .update-error {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
 }
 
 @media screen and (max-width: 600px) {
-   
-    .update-error {
-        text-align: center;
-        height: 55px;
-    }
+  .update-error {
+    text-align: center;
+    height: 55px;
+  }
 }
 @media screen and (max-width: 414px) {
-    .container-update {
-        width: 90%;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
+  .container-update {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

@@ -1,15 +1,15 @@
 .modal-title-delete {
-   margin-left: 15%;
+  margin-left: 15%;
 }
-.sure { 
-   text-align: center;
+.sure {
+  text-align: center;
 }
 @media screen and (max-width: 414px) {
-   .btn-modal {
-      width: 100%;
-   }
-   .modal-title-delete {
-   margin-left: 9%;
-   text-align: center;
-}
+  .btn-modal {
+    width: 100%;
+  }
+  .modal-title-delete {
+    margin-left: 9%;
+    text-align: center;
+  }
 }

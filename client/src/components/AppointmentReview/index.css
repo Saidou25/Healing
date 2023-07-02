@@ -1,13 +1,13 @@
 .app-review-header {
-    text-align: center;
+  text-align: center;
 }
 .app-review-t {
-    background-color: var(--bs-card-cap-bg);
+  background-color: var(--bs-card-cap-bg);
 }
 .app-review-p {
-    padding-left: 3%;
-    text-align: center;
+  padding-left: 3%;
+  text-align: center;
 }
 .card-body {
-    padding: 0;
+  padding: 0;
 }

@@ -1,91 +1,90 @@
 .container-appointment {
-    margin-top: 5%;
-    margin-bottom: 1%;
-    width: 60%;
-    margin-right: auto;
-    margin-left: auto;
-   }
+  margin-top: 5%;
+  margin-bottom: 1%;
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+}
 .appointment-review-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .card-header-appointment {
-    text-align: center;
+  text-align: center;
 }
 .visit {
-    margin: 3%;
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-    border: none;
-    text-align: center;
+  margin: 3%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  border: none;
+  text-align: center;
 }
 
 .type-your-text {
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .appointment-column {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .form-label {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
 .date-picker {
-    width: 100%;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+  width: 100%;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .choose-date {
-    margin-top: 2%;
+  margin-top: 2%;
 }
 
 .container-success {
-    margin-top: 30%;
+  margin-top: 30%;
 }
 
 .appointment-success {
-    justify-content: center;
-    align-items: center;
-    height: 100px; 
+  justify-content: center;
+  align-items: center;
+  height: 100px;
 }
 
 .fa-check {
-    justify-content: center;
-    align-items: center;
-    font-size: 4rem;
-    height: 70px;
-    width: 70px; 
-    border-radius: 50%;
-    color: white;
-    background-color: green;
-
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  color: white;
+  background-color: green;
 }
 .appoitment-error {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
 }
 
 @media screen and (max-width: 414px) {
-    .container-appointment {
-        margin-top: 10%;
-        margin-bottom: 10%;
-        width: 90%;
-        margin-right: auto;
-        margin-left: auto;
-    }
+  .container-appointment {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-    .appointment-success {
-        width: 70%;
-        margin-right: auto;
-        margin-left: auto;
-    }
+  .appointment-success {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

@@ -1,10 +1,10 @@
-import React from 'react';
-import UpdateMyProfileForm from '../../components/UpdateMyProfileForm';
-import { useQuery } from '@apollo/client';
-import { QUERY_ME, QUERY_PROFILES } from '../../utils/queries';
+import React from "react";
+import UpdateMyProfileForm from "../../components/UpdateMyProfileForm";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME, QUERY_PROFILES } from "../../utils/queries";
 
 const UpdateProfile = () => {
-// work is being done here to gather data needed to pre-populate the update form
+  // work is being done here to gather data needed to pre-populate the update form
   const { data } = useQuery(QUERY_ME);
   const meUser = data?.me || [];
   const userId = meUser._id;
@@ -15,17 +15,22 @@ const UpdateProfile = () => {
 
   const profiles = profilesData?.profiles || [];
 
-  const myProfileInfo = profiles.filter(profile => profile.username === myUserName);
+  const myProfileInfo = profiles.filter(
+    (profile) => profile.username === myUserName
+  );
 
   const userProfile = myProfileInfo[0];
   const profileId = userProfile._id;
 
-
   return (
     <div>
-      <UpdateMyProfileForm userProfile={userProfile} userId={userId} profileId={profileId} />
+      <UpdateMyProfileForm
+        userProfile={userProfile}
+        userId={userId}
+        profileId={profileId}
+      />
     </div>
-  )
+  );
 };
 
 export default UpdateProfile;

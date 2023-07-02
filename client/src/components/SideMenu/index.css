@@ -1,47 +1,47 @@
-.landing-title-side  {
-    font-size: 3rem;
-    text-decoration: none;
+.landing-title-side {
+  font-size: 3rem;
+  text-decoration: none;
 }
 .btn-logout {
-    border-style: none;
-    background-color: Transparent;
-    display: flex;
-    justify-content: flex-start;
+  border-style: none;
+  background-color: Transparent;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .row-items {
-    overflow: scroll;
-    padding-left: 3%;
-    padding-right: 3%;
-    /* width: 90%; */
-     margin-bottom: 2%;
-    height: 350px;
+  overflow: scroll;
+  padding-left: 3%;
+  padding-right: 3%;
+  /* width: 90%; */
+  margin-bottom: 2%;
+  height: 350px;
 }
 .col-items {
-    border-bottom-style: solid;
-    border-width: 1px;
+  border-bottom-style: solid;
+  border-width: 1px;
 }
 .one {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .nav-item-side {
-    text-decoration: none;
-    color: white;
-    width: 100px;
+  text-decoration: none;
+  color: white;
+  width: 100px;
 }
 
 .show {
-    display: none;
+  display: none;
 }
 
 .profile-icon-side {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 900px) {
-    .show {
-        display: block;
-    }
-};
+  .show {
+    display: block;
+  }
+}
