@@ -78,7 +78,7 @@ const AppointmentForm = () => {
 
         cache.writeQuery({
           query: QUERY_BOOKINGDATES,
-          data: { bookingdates: [addBookingdate, ...bookingdates] },
+          data: { bookingdates: [...bookingdates, addBookingdate] },
         });
       } catch (e) {
         console.error(e);
@@ -127,7 +127,6 @@ const AppointmentForm = () => {
   };
 
   const confirmation = async () => {
-    console.log("template from confirm", templateParams);
     try {
       const { data } = await addBookingdate({
         variables: {
@@ -144,7 +143,6 @@ const AppointmentForm = () => {
     } catch (err) {
       console.error(err);
     }
-    console.log("template params from comfirm", templateParams);
     sendEmail(templateParams);
     setFinalize(true);
     setTimeout(() => {
