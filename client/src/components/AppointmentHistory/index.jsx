@@ -16,7 +16,7 @@ const AppointmentHistory = () => {
   const todaysMonth = date.getMonth() + 1;
   const todaysMonthStr = todaysMonth.toString();
   const todaysDateStr = todaysDate.toString();
-  
+
   const [bookingdateId, setBookingdateId] = useState("");
 
   const { data: meData, meLoading, error } = useQuery(QUERY_ME);
@@ -39,7 +39,7 @@ const AppointmentHistory = () => {
     newDay = todaysDate;
   }
   const today = `${newMonth}/${newDay}/${todaysYear}`;
-  
+
   const [deleteBookingdate] = useMutation(DELETE_BOOKINGDATE, {
     variables: { id: bookingdateId },
     update(cache, { data: { deleteBookingdate } }) {
@@ -61,9 +61,16 @@ const AppointmentHistory = () => {
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
-        data: { me: { ...me, bookingdates: [...me. bookingdates.filter(
-          (bookingdate) => bookingdate._id !== deleteBookingdate._id
-        )] } },
+        data: {
+          me: {
+            ...me,
+            bookingdates: [
+              ...me.bookingdates.filter(
+                (bookingdate) => bookingdate._id !== deleteBookingdate._id
+              ),
+            ],
+          },
+        },
       });
     },
   });
@@ -79,11 +86,13 @@ const AppointmentHistory = () => {
       const { data } = deleteBookingdate({
         variables: { id: bookingdateId },
       });
-      setBookingdateId(bookingdateId);
-      console.log("appointment deleted successfully");
+      if (data) {
+        console.log("appointment deleted successfully");
+      }
     } catch (err) {
       console.error(err);
-    }
+    };
+    setBookingdateId(bookingdateId);
   };
 
   if (meLoading) return <Spinner />;
@@ -112,15 +121,15 @@ const AppointmentHistory = () => {
     <div>
       <Navbar />
       <div className="container-history">
-        <h3 className="appointment-list-title mt-5 mb-5">Appointment history</h3>
+        <h3 className="appointment-list-title mt-5 mb-5">
+          Appointment history
+        </h3>
         <div className="row">
           {history &&
             history.map((bookingdate) => (
               <div key={bookingdate._id} className="col-12 history-column">
                 <div className="card history mb-4">
-                  <div className="card-header fs-3">
-                    Previous appointment:
-                  </div>
+                  <div className="card-header fs-3">Previous appointment:</div>
                   <div className="card-body p-3">
                     <div className="row">
                       <div className="col-8 d-flex align-items-center">

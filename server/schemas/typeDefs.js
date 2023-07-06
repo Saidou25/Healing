@@ -42,7 +42,7 @@ const typeDefs = gql`
 
   type Bookingdate {
     _id: ID!
-    username: String!
+    username: String
     startDate: String!
     digitalAppointment: String!
     appointmentString: String!
@@ -99,7 +99,7 @@ const typeDefs = gql`
     ): Profile
 
     addBookingdate(
-      username: String!
+      username: String
       startDate: String!
       digitalAppointment: String!
       appointmentString: String!

@@ -32,17 +32,20 @@ const AppointmentForm = () => {
   const [petForm, setPetForm] = useState("");
   const [appointmentString, setAppointmentString] = useState("");
   const [digitalAppointment, setDigitalAppointment] = useState("");
+  const [templateParams, setTemplateParams] = useState("");
   const [reason, setReason] = useState("");
   const [error, setError] = useState("");
   const [confirm, setConfirm] = useState(false);
   const [finalize, setFinalize] = useState(false);
 
+  // query data about user
   const { data: meData } = useQuery(QUERY_ME);
   const me = meData?.me || [];
   const profile = me.profile;
   const username = me.username;
   const email = me.email;
 
+  // query data about profiles
   const { data: profilesData, profileDataLoading } = useQuery(QUERY_PROFILES);
   const profiles = profilesData?.profiles || [];
   const myProfileInfo = profiles.filter(
@@ -50,33 +53,22 @@ const AppointmentForm = () => {
   );
   const userProfile = myProfileInfo[0];
 
-  const { data, loading } = useQuery(QUERY_BOOKINGDATES);
-
+  // query data about pets
   const { data: petsData, petsDataLoading } = useQuery(QUERY_PETS);
   const pets = petsData?.pets || [];
   const myPets = pets.filter((pet) => pet.username === username);
-  const petNames = myPets.map((myPets) => myPets.petName);
+  // const petNames = myPets.map((myPets) => myPets.petName);
   const existingPet = pets.filter((petNames) => petNames.petName === petForm);
 
   // collecting all appointments that we push into [allAppointments] to block already taken dates in calendar.
   //  we use parsISO for supported format
+  const { data, loading } = useQuery(QUERY_BOOKINGDATES);
   const bookingdates = data?.bookingdates || [];
   const allAppointments = [];
   for (let bookingdate of bookingdates) {
     const result = parseISO(bookingdate.startDate);
     allAppointments.push(result);
   }
-
-  // building templateParams for emailing appointment confirmation
-  const templateParams = {
-    digitalAppointment: digitalAppointment,
-    username: username,
-    email: email,
-    appTime: appTime,
-    profile: profile,
-    myPets: myPets,
-    petForm: petForm,
-  };
 
   // Updating the cache with newly created appointment
   const [addBookingdate] = useMutation(ADD_BOOKINGDATE, {
@@ -135,6 +127,7 @@ const AppointmentForm = () => {
   };
 
   const confirmation = async () => {
+    console.log("template from confirm", templateParams);
     try {
       const { data } = await addBookingdate({
         variables: {
@@ -145,11 +138,13 @@ const AppointmentForm = () => {
           reason: reason,
         },
       });
-
-      console.log(`success booking a date ${digitalAppointment}`);
+      if (data) {
+        console.log(`success booking a date ${digitalAppointment}`);
+      }
     } catch (err) {
       console.error(err);
     }
+    console.log("template params from comfirm", templateParams);
     sendEmail(templateParams);
     setFinalize(true);
     setTimeout(() => {
@@ -224,8 +219,7 @@ const AppointmentForm = () => {
       setAppTime(`${hours}:${minutes}`);
     }
 
-    // adding a suffixe to day's date ex: 1st, 2nd, 3rd or 4th...
-
+    // adding a suffixe to day's date ex: 1st, 2nd, 3rd or 4th... dateStr will exported to next component and dateSuffixed used for booking appointment data
     let dateStr = startDate.getDate().toString();
     const lastChar = dateStr.charAt(dateStr.length - 1);
 
@@ -242,9 +236,12 @@ const AppointmentForm = () => {
       dateStr = `${dateStr}th`;
       setDateSuffixed(`${dateStr}th`);
     }
+
+    // 'appString' for display appointment info in cards and confirmations
     const appString = `${appDay}, ${appMonth} ${dateStr}, ${year} at ${time}`;
     setAppointmentString(appString);
 
+    // building appinfo object to pass appointment data to next components via useNavigate
     const appInfo = {
       username: username,
       email: email,
@@ -255,17 +252,20 @@ const AppointmentForm = () => {
       mepet: mepet,
       profile: profile,
       petForm: petForm,
+      myPets: myPets,
+      appTime: time,
     };
 
+    // conditionally redirecting the user to next operation based on if user or user's pet are returning patients
     if (mepet === "me" && !userProfile) {
-      navigate("/ProfileForm", { state: { appInfo, templateParams } });
+      navigate("/ProfileForm", { state: { appInfo } });
       console.log("case 4");
     } else if (mepet === "me" && userProfile) {
       setConfirm(true);
       console.log("case 5");
     } else if (mepet === "mypet" && userProfile && !myPets) {
       navigate("/PetProfileForm", {
-        state: { appInfo, petForm, existingPet, templateParams },
+        state: { appInfo, petForm, existingPet },
       });
       console.log("case 2");
     } else if (
@@ -283,19 +283,21 @@ const AppointmentForm = () => {
       !existingPet.length
     ) {
       navigate("/PetProfileForm", {
-        state: { appInfo, petForm, existingPet, myPets, templateParams },
+        state: { appInfo, petForm, existingPet, myPets },
       });
       console.log("case 1bis");
     } else if (mepet === "mypet" && !userProfile) {
       navigate("/PetOwnerProfileForm", {
-        state: { appInfo, petForm, existingPet, templateParams },
+        state: { appInfo, petForm, existingPet },
       });
       console.log("case 3");
     }
+    // 'confirm' gives user an opportunity to verify and correct info if needed bifore finalizing appointment booking
+    setTemplateParams(appInfo);
     setConfirm(true);
   };
 
-  if (loading) return <Spinner />;
+  if (loading || petsDataLoading || profileDataLoading) return <Spinner />;
 
   if (finalize === true) {
     return (

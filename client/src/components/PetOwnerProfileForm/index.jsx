@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "react-phone-number-input/style.css";
 import { PatternFormat } from "react-number-format";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { ADD_PROFILE, ADD_BOOKINGDATE } from "../../utils/mutations";
 import {
   QUERY_ME,
@@ -14,7 +13,7 @@ import { sendEmail } from "../../utils/email.js";
 import SelectUSState from "react-select-us-states";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-
+import "react-phone-number-input/style.css";
 import "./index.css";
 
 const PetOwnerProfileForm = () => {
@@ -25,8 +24,12 @@ const PetOwnerProfileForm = () => {
   const username = appInfo.username;
   const petForm = location.state.petForm;
   const existingPet = location.state.existingPet;
-  const templateParams = location.state.templateParams;
-
+  // templateParams object contains data for sending email confirmation
+  const templateParams = {
+    username: appInfo.username,
+    digitalAppointment: appInfo.digitalAppointment,
+    appTime: appInfo.appTime,
+  };
   const [patientState, setNewValue] = useState("");
   const [patientnumber, setPatientNumber] = useState("");
   const [numberValue, setNumberValue] = useState("");
@@ -68,6 +71,7 @@ const PetOwnerProfileForm = () => {
       } catch (e) {
         console.error(e);
       }
+      // Updating me object in cache with new appointment
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
@@ -80,7 +84,7 @@ const PetOwnerProfileForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    // making sure first letter of first name and last name are capital letters
     if (name === "patientfirstname") {
       const upperCase = value.charAt(0).toUpperCase();
       const toAdd = value.split("").slice(1).join("");
@@ -109,7 +113,9 @@ const PetOwnerProfileForm = () => {
           reason: appInfo.reason,
         },
       });
-      console.log(`success booking a date for ${appInfo.digitalAppointment}`);
+      if (data) {
+        console.log(`success booking a date for ${appInfo.digitalAppointment}`);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -119,7 +125,7 @@ const PetOwnerProfileForm = () => {
       navigate("/PetProfileForm", { state: { appInfo, petForm, existingPet } });
     }, 3000);
 
-    //   clearing form inputs
+    // clearing form inputs
     setPatientFirstName("");
     setPatientLastName("");
     setPatientAddress("");
@@ -143,24 +149,16 @@ const PetOwnerProfileForm = () => {
           patientzip: patientzip,
         },
       });
+      if (data) {
+        console.log(`success adding ${petForm}`);
+      }
     } catch (err) {
       console.error(err);
     }
-    console.log(`success adding ${petForm}`);
     appBooking();
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const ownerInfo = {
-      patientfirstname: patientfirstname,
-      patientaddress: patientaddress,
-      patientState: patientState,
-      patientlastname: patientlastname,
-      patientcity: patientcity,
-      patientzip: patientzip,
-      patientnumber: patientnumber,
-      username: appInfo.username,
-    };
     if (
       !patientfirstname ||
       !patientaddress ||
@@ -230,7 +228,7 @@ const PetOwnerProfileForm = () => {
                     Appointment for: {petForm}
                   </p>
                   <p className="app-review-profile mt-4">
-                    On: {appInfo.digitalAppointment} at: {appInfo.appTime}
+                    On: {appInfo.appointmentString}
                   </p>
                   <p className="app-review-profile mt-4">
                     Reason: {appInfo.reason}

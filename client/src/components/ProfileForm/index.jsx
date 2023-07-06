@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "react-phone-number-input/style.css";
 import { PatternFormat } from "react-number-format";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { ADD_PROFILE, ADD_BOOKINGDATE } from "../../utils/mutations";
 import {
   QUERY_PROFILES,
@@ -14,6 +13,7 @@ import SelectUSState from "react-select-us-states";
 import { sendEmail } from "../../utils/email.js";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import "react-phone-number-input/style.css";
 import "./index.css";
 
 const ProfileForm = () => {
@@ -22,7 +22,12 @@ const ProfileForm = () => {
 
   const appInfo = location.state.appInfo;
   const username = appInfo.username;
-  const templateParams = location.state.templateParams;
+  // templateParams object contains data for sending email confirmation
+  const templateParams = {
+    username: appInfo.username,
+    digitalAppointment: appInfo.digitalAppointment,
+    appTime: appInfo.appTime,
+  };
 
   const [patientState, setNewValue] = useState("");
   const [patientnumber, setPatientNumber] = useState("");
@@ -36,8 +41,6 @@ const ProfileForm = () => {
   const [confirm, setConfirm] = useState(false);
   const [finalize, setFinalize] = useState(false);
   const [error, setError] = useState("");
-
-  // const [addProfile] = useMutation(ADD_PROFILE);
 
   const [addProfile] = useMutation(ADD_PROFILE, {
     // variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
@@ -68,6 +71,7 @@ const ProfileForm = () => {
       } catch (e) {
         console.error(e);
       }
+      // Updating me object in cache with new appointment
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
@@ -79,7 +83,7 @@ const ProfileForm = () => {
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    // making sure first letter of first name and last name are capital letters
     if (name === "patientfirstname") {
       const upperCase = value.charAt(0).toUpperCase();
       const toAdd = value.split("").slice(1).join("");
@@ -109,7 +113,9 @@ const ProfileForm = () => {
           reason: appInfo.reason,
         },
       });
-      console.log(`success booking a date ${appInfo.digitalAppointment}`);
+      if (data) {
+        console.log(`success booking a date ${appInfo.digitalAppointment}`);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -118,7 +124,7 @@ const ProfileForm = () => {
     setTimeout(() => {
       navigate("/Dashboard");
     }, 3000);
-
+    // clearing form inputs
     setNewValue("");
     setPatientNumber("");
     setPatientGender("");
@@ -146,10 +152,12 @@ const ProfileForm = () => {
           patientzip: patientzip,
         },
       });
+      if (data) {
+        console.log(`success adding ${patientfirstname}`);
+      }
     } catch (err) {
       console.error(err);
     }
-    console.log(`success adding ${patientfirstname}`);
     appBooking();
   };
 
@@ -196,7 +204,7 @@ const ProfileForm = () => {
           Your appointment is booked.
         </p>
         <p className="col-12 signup-success d-flex justify-content-center">
-        We just sent you a confitmation email...
+          We just sent you a confitmation email...
         </p>
       </main>
     );
@@ -215,7 +223,7 @@ const ProfileForm = () => {
           {confirm === true ? (
             <>
               <h4 className="card-header-profile bg-primary rounded-0 text-white p-4">
-              Please review your appointment appInformation
+                Please review your appointment information
               </h4>
             </>
           ) : (

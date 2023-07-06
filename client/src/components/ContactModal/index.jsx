@@ -28,7 +28,7 @@ const ProfileModal = (props) => {
     setTimeout(() => {
       setConfirm("");
     }, 5000);
-
+    // Clearing form
     sendMessage(templateParams);
     setError("");
     setMessage("");

@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const bookingdateSchema = new Schema({
   username: {
     type: String,
-    repuire: true,
+    repuire: false,
     trim: true,
   },
   startDate: {

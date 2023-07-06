@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { QUERY_PETS, QUERY_ME, QUERY_PROFILES } from "../../utils/queries";
+import { QUERY_PETS, QUERY_ME } from "../../utils/queries";
 import { ADD_PET, ADD_BOOKINGDATE } from "../../utils/mutations";
 import { useMutation, useQuery } from "@apollo/client";
 import { sendEmail } from "../../utils/email.js";
@@ -17,7 +17,12 @@ const PetForm = () => {
   const petForm = location.state.petForm;
   const existingPet = location.state.existingPet;
   const myPets = location.state.myPets;
-  const templateParams = location.state.templateParams;
+  // templateParams object contains data for sending email confirmation
+  const templateParams = {
+    username: appInfo.username,
+    digitalAppointment: appInfo.digitalAppointment,
+    appTime: appInfo.appTime,
+  };
 
   const [petName, setPetName] = useState("");
   const [petWeight, setPetWeight] = useState("");
@@ -37,7 +42,7 @@ const PetForm = () => {
   const profileId = me.profile?._id;
 
   const [addBookingdate] = useMutation(ADD_BOOKINGDATE);
-
+  // Updating the cache with new pet
   const [addPet] = useMutation(ADD_PET, {
     update(cache, { data: { addPet } }) {
       try {
@@ -59,6 +64,7 @@ const PetForm = () => {
     if (name === "petKind") {
       setPetKind(value);
     }
+    // making sure first letter of pet's name is capital letter
     if (name === "petName") {
       const upperCase = value.charAt(0).toUpperCase();
       const toAdd = value.split("").slice(1).join("");
@@ -91,20 +97,20 @@ const PetForm = () => {
           petBreed: petBreed,
         },
       });
-      console.log(`${petName} was successfully added`);
+      if (data) {
+        console.log(`${petName} was successfully added`);
+      }
     } catch (err) {
       console.error(err);
     }
 
     if (myPets && !existingPet.length) {
-      console.log("double message");
       setDbleMessage(true);
       setTimeout(() => {
         navigate("/Dashboard");
       }, 4000);
     } else {
       setPetMessage(true);
-      console.log("finalize");
     }
     setTimeout(() => {
       navigate("/Dashboard");
@@ -122,22 +128,23 @@ const PetForm = () => {
           reason: appInfo.reason,
         },
       });
-      console.log(`success booking a date ${appInfo.digitalAppointment}`);
+      if (data) {
+        console.log(`success booking a date ${appInfo.digitalAppointment}`);
+      }
     } catch (err) {
       console.error(err);
     }
     if (myPets && !existingPet.length) {
-      console.log("double message");
       setDbleMessage(true);
       sendEmail(templateParams);
     } else {
       setFinalize(true);
       sendEmail(templateParams);
-      console.log("finalize");
     }
     setTimeout(() => {
       navigate("/Dashboard");
     }, 4000);
+    // clearing form inputs
     setPetName("");
     setPetGender("");
     setPetAge("");
@@ -163,19 +170,15 @@ const PetForm = () => {
     }
     if (myPets && !existingPet.length) {
       console.log("case 1");
-      console.log("my pets", myPets);
-      console.log("existing pet", existingPet);
       appBooking();
       petProfile();
     }
     if (!myPets && !existingPet.length) {
       console.log("case 2");
-      console.log("new pet");
       petProfile();
     }
     if (existingPet.length) {
       console.log("case 3");
-      console.log("pet exists", existingPet);
       appBooking();
     }
   };
@@ -196,7 +199,6 @@ const PetForm = () => {
       setError(`${petForm} is the pet we have in our record...`);
       return;
     }
-    console.log("next step");
     setError(false);
     setConfirm(true);
   };
@@ -212,15 +214,15 @@ const PetForm = () => {
         </h2>
         {petMessage === true ? (
           <p className="col-12 signup-success d-flex justify-content-center">
-            {petName}'s profile was created...
+            {petName}'s profile was created.
           </p>
         ) : (
           <>
             <p className="col-12 signup-success d-flex justify-content-center">
-              Your appointment is booked...
+              Your appointment is booked.
             </p>
             <p className="col-12 signup-success d-flex justify-content-center">
-              Just sent you a confitmation email.
+              We just sent you a confitmation email...
             </p>
           </>
         )}
@@ -275,7 +277,7 @@ const PetForm = () => {
                     Appointment for: {petForm || petName}
                   </p>
                   <p className="app-review-profile mt-4">
-                    On: {appInfo.appointmentString} 
+                    On: {appInfo.appointmentString}
                   </p>
                   <p className="app-review-profile mt-4">
                     Reason: {appInfo.reason}

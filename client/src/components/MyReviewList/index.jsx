@@ -8,10 +8,7 @@ import trash from "../../assets/images/trash.png";
 import RatingList from "../RatingList";
 import "./index.css";
 
-const MyReviewsList = (props) => {
-  //  This page shows all reviews. User's reviews have a delete button
-  const username = props.username;
-
+const MyReviewsList = () => {
   const [reviewId, setReviewId] = useState("");
   const { data: meData, loading } = useQuery(QUERY_ME);
   const me = meData?.me || [];
@@ -34,7 +31,7 @@ const MyReviewsList = (props) => {
       } catch (error) {
         console.error(error);
       }
-      // update me object's cache
+      // update me object's cache with deleted review
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
@@ -57,15 +54,17 @@ const MyReviewsList = (props) => {
       const { data } = deleteReview({
         variables: { id: reviewId },
       });
-      setReviewId(reviewId);
-      console.log("Review deleted successfully");
+      if (data) {
+        console.log("Review deleted successfully");
+      }
     } catch (err) {
       console.error(err);
-    }
+    };
+    setReviewId(reviewId);
   };
 
   if (loading) return <Spinner />;
-  
+
   if (!myReviews.length) {
     return (
       <div className="container-no-history mt-5 mb-5">
@@ -90,7 +89,9 @@ const MyReviewsList = (props) => {
                 <div className="card-body">
                   <div className="row">
                     <div className="col-12">
-                      <p className="card-text fs-4 px-3 pt-4">{review.reviewText}</p>
+                      <p className="card-text fs-4 px-3 pt-4">
+                        {review.reviewText}
+                      </p>
                     </div>
                     <div className="col-12 mt-3">
                       <p className="review fs-5 px-3">

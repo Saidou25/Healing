@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_REVIEW } from "../../utils/mutations";
 import { QUERY_REVIEWS, QUERY_ME } from "../../utils/queries";
-// import Rating from '../Rating';
-
 import "./index.css";
 
 const ReviewForm = (props) => {
@@ -99,14 +97,17 @@ const ReviewForm = (props) => {
           rating: rating,
         },
       });
+      if (data) {
+        console.log('success adding review', title)
+      }
     } catch (e) {
       console.error(e);
-    }
+    };
     setConfirm("Done! You can now close the window...");
     setTimeout(() => {
       setConfirm("");
     }, 2500);
-
+// Clearing form inputs
     setError(false);
     setTitle("");
     setReviewText("");

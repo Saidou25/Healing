@@ -134,7 +134,7 @@ export const DELETE_BOOKINGDATE = gql`
 
 export const ADD_BOOKINGDATE = gql`
   mutation addBookingdate(
-    $username: String!
+    $username: String
     $startDate: String!
     $digitalAppointment: String!
     $appointmentString: String!
