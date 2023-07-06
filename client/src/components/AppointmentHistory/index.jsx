@@ -3,23 +3,27 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_BOOKINGDATES } from "../../utils/queries";
 import { DELETE_BOOKINGDATE } from "../../utils/mutations";
 import MyReviewList from "../../components/MyReviewList";
+import Spinner from "../../components/Spinner";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import trash from "../../assets/images/trash.png";
 import "./index.css";
 
 const AppointmentHistory = () => {
-  // filter user appointments and compare with actual date to find out if appointment is passed
-  // const location = useLocation();
-  // const myReviews = location.state.myReviews;
-  // console.log(myReviews);
-  // buiding today's date format
   const date = new Date();
   const todaysDate = date.getDate();
   const todaysYear = date.getFullYear();
   const todaysMonth = date.getMonth() + 1;
   const todaysMonthStr = todaysMonth.toString();
   const todaysDateStr = todaysDate.toString();
+  
+  const [bookingdateId, setBookingdateId] = useState("");
+
+  const { data: meData, meLoading, error } = useQuery(QUERY_ME);
+  const me = meData?.me || [];
+  const username = me.username;
+  const myReviews = me.reviews;
+  const myAppointments = me.bookingdates;
 
   let newDay;
   let newMonth;
@@ -35,22 +39,7 @@ const AppointmentHistory = () => {
     newDay = todaysDate;
   }
   const today = `${newMonth}/${newDay}/${todaysYear}`;
-
-  // filter user's appointment and add delete button to passed appointments
-
-  const { data: meData } = useQuery(QUERY_ME);
-  const me = meData?.me || [];
-  const username = me.username;
-  const myReviews = me.reviews;
-
-  const { data: appointmentsData } = useQuery(QUERY_BOOKINGDATES);
-  const bookingdates = appointmentsData?.bookingdates || [];
-  const myAppointments = bookingdates.filter(
-    (bookingdate) => bookingdate.username === username
-  );
-
-  const [bookingdateId, setBookingdateId] = useState("");
-
+  
   const [deleteBookingdate] = useMutation(DELETE_BOOKINGDATE, {
     variables: { id: bookingdateId },
     update(cache, { data: { deleteBookingdate } }) {
@@ -68,10 +57,18 @@ const AppointmentHistory = () => {
       } catch (error) {
         console.error(error);
       }
+      // update me object's cache
+      const { me } = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: { ...me, bookingdates: [...me. bookingdates.filter(
+          (bookingdate) => bookingdate._id !== deleteBookingdate._id
+        )] } },
+      });
     },
   });
 
-  const history = myAppointments.filter(
+  const history = myAppointments?.filter(
     (bookingdate) => today >= bookingdate.digitalAppointment
   );
 
@@ -89,7 +86,10 @@ const AppointmentHistory = () => {
     }
   };
 
-  if (!history.length) {
+  if (meLoading) return <Spinner />;
+  if (error) return <p>Something went wrong ...</p>;
+
+  if (!history?.length) {
     return (
       <>
         <Navbar />
@@ -112,27 +112,25 @@ const AppointmentHistory = () => {
     <div>
       <Navbar />
       <div className="container-history">
-        <h3 className="appointment-list-title mb-4">Appointment history</h3>
+        <h3 className="appointment-list-title mt-5 mb-5">Appointment history</h3>
         <div className="row">
           {history &&
             history.map((bookingdate) => (
               <div key={bookingdate._id} className="col-12 history-column">
                 <div className="card history mb-4">
                   <div className="card-header fs-3">
-                    This appointment is passed:
+                    Previous appointment:
                   </div>
                   <div className="card-body p-3">
                     <div className="row">
-                      <div className="col-6 d-flex align-items-center">
+                      <div className="col-8 d-flex align-items-center">
                         <div className="appointment-text">
                           <div className="text">
-                            {bookingdate.appDay}, {bookingdate.appMonth}{" "}
-                            {bookingdate.appDate}, {bookingdate.appYear} at{" "}
-                            {bookingdate.appTime}.
+                            {bookingdate.appointmentString}
                           </div>
                         </div>
                       </div>
-                      <div className="col-6 d-flex justify-content-end">
+                      <div className="col-4 d-flex justify-content-end">
                         <button
                           type="button"
                           className="btn delete-appointment rounded-0"

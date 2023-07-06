@@ -4,6 +4,7 @@ import { QUERY_REVIEWS } from "../../utils/queries";
 import profileIcon from "../../assets/images/profileicon.png";
 import RatingList from "../RatingList";
 import Spinner from "../../components/Spinner";
+import "./index.css";
 
 const AllReviews = () => {
   const { data: reviewsData, resultsDataLoading } = useQuery(QUERY_REVIEWS);
@@ -12,7 +13,7 @@ const AllReviews = () => {
   if (resultsDataLoading) return <Spinner />;
   return (
     <>
-      <h3 className="review-list-title mt-4 mb-5">Read what people say</h3>
+      <h3 className="reviews-title mt-4 mb-5">Read what people say</h3>
       <div className="row">
         {reviews &&
           reviews.map((review) => (
@@ -29,7 +30,7 @@ const AllReviews = () => {
                         Created on {review.reviewDate}
                       </p>
                     </div>
-                    <div className="col-12">
+                    <div className="col-12 pb-3">
                       <img src={profileIcon} alt="profile icon" height={20} />
                       <span className="review fs-5 m-2">{review.username}</span>
                     </div>

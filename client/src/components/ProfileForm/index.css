@@ -90,14 +90,12 @@
   border: 0 solid #ced4da;
 }
 .profile-error {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 55px;
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 .info-review {
   border-style: double;
   background-color: #f7f7f9;
   text-align: center;
 }
-/* .confirm-appointment {} */

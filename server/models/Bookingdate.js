@@ -6,7 +6,7 @@ const bookingdateSchema = new Schema({
     repuire: true,
     trim: true,
   },
-  isBooked: {
+  startDate: {
     type: String,
     repuire: true,
     trim: true,
@@ -16,43 +16,8 @@ const bookingdateSchema = new Schema({
     repuire: true,
     trim: true,
   },
-  digitMonth: {
+  appointmentString: {
     type: String,
-    repuire: true,
-    trim: true,
-  },
-  finalDateISO: {
-    type: String,
-    repuire: true,
-    trim: true,
-  },
-  appDay: {
-    type: String,
-    repuire: true,
-    trim: true,
-  },
-  appMonth: {
-    type: String,
-    repuire: true,
-    trim: true,
-  },
-  appDate: {
-    type: Number,
-    repuire: true,
-    trim: true,
-  },
-  appTime: {
-    type: String,
-    repuire: true,
-    trim: true,
-  },
-  appointment: {
-    type: String,
-    repuire: true,
-    trim: true,
-  },
-  appYear: {
-    type: Number,
     repuire: true,
     trim: true,
   },

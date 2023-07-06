@@ -102,18 +102,11 @@ const PetOwnerProfileForm = () => {
     try {
       const { data } = await addBookingdate({
         variables: {
-          username: appInfo.username,
+          username: username,
+          startDate: appInfo.startDate,
           digitalAppointment: appInfo.digitalAppointment,
-          digitMonth: appInfo.digitMonth,
+          appointmentString: appInfo.appointmentString,
           reason: appInfo.reason,
-          mepet: appInfo.mepet,
-          isBooked: appInfo.isBooked,
-          finalDateISO: appInfo.finalDateISO,
-          appDay: appInfo.appDay,
-          appMonth: appInfo.appMonth,
-          appDate: appInfo.appDate,
-          appTime: appInfo.appTime,
-          appYear: appInfo.appYear,
         },
       });
       console.log(`success booking a date for ${appInfo.digitalAppointment}`);

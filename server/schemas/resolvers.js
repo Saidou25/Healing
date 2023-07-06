@@ -88,16 +88,10 @@ const resolvers = {
       if (context.user) {
         const bookingdate = await Bookingdate.create({
           username: args.username,
-          isBooked: args.isBooked,
-          finalDateISO: args.finalDateISO,
-          appDay: args.appDay,
+          startDate: args.startDate,
           digitalAppointment: args.digitalAppointment,
-          digitMonth: args.digitMonth,
+          appointmentString: args.appointmentString,
           reason: args.reason,
-          appMonth: args.appMonth,
-          appDate: args.appDate,
-          appTime: args.appTime,
-          appYear: args.appYear,
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -137,17 +131,9 @@ const resolvers = {
           patientzip: args.patientzip,
           patientState: args.patientState,
           patientnumber: args.patientnumber,
-          patientreason: args.patientreason,
           patientaddress: args.patientaddress,
           patientgender: args.patientgender,
           mepet: args.mepet,
-          isBooked: args.isBooked,
-          appDay: args.appDay,
-          appMonth: args.appMonth,
-          appDate: args.appDate,
-          appTime: args.appTime,
-          appYear: args.appYear,
-          appointment: args.appointment,
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -196,8 +182,7 @@ const resolvers = {
         const review = await Review.findOneAndDelete({ _id: args.id });
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { reviews: review._id } },
-          { new: true }
+          { $pull: { reviews: review._id } }
         );
         return review;
       }
@@ -210,8 +195,7 @@ const resolvers = {
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { bookingdates: bookingdate._id } },
-          { new: true }
+          { $pull: { bookingdates: bookingdate._id } }
         );
         return bookingdate;
       }

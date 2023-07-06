@@ -8,17 +8,11 @@ export const QUERY_USERS = gql`
       email
       bookingdates {
         _id
-        isBooked
         username
-        finalDateISO
-        digitMonth
-        reason
-        appDay
+        startDate
         digitalAppointment
-        appDate
-        appMonth
-        appTime
-        appYear
+        appointmentString
+        reason
       }
       reviews {
         _id
@@ -37,17 +31,10 @@ export const QUERY_USERS = gql`
         patientlastname
         patientcity
         patientnumber
-        patientreason
         birthdate
         patientState
         patientzip
         mepet
-        isBooked
-        appointment
-        appDay
-        appMonth
-        appTime
-        appYear
         pets {
           _id
           petName
@@ -77,17 +64,11 @@ export const QUERY_USER = gql`
       }
       bookingdates {
         _id
-        isBooked
         username
-        finalDateISO
-        digitMonth
+        startDate
         digitalAppointment
+        appointmentString
         reason
-        appDay
-        appDate
-        appMonth
-        appTime
-        appYear
       }
       profile {
         _id
@@ -99,16 +80,9 @@ export const QUERY_USER = gql`
         patientlastname
         patientcity
         patientnumber
-        patientreason
         birthdate
         patientzip
         mepet
-        isBooked
-        appointment
-        appDay
-        appMonth
-        appTime
-        appYear
         pets {
           _id
           petName
@@ -138,17 +112,11 @@ export const QUERY_ME = gql`
       }
       bookingdates {
         _id
-        isBooked
         username
-        digitMonth
-        reason
-        finalDateISO
-        appDay
-        appDate
+        startDate
         digitalAppointment
-        appMonth
-        appTime
-        appYear
+        appointmentString
+        reason
       }
       profile {
         _id
@@ -160,16 +128,9 @@ export const QUERY_ME = gql`
         patientlastname
         patientcity
         patientnumber
-        patientreason
         birthdate
         patientzip
         mepet
-        isBooked
-        appointment
-        appDay
-        appMonth
-        appTime
-        appYear
         pets {
           _id
           petName
@@ -188,17 +149,11 @@ export const QUERY_BOOKINGDATES = gql`
   query bookingdates {
     bookingdates {
       _id
-      isBooked
       username
-      finalDateISO
-      digitMonth
-      appDay
-      reason
+      startDate
       digitalAppointment
-      appDate
-      appMonth
-      appTime
-      appYear
+      appointmentString
+      reason
     }
   }
 `;
@@ -231,16 +186,10 @@ export const QUERY_BOOKINGDATE = gql`
     bookingdate(id: $id) {
       _id
       username
-      isBooked
-      finalDateISO
-      appDay
-      appDate
-      reason
+      startDate
       digitalAppointment
-      digitMonth
-      appMonth
-      appTime
-      appYear
+      appointmentString
+      reason
     }
   }
 `;
@@ -280,14 +229,10 @@ export const QUERY_USERBOOKINGDATES = gql`
     userbookingdates(username: $username) {
       _id
       username
-      isBooked
-      finalDateISO
-      appDate
-      appDay
+      startDate
+      digitalAppointment
+      appointmentString
       reason
-      appMonth
-      appTime
-      appYear
     }
   }
 `;
@@ -302,18 +247,10 @@ export const QUERY_PROFILES = gql`
       patientcity
       username
       patientnumber
-      patientreason
       patientState
       birthdate
       patientzip
       mepet
-      isBooked
-      appointment
-      appDay
-      appMonth
-      appDate
-      appTime
-      appYear
       pets {
         _id
         petName
@@ -338,17 +275,9 @@ export const QUERY_PROFILE = gql`
       patientlastname
       patientcity
       patientnumber
-      patientreason
       birthdate
       patientzip
       mepet
-      isBooked
-      appDay
-      appDate
-      appMonth
-      appointment
-      appTime
-      appYear
       pets {
         _id
         petName

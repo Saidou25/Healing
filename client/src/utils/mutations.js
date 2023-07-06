@@ -34,21 +34,13 @@ export const UPDATE_USER = gql`
       profile {
         _id
         username
-        isBooked
         patientState
-        appDay
-        appMonth
-        appTime
-        appYear
-        appDate
-        appointment
         patientfirstname
         patientgender
         patientaddress
         patientlastname
         patientcity
         patientnumber
-        patientreason
         birthdate
         patientzip
         mepet
@@ -93,7 +85,7 @@ export const ADD_PET = gql`
 
 export const ADD_REVIEW = gql`
   mutation addReview(
-    $username: String!
+    $username: String
     $title: String!
     $reviewText: String!
     $rating: String
@@ -132,15 +124,9 @@ export const DELETE_BOOKINGDATE = gql`
     deleteBookingdate(id: $id) {
       _id
       username
-      isBooked
-      finalDateISO
-      appDay
-      appMonth
-      digitMonth
+      startDate
       digitalAppointment
-      appTime
-      appYear
-      appDate
+      appointmentString
       reason
     }
   }
@@ -149,41 +135,23 @@ export const DELETE_BOOKINGDATE = gql`
 export const ADD_BOOKINGDATE = gql`
   mutation addBookingdate(
     $username: String!
-    $digitMonth: String
-    $isBooked: String
-    $finalDateISO: String
-    $digitalAppointment: String
-    $appDay: String
+    $startDate: String!
+    $digitalAppointment: String!
+    $appointmentString: String!
     $reason: String!
-    $appMonth: String
-    $appDate: Int
-    $appTime: String
-    $appYear: Int
   ) {
     addBookingdate(
       username: $username
-      isBooked: $isBooked
+      startDate: $startDate
       digitalAppointment: $digitalAppointment
-      finalDateISO: $finalDateISO
-      digitMonth: $digitMonth
-      appDay: $appDay
-      appMonth: $appMonth
+      appointmentString: $appointmentString
       reason: $reason
-      appDate: $appDate
-      appTime: $appTime
-      appYear: $appYear
     ) {
       _id
       username
-      isBooked
-      digitMonth
-      finalDateISO
-      appDay
-      appMonth
+      startDate
       digitalAppointment
-      appTime
-      appYear
-      appDate
+      appointmentString
       reason
     }
   }
@@ -202,17 +170,11 @@ export const DELETE_USER = gql`
       }
       bookingdates {
         _id
-        isBooked
         username
-        finalDateISO
-        digitMonth
+        startDate
         digitalAppointment
-        appDay
+        appointmentString
         reason
-        appDate
-        appMonth
-        appTime
-        appYear
       }
       profile {
         _id
@@ -224,16 +186,9 @@ export const DELETE_USER = gql`
         patientlastname
         patientcity
         patientnumber
-        patientreason
         birthdate
         patientzip
         mepet
-        isBooked
-        appointment
-        appDay
-        appMonth
-        appTime
-        appYear
         pets {
           _id
           petName
@@ -272,18 +227,10 @@ export const ADD_PROFILE = gql`
     $patientlastname: String!
     $patientcity: String!
     $patientnumber: String!
-    $patientreason: String
     $birthdate: String
     $patientState: String!
     $patientzip: String!
     $mepet: String
-    $isBooked: String
-    $appDay: String
-    $appMonth: String
-    $appDate: Int
-    $appointment: String
-    $appTime: String
-    $appYear: Int
   ) {
     addProfile(
       username: $username
@@ -294,35 +241,19 @@ export const ADD_PROFILE = gql`
       patientlastname: $patientlastname
       patientcity: $patientcity
       patientnumber: $patientnumber
-      patientreason: $patientreason
       birthdate: $birthdate
       patientzip: $patientzip
       mepet: $mepet
-      isBooked: $isBooked
-      appDay: $appDay
-      appMonth: $appMonth
-      appDate: $appDate
-      appTime: $appTime
-      appYear: $appYear
-      appointment: $appointment
     ) {
       _id
       username
-      isBooked
       patientState
-      appDay
-      appMonth
-      appTime
-      appYear
-      appDate
-      appointment
       patientfirstname
       patientgender
       patientaddress
       patientlastname
       patientcity
       patientnumber
-      patientreason
       birthdate
       patientzip
       mepet
@@ -361,22 +292,14 @@ export const UPDATE_PROFILE = gql`
       patientzip: $patientzip
     ) {
       _id
-      isBooked
       patientState
-      appDay
-      appMonth
       username
-      appTime
-      appYear
-      appDate
-      appointment
       patientfirstname
       patientgender
       patientaddress
       patientlastname
       patientcity
       patientnumber
-      patientreason
       birthdate
       patientzip
       mepet
@@ -388,22 +311,14 @@ export const DELETE_PROFILE = gql`
   mutation deleteProfile($id: String!) {
     deleteProfile(id: $id) {
       _id
-      isBooked
       patientState
-      appDay
-      appMonth
       username
-      appTime
-      appYear
-      appDate
-      appointment
       patientfirstname
       patientgender
       patientaddress
       patientlastname
       patientcity
       patientnumber
-      patientreason
       birthdate
       patientzip
       mepet

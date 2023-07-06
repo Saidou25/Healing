@@ -1,7 +1,8 @@
 @media screen and (max-width: 993px) {
-    .review-list-title {
+    .reviews-title {
         margin-top: 0;
         padding-right: 0;
         border-right-color: white;
+        text-align: center;
     }
 }

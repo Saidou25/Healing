@@ -5,3 +5,8 @@
 .container-upcoming-appointment {
   margin-bottom: 6%;
 }
+@media screen and (max-width: 992px) {
+  .upcoming-title {
+    text-align: center !important;
+  }
+}

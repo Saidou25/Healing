@@ -13,23 +13,15 @@ const typeDefs = gql`
     patientcity: String
     patientnumber: String
     patientState: String
-    patientreason: String
     birthdate: String
     patientzip: String
     mepet: String
-    isBooked: String
-    appDay: String
-    appMonth: String
-    appDate: Int
-    appTime: String
-    appYear: Int
-    appointment: String
     pets: [Pet]
   }
 
   type Review {
     _id: ID!
-    username: String!
+    username: String
     reviewText: String
     title: String
     rating: String
@@ -50,17 +42,11 @@ const typeDefs = gql`
 
   type Bookingdate {
     _id: ID!
-    username: String
-    digitMonth: String
-    digitalAppointment: String
-    isBooked: String
-    finalDateISO: String
-    appDay: String
-    appMonth: String
-    reason: String
-    appDate: Int
-    appTime: String
-    appYear: Int
+    username: String!
+    startDate: String!
+    digitalAppointment: String!
+    appointmentString: String!
+    reason: String!
   }
 
   type User {
@@ -82,14 +68,14 @@ const typeDefs = gql`
     users: [User]!
     user(id: String!): User
     me: User
-    profiles: [Profile]!
+    profiles: [Profile]
     profile(profileId: String!): Profile
-    bookingdates: [Bookingdate]!
+    bookingdates: [Bookingdate]
     bookingdate(id: String!): Bookingdate
-    reviews: [Review]!
+    reviews: [Review]
     review(id: String!): Review
     userbookingdates(username: String): [Bookingdate]!
-    pets: [Pet]!
+    pets: [Pet]
     pet(username: String!): Pet
   }
 
@@ -107,35 +93,21 @@ const typeDefs = gql`
       patientlastname: String!
       patientcity: String!
       patientnumber: String!
-      patientreason: String
       birthdate: String
       patientzip: String!
       mepet: String
-      isBooked: String
-      appDay: String
-      appMonth: String
-      appDate: Int
-      appointment: String
-      appTime: String
-      appYear: Int
     ): Profile
 
     addBookingdate(
       username: String!
-      isBooked: String
-      digitMonth: String
-      finalDateISO: String
-      appDay: String
-      appMonth: String
-      digitalAppointment: String
-      appDate: Int
-      appTime: String
+      startDate: String!
+      digitalAppointment: String!
+      appointmentString: String!
       reason: String!
-      appYear: Int
     ): Bookingdate
 
     addReview(
-      username: String!
+      username: String
       reviewText: String!
       title: String!
       rating: String
@@ -163,7 +135,7 @@ const typeDefs = gql`
       patientnumber: String!
       patientaddress: String
     ): Profile
-    
+
     deleteUser(id: String!): User
     deleteProfile(id: String!): Profile
     deleteReview(id: String!): Review

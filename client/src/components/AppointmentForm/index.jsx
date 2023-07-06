@@ -23,14 +23,18 @@ const AppointmentForm = () => {
 
   const [startDate, setStartDate] = useState(new Date());
   const [mepet, setMePet] = useState("");
+  const [appointmentDay, setAppointmentDay] = useState("");
+  const [appointmentMonth, setAppointmentMonth] = useState("");
+  const [appYear, setAppYear] = useState("");
+  const [appTime, setAppTime] = useState("");
+  const [dateSuffixed, setDateSuffixed] = useState("");
+  const [showPetName, setShowPetName] = useState("");
+  const [petForm, setPetForm] = useState("");
+  const [appointmentString, setAppointmentString] = useState("");
+  const [digitalAppointment, setDigitalAppointment] = useState("");
   const [reason, setReason] = useState("");
   const [error, setError] = useState("");
   const [confirm, setConfirm] = useState(false);
-  const [appTime, setAppTime] = useState("");
-  const [showPetName, setShowPetName] = useState("");
-  const [petForm, setPetForm] = useState("");
-  const [digitalAppointment, setDigitalAppointment] = useState("");
-  const [appInfo, setAppInfo] = useState("");
   const [finalize, setFinalize] = useState(false);
 
   const { data: meData } = useQuery(QUERY_ME);
@@ -54,6 +58,15 @@ const AppointmentForm = () => {
   const petNames = myPets.map((myPets) => myPets.petName);
   const existingPet = pets.filter((petNames) => petNames.petName === petForm);
 
+  // collecting all appointments that we push into [allAppointments] to block already taken dates in calendar.
+  //  we use parsISO for supported format
+  const bookingdates = data?.bookingdates || [];
+  const allAppointments = [];
+  for (let bookingdate of bookingdates) {
+    const result = parseISO(bookingdate.startDate);
+    allAppointments.push(result);
+  }
+
   // building templateParams for emailing appointment confirmation
   const templateParams = {
     digitalAppointment: digitalAppointment,
@@ -64,16 +77,6 @@ const AppointmentForm = () => {
     myPets: myPets,
     petForm: petForm,
   };
-
-  // collecting all appointments that we push into allAppointments[] to block unvailable dates in calendar.
-  const bookingdates = data?.bookingdates || [];
-  const allAppointments = [];
-
-  for (let bookingdate of bookingdates) {
-    const result = bookingdate.finalDateISO.slice(0, 10);
-    const resultIso = parseISO(result);
-    allAppointments.push(resultIso);
-  }
 
   // Updating the cache with newly created appointment
   const [addBookingdate] = useMutation(ADD_BOOKINGDATE, {
@@ -106,6 +109,7 @@ const AppointmentForm = () => {
       setShowPetName(value);
     }
     if (name === "petForm") {
+      // Changing pet's name first letter to upper case
       const upperCase = value.charAt(0).toUpperCase();
       const toAdd = value.split("").slice(1).join("");
       const UpperCaseName = upperCase.concat("", toAdd);
@@ -134,18 +138,11 @@ const AppointmentForm = () => {
     try {
       const { data } = await addBookingdate({
         variables: {
-          username: appInfo.username,
-          digitalAppointment: appInfo.digitalAppointment,
-          digitMonth: appInfo.digitMonth,
+          username: username,
+          startDate: startDate,
+          digitalAppointment: digitalAppointment,
+          appointmentString: appointmentString,
           reason: reason,
-          mepet: mepet,
-          isBooked: appInfo.isBooked,
-          finalDateISO: appInfo.finalDateISO,
-          appDay: appInfo.appDay,
-          appMonth: appInfo.appMonth,
-          appDate: appInfo.appDate,
-          appTime: appInfo.appTime,
-          appYear: appInfo.appYear,
         },
       });
 
@@ -159,6 +156,7 @@ const AppointmentForm = () => {
       navigate("/Dashboard");
     }, 3000);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!mepet || !reason || !startDate) {
@@ -166,41 +164,93 @@ const AppointmentForm = () => {
       return;
     }
 
-    // building up digitalAppointment needed to display appointments date in components
+    // Updating [allAppointments] with new appointment
     const isBooked = JSON.stringify(startDate);
-
     const dateArr = isBooked.replaceAll('"', "").split(":");
     const finalDate = dateArr[0].slice(0, 10);
     const finalDateISO = parseISO(finalDate);
-    const digitMonth = isBooked.slice(6, 8);
-
     allAppointments.push(finalDateISO);
 
-    const app = startDate.toString().split(" ");
+    // fomating a short date called digitalAppointment which will be used later to compare past or future appointments
+    const digitMonth = isBooked.slice(6, 8);
+    const digitYear = isBooked.slice(1, 5);
+    const digitDate = isBooked.slice(9, 11);
+    const shortAppointment = `${digitMonth}/${digitDate}/${digitYear}`;
+    setDigitalAppointment(shortAppointment);
 
-    const appDay = app[0];
-    const appMonth = app[1] - 1;
-    const appDate = parseInt(app[2]);
-    const appTime = app[4];
-    const appYear = parseInt(app[3]);
-    const digitalAppointment = `${digitMonth}/${appDate}/${appYear}`;
+    // formating user's appointment date for display in cards
+    const day = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const appDay = day[startDate.getDay()];
+    setAppointmentDay(appDay);
 
-    setDigitalAppointment(digitalAppointment);
-    setAppTime(appTime);
-    // building an object with data needed for next component and to send confirmation email as well
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const appMonth = month[startDate.getMonth()];
+    setAppointmentMonth(appMonth);
+
+    const year = startDate.getFullYear();
+    setAppYear(year.toString());
+
+    // formating time which misses a "0"
+    let time;
+    const hours = startDate.getHours();
+    const minutes = startDate.getMinutes();
+
+    if (minutes === 0) {
+      time = `${hours}:${minutes}0`;
+      setAppTime(time);
+    } else {
+      time = `${hours}:${minutes}`;
+      setAppTime(`${hours}:${minutes}`);
+    }
+
+    // adding a suffixe to day's date ex: 1st, 2nd, 3rd or 4th...
+
+    let dateStr = startDate.getDate().toString();
+    const lastChar = dateStr.charAt(dateStr.length - 1);
+
+    if (lastChar === "1" && dateStr !== "11") {
+      dateStr = `${dateStr}st`;
+      setDateSuffixed(`${dateStr}st`);
+    } else if (lastChar === "2" && dateStr !== "12") {
+      dateStr = `${dateStr}nd`;
+      setDateSuffixed(`${dateStr}nd`);
+    } else if (lastChar === "3" && dateStr !== "13") {
+      dateStr = `${dateStr}rd`;
+      setDateSuffixed(`${dateStr}rd`);
+    } else {
+      dateStr = `${dateStr}th`;
+      setDateSuffixed(`${dateStr}th`);
+    }
+    const appString = `${appDay}, ${appMonth} ${dateStr}, ${year} at ${time}`;
+    setAppointmentString(appString);
+
     const appInfo = {
       username: username,
       email: email,
-      isBooked: isBooked,
-      finalDate: finalDate,
-      finalDateISO: finalDateISO,
-      digitMonth: digitMonth,
-      appMonth: appMonth,
-      appDate: appDate,
-      appDay: appDay,
-      appTime: appTime,
-      appYear: appYear,
-      digitalAppointment: digitalAppointment,
+      startDate: startDate,
+      digitalAppointment: shortAppointment,
+      appointmentString: appString,
       reason: reason,
       mepet: mepet,
       profile: profile,
@@ -210,35 +260,39 @@ const AppointmentForm = () => {
     if (mepet === "me" && !userProfile) {
       navigate("/ProfileForm", { state: { appInfo, templateParams } });
       console.log("case 4");
-    }
-    if (mepet === "me" && userProfile) {
+    } else if (mepet === "me" && userProfile) {
       setConfirm(true);
       console.log("case 5");
-    }
-    if (mepet === "mypet" && userProfile && !myPets) {
+    } else if (mepet === "mypet" && userProfile && !myPets) {
       navigate("/PetProfileForm", {
         state: { appInfo, petForm, existingPet, templateParams },
       });
       console.log("case 2");
-    }
-    if (mepet === "mypet" && userProfile && myPets && existingPet.length) {
+    } else if (
+      mepet === "mypet" &&
+      userProfile &&
+      myPets &&
+      existingPet.length
+    ) {
       setConfirm(true);
       console.log("case 1");
-    }
-    if (mepet === "mypet" && userProfile && myPets && !existingPet.length) {
+    } else if (
+      mepet === "mypet" &&
+      userProfile &&
+      myPets &&
+      !existingPet.length
+    ) {
       navigate("/PetProfileForm", {
         state: { appInfo, petForm, existingPet, myPets, templateParams },
       });
       console.log("case 1bis");
-    }
-    if (mepet === "mypet" && !userProfile) {
+    } else if (mepet === "mypet" && !userProfile) {
       navigate("/PetOwnerProfileForm", {
         state: { appInfo, petForm, existingPet, templateParams },
       });
       console.log("case 3");
     }
     setConfirm(true);
-    setAppInfo(appInfo);
   };
 
   if (loading) return <Spinner />;
@@ -252,11 +306,11 @@ const AppointmentForm = () => {
         <h2 className="col-12 signup-success d-flex justify-content-center">
           Success!
         </h2>
-        <p className="col-12 signup-success d-flex justify-content-center">
-          Your appointment is booked...
+        <p className="col-12 d-flex justify-content-center mt-4">
+          Your appointment is booked.
         </p>
-        <p className="col-12 signup-success d-flex justify-content-center">
-          Just sent you a confitmation email .
+        <p className="col-12 d-flex justify-content-center align-items-center">
+          We just sent you a confitmation email...
         </p>
       </main>
     );
@@ -283,7 +337,8 @@ const AppointmentForm = () => {
             )}
             <p className="app-review-p text-primary">On:</p>
             <p className="app-review-p">
-              {digitalAppointment} at: {appTime}
+              {appointmentDay}, {appointmentMonth} {dateSuffixed}, {appYear} at{" "}
+              {appTime}
             </p>
             <p className="app-review-p text-primary">Reason:</p>
             <p className="app-review-p">{reason}</p>

@@ -54,9 +54,14 @@
   color: grey;
   border: black;
 }
-.message-review {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 55px;
+.review-error,
+.review-confirm {
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+@media screen and (max-width: 993px) {
+  .review-form {
+    margin-bottom: 10%;
+  }
 }

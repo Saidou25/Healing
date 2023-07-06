@@ -84,7 +84,6 @@ const ReviewForm = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
     if (title.length < 2 || reviewText.length < 2) {
       setConfirm(false);
       setError("All fields need filled with two charactes minimum!");
@@ -211,15 +210,15 @@ const ReviewForm = (props) => {
               </div>
               <div>
                 {error && (
-                  <div className="bg-danger text-white">
-                    <p className="message-review m-2">{error}</p>
+                  <div className="bg-danger text-white mb-5">
+                    <p className="review-error mb-4">{error}</p>
                   </div>
                 )}
               </div>
               <div>
                 {confirm && (
-                  <div className="bg-success text-white">
-                    <p className="message-review m-2">{confirm}</p>
+                  <div className="bg-success text-white mb-5">
+                    <p className="review-confirm m-2">{confirm}</p>
                   </div>
                 )}
               </div>

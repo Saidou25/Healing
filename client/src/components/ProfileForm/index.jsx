@@ -102,18 +102,11 @@ const ProfileForm = () => {
     try {
       const { data } = await addBookingdate({
         variables: {
-          username: appInfo.username,
+          username: username,
+          startDate: appInfo.startDate,
           digitalAppointment: appInfo.digitalAppointment,
-          digitMonth: appInfo.digitMonth,
+          appointmentString: appInfo.appointmentString,
           reason: appInfo.reason,
-          mepet: appInfo.mepet,
-          isBooked: appInfo.isBooked,
-          finalDateISO: appInfo.finalDateISO,
-          appDay: appInfo.appDay,
-          appMonth: appInfo.appMonth,
-          appDate: appInfo.appDate,
-          appTime: appInfo.appTime,
-          appYear: appInfo.appYear,
         },
       });
       console.log(`success booking a date ${appInfo.digitalAppointment}`);
@@ -200,10 +193,10 @@ const ProfileForm = () => {
           Success!
         </h2>
         <p className="col-12 signup-success d-flex justify-content-center">
-          Your appointment is booked...
+          Your appointment is booked.
         </p>
         <p className="col-12 signup-success d-flex justify-content-center">
-          Check your mail box for confirmation.
+        We just sent you a confitmation email...
         </p>
       </main>
     );
@@ -215,14 +208,14 @@ const ProfileForm = () => {
         <div className="container-profile">
           <p>
             Our practitioner will be driving to the address provided in the form
-            below. Please don't hesitate to add any useful information in the
+            below. Please don't hesitate to add any useful appInformation in the
             address field.
           </p>
           <br />
           {confirm === true ? (
             <>
               <h4 className="card-header-profile bg-primary rounded-0 text-white p-4">
-                Review your appointment info
+              Please review your appointment appInformation
               </h4>
             </>
           ) : (
@@ -239,7 +232,7 @@ const ProfileForm = () => {
                   Appointment for: {patientfirstname} {patientlastname}
                 </p>
                 <p className="app-review-profile mt-4">
-                  On: {appInfo.digitalAppointment} at: {appInfo.appTime}
+                  On {appInfo.appointmentString}
                 </p>
                 <p className="app-review-profile mt-4">
                   Reason: {appInfo.reason}
@@ -359,7 +352,7 @@ const ProfileForm = () => {
                       allowEmptyFormatting
                       mask="_"
                       name="patientnumber"
-                      onValueChange={(values, sourceInfo) => {
+                      onValueChange={(values, sourceappInfo) => {
                         setPatientNumber(values.formattedValue);
                       }}
                     />

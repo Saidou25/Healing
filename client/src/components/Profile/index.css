@@ -32,7 +32,11 @@
   align-items: center;
   margin-left: 1%;
 }
-
+@media screen and (max-width: 500px) {
+  .my-profile-titles  {
+    text-align: center;
+  }
+}
 @media screen and (max-width: 414px) {
   .container-profile {
     margin-top: 8%;

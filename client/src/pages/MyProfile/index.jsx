@@ -3,6 +3,7 @@ import Profile from '../../components/Profile';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_PROFILES, QUERY_PETS, QUERY_BOOKINGDATES } from '../../utils/queries';
 import Spinner from '../../components/Spinner';
+
 const MyProfile = () => {
 
   const { data, dataLoading } = useQuery(QUERY_ME);

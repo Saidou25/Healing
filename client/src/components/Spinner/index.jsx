@@ -9,6 +9,7 @@ const Spinner = () => {
           <span className="sr-only"></span>
         </div>
       </div>
+        <p className="loading text-primary mt-4">Loading...</p>
     </div>
   );
 };

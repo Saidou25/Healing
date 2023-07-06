@@ -33,6 +33,15 @@
 .history {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+@media screen and (max-width: 680px) {
+  .appointment-list-title {
+    text-align: center;
+  }
+  .appointment-text {
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 414px) {
   .no-history {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

@@ -58,6 +58,7 @@
     }
     .review-row {
         flex-direction: column-reverse;
+        
     }
 }
 
