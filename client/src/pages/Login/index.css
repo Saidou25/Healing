@@ -1,10 +1,50 @@
-.login {
+.go-back {
+    margin-top: 5%;
+  }
+  .btn-go-back {
+    font-size: 1.2rem;
+    text-decoration: none;
+    background-color: black;
+    width: 200px;
+    border-radius: 25px;
+    border: 0;
+  }
+  .btn-go-back:hover {
+    background-color: rgb(211, 165, 209);
+  }
+  .bg-image {
+    background-image: url("../../assets/images/nenuphar.jpeg");
+    /* min-height: 90%; */
+    min-height: 600px;
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-top: 4%;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-bottom: 7%;
+  }
+  /* .login {
     width: 40%;
     margin-top: 5%;
     margin-bottom: 5%;
     margin-right: auto;
     margin-left: auto;
-}
+} */
+.container-login {
+    position: absolute;
+    right: 0;
+    width: 450px;
+  }
+  .login {
+    margin-top: 10%;
+    /* margin-bottom: 15%; */
+    margin-right: 12%;
+    --bs-card-border-width: 0;
+    background-color: rgba(252, 252, 252, 0.4);
+  }
+
 .header-login {
     text-align: center;
 }
@@ -19,28 +59,62 @@
     font-style: oblique;
 }
 
-.text-label {
+/* .text-label {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
     margin: 15px;
-}
+} */
+.btn-position {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .btn-login {
+    background-color: black;
+  }
+  .btn-login:hover {
+    background-color: rgb(211, 165, 209);
+  }
 
 @media screen and (max-width: 800px) {
-    .login {
+    .container-login {
         width: 90%;
+        padding-top: 1px;
         margin-top: 10%;
         margin-right: auto;
         margin-left: auto;
         box-shadow: none;
-    }
+        margin-bottom: 10%;
+      }
+      .login {
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        --bs-card-border-width: 0;
+        background-color: rgba(252, 252, 252, 0.4);
+      }
+      .container-login {
+        position: relative;
+        /* width: 450px; */
+      }
+     
+      .bg-image {
+        background-image: url("../../assets/images/nenuphar.jpeg");
+        /* min-height: 90%; */
+        min-height: 600px;
+        background-position: center;
+        margin-bottom: 10%;
+      }
 }
 @media screen and (max-width: 414px) {
-    .login {
-        width: 90%;
+    .container-login {
+        width: 100%;
         margin-top: 10%;
-        margin-right: auto;
-        margin-left: auto;
         box-shadow: none;
-    }
+        margin-bottom: 12%;
+      }
+      .bg-image {
+        margin-left: 2%;
+        margin-right: 2%;
+      }
 }
