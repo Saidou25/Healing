@@ -1,12 +1,10 @@
-
 .footer {
     margin-top: 5%;
-    height: 150px;
+    /* height: 150px; */
     align-items: center;
 }
 .text-footer {
-    
-    margin-top: 1%;
+    margin-top: 2%;
     font-size: 1.3rem;
     text-align: center;
 }
@@ -14,6 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* padding-bottom: 10%; */
 }
 .number {
     align-items: center;

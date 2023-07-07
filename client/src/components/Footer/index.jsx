@@ -15,8 +15,8 @@ const Footer = () => {
           <FaPhone className="icon m-2" />
           +1 (123) 456 7891
         </div>
-        <div className="col-12 col-footer mt-2 mb-5">
-          <a href="https://github.com/Saidou25/Healing">
+        <div className="col-12 col-footer p-3">
+          <a className="minicat" href="https://github.com/Saidou25/Healing">
             <img src={logo} className="github" alt="minicat"></img>
           </a> 
         </div>

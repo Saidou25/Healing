@@ -9,7 +9,6 @@ import "bootswatch/dist/lux/bootstrap.min.css";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// import Sign from "./components/Sign";
 import ProfileForm from "./components/ProfileForm";
 import AppointmentReview from "./components/AppointmentReview";
 import PetProfileForm from "./components/PetProfileForm";
@@ -112,7 +111,6 @@ function App() {
             <Route path="/AllReviews" element={<AllReviews />} />
             <Route path="/MyProfile" element={<MyProfile />} />
             <Route path="/Visit" element={<Visit />} />
-            {/* <Route path="/Sign" element={<Sign />} /> */}
             <Route path="/" element={<LandingPage />} />
           </Routes>
         </>
