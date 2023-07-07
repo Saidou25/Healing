@@ -36,6 +36,9 @@ const Navbar = () => {
                 <CustomLink to="/Visit" className="nav-item show-hide fs-3">
                   Visits
                 </CustomLink>
+                {/* <CustomLink to="/Sign" className="nav-item show-hide fs-3">
+                Sign
+                </CustomLink> */}
                 <button className="btt-logout show-hide fs-3" onClick={logout}>
                   logout
                 </button>
