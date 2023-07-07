@@ -73,6 +73,13 @@ const Signup = () => {
           </button>
         </Link>
       </div>
+      <div className="signup-login-error">
+        {error && (
+          <div className="my-3 p-3 bg-warning text-white mt-5">
+            {error.message}
+          </div>
+        )}
+      </div>
       <div className="bg-image" src={pic} alt="care">
         <div className="container-signup g-0">
           <div className="card signup">
@@ -120,11 +127,7 @@ const Signup = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <br />
-                {error && (
-                  <div className="my-3 p-3 bg-danger text-white mt-5">
-                    {error.message}
-                  </div>
-                )}
+
                 <div className="btn-position">
                   <button
                     className="btn btn-primary btn-signup rounded-0 mt-5"

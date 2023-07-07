@@ -10,7 +10,12 @@
   border: 0;
 }
 .btn-go-back:hover {
-  background-color: rgb(211, 165, 209);
+  background-color: rgb(242, 202, 240);
+}
+.signup-login-error {
+  margin-left: 6%;
+  margin-right: 6%;
+  text-align: center;
 }
 .bg-image {
   background-image: url("../../assets/images/nenuphar.jpeg");
@@ -54,7 +59,7 @@
   background-color: black;
 }
 .btn-signup:hover {
-  background-color: rgb(211, 165, 209);
+  background-color: rgb(242, 202, 240);
 }
 @media screen and (max-width: 800px) {
   .container-signup {
@@ -77,7 +82,7 @@
     position: relative;
     /* width: 450px; */
   }
-  
+
   .bg-image {
     background-image: url("../../assets/images/nenuphar.jpeg");
     /* min-height: 90%; */
@@ -86,6 +91,14 @@
     margin-bottom: 10%;
   }
 }
+@media screen and (max-width: 550px) {
+  .bg-image {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 15%;
+  }
+  }
+
 @media screen and (max-width: 414px) {
   .container-signup {
     width: 100%;
@@ -93,8 +106,21 @@
     box-shadow: none;
     margin-bottom: 12%;
   }
+  .signup-login-error {
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: center;
+  }
   .bg-image {
     margin-left: 2%;
     margin-right: 2%;
+    
+  }
+    .signup {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    --bs-card-border-width: 0;
+    background-color: rgba(252, 252, 252, 0.6);
   }
 }

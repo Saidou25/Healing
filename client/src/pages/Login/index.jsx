@@ -53,6 +53,13 @@ const Login = () => {
           </button>
         </Link>
       </div>
+      <div className="signup-login-error">
+        {error && (
+          <div className="my-3 p-3 bg-warning text-white mt-5">
+            {error.message}
+          </div>
+        )}
+      </div>
       <div className="bg-image" src={pic} alt="care">
         <main className="container-login g-0">
           <div className="card login">
@@ -90,13 +97,6 @@ const Login = () => {
                   />{" "}
                   <br />
                   <div>
-                    {error && (
-                      <div className="bg-danger log-error text-white mt-5">
-                        <p className="error-message m-2 pt-3 pb-3">
-                          {error.message}
-                        </p>
-                      </div>
-                    )}
                   </div>
                   <div className="btn-position">
                   <button

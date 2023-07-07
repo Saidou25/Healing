@@ -25,20 +25,13 @@
     margin-right: 6%;
     margin-bottom: 7%;
   }
-  /* .login {
-    width: 40%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-right: auto;
-    margin-left: auto;
-} */
 .container-login {
     position: absolute;
     right: 0;
     width: 450px;
   }
   .login {
-    margin-top: 10%;
+    margin-top: 20%;
     /* margin-bottom: 15%; */
     margin-right: 12%;
     --bs-card-border-width: 0;
@@ -116,5 +109,12 @@
       .bg-image {
         margin-left: 2%;
         margin-right: 2%;
+      }
+      .login {
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+        --bs-card-border-width: 0;
+        background-color: rgba(252, 252, 252, 0.6);
       }
 }
