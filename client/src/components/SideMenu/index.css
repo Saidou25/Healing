@@ -10,12 +10,9 @@
 }
 
 .row-items {
-  overflow: scroll;
   padding-left: 3%;
   padding-right: 3%;
-  /* width: 90%; */
   margin-bottom: 2%;
-  height: 350px;
 }
 .col-items {
   border-bottom-style: solid;
@@ -43,5 +40,23 @@
 @media screen and (max-width: 900px) {
   .show {
     display: block;
+  }
+}
+@media screen and (max-width: 414px) {
+  .row-items {
+    overflow: scroll;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-bottom: 2%;
+    height: 520px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .row-items {
+    overflow: scroll;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-bottom: 2%;
+    height: 375px;
   }
 }

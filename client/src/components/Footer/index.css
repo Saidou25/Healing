@@ -5,18 +5,28 @@
     align-items: center;
 }
 .text-footer {
+    
     margin-top: 1%;
     font-size: 1.3rem;
-    align-items: center; 
+    text-align: center;
+}
+.col-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .number {
     align-items: center;
     font-size: 1.2rem;
 }
+.github {
+    max-width: 45px;
+}
+
 @media screen and (max-width: 414px) {
     .footer {
         margin-top: 3%;
-        height: 120px;
+        /* height: 120px; */
         align-items: center;
     }
     .main-footer {

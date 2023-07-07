@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_BOOKINGDATES } from "../../utils/queries";
+import { QUERY_ME } from "../../utils/queries";
 import { DELETE_BOOKINGDATE } from "../../utils/mutations";
 import MyReviewList from "../../components/MyReviewList";
 import Spinner from "../../components/Spinner";
@@ -44,20 +44,7 @@ const AppointmentHistory = () => {
     variables: { id: bookingdateId },
     update(cache, { data: { deleteBookingdate } }) {
       try {
-        const { bookingdates } = cache.readQuery({ query: QUERY_BOOKINGDATES });
-
-        cache.writeQuery({
-          query: QUERY_BOOKINGDATES,
-          data: {
-            bookingdates: bookingdates.filter(
-              (bookingdate) => bookingdate._id !== deleteBookingdate._id
-            ),
-          },
-        });
-      } catch (error) {
-        console.error(error);
-      }
-      // update me object's cache
+        // update me object's cache
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
@@ -72,6 +59,10 @@ const AppointmentHistory = () => {
           },
         },
       });
+      } catch (error) {
+        console.error(error);
+      }
+     
     },
   });
 

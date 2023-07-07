@@ -74,22 +74,16 @@ const AppointmentForm = () => {
   const [addBookingdate] = useMutation(ADD_BOOKINGDATE, {
     update(cache, { data: { addBookingdate } }) {
       try {
-        const { bookingdates } = cache.readQuery({ query: QUERY_BOOKINGDATES });
-
-        cache.writeQuery({
-          query: QUERY_BOOKINGDATES,
-          data: { bookingdates: [...bookingdates, addBookingdate] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-      const { me } = cache.readQuery({ query: QUERY_ME });
+        const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
         data: {
           me: { ...me, bookingdates: [...me.bookingdates, addBookingdate] },
         },
       });
+      } catch (e) {
+        console.error(e);
+      }
     },
   });
 

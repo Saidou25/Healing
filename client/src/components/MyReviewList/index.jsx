@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_REVIEWS, QUERY_ME } from "../../utils/queries";
+import { QUERY_ME } from "../../utils/queries";
 import { DELETE_REVIEW } from "../../utils/mutations";
 import Spinner from "../../components/Spinner";
 import profileIcon from "../../assets/images/profileicon.png";
@@ -18,20 +18,7 @@ const MyReviewsList = () => {
     variables: { id: reviewId },
     update(cache, { data: { deleteReview } }) {
       try {
-        const { reviews } = cache.readQuery({ query: QUERY_REVIEWS });
-
-        cache.writeQuery({
-          query: QUERY_REVIEWS,
-          data: {
-            reviews: reviews.filter(
-              (review) => review._id !== deleteReview._id
-            ),
-          },
-        });
-      } catch (error) {
-        console.error(error);
-      }
-      // update me object's cache with deleted review
+        // update me object's cache with deleted review
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
@@ -44,6 +31,9 @@ const MyReviewsList = () => {
           },
         },
       });
+      } catch (error) {
+        console.error(error);
+      }
     },
   });
 
