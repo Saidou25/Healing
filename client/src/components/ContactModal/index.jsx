@@ -100,7 +100,7 @@ const ProfileModal = (props) => {
                       type="button"
                       onClick={handleSubmit}
                     >
-                      Save changes
+                      send
                     </button>
                   </div>
                 </form>

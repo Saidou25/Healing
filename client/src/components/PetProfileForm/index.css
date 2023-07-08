@@ -13,8 +13,12 @@
 .form-control {
   font-style: oblique;
 }
-input[type='radio'] {
-    accent-color: #232323;
+.lbs, 
+.years {
+  font-style: oblique;
+}
+input[type="radio"] {
+  accent-color: #232323;
 }
 .myClassName,
 .phone-number,

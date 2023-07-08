@@ -21,13 +21,16 @@ import "react-datepicker/dist/react-datepicker.css";
 const AppointmentForm = () => {
   const navigate = useNavigate();
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(
+    setHours(setMinutes(new Date(), 30), 17)
+  );
+  // console.log("start date", startDate);
   const [mepet, setMePet] = useState("");
-  const [appointmentDay, setAppointmentDay] = useState("");
-  const [appointmentMonth, setAppointmentMonth] = useState("");
-  const [appYear, setAppYear] = useState("");
+  // const [appointmentDay, setAppointmentDay] = useState("");
+  // const [appointmentMonth, setAppointmentMonth] = useState("");
+  // const [appYear, setAppYear] = useState("");
   const [appTime, setAppTime] = useState("");
-  const [dateSuffixed, setDateSuffixed] = useState("");
+  // const [dateSuffixed, setDateSuffixed] = useState("");
   const [showPetName, setShowPetName] = useState("");
   const [petForm, setPetForm] = useState("");
   const [appointmentString, setAppointmentString] = useState("");
@@ -37,7 +40,6 @@ const AppointmentForm = () => {
   const [error, setError] = useState("");
   const [confirm, setConfirm] = useState(false);
   const [finalize, setFinalize] = useState(false);
-
   // query data about user
   const { data: meData } = useQuery(QUERY_ME);
   const me = meData?.me || [];
@@ -75,18 +77,17 @@ const AppointmentForm = () => {
     update(cache, { data: { addBookingdate } }) {
       try {
         const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: {
-          me: { ...me, bookingdates: [...me.bookingdates, addBookingdate] },
-        },
-      });
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: {
+            me: { ...me, bookingdates: [...me.bookingdates, addBookingdate] },
+          },
+        });
       } catch (e) {
         console.error(e);
       }
     },
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -143,6 +144,26 @@ const AppointmentForm = () => {
       navigate("/Dashboard");
     }, 3000);
   };
+  const formatTime = (date) => {
+    let hours =
+      date.getHours() > 12 ? Math.floor(date.getHours() - 12) : date.getHours();
+    // if hour is 0 (12:00am), change it to 12
+    if (hours === 0) {
+      hours = 12;
+    }
+    // set `am` or `pm`
+    const periodOfDay = date.getHours() >= 12 ? "pm" : "am";
+
+    let formattedTime;
+     // formating time which misses a "0" in the minutes field when :00
+    const minutes = date.getMinutes();
+    minutes === 0
+      ? (formattedTime = `${hours}:${minutes}0 ${periodOfDay}`)
+      : (formattedTime = `${hours}:${minutes} ${periodOfDay}`);
+
+    console.log("formatted time", formattedTime);
+    setAppTime(formattedTime);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -150,7 +171,7 @@ const AppointmentForm = () => {
       setError("All fields need filled!");
       return;
     }
-
+    console.log("app time", appTime);
     // Updating [allAppointments] with new appointment
     const isBooked = JSON.stringify(startDate);
     const dateArr = isBooked.replaceAll('"', "").split(":");
@@ -176,7 +197,7 @@ const AppointmentForm = () => {
       "Saturday",
     ];
     const appDay = day[startDate.getDay()];
-    setAppointmentDay(appDay);
+    // setAppointmentDay(appDay);
 
     const month = [
       "January",
@@ -193,23 +214,10 @@ const AppointmentForm = () => {
       "December",
     ];
     const appMonth = month[startDate.getMonth()];
-    setAppointmentMonth(appMonth);
+    // setAppointmentMonth(appMonth);
 
     const year = startDate.getFullYear();
-    setAppYear(year.toString());
-
-    // formating time which misses a "0"
-    let time;
-    const hours = startDate.getHours();
-    const minutes = startDate.getMinutes();
-
-    if (minutes === 0) {
-      time = `${hours}:${minutes}0`;
-      setAppTime(time);
-    } else {
-      time = `${hours}:${minutes}`;
-      setAppTime(`${hours}:${minutes}`);
-    }
+    // setAppYear(year.toString());
 
     // adding a suffixe to day's date ex: 1st, 2nd, 3rd or 4th... dateStr will exported to next component and dateSuffixed used for booking appointment data
     let dateStr = startDate.getDate().toString();
@@ -217,20 +225,20 @@ const AppointmentForm = () => {
 
     if (lastChar === "1" && dateStr !== "11") {
       dateStr = `${dateStr}st`;
-      setDateSuffixed(`${dateStr}st`);
+      // setDateSuffixed(`${dateStr}st`);
     } else if (lastChar === "2" && dateStr !== "12") {
       dateStr = `${dateStr}nd`;
-      setDateSuffixed(`${dateStr}nd`);
+      // setDateSuffixed(`${dateStr}nd`);
     } else if (lastChar === "3" && dateStr !== "13") {
       dateStr = `${dateStr}rd`;
-      setDateSuffixed(`${dateStr}rd`);
+      // setDateSuffixed(`${dateStr}rd`);
     } else {
       dateStr = `${dateStr}th`;
-      setDateSuffixed(`${dateStr}th`);
+      // setDateSuffixed(`${dateStr}th`);
     }
 
     // 'appString' for display appointment info in cards and confirmations
-    const appString = `${appDay}, ${appMonth} ${dateStr}, ${year} at ${time}`;
+    const appString = `${appDay}, ${appMonth} ${dateStr}, ${year} at ${appTime}`;
     setAppointmentString(appString);
 
     // building appinfo object to pass appointment data to next components via useNavigate
@@ -245,7 +253,7 @@ const AppointmentForm = () => {
       profile: profile,
       petForm: petForm,
       myPets: myPets,
-      appTime: time,
+      appTime: appTime,
     };
 
     // conditionally redirecting the user to next operation based on if user or user's pet are returning patients
@@ -331,8 +339,7 @@ const AppointmentForm = () => {
             )}
             <p className="app-review-p text-primary">On:</p>
             <p className="app-review-p">
-              {appointmentDay}, {appointmentMonth} {dateSuffixed}, {appYear} at{" "}
-              {appTime}
+              {appointmentString}
             </p>
             <p className="app-review-p text-primary">Reason:</p>
             <p className="app-review-p">{reason}</p>
@@ -442,17 +449,20 @@ const AppointmentForm = () => {
                 <div className="choose-date mt-5 mb-3">
                   <DatePicker
                     id="user_date"
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    showTimeSelect
-                    timeFormat="HH:mm"
                     timeIntervals={15}
-                    timeCaption="time"
+                    // set to today for past appointment demo purpose. Will be set to new Date + 1 in future.
+                    minDate={new Date()}
+                    excludeDates={allAppointments}
+                    selected={startDate}
+                    onChange={(date) => {
+                      setStartDate(date);
+                      formatTime(date);
+                    }}
+                    showTimeSelect
                     minTime={setHours(setMinutes(new Date(), 0), 9)}
                     maxTime={setHours(setMinutes(new Date(), 0), 19)}
                     dateFormat="MMMM d, yyyy h:mm aa"
-                    minDate={new Date()}
-                    excludeDates={allAppointments}
+                    withPortal
                     // footer={footer};
                   />
                 </div>

@@ -356,6 +356,7 @@ const PetForm = () => {
                   </div>
                   <div className="col-lg-6 col-m-6 col-sm-12 p-2">
                     <label className="form-label1">Age</label>
+                    <label className="years">(years)</label>
                     <br />
                     <input
                       className="age"
@@ -379,6 +380,7 @@ const PetForm = () => {
                   </div>
                   <div className="col-lg-6 col-m-6 col-sm-12 p-2">
                     <label className="form-label1"> Pet's weight</label>
+                    <label className="lbs">(lbs)</label>
                     <input
                       className="form-control"
                       onChange={handleChange}

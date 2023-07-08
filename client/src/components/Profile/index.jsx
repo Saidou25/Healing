@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaEnvelope, FaPhone, FaIdBadge } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaIdBadge, FaHome } from "react-icons/fa";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import Spinner from "../../components/Spinner";
@@ -34,13 +34,11 @@ const Profile = ({
                   <div className="text">
                     <FaIdBadge className="icon m-2" />
                     {me.username}
-                  </div>{" "}
-                  <br />
+                  </div>
                   <div className="text">
                     <FaEnvelope className="icon m-2" />
                     {me.email}
-                  </div>{" "}
-                  <br />
+                  </div>
                 </div>
               </div>
             </div>
@@ -63,17 +61,11 @@ const Profile = ({
                 <div className="card-header">
                   <div className="text">
                     <FaIdBadge className="icon m-2" />
-                    {userProfile.username}{" "}
-                  </div>{" "}
-                  <br />
+                    {userProfile.username}
+                  </div>
                   <div className="text">
                     <FaEnvelope className="icon m-2" />
                     {me.email}
-                  </div>{" "}
-                  <br />
-                  <div className="text">
-                    <FaPhone className="icon m-2" />
-                    {userProfile.patientnumber}
                   </div>
                 </div>
               </div>
@@ -84,12 +76,10 @@ const Profile = ({
                 <div className="card-header">
                   <div className="text m-2">
                     First name: {userProfile.patientfirstname}
-                  </div>{" "}
-                  <br />
+                  </div>
                   <div className="text m-2">
                     Last name: {userProfile.patientlastname}
-                  </div>{" "}
-                  <br />
+                  </div>
                   {userProfile.birthdate ? (
                     <div className="text m-2">
                       Birth date: {userProfile.birthdate}
@@ -105,28 +95,29 @@ const Profile = ({
               <h3 className="text my-profile-titles mb-5 mt-5">Contact</h3>
               <div className="card profile-body p-3">
                 <div className="card-header">
-                  <div className="text m-2">
+                  <div className="text">
+                    <FaPhone className="icon m-2" />
+                    {userProfile.patientnumber}
+                  </div>
+                  <div className="text">
+                    <FaHome className="icon m-2" />
                     Address: {userProfile.patientaddress}
-                  </div>{" "}
-                  <br />
+                  </div>
                   <div className="text m-2">
                     City: {userProfile.patientcity}
-                  </div>{" "}
-                  <br />
+                  </div>
                   <div className="text m-2">
                     State: {userProfile.patientState}
-                  </div>{" "}
-                  <br />
+                  </div>
                   <div className="text m-2">
                     Zip code: {userProfile.patientzip}
-                  </div>{" "}
-                  <br />
+                  </div>
                 </div>
               </div>
             </div>
             <div className="col-12">
               <Link to="/UpdateProfile" state={{ userProfile }}>
-                <button className="btn update-profile mt-5 btn-info">
+                <button className="btn update-profile mt-5 btn-primary">
                   update
                 </button>
               </Link>
