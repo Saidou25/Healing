@@ -23,18 +23,24 @@ const Navbar = () => {
             <div className="one">
               <div className="landing-title">
                 <Link className="landing" to="/">
-                  Healing
+                  healing
                 </Link>
               </div>
               <ul className="nav d-flex">
                 <CustomLink to="/About" className="nav-item show-hide fs-3">
-                  About
+                  about
                 </CustomLink>
                 <CustomLink to="/Dashboard" className="nav-item show-hide fs-3">
                   dashboard
                 </CustomLink>
+                <CustomLink
+                  to="/Appointment"
+                  className="nav-item show-hide fs-3"
+                >
+                  appointment
+                </CustomLink>
                 <CustomLink to="/Visit" className="nav-item show-hide fs-3">
-                  Visits
+                  visits
                 </CustomLink>
                 <button className="btt-logout show-hide fs-3" onClick={logout}>
                   logout

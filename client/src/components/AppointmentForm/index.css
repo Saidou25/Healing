@@ -1,9 +1,34 @@
-.container-appointment {
+.goback-appointment {
   margin-top: 5%;
-  margin-bottom: 1%;
-  width: 60%;
-  margin-right: auto;
-  margin-left: auto;
+}
+.btn-goback-appointment {
+  font-size: 1.2rem;
+  text-decoration: none;
+  background-color: black;
+  width: 200px;
+  border-radius: 25px;
+  border: 0;
+}
+.btn-goback-appointment:hover {
+  background-color: rgb(223, 128, 80);
+}
+
+.img-appointment {
+  background-image: url("../../assets/images/practitioner.jpeg");
+  min-height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 4%;
+  margin-left: 6%;
+  margin-right: 6%;
+}
+.card-appointment {
+  width: 40%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 25%;
+  background-color: rgba(236, 234, 231, 1);
+  margin-bottom: 5%;
 }
 .appointment-review-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -19,43 +44,35 @@
   border: none;
   text-align: center;
 }
-
 .type-your-text {
-  width: 60%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
-
 .appointment-column {
   width: 100%;
   text-align: center;
 }
-
 .form-label {
   margin-top: 5%;
 }
-
 .date-picker {
   width: 100%;
   text-align: center;
   margin-right: auto;
   margin-left: auto;
 }
-
 .choose-date {
   margin-top: 2%;
 }
-
 .container-success {
   margin-top: 30%;
 }
-
 .appointment-success {
   justify-content: center;
   align-items: center;
   height: 100px;
 }
-
 .fa-check {
   justify-content: center;
   align-items: center;
@@ -66,25 +83,116 @@
   color: white;
   background-color: green;
 }
+.app-error {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .appoitment-error {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 55px;
 }
-
-@media screen and (max-width: 414px) {
+.text-container {
+  position: relative;
+  margin-top: 7%;
+  width: 40%;
+  margin-left: 6%;
+}
+.btn-submitapp {
+  background-color: black;
+}
+.btn-submitapp:hover {
+  background-color: rgb(223, 128, 80);
+}
+.footer-appointment {
+  clear: both;
+}
+@media screen and (max-width: 1366px) {
+  .img-appointment {
+    background-image: url("../../assets/images/practitioner.jpeg");
+    min-height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+}
+@media screen and (max-width: 870px) {
   .container-appointment {
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 10%;
-    width: 90%;
+    width: 96%;
     margin-right: auto;
     margin-left: auto;
   }
-
+  .img-appointment {
+    background-image: url("../../assets/images/practitioner.jpeg");
+    min-height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+  .card-appointment {
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 0;
+    margin-top: 38%;
+    background-color: rgba(236, 234, 231, 1);
+    margin-bottom: 5%;
+  }
+  .text-container {
+    display: none;
+  }
+}
+@media screen and (max-width: 504px) {
+  .img-appointment {
+    min-height: 280px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .img-appointment {
+    min-height: 270px;
+  }
+}
+@media screen and (max-width: 414px) {
+  .container-appointment {
+    margin-top: 0%;
+    margin-bottom: 0%;
+    width: 96%;
+    margin-right: auto;
+    margin-left: auto;
+  }
   .appointment-success {
     width: 70%;
     margin-right: auto;
     margin-left: auto;
+  }
+  .img-appointment {
+    background-image: none;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .card-appointment {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 12%;
+    background-color: rgba(236, 234, 231, 1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .text-container {
+    display: none;
+  }
+}
+/* for iphone X */
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .container-appointment {
+    height: 85vh;
   }
 }

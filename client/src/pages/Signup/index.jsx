@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
-import pic from "../../assets/images/practitioner.jpeg";
+import Footer from "../../components/Footer";
+import pic from "../../assets/images/nenuphar.jpeg";
 import Spinner from "../../components/Spinner";
 import Auth from "../../utils/auth";
 import "./index.css";
@@ -17,7 +17,7 @@ const Signup = () => {
   const [username, setUsename] = useState("");
   const [confirm, setConfirm] = useState(false);
 
-  const [addUser, { error, data, loading }] = useMutation(ADD_USER);
+  const [addUser, { error, loading }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

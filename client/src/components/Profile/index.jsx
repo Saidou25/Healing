@@ -28,14 +28,14 @@ const Profile = ({
         <div className="container-profile mt-5">
           <div className="flex-row justify-space-between my-4">
             <div className="col-12 ">
-              <h3 className="text my-profile-titles mb-5 mt-5">Login</h3>
+              <h3 className="text-profile my-profile-titles mb-5 mt-5">Login</h3>
               <div className="card profile-body p-3">
                 <div className="card-header">
-                  <div className="text">
+                  <div className="text-profile">
                     <FaIdBadge className="icon m-2" />
                     {me.username}
                   </div>
-                  <div className="text">
+                  <div className="text-profile">
                     <FaEnvelope className="icon m-2" />
                     {me.email}
                   </div>
@@ -56,14 +56,14 @@ const Profile = ({
         <div className="container-profile mt-5">
           <div className="flex-row justify-space-between my-4">
             <div className="col-12 ">
-              <h3 className="text my-profile-titles mb-5 mt-5">Login</h3>
+              <h3 className="text-profile my-profile-titles mb-5 mt-5">Login</h3>
               <div className="card profile-body p-3">
                 <div className="card-header">
-                  <div className="text">
+                  <div className="text-profile">
                     <FaIdBadge className="icon m-2" />
                     {userProfile.username}
                   </div>
-                  <div className="text">
+                  <div className="text-profile">
                     <FaEnvelope className="icon m-2" />
                     {me.email}
                   </div>
@@ -71,17 +71,17 @@ const Profile = ({
               </div>
             </div>
             <div className="col-12">
-              <h3 className="text my-profile-titles mb-5 mt-5">General</h3>
+              <h3 className="text-profile my-profile-titles mb-5 mt-5">General</h3>
               <div className="card profile-body p-3 ">
                 <div className="card-header">
-                  <div className="text m-2">
+                  <div className="text-profile m-2">
                     First name: {userProfile.patientfirstname}
                   </div>
-                  <div className="text m-2">
+                  <div className="text-profile m-2">
                     Last name: {userProfile.patientlastname}
                   </div>
                   {userProfile.birthdate ? (
-                    <div className="text m-2">
+                    <div className="text-profile m-2">
                       Birth date: {userProfile.birthdate}
                     </div>
                   ) : (
@@ -92,24 +92,24 @@ const Profile = ({
             </div>
 
             <div className="col-12">
-              <h3 className="text my-profile-titles mb-5 mt-5">Contact</h3>
+              <h3 className="text-profile my-profile-titles mb-5 mt-5">Contact</h3>
               <div className="card profile-body p-3">
                 <div className="card-header">
-                  <div className="text">
+                  <div className="text-profile">
                     <FaPhone className="icon m-2" />
                     {userProfile.patientnumber}
                   </div>
-                  <div className="text">
+                  <div className="text-profile">
                     <FaHome className="icon m-2" />
                     Address: {userProfile.patientaddress}
                   </div>
-                  <div className="text m-2">
+                  <div className="text-profile m-2">
                     City: {userProfile.patientcity}
                   </div>
-                  <div className="text m-2">
+                  <div className="text-profile m-2">
                     State: {userProfile.patientState}
                   </div>
-                  <div className="text m-2">
+                  <div className="text-profile m-2">
                     Zip code: {userProfile.patientzip}
                   </div>
                 </div>

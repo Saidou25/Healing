@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import ProfileForm from "./components/ProfileForm";
 import AppointmentReview from "./components/AppointmentReview";
+import Appointment from "./components/Appointment";
 import PetProfileForm from "./components/PetProfileForm";
 import PetOwnerProfileForm from "./components/PetOwnerProfileForm";
 import ReviewForm from "./components/ReviewForm";
@@ -105,6 +106,7 @@ function App() {
             <Route path="/Profile" element={<Profile />} />
             <Route path="/ContactModal" element={<ContactModal />} />
             <Route path="/PetProfileForm" element={<PetProfileForm />} />
+            <Route path="/Appointment" element={<Appointment />} />
             <Route path="/ReviewForm" element={<ReviewForm />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/About" element={<About />} />

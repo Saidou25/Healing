@@ -10,9 +10,11 @@ import {
 } from "../../utils/queries";
 import { sendEmail } from "../../utils/email.js";
 import { parseISO, setHours, setMinutes } from "date-fns";
+import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import DatePicker from "react-datepicker";
-import Navbar from "../Navbar";
+import practitioner from "../../assets/images/practitioner.jpeg";
+// import Navbar from "../Navbar";
 import Footer from "../Footer";
 import "./index.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
@@ -144,6 +146,7 @@ const AppointmentForm = () => {
       navigate("/Dashboard");
     }, 3000);
   };
+  // Format the time for friendly and clear reading
   const formatTime = (date) => {
     let hours =
       date.getHours() > 12 ? Math.floor(date.getHours() - 12) : date.getHours();
@@ -155,14 +158,22 @@ const AppointmentForm = () => {
     const periodOfDay = date.getHours() >= 12 ? "pm" : "am";
 
     let formattedTime;
-     // formating time which misses a "0" in the minutes field when :00
+    // formating time which misses a "0" in the minutes field when :00
     const minutes = date.getMinutes();
     minutes === 0
       ? (formattedTime = `${hours}:${minutes}0 ${periodOfDay}`)
       : (formattedTime = `${hours}:${minutes} ${periodOfDay}`);
 
-    console.log("formatted time", formattedTime);
-    setAppTime(formattedTime);
+    if ("09" < date.getHours() < "19") {
+      console.log(date.getHours());
+      console.log("office hours");
+      console.log("formatted time", formattedTime);
+      setAppTime(formattedTime);
+    } else {
+      console.log("office is closed");
+      setError("Office is closed at this time...");
+      return;
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -338,9 +349,7 @@ const AppointmentForm = () => {
               </p>
             )}
             <p className="app-review-p text-primary">On:</p>
-            <p className="app-review-p">
-              {appointmentString}
-            </p>
+            <p className="app-review-p">{appointmentString}</p>
             <p className="app-review-p text-primary">Reason:</p>
             <p className="app-review-p">{reason}</p>
             <br />
@@ -387,122 +396,154 @@ const AppointmentForm = () => {
 
   return (
     <>
-      <Navbar />
+      <div className="goback-appointment d-flex justify-content-center">
+        <Link to="/Dashboard">
+          <button type="btn" className="btn-goback-appointment text-white">
+            go back
+          </button>
+        </Link>
+      </div>
       <div className="container-appointment">
-        <h4 className="card-header-appointment bg-primary rounded-0 text-light p-4 mt-4 mb-5">
-          Book your appointment
-        </h4>
-        <div className="card-body">
-          <form id="appointment-form">
-            <div className="row">
-              <div className="col-12 appointment-column">
-                <label className="form-label">
-                  Who is the appointment for?
-                </label>
-              </div>
-              <div></div>
-              <div className="col-12 visit">
-                <div>
-                  <input
-                    className="radio m-2 ms-4"
-                    type="radio"
-                    name="mepet"
-                    value="me"
-                    checked={mepet === "me"}
-                    onChange={handleChange}
-                  />{" "}
-                  me
-                  <input
-                    className="radio m-2 ms-4"
-                    type="radio"
-                    name="mepet"
-                    value="mypet"
-                    checked={mepet === "mypet"}
-                    onChange={handleChange}
-                  />{" "}
-                  my pet
-                </div>
-              </div>
-              {showPetName === "mypet" ? (
-                <div className="col-12 appointment-column">
-                  <div>
-                    <label className="form-label mb-4">
-                      What is your pet name
+        <div className="img-appointment" src={practitioner} alt="care">
+          <div className="card-appointment">
+            <h4 className="card-header-appointment text-primary mt-5 mb-4">
+              Book your appointment
+            </h4>
+            <div className="card-body-appointment">
+              <form id="appointment-form">
+                <div className="row">
+                  <div className="col-12 appointment-column">
+                    <label className="form-label">
+                      Who is the appointment for?
                     </label>
-                    <input
-                      className="form-control type-your-text mt-4 mb-5"
-                      name="petForm"
-                      value={petForm}
-                      placeholder="name..."
-                      type="text"
-                      onChange={handleChange}
-                    ></input>
+                  </div>
+                  <div></div>
+                  <div className="col-12 visit">
+                    <div>
+                      <input
+                        className="radio m-2 ms-4"
+                        type="radio"
+                        name="mepet"
+                        value="me"
+                        checked={mepet === "me"}
+                        onChange={handleChange}
+                      />{" "}
+                      me
+                      <input
+                        className="radio m-2 ms-4"
+                        type="radio"
+                        name="mepet"
+                        value="mypet"
+                        checked={mepet === "mypet"}
+                        onChange={handleChange}
+                      />{" "}
+                      my pet
+                    </div>
+                  </div>
+                  {showPetName === "mypet" ? (
+                    <div className="col-12 appointment-column">
+                      <div>
+                        <label className="form-label">
+                          What is your pet name
+                        </label>
+                        <input
+                          className="form-control type-your-text mt-2 mb-2"
+                          name="petForm"
+                          value={petForm}
+                          placeholder="name..."
+                          type="text"
+                          onChange={handleChange}
+                        ></input>
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  <div className="col-12 date-picker">
+                    <label className="form-label">
+                      Choose your appointment date
+                    </label>
+                    <div className="choose-date mt-3 mb-2">
+                      <DatePicker
+                        id="user_date"
+                        timeIntervals={15}
+                        // set to today for past appointment demo purpose. Will be set to new Date + 1 in future.
+                        minDate={new Date()}
+                        excludeDates={allAppointments}
+                        selected={startDate}
+                        onChange={(date) => {
+                          setStartDate(date);
+                          formatTime(date);
+                        }}
+                        showTimeSelect
+                        minTime={setHours(setMinutes(new Date(), 0), 9)}
+                        maxTime={setHours(setMinutes(new Date(), 0), 19)}
+                        dateFormat="MMMM d, yyyy h:mm aa"
+                        withPortal
+                        // footer={footer};
+                      />
+                    </div>
+                  </div>
+                  <div className="col-12 appointment-column">
+                    <div>
+                      <label className="form-label mb-3">
+                        What is your reason for visiting?
+                      </label>
+                      <textarea
+                        className="form-control type-your-text mt-4 mb-5"
+                        name="reason"
+                        value={reason}
+                        type="text"
+                        placeholder="type your text here..."
+                        onChange={handleChange}
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="app-error">
+                      {error && (
+                        <div className="bg-warning text-white mb-4">
+                          <p className="appoitment-error m-2">{error}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="col-12 d-flex justify-content-center">
+                    <button
+                      className="btn btn-submitapp text-white mt-2 mb-4 rounded-0"
+                      type="submit"
+                      onClick={(e) => handleSubmit(e)}
+                    >
+                      Submit
+                    </button>
                   </div>
                 </div>
-              ) : (
-                <></>
-              )}
-              <div className="col-12 date-picker mb-2">
-                <label className="form-label">
-                  Choose your appointment date
-                </label>
-                <div className="choose-date mt-5 mb-3">
-                  <DatePicker
-                    id="user_date"
-                    timeIntervals={15}
-                    // set to today for past appointment demo purpose. Will be set to new Date + 1 in future.
-                    minDate={new Date()}
-                    excludeDates={allAppointments}
-                    selected={startDate}
-                    onChange={(date) => {
-                      setStartDate(date);
-                      formatTime(date);
-                    }}
-                    showTimeSelect
-                    minTime={setHours(setMinutes(new Date(), 0), 9)}
-                    maxTime={setHours(setMinutes(new Date(), 0), 19)}
-                    dateFormat="MMMM d, yyyy h:mm aa"
-                    withPortal
-                    // footer={footer};
-                  />
-                </div>
-              </div>
-              <div className="col-12 appointment-column">
-                <div>
-                  <label className="form-label mb-4">
-                    What is your reason for visiting?
-                  </label>
-                  <textarea
-                    className="form-control type-your-text mt-4 mb-5"
-                    name="reason"
-                    value={reason}
-                    type="text"
-                    placeholder="type your text here..."
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-              </div>
-              <div>
-                {error && (
-                  <div className="bg-danger text-white mb-4">
-                    <p className="appoitment-error m-2">{error}</p>
-                  </div>
-                )}
-              </div>
-              <div className="col-12 d-flex justify-content-center">
-                <button
-                  className="btn btn-primary mt-4 rounded-0"
-                  type="submit"
-                  onClick={(e) => handleSubmit(e)}
-                >
-                  Submit
-                </button>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
+        </div>
+        <div className="text-container">
+          <p className="text-app">
+            sdfasdfadsfasdfasdfsdfas dfasldfasdfhlaksdh
+            falksjhdflkajshdflkajhsdl fajkhsdfl kahs lkdjfhalksjhdf
+            lakjshfdaksdjhf aks dflakjshdflakjshdfkajs
+            dfkajhskdfhaadfasdfasdfasdfasfdasdfs ksjdhf
+          </p>
+          <p className="text-app">
+            1sdfasdfadsfasdfasdfsdfas dfasldfasdfhlaksdh
+            falksjhdflkajshdflkajhsdl fajkhsdfl kahs lkdjfhalksjhdf
+            lakjshfdaksdjhf aks dflakjshdflakjshdfkajs dfkajhskdfha ksjdhf
+          </p>
+          <p className="text-app">
+            2sdfasdfadsfasdfasdfsdfas dfasldfasdfhlaksdh
+            falksjhdflkajshdflkajhsdl fajkhsdfl kahs lkdjfhalksjhdf
+            lakjshfdaksdjhf aks dflakjshdflakjshdfkajs dfkajhskdfha ksjdhf
+          </p>
         </div>
       </div>
-      <Footer />
+      <div className="footer-appointment">
+        <Footer />
+      </div>
     </>
   );
 };
