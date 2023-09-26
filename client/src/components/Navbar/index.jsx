@@ -33,12 +33,6 @@ const Navbar = () => {
                 <CustomLink to="/Dashboard" className="nav-item show-hide fs-3">
                   dashboard
                 </CustomLink>
-                <CustomLink
-                  to="/Appointment"
-                  className="nav-item show-hide fs-3"
-                >
-                  appointment
-                </CustomLink>
                 <CustomLink to="/Visit" className="nav-item show-hide fs-3">
                   visits
                 </CustomLink>

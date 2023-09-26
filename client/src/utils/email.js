@@ -2,7 +2,7 @@ import emailjs from "@emailjs/browser";
 
 const sendEmail = (templateParams) => {
   console.log("form utils", templateParams);
-  const SERVICE_ID = "service_ps339pa";
+  const SERVICE_ID = "service_g15laob";
   const TEMPLATE_ID = "template_rels3en";
   const USER_ID = "RWSohpTYy2zdo_uXO";
 
@@ -17,7 +17,7 @@ const sendEmail = (templateParams) => {
 };
 const sendMessage = (templateParams) => {
   console.log(templateParams);
-  const SERVICE_ID = "service_ps339pa";
+  const SERVICE_ID = "service_g15laob";
   const TEMPLATE_ID = "template_s6gfci4";
   const USER_ID = "RWSohpTYy2zdo_uXO";
 
