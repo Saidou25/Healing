@@ -8,6 +8,7 @@ import { Regex } from "../../utils/Regex";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import "./index.css";
+import { useUser } from "../../context.js/userContext.js";
 
 const PetForm = () => {
   const navigate = useNavigate();
@@ -36,8 +37,9 @@ const PetForm = () => {
   const [finalize, setFinalize] = useState(false);
   const [dbleMessage, setDbleMessage] = useState(false);
 
-  const { data: meData } = useQuery(QUERY_ME);
-  const me = meData?.me || [];
+  // const { data: meData } = useQuery(QUERY_ME);
+  // const me = meData?.me || [];
+  const { me } = useUser();
   const username = me.username;
   const profileId = me.profile?._id;
 

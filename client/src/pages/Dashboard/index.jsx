@@ -1,27 +1,31 @@
-import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../utils/queries";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useUser } from "../../context.js/userContext";
+
 import Spinner from "../../components/Spinner";
-import ContactModal from "../../components/ContactModal";
-import UpcomingAppointments from "../../components/UpcomingAppointments";
-import AllReviews from "../../components/AllReviews";
-import ReviewForm from "../../components/ReviewForm";
+import AllReviews from "../../features/Reviews/AllReviews";
+import ReviewForm from "../../features/Reviews/ReviewForm";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import UpcomingAppointments from "../../features/Appointments/UpcomingAppointments";
+import auth from "../../utils/auth";
+import { Outlet } from "react-router-dom";
+import BookingNav from "../../components/Booking";
 import "./index.css";
 
 const Dashboard = () => {
   const [isShown, setIsShown] = useState(false);
-  // getting data for reviews and appointments
-  const { data, loading, error } = useQuery(QUERY_ME);
-  const me = data?.me || [];
-  const username = me.username;
-  const myReviews = me.reviews;
-  const email = me.email;
-  const myAppointments = me.bookingdates;
+  const [myAppointments, setMyAppointments] = useState("");
+  const [futureAppointments, setFutureAppointments] = useState("");
 
-  // const myAppointments = props.myAppointments;
+  const { me, loading } = useUser();
+  const username = me.username;
+
+  useEffect(() => {
+    if (me) {
+      setMyAppointments(me.bookingdates);
+    }
+  }, [me]);
+
   const date = new Date();
   const todaysDate = date.getDate();
   const todaysYear = date.getFullYear();
@@ -46,58 +50,39 @@ const Dashboard = () => {
 
   const today = `${newMonth}/${newDay}/${todaysYear}`;
 
-  const futureAppointments = myAppointments?.filter(
-    (bookingdate) => bookingdate.digitalAppointment > today
-  );
+  useEffect(() => {
+    if (myAppointments) {
+      const myFutureAppointments = myAppointments?.filter(
+        (bookingdate) => bookingdate.digitalAppointment > today
+      );
 
-    const handleSubmit = (e) => {
-        if (e === 'review') {
-          setIsShown(current => !current);
-        }  
-    };
+      setFutureAppointments(myFutureAppointments);
+    }
+  }, [myAppointments, today]);
+
+  const handleSubmit = (e) => {
+    if (e === "review") {
+      setIsShown((current) => !current);
+    }
+  };
 
   if (loading) return <Spinner />;
-  if (error) return <p>Something went wrong ...</p>;
-
-  return (
-    <>
-      <Navbar />
-      <main className="dashboard-main">
-        <div className="container-buttons">
-          <div className="row buttons mb-5">
-            <div className="col-4 btn ds-btns btn-primary rounded-0">
-              <Link
-                to="/AppointmentForm"
-                className="dashboard-text text-white"
-                state={{ username }}
-              >
-                Book
-              </Link>
-            </div>
-            <div className="col-4 btn ds-btns btn-primary rounded-0">
-              <Link
-                to="/AppointmentHistory"
-                className="dashboard-text text-white"
-                state={{ username, myReviews }}
-              >
-                History
-              </Link>
-            </div>
-            <div className="col-4 btn btn-primary rounded-0">
-              <ContactModal username={username} email={email} />
-            </div>
-          </div>
-        </div>
-        <div className="container-dashboard">
-          <div className="row">
-            <div className="col-lg-8 col-sm-12 dashb-border">
+  if (auth.loggedIn()) {
+    return (
+      <>
+        <Navbar />
+        <BookingNav />
+        <main className="dashboard-main">
+          <Outlet />
+          <div className="row row-width">
+            <div className="col-lg-8 col-sm-10">
               <UpcomingAppointments
                 futureAppointments={futureAppointments}
                 today={today}
               />
             </div>
-            {futureAppointments.length ? (
-              <div className="col-lg-4 col-sm-12 mt-5 mb-5 right-window">
+            {futureAppointments?.length ? (
+              <div className="col-lg-4 col-sm-12 mt-5 mb-5 right-window dashb-border">
                 <div className="card suggestion p-3">
                   <br />
                   <h4 className="note mb-2">Notes</h4>
@@ -122,10 +107,10 @@ const Dashboard = () => {
             )}
           </div>
           <div className="row review-row mt-4">
-            <div className="col-lg-8 col-sm-12 dashb-border">
+            <div className="col-lg-8 col-sm-12">
               <AllReviews />
             </div>
-            <div className="col-lg-4 col-sm-12 right-window">
+            <div className="col-lg-4 col-sm-12 right-window dashb-border">
               <h3 className="write-review-title mt-4">Write a review</h3>
               <button
                 type="button"
@@ -134,17 +119,16 @@ const Dashboard = () => {
               >
                 start/close
               </button>
-              {isShown ? <></> : null}
               {isShown ? (
                 <ReviewForm username={username} today={today} />
               ) : null}
             </div>
           </div>
-        </div>
-      </main>
-      <Footer />
-    </>
-  );
+        </main>
+        <Footer />
+      </>
+    );
+  }
 };
 
 export default Dashboard;

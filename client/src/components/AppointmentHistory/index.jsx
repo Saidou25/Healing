@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../utils/queries";
-import { DELETE_BOOKINGDATE } from "../../utils/mutations";
-import MyReviewList from "../../components/MyReviewList";
-import Spinner from "../../components/Spinner";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
+// import { useMutation } from "@apollo/client";
+// import { QUERY_ME } from "../../utils/queries";
+// import { DELETE_BOOKINGDATE } from "../../utils/mutations";
+
+// import MyReviewList from "../../components/MyReviewList";
+// import Spinner from "../../components/Spinner";
+import { useUser } from "../../context.js/userContext";
+import useDeleteBooking from "../../features/Appointments/useDeleteBooking";
 import trash from "../../assets/images/trash.png";
 import "./index.css";
 
 const AppointmentHistory = () => {
+  const [deleteBookingData, setDeleteBookingData] = useState("");
+
   const date = new Date();
   const todaysDate = date.getDate();
   const todaysYear = date.getFullYear();
@@ -17,14 +20,14 @@ const AppointmentHistory = () => {
   const todaysMonthStr = todaysMonth.toString();
   const todaysDateStr = todaysDate.toString();
 
-  const [bookingdateId, setBookingdateId] = useState("");
+  // const [bookingdateId, setBookingdateId] = useState("");
 
-  const { data: meData, meLoading, error } = useQuery(QUERY_ME);
-  const me = meData?.me || [];
-  const username = me.username;
-  const myReviews = me.reviews;
+  const { loading } = useDeleteBooking(deleteBookingData);
+
+  const { me } = useUser();
   const myAppointments = me.bookingdates;
-
+  console.log("hello list myAppointments history", myAppointments, loading);
+  // console.log("deleteData triggered with deleteBookingData", deleteBookingData);
   let newDay;
   let newMonth;
 
@@ -40,119 +43,68 @@ const AppointmentHistory = () => {
   }
   const today = `${newMonth}/${newDay}/${todaysYear}`;
 
-  const [deleteBookingdate] = useMutation(DELETE_BOOKINGDATE, {
-    variables: { id: bookingdateId },
-    update(cache, { data: { deleteBookingdate } }) {
-      try {
-        // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: {
-          me: {
-            ...me,
-            bookingdates: [
-              ...me.bookingdates.filter(
-                (bookingdate) => bookingdate._id !== deleteBookingdate._id
-              ),
-            ],
-          },
-        },
-      });
-      } catch (error) {
-        console.error(error);
-      }
-     
-    },
-  });
-
   const history = myAppointments?.filter(
     (bookingdate) => today >= bookingdate.digitalAppointment
   );
+  // console.log("history", history);
 
-  const handleSubmit = (bookingdate) => {
-    const bookingdateId = bookingdate._id;
-
-    try {
-      const { data } = deleteBookingdate({
-        variables: { id: bookingdateId },
-      });
-      if (data) {
-        console.log("appointment deleted successfully");
-      }
-    } catch (err) {
-      console.error(err);
-    };
-    setBookingdateId(bookingdateId);
-  };
-
-  if (meLoading) return <Spinner />;
-  if (error) return <p>Something went wrong ...</p>;
-
-  if (!history?.length) {
-    return (
-      <>
-        <Navbar />
-        <div className="container-no-history">
+  return (
+    <div>
+      {!history?.length ? (
+        <div className="containerno-history mt-5 mb-5">
           <div className="card no-history">
-            <p className="card-header history-header fs-3">No history yet</p>
+            <p className="card-header history-header fs-3 my-3">
+              No appointment yet
+            </p>
             <div className="card-body history-text">
-              <p>Your past appointments will show on here soon.</p>
+              <p>Your appointments will show on here soon.</p>
             </div>
           </div>
         </div>
-        <MyReviewList myReviews={myReviews} username={username} />
-        <div className="footer-history">
-          <Footer />
-        </div>
-      </>
-    );
-  }
-  return (
-    <div>
-      <Navbar />
-      <div className="container-history">
-        <h3 className="appointment-list-title mt-5 mb-5">
-          Appointment history
-        </h3>
-        <div className="row">
-          {history &&
-            history.map((bookingdate) => (
-              <div key={bookingdate._id} className="col-12 history-column">
-                <div className="card history mb-4">
-                  <div className="card-header fs-3">Previous appointment:</div>
-                  <div className="card-body p-3">
-                    <div className="row">
-                      <div className="col-8 d-flex align-items-center">
-                        <div className="appointment-text">
-                          <div className="text">
-                            {bookingdate.appointmentString}
+      ) : (
+        <div className="container-history">
+          <h3 className="appointment-list-title mt-5 mb-5">
+            Appointment history
+          </h3>
+          <div className="row all-history">
+            {history &&
+              history.map((bookingdate) => (
+                <div key={bookingdate._id} className="col-8 history-column">
+                  <div className="card history mb-4">
+                    <div className="card-header fs-3">
+                      Previous appointment:
+                    </div>
+                    <div className="card-body p-3">
+                      <div className="row">
+                        <div className="col-8 d-flex align-items-center">
+                          <div className="appointment-text">
+                            <div className="text">
+                              {bookingdate.appointmentString}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="col-4 d-flex justify-content-end">
-                        <button
-                          type="button"
-                          className="btn delete-appointment rounded-0"
-                          onClick={() => handleSubmit(bookingdate)}
-                        >
-                          <img
-                            className="trash-can"
-                            src={trash}
-                            alt="trash-can"
-                            height={50}
-                          />
-                        </button>
+                        <div className="col-4 d-flex justify-content-end">
+                          <button
+                            type="button"
+                            className="btn delete-appointment rounded-0"
+                            onClick={() => setDeleteBookingData(bookingdate)}
+                          >
+                            <img
+                              className="trash-can"
+                              src={trash}
+                              alt="trash-can"
+                              height={50}
+                            />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
-      </div>
-      <MyReviewList myReviews={myReviews} username={username} />
-      <Footer />
+      )}
     </div>
   );
 };

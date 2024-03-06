@@ -1,6 +1,6 @@
 import React from "react";
 import Auth from "../../utils/auth";
-import profileIcon from "../../assets/images/profileicon.png";
+import profileIcon from "../../assets/images/profileIcon.png";
 import "./index.css";
 
 const SideMenu = () => {
@@ -73,7 +73,7 @@ const SideMenu = () => {
                 {Auth.loggedIn() && (
                   <>
                     <li className="col-12 col-items mt-4 pb-4">
-                      <a className="nav-item-side fs-3" href="/AppointmentForm">
+                      <a className="nav-item-side fs-3" href="/Appointment">
                         book
                       </a>
                     </li>

@@ -1,7 +1,15 @@
-.dashboard-main {
-    width: 100%;
+.row-width,
+.review-row {
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
 }
-
+.dashb-border {
+    padding-left: 3%;
+    border-left-style: solid;
+    border-left-color: rgb(206, 200, 200);
+    border-width: 1px;
+}
 .container-dashboard {
     width: 90%;
     margin-right: auto;
@@ -32,12 +40,7 @@
     text-align: center;
 }
 
-.dashb-border {
-    padding-right: 3%;
-    border-right-style: solid;
-    border-right-color: rgb(206, 200, 200);
-    border-width: 1px;
-}
+
 .right-window {
     padding-left: 3%;
 }

@@ -1,3 +1,7 @@
+.all-reviews {
+    padding-right: 4%;
+}
+
 @media screen and (max-width: 993px) {
     .reviews-title {
         margin-top: 0;

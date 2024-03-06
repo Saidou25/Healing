@@ -1,0 +1,11 @@
+.buttons {
+    height: 65px;
+}
+.dashboard-text {
+    text-decoration: none;
+}
+.top-nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

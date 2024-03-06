@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SideMenu from "../../components/SideMenu";
 import './index.css';
 
@@ -13,26 +13,26 @@ const LandingPage = () => {
                 </div>
             </div>
             <div className="landing-title">
-                <Link className="col-12 landing text-primary" to="/">
+                <NavLink className="col-12 landing text-black" to="/">
                     Healing
-                </Link>
+                </NavLink>
             </div>
             <div className="landing-parent">
                 <div className="card landing-page rounded-0">
                     <div className="row landing-row">
                         <div className="col-4 landing-column">
                             <button className="btn but-landing" >
-                                <Link to='/Login' className='landing-item'>Login</Link>
+                                <NavLink to='/Login' className='landing-item'>Login</NavLink>
                             </button>
                         </div>
                         <div className="col-4 landing-column">
                             <button className="btn but-landing" >
-                                <Link to='/Signup' className='landing-item'>Signup</Link>
+                                <NavLink to='/Signup' className='landing-item'>Signup</NavLink>
                             </button>
                         </div>
                         <div className="col-4 landing-column">
                             <button className="btn but-landing" >
-                                <Link to='/About' className='landing-item'>About</Link>
+                                <NavLink to='/About' className='landing-item'>About</NavLink>
                             </button>
                         </div>
                     </div>

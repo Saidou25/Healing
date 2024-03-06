@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaEnvelope, FaPhone, FaIdBadge, FaHome } from "react-icons/fa";
-import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../utils/queries";
-import Spinner from "../../components/Spinner";
+// import { useQuery } from "@apollo/client";
+// import { QUERY_ME } from "../../utils/queries";
+// import Spinner from "../../components/Spinner";
 import DeleteModal from "../DeleteModal";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "./index.css";
+import { useUser } from "../../context.js/userContext";
 
 const Profile = ({
   userProfile,
@@ -16,10 +17,11 @@ const Profile = ({
   profileId,
   myPets,
 }) => {
-  const { data, loading } = useQuery(QUERY_ME);
-  const me = data?.me || [];
+  const { me } = useUser();
+  // const { data, loading } = useQuery(QUERY_ME);
+  // const me = data?.me || [];
 
-  if (loading) return <Spinner />;
+  // if (loading) return <Spinner />;
 
   if (!userProfile) {
     return (

@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import SideMenu from "../SideMenu";
-import Auth from "../../utils/auth";
-import profileIcon from "../../assets/images/profileIcon.png"
-import "./index.css";
 
-const Navbar = () => {
+import Auth from "../../utils/auth";
+import profileIcon from "../../assets/images/profileIcon.png";
+import SideMenu from "../../components/SideMenu";
+// import "./index.css";
+
+const BookingNav = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -14,8 +15,8 @@ const Navbar = () => {
 
   if (Auth.loggedIn()) {
     return (
-      <main className="main-nav">
-        <div className="bg-img">
+      <>
+        <main className="container-fluid g-0">
           <nav className="row">
             <div className="col-12 d-flex justify-content-end">
               <SideMenu />
@@ -48,14 +49,14 @@ const Navbar = () => {
               </ul>
             </div>
           </nav>
-        </div>
-      </main>
+        </main>
+      </>
     );
   }
 
   return (
-    <main className="main-nav">
-      <div className="bg-img">
+    <>
+      <main className="main-nav">
         <nav className="row">
           <div className="col-12 d-flex justify-content-end">
             <SideMenu />
@@ -82,9 +83,9 @@ const Navbar = () => {
             </ul>
           </div>
         </nav>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 
-export default Navbar;
+export default BookingNav;

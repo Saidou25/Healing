@@ -45,15 +45,22 @@ const ProfileForm = () => {
   const [addProfile] = useMutation(ADD_PROFILE, {
     // variables: { username, patientState, patientnumber, patientfirstname, patientgender, patientaddress, patientlastname, patientcity, birthdate, patientzip },
     update(cache, { data: { addProfile } }) {
-      try {
-        const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
-        cache.writeQuery({
-          query: QUERY_PROFILES,
-          data: { profiles: [addProfile, ...profiles] },
-        });
-        console.log(`success adding ${patientfirstname} appointment`);
-      } catch (e) {
-        console.error(e);
+      const queryResult = cache.readQuery(QUERY_PROFILES);
+      console.log("query result", queryResult);
+
+      if (queryResult) {
+        try {
+          const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
+          cache.writeQuery({
+            query: QUERY_PROFILES,
+            data: { profiles: [addProfile, ...profiles] },
+          });
+          console.log(`success adding ${patientfirstname} appointment`);
+        } catch (e) {
+          console.error(e);
+        }
+      } else {
+
       }
     },
   });
@@ -99,6 +106,16 @@ const ProfileForm = () => {
   };
 
   const cancelApp = () => {
+    setNewValue("");
+    setPatientNumber("");
+    setPatientGender("");
+    setBirthDate("");
+    setPatientFirstName("");
+    setPatientLastName("");
+    setPatientAddress("");
+    setPatientCity("");
+    setPatientZip("");
+    setFinalize(false);
     navigate("/Dashboard");
   };
 
@@ -155,8 +172,8 @@ const ProfileForm = () => {
       if (data) {
         console.log(`success adding ${patientfirstname}`);
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
     }
     appBooking();
   };

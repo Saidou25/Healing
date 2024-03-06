@@ -1,12 +1,15 @@
-.container-review {
+.container-review,
+.containerno-history {
   margin-top: 7%;
-  width: 70%;
-  margin-right: auto;
-  margin-left: auto;
+  width: 80%;
+  margin: auto;
 }
 .review-list {
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.review-border {
+  padding-right: 4%;
 }
 @media screen and (max-width: 680px) {
   .review-list-title {

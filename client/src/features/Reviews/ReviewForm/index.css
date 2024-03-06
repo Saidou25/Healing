@@ -1,7 +1,12 @@
 .review-textarea {
   width: 100%;
 }
-
+.dashb-border {
+  padding-left: 11%;
+  border-left-style: solid;
+  border-left-color: rgb(206, 200, 200);
+  border-width: 1px;
+}
 .optional {
   color: #55595c;
   font-style: oblique;

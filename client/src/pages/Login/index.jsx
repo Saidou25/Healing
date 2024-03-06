@@ -94,6 +94,7 @@ const Login = () => {
                     type="password"
                     value={formState.password}
                     onChange={handleChange}
+                    autoComplete="on"
                   />{" "}
                   <br />
                   <div>
