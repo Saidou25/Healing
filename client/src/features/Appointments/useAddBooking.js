@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_BOOKINGDATES } from "../../utils/queries";
-// import { setHours, setMinutes } from "date-fns";
 
 const useAddBooking = (appInformation) => {
   const [bookingData, setBookingData] = useState("");
@@ -42,6 +41,7 @@ const useAddBooking = (appInformation) => {
 
     const username = bookingData.username;
     const startDate = bookingData.startDate;
+
     const digitalAppointment = bookingData.digitalAppointment;
     const appointmentString = bookingData.appointmentString;
     const reason = bookingData.reason;
@@ -61,24 +61,21 @@ const useAddBooking = (appInformation) => {
     } finally {
       setSuccessAddingBooking("success booking a date");
       setErrorAddingBooking("");
-      // setLoading(false);
+      setLoading(false);
     }
   }, [bookingData, addBookingdate]);
 
   useEffect(() => {
-    // console.log(appInformation);
     if (!appInformation) {
       setBookingData("");
       setErrorAddingBooking("");
       setSuccessAddingBooking("");
-      // console.log("yes", appInformation);
       return;
     } else {
       setBookingData(appInformation);
       newAppointment();
-      // console.log("no", appInformation);
     }
   }, [appInformation, newAppointment]);
-  return { errorAddingBooking, successAddingBooking, loading };
+  return { loading, errorAddingBooking, successAddingBooking };
 };
 export default useAddBooking;

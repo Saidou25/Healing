@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-// import { useMutation } from "@apollo/client";
-// import { QUERY_ME } from "../../utils/queries";
-// import { DELETE_BOOKINGDATE } from "../../utils/mutations";
-
-// import MyReviewList from "../../components/MyReviewList";
 // import Spinner from "../../components/Spinner";
-import { useUser } from "../../context.js/userContext";
-import useDeleteBooking from "../../features/Appointments/useDeleteBooking";
-import trash from "../../assets/images/trash.png";
+// import { useUser } from "../../../context/userContext";
+import useDeleteBooking from "../useDeleteBooking";
+import trash from "../../../assets/images/trash.png";
+import ButtonSpinner from "../../../components/ButtonSpinner";
 import "./index.css";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../../utils/queries";
 
 const AppointmentHistory = () => {
   const [deleteBookingData, setDeleteBookingData] = useState("");
@@ -20,14 +18,12 @@ const AppointmentHistory = () => {
   const todaysMonthStr = todaysMonth.toString();
   const todaysDateStr = todaysDate.toString();
 
-  // const [bookingdateId, setBookingdateId] = useState("");
-
   const { loading } = useDeleteBooking(deleteBookingData);
 
-  const { me } = useUser();
+  const { data: meData } = useQuery( QUERY_ME);
+  const me = meData?.me || [];
   const myAppointments = me.bookingdates;
-  console.log("hello list myAppointments history", myAppointments, loading);
-  // console.log("deleteData triggered with deleteBookingData", deleteBookingData);
+  
   let newDay;
   let newMonth;
 
@@ -46,7 +42,6 @@ const AppointmentHistory = () => {
   const history = myAppointments?.filter(
     (bookingdate) => today >= bookingdate.digitalAppointment
   );
-  // console.log("history", history);
 
   return (
     <div>
@@ -89,12 +84,18 @@ const AppointmentHistory = () => {
                             className="btn delete-appointment rounded-0"
                             onClick={() => setDeleteBookingData(bookingdate)}
                           >
-                            <img
-                              className="trash-can"
-                              src={trash}
-                              alt="trash-can"
-                              height={50}
-                            />
+                            {loading && bookingdate._id === deleteBookingData._id ? (
+                              <>
+                                <ButtonSpinner />
+                              </>
+                            ) : (
+                              <img
+                                className="trash-can"
+                                src={trash}
+                                alt="trash-can"
+                                height={50}
+                              />
+                            )}
                           </button>
                         </div>
                       </div>

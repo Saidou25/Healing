@@ -1,46 +1,40 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
-import { QUERY_BOOKINGDATES, QUERY_PETS } from "../../../utils/queries.js";
-// import { sendEmail } from "../../../utils/email.js";
+import { Outlet, useNavigate } from "react-router-dom";
+import { QUERY_BOOKINGDATES, QUERY_ME, QUERY_PETS } from "../../../utils/queries.js";
+// import { useUser } from "../../../context/userContext.jsx";
 import { parseISO, setHours, setMinutes } from "date-fns";
 import { formatTime } from "../../../utils/dateUtil.js";
 import { chooseStartDate } from "../../../utils/chooseStartDate.js";
-// import Spinner from "../../components/Spinner";
 import Footer from "../../../components/Footer/index.jsx";
-import "./index.css";
+import BookingForm from "../BookingForm.jsx";
+import BookingNav from "../BookingNav.jsx";
+import practitioner from "../../../assets/images/practitioner.jpeg";
+import SideText from "../SideText.jsx";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import "react-datepicker/dist/react-datepicker.css";
-import useAddBooking from "../useAddBooking.js";
-import BookingSuccess from "../Success.jsx";
-import Confirm from "../Confirm/index.jsx";
-import BookingForm from "../BookingForm.jsx";
-import Navbar from "../../../components/Navbar/index.jsx";
-import { useUser } from "../../../context.js/userContext.js";
-import BookingNav from "../BookingNav.jsx";
+import "./index.css";
 
-const Appointment = () => {
+const Book = () => {
   const navigate = useNavigate();
 
   const [startDate, setStartDate] = useState(
     setHours(setMinutes(new Date(), 30), 17)
   );
-
+  // const [me, setMe] = useState("");
   const [mepet, setMePet] = useState("");
-  const [appInformation, setAppInformation] = useState("");
   const [showPetName, setShowPetName] = useState("");
   const [petForm, setPetForm] = useState("");
   const [templateParams, setTemplateParams] = useState("");
   const [reason, setReason] = useState("");
   const [error, setError] = useState("");
-  const [confirm, setConfirm] = useState(false);
-  const [finalize, setFinalize] = useState(false);
+  const [showNavNav, setShowNavNav] = useState(true);
+  const [showCorrect, setShowCorrect] = useState(false);
 
-  const { me } = useUser();
-
-  const { successAddingBooking, loading } =
-    useAddBooking(appInformation);
-
+  // const { me } = useUser();
+  const { data: meData } = useQuery(QUERY_ME);
+  const me = meData?.me || [];
+ 
   const { appTime } = formatTime(startDate);
   const { finalDateISO, digitalAppointment, appString } = chooseStartDate(
     startDate,
@@ -48,6 +42,7 @@ const Appointment = () => {
   );
 
   const profile = me.profile;
+
   const username = me.username;
   const email = me.email;
   const myPets = me.profile?.pets;
@@ -59,8 +54,7 @@ const Appointment = () => {
 
   // collecting all appointments that we push into [allAppointments] to block already taken dates in calendar.
   //  we use parsISO for supported format
-  const { data: bookingdatesData } =
-    useQuery(QUERY_BOOKINGDATES);
+  const { data: bookingdatesData } = useQuery(QUERY_BOOKINGDATES);
 
   const allAppointments = useMemo(() => [], []);
 
@@ -101,18 +95,6 @@ const Appointment = () => {
     }
   };
 
-  const cancelApp = () => {
-    setMePet("");
-    setStartDate("");
-    setReason("");
-    setShowPetName("");
-    setPetForm("");
-    navigate("/Dashboard");
-    setAppInformation("");
-    setTemplateParams("");
-    setFinalize(false);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!mepet || !reason || !startDate) {
@@ -136,17 +118,34 @@ const Appointment = () => {
       appTime: appTime,
     };
 
+
     // conditionally redirecting the user to next operation based on if user or user's pet are returning patients
     if (mepet === "me" && !profile) {
-      navigate("/ProfileForm", { state: { appInfo } });
+      console.log("appInfo from Book", appInfo);
+
+      setShowNavNav(false);
+      setShowCorrect(true);
+      navigate("ProfileForm", { state: { appInfo } });
     } else if (mepet === "me" && profile) {
-      setConfirm(true);
+      setShowNavNav(false);
+      navigate("AppointmentReview", {
+        state: {
+          appInfo,
+          templateParams,
+          me,
+          petForm,
+          appString,
+          reason,
+          mepet,
+          profile
+          // loading,
+        },
+      });
     } else if (mepet === "mypet" && profile && !myPets) {
       navigate("/PetProfileForm", {
         state: { appInfo, petForm, existingPet },
       });
     } else if (mepet === "mypet" && profile && myPets && existingPet.length) {
-      setConfirm(true);
     } else if (mepet === "mypet" && profile && myPets && !existingPet.length) {
       navigate("/PetProfileForm", {
         state: { appInfo, petForm, existingPet, myPets },
@@ -158,61 +157,39 @@ const Appointment = () => {
     }
     // 'confirm' gives user an opportunity to verify and correct info if needed bifore finalizing appointment booking
     setTemplateParams(appInfo);
-    setConfirm(true);
   };
-
-  const confirmation = async () => {
-    setAppInformation(templateParams);
-  };
-
-  useEffect(() => {
-    if (successAddingBooking && loading) {
-      setFinalize(true);
-      setTimeout(() => {
-        setFinalize(false);
-        navigate("/Dashboard");
-      }, 3000);
-    }
-  }, [loading, navigate, successAddingBooking]);
-
-  if (finalize === true) {
-    return <BookingSuccess />;
-  }
-
-  if (confirm === true) {
-    return (
-      <>
-        <Navbar />
-        <Confirm
-          petForm={petForm}
-          profile={profile}
-          appString={appString}
-          reason={reason}
-          me={me}
-          confirmation={confirmation}
-          cancelApp={cancelApp}
-          loading={loading}
-        />
-      </>
-    );
-  }
 
   return (
     <>
       <BookingNav />
-      <BookingForm
-        mepet={mepet}
-        petForm={petForm}
-        showPetName={showPetName}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        formatTime={formatTime}
-        setStartDate={setStartDate}
-        allAppointments={allAppointments}
-        startDate={startDate}
-        reason={reason}
-        error={error}
-      />
+      <>
+        <div className="container-appointment">
+          <div className="img-appointment" src={practitioner} alt="care">
+            {showNavNav ? (
+              <BookingForm
+                mepet={mepet}
+                petForm={petForm}
+                showPetName={showPetName}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                formatTime={formatTime}
+                setStartDate={setStartDate}
+                allAppointments={allAppointments}
+                startDate={startDate}
+                reason={reason}
+                error={error}
+                showNavNav={showNavNav}
+                me={me}
+              />
+            ) : (
+              <>
+                <Outlet />
+              </>
+            )}
+          </div>
+          <SideText />
+        </div>
+      </>
       <div className="footer-appointment">
         <Footer />
       </div>
@@ -220,4 +197,4 @@ const Appointment = () => {
   );
 };
 
-export default Appointment;
+export default Book;

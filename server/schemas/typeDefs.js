@@ -84,17 +84,17 @@ const typeDefs = gql`
     login(email: String, password: String): Auth
 
     addProfile(
-      username: String!
-      patientfirstname: String!
-      patientState: String!
+      username: String
+      patientfirstname: String
+      patientState: String
       patientgender: String
-      patientaddress: String!
+      patientaddress: String
       patientemail: String
-      patientlastname: String!
-      patientcity: String!
-      patientnumber: String!
+      patientlastname: String
+      patientcity: String
+      patientnumber: String
       birthdate: String
-      patientzip: String!
+      patientzip: String
       mepet: String
     ): Profile
 

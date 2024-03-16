@@ -5,35 +5,31 @@ import {
   ApolloProvider,
   createHttpLink,
   defaultDataIdFromObject,
-  // defaultDataIdFromObject,
 } from "@apollo/client";
 import "bootswatch/dist/lux/bootstrap.min.css";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { UserProvider } from "./context.js/userContext";
+// import { UserProvider } from "./context/userContext";
 
 import ProfileForm from "./components/ProfileForm";
 import PetProfileForm from "./components/PetProfileForm";
 import PetOwnerProfileForm from "./components/PetOwnerProfileForm";
 import ReviewForm from "./features/Reviews/ReviewForm";
-import MyReviewsList from "./features/Reviews/MyReviewsList";
-import AppointmentHistory from "./components/AppointmentHistory";
+import AppointmentHistory from "./features//Appointments/AppointmentHistory";
 import Login from "./pages/Login";
 import LandingPage from "./pages/LandingPage";
-import UpcomingAppointments from "./features/Appointments/UpcomingAppointments";
-import Appointment from "./features/Appointments/Appointment";
+import Book from "./features/Appointments/Book";
+import BookingSuccess from "./features/Appointments/BookingSuccess";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import MyProfile from "./pages/MyProfile";
-import Profile from "./components/Profile";
-import ContactModal from "./components/ContactModal";
-import AllReviews from "./features/Reviews/AllReviews";
+import UserProfile from "./features/Profile/UserProfile"
 import UpdateMyProfileForm from "./components/UpdateMyProfileForm";
 import UpdateProfile from "./components/UpdateProfile";
 import About from "./components/About";
-import Test from "./pages/MyProfile";
-import BookingForm from "./features/Appointments/BookingForm";
 import ReviewHistory from "./components/ReviewHistory";
+import AppointmentReview from "./features/Appointments/AppointmentReview";
+import ProfileReviewForm from "./components/ProfileReviewForm";
+import PageNotFound from "./components/PageNotFound";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -87,50 +83,52 @@ const client = new ApolloClient({
 });
 
 function App() {
+   
   return (
     <ApolloProvider client={client}>
-      <UserProvider>
+      {/* <UserProvider> */}
         <Router>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="Appointment" element={<Appointment />} />
-            <Route path="Dashboard" element={<Dashboard />}>
+            <Route path="/Signup" element={<Signup />} />
+            <Route path="/Login" element={<Login />} />
+
+            <Route path="/About" element={<About />} />
+            <Route path="/UserProfile" element={<UserProfile />} />
+
+            <Route path="/Dashboard" element={<Dashboard />}>
               <Route
                 path="AppointmentHistory"
                 element={<AppointmentHistory />}
               />
               <Route path="ReviewHistory" element={<ReviewHistory />} />
             </Route>
-            <Route path="/Login" element={<Login />} />
-            <Route
-              path="/PetOwnerProfileForm"
-              element={<PetOwnerProfileForm />}
-            />
-            <Route path="/BookingForm" element={<BookingForm />} />
-            <Route path="/MyReviewsList" element={<MyReviewsList />} />
+            
+            <Route path="/Book" element={<Book />}>
+              <Route path="BookingSuccess" element={<BookingSuccess />} />
+              <Route path="ProfileForm" element={<ProfileForm />} />
+              <Route path="ProfileReviewForm" element={<ProfileReviewForm />} />
+              <Route path="AppointmentReview" element={<AppointmentReview />} />
+            </Route>
+
             <Route
               path="/UpdateMyProfileForm"
               element={<UpdateMyProfileForm />}
             />
             <Route path="/UpdateProfile" element={<UpdateProfile />} />
-            <Route path="/Signup" element={<Signup />} />
-            <Route path="/ProfileForm" element={<ProfileForm />} />
-            <Route path="/Profile" element={<Profile />} />
-            <Route path="/ContactModal" element={<ContactModal />} />
+            <Route
+              path="/PetOwnerProfileForm"
+              element={<PetOwnerProfileForm />}
+            />
+           
+            {/* <Route path="/ContactModal" element={<ContactModal />} /> */}
             <Route path="/PetProfileForm" element={<PetProfileForm />} />
             <Route path="/ReviewForm" element={<ReviewForm />} />
-            <Route
-              path="/UpcomingAppointments"
-              element={<UpcomingAppointments />}
-            />
-            <Route path="/About" element={<About />} />
-            <Route path="/AllReviews" element={<AllReviews />} />
-            <Route path="/MyProfile" element={<MyProfile />} />
-            <Route path="/Test" element={<Test />} />
-            {/* <Route path="*" element={<NoPageFound />} /> */}
+            
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>
-      </UserProvider>
+      {/* </UserProvider> */}
     </ApolloProvider>
   );
 }

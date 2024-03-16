@@ -1,6 +1,8 @@
 import React from "react";
 import MyReviewsList from "../MyReviewList";
-import { useUser } from "../../context.js/userContext";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../../utils/queries";
+// import { useUser } from "../../context.js/userContext";
 
 const MyReviews = () => {
   const date = new Date();
@@ -12,13 +14,13 @@ const MyReviews = () => {
 
   // const [bookingdateId, setBookingdateId] = useState("");
 
-  // const { data: meData, meLoading, error } = useQuery(QUERY_ME);
-  // const me = meData?.me || [];
-  const { me } = useUser();
+  const { data: meData, meLoading, error } = useQuery(QUERY_ME);
+  const me = meData?.me || [];
+  // const { me } = useUser();
   const username = me.username;
   const myReviews = me.reviews;
   // const myAppointments = me.bookingdates;
-  console.log("myReviews", myReviews);
+ 
 
   let newDay;
   let newMonth;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useUser } from "../../context.js/userContext";
+// import { useUser } from "../../context/userContext";
 
 import Spinner from "../../components/Spinner";
 import AllReviews from "../../features/Reviews/AllReviews";
@@ -11,20 +11,27 @@ import auth from "../../utils/auth";
 import { Outlet } from "react-router-dom";
 import BookingNav from "../../components/Booking";
 import "./index.css";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
 
 const Dashboard = () => {
+  const [me, setMe] = useState("");
   const [isShown, setIsShown] = useState(false);
   const [myAppointments, setMyAppointments] = useState("");
   const [futureAppointments, setFutureAppointments] = useState("");
 
-  const { me, loading } = useUser();
+  // const { me, loading } = useUser();
+  const { data: meData, loading } = useQuery(QUERY_ME);
+  
   const username = me.username;
 
   useEffect(() => {
-    if (me) {
-      setMyAppointments(me.bookingdates);
+    if (meData) {
+      const myData = meData?.me || [];
+      setMe(myData);
+      setMyAppointments(myData.bookingdates);
     }
-  }, [me]);
+  }, [meData]);
 
   const date = new Date();
   const todaysDate = date.getDate();

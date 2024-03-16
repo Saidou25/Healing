@@ -3,10 +3,12 @@
 }
 .app-review-t {
   background-color: var(--bs-card-cap-bg);
+  font-weight: 700 !important;
 }
 .app-review-p {
   padding-left: 3%;
   text-align: center;
+  
 }
 .card-body {
   padding: 0;

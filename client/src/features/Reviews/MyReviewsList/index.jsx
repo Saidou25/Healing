@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import "./index.css";
-import { useUser } from "../../../context.js/userContext";
+// import { useUser } from "../../../context/userContext";
 import useDeletReview from "../useDeleteReview";
 import RatingList from "../../../components/RatingList";
 import profileIcon from "../../../assets/images/profileIcon.png";
 import trash from "../../../assets/images/trash.png";
 import ButtonSpinner from "../../../components/ButtonSpinner";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../../utils/queries";
 
 const MyReviewsList = () => {
   const [deleteReviewData, setDeleteReviewData] = useState("");
 
-  const { me } = useUser();
+  // const { me } = useUser();
+  const { data: meData } = useQuery(QUERY_ME);
+  const me = meData?.me || [];
   const myReviews = me.reviews;
 
   const { successDeletingReview, loading, error } =
     useDeletReview(deleteReviewData);
-  console.log("successDeletingReview", successDeletingReview);
-  console.log("error", error);
-  console.log("loading", loading);
-
-
 
   const handleSubmit = (review) => {
     console.log(review._id);

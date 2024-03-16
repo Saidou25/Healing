@@ -216,16 +216,16 @@ export const DELETE_PET = gql`
 `;
 export const ADD_PROFILE = gql`
   mutation addProfile(
-    $username: String!
-    $patientfirstname: String!
+    $username: String
+    $patientfirstname: String
     $patientgender: String
-    $patientaddress: String!
-    $patientlastname: String!
-    $patientcity: String!
-    $patientnumber: String!
+    $patientaddress: String
+    $patientlastname: String
+    $patientcity: String
+    $patientnumber: String
     $birthdate: String
-    $patientState: String!
-    $patientzip: String!
+    $patientState: String
+    $patientzip: String
     $mepet: String
   ) {
     addProfile(

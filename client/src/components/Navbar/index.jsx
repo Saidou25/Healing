@@ -2,16 +2,16 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import SideMenu from "../SideMenu";
 import Auth from "../../utils/auth";
-import profileIcon from "../../assets/images/profileIcon.png"
+import profileIcon from "../../assets/images/profileIcon.png";
 import "./index.css";
 
 const Navbar = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
-    console.log("logout success!");
   };
 
+  
   if (Auth.loggedIn()) {
     return (
       <main className="main-nav">
@@ -27,24 +27,40 @@ const Navbar = () => {
                 </NavLink>
               </div>
               <ul className="nav d-flex">
-                <NavLink to="/About" className="nav-item show-hide fs-3">
-                  about
-                </NavLink>
-                <NavLink to="/Dashboard" className="nav-item show-hide fs-3">
-                  dashboard
-                </NavLink>
-                <NavLink to="/Appointment" className="nav-item show-hide fs-3">
-                  book
-                </NavLink>
-                <button className="btt-logout show-hide fs-3" onClick={logout}>
-                  logout
-                </button>
-                <NavLink
-                  className="profile-icon nav-item show-hide fs-3"
-                  to="/MyProfile"
-                >
-                  <img src={profileIcon} alt="profile icon" height={43} />
-                </NavLink>
+                <li>
+                  <NavLink to="/About" className="nav-item show-hide fs-3">
+                    about
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/Dashboard" className="nav-item show-hide fs-3">
+                    dashboard
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/Book"
+                    className="nav-item show-hide fs-3"
+                  >
+                    book
+                  </NavLink>
+                </li>
+                <li>
+                  <button
+                    className="btt-logout show-hide fs-3"
+                    onClick={logout}
+                  >
+                    logout
+                  </button>
+                </li>
+                <li>
+                  <NavLink
+                    className="profile-icon nav-item show-hide fs-3"
+                    to="/UserProfile"
+                  >
+                    <img src={profileIcon} alt="profile icon" height={43} />
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </nav>
@@ -67,18 +83,29 @@ const Navbar = () => {
               </NavLink>
             </div>
             <ul className="nav d-flex p-2">
-              <NavLink to="/About" className="nav-item show-hide fs-3">
-                About
-              </NavLink>
-              <NavLink to="/Visit" className="nav-item show-hide fs-3">
-                Visit
-              </NavLink>
-              <NavLink to="/Login" className="nav-item show-hide fs-3">
-                login
-              </NavLink>
-              <NavLink to="/Signup" className="nav-item show-hide fs-3">
-                signup
-              </NavLink>
+              <li>
+                <NavLink to="/About" className="nav-item show-hide fs-3">
+                  About
+                </NavLink>
+              </li>
+
+              <li>
+                {" "}
+                <NavLink to="/Visit" className="nav-item show-hide fs-3">
+                  Visit
+                </NavLink>
+              </li>
+              <li>
+                {" "}
+                <NavLink to="/Login" className="nav-item show-hide fs-3">
+                  login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/Signup" className="nav-item show-hide fs-3">
+                  signup
+                </NavLink>
+              </li>
             </ul>
           </div>
         </nav>

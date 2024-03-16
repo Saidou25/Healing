@@ -34,7 +34,7 @@ const BookingNav = () => {
                 <NavLink to="/Dashboard" className="nav-item show-hide fs-3">
                   dashboard
                 </NavLink>
-                <NavLink to="/Appointment" className="nav-item show-hide fs-3">
+                <NavLink to="/Book" className="nav-item show-hide fs-3">
                   book
                 </NavLink>
                 <button className="btt-logout show-hide fs-3" onClick={logout}>
@@ -42,7 +42,7 @@ const BookingNav = () => {
                 </button>
                 <NavLink
                   className="profile-icon nav-item show-hide fs-3"
-                  to="/MyProfile"
+                  to="/UserProfile"
                 >
                   <img src={profileIcon} alt="profile icon" height={43} />
                 </NavLink>

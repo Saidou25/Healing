@@ -71,7 +71,7 @@ const UpdateMyProfileForm = (props) => {
     } catch (err) {
       setError("message");
     }
-    navigate("/MyProfile");
+    navigate("/UserProfile");
   };
 
   return (

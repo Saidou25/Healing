@@ -3,7 +3,7 @@
 }
 
 .bg-img {
-  background-image: url("../../assets/images/jumbo.jpeg");
+  /* background-image: url("../../assets/images/jumbo.jpeg"); */
   min-height: 380px;
   /* width: 100%; */
   background-position: center;
