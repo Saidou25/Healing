@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAddBooking from "../useAddBooking.js";
 import useAddProfile from "../../Profile/useAddProfile.js";
 import BookingSuccess from "../BookingSuccess.jsx";
-import Spinner from "../../../components/Spinner/index.jsx";
+import ButtonSpinner from "../../../components/ButtonSpinner";
 // import { useUser } from "../../../context.js/userContext.js";
 import ErrorComponent from "../../../components/ErrorComponent.jsx";
 import "./index.css";
@@ -17,14 +17,11 @@ const AppointmentReview = () => {
   const [showAppointmentInfo, setShowAppointmentInfo] = useState("");
   const [showPatientInfo, setPatientInfo] = useState("");
 
-  // console.log("profile information", profileInformation)
-  // console.log("appInformation information", appInformation)
   const location = useLocation();
   const formState = location.state.formState;
   const appInfo = location.state.appInfo;
   const petForm = location.state.petForm;
   const profile = location.state.profile;
-  // console.log("profile from review", profile);
 
   const {
     successAddingBooking,
@@ -55,7 +52,6 @@ const AppointmentReview = () => {
     if (!successAddingBooking) {
       return;
     } else {
-      // console.log("success adding appointment:", successAddingBooking)
       // sendEmail(reviewData);
       setAppInformation("");
       setProfileInformation("");
@@ -93,16 +89,6 @@ const AppointmentReview = () => {
       setShowAppointmentInfo(appInfo);
     }
   }, [appInfo]);
-
-  if (loadingAddBooking || addingProfileLoading) {
-    return (
-      <main className="container-fluid mt-5">
-        <div className="card card-appointment">
-          <Spinner />
-        </div>
-      </main>
-    );
-  }
 
   if (errorAddingBooking) {
     return (
@@ -233,7 +219,9 @@ const AppointmentReview = () => {
               type="button"
               onClick={handleSubmit}
             >
-              confirm
+              {loadingAddBooking || addingProfileLoading ? (
+                <ButtonSpinner />
+              ) : (<>confirm</>)}
             </button>
           </div>
         </div>

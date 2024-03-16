@@ -11,7 +11,7 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { UserProvider } from "./context/userContext";
 
-import ProfileForm from "./components/ProfileForm";
+import ProfileForm from "./features/Profile/ProfileForm";
 import PetProfileForm from "./components/PetProfileForm";
 import PetOwnerProfileForm from "./components/PetOwnerProfileForm";
 import ReviewForm from "./features/Reviews/ReviewForm";

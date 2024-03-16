@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { Outlet, useNavigate } from "react-router-dom";
 import { QUERY_BOOKINGDATES, QUERY_ME, QUERY_PETS } from "../../../utils/queries.js";
-// import { useUser } from "../../../context/userContext.jsx";
 import { parseISO, setHours, setMinutes } from "date-fns";
 import { formatTime } from "../../../utils/dateUtil.js";
 import { chooseStartDate } from "../../../utils/chooseStartDate.js";
@@ -21,7 +20,7 @@ const Book = () => {
   const [startDate, setStartDate] = useState(
     setHours(setMinutes(new Date(), 30), 17)
   );
-  // const [me, setMe] = useState("");
+
   const [mepet, setMePet] = useState("");
   const [showPetName, setShowPetName] = useState("");
   const [petForm, setPetForm] = useState("");
@@ -29,9 +28,8 @@ const Book = () => {
   const [reason, setReason] = useState("");
   const [error, setError] = useState("");
   const [showNavNav, setShowNavNav] = useState(true);
-  const [showCorrect, setShowCorrect] = useState(false);
+  // const [showCorrect, setShowCorrect] = useState(false);
 
-  // const { me } = useUser();
   const { data: meData } = useQuery(QUERY_ME);
   const me = meData?.me || [];
  
@@ -121,10 +119,8 @@ const Book = () => {
 
     // conditionally redirecting the user to next operation based on if user or user's pet are returning patients
     if (mepet === "me" && !profile) {
-      console.log("appInfo from Book", appInfo);
-
       setShowNavNav(false);
-      setShowCorrect(true);
+      // setShowCorrect(true);
       navigate("ProfileForm", { state: { appInfo } });
     } else if (mepet === "me" && profile) {
       setShowNavNav(false);

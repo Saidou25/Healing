@@ -1,58 +1,58 @@
 .container-pet {
-  margin-top: 5%;
-  width: 60%;
-  margin-right: auto;
-  margin-left: auto;
-}
-.card-pet {
-  border-style: none;
-}
-.header-profile {
-  text-align: center;
-}
-.form-control {
-  font-style: oblique;
-}
-.lbs, 
-.years {
-  font-style: oblique;
-}
-input[type="radio"] {
-  accent-color: #232323;
-}
-.myClassName,
-.phone-number,
-.age {
-  width: 100%;
-  font-style: oblique;
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #55595c;
-  background-color: #f7f7f9;
-  background-clip: padding-box;
-  border: 0 solid #ced4da;
-}
-
-.pet-error {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 55px;
-}
-
-.pet-form {
-  background-color: #f7f7f9;
-  height: 50px;
-  font-style: oblique;
-}
-
-@media screen and (max-width: 414px) {
-  .container-pet {
-    width: 96%;
+    margin-top: 5%;
+    width: 60%;
     margin-right: auto;
     margin-left: auto;
   }
-}
+  .card-pet {
+    border-style: none;
+  }
+  .header-profile {
+    text-align: center;
+  }
+  .form-control {
+    font-style: oblique;
+  }
+  .lbs, 
+  .years {
+    font-style: oblique;
+  }
+  input[type="radio"] {
+    accent-color: #232323;
+  }
+  .myClassName,
+  .phone-number,
+  .age {
+    width: 100%;
+    font-style: oblique;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #f7f7f9;
+    background-clip: padding-box;
+    border: 0 solid #ced4da;
+  }
+  
+  .pet-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+  }
+  
+  .pet-form {
+    background-color: #f7f7f9;
+    height: 50px;
+    font-style: oblique;
+  }
+  
+  @media screen and (max-width: 414px) {
+    .container-pet {
+      width: 96%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
