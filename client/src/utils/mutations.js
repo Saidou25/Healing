@@ -271,6 +271,7 @@ export const UPDATE_PROFILE = gql`
     $id: String
     $username: String
     $patientaddress: String
+    $patientfirstname: String
     $patientlastname: String
     $patientcity: String
     $patientState: String
@@ -282,6 +283,7 @@ export const UPDATE_PROFILE = gql`
       username: $username
       patientaddress: $patientaddress
       patientState: $patientState
+      patientfirstname: $patientfirstname
       patientlastname: $patientlastname
       patientcity: $patientcity
       patientnumber: $patientnumber

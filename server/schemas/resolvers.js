@@ -168,6 +168,7 @@ const resolvers = {
         {
           username: args.username,
           patientlastname: args.patientlastname,
+          patientfirstname: args.  patientfirstname,
           patientcity: args.patientcity,
           patientzip: args.patientzip,
           patientState: args.patientState,

@@ -128,6 +128,7 @@ const typeDefs = gql`
     updateProfile(
       id: String
       username: String
+      patientfirstname: String
       patientlastname: String
       patientcity: String
       patientzip: String

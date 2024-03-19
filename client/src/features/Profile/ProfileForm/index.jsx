@@ -25,7 +25,6 @@ const ProfileForm = () => {
     birthdate: "",
     patientzip: "",
   });
-  console.log("form state", formState);
 
   const [patientState, setNewValue] = useState("");
   const [patientnumber, setPatientNumber] = useState("");

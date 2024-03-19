@@ -42,7 +42,7 @@ const BookingNav = () => {
                 </button>
                 <NavLink
                   className="profile-icon nav-item show-hide fs-3"
-                  to="/UserProfile"
+                  to="/Profile"
                 >
                   <img src={profileIcon} alt="profile icon" height={43} />
                 </NavLink>

@@ -21,6 +21,9 @@ const UpdateMyProfileForm = (props) => {
 
   const [patientState, setNewValue] = useState(userProfile.patientState);
   const [patientnumber, setPatientNumber] = useState("");
+  const [patientfirstname, setPatientFirstName] = useState(
+    userProfile.patientfirstname
+  );
   const [patientlastname, setPatientLastName] = useState(
     userProfile.patientlastname
   );
@@ -54,6 +57,7 @@ const UpdateMyProfileForm = (props) => {
         variables: {
           id: profileId,
           patientlastname: patientlastname,
+          patientfirstname: patientfirstname,
           patientaddress: patientaddress,
           patientnumber: patientnumber,
           patientcity: patientcity,
@@ -67,11 +71,12 @@ const UpdateMyProfileForm = (props) => {
       setPatientAddress("");
       setPatientZip("");
       setPatientNumber("");
+      setPatientFirstName("");
       setPatientLastName("");
-    } catch (err) {
-      setError("message");
+    } catch (error) {
+      setError(error.message);
     }
-    navigate("/UserProfile");
+    navigate("/Profile");
   };
 
   return (
@@ -89,6 +94,16 @@ const UpdateMyProfileForm = (props) => {
           <div className="card-update">
             <form className="profile-update">
               <div className="row mt-5">
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label className="form-label"> First name</label>
+                  <input
+                    className="form-control update-control"
+                    onChange={(e) => setPatientFirstName(e.target.value)}
+                    type="text"
+                    value={patientfirstname}
+                    name="patientfirstname"
+                  />
+                </div>
                 <div className="col-lg-6 col-sm-12 p-2">
                   <label className="form-label"> Last name</label>
                   <input
@@ -163,7 +178,6 @@ const UpdateMyProfileForm = (props) => {
                     className="btn btn-update btn-primary rounded-0"
                     type="submit"
                     onClick={(e) => handleSubmit(e)}
-                    value="Send"
                   >
                     Submit
                   </button>

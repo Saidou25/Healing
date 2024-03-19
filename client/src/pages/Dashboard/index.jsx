@@ -22,7 +22,6 @@ const Dashboard = () => {
 
   // const { me, loading } = useUser();
   const { data: meData, loading } = useQuery(QUERY_ME);
-  
   const username = me.username;
 
   useEffect(() => {

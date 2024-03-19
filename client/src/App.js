@@ -22,7 +22,7 @@ import Book from "./features/Appointments/Book";
 import BookingSuccess from "./features/Appointments/BookingSuccess";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import UserProfile from "./features/Profile/UserProfile"
+import Profile from "./features/Profile"
 import UpdateMyProfileForm from "./components/UpdateMyProfileForm";
 import UpdateProfile from "./components/UpdateProfile";
 import About from "./components/About";
@@ -94,7 +94,7 @@ function App() {
             <Route path="/Login" element={<Login />} />
 
             <Route path="/About" element={<About />} />
-            <Route path="/UserProfile" element={<UserProfile />} />
+            <Route path="/Profile" element={<Profile />} />
 
             <Route path="/Dashboard" element={<Dashboard />}>
               <Route

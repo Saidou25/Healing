@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import { FaEnvelope, FaPhone, FaIdBadge, FaHome } from "react-icons/fa";
 // import { useQuery } from "@apollo/client";
 // import Spinner from "../../components/Spinner";
-import Footer from "../../../components/Footer";
+import Footer from "../../components/Footer";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../../utils/queries";
-import DeleteModal from "./../../../components/DeleteModal";
+import { QUERY_ME } from "../../utils/queries";
+import DeleteModal from "../../components/DeleteModal";
 // import { useUser } from "../../context/userContext";
-import Navbar from "../../../components/Navbar";
+import Navbar from "../../components/Navbar";
 import "./index.css";
 
-const UserProfile = ({
+const Profile = ({
   userProfile,
   userId,
   myAppointments,
@@ -127,7 +127,7 @@ const UserProfile = ({
               {/* </div> */}
             </div>
             <div className="col-12 mt-5">
-              <Link to="/UpdateProfile" state={{ userProfile }}>
+              <Link to="/UpdateProfile" state={{ userProfile: me.profile }}>
                 <button className="btn update-profile mt-5 btn-primary">
                   update
                 </button>
@@ -149,4 +149,4 @@ const UserProfile = ({
     );
   }
 };
-export default UserProfile;
+export default Profile;
