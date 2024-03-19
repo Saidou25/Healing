@@ -34,16 +34,6 @@ export const QUERY_USERS = gql`
         birthdate
         patientState
         patientzip
-        mepet
-        pets {
-          _id
-          petName
-          petGender
-          petAge
-          petBreed
-          petWeight
-          username
-        }
       }
     }
   }
@@ -60,7 +50,7 @@ export const QUERY_USER = gql`
         title
         reviewText
         rating
-        rviewDate
+        reviewDate
       }
       bookingdates {
         _id
@@ -82,16 +72,6 @@ export const QUERY_USER = gql`
         patientnumber
         birthdate
         patientzip
-        mepet
-        pets {
-          _id
-          petName
-          petGender
-          petAge
-          petBreed
-          petWeight
-          username
-        }
       }
     }
   }
@@ -130,16 +110,6 @@ export const QUERY_ME = gql`
         patientnumber
         birthdate
         patientzip
-        mepet
-        pets {
-          _id
-          petName
-          petGender
-          petAge
-          petBreed
-          petWeight
-          username
-        }
       }
     }
   }
@@ -194,36 +164,6 @@ export const QUERY_BOOKINGDATE = gql`
   }
 `;
 
-export const QUERY_PETS = gql`
-  query pets {
-    pets {
-      _id
-      petName
-      petGender
-      petAge
-      petBreed
-      petWeight
-      username
-      petKind
-      profileId
-    }
-  }
-`;
-export const QUERY_PET = gql`
-  query pet($username: String!) {
-    pet(username: $username) {
-      _id
-      petName
-      petGender
-      petAge
-      petBreed
-      petWeight
-      username
-      petKind
-      profileId
-    }
-  }
-`;
 export const QUERY_USERBOOKINGDATES = gql`
   query userbookingdates($username: String!) {
     userbookingdates(username: $username) {
@@ -250,16 +190,6 @@ export const QUERY_PROFILES = gql`
       patientState
       birthdate
       patientzip
-      mepet
-      pets {
-        _id
-        petName
-        petGender
-        petAge
-        petBreed
-        petWeight
-        username
-      }
     }
   }
 `;
@@ -277,16 +207,6 @@ export const QUERY_PROFILE = gql`
       patientnumber
       birthdate
       patientzip
-      mepet
-      pets {
-        _id
-        petName
-        petGender
-        petAge
-        petBreed
-        petWeight
-        username
-      }
     }
   }
 `;

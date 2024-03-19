@@ -12,8 +12,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { UserProvider } from "./context/userContext";
 
 import ProfileForm from "./features/Profile/ProfileForm";
-import PetProfileForm from "./components/PetProfileForm";
-import PetOwnerProfileForm from "./components/PetOwnerProfileForm";
 import ReviewForm from "./features/Reviews/ReviewForm";
 import AppointmentHistory from "./features//Appointments/AppointmentHistory";
 import Login from "./pages/Login";
@@ -116,13 +114,7 @@ function App() {
               element={<UpdateMyProfileForm />}
             />
             <Route path="/UpdateProfile" element={<UpdateProfile />} />
-            <Route
-              path="/PetOwnerProfileForm"
-              element={<PetOwnerProfileForm />}
-            />
-           
             {/* <Route path="/ContactModal" element={<ContactModal />} /> */}
-            <Route path="/PetProfileForm" element={<PetProfileForm />} />
             <Route path="/ReviewForm" element={<ReviewForm />} />
             
             <Route path="*" element={<PageNotFound />} />

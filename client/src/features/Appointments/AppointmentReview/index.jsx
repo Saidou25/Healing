@@ -20,7 +20,6 @@ const AppointmentReview = () => {
   const location = useLocation();
   const formState = location.state.formState;
   const appInfo = location.state.appInfo;
-  const petForm = location.state.petForm;
   const profile = location.state.profile;
 
   const {
@@ -130,7 +129,6 @@ const AppointmentReview = () => {
         </div>
         <div className="card-body mt-4">
           <p className="app-review-p">Appointment details</p>
-          {petForm && <p> {petForm}</p>}
           {profile ? (
             <p className="app-review-p">
               {profile?.patientfirstname} {profile?.patientlastname}

@@ -1,4 +1,4 @@
-const { Profile, Bookingdate, User, Review, Pet } = require("../models");
+const { Profile, Bookingdate, User, Review } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 
@@ -9,20 +9,12 @@ const resolvers = {
         .populate("profile")
         .populate("bookingdates")
         .populate("reviews")
-        .populate({
-          path: "profile",
-          populate: "pets",
-        });
     },
     user: async (_, args) => {
       return User.findOne({ id: args._id })
         .populate("profile")
         .populate("bookingdates")
         .populate("reviews")
-        .populate({
-          path: "profile",
-          populate: "pets",
-        });
     },
     me: async (_, _args, context) => {
       if (context.user) {
@@ -30,24 +22,14 @@ const resolvers = {
           .populate("profile")
           .populate("bookingdates")
           .populate("reviews")
-          .populate({
-            path: "profile",
-            populate: "pets",
-          });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     profiles: async () => {
-      return await Profile.find().populate("pets");
+      return await Profile.find();
     },
     profile: async (_, args) => {
       return await Profile.findOne({ _id: args.id });
-    },
-    pets: async () => {
-      return await Pet.find();
-    },
-    pet: async (_, args) => {
-      return await Pet.findOne({ username: args.uername });
     },
     bookingdates: async () => {
       return Bookingdate.find();
@@ -102,24 +84,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    addPet: async (_, args) => {
-      const pet = await Pet.create({
-        profileId: args.profileId,
-        username: args.username,
-        petName: args.petName,
-        petGender: args.petGender,
-        petAge: args.petAge,
-        petKind: args.petKind,
-        petBreed: args.petBreed,
-        petWeight: args.petWeight,
-      });
-      await Profile.findOneAndUpdate(
-        { _id: args.profileId },
-        { $addToSet: { pets: pet } },
-        { new: true }
-      );
-      return pet;
-    },
+   
     addProfile: async (_, args, context) => {
       if (context.user) {
         const profile = await Profile.create({
@@ -133,7 +98,6 @@ const resolvers = {
           patientnumber: args.patientnumber,
           patientaddress: args.patientaddress,
           patientgender: args.patientgender,
-          mepet: args.mepet,
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -207,9 +171,6 @@ const resolvers = {
     },
     deleteProfile: async (_, args) => {
       return await Profile.findOneAndDelete({ id: args._id });
-    },
-    deletePet: async (_, args) => {
-      return await Pet.findOneAndDelete({ username: args.username });
     },
   },
 };

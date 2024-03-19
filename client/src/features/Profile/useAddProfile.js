@@ -47,7 +47,6 @@ const useAddProfile = (profileInformation) => {
       const { data } = await addProfile({
         variables: {
           birthdate: profileInformation.birthdate,
-          mepet: profileInformation.mepet,
           patientState: profileInformation.patientState,
           patientaddress: profileInformation.patientaddress,
           patientcity: profileInformation.patientcity,
@@ -56,7 +55,6 @@ const useAddProfile = (profileInformation) => {
           patientlastname: profileInformation.patientlastname,
           patientnumber: profileInformation.patientnumber,
           patientzip: profileInformation.patientzip,
-          pets: profileInformation.pets,
           username: profileInformation.username,
         },
       });

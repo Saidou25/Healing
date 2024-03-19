@@ -8,7 +8,6 @@ import { UPDATE_PROFILE } from "../../utils/mutations";
 import { Regex } from "../../utils/Regex";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-
 import "./index.css";
 
 const UpdateMyProfileForm = (props) => {

@@ -43,45 +43,11 @@ export const UPDATE_USER = gql`
         patientnumber
         birthdate
         patientzip
-        mepet
       }
     }
   }
 `;
 
-export const ADD_PET = gql`
-  mutation addPet(
-    $username: String!
-    $profileId: String
-    $petName: String!
-    $petWeight: Int!
-    $petAge: String!
-    $petKind: String
-    $petGender: String!
-    $petBreed: String!
-  ) {
-    addPet(
-      username: $username
-      profileId: $profileId
-      petName: $petName
-      petWeight: $petWeight
-      petAge: $petAge
-      petKind: $petKind
-      petGender: $petGender
-      petBreed: $petBreed
-    ) {
-      _id
-      petName
-      petBreed
-      petWeight
-      profileId
-      petKind
-      petAge
-      petGender
-      username
-    }
-  }
-`;
 
 export const ADD_REVIEW = gql`
   mutation addReview(
@@ -184,36 +150,12 @@ export const DELETE_USER = gql`
         patientnumber
         birthdate
         patientzip
-        mepet
-        pets {
-          _id
-          petName
-          petGender
-          petAge
-          petBreed
-          petWeight
-          username
-        }
       }
     }
   }
 `;
 
-export const DELETE_PET = gql`
-  mutation deletePet($username: String!) {
-    deletePet(username: $username) {
-      _id
-      petName
-      petGender
-      petAge
-      petBreed
-      petWeight
-      username
-      petKind
-      profileId
-    }
-  }
-`;
+
 export const ADD_PROFILE = gql`
   mutation addProfile(
     $username: String
@@ -226,7 +168,6 @@ export const ADD_PROFILE = gql`
     $birthdate: String
     $patientState: String
     $patientzip: String
-    $mepet: String
   ) {
     addProfile(
       username: $username
@@ -239,7 +180,6 @@ export const ADD_PROFILE = gql`
       patientnumber: $patientnumber
       birthdate: $birthdate
       patientzip: $patientzip
-      mepet: $mepet
     ) {
       _id
       username
@@ -252,16 +192,6 @@ export const ADD_PROFILE = gql`
       patientnumber
       birthdate
       patientzip
-      mepet
-      pets {
-        _id
-        petName
-        username
-        petGender
-        petAge
-        petWeight
-        petBreed
-      }
     }
   }
 `;
@@ -300,7 +230,6 @@ export const UPDATE_PROFILE = gql`
       patientnumber
       birthdate
       patientzip
-      mepet
     }
   }
 `;
@@ -319,7 +248,6 @@ export const DELETE_PROFILE = gql`
       patientnumber
       birthdate
       patientzip
-      mepet
     }
   }
 `;

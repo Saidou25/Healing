@@ -4,9 +4,6 @@ import { setHours, setMinutes } from "date-fns";
 import DatePicker from "react-datepicker";
 
 export default function BookingForm({
-  mepet,
-  petForm,
-  showPetName,
   handleChange,
   handleSubmit,
   showNavNav,
@@ -28,52 +25,6 @@ export default function BookingForm({
           {showNavNav ? (
             <form id="appointment-form">
               <div className="row">
-                <div className="col-12 appointment-column">
-                  <label className="form-label">
-                    Who is the appointment for?
-                  </label>
-                </div>
-                <div className="col-12 visit">
-                  <div>
-                    <input
-                      className="radio m-2 ms-4"
-                      type="radio"
-                      name="mepet"
-                      value="me"
-                      onChange={handleChange}
-                      checked={mepet === "me"}
-                    />
-                    me
-                    <input
-                      className="radio m-2 ms-4"
-                      type="radio"
-                      name="mepet"
-                      value="mypet"
-                      onChange={handleChange}
-                      checked={mepet === "mypet"}
-                    />
-                    my pet
-                  </div>
-                </div>
-                {showPetName === "mypet" ? (
-                  <div className="col-12 appointment-column">
-                    <div>
-                      <label className="form-label">
-                        What is your pet name
-                      </label>
-                      <input
-                        className="form-control type-your-text mt-2 mb-2"
-                        name="petForm"
-                        value={petForm}
-                        placeholder="name..."
-                        type="text"
-                        onChange={handleChange}
-                      ></input>
-                    </div>
-                  </div>
-                ) : (
-                  <></>
-                )}
                 <div className="col-12 date-picker">
                   <label className="form-label">
                     Choose your appointment date

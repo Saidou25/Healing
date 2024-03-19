@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaEnvelope, FaPhone, FaIdBadge, FaHome } from "react-icons/fa";
-// import { useQuery } from "@apollo/client";
-// import Spinner from "../../components/Spinner";
-import Footer from "../../components/Footer";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
+import Spinner from "../../components/Spinner";
+import Footer from "../../components/Footer";
 import DeleteModal from "../../components/DeleteModal";
-// import { useUser } from "../../context/userContext";
 import Navbar from "../../components/Navbar";
 import "./index.css";
 
@@ -16,13 +14,12 @@ const Profile = ({
   userId,
   myAppointments,
   profileId,
-  myPets,
 }) => {
-  // const { me } = useUser();
+ 
   const { data, loading } = useQuery(QUERY_ME);
   const me = data?.me || [];
 
-  // if (loading) return <Spinner />;
+  if (loading) return <Spinner />;
 
   if (!me.profile) {
     return (
@@ -35,7 +32,6 @@ const Profile = ({
                 Login
               </h3>
               <div className="card profile-body p-3">
-                {/* <div className="card-header"> */}
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}
@@ -45,7 +41,6 @@ const Profile = ({
                   {me.email}
                 </div>
               </div>
-              {/* </div> */}
             </div>
           </div>
         </div>
@@ -65,7 +60,6 @@ const Profile = ({
                 Login
               </h3>
               <div className="card profile-body p-3">
-                {/* <div className="card-header"> */}
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}
@@ -75,14 +69,12 @@ const Profile = ({
                   {me.email}
                 </div>
               </div>
-              {/* </div> */}
             </div>
             <div className="col-12">
               <h3 className="text-profile my-profile-titles mb-5 mt-5">
                 General
               </h3>
               <div className="card profile-body p-3 ">
-                {/* <div className="card-header"> */}
                 <div className="text-profile m-2">
                   First name: {me.profile.patientfirstname}
                 </div>
@@ -97,7 +89,6 @@ const Profile = ({
                   <></>
                 )}
               </div>
-              {/* </div> */}
             </div>
 
             <div className="col-12">
@@ -105,7 +96,6 @@ const Profile = ({
                 Contact
               </h3>
               <div className="card profile-body p-3">
-                {/* <div className="card-header"> */}
                 <div className="text-profile">
                   <FaPhone className="icon m-2" />
                   {me.profile.patientnumber}
@@ -124,7 +114,6 @@ const Profile = ({
                   Zip code: {me.profile.patientzip}
                 </div>
               </div>
-              {/* </div> */}
             </div>
             <div className="col-12 mt-5">
               <Link to="/UpdateProfile" state={{ userProfile: me.profile }}>
@@ -139,7 +128,6 @@ const Profile = ({
                 userId={userId}
                 myAppointments={myAppointments}
                 profileId={profileId}
-                myPets={myPets}
               />
             </div>
           </div>

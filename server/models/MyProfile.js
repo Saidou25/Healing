@@ -1,11 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 const profileSchema = new Schema({
-  mepet: {
-    type: String,
-    // repuire: false,
-    trim: true,
-  },
   username: {
     type: String,
     // repuire: false,
@@ -68,12 +63,6 @@ const profileSchema = new Schema({
     // repuire: true,
     trim: true,
   },
-  pets: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Pet",
-    },
-  ],
 });
 
 const Profile = model("Profile", profileSchema);

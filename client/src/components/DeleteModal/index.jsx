@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import {
   DELETE_USER,
-  DELETE_PET,
   DELETE_PROFILE,
   DELETE_BOOKINGDATE,
 } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import "./index.css";
 
-const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
+const DeleteModal = ({ userId, myAppointments, profileId }) => {
   const [deleteUser] = useMutation(DELETE_USER);
   const [deleteProfile] = useMutation(DELETE_PROFILE);
-  const [deletePet] = useMutation(DELETE_PET);
   const [deleteBookingdate] = useMutation(DELETE_BOOKINGDATE);
   const [confirm, setConfirm] = useState(false);
 
@@ -28,11 +26,6 @@ const DeleteModal = ({ userId, myAppointments, profileId, myPets }) => {
   };
 
   const deleteAll = async () => {
-    for (let pet of myPets) {
-      const { data } = await deletePet({
-        variables: { username: pet.username },
-      });
-    }
     for (let bookingdate of myAppointments) {
       const { data } = await deleteBookingdate({
         variables: { id: bookingdate._id },

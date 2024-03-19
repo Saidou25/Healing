@@ -15,8 +15,6 @@ const typeDefs = gql`
     patientState: String
     birthdate: String
     patientzip: String
-    mepet: String
-    pets: [Pet]
   }
 
   type Review {
@@ -26,18 +24,6 @@ const typeDefs = gql`
     title: String
     rating: String
     reviewDate: String!
-  }
-
-  type Pet {
-    _id: ID!
-    username: String!
-    petBreed: String
-    petName: String
-    petWeight: Int
-    petGender: String
-    petAge: String
-    petKind: String
-    profileId: String
   }
 
   type Bookingdate {
@@ -75,8 +61,6 @@ const typeDefs = gql`
     reviews: [Review]
     review(id: String!): Review
     userbookingdates(username: String): [Bookingdate]!
-    pets: [Pet]
-    pet(username: String!): Pet
   }
 
   type Mutation {
@@ -95,7 +79,6 @@ const typeDefs = gql`
       patientnumber: String
       birthdate: String
       patientzip: String
-      mepet: String
     ): Profile
 
     addBookingdate(
@@ -114,16 +97,6 @@ const typeDefs = gql`
       reviewDate: String!
     ): Review
 
-    addPet(
-      username: String!
-      profileId: String
-      petBreed: String!
-      petName: String!
-      petWeight: Int!
-      petGender: String!
-      petKind: String
-      petAge: String!
-    ): Pet
 
     updateProfile(
       id: String
@@ -141,7 +114,6 @@ const typeDefs = gql`
     deleteProfile(id: String!): Profile
     deleteReview(id: String!): Review
     deleteBookingdate(id: String!): Bookingdate
-    deletePet(username: String!): Pet
   }
 `;
 
