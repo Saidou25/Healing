@@ -60,10 +60,11 @@ const Login = () => {
           </div>
         )}
       </div>
-      <div className="bg-image" src={pic} alt="care">
-        <main className="container-login g-0">
-          <div className="card login">
-            <h4 className="card-header header-login text-primary-emphasis p-4">
+      {/* <div className="design"> */}
+        <main className="container-login g-0 p-5">
+          <div className="card login my-5">
+            <h4 className="card-header-update log-form bg-black rounded-0 text-light p-4 mt-5"
+            style={{ width: "90%", fontStyle: "normal" }}>
               Login
             </h4>
             <div className="card-body p-3">
@@ -73,22 +74,22 @@ const Login = () => {
                   <Link to="/Dashboard">to your Dashboard.</Link>
                 </p>
               ) : (
-                <form onSubmit={handleFormSubmit}>
-                  <label className="form-label1 text-primary-emphasis mb-4 mt-0">Email</label>
+                <form  className="log-form px-5" onSubmit={handleFormSubmit}>
+                  <label className="log-form text-light mt-0">Email</label>
                   <br />
                   <input
-                    className="form-input mb-4"
-                    placeholder="Your email"
+                    className="log-form mb-4"
+                    placeholder="Your holder email"
                     name="email"
                     type="email"
                     value={formState.email}
                     onChange={handleChange}
                   />{" "}
                   <br />
-                  <label className="form-label1 text-primary-emphasis mb-4 mt-0">Password</label>
+                  <label className="log-form text-light mt-0">Password</label>
                   <br />
                   <input
-                    className="form-input mt-3"
+                    className="log-form mt-3"
                     placeholder="******"
                     name="password"
                     type="password"
@@ -101,8 +102,7 @@ const Login = () => {
                   </div>
                   <div className="btn-position">
                   <button
-                    className="btn btn-primary btn-login rounded-0 mt-5"
-                    style={{ cursor: "pointer" }}
+                    className="btn btn-login log-form rounded-0 my-5"
                     type="submit"
                   >
                     Submit
@@ -113,7 +113,7 @@ const Login = () => {
             </div>
           </div>
         </main>
-      </div>
+      {/* </div> */}
       <Footer />
     </>
   );

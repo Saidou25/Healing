@@ -78,31 +78,31 @@ const Navbar = () => {
           </div>
           <div className="one">
             <div className="landing-title">
-              <NavLink className="landing" to="/">
+              <NavLink className="landing text-light" to="/">
                 Healing
               </NavLink>
             </div>
             <ul className="nav d-flex p-2">
               <li>
-                <NavLink to="/About" className="nav-item show-hide fs-3">
+                <NavLink to="/About" className="nav-item text-light show-hide fs-3">
                   About
                 </NavLink>
               </li>
 
               <li>
                 {" "}
-                <NavLink to="/Visit" className="nav-item show-hide fs-3">
+                <NavLink to="/Visit" className="nav-item text-light show-hide fs-3">
                   Visit
                 </NavLink>
               </li>
               <li>
                 {" "}
-                <NavLink to="/Login" className="nav-item show-hide fs-3">
+                <NavLink to="/Login" className="nav-item text-light show-hide fs-3">
                   login
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/Signup" className="nav-item show-hide fs-3">
+                <NavLink to="/Signup" className="nav-item text-light show-hide fs-3">
                   signup
                 </NavLink>
               </li>

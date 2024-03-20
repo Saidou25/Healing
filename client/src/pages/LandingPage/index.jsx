@@ -30,7 +30,7 @@ const LandingPage = () => {
         </div>
         <div className="col-12 landing-column mt-4">
           <NavLink to="/About" className="landing-item">
-            About
+            Site
           </NavLink>
         </div>
       </div>

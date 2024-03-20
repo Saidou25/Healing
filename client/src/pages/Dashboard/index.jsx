@@ -119,30 +119,32 @@ const Dashboard = () => {
             <div className="col-lg-4 col-sm-12 right-window dashb-border mb-5">
               <div className="row top-box g-0">
                 <div className="col-12">
-                <h3 className="write-review-title pt-5 text-light">
-                  Write a review
-                </h3>
+                  <h3 className="write-review-title pt-5 text-light">
+                    Write a review
+                  </h3>
                 </div>
-                <div className="col-12 d-flex justify-content-center"
-                style={{ width: "96%", marginRight: "auto", marginLeft: "auto" }}>
-                <button
-                  type="button"
-                  className="btn m-4 col-12 d-flex bg-black text-light 
-                rounded-0 justify-content-center "
-                  onClick={() => handleSubmit("review")}
+                <div
+                  className="col-12 d-flex justify-content-center"
+                  style={{
+                    width: "96%",
+                    marginRight: "auto",
+                    marginLeft: "auto",
+                  }}
                 >
-                  start/close
-                </button>
+                  <button
+                    type="button"
+                    className="btn m-4 col-12 d-flex bg-black text-light rounded-0 justify-content-center "
+                    onClick={() => handleSubmit("review")}
+                  >
+                    start/close
+                  </button>
                 </div>
-               
-               
               </div>
               {isShown ? (
                 <ReviewForm username={username} today={today} />
               ) : null}
             </div>
           </div>
-          {/* </div> */}
         </main>
         <Footer />
       </div>

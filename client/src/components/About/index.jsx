@@ -3,16 +3,16 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import nurseGuy from "../../assets/images/nurseGuy.jpeg";
 import nurseLady from "../../assets/images/nurseLady.jpeg";
-
 import "./index.css";
 
 const About = () => {
   return (
     <>
       <Navbar />
-      <main className="about-main">
-        <div className="container about">
-          <h3 className="reiki-title">What is Reiki</h3>
+      <main className="about-main p-5">
+        {/* <div className="container-about"> */}
+        <h3 className="reiki-title text-light">What is Reiki</h3>
+        <div className="card card-about text-light">
           <p>From Wikipedia, the free encyclopedia.</p>
           <p>
             Reiki reiki is a Japanese form of energy healing, a type of
@@ -36,37 +36,75 @@ const About = () => {
             therapy compared to placebo. Studies reporting positive effects have
             had methodological flaws.
           </p>
-          <h3 className="team-title">Our team</h3>
-          <div className="row">
+        </div>
+
+        <h3 className="team-title text-light">Our team</h3>
+
+        <div className="card card-about mb-4">
+          <div className="row text-light">
             <div className="col-lg-4 col-sm-12">
-              <div className="card about-card mt-3 mb-3">
-                <div className="card-header"> Peter</div>
-                <div className="card-body p-2">
-                  <img
-                    className="responsive"
-                    src={nurseGuy}
-                    alt="nurse icon"
-                    height={300}
-                  />
-                  <p>
-                    10 years experience. Studied reiki in Japan since she was
-                    14.
-                  </p>
-                </div>
+              <div
+                className="container-fluid"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <img className="responsive" src={nurseGuy} alt="nurse icon" />
+              </div>
+            </div>
+            <div className="col-lg-8 col-sm-12">
+              <div className="p-2"> Peter</div>{" "}
+              <div className="container-fluid">
+                <p>
+                  10 years experience. Studied reiki in Japan since she was 14
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+                  corporis. Fugit amet asperiores numquam, fuga explicabo
+                  commodi debitis fugiat? Tempora voluptatum nostrum fuga
+                  obcaecati? Praesentium ipsa voluptatibus quos provident nemo..
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card card-about mb-4">
+          <div className="row text-light">
+            <div className="col-lg-8 col-sm-12">
+              <div className="p-2"> Nancy</div>
+              <div className="container-fluid">
+                <p>
+                  Born in Reiki Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Placeat quos repellendus natus maxime esse
+                  numquam in obcaecati fugiat non. Quis quasi exercitationem
+                  voluptatum laudantium recusandae enim rerum a officiis velit.
+                </p>
               </div>
             </div>
             <div className="col-lg-4 col-sm-12">
-              <div className="card about-card mt-3 mb-3">
-                <div className="card-header"> Nancy</div>
-                <div className="card-body p-2">
-                  <img
-                    className="responsive"
-                    src={nurseLady}
-                    alt="nurse icon"
-                    height={300}
-                  />
-                  <p>Born in Reiki</p>
-                </div>
+              <div
+                className="container-fluid"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <img className="responsive" src={nurseLady} alt="nurse icon" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card card-about mb-4">
+          <div className="row text-light">
+            <div className="col-lg-4 col-sm-12">
+              <div
+                className="container-fluid"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <img className="responsive" src={nurseGuy} alt="nurse icon" />
+              </div>
+            </div>
+            <div className="col-lg-8 col-sm-12">
+              <div className="p-2"> Peter</div>{" "}
+              <div className="container-fluid">
+                <p>
+                  10 years experience. Studied reiki in Japan since she was 14 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, corporis. Fugit amet asperiores numquam, fuga explicabo commodi debitis fugiat? Tempora voluptatum nostrum fuga obcaecati? Praesentium ipsa voluptatibus quos provident nemo..
+                </p>
               </div>
             </div>
           </div>

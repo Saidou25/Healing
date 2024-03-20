@@ -81,19 +81,22 @@ const Signup = () => {
         )}
       </div>
       <div className="bg-image" src={pic} alt="care">
-        <div className="container-signup g-0">
+        <div className="container-signup p-5">
           <div className="card signup">
-            <h4 className="card-header signup-header text-primary-emphasis p-4">
+            <h4
+              className="card-header-update log-form bg-black rounded-0 text-light p-4 mt-5"
+              style={{ width: "90%", fontStyle: "normal" }}
+            >
               Sign Up
             </h4>
             <div className="card-body overlay p-4">
-              <form onSubmit={handleFormSubmit}>
-                <label className="form-label1 text-primary-emphasis mb-4 mt-0">
+              <form className="px-5" onSubmit={handleFormSubmit}>
+                <label className="sign-form text-light mt-0 mb-4">
                   Username
                 </label>
                 <br />
                 <input
-                  className="form-input"
+                  className="sign-form sign-input mb-4"
                   placeholder="choose a username..."
                   name="username"
                   type="username"
@@ -101,12 +104,10 @@ const Signup = () => {
                   onChange={(e) => setUsename(e.target.value)}
                 />
                 <br />
-                <label className="form-label1 text-primary-emphasis mb-4">
-                  Email
-                </label>
+                <label className="sign-form text-light mt-0">Email</label>
                 <br />
                 <input
-                  className="form-input"
+                  className="sign-form sign-input mt-4"
                   placeholder="your email.."
                   name="email"
                   type="email"
@@ -114,12 +115,10 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <br />
-                <label className="form-label1  text-primary-emphasis mb-4">
-                  Password
-                </label>
+                <label className="sign-form text-light mt-0">Password</label>
                 <br />
                 <input
-                  className="form-input"
+                  className="log-form my-4"
                   placeholder="******"
                   name="password"
                   type="password"
@@ -130,10 +129,8 @@ const Signup = () => {
 
                 <div className="btn-position">
                   <button
-                    className="btn btn-primary btn-signup rounded-0 mt-5"
-                    type="button"
-                    style={{ cursor: "pointer" }}
-                    onClick={handleFormSubmit}
+                    className="btn sign-form mt-5 btn-signup rounded-0 my-5"
+                    type="submit"
                   >
                     Submit
                   </button>
