@@ -1,6 +1,11 @@
-.review-textarea {
-  width: 100%;
+.review-design {
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
 }
+
+/* .review-textarea {
+  width: 100%;
+} */
 .dashb-border {
   padding-left: 11%;
   border-left-style: solid;
@@ -8,26 +13,25 @@
   border-width: 1px;
 }
 .optional {
-  color: #55595c;
+  color: white;
   font-style: oblique;
   font-size: 1rem;
 }
-
 .btn-info {
   width: 100%;
 }
-
 .review-form-input {
   width: 90%;
+  color: white !important;
   font-style: oblique;
   padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 600;
   line-height: 1.5;
-  color: #55595c;
-  background-color: #f7f7f9;
-  background-clip: padding-box;
-  border: 0 solid #ced4da;
+  background: rgb(131, 232, 245) !important;
+  background: rgba(13, 50, 55, 0.4) !important;
+  /* background-clip: padding-box; */
+  /* border: 0 solid #ced4da; */
 }
 
 .card-header-review-title {

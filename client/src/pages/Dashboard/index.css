@@ -1,92 +1,119 @@
+.dashboard-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-image: url("../../assets/images/ReikiLoandingPage.jpg");
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-y: scroll;
+}
+
 .row-width,
 .review-row {
-    width: 80%;
-    margin: auto;
-    justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  justify-content: space-between;
+}
+.dashboard-main {
+  background-color: rgba(0, 1, 1, 0.8);
+}
+.suggestion,
+.top-box {
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
 }
 .dashb-border {
-    padding-left: 3%;
-    border-left-style: solid;
-    border-left-color: rgb(206, 200, 200);
-    border-width: 1px;
+  padding-left: 3%;
+  border-left-style: solid;
+  border-left-color: rgb(206, 200, 200);
+  border-width: 1px;
 }
 .container-dashboard {
-    width: 90%;
-    margin-right: auto;
-    margin-left: auto;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .fa-bars {
-    color: white;
+  color: white;
 }
 
 .dashboard-text {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .ds-btns {
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-color: black;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: black;
 }
 
 .suggestion {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .write-review-title {
-    text-align: center;
+  text-align: center;
 }
 
-
 .right-window {
-    padding-left: 3%;
+  padding-left: 3%;
 }
 
 .write-review {
-    padding-left: 3%;
+  padding-left: 3%;
+}
+.review-button {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 @media screen and (max-width: 993px) {
-    .dashb-border {
-        padding-right: 0;
-        border-right-color: white;
-    }
-    .right-window {
-        padding-left: 0;
-    }
-    .write-review {
-        padding-left: 0;
-    }
-    .review-row {
-        flex-direction: column-reverse;
-        
-    }
+  .dashb-border {
+    padding-right: 0;
+    border-right-color: white;
+  }
+  .right-window {
+    padding-left: 0;
+  }
+  .write-review {
+    padding-left: 0;
+  }
+  .review-row {
+    flex-direction: column-reverse;
+  }
 }
 
 @media screen and (max-width: 414px) {
-    .container-dashboard {
-        width: 96%;
-        margin-right: auto;
-        margin-left: auto;
-    }
+  .container-dashboard {
+    width: 96%;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-    .direct-message {
-        width: 97%;
-    }
+  .direct-message {
+    width: 97%;
+  }
 
-    .suggestion {
-        width: 100%;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
+  .suggestion {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
-    .review-border {
-        padding-right: 0;
-        border-right-style: none;
-    }
+  .review-border {
+    padding-right: 0;
+    border-right-style: none;
+  }
 
-    .write-review {
-        padding-left: 0;
-    }
+  .write-review {
+    padding-left: 0;
+  }
 }

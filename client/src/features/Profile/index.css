@@ -1,8 +1,25 @@
+.container-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-image: url("../../assets/images/ReikiLoandingPage.jpg");
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-y: scroll;
+ 
+}
+
 .container-profile {
   margin-top: 8%;
-  width: 60%;
-  margin-right: auto;
-  margin-left: auto;
+  padding-top: 5%;
+  background-color: rgba(0, 1, 1, 0.8);
+  width: 90%;
+  color: white !important;
 }
 .my-profile {
   text-align: center;
@@ -11,13 +28,18 @@
 .card-header {
   border: 0;
 }
+.col-profile {
+  width: 40%;
+  margin: auto;
+}
 .profile-body {
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.profile {
+/* .profile {
   width: 100%;
-}
+} */
 .update-profile {
   width: 100%;
 }

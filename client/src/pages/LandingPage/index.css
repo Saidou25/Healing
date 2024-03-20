@@ -13,23 +13,16 @@
 }
 
 .landing-page {
-  /* background: rgb(250, 248, 248);
-    background: rgba(250, 248, 248, 0.3); */
-  /* background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5); */
-  /* color: #f1f1f1; */
   width: 100%;
-  /* padding: 20px; */
   margin-right: auto;
   margin-left: auto;
-  /* margin-top: 18%; */
 }
 .landing-row {
   margin-top: 9%;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(0, 1, 1, 0.6);
-  width: 60%;
+  background-color: rgba(0, 1, 1, 0.8);
+  width: 40%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -37,7 +30,6 @@
   margin-top: 3%;
   padding-left: 30px;
   font-size: 7rem;
-  /* color: black; */
 }
 
 .landing-column {
@@ -45,6 +37,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 5px;
+ 
 }
 
 .landing-item {
@@ -52,13 +45,15 @@
   color: white;
   text-decoration: none;
   font-weight: 900;
-  font-size: 2.5rem;
+  font-size: 2rem;
   cursor: pointer;
   padding: 10px;
   border: solid;
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
-  width: 50%;
+  width: 40%;
+  border-radius: 45px;
+  border-width: 2px;
 }
 
 .visit-item:hover {

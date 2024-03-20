@@ -4,13 +4,28 @@
   width: 80%;
   margin: auto;
 }
+
+.no-review-history {
+  border-style: double !important;
+  border: solid;
+  height: 200px;
+}
 .review-list {
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.header-design {
+  border-radius: 10px;
+  /* background: rgb(131, 232, 245); */
+  /* border-bottom-color: rgba(131, 232, 245, 0.4) !important; */
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .review-border {
   padding-right: 4%;
 }
+
 @media screen and (max-width: 680px) {
   .review-list-title {
     text-align: center;

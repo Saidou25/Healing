@@ -82,12 +82,13 @@ const UpdateMyProfileForm = (props) => {
     <>
       <Navbar />
       <div>
-        <div className="container-update mt-5">
+        <div className="container-update mt-5 pb-5">
           <p className="update-p mb-5">
             Please modify the fields you would like to update with your new
             information.
           </p>
-          <h4 className="card-header-update bg-primary rounded-0 text-light p-4">
+          <div className="card update-profile-card mb-5 p-5">
+          <h4 className="card-header-update bg-black rounded-0 text-light p-4">
             Update profile
           </h4>
           <div className="card-update">
@@ -174,7 +175,7 @@ const UpdateMyProfileForm = (props) => {
                 </div>
                 <div className="col-12">
                   <button
-                    className="btn btn-update btn-primary rounded-0"
+                    className="btn btn-update bg-black rounded-0 text-light"
                     type="submit"
                     onClick={(e) => handleSubmit(e)}
                   >
@@ -183,6 +184,7 @@ const UpdateMyProfileForm = (props) => {
                 </div>
               </div>
             </form>
+          </div>
           </div>
         </div>
       </div>

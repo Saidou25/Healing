@@ -16,13 +16,17 @@
   height: 30%;
 }
 .no-history {
-  background-color: #e9ececd3;
   border-style: double !important;
   border: solid;
   height: 200px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4); */
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
-
+.history {
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
+}
 .history-text {
   display: flex;
   align-items: center;

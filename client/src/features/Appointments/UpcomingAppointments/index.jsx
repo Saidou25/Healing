@@ -47,12 +47,12 @@ const UpcomingAppointments = ({ futureAppointments }) => {
 
   return (
     <div className="container-upcoming-appointment mt-5">
-      <h3 className="upcoming-title">Upcoming appointment</h3>
+      <h3 className="upcoming-title text-light">Upcoming appointment</h3>
       <div className="row all-upcoming-apppointments g-0">
         {futureAppointments &&
           futureAppointments.map((bookingdate) => (
             <div key={bookingdate._id} className="col-12 mt-5">
-              <div className="card app-card mb-3">
+              <div className="card app-card text-light mb-3">
                 <div className="card-header fs-3">
                   You have an appointment scheduled for:
                 </div>

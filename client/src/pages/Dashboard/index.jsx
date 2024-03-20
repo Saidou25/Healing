@@ -75,12 +75,12 @@ const Dashboard = () => {
   if (loading) return <Spinner />;
   if (auth.loggedIn()) {
     return (
-      <>
+      <div className="dashboard-background">
         <Navbar />
         <BookingNav />
-        <main className="dashboard-main">
+        <main className="dashboard-main m-5">
           <Outlet />
-          <div className="row row-width">
+          <div className="row review-row mt-4">
             <div className="col-lg-8 col-sm-10">
               <UpcomingAppointments
                 futureAppointments={futureAppointments}
@@ -89,7 +89,7 @@ const Dashboard = () => {
             </div>
             {futureAppointments?.length ? (
               <div className="col-lg-4 col-sm-12 mt-5 mb-5 right-window dashb-border">
-                <div className="card suggestion p-3">
+                <div className="card suggestion p-3 text-light">
                   <br />
                   <h4 className="note mb-2">Notes</h4>
                   <br />
@@ -116,23 +116,36 @@ const Dashboard = () => {
             <div className="col-lg-8 col-sm-12">
               <AllReviews />
             </div>
-            <div className="col-lg-4 col-sm-12 right-window dashb-border">
-              <h3 className="write-review-title mt-4">Write a review</h3>
-              <button
-                type="button"
-                className="btn col-12 d-flex btn-primary rounded-0 justify-content-center mt-5 mb-5"
-                onClick={() => handleSubmit("review")}
-              >
-                start/close
-              </button>
+            <div className="col-lg-4 col-sm-12 right-window dashb-border mb-5">
+              <div className="row top-box g-0">
+                <div className="col-12">
+                <h3 className="write-review-title pt-5 text-light">
+                  Write a review
+                </h3>
+                </div>
+                <div className="col-12 d-flex justify-content-center"
+                style={{ width: "96%", marginRight: "auto", marginLeft: "auto" }}>
+                <button
+                  type="button"
+                  className="btn m-4 col-12 d-flex bg-black text-light 
+                rounded-0 justify-content-center "
+                  onClick={() => handleSubmit("review")}
+                >
+                  start/close
+                </button>
+                </div>
+               
+               
+              </div>
               {isShown ? (
                 <ReviewForm username={username} today={today} />
               ) : null}
             </div>
           </div>
+          {/* </div> */}
         </main>
         <Footer />
-      </>
+      </div>
     );
   }
 };

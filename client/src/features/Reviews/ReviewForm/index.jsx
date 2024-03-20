@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useAddReview from "../useAddReview";
-import "./index.css";
 import ButtonSpinner from "../../../components/ButtonSpinner";
 import Button from "../../../components/Button";
+import "./index.css";
 
 const ReviewForm = ({ username, today }) => {
   const [formState, setFormState] = useState({
@@ -153,28 +153,28 @@ const ReviewForm = ({ username, today }) => {
 
   return (
     <>
-      <main className="row">
+      <main className="row my-5 pb-5">
         <div className="col-12 review-form">
-          <div className="card p-2">
-            <h4 className="card-header-review-title bg-primary text-light p-2">
+          <div className="card p-2 review-design">
+            <h4 className="card-header-review-title bg-black text-light p-2">
               review
             </h4>
-            <div className="card-body">
+            <div className="card-body text-light">
               <form>
-                <label className="form-label1 mb-4">Title</label>
+                <label className="form-label1 my-4 text-light">Title</label>
                 <br />
                 <input
-                  className="form-input review-form-input mb-3"
+                  className="form-input review-form-input mb-3 text-light"
                   placeholder="title..."
                   name="title"
                   type="text"
                   value={formState.title}
                   onChange={handleChange}
                 />
-                <label className="form-label1 mb-4">Text</label>
+                <label className="form-label1 my-4 text-light">Text</label>
                 <br />
                 <textarea
-                  className="form-input review-form-input mb-3"
+                  className="review-form-input mb-3 text-light"
                   placeholder="write your text here..."
                   name="reviewText"
                   type="text"
@@ -185,7 +185,7 @@ const ReviewForm = ({ username, today }) => {
 
                 {/* </form> */}
                 <div className="col-12 mb-5">
-                  <label className="form-label1 mt-4">
+                  <label className="form-label1 my-4">
                     Rate
                     <span className="optional">(optianal)</span>
                   </label>

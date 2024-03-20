@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import useDeleteBooking from "../useDeleteBooking";
 import trash from "../../../assets/images/trash.png";
 import ButtonSpinner from "../../../components/ButtonSpinner";
-import "./index.css";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../../utils/queries";
+import "./index.css";
+import { NavLink } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
 
 const AppointmentHistory = () => {
   const [deleteBookingData, setDeleteBookingData] = useState("");
@@ -20,10 +22,10 @@ const AppointmentHistory = () => {
 
   const { loading } = useDeleteBooking(deleteBookingData);
 
-  const { data: meData } = useQuery( QUERY_ME);
+  const { data: meData } = useQuery(QUERY_ME);
   const me = meData?.me || [];
   const myAppointments = me.bookingdates;
-  
+
   let newDay;
   let newMonth;
 
@@ -46,26 +48,38 @@ const AppointmentHistory = () => {
   return (
     <div>
       {!history?.length ? (
-        <div className="containerno-history mt-5 mb-5">
-          <div className="card no-history">
-            <p className="card-header history-header fs-3 my-3">
+        <div className="my-5 text-light">
+          <div className="card no-history text-light">
+            <p className="card-header history-header fs-3 my-3 text-light">
               No appointment yet
             </p>
-            <div className="card-body history-text">
+            <div className="card-body history-text text-light">
               <p>Your appointments will show on here soon.</p>
             </div>
           </div>
         </div>
       ) : (
-        <div className="container-history">
-          <h3 className="appointment-list-title mt-5 mb-5">
+        <div className="container-history text-light py-5">
+          <div className="row review-border">
+            <div className="col-4 d-flex test">
+              <h3 className="review-list-title my-5 text-light">
+                Appointment history
+              </h3>
+            </div>
+            <div className="col-4 text-light d-flex justify-content-end">
+              <NavLink to="/Dashboard" className="text-white my-5 fs-3">
+                <AiOutlineClose />
+              </NavLink>
+            </div>
+          </div>
+          {/* <h3 className="appointment-list-title my-5 text-light">
             Appointment history
-          </h3>
+          </h3> */}
           <div className="row all-history">
             {history &&
               history.map((bookingdate) => (
                 <div key={bookingdate._id} className="col-8 history-column">
-                  <div className="card history mb-4">
+                  <div className="card history mb-4 text-light">
                     <div className="card-header fs-3">
                       Previous appointment:
                     </div>
@@ -84,7 +98,8 @@ const AppointmentHistory = () => {
                             className="btn delete-appointment rounded-0"
                             onClick={() => setDeleteBookingData(bookingdate)}
                           >
-                            {loading && bookingdate._id === deleteBookingData._id ? (
+                            {loading &&
+                            bookingdate._id === deleteBookingData._id ? (
                               <>
                                 <ButtonSpinner />
                               </>

@@ -1,7 +1,10 @@
 .all-reviews {
     padding-right: 4%;
 }
-
+.review-design {
+    background: rgb(131, 232, 245);
+    background: rgba(131, 232, 245, 0.4);
+  }
 @media screen and (max-width: 993px) {
     .reviews-title {
         margin-top: 0;

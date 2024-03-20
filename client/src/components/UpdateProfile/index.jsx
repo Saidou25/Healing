@@ -2,6 +2,7 @@ import React from "react";
 import UpdateMyProfileForm from "../../components/UpdateMyProfileForm";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
+import "./index.css";
 
 const UpdateProfile = () => {
   // work is being done here to gather data needed to pre-populate the update form
@@ -12,7 +13,7 @@ const UpdateProfile = () => {
   const profileId = userProfile._id;
 
   return (
-    <div>
+    <div className="container-profile-update">
       <UpdateMyProfileForm
         userProfile={userProfile}
         userId={userId}

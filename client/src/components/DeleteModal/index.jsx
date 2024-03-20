@@ -51,10 +51,10 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
 
   return (
     <>
-      <div className="d-flex justify-content-end">
+      <div className="d-flex top-level pb-5">
         <button
           type="button"
-          className="btn btn-danger btn-modal delete-user mt-5"
+          className="btn btn-danger btn-modal my-5"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >

@@ -28,10 +28,10 @@ const Profile = ({
         <div className="container-profile mt-5">
           <div className="flex-row justify-space-between my-4">
             <div className="col-12 ">
-              <h3 className="text-profile my-profile-titles mb-5 mt-5">
+              <h3 className="text-profile my-profile-titles mb-5 mt-5 text-light">
                 Login
               </h3>
-              <div className="card profile-body p-3">
+              <div className="card profile-body p-3 text-light">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}
@@ -51,30 +51,30 @@ const Profile = ({
     );
   } else {
     return (
-      <div>
+      <div className="container-back">
         <Navbar />
         <div className="container-profile mt-5">
           <div className="flex-row justify-space-between my-4">
-            <div className="col-12 ">
-              <h3 className="text-profile my-profile-titles mb-5 mt-5">
+            <div className="col-12 col-profile">
+              <h3 className="text-profile my-profile-titles text-light mb-5 mt-5">
                 Login
               </h3>
-              <div className="card profile-body p-3">
+              <div className="card profile-body text-light p-3">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}
                 </div>
-                <div className="text-profile">
+                <div className="text-profile text-light">
                   <FaEnvelope className="icon m-2" />
                   {me.email}
                 </div>
               </div>
             </div>
-            <div className="col-12">
-              <h3 className="text-profile my-profile-titles mb-5 mt-5">
+            <div className="col-12 col-profile">
+              <h3 className="text-profile my-profile-titles text-light mb-5 mt-5">
                 General
               </h3>
-              <div className="card profile-body p-3 ">
+              <div className="card profile-body text-light p-3 ">
                 <div className="text-profile m-2">
                   First name: {me.profile.patientfirstname}
                 </div>
@@ -91,11 +91,11 @@ const Profile = ({
               </div>
             </div>
 
-            <div className="col-12">
-              <h3 className="text-profile my-profile-titles mb-5 mt-5">
+            <div className="col-12 col-profile">
+              <h3 className="text-profile my-profile-titles text-light mb-5 mt-5">
                 Contact
               </h3>
-              <div className="card profile-body p-3">
+              <div className="card profile-body text-light p-3">
                 <div className="text-profile">
                   <FaPhone className="icon m-2" />
                   {me.profile.patientnumber}
@@ -115,21 +115,19 @@ const Profile = ({
                 </div>
               </div>
             </div>
-            <div className="col-12 mt-5">
+            <div className="col-12 col-profile mt-5">
               <Link to="/UpdateProfile" state={{ userProfile: me.profile }}>
-                <button className="btn update-profile mt-5 btn-primary">
+                <button className="btn update-profile mt-5 btn-info fs-5">
                   update
                 </button>
               </Link>
             </div>
-            <div>
               <DeleteModal
                 userProfile={userProfile}
                 userId={userId}
                 myAppointments={myAppointments}
                 profileId={profileId}
               />
-            </div>
           </div>
         </div>
         <Footer />

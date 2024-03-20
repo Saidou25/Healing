@@ -4,12 +4,12 @@ import "./index.css";
 
 const BookingNav = ({ username, myReviews, email }) => {
   return (
-    <div className="container-fluid g-0">
-      <div className="row buttons mb-5 bg-primary">
+    <div className="container-fluid bookingnav g-0">
+      <div className="row mb-5">
         <div className="col-6 top-nav-item">
           <NavLink
             to="AppointmentHistory"
-            className="dashboard-text text-white"
+            className="dashboard-text text-white d-flex align-items-center"
             state={{ username, myReviews }}
           >
             History

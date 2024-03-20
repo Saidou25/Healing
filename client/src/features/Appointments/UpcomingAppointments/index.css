@@ -1,5 +1,14 @@
+/* .all-reviews {
+width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+} */
+
 .app-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 
+  0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
 }
 .all-upcoming-apppointments {
   padding-right: 4%;
@@ -7,6 +16,7 @@
 .container-upcoming-appointment {
   margin-bottom: 6%;
 }
+
 @media screen and (max-width: 992px) {
   .upcoming-title {
     text-align: center !important;

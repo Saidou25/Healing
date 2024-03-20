@@ -6,7 +6,7 @@ import "./index.css";
 const Footer = () => {
   return (
     <main className="main-footer">
-      <div className="row footer bg-primary text-white">
+      <div className="row footer bg-black text-white">
         <div className="col-12 col-footer text-footer">
           <FaEnvelope className="icon m-2" />
           healing@demo.com

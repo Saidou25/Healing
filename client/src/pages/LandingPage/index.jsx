@@ -11,7 +11,7 @@ const LandingPage = () => {
           <SideMenu />
         </div>
       </div>
-      <div className="landing-title">
+      <div className="landing-title p-5 m-5">
         <NavLink className="col-12 landing text-light" to="/">
           Healing
         </NavLink>
@@ -23,12 +23,12 @@ const LandingPage = () => {
             Login
           </NavLink>
         </div>
-        <div className="col-12 landing-column mt-3">
+        <div className="col-12 landing-column mt-4">
           <NavLink to="/Signup" className="landing-item">
             Signup
           </NavLink>
         </div>
-        <div className="col-12 landing-column mt-3">
+        <div className="col-12 landing-column mt-4">
           <NavLink to="/About" className="landing-item">
             About
           </NavLink>

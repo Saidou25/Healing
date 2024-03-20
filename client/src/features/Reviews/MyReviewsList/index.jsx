@@ -6,8 +6,10 @@ import RatingList from "../../../components/RatingList";
 import profileIcon from "../../../assets/images/profileIcon.png";
 import trash from "../../../assets/images/trash.png";
 import ButtonSpinner from "../../../components/ButtonSpinner";
+import { AiOutlineClose } from "react-icons/ai";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../../utils/queries";
+import { NavLink } from "react-router-dom";
 
 const MyReviewsList = () => {
   const [deleteReviewData, setDeleteReviewData] = useState("");
@@ -26,8 +28,8 @@ const MyReviewsList = () => {
     //   console.log("no review", review);
     //   return;
     // } else {
-        const reviewId = review._id
-      setDeleteReviewData(reviewId);
+    const reviewId = review._id;
+    setDeleteReviewData(reviewId);
     // }
   };
 
@@ -45,14 +47,37 @@ const MyReviewsList = () => {
           </div>
         </div>
       ) : (
-        <div className="container-review">
-          <h3 className="review-list-title mt-5 mb-5">Your reviews</h3>
+        <div className="container-review py-5">
+          {/* <div className="row"> */}
+            {/* <div className="col-6">
+              <h3 className="review-list-title my-5 text-light">
+                Your reviews
+              </h3>
+            </div>
+            <div className="col-6 text-light d-flex align-items-center justify-context-end">
+              <NavLink to="/Dashboard" className="text-light my-5">
+              <AiOutlineClose />
+              </NavLink>
+            </div> */}
+          {/* </div> */}
           <div className="row review-border">
+          <div className="col-4 d-flex test">
+              <h3 className="review-list-title my-5 text-light">
+                Your reviews
+              </h3>
+            </div>
+            <div className="col-4 text-light d-flex justify-content-end">
+              <NavLink to="/Dashboard" className="text-white my-5 fs-3">
+              <AiOutlineClose />
+              </NavLink>
+            </div>
             {myReviews &&
               myReviews.map((review) => (
                 <div key={review._id} className="col-8">
-                  <div className="card review-list mb-4">
-                    <div className="card-header fs-3">{review.title}</div>
+                  <div className="card review-list mb-4 text-light">
+                    <div className="card-header header-design fs-3">
+                      {review.title}
+                    </div>
                     <div className="card-body">
                       <div className="row">
                         <div className="col-12">
@@ -75,7 +100,7 @@ const MyReviewsList = () => {
                             {review.username}
                           </span>
                         </div>
-                        <div className="card-footer px-3">
+                        <div className="card-footer">
                           <div className="row">
                             <div className="col-6 d-flex align-items-center">
                               <RatingList rating={review.rating} />
@@ -96,7 +121,7 @@ const MyReviewsList = () => {
                                     alt="trash-can"
                                     height={50}
                                   />
-                             )} 
+                                )}
                               </button>
                             </div>
                           </div>

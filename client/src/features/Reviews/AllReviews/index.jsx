@@ -13,14 +13,14 @@ const AllReviews = () => {
   if (resultsDataLoading) return <Spinner />;
   return (
     <>
-      <div className="row all-reviews">
+      <div className="row all-reviews mb-5">
         {reviews.length ? (
           <>
-          <h3 className="reviews-title mt-4 mb-5">Read what people say</h3>
+          <h3 className="reviews-title mt-4 mb-5 text-light">Read what people say</h3>
             {reviews &&
               reviews.map((review) => (
                 <div key={review._id} className="col-12">
-                  <div className="card review-list mb-4">
+                  <div className="card review-list text-light  review-design mb-4">
                     <div className="card-header fs-3">{review.title}</div>
                     <div className="card-body p-3">
                       <div className="row">

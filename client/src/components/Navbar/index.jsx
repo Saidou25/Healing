@@ -14,7 +14,7 @@ const Navbar = () => {
   
   if (Auth.loggedIn()) {
     return (
-      <main className="main-nav">
+      <main className="main-nav ">
         <div className="bg-img">
           <nav className="row">
             <div className="col-12 d-flex justify-content-end">
@@ -22,32 +22,32 @@ const Navbar = () => {
             </div>
             <div className="one">
               <div className="landing-title">
-                <NavLink className="landing" to="/">
+                <NavLink className="landing text-light p-5 m-5" to="/">
                   Healing
                 </NavLink>
               </div>
               <ul className="nav d-flex">
                 <li>
-                  <NavLink to="/About" className="nav-item show-hide fs-3">
+                  <NavLink to="/About" className="nav-item show-hide fs-3 text-light">
                     about
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/Dashboard" className="nav-item show-hide fs-3">
+                  <NavLink to="/Dashboard" className="nav-item show-hide fs-3 text-light">
                     dashboard
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
                     to="/Book"
-                    className="nav-item show-hide fs-3"
+                    className="nav-item show-hide fs-3 text-light"
                   >
                     book
                   </NavLink>
                 </li>
                 <li>
                   <button
-                    className="btt-logout show-hide fs-3"
+                    className="btt-logout show-hide fs-3 text-light"
                     onClick={logout}
                   >
                     logout
