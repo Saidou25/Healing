@@ -48,9 +48,13 @@ const AppointmentHistory = () => {
   return (
     <div>
       {!history?.length ? (
-        <div className="my-5 text-light">
-          <div className="card no-history text-light">
-            <p className="card-header history-header fs-3 my-3 text-light">
+        <div className="container-history mt-5 mb-5">
+          <div className="card no-history review-list text-light">
+            <NavLink to="/Dashboard" className="text-white fs-3 px-3 pt-3"
+            style={{ display: "flex", justifyContent: "flex-end" }}>
+              <AiOutlineClose />
+            </NavLink>
+            <p className="card-header history-header fs-3">
               No appointment yet
             </p>
             <div className="card-body history-text text-light">
@@ -62,9 +66,7 @@ const AppointmentHistory = () => {
         <div className="container-history text-light py-5">
           <div className="row review-border">
             <div className="col-4 d-flex test">
-              <h3 className="review-list-title my-5 text-light">
-                Appointment history
-              </h3>
+              <h3 className="review-list-title my-5">Appointment history</h3>
             </div>
             <div className="col-4 text-light d-flex justify-content-end">
               <NavLink to="/Dashboard" className="text-white my-5 fs-3">
@@ -72,9 +74,6 @@ const AppointmentHistory = () => {
               </NavLink>
             </div>
           </div>
-          {/* <h3 className="appointment-list-title my-5 text-light">
-            Appointment history
-          </h3> */}
           <div className="row all-history">
             {history &&
               history.map((bookingdate) => (

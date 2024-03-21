@@ -7,11 +7,11 @@ import { formatTime } from "../../../utils/dateUtil.js";
 import { chooseStartDate } from "../../../utils/chooseStartDate.js";
 import Footer from "../../../components/Footer/index.jsx";
 import BookingForm from "../BookingForm.jsx";
-import BookingNav from "../BookingNav.jsx";
 import practitioner from "../../../assets/images/practitioner.jpeg";
 import SideText from "../SideText.jsx";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import "react-datepicker/dist/react-datepicker.css";
+import Navbar from "../../../components/Navbar/index.jsx";
 import "./index.css";
 
 const Book = () => {
@@ -112,9 +112,9 @@ const Book = () => {
 
   return (
     <>
-      <BookingNav />
+      <Navbar />
       <>
-        <div className="container-appointment">
+        <div className="container-appointment p-5">
           <div className="img-appointment" src={practitioner} alt="care">
             {showNavNav ? (
               <BookingForm

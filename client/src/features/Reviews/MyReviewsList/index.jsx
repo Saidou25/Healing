@@ -37,10 +37,15 @@ const MyReviewsList = () => {
     <>
       {!myReviews?.length ? (
         <div className="containerno-history mt-5 mb-5">
-          <div className="card no-history">
-            <p className="card-header history-header fs-3 my-3">
-              No review yet
-            </p>
+          <div className="card no-history review-list text-light">
+            <NavLink
+              to="/Dashboard"
+              className="text-white fs-3 px-3 pt-3"
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
+              <AiOutlineClose />
+            </NavLink>
+            <p className="card-header history-header fs-3">No review yet</p>
             <div className="card-body history-text">
               <p>Your reviews will show on here soon.</p>
             </div>
@@ -48,27 +53,15 @@ const MyReviewsList = () => {
         </div>
       ) : (
         <div className="container-review py-5">
-          {/* <div className="row"> */}
-            {/* <div className="col-6">
-              <h3 className="review-list-title my-5 text-light">
-                Your reviews
-              </h3>
-            </div>
-            <div className="col-6 text-light d-flex align-items-center justify-context-end">
-              <NavLink to="/Dashboard" className="text-light my-5">
-              <AiOutlineClose />
-              </NavLink>
-            </div> */}
-          {/* </div> */}
           <div className="row review-border">
-          <div className="col-4 d-flex test">
+            <div className="col-4 d-flex test">
               <h3 className="review-list-title my-5 text-light">
                 Your reviews
               </h3>
             </div>
             <div className="col-4 text-light d-flex justify-content-end">
               <NavLink to="/Dashboard" className="text-white my-5 fs-3">
-              <AiOutlineClose />
+                <AiOutlineClose />
               </NavLink>
             </div>
             {myReviews &&

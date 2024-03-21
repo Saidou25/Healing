@@ -12,7 +12,6 @@ const AllReviews = () => {
 
   if (resultsDataLoading) return <Spinner />;
   return (
-    <>
       <div className="row all-reviews mb-5">
         {reviews.length ? (
           <>
@@ -55,7 +54,6 @@ const AllReviews = () => {
           null
         )}
       </div>
-    </>
   );
 };
 export default AllReviews;

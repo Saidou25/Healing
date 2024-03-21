@@ -46,7 +46,7 @@ const UpcomingAppointments = ({ futureAppointments }) => {
   }
 
   return (
-    <div className="container-upcoming-appointment mt-5">
+    <div className="container-upcoming-appointment mt-5 py-5">
       <h3 className="upcoming-title text-light">Upcoming appointment</h3>
       <div className="row all-upcoming-apppointments g-0">
         {futureAppointments &&

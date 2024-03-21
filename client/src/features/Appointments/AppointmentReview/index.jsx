@@ -121,14 +121,14 @@ const AppointmentReview = () => {
 
   return (
     <div className="container-fluid mt-5">
-      <div className="card card-appointment">
+      <div className="card card-app-review text-light">
         <div className="card-header app-review-header">
-          <h4 className="header-text mt-3 mb-3">
+          <h4 className="header-text bg-primary py-5 text-light mt-3 mb-3">
             Please review your appointment information
           </h4>
         </div>
         <div className="card-body mt-4">
-          <p className="app-review-p">Appointment details</p>
+          <p className="app-review-t p-3 fs-4">Appointment details</p>
           {profile ? (
             <p className="app-review-p">
               {profile?.patientfirstname} {profile?.patientlastname}
@@ -140,17 +140,17 @@ const AppointmentReview = () => {
             </p>
           )}
 
-          <p className="app-review-p">
+          <p className="app-review-p p-3">
             {showAppointmentInfo.appointmentString}
           </p>
-          <p className="app-review-p">Reason </p>
+          <p className="app-review-t p-3 fs-4">Reason </p>
           <p className="app-review-p">{showAppointmentInfo.reason}</p>
           <br />
 
           {!profile ? (
             <>
               <div className="app-review-t">
-                <p className="app-review-p p-3">Contact</p>
+                <p className="app-review-p p-3 fs-4">Contact</p>
               </div>
               <p className="app-review-p">
                 Email {showPatientInfo.email || appInfo.email}
@@ -160,7 +160,7 @@ const AppointmentReview = () => {
               </p>
               <br />
               <div className="app-review-t">
-                <p className="app-review-p p-3">Address </p>
+                <p className="app-review-p p-3 fs-4">Address </p>
               </div>
               <p className="app-review-p">
                 address: {showPatientInfo?.patientaddress}
@@ -178,7 +178,7 @@ const AppointmentReview = () => {
           ) : (
             <>
               <div className="app-review-t">
-                <p className="app-review-p p-3">Contact</p>
+                <p className="app-review-p p-3 fs-4">Contact</p>
               </div>
               <p className="app-review-p">
                 Email {showPatientInfo.email || appInfo.email}
@@ -188,7 +188,7 @@ const AppointmentReview = () => {
               </p>
               <br />
               <div className="app-review-t">
-                <p className="app-review-p p-3">Address </p>
+                <p className="app-review-p p-3 fs-4">Address </p>
               </div>
               <p className="app-review-p">
                 address: {showPatientInfo.patientaddress}
@@ -206,14 +206,14 @@ const AppointmentReview = () => {
         <div className="card-footer">
           <div className="row mb-3 p-3 d-flex justify-content-between">
             <button
-              className="col-6 btn btn-app-review btn-secondary fs-5"
+              className="col-5 btn btn-app-review btn-secondary fs-5 m-3"
               type="button"
               onClick={cancelApp}
             >
               cancel
             </button>
             <button
-              className="col-6 btn btn-app-review btn-primary fs-5"
+              className="col-5 btn btn-app-review btn-primary fs-5 m-3"
               type="button"
               onClick={handleSubmit}
             >

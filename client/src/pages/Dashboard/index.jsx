@@ -75,10 +75,11 @@ const Dashboard = () => {
   if (loading) return <Spinner />;
   if (auth.loggedIn()) {
     return (
-      <div className="dashboard-background">
+      <>
         <Navbar />
         <BookingNav />
-        <main className="dashboard-main m-5">
+        <main className="dashboard-main p-5">
+          {/* history and My reviews little navbar */}
           <Outlet />
           <div className="row review-row mt-4">
             <div className="col-lg-8 col-sm-10">
@@ -88,7 +89,7 @@ const Dashboard = () => {
               />
             </div>
             {futureAppointments?.length ? (
-              <div className="col-lg-4 col-sm-12 mt-5 mb-5 right-window dashb-border">
+              <div className="col-lg-4 col-sm-12 mt-5 mb-5 right-window dashb-border py-5">
                 <div className="card suggestion p-3 text-light">
                   <br />
                   <h4 className="note mb-2">Notes</h4>
@@ -133,7 +134,7 @@ const Dashboard = () => {
                 >
                   <button
                     type="button"
-                    className="btn m-4 col-12 d-flex bg-black text-light rounded-0 justify-content-center "
+                    className="btn m-4 col-12 review-button d-flex bg-black rounded-0 justify-content-center "
                     onClick={() => handleSubmit("review")}
                   >
                     start/close
@@ -147,7 +148,7 @@ const Dashboard = () => {
           </div>
         </main>
         <Footer />
-      </div>
+      </>
     );
   }
 };

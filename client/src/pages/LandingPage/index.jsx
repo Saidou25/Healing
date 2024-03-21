@@ -18,18 +18,18 @@ const LandingPage = () => {
       </div>
       <div className="row landing-row py-5">
         <div className="col-12 landing-column">
-          <NavLink to="/Login" className="landing-item"
+          <NavLink to="/Login" className="landing-item-hilight"
           >
             Login
           </NavLink>
         </div>
         <div className="col-12 landing-column mt-4">
-          <NavLink to="/Signup" className="landing-item">
+          <NavLink to="/Signup" className="landing-item-hilight">
             Signup
           </NavLink>
         </div>
         <div className="col-12 landing-column mt-4">
-          <NavLink to="/About" className="landing-item">
+          <NavLink to="/About" className="landing-item-hilight">
             Site
           </NavLink>
         </div>

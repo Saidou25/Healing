@@ -93,7 +93,7 @@ const UpdateMyProfileForm = (props) => {
           </h4>
           <div className="card-update">
             <form className="profile-update">
-              <div className="row mt-5">
+              <div className="row mt-5 text-light">
                 <div className="col-lg-6 col-sm-12 p-2">
                   <label className="form-label"> First name</label>
                   <input
@@ -168,14 +168,14 @@ const UpdateMyProfileForm = (props) => {
                 </div>
                 <div className="error-div p-2 mt-5">
                   {error && (
-                    <div className="bg-danger text-white">
+                    <div className="bg-danger">
                       <p className="update-error">{error}</p>
                     </div>
                   )}
                 </div>
                 <div className="col-12">
                   <button
-                    className="btn btn-update bg-black rounded-0 text-light"
+                    className="btn btn-update bg-black rounded-0"
                     type="submit"
                     onClick={(e) => handleSubmit(e)}
                   >

@@ -63,21 +63,21 @@ const BookingNav = () => {
           </div>
           <div className="one">
             <div className="landing-title">
-              <NavLink className="landing" to="/">
+              <NavLink className="landing text-light" to="/">
                 Healing
               </NavLink>
             </div>
             <ul className="nav d-flex p-2">
-              <NavLink to="/About" className="nav-item show-hide fs-3">
+              <NavLink to="/About" className="nav-item show-hide text-light fs-3">
                 About
               </NavLink>
-              <NavLink to="/Visit" className="nav-item show-hide fs-3">
-                Visit
+              <NavLink to="/Book" className="nav-item show-hide text-light fs-3">
+                book
               </NavLink>
-              <NavLink to="/Login" className="nav-item show-hide fs-3">
+              <NavLink to="/Login" className="nav-item show-hide  text-light fs-3">
                 login
               </NavLink>
-              <NavLink to="/Signup" className="nav-item show-hide fs-3">
+              <NavLink to="/Signup" className="nav-item show-hide text-light fs-3">
                 signup
               </NavLink>
             </ul>

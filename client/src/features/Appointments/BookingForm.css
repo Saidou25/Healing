@@ -1,0 +1,51 @@
+.appointment-card {
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
+  width: 40%;
+  margin-right: auto;
+  margin-left: auto;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+.app-btn:hover {
+  background-color: rgb(24, 68, 68) !important;
+  transition: 0.3s;
+  color: white;
+}
+/* #user_date {
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
+} */
+
+/* .react-datepicker {
+  background: rgb(131, 232, 245) !important;
+  background: rgba(131, 232, 245, 0.4) !important;
+} */
+
+.custom-container {
+  width: 100%;
+}
+.react-datepicker__header {
+   /* background: rgba(131, 232, 245, 0.5) !important; */
+  color: white !important;
+  }
+  .react-datepicker {
+    
+    font-family: datepicker__font-family;
+    font-size: datepicker__font-size;
+    /* background-color: black !important; */
+    /* background: rgba(131, 232, 245, 0.5) !important; */
+    color: datepicker__text-color;
+  }
+  
+  .react-datepicker__time,
+  .react-datepicker__time-box {
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    /* background-color: black !important; */
+       /* background: rgba(131, 232, 245, 0.5) !important; */
+    color: white !important;
+  }
+    /* background: rgba(131, 232, 245, 0.5) !important; */
+    

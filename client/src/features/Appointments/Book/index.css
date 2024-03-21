@@ -1,3 +1,10 @@
+.container-appointment {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgba(0, 1, 1, 0.8);
+}
+
 .goback-appointment {
   margin-top: 5%;
 }
@@ -14,21 +21,22 @@
 }
 
 .img-appointment {
-  background-image: url("../../../assets/images/practitioner.jpeg");
+  /* background-image: url("../../../assets/images/practitioner.jpeg"); */
   min-height: 500px;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: 4%;
   margin-left: 6%;
   margin-right: 6%;
 }
 .card-appointment {
   width: 40%;
-  float: right;
-  margin-right: 2%;
-  margin-top: 25%;
+  /* float: right; */
+  /* margin-right: 2%; */
+  /* margin-top: 25%; */
   background-color: rgba(236, 234, 231, 1);
   margin-bottom: 5%;
+  margin-right: auto;
+  margin-left: auto;
 }
 .appointment-review-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

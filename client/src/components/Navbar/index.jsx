@@ -11,7 +11,6 @@ const Navbar = () => {
     Auth.logout();
   };
 
-  
   if (Auth.loggedIn()) {
     return (
       <main className="main-nav ">
@@ -21,20 +20,18 @@ const Navbar = () => {
               <SideMenu />
             </div>
             <div className="one">
-              <div className="landing-title">
+              <div className="healing-title">
                 <NavLink className="landing text-light p-5 m-5" to="/">
                   Healing
                 </NavLink>
               </div>
               <ul className="nav d-flex">
                 <li>
-                  <NavLink to="/About" className="nav-item show-hide fs-3 text-light">
+                  <NavLink
+                    to="/About"
+                    className="nav-item show-hide fs-3 text-light"
+                  >
                     about
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/Dashboard" className="nav-item show-hide fs-3 text-light">
-                    dashboard
                   </NavLink>
                 </li>
                 <li>
@@ -45,6 +42,15 @@ const Navbar = () => {
                     book
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/Dashboard"
+                    className="nav-item show-hide fs-3 text-light"
+                  >
+                    dashboard
+                  </NavLink>
+                </li>
+
                 <li>
                   <button
                     className="btt-logout show-hide fs-3 text-light"
@@ -84,25 +90,27 @@ const Navbar = () => {
             </div>
             <ul className="nav d-flex p-2">
               <li>
-                <NavLink to="/About" className="nav-item text-light show-hide fs-3">
-                  About
-                </NavLink>
-              </li>
-
-              <li>
-                {" "}
-                <NavLink to="/Visit" className="nav-item text-light show-hide fs-3">
-                  Visit
+                <NavLink
+                  to="/About"
+                  className="nav-item text-light show-hide fs-3"
+                >
+                  about
                 </NavLink>
               </li>
               <li>
                 {" "}
-                <NavLink to="/Login" className="nav-item text-light show-hide fs-3">
+                <NavLink
+                  to="/Login"
+                  className="nav-item text-light show-hide fs-3"
+                >
                   login
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/Signup" className="nav-item text-light show-hide fs-3">
+                <NavLink
+                  to="/Signup"
+                  className="nav-item text-light show-hide fs-3"
+                >
                   signup
                 </NavLink>
               </li>

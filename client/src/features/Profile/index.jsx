@@ -23,10 +23,10 @@ const Profile = ({
 
   if (!me.profile) {
     return (
-      <div>
+      <>
         <Navbar />
-        <div className="container-profile mt-5">
-          <div className="flex-row justify-space-between my-4">
+        <div className="container-profile">
+          <div className="flex-row justify-space-between">
             <div className="col-12 ">
               <h3 className="text-profile my-profile-titles mb-5 mt-5 text-light">
                 Login
@@ -47,16 +47,16 @@ const Profile = ({
         <div className="footer-myprofile">
           <Footer />
         </div>
-      </div>
+      </>
     );
   } else {
     return (
-      <div className="container-back">
+      <>
         <Navbar />
-        <div className="container-profile mt-5">
-          <div className="flex-row justify-space-between my-4">
+        <div className="container-profile">
+          <div className="flex-row justify-space-between">
             <div className="col-12 col-profile">
-              <h3 className="text-profile my-profile-titles text-light mb-5 mt-5">
+              <h3 className="text-profile my-profile-titles text-light py-5">
                 Login
               </h3>
               <div className="card profile-body text-light p-3">
@@ -131,7 +131,7 @@ const Profile = ({
           </div>
         </div>
         <Footer />
-      </div>
+      </>
     );
   }
 };

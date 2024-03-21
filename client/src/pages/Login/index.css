@@ -84,7 +84,7 @@
   font-style: normal;
 }
 .btn-login:hover {
-  background-color: rgb(24, 68, 68);
+  background-color: rgb(24, 68, 68) !important;
   transition: 0.3s;
   color: white;
 }

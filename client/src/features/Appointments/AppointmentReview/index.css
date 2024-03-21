@@ -1,14 +1,25 @@
+.card-app-review {
+  background: rgb(131, 232, 245);
+  background: rgba(131, 232, 245, 0.4);
+  width: 40%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .app-review-header {
   text-align: center;
 }
 .app-review-t {
-  background-color: var(--bs-card-cap-bg);
-  font-weight: 700 !important;
+  text-align: center;
+  background: rgba(0, 1, 1, 0.4);
+  width: 95%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 5%;
 }
 .app-review-p {
   padding-left: 3%;
   text-align: center;
-  
 }
 .card-body {
   padding: 0;

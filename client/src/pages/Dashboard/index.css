@@ -7,6 +7,9 @@
 }
 .dashboard-main {
   background-color: rgba(0, 1, 1, 0.8);
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
 }
 .suggestion,
 .top-box {
@@ -61,6 +64,11 @@
   display: flex;
   justify-content: center;
   text-align: center;
+}
+.review-button:hover {
+  background-color: rgb(24, 68, 68) !important;
+  transition: 0.3s;
+  color: white;
 }
 @media screen and (max-width: 993px) {
   .dashb-border {
