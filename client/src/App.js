@@ -11,22 +11,21 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { UserProvider } from "./context/userContext";
 
-import ProfileForm from "./features/Profile/ProfileForm";
-import ReviewForm from "./features/Reviews/ReviewForm";
-import AppointmentHistory from "./features//Appointments/AppointmentHistory";
-import Login from "./pages/Login";
 import LandingPage from "./pages/LandingPage";
-import Book from "./features/Appointments/Book";
-import BookingSuccess from "./features/Appointments/BookingSuccess";
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import About from "./components/About";
 import Dashboard from "./pages/Dashboard";
-import Profile from "./features/Profile"
+import Book from "./features/Appointments/Book";
+import AppointmentReview from "./features/Appointments/AppointmentReview";
+import ProfileForm from "./features/Profile/ProfileForm";
+import Profile from "./features/Profile";
 import UpdateMyProfileForm from "./components/UpdateMyProfileForm";
 import UpdateProfile from "./components/UpdateProfile";
-import About from "./components/About";
+import ReviewForm from "./features/Reviews/ReviewForm";
+import AppointmentHistory from "./features//Appointments/AppointmentHistory";
+import BookingSuccess from "./features/Appointments/BookingSuccess";
 import ReviewHistory from "./components/ReviewHistory";
-import AppointmentReview from "./features/Appointments/AppointmentReview";
-import ProfileReviewForm from "./components/ProfileReviewForm";
 import PageNotFound from "./components/PageNotFound";
 
 // Construct our main GraphQL API endpoint
@@ -81,45 +80,39 @@ const client = new ApolloClient({
 });
 
 function App() {
-   
   return (
     <ApolloProvider client={client}>
       {/* <UserProvider> */}
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/Signup" element={<Signup />} />
-            <Route path="/Login" element={<Login />} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/Login" element={<Login />} />
 
-            <Route path="/About" element={<About />} />
-            <Route path="/Profile" element={<Profile />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Profile" element={<Profile />} />
 
-            <Route path="/Dashboard" element={<Dashboard />}>
-              <Route
-                path="AppointmentHistory"
-                element={<AppointmentHistory />}
-              />
-              <Route path="ReviewHistory" element={<ReviewHistory />} />
-            </Route>
-            
-            <Route path="/Book" element={<Book />}>
-              <Route path="BookingSuccess" element={<BookingSuccess />} />
-              <Route path="ProfileForm" element={<ProfileForm />} />
-              <Route path="ProfileReviewForm" element={<ProfileReviewForm />} />
-              <Route path="AppointmentReview" element={<AppointmentReview />} />
-            </Route>
+          <Route path="/Dashboard" element={<Dashboard />}>
+            <Route path="AppointmentHistory" element={<AppointmentHistory />} />
+            <Route path="ReviewHistory" element={<ReviewHistory />} />
+          </Route>
 
-            <Route
-              path="/UpdateMyProfileForm"
-              element={<UpdateMyProfileForm />}
-            />
-            <Route path="/UpdateProfile" element={<UpdateProfile />} />
-            {/* <Route path="/ContactModal" element={<ContactModal />} /> */}
-            <Route path="/ReviewForm" element={<ReviewForm />} />
-            
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </Router>
+          <Route path="/Book" element={<Book />}>
+            <Route path="BookingSuccess" element={<BookingSuccess />} />
+            <Route path="ProfileForm" element={<ProfileForm />} />
+            <Route path="AppointmentReview" element={<AppointmentReview />} />
+          </Route>
+
+          <Route
+            path="/UpdateMyProfileForm"
+            element={<UpdateMyProfileForm />}
+          />
+          <Route path="/UpdateProfile" element={<UpdateProfile />} />
+          <Route path="/ReviewForm" element={<ReviewForm />} />
+
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
       {/* </UserProvider> */}
     </ApolloProvider>
   );

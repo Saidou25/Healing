@@ -127,6 +127,20 @@ export const QUERY_BOOKINGDATES = gql`
     }
   }
 `;
+
+export const QUERY_BOOKINGDATE = gql`
+  query bookingdate($id: ID!) {
+    bookingdate(id: $id) {
+      _id
+      username
+      startDate
+      digitalAppointment
+      appointmentString
+      reason
+    }
+  }
+`;
+
 export const QUERY_REVIEWS = gql`
   query reviews {
     reviews {
@@ -151,31 +165,7 @@ export const QUERY_REVIEW = gql`
     }
   }
 `;
-export const QUERY_BOOKINGDATE = gql`
-  query bookingdate($id: ID!) {
-    bookingdate(id: $id) {
-      _id
-      username
-      startDate
-      digitalAppointment
-      appointmentString
-      reason
-    }
-  }
-`;
 
-export const QUERY_USERBOOKINGDATES = gql`
-  query userbookingdates($username: String!) {
-    userbookingdates(username: $username) {
-      _id
-      username
-      startDate
-      digitalAppointment
-      appointmentString
-      reason
-    }
-  }
-`;
 export const QUERY_PROFILES = gql`
   query profiles {
     profiles {
