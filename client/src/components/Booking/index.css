@@ -7,6 +7,14 @@
   text-decoration: none;
   padding: 0 !important;
   margin: 0 !important;
+  font-size: 1.2rem;
+}
+.dashboard-text:hover {
+  text-decoration: none;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 2rem;
+  transition: 0.3s;
 }
 .top-nav-item {
   height: 100px;

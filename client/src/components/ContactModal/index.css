@@ -11,11 +11,16 @@
   margin-top: 4%;
   margin-bottom: 4%;
 }
-/* .message-btn-modal {
-  display: flex;
-  justify-content: center;
-  font-size: 1rem;
-} */
+.message-btn-modal {
+  text-transform: none;
+  font-size: 1.2rem;
+}
+.message-btn-modal:hover {
+  text-transform: none;
+  font-size: 2rem;
+  transition: 0.3s;
+  /* color: rgb(24, 68, 68) !important; */
+}
 .message-textarea {
   min-height: 200px !important;
 }

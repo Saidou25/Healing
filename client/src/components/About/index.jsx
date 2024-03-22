@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import Sy from "../../assets/images/IMG-0105 copy.jpg";
 import nurseGuy from "../../assets/images/nurseGuy.jpeg";
 import nurseLady from "../../assets/images/nurseLady.jpeg";
-import AllReviews from "../../features/Reviews/AllReviews";
 import "./index.css";
 
 const About = () => {
@@ -51,7 +51,7 @@ const About = () => {
                 className="container-fluid choo"
                 // style={{ display: "flex", alignItems: "center" }}
               >
-                <img className="responsive" src={nurseGuy} alt="nurse icon" />
+                <img className="responsive" src={Sy} alt="nurse icon" />
               </div>
             </div>
             <div className="col-lg-8 col-sm-12">

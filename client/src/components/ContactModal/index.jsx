@@ -42,7 +42,7 @@ const ContactModal = (props) => {
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        <div className="message-btn-modal">message</div>
+        <div className="message-btn-modal">Message</div>
       </button>
 
       <div

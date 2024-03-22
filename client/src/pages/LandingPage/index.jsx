@@ -11,7 +11,7 @@ const LandingPage = () => {
           <SideMenu />
         </div>
       </div>
-      <div className="landing-title p-5 m-5">
+      <div className="landing-title">
         <NavLink className="col-12 landing text-light" to="/">
           Healing
         </NavLink>

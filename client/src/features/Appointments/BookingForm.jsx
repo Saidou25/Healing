@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { setHours, setMinutes } from "date-fns";
 import DatePicker from "react-datepicker";
-
+import "react-datepicker/dist/react-datepicker.css";
 // import "react-multi-date-picker/styles/backgrounds/bg-brown.css";
 import "./BookingForm.css";
 
@@ -34,6 +34,7 @@ export default function BookingForm({
                   </label>
                   <div className="choose-date mt-3 mb-2">
                     <DatePicker
+                    // className="bg-brown"
                       id="user_date"
                       timeIntervals={15}
                       // set to today for past appointment demo purpose. Will be set to new Date + 1 in future.

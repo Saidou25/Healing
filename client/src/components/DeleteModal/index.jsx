@@ -85,12 +85,12 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
             </div>
             {!confirm ? (
               <>
-                <div className="modal-body fs-4 m-2">
-                  <p className="sure">
+                <div className="modal-body fs-4 mx-2">
+                  <p className="sure mt-4">
                     Are you sure you want to delete your account?
                   </p>
                 </div>
-                <div className="row mt-5">
+                <div className="row mt-2">
                   <div className="col-6 my-2 pr-2">
                     <button
                       className="contact-me-button text-light bg-transparent btn fs-4"

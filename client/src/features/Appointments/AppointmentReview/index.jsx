@@ -55,9 +55,9 @@ const AppointmentReview = () => {
       setAppInformation("");
       setProfileInformation("");
       setFinalize(true);
-      // setTimeout(() => {
-      //   navigate("/Dashboard");
-      // }, 3000);
+      setTimeout(() => {
+        navigate("/Dashboard");
+      }, 3000);
     }
   }, [successAddingBooking, navigate]);
 
@@ -123,7 +123,7 @@ const AppointmentReview = () => {
     <div className="container-fluid mt-5">
       <div className="card card-app-review text-light">
         <div className="card-header app-review-header">
-          <h4 className="header-text bg-primary text-light my-3 py-5">
+          <h4 className="header-text bg-black text-light my-3 py-5">
             Please review your appointment information
           </h4>
         </div>
@@ -213,7 +213,7 @@ const AppointmentReview = () => {
               cancel
             </button>
             <button
-              className="col-5 btn btn-app-review btn-primary fs-5 m-3"
+              className="col-5 btn btn-app-review bg-black fs-5 m-3"
               type="button"
               onClick={handleSubmit}
             >
