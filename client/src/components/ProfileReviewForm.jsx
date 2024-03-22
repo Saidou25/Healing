@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { PatternFormat } from "react-number-format";
-import { useNavigate, useLocation, NavLink, Outlet } from "react-router-dom";
+import { useNavigate, useLocation, NavLink, Outlet, Navigate } from "react-router-dom";
 import { Regex } from "../utils/Regex.js";
 import SelectUSState from "react-select-us-states";
 // import { sendEmail } from "../utils/email.js";
 import "react-phone-number-input/style.css";
 import BookingSuccess from "../features/Appointments/BookingSuccess.jsx";
+import auth from "../utils/auth.js";
 // import "./index.css";
 
 const ProfileReviewForm = () => {
@@ -99,6 +100,10 @@ const ProfileReviewForm = () => {
     setError("");
     setConfirm(true);
   };
+
+  if (!auth.loggedIn()) {
+    return <Navigate to="/" replace />;
+  }
 
   if (finalize === true) {
     return (

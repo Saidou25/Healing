@@ -121,7 +121,7 @@
 }
 @media screen and (max-width: 1366px) {
   .img-appointment {
-    background-image: url("../../../assets/images/practitioner.jpeg");
+    /* background-image: url("../../../assets/images/practitioner.jpeg"); */
     min-height: 400px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -140,7 +140,7 @@
     margin-left: auto;
   }
   .img-appointment {
-    background-image: url("../../../assets/images/practitioner.jpeg");
+    /* background-image: url("../../../assets/images/practitioner.jpeg"); */
     min-height: 300px;
     background-repeat: no-repeat;
     background-size: cover;

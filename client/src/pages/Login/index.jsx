@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Spinner from "../../components/Spinner";
 import Auth from "../../utils/auth";
-import pic from "../../assets/images/practitioner.jpeg";
+// import pic from "../../assets/images/practitioner.jpeg";
 import Footer from "../../components/Footer";
 import "./index.css";
 

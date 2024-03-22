@@ -16,7 +16,6 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
 
   const logout = () => {
     Auth.logout();
-    console.log("logout success!");
   };
   const bye = () => {
     setConfirm(true);
@@ -30,11 +29,14 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
       const { data } = await deleteBookingdate({
         variables: { id: bookingdate._id },
       });
+      console.log("booking dates delete data", data)
     }
+
     try {
       const { data } = await deleteProfile({
         variables: { id: profileId },
       });
+      console.log("profile id", profileId, "data", data);
     } catch (e) {
       console.error(e);
     }
@@ -42,11 +44,11 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
       const { data } = await deleteUser({
         variables: { id: userId },
       });
+      console.log("userId id", userId, "data", data);
     } catch (e) {
       console.error(e);
     }
     logout();
-    console.log("success");
   };
 
   return (
@@ -118,7 +120,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
                 <div className="col-12 d-flex appointment-success mb-2">
                   <i className="fa-solid fa-check d-flex"></i>
                 </div>
-                <h2 className="col-12 signup-success d-flex justify-content-center">
+                <h2 className="col-12 signup-success text-light d-flex justify-content-center">
                   Success!
                 </h2>
                 <p className="col-12 signup-success d-flex justify-content-center">

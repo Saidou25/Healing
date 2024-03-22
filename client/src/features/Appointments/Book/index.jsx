@@ -1,18 +1,19 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { QUERY_BOOKINGDATES, QUERY_ME } from "../../../utils/queries.js";
 import { parseISO, setHours, setMinutes } from "date-fns";
 import { formatTime } from "../../../utils/dateUtil.js";
 import { chooseStartDate } from "../../../utils/chooseStartDate.js";
 import Footer from "../../../components/Footer/index.jsx";
 import BookingForm from "../BookingForm.jsx";
-import practitioner from "../../../assets/images/practitioner.jpeg";
+// import practitioner from "../../../assets/images/practitioner.jpeg";
 // import SideText from "../SideText.jsx";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from "../../../components/Navbar/index.jsx";
 import "./index.css";
+import auth from "../../../utils/auth.js";
 
 const Book = () => {
   const navigate = useNavigate();
@@ -110,12 +111,16 @@ const Book = () => {
     setTemplateParams(appInfo);
   };
 
+  if (!auth.loggedIn()) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
     <>
       <Navbar />
       <>
         <div className="container-appointment p-5">
-          <div className="img-appointment" src={practitioner} alt="care">
+          <div className="img-appointment">
             {showNavNav ? (
               <BookingForm
                 handleChange={handleChange}

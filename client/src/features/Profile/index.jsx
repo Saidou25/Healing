@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FaEnvelope, FaPhone, FaIdBadge, FaHome } from "react-icons/fa";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
@@ -8,16 +8,23 @@ import Footer from "../../components/Footer";
 import DeleteModal from "../../components/DeleteModal";
 import Navbar from "../../components/Navbar";
 import "./index.css";
+import auth from "../../utils/auth";
 
-const Profile = ({
-  userProfile,
-  userId,
-  myAppointments,
-  profileId,
-}) => {
+const Profile = () => {
  
+  // {
+  //   userProfile,
+  //   userId,
+  //   myAppointments,
+  //   profileId,
+  // }
+
   const { data, loading } = useQuery(QUERY_ME);
   const me = data?.me || [];
+
+  if (!auth.loggedIn()) {
+    return <Navigate to="/" replace />;
+  }
 
   if (loading) return <Spinner />;
 
@@ -81,7 +88,7 @@ const Profile = ({
                 <div className="text-profile m-2">
                   Last name: {me.profile.patientlastname}
                 </div>
-                {userProfile?.birthdate ? (
+                {me.profile?.birthdate ? (
                   <div className="text-profile m-2">
                     Birth date: {me.profile?.birthdate}
                   </div>
@@ -123,10 +130,10 @@ const Profile = ({
               </Link>
             </div>
               <DeleteModal
-                userProfile={userProfile}
-                userId={userId}
-                myAppointments={myAppointments}
-                profileId={profileId}
+                userProfile={me.profile}
+                userId={me._id}
+                myAppointments={me.bookingdates}
+                profileId={me.profile?._id}
               />
           </div>
         </div>

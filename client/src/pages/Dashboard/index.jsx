@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import UpcomingAppointments from "../../features/Appointments/UpcomingAppointments";
 import auth from "../../utils/auth";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import BookingNav from "../../components/Booking";
 import "./index.css";
 import { useQuery } from "@apollo/client";
@@ -72,7 +72,13 @@ const Dashboard = () => {
     }
   };
 
-  if (loading) return <Spinner />;
+  if (!auth.loggedIn()) {
+    return <Navigate to="/" replace />;
+  }
+  if (loading) {
+    return <Spinner />;
+  }
+
   if (auth.loggedIn()) {
     return (
       <>

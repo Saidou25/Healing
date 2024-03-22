@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "react-phone-number-input/style.css";
 import { PatternFormat } from "react-number-format";
 import SelectUSState from "react-select-us-states";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { UPDATE_PROFILE } from "../../utils/mutations";
 import { Regex } from "../../utils/Regex";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import "./index.css";
+import auth from "../../utils/auth";
 
 const UpdateMyProfileForm = (props) => {
   const profileId = props.profileId;
@@ -33,6 +34,7 @@ const UpdateMyProfileForm = (props) => {
   const [patientzip, setPatientZip] = useState(userProfile.patientzip);
   const [numberValue, setNumberValue] = useState("");
   const [error, setError] = useState("");
+
   const [updateProfile] = useMutation(UPDATE_PROFILE);
 
   const handleSubmit = async (e) => {
@@ -64,7 +66,7 @@ const UpdateMyProfileForm = (props) => {
           patientState: patientState,
         },
       });
-      console.log("success updating profile");
+     
       setNewValue("");
       setPatientCity("");
       setPatientAddress("");
@@ -77,6 +79,10 @@ const UpdateMyProfileForm = (props) => {
     }
     navigate("/Profile");
   };
+
+  if (!auth.loggedIn()) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <>
