@@ -24,3 +24,8 @@
 .card-body {
   padding: 0;
 }
+.btn-app-review:hover {
+  background-color: rgb(24, 68, 68) !important;
+  transition: 0.3s;
+  color: white;
+}

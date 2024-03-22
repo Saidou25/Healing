@@ -1,16 +1,24 @@
 .bookingnav {
-    background-color: rgba(0, 1, 1, 0.8);
-    margin-bottom: 2%;
+  background-color: rgba(0, 1, 1, 0.8);
+  margin-bottom: 2%;
 }
 
 .dashboard-text {
-    text-decoration: none;
-    padding: 0 !important;
-    margin: 0 !important;
+  text-decoration: none;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 .top-nav-item {
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.message-btn-modal {
+  font-style: normal !important;
+}
+.modal {
+  background: rgba(6, 6, 6, 0.7) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }

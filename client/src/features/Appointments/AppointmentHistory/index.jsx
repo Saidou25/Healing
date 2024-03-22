@@ -66,7 +66,7 @@ const AppointmentHistory = () => {
         <div className="container-history text-light py-5">
           <div className="row review-border">
             <div className="col-4 d-flex test">
-              <h3 className="review-list-title my-5">Appointment history</h3>
+              <h3 className="review-list-title  text-light my-5">Appointment history</h3>
             </div>
             <div className="col-4 text-light d-flex justify-content-end">
               <NavLink to="/Dashboard" className="text-white my-5 fs-3">

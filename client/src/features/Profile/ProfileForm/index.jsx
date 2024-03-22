@@ -78,11 +78,15 @@ const ProfileForm = () => {
   return (
     <>
       <main>
-        <div className="container-fluid">
-          <div className="card-appointment">
+        <div className="container-fluid mt-5">
+          <div className="card card-app-review text-light">
+          <div className="card-header app-review-header">
+        <h4 className="card-header-update bg-black rounded-0 text-light my-3 py-5">
+            Create your profile
+          </h4>
             <form>
-              <div className="row">
-                <div className="col-lg-6 col-sm-12 p-2">
+              <div className="row mt-5">
+                <div className="col-lg-12 col-sm-12 p-2">
                   <div>
                     <label className="form-label1">Gender</label>
                     <br />
@@ -214,7 +218,7 @@ const ProfileForm = () => {
                 </div>
                 <div className="col-12 d-flex justify-content-center mt-4">
                   <button
-                    className="btn button-profile btn-primary rounded-0"
+                    className="btn button-profile bg-black rounded-0 mb-5"
                     onClick={(e) => handleFormSubmit(e)}
                     type="submit"
                   >
@@ -223,6 +227,7 @@ const ProfileForm = () => {
                 </div>
               </div>
             </form>
+          </div>
           </div>
         </div>
       </main>

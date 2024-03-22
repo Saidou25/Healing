@@ -27,11 +27,11 @@ const Profile = ({
         <Navbar />
         <div className="container-profile">
           <div className="flex-row justify-space-between">
-            <div className="col-12 ">
-              <h3 className="text-profile my-profile-titles mb-5 mt-5 text-light">
+            <div className="col-12 col-no-profile mb-5">
+              <h3 className="text-profile my-profile-titles py-5 text-light">
                 Login
               </h3>
-              <div className="card profile-body p-3 text-light">
+              <div className="card profile-body mb-5 p-3 text-light">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}

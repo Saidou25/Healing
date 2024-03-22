@@ -13,6 +13,11 @@
 .card-header {
   border: 0;
 }
+.col-no-profile {
+  width: 40%;
+  margin: auto;
+  padding-bottom: 5% !important;
+}
 .col-profile {
   width: 40%;
   margin: auto;
@@ -21,6 +26,7 @@
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
   border-radius: 10px;
+  margin-bottom: 5% !important;
 }
 .update-profile {
   width: 100%;

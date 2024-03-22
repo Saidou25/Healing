@@ -8,7 +8,7 @@ import { chooseStartDate } from "../../../utils/chooseStartDate.js";
 import Footer from "../../../components/Footer/index.jsx";
 import BookingForm from "../BookingForm.jsx";
 import practitioner from "../../../assets/images/practitioner.jpeg";
-import SideText from "../SideText.jsx";
+// import SideText from "../SideText.jsx";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from "../../../components/Navbar/index.jsx";
@@ -135,7 +135,7 @@ const Book = () => {
               </>
             )}
           </div>
-          <SideText />
+          {/* <SideText /> */}
         </div>
       </>
       <div className="footer-appointment">

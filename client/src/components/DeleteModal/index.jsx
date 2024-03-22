@@ -56,69 +56,76 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
           type="button"
           className="btn btn-danger btn-modal my-5"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#staticBackdrop"
         >
           delete
         </button>
-      </div>
-      <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div
-          className="modal fade"
-          id="exampleModal"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title-delete fs-1" id="exampleModalLabel">
-                  Delete Account
-                </h1>
-                <button
-                  type="button"
-                  className="btn-close btn btn-primary mb-5"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              {!confirm ? (
-                <>
-                  <div className="modal-body fs-4 mt-4 mb-4">
-                    <p className="sure">
-                      Are you sure you want to delete your account?
-                    </p>
-                  </div>
-                  <div className="row mb-3 p-3">
+      </div>{" "}
+      <div
+        className="modal fade"
+        id="staticBackdrop"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1
+                className="modal-title-delete fs-1 text-light"
+                id="exampleModalLabel"
+              >
+                Delete Account
+              </h1>
+              <button
+                type="button"
+                className="btn-close btn btn-primary mb-5"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            {!confirm ? (
+              <>
+                <div className="modal-body fs-4 m-2">
+                  <p className="sure">
+                    Are you sure you want to delete your account?
+                  </p>
+                </div>
+                <div className="row mt-5">
+                  <div className="col-6 my-2 pr-2">
                     <button
-                      className="col-6 btn btn-secondary fs-4"
+                      className="contact-me-button text-light bg-transparent btn fs-4"
+                      // className="btn btn-secondary fs-4 "
                       type="button"
                       data-bs-dismiss="modal"
                     >
                       Close
                     </button>
+                  </div>
+                  <div className="col-6 my-2 pl-2">
                     <button
-                      className="col-6 btn btn-danger fs-4"
+                      className="contact-me-button btn bg-danger text-light fs-4"
+                      // className="btn btn-danger fs-4"
                       type="button"
                       onClick={bye}
                     >
                       confirm
                     </button>
                   </div>
-                </>
-              ) : (
-                <main className="row container-delete-success mt-5 mb-5">
-                  <div className="col-12 d-flex appointment-success mb-2">
-                    <i className="fa-solid fa-check d-flex"></i>
-                  </div>
-                  <h2 className="col-12 signup-success d-flex justify-content-center">
-                    Success!
-                  </h2>
-                  <p className="col-12 signup-success d-flex justify-content-center">
-                    Good bye...
-                  </p>
-                </main>
-              )}
-            </div>
+                </div>
+              </>
+            ) : (
+              <main className="row container-delete-success mt-5 mb-5">
+                <div className="col-12 d-flex appointment-success mb-2">
+                  <i className="fa-solid fa-check d-flex"></i>
+                </div>
+                <h2 className="col-12 signup-success d-flex justify-content-center">
+                  Success!
+                </h2>
+                <p className="col-12 signup-success d-flex justify-content-center">
+                  Good bye...
+                </p>
+              </main>
+            )}
           </div>
         </div>
       </div>

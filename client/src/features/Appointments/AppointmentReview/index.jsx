@@ -55,9 +55,9 @@ const AppointmentReview = () => {
       setAppInformation("");
       setProfileInformation("");
       setFinalize(true);
-      setTimeout(() => {
-        navigate("/Dashboard");
-      }, 3000);
+      // setTimeout(() => {
+      //   navigate("/Dashboard");
+      // }, 3000);
     }
   }, [successAddingBooking, navigate]);
 
@@ -111,7 +111,7 @@ const AppointmentReview = () => {
       <main className="container-fluid mt-5">
         <div className="card card-appointment">
           <BookingSuccess
-            style={{ marginBottom: "170px" }}
+            style={{ marginBottom: "5%" }}
             message="Success booking your appointment."
           />
         </div>
@@ -123,7 +123,7 @@ const AppointmentReview = () => {
     <div className="container-fluid mt-5">
       <div className="card card-app-review text-light">
         <div className="card-header app-review-header">
-          <h4 className="header-text bg-primary py-5 text-light mt-3 mb-3">
+          <h4 className="header-text bg-primary text-light my-3 py-5">
             Please review your appointment information
           </h4>
         </div>
