@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Footer from "../../components/Footer";
 import pic from "../../assets/images/nenuphar.jpeg";
-import Spinner from "../../components/Spinner";
+import ButtonSpinner from "../../components/ButtonSpinner";
 import Auth from "../../utils/auth";
 import "./index.css";
+import Success from "../../components/Success";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -47,31 +48,17 @@ const Signup = () => {
     }
   };
 
-  if (loading) return <Spinner />;
-
-  if (confirm === true) {
-    return (
-      <main className="row container-success">
-        <div className="col-12 appointment-success d-flex mb-2">
-          <i className="d-flex fa-solid fa-check"></i>
-        </div>
-        <h2 className="col-12 signup-success d-flex justify-content-center">
-          Success!
-        </h2>
-        <p className="col-12 signup-success d-flex justify-content-center">
-          Let's now head to your dashboard...
-        </p>
-      </main>
-    );
+  if (confirm) {
+    return <Success message={`Welcome ${username}.`} />;
   }
   return (
     <>
       <div className="go-back d-flex justify-content-center">
-        <Link to="/">
+        <NavLink to="/">
           <button type="btn" className="btn-go-back text-white">
             go back
           </button>
-        </Link>
+        </NavLink>
       </div>
       <div className="signup-login-error">
         {error && (
@@ -131,8 +118,9 @@ const Signup = () => {
                   <button
                     className="btn sign-form mt-5 btn-signup rounded-0 my-5"
                     type="submit"
+                    disabled={loading}
                   >
-                    Submit
+                    {loading ? <ButtonSpinner /> : <>Submit</>}
                   </button>
                 </div>
               </form>

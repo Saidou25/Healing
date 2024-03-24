@@ -7,12 +7,10 @@ const useDeletReview = (deleteReviewData) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [successDeletingReview, setSuccessDeletingReview] = useState("");
-  // const [deleteReviewI, setDeleteReviewId] = useState("");
 
-  // console.log("loading", loading);
 
   const [deleteReview] = useMutation(DELETE_REVIEW, {
-    // variables: { id: deleteReviewI },
+    variables: { id: deleteReviewData },
     update(cache, { data: { deleteReview } }) {
       try {
         const { reviews } = cache.readQuery({ query: QUERY_REVIEWS });
@@ -44,39 +42,34 @@ const useDeletReview = (deleteReviewData) => {
   });
 
   const removeReview = useCallback(async () => {
-    // console.log("deleteReviewData", deleteReviewData);
-    if (!deleteReviewData) {
-      console.log("no luck", deleteReviewData);
-      return;
-    }
     setLoading(true);
-    // console.log("lucky you, deleteReviewData", deleteReviewData);
 
+    const deleteReviewId = deleteReviewData;
     try {
-      const { data } = deleteReview({
-        variables: { id: deleteReviewData },
+      const { data } = await deleteReview({
+        variables: { id: deleteReviewId },
       });
     } catch (err) {
       setError(err.message);
       setLoading(false);
     } finally {
-      // setDeleteReviewId(deleteReviewData._id)
       setSuccessDeletingReview("Review was successfully deleted");
+      // setDeleteReviewId(deleteReviewData);
       setError("");
       setLoading(false);
+      // setTimeout(() => {
+      //     setSuccessDeletingReview("");
+      //   }, [2000]);
     }
   }, [deleteReviewData, deleteReview]);
 
   useEffect(() => {
-    // console.log("use effect delete review data", deleteReviewData);
     if (!deleteReviewData) {
-      // console.log("there is no delete review data", deleteReviewData);
       setSuccessDeletingReview("");
       setError("");
+      setLoading(false);
       return;
     } else {
-      // console.log("there is delete review data", deleteReviewData);
-      setLoading(true);
       removeReview();
     }
   }, [deleteReviewData, removeReview]);

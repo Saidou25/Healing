@@ -102,6 +102,23 @@
   transition: 0.3s;
   color: white;
 }
+.card-success {
+  background-color: rgba(0, 1, 1, 0.8);
+  margin-right: auto;
+  margin-left: auto;
+  animation: fadeInSuccess 0.5s linear forwards;
+}
+
+@keyframes fadeInSuccess {
+  from {
+    backgound: rgba(131, 232, 245, 0.05);
+    color: rgba(255, 255, 255, 0.05);
+  }
+  to {
+    background: rgba(131, 232, 245, 0.4);
+    color: rgba(255, 255, 255, 1);
+  }
+}
 @media screen and (max-width: 800px) {
   .container-signup {
     width: 90%;

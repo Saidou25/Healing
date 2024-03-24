@@ -1,18 +1,21 @@
 import React from "react";
+import "./Success.css";
 
-const BookingSuccess = ({ style, message }) => {
+const Success = ({ message }) => {
   return (
-    <main className="row container-success">
-      <div className="col-12 d-flex appointment-success mb-2">
-        <i className="fa-solid fa-check d-flex"></i>
+    <div className="success-background">
+      <div className="card card-success p-4">
+        <div className="row row-success">
+          <div className="col-12 d-flex appointment-success">
+            <i className="fa-solid fa-check d-flex"></i>
+          </div>
+          <h3 className="col-12 signup-success d-flex justify-content-center pt-3">
+            Success!
+          </h3>
+          <p className="col-12 d-flex justify-content-center">{message}</p>
+        </div>
       </div>
-      <h2 className="col-12 signup-success d-flex justify-content-center">
-        Success!
-      </h2>
-      <p className="col-12 d-flex justify-content-center mt-4" style={style}>
-        {message}
-      </p>
-    </main>
+    </div>
   );
 };
-export default BookingSuccess;
+export default Success;

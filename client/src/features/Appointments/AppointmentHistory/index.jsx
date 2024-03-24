@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../../utils/queries";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
 // import Spinner from "../../components/Spinner";
 // import { useUser } from "../../../context/userContext";
 import useDeleteBooking from "../useDeleteBooking";
 import trash from "../../../assets/images/trash.png";
 import ButtonSpinner from "../../../components/ButtonSpinner";
-import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../../utils/queries";
 import "./index.css";
-import { NavLink } from "react-router-dom";
-import { AiOutlineClose } from "react-icons/ai";
 
 const AppointmentHistory = () => {
+  const navigate = useNavigate();
+
   const [deleteBookingData, setDeleteBookingData] = useState("");
 
   const date = new Date();
@@ -20,7 +22,8 @@ const AppointmentHistory = () => {
   const todaysMonthStr = todaysMonth.toString();
   const todaysDateStr = todaysDate.toString();
 
-  const { loading } = useDeleteBooking(deleteBookingData);
+  const { loading, successDeletingBooking } =
+    useDeleteBooking(deleteBookingData);
 
   const { data: meData } = useQuery(QUERY_ME);
   const me = meData?.me || [];
@@ -45,13 +48,23 @@ const AppointmentHistory = () => {
     (bookingdate) => today >= bookingdate.digitalAppointment
   );
 
+  useEffect(() => {
+    if (successDeletingBooking && !history?.length) {
+      setDeleteBookingData("");
+      navigate("/Dashboard");
+    }
+  }, [history, successDeletingBooking, navigate]);
+
   return (
     <div>
       {!history?.length ? (
         <div className="container-history mt-5 mb-5">
           <div className="card no-history review-list text-light">
-            <NavLink to="/Dashboard" className="text-white fs-3 px-3 pt-3"
-            style={{ display: "flex", justifyContent: "flex-end" }}>
+            <NavLink
+              to="/Dashboard"
+              className="text-white fs-3 px-3 pt-3"
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
               <AiOutlineClose />
             </NavLink>
             <p className="card-header history-header fs-3">
@@ -66,7 +79,9 @@ const AppointmentHistory = () => {
         <div className="container-history text-light py-5">
           <div className="row review-border">
             <div className="col-4 d-flex test">
-              <h3 className="review-list-title  text-light my-5">Appointment history</h3>
+              <h3 className="review-list-title  text-light my-5">
+                Appointment history
+              </h3>
             </div>
             <div className="col-4 text-light d-flex justify-content-end">
               <NavLink to="/Dashboard" className="text-white my-5 fs-3">
@@ -94,6 +109,7 @@ const AppointmentHistory = () => {
                         <div className="col-4 d-flex justify-content-end">
                           <button
                             type="button"
+                            disabled={loading}
                             className="btn delete-appointment rounded-0"
                             onClick={() => setDeleteBookingData(bookingdate)}
                           >

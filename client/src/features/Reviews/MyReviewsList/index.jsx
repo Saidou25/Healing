@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-import "./index.css";
+import React, { useEffect, useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../../utils/queries";
+import { NavLink, useNavigate } from "react-router-dom";
 // import { useUser } from "../../../context/userContext";
 import useDeletReview from "../useDeleteReview";
 import RatingList from "../../../components/RatingList";
 import profileIcon from "../../../assets/images/profileIcon.png";
 import trash from "../../../assets/images/trash.png";
 import ButtonSpinner from "../../../components/ButtonSpinner";
-import { AiOutlineClose } from "react-icons/ai";
-import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../../utils/queries";
-import { NavLink } from "react-router-dom";
+import "./index.css";
 
 const MyReviewsList = () => {
+  const navigate = useNavigate();
+
   const [deleteReviewData, setDeleteReviewData] = useState("");
 
   // const { me } = useUser();
@@ -23,15 +25,17 @@ const MyReviewsList = () => {
     useDeletReview(deleteReviewData);
 
   const handleSubmit = (review) => {
-    console.log(review._id);
-    // if (!review?._id) {
-    //   console.log("no review", review);
-    //   return;
-    // } else {
     const reviewId = review._id;
     setDeleteReviewData(reviewId);
-    // }
   };
+
+  useEffect(() => {
+  
+    if (successDeletingReview && !myReviews?.length) {
+      setDeleteReviewData("");
+      navigate("/Dashboard");
+    }
+  }, [myReviews, successDeletingReview, navigate]);
 
   return (
     <>
@@ -105,7 +109,7 @@ const MyReviewsList = () => {
                                 disabled={loading}
                                 onClick={() => handleSubmit(review)}
                               >
-                                {loading ? (
+                                {loading && (deleteReviewData === review._id) ? (
                                   <ButtonSpinner />
                                 ) : (
                                   <img

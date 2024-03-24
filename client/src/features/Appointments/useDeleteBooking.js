@@ -33,9 +33,6 @@ const useDeleteBooking = (deleteBookingData) => {
   });
 
   const removeBooking = useCallback(async () => {
-    if (!deleteBookingData) {
-      return;
-    }
     setLoading(true);
     const deleteBookingId = deleteBookingData._id;
 
@@ -50,8 +47,9 @@ const useDeleteBooking = (deleteBookingData) => {
           reason: deleteBookingData?.reason,
         },
       });
+      
     } catch (err) {
-      console.error(err.message);
+      setDeleteBookingError(err.message);
     } finally {
       setDeleteBookingdateId(deleteBookingId);
       setSuccessDeletingBooking("success deleting booking");

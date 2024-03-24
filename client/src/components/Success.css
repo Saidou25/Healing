@@ -1,0 +1,26 @@
+.success-background {
+  /* background-color: rgba(0, 1, 1, 0.8); */
+  /* padding: 5%; */
+  /* margin-top: 14%; */
+  /* width: 30%; */
+  /* margin-right: auto;
+  margin-left: auto; */
+}
+
+.card-success {
+  background-color: rgba(0, 1, 1, 0.8);
+  margin-right: auto;
+  margin-left: auto;
+  animation: fadeInSuccess 0.5s linear forwards;
+}
+
+@keyframes fadeInSuccess {
+  from {
+    backgound: rgba(131, 232, 245, 0.05);
+    color: rgba(255, 255, 255, 0.05);
+  }
+  to {
+    background: rgba(131, 232, 245, 0.4);
+    color: rgba(255, 255, 255, 1);
+  }
+}

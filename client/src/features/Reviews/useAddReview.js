@@ -48,6 +48,9 @@ const useAddReview = (addReviewData) => {
         setLoading(false);
         setSuccessAddingReview("Your Review has been created");
         setError("");
+        setTimeout(() => {
+          setSuccessAddingReview("");
+        }, [2000])
       }
     },
     [addReviewData, addReview]

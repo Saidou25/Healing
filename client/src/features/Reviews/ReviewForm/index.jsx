@@ -13,8 +13,9 @@ const ReviewForm = ({ username, today }) => {
     rating: "4",
   });
   const [addReviewData, setAddReviewData] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const { successAddingReview, loading, error } = useAddReview(addReviewData);
+  const { successAddingReview, loading, errorAddingReview } = useAddReview(addReviewData);
 
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
@@ -101,11 +102,15 @@ const ReviewForm = ({ username, today }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setErrorMessage("");
     setAddReviewData({ ...formState });
+    if (!formState.title || !formState.reviewText) {
+      setAddReviewData("")
+      setErrorMessage("All fields need to be filled!");
+    }
     //     if (title.length < 2 || reviewText.length < 2) {
     //       setConfirm(false);
-    //       setError("All fields need filled with two charactes minimum!");
+    //       setError("All fields need to be filled with two charactes minimum!");
     //       return;
     //     }
     //     try {
@@ -141,6 +146,7 @@ const ReviewForm = ({ username, today }) => {
   };
   useEffect(() => {
     if (successAddingReview) {
+      setErrorMessage("");
       setFormState({
         username: username,
         reviewDate: today,
@@ -164,6 +170,7 @@ const ReviewForm = ({ username, today }) => {
                 <label className="form-label1 my-4 text-light">Title</label>
                 <br />
                 <input
+                required
                   className="form-input review-form-input mb-3 text-light"
                   placeholder="title..."
                   name="title"
@@ -247,7 +254,20 @@ const ReviewForm = ({ username, today }) => {
                     </Button>
                   </div>
                 </div>
-
+                <div>
+                <div>
+                {successAddingReview && (
+                  <div className="bg-success text-white mb-5">
+                    <p className="review-confirm m-2">{successAddingReview}</p>
+                  </div>
+                )}
+              </div>
+                {(errorMessage || errorAddingReview) && (
+                  <div className="bg-danger text-white mb-5">
+                    <p className="review-error mb-4">{errorMessage}</p>
+                  </div>
+                )}
+              </div>
                 <Button
                   className="btn btn-block rounded-0 btn-info"
                   type="submit"
@@ -256,20 +276,7 @@ const ReviewForm = ({ username, today }) => {
                   {loading ? <ButtonSpinner /> : <>Submit</>}
                 </Button>
               </form>
-              <div>
-                {error && (
-                  <div className="bg-danger text-white mb-5">
-                    <p className="review-error mb-4">{error}</p>
-                  </div>
-                )}
-              </div>
-              <div>
-                {confirm && (
-                  <div className="bg-success text-white mb-5">
-                    <p className="review-confirm m-2">{confirm}</p>
-                  </div>
-                )}
-              </div>
+            
             </div>
           </div>
         </div>

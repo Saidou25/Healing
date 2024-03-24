@@ -7,10 +7,14 @@ import Auth from "../../utils/auth";
 // import pic from "../../assets/images/practitioner.jpeg";
 import Footer from "../../components/Footer";
 import "./index.css";
+import ButtonSpinner from "../../components/ButtonSpinner";
+import Success from "../../components/Success";
 
 const Login = () => {
   const navigate = useNavigate();
   const [formState, setFormState] = useState({ email: "", password: "" });
+  const [confirm, setConfirm] = useState("");
+
   const [login, { error, data, loading }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
@@ -32,18 +36,25 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
-
-      navigate("/Dashboard", { state: { formState } });
     } catch (e) {
       console.error(e);
+    } finally {
+      setConfirm(true);
+      // clear form values
+      setFormState({
+        email: "",
+        password: "",
+      });
+      setTimeout(() => {
+        setConfirm(false);
+        navigate("/Dashboard", { state: { formState } });
+      }, 1500);
     }
-    // clear form values
-    setFormState({
-      email: "",
-      password: "",
-    });
   };
-  if (loading) return <Spinner />;
+
+  if (confirm) {
+    return <Success message={`Welcome ${data?.login.user.username}.`} />;
+  }
   return (
     <>
       <div className="go-back d-flex justify-content-center">
@@ -61,58 +72,53 @@ const Login = () => {
         )}
       </div>
       {/* <div className="design"> */}
-        <main className="container-login g-0 p-5">
-          <div className="card login my-5">
-            <h4 className="card-header-update log-form bg-black rounded-0 text-light p-4 mt-5"
-            style={{ width: "90%", fontStyle: "normal" }}>
-              Login
-            </h4>
-            <div className="card-body p-3">
-              {data ? (
-                <p>
-                  Success! You may now head{" "}
-                  <Link to="/Dashboard">to your Dashboard.</Link>
-                </p>
-              ) : (
-                <form  className="log-form px-5" onSubmit={handleFormSubmit}>
-                  <label className="log-form text-light mt-0">Email</label>
-                  <br />
-                  <input
-                    className="log-form mb-4"
-                    placeholder="Your holder email"
-                    name="email"
-                    type="email"
-                    value={formState.email}
-                    onChange={handleChange}
-                  />{" "}
-                  <br />
-                  <label className="log-form text-light mt-0">Password</label>
-                  <br />
-                  <input
-                    className="log-form mt-3"
-                    placeholder="******"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
-                    autoComplete="on"
-                  />{" "}
-                  <br />
-                  <div>
-                  </div>
-                  <div className="btn-position">
-                  <button
-                    className="btn btn-login log-form rounded-0 my-5"
-                    type="submit"
-                  >
-                    Submit
-                  </button>
-                  </div>
-                </form>
-              )}
-            </div>
+      <main className="container-login g-0 p-5">
+        <div className="card login my-5">
+          <h4
+            className="card-header-update log-form bg-black rounded-0 text-light p-4 mt-5"
+            style={{ width: "90%", fontStyle: "normal" }}
+          >
+            Login
+          </h4>
+          <div className="card-body p-3">
+            <form className="log-form px-5" onSubmit={handleFormSubmit}>
+              <label className="log-form text-light mt-0">Email</label>
+              <br />
+              <input
+                className="log-form mb-4"
+                placeholder="Your holder email"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange}
+              />{" "}
+              <br />
+              <label className="log-form text-light mt-0">Password</label>
+              <br />
+              <input
+                className="log-form mt-3"
+                placeholder="******"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange}
+                autoComplete="on"
+              />{" "}
+              <br />
+              <div></div>
+              <div className="btn-position">
+                <button
+                  className="btn btn-login log-form rounded-0 my-5"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? <ButtonSpinner /> : <>Submit</>}
+                </button>
+              </div>
+            </form>
           </div>
-        </main>
+        </div>
+      </main>
       {/* </div> */}
       <Footer />
     </>
