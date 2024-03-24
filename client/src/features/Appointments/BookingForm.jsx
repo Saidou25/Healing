@@ -20,7 +20,7 @@ export default function BookingForm({
 }) {
   return (
     <div className="container-fluid">
-      <div className="card appointment-card text-light mt-5 p-5">
+      <div className="card review-list appointment-card text-light mt-5 p-5">
         <h4 className="card-header-appointment bg-black rounded-0 text-light p-4">
           Book your appointment
         </h4>

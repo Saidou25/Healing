@@ -25,7 +25,22 @@
 .review-border {
   padding-right: 4%;
 }
-
+.review-list {
+  background: rgba(131, 232, 245, 0.05);
+}
+.review-list {
+  animation: fadeInSuccess 0.4s linear forwards;
+}
+@keyframes fadeInSuccess {
+  from {
+    background: rgba(131, 232, 245, 0.05);
+    color: rgba(255, 255, 255, 0.05);
+  }
+  to {
+    background: rgba(131, 232, 245, 0.4);
+    color: rgba(255, 255, 255, 1);
+  }
+}
 @media screen and (max-width: 680px) {
   .review-list-title {
     text-align: center;

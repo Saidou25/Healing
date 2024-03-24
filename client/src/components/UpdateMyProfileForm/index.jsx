@@ -93,7 +93,7 @@ const UpdateMyProfileForm = (props) => {
             Please modify the fields you would like to update with your new
             information.
           </p>
-          <div className="card update-profile-card mb-5 p-5">
+          <div className="card review-list update-profile-card mb-5 p-5">
           <h4 className="card-header-update bg-black rounded-0 text-light p-4">
             Update profile
           </h4>

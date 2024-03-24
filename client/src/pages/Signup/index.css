@@ -16,11 +16,8 @@
   border-width: 1px;
   transition: 0.5s;
 }
-.bg-image {
-  /* background-image: url("../../assets/images/nenuphar.jpeg"); */
-  /* min-height: 90%; */
+/* .bg-image {
   min-height: 600px;
-  /* background-position: center; */
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -28,11 +25,8 @@
   margin-left: 6%;
   margin-right: 6%;
   margin-bottom: 7%;
-}
+} */
 .container-signup {
-  /* position: absolute;
-  right: 0;
-  width: 450px; */
   margin-top: 12%;
   background-color: rgba(0, 1, 1, 0.8);
   width: 90%;
@@ -54,6 +48,7 @@
   margin-right: 6%;
   text-align: center;
 }
+
 /* input {
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
@@ -102,14 +97,20 @@
   transition: 0.3s;
   color: white;
 }
-.card-success {
-  background-color: rgba(0, 1, 1, 0.8);
-  margin-right: auto;
-  margin-left: auto;
-  animation: fadeInSuccess 0.5s linear forwards;
-}
+/* .success-container { */
+  /* background-color: rgba(0, 1, 1, 0.8) !important; */
+  /* background-color: rgba(131, 232, 245, 0.4); */
+  /* margin-right: auto; */
+  /* margin-left: auto; */
+  /* animation: fadeInSuccess 0.5s linear forwards; */
+   /* padding: 5%; */
+  /* margin-top: 14%; */
+  /* width: 30%; */
+  /* margin-right: auto;
+  margin-left: auto; */
+/* } */
 
-@keyframes fadeInSuccess {
+/* @keyframes fadeInSuccess {
   from {
     backgound: rgba(131, 232, 245, 0.05);
     color: rgba(255, 255, 255, 0.05);
@@ -118,7 +119,7 @@
     background: rgba(131, 232, 245, 0.4);
     color: rgba(255, 255, 255, 1);
   }
-}
+} */
 @media screen and (max-width: 800px) {
   .container-signup {
     width: 90%;
@@ -140,22 +141,21 @@
     position: relative;
     /* width: 450px; */
   }
-
-  .bg-image {
+.success-container {
+   padding: 5%;
+  margin-top: 14%;
+  width: 30% !important;
+  /* margin-right: auto;
+  margin-left: auto; */
+}
+  /* .bg-image {
     background-image: url("../../assets/images/nenuphar.jpeg");
-    /* min-height: 90%; */
+    min-height: 90%;
     min-height: 600px;
     background-position: center;
     margin-bottom: 10%;
-  }
+  } */
 }
-@media screen and (max-width: 550px) {
-  .bg-image {
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-bottom: 15%;
-  }
-  }
 
 @media screen and (max-width: 414px) {
   .container-signup {
@@ -169,16 +169,16 @@
     margin-right: 2%;
     text-align: center;
   }
-  .bg-image {
+  /* .bg-image {
     margin-left: 2%;
     margin-right: 2%;
     
-  }
+  } */
     .signup {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
     --bs-card-border-width: 0;
-    background-color: rgba(252, 252, 252, 0.6);
+    /* background-color: rgba(252, 252, 252, 0.6); */
   }
 }

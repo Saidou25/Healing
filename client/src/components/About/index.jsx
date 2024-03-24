@@ -13,7 +13,7 @@ const About = () => {
       <main className="about-main p-5">
         {/* <div className="container-about"> */}
         <h3 className="reiki-title text-light m-5">What is Reiki</h3>
-        <div className="card card-about text-light m-5">
+        <div className="card review-list card-about text-light m-5">
           <p>From Wikipedia, the free encyclopedia.</p>
           <p>
             Reiki reiki is a Japanese form of energy healing, a type of
@@ -41,7 +41,7 @@ const About = () => {
 
         <h3 className="team-title text-light m-5">Our team</h3>
 
-        <div className="card card-about mb-4 m-5">
+        <div className="card review-list card-about mb-4 m-5">
           <div className="row text-light">
             <div
               className="col-lg-4 col-sm-12"
@@ -69,7 +69,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="card card-about mb-4 m-5">
+        <div className="card review-list card-about mb-4 m-5">
           <div className="row text-light">
             <div className="col-lg-8 col-sm-12">
               <div className="p-2"> Nancy</div>
@@ -96,7 +96,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="card card-about mb-4 m-5">
+        <div className="card review-list card-about mb-4 m-5">
           <div className="row text-light">
             <div
               className="col-lg-4 col-sm-12"

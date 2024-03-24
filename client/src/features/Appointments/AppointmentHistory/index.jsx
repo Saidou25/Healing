@@ -59,7 +59,7 @@ const AppointmentHistory = () => {
     <div>
       {!history?.length ? (
         <div className="container-history mt-5 mb-5">
-          <div className="card no-history review-list text-light">
+          <div className="card review-list no-history text-light">
             <NavLink
               to="/Dashboard"
               className="text-white fs-3 px-3 pt-3"
@@ -93,7 +93,7 @@ const AppointmentHistory = () => {
             {history &&
               history.map((bookingdate) => (
                 <div key={bookingdate._id} className="col-8 history-column">
-                  <div className="card history mb-4 text-light">
+                  <div className="card review-list history mb-4 text-light">
                     <div className="card-header fs-3">
                       Previous appointment:
                     </div>

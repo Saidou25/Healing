@@ -92,14 +92,14 @@ const AppointmentReview = () => {
   if (errorAddingBooking) {
     return (
       <main className="container-fluid mt-5">
-        <div className="card card-appointment">{errorAddingBooking}</div>
+        <div className="card review-list card-appointment">{errorAddingBooking}</div>
       </main>
     );
   }
   if (errorAddingProfile) {
     return (
       <main className="container-fluid mt-5">
-        <div className="card card-appointment">
+        <div className="card review-list card-appointment">
           {/* {errorAddingProfile} */}
           <ErrorComponent message={errorAddingProfile} />
         </div>
@@ -109,7 +109,7 @@ const AppointmentReview = () => {
   if (finalize) {
     return (
       <main className="container-fluid mt-5">
-        <div className="card card-appointment">
+        <div className="card review-list card-appointment">
           <BookingSuccess
             style={{ marginBottom: "5%" }}
             message="Success booking your appointment."
@@ -121,7 +121,7 @@ const AppointmentReview = () => {
 
   return (
     <div className="container-fluid mt-5">
-      <div className="card card-app-review text-light">
+      <div className="card review-list card-app-review text-light">
         <div className="card-header app-review-header">
           <h4 className="header-text bg-black text-light my-3 py-5">
             Please review your appointment information

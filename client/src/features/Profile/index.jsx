@@ -38,7 +38,7 @@ const Profile = () => {
               <h3 className="text-profile my-profile-titles py-5 text-light">
                 Login
               </h3>
-              <div className="card profile-body mb-5 p-3 text-light">
+              <div className="card review-list profile-body mb-5 p-3 text-light">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}
@@ -66,7 +66,7 @@ const Profile = () => {
               <h3 className="text-profile my-profile-titles text-light py-5">
                 Login
               </h3>
-              <div className="card profile-body text-light p-3">
+              <div className="card review-list profile-body text-light p-3">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}
@@ -81,7 +81,7 @@ const Profile = () => {
               <h3 className="text-profile my-profile-titles text-light mb-5 mt-5">
                 General
               </h3>
-              <div className="card profile-body text-light p-3 ">
+              <div className="card review-list profile-body text-light p-3 ">
                 <div className="text-profile m-2">
                   First name: {me.profile.patientfirstname}
                 </div>
@@ -102,7 +102,7 @@ const Profile = () => {
               <h3 className="text-profile my-profile-titles text-light mb-5 mt-5">
                 Contact
               </h3>
-              <div className="card profile-body text-light p-3">
+              <div className="card review-list profile-body text-light p-3">
                 <div className="text-profile">
                   <FaPhone className="icon m-2" />
                   {me.profile.patientnumber}

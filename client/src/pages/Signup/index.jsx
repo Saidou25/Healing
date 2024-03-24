@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Footer from "../../components/Footer";
-import pic from "../../assets/images/nenuphar.jpeg";
 import ButtonSpinner from "../../components/ButtonSpinner";
 import Auth from "../../utils/auth";
-import "./index.css";
 import Success from "../../components/Success";
+import "./index.css";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -40,17 +39,15 @@ const Signup = () => {
       if (data) {
         setConfirm(true);
         setTimeout(() => {
+          setConfirm(false);
           navigate("/Dashboard");
-        }, 3000);
+        }, 2000);
       }
     } catch (e) {
       console.error(e);
     }
   };
 
-  if (confirm) {
-    return <Success message={`Welcome ${username}.`} />;
-  }
   return (
     <>
       <div className="go-back d-flex justify-content-center">
@@ -67,67 +64,75 @@ const Signup = () => {
           </div>
         )}
       </div>
-      <div className="bg-image" src={pic} alt="care">
+
+      {confirm ? (
+        <div className="card bg-transparent success-container">
+          <Success message={`Welcome ${username}.`} />
+        </div>
+      ) : (
         <div className="container-signup p-5">
           <div className="card signup">
-            <h4
-              className="card-header-update log-form bg-black rounded-0 text-light p-4 mt-5"
-              style={{ width: "90%", fontStyle: "normal" }}
-            >
-              Sign Up
-            </h4>
-            <div className="card-body overlay p-4">
-              <form className="px-5" onSubmit={handleFormSubmit}>
-                <label className="sign-form text-light mt-0 mb-4">
-                  Username
-                </label>
-                <br />
-                <input
-                  className="sign-form sign-input mb-4"
-                  placeholder="choose a username..."
-                  name="username"
-                  type="username"
-                  value={username}
-                  onChange={(e) => setUsename(e.target.value)}
-                />
-                <br />
-                <label className="sign-form text-light mt-0">Email</label>
-                <br />
-                <input
-                  className="sign-form sign-input mt-4"
-                  placeholder="your email.."
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={handleChange}
-                />
-                <br />
-                <label className="sign-form text-light mt-0">Password</label>
-                <br />
-                <input
-                  className="log-form my-4"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <br />
+            <>
+              <h4
+                className="card-header-update log-form bg-black rounded-0 text-light p-4 mt-5"
+                style={{ width: "90%", fontStyle: "normal" }}
+              >
+                Sign Up
+              </h4>
+              <div className="card-body overlay p-4">
+                <form className="px-5" onSubmit={handleFormSubmit}>
+                  <label className="sign-form text-light mt-0 mb-4">
+                    Username
+                  </label>
+                  <br />
+                  <input
+                    className="sign-form sign-input mb-4"
+                    placeholder="choose a username..."
+                    name="username"
+                    type="username"
+                    value={username}
+                    onChange={(e) => setUsename(e.target.value)}
+                  />
+                  <br />
+                  <label className="sign-form text-light mt-0">Email</label>
+                  <br />
+                  <input
+                    className="sign-form sign-input mt-4"
+                    placeholder="your email.."
+                    name="email"
+                    type="email"
+                    value={email}
+                    onChange={handleChange}
+                  />
+                  <br />
+                  <label className="sign-form text-light mt-0">Password</label>
+                  <br />
+                  <input
+                    className="log-form my-4"
+                    placeholder="******"
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <br />
 
-                <div className="btn-position">
-                  <button
-                    className="btn sign-form mt-5 btn-signup rounded-0 my-5"
-                    type="submit"
-                    disabled={loading}
-                  >
-                    {loading ? <ButtonSpinner /> : <>Submit</>}
-                  </button>
-                </div>
-              </form>
-            </div>
+                  <div className="btn-position">
+                    <button
+                      className="btn sign-form mt-5 btn-signup rounded-0 my-5"
+                      type="submit"
+                      disabled={loading}
+                    >
+                      {loading ? <ButtonSpinner /> : <>Submit</>}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </>
           </div>
         </div>
-      </div>
+      )}
+
       <div className="footer-signup">
         <Footer />
       </div>
