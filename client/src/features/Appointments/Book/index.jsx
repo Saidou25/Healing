@@ -21,10 +21,12 @@ const Book = () => {
   const [startDate, setStartDate] = useState(
     setHours(setMinutes(new Date(), 30), 17)
   );
-
+  const [confirm, setConfirm] = useState(false);
+  const [error, setError] = useState("");
+  const [errorHook, setErrorHook] = useState("");
+  const [loading, setLoading] = useState(false);
   const [templateParams, setTemplateParams] = useState("");
   const [reason, setReason] = useState("");
-  const [error, setError] = useState("");
   const [showNavNav, setShowNavNav] = useState(true);
   // const [showCorrect, setShowCorrect] = useState(false);
 
@@ -61,7 +63,12 @@ const Book = () => {
   }, [bookingdatesData, allAppointments]);
 
   const handleChange = (e) => {
+    setError("");
+    setErrorHook("");
+    setLoading(false);
+
     const { name, value } = e.target;
+
     if (name === "reason") {
       setReason(value);
     }

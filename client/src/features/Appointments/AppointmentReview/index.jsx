@@ -92,7 +92,9 @@ const AppointmentReview = () => {
   if (errorAddingBooking) {
     return (
       <main className="container-fluid mt-5">
-        <div className="card review-list card-appointment">{errorAddingBooking}</div>
+        <div className="card review-list card-appointment">
+          <ErrorComponent message={errorAddingBooking} />
+        </div>
       </main>
     );
   }
@@ -100,7 +102,6 @@ const AppointmentReview = () => {
     return (
       <main className="container-fluid mt-5">
         <div className="card review-list card-appointment">
-          {/* {errorAddingProfile} */}
           <ErrorComponent message={errorAddingProfile} />
         </div>
       </main>
@@ -219,7 +220,9 @@ const AppointmentReview = () => {
             >
               {loadingAddBooking || addingProfileLoading ? (
                 <ButtonSpinner />
-              ) : (<>confirm</>)}
+              ) : (
+                <>confirm</>
+              )}
             </button>
           </div>
         </div>

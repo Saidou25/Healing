@@ -7,44 +7,71 @@ import Footer from "../../components/Footer";
 import ButtonSpinner from "../../components/ButtonSpinner";
 import Auth from "../../utils/auth";
 import Success from "../../components/Success";
+import ErrorComponent from "../../components/ErrorComponent";
 import "./index.css";
 
 const Signup = () => {
   const navigate = useNavigate();
 
-  const [email, SetEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsename] = useState("");
   const [confirm, setConfirm] = useState(false);
+  const [error, setError] = useState("");
+  const [errorHook, setErrorHook] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [formState, setFormState] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
 
-  const [addUser, { error, loading }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
+    setError("");
+    setErrorHook("");
+    setLoading(false);
+
     const { name, value } = event.target;
 
-    if (name === "email") {
-      const lowerCaseEmail = value.toLowerCase();
-      SetEmail(lowerCaseEmail);
-    }
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    setConfirm(false);
+    setLoading(true);
+    setError("");
+    if (!formState.username || !formState.email || !formState.password) {
+      setError("All fields are required!");
+      setErrorHook("");
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
     try {
       const { data } = await addUser({
-        variables: { username: username, password: password, email: email },
+        variables: {
+          username: formState.username,
+          password: formState.password,
+          email: formState.email,
+        },
       });
-      Auth.login(data.addUser.token);
       if (data) {
         setConfirm(true);
+        setLoading(false);
+        setError("");
+        setErrorHook("");
         setTimeout(() => {
+          Auth.login(data.addUser.token);
           setConfirm(false);
           navigate("/Dashboard");
         }, 2000);
       }
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      setErrorHook(error.message);
+      return;
     }
   };
 
@@ -57,78 +84,76 @@ const Signup = () => {
           </button>
         </NavLink>
       </div>
-      <div className="signup-login-error">
-        {error && (
-          <div className="my-3 p-3 bg-warning text-white mt-5">
-            {error.message}
-          </div>
-        )}
-      </div>
 
       {confirm ? (
-        <div className="card bg-transparent success-container">
-          <Success message={`Welcome ${username}.`} />
+        <div className="container-signup p-5">
+          <div
+            className="card bg-transparent"
+            style={{ width: "40%", margin: "auto" }}
+          >
+            <Success message={`Welcome ${formState.username}.`} />
+          </div>
         </div>
       ) : (
         <div className="container-signup p-5">
-          <div className="card signup">
-            <>
+          <div className="card global-card signup p-5">
+            <div className="card-header">
               <h4
-                className="card-header-update log-form bg-black rounded-0 text-light p-4 mt-5"
-                style={{ width: "90%", fontStyle: "normal" }}
+                className="log-form bg-black rounded-0 text-light my-3 py-3"
+                style={{ fontStyle: "normal", textAlign: "center", width: "100%" }}
               >
                 Sign Up
               </h4>
-              <div className="card-body overlay p-4">
-                <form className="px-5" onSubmit={handleFormSubmit}>
-                  <label className="sign-form text-light mt-0 mb-4">
-                    Username
-                  </label>
-                  <br />
-                  <input
-                    className="sign-form sign-input mb-4"
-                    placeholder="choose a username..."
-                    name="username"
-                    type="username"
-                    value={username}
-                    onChange={(e) => setUsename(e.target.value)}
-                  />
-                  <br />
-                  <label className="sign-form text-light mt-0">Email</label>
-                  <br />
-                  <input
-                    className="sign-form sign-input mt-4"
-                    placeholder="your email.."
-                    name="email"
-                    type="email"
-                    value={email}
-                    onChange={handleChange}
-                  />
-                  <br />
-                  <label className="sign-form text-light mt-0">Password</label>
-                  <br />
-                  <input
-                    className="log-form my-4"
-                    placeholder="******"
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <br />
-
-                  <div className="btn-position">
-                    <button
-                      className="btn sign-form mt-5 btn-signup rounded-0 my-5"
-                      type="submit"
-                      disabled={loading}
-                    >
-                      {loading ? <ButtonSpinner /> : <>Submit</>}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </>
+            </div>
+            <div className="card-body">
+              <form className="global-form" onSubmit={handleFormSubmit}>
+                <label className="log-form text-light">Username</label>
+                <br />
+                <input
+                  className="log-form input-input"
+                  placeholder="choose a username..."
+                  name="username"
+                  type="username"
+                  value={formState.username}
+                  onChange={handleChange}
+                />
+                <br />
+                <label className="log-form text-light">Email</label>
+                <br />
+                <input
+                  className="log-form input-input"
+                  placeholder="your email.."
+                  name="email"
+                  type="email"
+                  value={formState.email?.toLowerCase()}
+                  onChange={handleChange}
+                />
+                <br />
+                <label className="log-form text-light">Password</label>
+                <br />
+                <input
+                  className="log-form input-input"
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                <br />
+                {error && <ErrorComponent message={error} />}
+                <br />
+                {errorHook && <ErrorComponent message={errorHook} />}
+                <div className="btn-position">
+                  <button
+                    className="btn log-form btn-signup rounded-0 my-5"
+                    type="submit"
+                    disabled={loading}
+                  >
+                    {loading ? <ButtonSpinner /> : <>Submit</>}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       )}

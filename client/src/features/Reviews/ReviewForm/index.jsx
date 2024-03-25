@@ -3,6 +3,8 @@ import useAddReview from "../useAddReview";
 import ButtonSpinner from "../../../components/ButtonSpinner";
 import Button from "../../../components/Button";
 import "./index.css";
+import ErrorComponent from "../../../components/ErrorComponent";
+import Success from "../../../components/Success";
 
 const ReviewForm = ({ username, today }) => {
   const [formState, setFormState] = useState({
@@ -13,9 +15,15 @@ const ReviewForm = ({ username, today }) => {
     rating: "4",
   });
   const [addReviewData, setAddReviewData] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState("");
+  const [errorHook, setErrorHook] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const { successAddingReview, loading, errorAddingReview } = useAddReview(addReviewData);
+  const {
+    successAddingReview,
+    loading: loadingAddingReview,
+    errorAddingReview,
+  } = useAddReview(addReviewData);
 
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
@@ -45,8 +53,12 @@ const ReviewForm = ({ username, today }) => {
   //   },
   // });
   const handleChange = (event) => {
+    setError("");
+    setErrorHook("");
+    setLoading(false);
+
     const { name, value } = event.target;
-    // console.log("name", name, "value", value);
+
     setFormState({
       ...formState,
       [name]: value,
@@ -102,12 +114,16 @@ const ReviewForm = ({ username, today }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrorMessage("");
-    setAddReviewData({ ...formState });
+    setConfirm(false);
+    setError("");
     if (!formState.title || !formState.reviewText) {
-      setAddReviewData("")
-      setErrorMessage("All fields need to be filled!");
+      setAddReviewData("");
+      setError("All fields need to be filled!");
+      setLoading(false);
+      return;
     }
+    setLoading(true);
+    setAddReviewData({ ...formState });
     //     if (title.length < 2 || reviewText.length < 2) {
     //       setConfirm(false);
     //       setError("All fields need to be filled with two charactes minimum!");
@@ -146,7 +162,9 @@ const ReviewForm = ({ username, today }) => {
   };
   useEffect(() => {
     if (successAddingReview) {
-      setErrorMessage("");
+      setError("");
+      setLoading(false);
+      setConfirm(true);
       setFormState({
         username: username,
         reviewDate: today,
@@ -154,6 +172,9 @@ const ReviewForm = ({ username, today }) => {
         reviewText: "",
         rating: "4",
       });
+      setTimeout(() => {
+        setConfirm(false);
+      }, 2000);
     }
   }, [successAddingReview, today, username]);
 
@@ -162,7 +183,8 @@ const ReviewForm = ({ username, today }) => {
       <main className="row my-5 pb-5">
         <div className="col-12 review-form">
           <div className="card p-2 review-design">
-            <h4 className="card-header-review-title bg-black text-light p-2">
+            {confirm ? <Success message={successAddingReview} /> : (<>
+              <h4 className="card-header-review-title bg-black text-light p-2">
               review
             </h4>
             <div className="card-body text-light">
@@ -170,7 +192,7 @@ const ReviewForm = ({ username, today }) => {
                 <label className="form-label1 my-4 text-light">Title</label>
                 <br />
                 <input
-                required
+                  required
                   className="form-input review-form-input mb-3 text-light"
                   placeholder="title..."
                   name="title"
@@ -181,7 +203,7 @@ const ReviewForm = ({ username, today }) => {
                 <label className="form-label1 my-4 text-light">Text</label>
                 <br />
                 <textarea
-                  className="review-form-input mb-3 text-light"
+                  className="form-input review-form-input mb-3 text-light"
                   placeholder="write your text here..."
                   name="reviewText"
                   type="text"
@@ -191,8 +213,8 @@ const ReviewForm = ({ username, today }) => {
                 <br />
 
                 {/* </form> */}
-                <div className="col-12 mb-5">
-                  <label className="form-label1 my-4">
+                <div className="col-12">
+                  <label className="form-label1">
                     Rate
                     <span className="optional">(optianal)</span>
                   </label>
@@ -255,29 +277,30 @@ const ReviewForm = ({ username, today }) => {
                   </div>
                 </div>
                 <div>
-                <div>
-                {successAddingReview && (
-                  <div className="bg-success text-white mb-5">
-                    <p className="review-confirm m-2">{successAddingReview}</p>
+                  <div>
+                    {successAddingReview && (
+                      <div className="bg-success text-white mb-5">
+                        <p className="review-confirm m-2">
+                          {successAddingReview}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-                {(errorMessage || errorAddingReview) && (
-                  <div className="bg-danger text-white mb-5">
-                    <p className="review-error mb-4">{errorMessage}</p>
-                  </div>
-                )}
-              </div>
+                  <br />
+                  {error && <ErrorComponent message={error} />}
+                </div>
                 <Button
-                  className="btn btn-block rounded-0 btn-info"
+                  className="btn btn-block rounded-0 btn-info mt-5"
                   type="submit"
                   onClick={handleSubmit}
+                  disabled={loading}
                 >
                   {loading ? <ButtonSpinner /> : <>Submit</>}
                 </Button>
               </form>
-            
             </div>
+            </>)}
+            
           </div>
         </div>
       </main>

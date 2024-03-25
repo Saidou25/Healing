@@ -12,20 +12,10 @@
 .btn-go-back:hover {
   background-color: rgb(24, 68, 68);
   border: solid;
-  border-color: rgb(72, 206, 206); 
+  border-color: rgb(72, 206, 206);
   border-width: 1px;
   transition: 0.5s;
 }
-/* .bg-image {
-  min-height: 600px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  margin-top: 4%;
-  margin-left: 6%;
-  margin-right: 6%;
-  margin-bottom: 7%;
-} */
 .container-signup {
   margin-top: 12%;
   background-color: rgba(0, 1, 1, 0.8);
@@ -34,35 +24,14 @@
   margin-left: auto;
 }
 .signup {
-  margin-right: 12%;
   --bs-card-border-width: 0;
-  /* background-color: rgba(252, 252, 252, 0.4); */
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
+  /* padding: 5%; */
   width: 40%;
   margin-right: auto;
   margin-left: auto;
 }
-.signup-login-error {
-  margin-left: 6%;
-  margin-right: 6%;
-  text-align: center;
-}
-
-/* input {
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
-  color: white !important;
-  font-weight: 600;
-} */
-
-.signup-header {
-  text-align: center;
-}
-/* .sign-input {
-  background: rgb(131, 232, 245) !important;
-  background: rgba(131, 232, 245, 0.4) !important;
-} */
 .sign-form {
   width: 75%;
   margin-right: auto;
@@ -71,15 +40,6 @@
   font-style: oblique;
   display: flex;
   flex-direction: column;
-}
-.form-input {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  background-color: rgb(131, 232, 245);
-  background-color: rgba(131, 232, 245, 0.4) !important;
-  /* padding: 5px; */
-  font-style: oblique;
 }
 .btn-position {
   display: flex;
@@ -98,15 +58,15 @@
   color: white;
 }
 /* .success-container { */
-  /* background-color: rgba(0, 1, 1, 0.8) !important; */
-  /* background-color: rgba(131, 232, 245, 0.4); */
-  /* margin-right: auto; */
-  /* margin-left: auto; */
-  /* animation: fadeInSuccess 0.5s linear forwards; */
-   /* padding: 5%; */
-  /* margin-top: 14%; */
-  /* width: 30%; */
-  /* margin-right: auto;
+/* background-color: rgba(0, 1, 1, 0.8) !important; */
+/* background-color: rgba(131, 232, 245, 0.4); */
+/* margin-right: auto; */
+/* margin-left: auto; */
+/* animation: fadeInSuccess 0.5s linear forwards; */
+/* padding: 5%; */
+/* margin-top: 14%; */
+/* width: 30%; */
+/* margin-right: auto;
   margin-left: auto; */
 /* } */
 
@@ -141,20 +101,13 @@
     position: relative;
     /* width: 450px; */
   }
-.success-container {
-   padding: 5%;
-  margin-top: 14%;
-  width: 30% !important;
-  /* margin-right: auto;
+  .success-container {
+    padding: 5%;
+    margin-top: 14%;
+    width: 30% !important;
+    /* margin-right: auto;
   margin-left: auto; */
-}
-  /* .bg-image {
-    background-image: url("../../assets/images/nenuphar.jpeg");
-    min-height: 90%;
-    min-height: 600px;
-    background-position: center;
-    margin-bottom: 10%;
-  } */
+  }
 }
 
 @media screen and (max-width: 414px) {
@@ -169,12 +122,7 @@
     margin-right: 2%;
     text-align: center;
   }
-  /* .bg-image {
-    margin-left: 2%;
-    margin-right: 2%;
-    
-  } */
-    .signup {
+  .signup {
     width: 80%;
     margin-right: auto;
     margin-left: auto;

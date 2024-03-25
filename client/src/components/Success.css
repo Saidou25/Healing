@@ -2,15 +2,19 @@
   background-color: rgba(0, 1, 1, 0.8);
   color: rgba(255, 255, 255, 1);
   animation: fadeInSuccess 0.4s linear forwards;
-  margin-top: 14%;
-  width: 30%;
+  /* margin-top: 14%; */
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 .signup-success {
   color: rgba(255, 255, 255, 1);
 }
-
+.success-row {
+  /* width: 30%; */
+  margin-right: auto;
+  margin-left: auto;
+}
 @keyframes fadeInSuccess {
   from {
     backgound: rgba(131, 232, 245, 0.05);

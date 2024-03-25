@@ -7,17 +7,10 @@ import Spinner from "../../components/Spinner";
 import Footer from "../../components/Footer";
 import DeleteModal from "../../components/DeleteModal";
 import Navbar from "../../components/Navbar";
-import "./index.css";
 import auth from "../../utils/auth";
+import "./index.css";
 
 const Profile = () => {
- 
-  // {
-  //   userProfile,
-  //   userId,
-  //   myAppointments,
-  //   profileId,
-  // }
 
   const { data, loading } = useQuery(QUERY_ME);
   const me = data?.me || [];

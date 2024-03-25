@@ -63,15 +63,6 @@
   font-style: oblique;
 }
 
-.log-form {
-  width: 75%;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 5px;
-  font-style: oblique;
-  display: flex;
-  flex-direction: column;
-}
 .btn-position {
   display: flex;
   justify-content: flex-end;

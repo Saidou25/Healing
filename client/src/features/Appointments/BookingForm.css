@@ -1,10 +1,4 @@
-.appointment-card {
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
-  width: 40%;
-  margin-right: auto;
-  margin-left: auto;
-}
+
 .app-btn:hover {
   background-color: rgb(24, 68, 68) !important;
   transition: 0.3s;

@@ -6,6 +6,8 @@ import SelectUSState from "react-select-us-states";
 import "react-phone-number-input/style.css";
 import "./index.css";
 import auth from "../../../utils/auth.js";
+import ErrorComponent from "../../../components/ErrorComponent.jsx";
+import ButtonSpinner from "../../../components/ButtonSpinner/index.jsx";
 
 const ProfileForm = () => {
   const location = useLocation();
@@ -26,13 +28,15 @@ const ProfileForm = () => {
     birthdate: "",
     patientzip: "",
   });
-
+  const [loading, setLoading] = useState(false);
   const [patientState, setNewValue] = useState("");
   const [patientnumber, setPatientNumber] = useState("");
   const [patientgender, setPatientGender] = useState("");
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
+    setError("");
+    setLoading(false);
     const { name, value } = e.target;
     // making sure first letter of first name and last name are capital letters
     if (name === "patientfirstname") {
@@ -58,18 +62,39 @@ const ProfileForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
     if (!Regex.ageRegex.test(formState.birthdate)) {
       setError(
         "Age in needs to be a number with the following format: MM/DD/YYYY !"
       );
-      return;
-    }
-    if (!Regex.zipRegex.test(formState.patientzip)) {
-      setError("zip code needs to be a five digit number!");
+      setLoading(false);
       return;
     }
 
+    if (!Regex.zipRegex.test(formState.patientzip)) {
+      setError("zip code needs to be a five digit number!");
+      setLoading(false);
+      return;
+    }
+    if (
+      !formState.username ||
+      !formState.patientemail ||
+      !formState.patientState ||
+      // !formState.patientnumber ||
+      !formState.patientfirstname ||
+      !formState.patientgender ||
+      !formState.patientaddress ||
+      !formState.patientlastname ||
+      !formState.patientcity ||
+      !formState.birthdate ||
+      !formState.patientzip
+    ) {
+      setError("All fields are required!");
+      setLoading(false);
+      return;
+    }
     setError("");
     navigate("/Book/AppointmentReview", {
       state: { formState: formState, appInfo: appInfo },
@@ -205,6 +230,7 @@ const ProfileForm = () => {
                         name="patientnumber"
                         onValueChange={(values, sourceappInfo) => {
                           setPatientNumber(values.formattedValue);
+                          setError("");
                           setFormState({
                             ...formState,
                             patientnumber: values.formattedValue,
@@ -213,20 +239,16 @@ const ProfileForm = () => {
                       />
                     </div>
                   </div>
-                  <div>
-                    {error && (
-                      <div className="bg-danger text-white mb-5">
-                        <p className="profile-error m-2">{error}</p>
-                      </div>
-                    )}
-                  </div>
+                  <br />
+                  {error && <ErrorComponent message={error} />}
                   <div className="col-12 d-flex justify-content-center mt-4">
                     <button
                       className="btn button-profile bg-black rounded-0 mb-5"
                       onClick={(e) => handleFormSubmit(e)}
                       type="submit"
+                      disabled={loading}
                     >
-                      Submit
+                      {loading ? <ButtonSpinner /> : <>Submit</>}
                     </button>
                   </div>
                 </div>

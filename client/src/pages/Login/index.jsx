@@ -1,24 +1,32 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
-import Spinner from "../../components/Spinner";
 import Auth from "../../utils/auth";
 // import pic from "../../assets/images/practitioner.jpeg";
 import Footer from "../../components/Footer";
-import "./index.css";
 import ButtonSpinner from "../../components/ButtonSpinner";
 import Success from "../../components/Success";
+import ErrorComponent from "../../components/ErrorComponent";
+import "./index.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [formState, setFormState] = useState({ email: "", password: "" });
-  const [confirm, setConfirm] = useState("");
 
-  const [login, { error, data, loading }] = useMutation(LOGIN_USER);
+  const [confirm, setConfirm] = useState(false);
+  const [errorHook, setErrorHook] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [formState, setFormState] = useState({ email: "", password: "" });
+
+  const [login] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
+    setLoading(false);
+    setError("");
+    setErrorHook("");
+
     const { name, value } = event.target;
 
     setFormState({
@@ -26,100 +34,116 @@ const Login = () => {
       [name]: value,
     });
   };
+
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    setErrorHook("");
+    setConfirm(false);
+    setError("");
+    if (!formState.email || !formState.password) {
+      setError("All fields are requiered!");
+      setErrorHook("");
+      setLoading(false);
+      return;
+    }
+    
+    setLoading(true);
     try {
       const { data } = await login({
-        variables: { ...formState },
+        variables: { email: formState.email, password: formState.password },
       });
-
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setConfirm(true);
-      // clear form values
-      setFormState({
-        email: "",
-        password: "",
-      });
-      setTimeout(() => {
-        setConfirm(false);
-        navigate("/Dashboard", { state: { formState } });
-      }, 1500);
+      if (data) {
+        Auth.login(data.login.token);
+        setConfirm(true);
+        setLoading(false);
+        setError("");
+        setErrorHook("");
+        setTimeout(() => {
+          // Auth.login(data.addUser.token);
+          setConfirm(false);
+          navigate("/Dashboard");
+        }, 2000);
+      }
+    } catch (error) {
+      setErrorHook(error.message);
+      setLoading(false);
+      return;
     }
   };
 
-  if (confirm) {
-    return <Success message={`Welcome ${data?.login.user.username}.`} />;
-  }
   return (
     <>
       <div className="go-back d-flex justify-content-center">
-        <Link to="/">
+        <NavLink to="/">
           <button type="btn" className="btn-go-back text-white">
             go back
           </button>
-        </Link>
+        </NavLink>
       </div>
-      <div className="signup-login-error">
-        {error && (
-          <div className="my-3 p-3 bg-warning text-white mt-5">
-            {error.message}
-          </div>
-        )}
-      </div>
-      {/* <div className="design"> */}
-      <main className="container-login g-0 p-5">
-        <div className="card login my-5">
-          <h4
-            className="card-header-update log-form bg-black rounded-0 text-light p-4 mt-5"
-            style={{ width: "90%", fontStyle: "normal" }}
-          >
-            Login
-          </h4>
-          <div className="card-body p-3">
-            <form className="log-form px-5" onSubmit={handleFormSubmit}>
-              <label className="log-form text-light mt-0">Email</label>
-              <br />
-              <input
-                className="log-form mb-4"
-                placeholder="Your holder email"
-                name="email"
-                type="email"
-                value={formState.email}
-                onChange={handleChange}
-              />{" "}
-              <br />
-              <label className="log-form text-light mt-0">Password</label>
-              <br />
-              <input
-                className="log-form mt-3"
-                placeholder="******"
-                name="password"
-                type="password"
-                value={formState.password}
-                onChange={handleChange}
-                autoComplete="on"
-              />{" "}
-              <br />
-              <div></div>
-              <div className="btn-position">
-                <button
-                  className="btn btn-login log-form rounded-0 my-5"
-                  type="submit"
-                  disabled={loading}
-                >
-                  {loading ? <ButtonSpinner /> : <>Submit</>}
-                </button>
-              </div>
-            </form>
+
+      {confirm ? (
+        <div className="container-signup p-5">
+          <div className="card login my-5">
+            <div
+              className="card bg-transparent"
+              // style={{ width: "40%", margin: "auto" }}
+            >
+              <Success message={`Welcome ${formState.username}.`} />
+            </div>
           </div>
         </div>
-      </main>
-      {/* </div> */}
+      ) : (
+        <div className="container-signup p-5">
+          <div className="card global-card signup p-5">
+            <h4
+              className="log-form bg-black rounded-0 text-light my-3 py-3"
+              style={{ textAlign: "center" }}
+            >
+              Login
+            </h4>
+            <div className="card-body">
+              <form className="global-form" onSubmit={handleFormSubmit}>
+                <label className="log-form text-light">Email</label>
+                <br />
+                <input
+                  className="log-form input-input"
+                  placeholder="Your holder email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />{" "}
+                <br />
+                <label className="log-form text-light">Password</label>
+                <br />
+                <input
+                  className="log-form input-input"
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                  autoComplete="on"
+                />
+                <br />
+                {error && <ErrorComponent message={error} />}
+                <br />
+                {errorHook && <ErrorComponent message={errorHook} />}
+                <div className="btn-position">
+                  <button
+                    className="btn log-form btn-signup rounded-0 my-5"
+                    type="submit"
+                    disabled={loading}
+                  >
+                    {loading ? <ButtonSpinner /> : <>Submit</>}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );
