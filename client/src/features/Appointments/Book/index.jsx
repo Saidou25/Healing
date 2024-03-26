@@ -5,15 +5,13 @@ import { QUERY_BOOKINGDATES, QUERY_ME } from "../../../utils/queries.js";
 import { parseISO, setHours, setMinutes } from "date-fns";
 import { formatTime } from "../../../utils/dateUtil.js";
 import { chooseStartDate } from "../../../utils/chooseStartDate.js";
+import auth from "../../../utils/auth.js";
 import Footer from "../../../components/Footer/index.jsx";
 import BookingForm from "../BookingForm.jsx";
-// import practitioner from "../../../assets/images/practitioner.jpeg";
-// import SideText from "../SideText.jsx";
+import Navbar from "../../../components/Navbar/index.jsx";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import "react-datepicker/dist/react-datepicker.css";
-import Navbar from "../../../components/Navbar/index.jsx";
 import "./index.css";
-import auth from "../../../utils/auth.js";
 
 const Book = () => {
   const navigate = useNavigate();
@@ -21,7 +19,7 @@ const Book = () => {
   const [startDate, setStartDate] = useState(
     setHours(setMinutes(new Date(), 30), 17)
   );
-  const [confirm, setConfirm] = useState(false);
+
   const [error, setError] = useState("");
   const [errorHook, setErrorHook] = useState("");
   const [loading, setLoading] = useState(false);
@@ -76,8 +74,10 @@ const Book = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (!reason || !startDate) {
       setError("All fields need filled!");
+      setLoading(false);
       return;
     }
     allAppointments.push(finalDateISO);
@@ -98,10 +98,12 @@ const Book = () => {
     // conditionally redirecting the user to next operation based on if user is a returning patient
     if (!profile) {
       setShowNavNav(false);
+      setLoading(false);
       // setShowCorrect(true);
       navigate("ProfileForm", { state: { appInfo } });
     } else {
       setShowNavNav(false);
+      setLoading(false);
       navigate("AppointmentReview", {
         state: {
           appInfo,
@@ -126,8 +128,7 @@ const Book = () => {
     <>
       <Navbar />
       <>
-        <div className="container-appointment p-5">
-          <div className="img-appointment">
+        <div className="container-appointment py-5">
             {showNavNav ? (
               <BookingForm
                 handleChange={handleChange}
@@ -146,8 +147,6 @@ const Book = () => {
                 <Outlet />
               </>
             )}
-          </div>
-          {/* <SideText /> */}
         </div>
       </>
       <div className="footer-appointment">

@@ -22,8 +22,13 @@ export default function BookingForm({
   return (
     <div className="container-fluid">
       <div
-        className="card global-card p-5"
-        style={{ width: "40%", marginRight: "auto", marginLeft: "auto" }}
+        className="card global-card my-5 p-5"
+        style={{
+          width: "40%",
+          marginRight: "auto",
+          marginLeft: "auto",
+          borderColor: "black",
+        }}
       >
         <div className="bg-black">
           <h4
@@ -37,9 +42,9 @@ export default function BookingForm({
           {showNavNav ? (
             <form className="global-form">
               {/* <div className="row"> */}
-              <div className="col-12 date-picker">
+              <div className="col-12 date-picker py-4">
                 <label className="log-form">Choose your appointment date</label>
-                <div className="choose-date mt-3 mb-2">
+                <div className="choose-date py-4">
                   <DatePicker
                     // className="bg-brown"
                     id="user_date"
@@ -59,9 +64,9 @@ export default function BookingForm({
                     withPortal
                   />
                 </div>
-                <div className="col-12 appointment-column">
+                <div className="col-12 appointment-column py-4">
                   <div>
-                    <label className="log-form">
+                    <label className="log-form py-4">
                       What is your reason for visiting?
                     </label>
                     <textarea
@@ -82,7 +87,7 @@ export default function BookingForm({
                   <button
                     type="submit"
                     onClick={(e) => handleSubmit(e)}
-                    className="btn app-btn bg-black mt-2 mb-4 rounded-0 m-0"
+                    className="btn app-btn bg-black py-4 rounded-0 m-0"
                     style={{ width: "50%" }}
                   >
                     submit

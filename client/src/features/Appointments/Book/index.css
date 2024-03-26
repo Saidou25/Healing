@@ -1,8 +1,11 @@
 .container-appointment {
-  width: 90%;
+  max-width: 90vw;
+  max-height: 60vh;
   margin-right: auto;
   margin-left: auto;
   background-color: rgba(0, 1, 1, 0.8);
+  padding-top: 5%;
+  /* padding-bottom: 5%; */
 }
 
 .goback-appointment {
