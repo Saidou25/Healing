@@ -75,12 +75,9 @@ Concurrently starts client and server.
 ## Future developpment
 
 - Ability for user to also update username and email.
-- Show who is the appointment for in the upcoming appointment card.
-- Find and add pictures.
 - Add a logo and images.
-- Error 404 page.
 - Add an 'admin' folder where he/she could login and have all patients, appointments displayed and the possibility of blocking dates from the calendar.
-- Optimize the application for maximum speed and scalability.
+- Adapt for mobile and other devices views.
 
 
 ## Contributing
