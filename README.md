@@ -58,11 +58,19 @@ Concurrently starts client and server.
 
 - Landing Page
 
-![Screenshot](./client/src/assets/images/landingpage.jpg)
+![Screenshot](./client/src/assets/images/readLandingPage.png)
+
+- About page
+
+![Screenshot](./client/src/assets/images/readmeAbout.png)
 
 - Dashboard
 
-![Screenshot](./client/src/assets/images/dashboard.jpg)
+![Screenshot](./client/src/assets/images/readmeDash.png)
+
+- One of the forms
+
+![Screenshot](./client/src/assets/images/readmeForm.png)
 
 ## Future developpment
 
