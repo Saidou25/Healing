@@ -26,7 +26,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
   const deleteAll = async () => {
     for (let bookingdate of myAppointments) {
       try {
-        const { data } = await deleteBookingdate({
+        await deleteBookingdate({
           variables: { id: bookingdate._id },
         });
       } catch (e) {
@@ -36,7 +36,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
       }
     }
     try {
-      const { data } = await deleteProfile({
+      await deleteProfile({
         variables: { id: profileId },
       });
     } catch (e) {
@@ -45,7 +45,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
       return;
     }
     try {
-      const { data } = await deleteUser({
+      await deleteUser({
         variables: { id: userId },
       });
     } catch (e) {
@@ -58,6 +58,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
       setErrorHook("");
       setSuccessMessage("Your profile has been deleted. Good bye...");
       setTimeout(() => {
+        setSuccessMessage("");
         logout();
       }, 2000);
     }
@@ -108,12 +109,10 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
                   <p className="sure mt-4">
                     Are you sure you want to delete your account?
                   </p>
-                  {/* </div> */}
                   <div className="row mt-2">
                     <div className="col-6 my-2 pr-2">
                       <button
                         className="contact-me-button text-light bg-transparent btn fs-4"
-                        // className="btn btn-secondary fs-4 "
                         type="button"
                         data-bs-dismiss="modal"
                         onClick={() => {

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-// import { sendEmail } from "../../../utils/email.js";
+import { sendEmail } from "../../../utils/email.js";
 // import { useUser } from "../../../context.js/userContext.js";
 import useAddBooking from "../useAddBooking.js";
 import useAddProfile from "../../Profile/useAddProfile.js";
 import BookingSuccess from "../BookingSuccess.jsx";
 import ButtonSpinner from "../../../components/ButtonSpinner";
-// import { useUser } from "../../../context.js/userContext.js";
 import ErrorComponent from "../../../components/ErrorComponent.jsx";
 import "./index.css";
 
@@ -21,7 +20,6 @@ const AppointmentReview = () => {
   const formState = location.state.formState;
   const appInfo = location.state.appInfo;
   const profile = location.state.profile;
-
   const {
     successAddingBooking,
     loading: loadingAddBooking,
@@ -51,7 +49,13 @@ const AppointmentReview = () => {
     if (!successAddingBooking) {
       return;
     } else {
-      // sendEmail(reviewData);
+      console.log(appInfo.appointmentString)
+      const templateParams = {
+        username: appInfo.username,
+        email: appInfo.email,
+        message: `Your appointment on ${appInfo.appointmentString} has been confirmed. Thank you.`,
+      };
+      sendEmail(templateParams);
       setAppInformation("");
       setProfileInformation("");
       setFinalize(true);
@@ -217,6 +221,7 @@ const AppointmentReview = () => {
               className="col-5 btn btn-app-review bg-black fs-5 m-3"
               type="button"
               onClick={handleSubmit}
+              disabled={loadingAddBooking || addingProfileLoading}
             >
               {loadingAddBooking || addingProfileLoading ? (
                 <ButtonSpinner />

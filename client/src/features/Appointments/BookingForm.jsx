@@ -2,10 +2,10 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { setHours, setMinutes } from "date-fns";
 import DatePicker from "react-datepicker";
+import ErrorComponent from "../../components/ErrorComponent";
 import "react-datepicker/dist/react-datepicker.css";
 // import "react-multi-date-picker/styles/backgrounds/bg-brown.css";
 import "./BookingForm.css";
-import ErrorComponent from "../../components/ErrorComponent";
 
 export default function BookingForm({
   handleChange,
@@ -22,7 +22,7 @@ export default function BookingForm({
   return (
     <div className="container-fluid">
       <div
-        className="card global-card my-5 p-5"
+        className="card global-card p-5"
         style={{
           width: "40%",
           marginRight: "auto",
@@ -82,7 +82,6 @@ export default function BookingForm({
                 <br />
                 {error && <ErrorComponent message={error} />}
                 <br />
-                {/* {errorHook && <ErrorComponent message={errorHook} />} */}
                 <div className="centering">
                   <button
                     type="submit"
@@ -94,7 +93,6 @@ export default function BookingForm({
                   </button>
                 </div>
               </div>
-              {/* </div> */}
             </form>
           ) : (
             <>

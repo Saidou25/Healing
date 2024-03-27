@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { ADD_BOOKINGDATE } from "../../utils/mutations";
 import { QUERY_ME, QUERY_BOOKINGDATES } from "../../utils/queries";
 
@@ -61,6 +61,7 @@ const useAddBooking = (appInformation) => {
     } finally {
       setSuccessAddingBooking("success booking a date");
       setErrorAddingBooking("");
+     
       setLoading(false);
     }
   }, [bookingData, addBookingdate]);
