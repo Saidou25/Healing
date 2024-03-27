@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import Auth from "../../utils/auth";
-import profileIcon from "../../assets/images/profileIcon.png";
+// import profileIcon from "../../assets/images/profileIcon.png";
 import SideMenu from "../../components/SideMenu";
 // import "./index.css";
 
@@ -44,7 +44,7 @@ const BookingNav = () => {
                   className="profile-icon nav-item show-hide fs-3"
                   to="/Profile"
                 >
-                  <img src={profileIcon} alt="profile icon" height={43} />
+                  {/* <img src={profileIcon} alt="profile icon" height={43} /> */}profile
                 </NavLink>
               </ul>
             </div>

@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 // import { useUser } from "../../../context/userContext";
 import useDeletReview from "../useDeleteReview";
 import RatingList from "../../../components/RatingList";
-import profileIcon from "../../../assets/images/profileIcon.png";
+// import profileIcon from "../../../assets/images/profileIcon.png";
 import trash from "../../../assets/images/trash.png";
 import ButtonSpinner from "../../../components/ButtonSpinner";
 import "./index.css";
@@ -88,11 +88,11 @@ const MyReviewsList = () => {
                           </p>
                         </div>
                         <div className="col-12 px-3 pb-3">
-                          <img
+                          {/* <img
                             src={profileIcon}
                             alt="profile icon"
                             height={25}
-                          />
+                          /> */}
                           <span className="review fs-5 m-2">
                             {review.username}
                           </span>

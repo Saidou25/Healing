@@ -1,6 +1,6 @@
 import React from "react";
 import Auth from "../../utils/auth";
-import profileIcon from "../../assets/images/profileIcon.png";
+// import profileIcon from "../../assets/images/profileIcon.png";
 import "./index.css";
 
 const SideMenu = () => {
@@ -56,7 +56,8 @@ const SideMenu = () => {
                 className="profile-icon-side d-flex justify-content-end align-items-center mb-2 p-3"
                 href="/UserProfile"
               >
-                <img src={profileIcon} alt="profile icon" height={43} />
+                {/* <img src={profileIcon} alt="profile icon" height={43} /> */}
+                profile
               </a>
             </div>
           )}
