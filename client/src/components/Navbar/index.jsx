@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import SideMenu from "../SideMenu";
 import Auth from "../../utils/auth";
-import profileIcon from "../../assets/images/profileIcon.png";
+// import profileIcon from "../../assets/images/profileIcon.png";
 import "./index.css";
 
 const Navbar = () => {
@@ -64,7 +64,8 @@ const Navbar = () => {
                     className="profile-icon nav-item show-hide fs-3"
                     to="/Profile"
                   >
-                    <img src={profileIcon} alt="profile icon" height={43} />
+                    profile
+                    {/* <img src={profileIcon} alt="profile icon" height={43} /> */}
                   </NavLink>
                 </li>
               </ul>
