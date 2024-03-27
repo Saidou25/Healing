@@ -7,6 +7,7 @@ const ButtonSpinner = () => {
         className="spinner-border spinner-border-sm color-warning"
         role="status"
         aria-hidden="true"
+        style={{ height: "25px", width: "25px" }}
       ></span>
     </>
   );

@@ -71,6 +71,7 @@ const Signup = () => {
       }
     } catch (error) {
       setErrorHook(error.message);
+      setLoading(false)
       return;
     }
   };
@@ -86,7 +87,8 @@ const Signup = () => {
       </div>
 
       {confirm ? (
-        <div className="container-signup p-5">
+        <div className="container-signup p-5"
+        style={{ height: "60vh", display: "flex", alignItems: 'center' }}>
           <div
             className="card bg-transparent"
             style={{ width: "40%", margin: "auto" }}
@@ -99,7 +101,7 @@ const Signup = () => {
           <div className="card global-card signup p-5">
             <div className="card-header">
               <h4
-                className="log-form bg-black rounded-0 text-light my-3 py-3"
+                className="log-form bg-black rounded-0 text-light p-5 mb-5"
                 style={{ fontStyle: "normal", textAlign: "center", width: "100%" }}
               >
                 Sign Up
@@ -145,7 +147,7 @@ const Signup = () => {
                 {errorHook && <ErrorComponent message={errorHook} />}
                 <div className="btn-position">
                   <button
-                    className="btn log-form btn-signup rounded-0 my-5"
+                    className="btn log-form btn-signup rounded-0 my-5 p-3"
                     type="submit"
                     disabled={loading}
                   >

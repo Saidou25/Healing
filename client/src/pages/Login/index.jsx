@@ -3,7 +3,6 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-// import pic from "../../assets/images/practitioner.jpeg";
 import Footer from "../../components/Footer";
 import ButtonSpinner from "../../components/ButtonSpinner";
 import Success from "../../components/Success";
@@ -36,8 +35,8 @@ const Login = () => {
   };
 
   // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
     setErrorHook("");
     setConfirm(false);
     setError("");
@@ -60,7 +59,6 @@ const Login = () => {
         setError("");
         setErrorHook("");
         setTimeout(() => {
-          // Auth.login(data.addUser.token);
           setConfirm(false);
           navigate("/Dashboard");
         }, 2000);
@@ -76,20 +74,21 @@ const Login = () => {
     <>
       <div className="go-back d-flex justify-content-center">
         <NavLink to="/">
-          <button type="btn" className="btn-go-back text-white">
+          <button type="btn" className="btn-go-back text-white"
+          >
             go back
           </button>
         </NavLink>
       </div>
 
       {confirm ? (
-        <div className="container-signup p-5">
+        <div className="container-signup p-5"
+        style={{ height: "60vh", display: "flex", alignItems: 'center' }}>
           <div className="card login my-5">
             <div
               className="card bg-transparent"
-              // style={{ width: "40%", margin: "auto" }}
             >
-              <Success message={`Welcome ${formState.username}.`} />
+              <Success message="You are logged in." />
             </div>
           </div>
         </div>
@@ -97,7 +96,7 @@ const Login = () => {
         <div className="container-signup p-5">
           <div className="card global-card signup p-5">
             <h4
-              className="log-form bg-black rounded-0 text-light my-3 py-3"
+              className="log-form bg-black rounded-0 text-light my-3 p-5"
               style={{ textAlign: "center" }}
             >
               Login
@@ -132,7 +131,7 @@ const Login = () => {
                 {errorHook && <ErrorComponent message={errorHook} />}
                 <div className="btn-position">
                   <button
-                    className="btn log-form btn-signup rounded-0 my-5"
+                    className="btn log-form btn-signup rounded-0 my-5 p-2"
                     type="submit"
                     disabled={loading}
                   >

@@ -11,9 +11,6 @@
 }
 .btn-go-back:hover {
   background-color: rgb(24, 68, 68);
-  border: solid;
-  border-color: rgb(72, 206, 206);
-  border-width: 1px;
   transition: 0.5s;
 }
 .container-signup {
