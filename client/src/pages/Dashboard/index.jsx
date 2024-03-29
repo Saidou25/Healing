@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import { useUser } from "../../context/userContext";
-
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
+import { Navigate, Outlet } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import AllReviews from "../../features/Reviews/AllReviews";
 import ReviewForm from "../../features/Reviews/ReviewForm";
@@ -8,11 +9,8 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import UpcomingAppointments from "../../features/Appointments/UpcomingAppointments";
 import auth from "../../utils/auth";
-import { Navigate, Outlet } from "react-router-dom";
 import BookingNav from "../../components/Booking";
 import "./index.css";
-import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../utils/queries";
 
 const Dashboard = () => {
   const [me, setMe] = useState("");
@@ -20,7 +18,6 @@ const Dashboard = () => {
   const [myAppointments, setMyAppointments] = useState("");
   const [futureAppointments, setFutureAppointments] = useState("");
 
-  // const { me, loading } = useUser();
   const { data: meData, loading } = useQuery(QUERY_ME);
   const username = me.username;
 
@@ -84,9 +81,11 @@ const Dashboard = () => {
       <>
         <Navbar />
         <BookingNav />
-        <main className="dashboard-main p-5">
+        <main className="dashboard-main">
           {/* history and My reviews little navbar */}
-          <Outlet />
+          <div className="pt-5">
+            <Outlet />
+          </div>
           <div className="row review-row mt-4">
             <div className="col-lg-8 col-sm-10">
               <UpcomingAppointments

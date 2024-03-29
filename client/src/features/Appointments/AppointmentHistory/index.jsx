@@ -70,7 +70,8 @@ const AppointmentHistory = () => {
             <p className="card-header history-header fs-3">
               No appointment yet
             </p>
-            <div className="card-body history-text text-light">
+            <div className="card-body text-light"
+            style={{ textAlign: "center" }}>
               <p>Your appointments will show on here soon.</p>
             </div>
           </div>

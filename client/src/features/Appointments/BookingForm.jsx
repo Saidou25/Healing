@@ -22,7 +22,7 @@ export default function BookingForm({
   return (
     <div className="container-fluid">
       <div
-        className="card global-card p-5"
+        className="card global-card p-5 my-5"
         style={{
           width: "40%",
           marginRight: "auto",

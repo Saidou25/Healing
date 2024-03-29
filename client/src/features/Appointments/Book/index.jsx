@@ -26,7 +26,6 @@ const Book = () => {
   const [templateParams, setTemplateParams] = useState("");
   const [reason, setReason] = useState("");
   const [showNavNav, setShowNavNav] = useState(true);
-  // const [showCorrect, setShowCorrect] = useState(false);
 
   const { data: meData } = useQuery(QUERY_ME);
   const me = meData?.me || [];
@@ -76,7 +75,7 @@ const Book = () => {
     e.preventDefault();
     setLoading(true);
     if (!reason || !startDate) {
-      setError("All fields need filled!");
+      setError("All are required!");
       setLoading(false);
       return;
     }

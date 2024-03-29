@@ -125,15 +125,17 @@ const UpdateMyProfileForm = (props) => {
   return (
     <>
       <Navbar />
-      <div>
-        <div className="container-update mt-5 pb-5">
+        <div className="container-update py-5"
+         style={{ display: "flex", alignItems: "center" }}
+         >
           {!showSuccess && (
             <p className="update-p mb-5">
               Please modify the fields you would like to update with your new
               information.
             </p>
           )}
-          <div className="card bg-0 review-list login my-5">
+          <div className="card bg-0 review-list login my-5"
+           >
             {showSuccess ? (
               <Success message={"Profiles updated!"} />
             ) : (
@@ -254,7 +256,6 @@ const UpdateMyProfileForm = (props) => {
             )}
           </div>
         </div>
-      </div>
       <Footer />
     </>
   );

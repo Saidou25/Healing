@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { sendEmail } from "../../../utils/email.js";
-// import { useUser } from "../../../context.js/userContext.js";
 import useAddBooking from "../useAddBooking.js";
 import useAddProfile from "../../Profile/useAddProfile.js";
 import BookingSuccess from "../BookingSuccess.jsx";
@@ -60,10 +59,11 @@ const AppointmentReview = () => {
       setProfileInformation("");
       setFinalize(true);
       setTimeout(() => {
+        setFinalize(false);
         navigate("/Dashboard");
       }, 3000);
     }
-  }, [successAddingBooking, navigate]);
+  }, [successAddingBooking, navigate, appInfo]);
 
   useEffect(() => {
     if (!successAddingProfile) {
@@ -113,7 +113,8 @@ const AppointmentReview = () => {
   }
   if (finalize) {
     return (
-      <main className="container-fluid mt-5">
+      <main className="container-fluid mt-5"
+      style={{ minHeight: "40vh", display: "flex", alignItems: "center" }}>
         <div className="card review-list card-appointment">
           <BookingSuccess
             style={{ marginBottom: "5%" }}

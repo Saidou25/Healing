@@ -40,7 +40,7 @@ const MyReviewsList = () => {
   return (
     <>
       {!myReviews?.length ? (
-        <div className="containerno-history mt-5 mb-5">
+        <div className="containerno-history my-5">
           <div className="card no-history review-list text-light">
             <NavLink
               to="/Dashboard"
@@ -50,7 +50,7 @@ const MyReviewsList = () => {
               <AiOutlineClose />
             </NavLink>
             <p className="card-header history-header fs-3">No review yet</p>
-            <div className="card-body history-text">
+            <div className="card-body" style={{ textAlign: "center" }}>
               <p>Your reviews will show on here soon.</p>
             </div>
           </div>

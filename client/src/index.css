@@ -24,16 +24,12 @@
   background: rgba(131, 232, 245, 0.4);
   color: white;
 }
-/* #root .global-form {
-  background: rgba(158, 131, 245, 0.4);
-} */
 #root .input-input {
   /* background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
   color: white !important; */
   font-style: oblique;
   font-weight: 600;
-  /* margin: 5px; */
 }
 
 #root .log-form {
