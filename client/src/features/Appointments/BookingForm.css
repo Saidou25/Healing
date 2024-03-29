@@ -1,4 +1,3 @@
-
 .app-btn:hover {
   background-color: rgb(24, 68, 68) !important;
   transition: 0.3s;
@@ -41,8 +40,24 @@ li.react-datepicker__time-list-item {
 
 .react-datepicker__portal {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   background: rgba(3, 3, 3, 0.92);
   z-index: 2147483647;
+}
+.booking-card {
+  padding: 5% !important;
+  width: 40%;
+  margin: auto;
+ }
+@media screen and (max-width: 414px) {
+ .booking-card {
+  width: 90%;
+ }
+ .react-datepicker {
+  display: flex;
+}
+.react-datepicker__month-container {
+  
+}
 }

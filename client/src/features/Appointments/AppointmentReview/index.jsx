@@ -48,7 +48,7 @@ const AppointmentReview = () => {
     if (!successAddingBooking) {
       return;
     } else {
-      console.log(appInfo.appointmentString)
+      console.log(appInfo.appointmentString);
       const templateParams = {
         username: appInfo.username,
         email: appInfo.email,
@@ -113,8 +113,10 @@ const AppointmentReview = () => {
   }
   if (finalize) {
     return (
-      <main className="container-fluid mt-5"
-      style={{ minHeight: "40vh", display: "flex", alignItems: "center" }}>
+      <main
+        className="container-fluid mt-5"
+        style={{ minHeight: "40vh", display: "flex", alignItems: "center" }}
+      >
         <div className="card review-list card-appointment">
           <BookingSuccess
             style={{ marginBottom: "5%" }}
@@ -209,28 +211,26 @@ const AppointmentReview = () => {
             </>
           )}
         </div>
-        <div className="card-footer">
-          <div className="row mb-3 p-3 d-flex justify-content-between">
-            <button
-              className="col-5 btn btn-app-review btn-secondary fs-5 m-3"
-              type="button"
-              onClick={cancelApp}
-            >
-              cancel
-            </button>
-            <button
-              className="col-5 btn btn-app-review bg-black fs-5 m-3"
-              type="button"
-              onClick={handleSubmit}
-              disabled={loadingAddBooking || addingProfileLoading}
-            >
-              {loadingAddBooking || addingProfileLoading ? (
-                <ButtonSpinner />
-              ) : (
-                <>confirm</>
-              )}
-            </button>
-          </div>
+        <div className="row card-footer">
+          <button
+            className="col-lg-5 col-sm-12 btn btn-app-review bg-black m-3"
+            type="button"
+            onClick={handleSubmit}
+            disabled={loadingAddBooking || addingProfileLoading}
+          >
+            {loadingAddBooking || addingProfileLoading ? (
+              <ButtonSpinner />
+            ) : (
+              <>confirm</>
+            )}
+          </button>
+          <button
+            className="col-lg-5 col-sm-12 btn btn-app-review btn-secondary m-3"
+            type="button"
+            onClick={cancelApp}
+          >
+            cancel
+          </button>
         </div>
       </div>
     </div>

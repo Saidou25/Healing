@@ -1,11 +1,8 @@
 .card-app-review {
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
   width: 40%;
   margin-right: auto;
   margin-left: auto;
 }
-
 .app-review-header {
   text-align: center;
 }
@@ -29,3 +26,21 @@
   transition: 0.3s;
   color: white;
 }
+.card-footer {
+  justify-content: center;
+}
+@media screen and (max-width: 414px) {
+  .card-app-review {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .footer-review-row {
+    background-color: blue;
+  }
+  .card-footer {
+    justify-content: center;
+    width: 95%;
+    margin: auto;
+  }
+ }

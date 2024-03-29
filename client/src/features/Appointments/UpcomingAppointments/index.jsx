@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Button from "../../../components/Button";
 import ButtonSpinner from "../../../components/ButtonSpinner";
 import useDeleteBooking from "../useDeleteBooking";
-
 import "./index.css";
 
 const UpcomingAppointments = ({ futureAppointments }) => {
@@ -21,25 +20,6 @@ const UpcomingAppointments = ({ futureAppointments }) => {
       setConfimrCancel(true);
     }
   };
-  // if (deleteBookingError) {
-  //   console.log("deleteBookingError", deleteBookingError);
-  //   // return <p>Error deleting booking: {deleteBookingError}</p>;
-  // }
-
-  // Check for success
-  // if (successDeletingBooking) {
-  //   console.log("successDeletingBooking", successDeletingBooking);
-  //   // return <p>{successDeletingBooking}</p>;
-  // }
-
-  // Check for loading state
-  // if (loading) {
-  //   // console.log("loading", loading);
-  //   // return <p>Deleting booking...</p>;
-  // };
-
-  // If none of the above conditions are met, the deletion process is ongoing
-  // return <p>Deleting booking...</p>;
 
   if (!futureAppointments?.length) {
     return <></>;
@@ -63,13 +43,13 @@ const UpcomingAppointments = ({ futureAppointments }) => {
                       Reason: <br />
                       {bookingdate.reason}
                     </p>
-                    <div className="col-4">
-                      <div className="row g-0">
+                    <div className="col-4 d-flex justify-content-end align-items-center">
+                      <div className="row">
                         {confirmCancel && bookingdate._id === buttonId ? (
                           <>
-                            <div className="col-6 d-flex justify-content-center">
+                            <div className="col-lg-6 col-sm-12 up-media-col">
                               <Button
-                                className="btn border rounded bg-danger d-flex align-items-center text-light"
+                                className="btn border up-app-btns rounded bg-danger d-flex align-items-center"
                                 type="button"
                                 style={{ maxHeight: "40px" }}
                                 onClick={() =>
@@ -85,9 +65,9 @@ const UpcomingAppointments = ({ futureAppointments }) => {
                                 )}
                               </Button>
                             </div>
-                            <div className="col-6">
+                            <div className="col-lg-6 col-sm-12 up-media-col">
                               <Button
-                                className="btn border rounded bg-primary text-light m-0 d-flex align-items-center"
+                                className="btn border up-app-btns rounded bg-primary d-flex align-items-center"
                                 type="button"
                                 style={{ maxHeight: "40px" }}
                                 onClick={() => {
@@ -102,10 +82,9 @@ const UpcomingAppointments = ({ futureAppointments }) => {
                           </>
                         ) : (
                           <>
-                            <div className="col-6"></div>
-                            <div className="col-6 d-flex">
+                            <div className="col-lg-12 col-sm-12 up-media-col d-flex justify-content-end">
                               <Button
-                                className="btn border rounded bg-primary text-light m-0 d-flex align-items-center"
+                                className="btn border up-app-btns rounded bg-primary d-flex align-items-center"
                                 type="button"
                                 style={{ maxHeight: "40px" }}
                                 onClick={() => {

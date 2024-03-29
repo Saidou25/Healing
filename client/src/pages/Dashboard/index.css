@@ -113,7 +113,10 @@
     padding-right: 0;
     border-right-style: none;
   }
-
+.right-window {
+  margin: 0 !important;
+  padding: 0 !important;
+}
   .write-review {
     padding-left: 0;
   }

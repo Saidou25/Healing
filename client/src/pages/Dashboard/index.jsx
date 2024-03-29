@@ -94,7 +94,7 @@ const Dashboard = () => {
               />
             </div>
             {futureAppointments?.length ? (
-              <div className="col-lg-4 col-sm-12 mt-5 mb-5 right-window dashb-border py-5">
+              <div className="col-lg-4 col-sm-12 my-5 right-window dashb-border py-5">
                 <div className="card suggestion p-3 text-light">
                   <br />
                   <h4 className="note mb-2">Notes</h4>

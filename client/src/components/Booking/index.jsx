@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./index.css";
 import ContactModal from "../ContactModal";
+import "./index.css";
 
 const BookingNav = ({ username, myReviews, email }) => {
   return (

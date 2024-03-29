@@ -97,7 +97,7 @@ const ContactModal = () => {
               <>
                 <div className="modal-body fs-4 m-2">
                   <form onSubmit={handleSubmit}>
-                    <label className="form-label-contact text-primary mb-5 fs-4 text-light px-1">
+                    <label className="mb-5 text-light">
                       Message
                     </label>
                     <textarea
@@ -142,7 +142,6 @@ const ContactModal = () => {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 };
