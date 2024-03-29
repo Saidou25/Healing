@@ -21,7 +21,7 @@ const SideMenu = () => {
           role="button"
           aria-controls="offcanvasExample"
         >
-          <i className="fa-solid fa-bars text-black fs-2"></i>
+          <i className="fa-solid fa-bars text-light fs-2"></i>
         </a>
       </div>
       <div

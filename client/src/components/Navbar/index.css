@@ -1,20 +1,8 @@
 .main-nav {
   display: block;
 }
-
-.bg-img {
-  /* background-image: url("../../assets/images/jumbo.jpeg"); */
-  min-height: 320px;
-  /* width: 100%; */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
 .healing-title {
   margin-top: 3%;
-  /* padding-left: 30px; */
   font-size: 7rem;
   color: black;
 }
@@ -46,7 +34,6 @@
   margin: 6px;
   color: white !important;
 }
-
 
 .btt-logout {
   border: none;
@@ -84,10 +71,6 @@
     text-align: center;
     flex-direction: column;
   }
-
-  .bg-img {
-    min-height: 250px;
-  }
 }
 
 @media screen and (max-width: 414px) {
@@ -97,15 +80,5 @@
     margin-left: 0;
     font-size: 5rem;
     color: black;
-  }
-
-  .bg-img {
-    background-image: url("../../assets/images/jumbo.jpeg");
-    min-height: 250px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    width: 100%;
   }
 }

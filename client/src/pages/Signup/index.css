@@ -16,7 +16,7 @@
 .container-signup {
   margin-top: 12%;
   background-color: rgba(0, 1, 1, 0.8);
-  width: 90%;
+  width: 95%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -24,7 +24,6 @@
   --bs-card-border-width: 0;
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
-  /* padding: 5%; */
   width: 40%;
   margin-right: auto;
   margin-left: auto;
@@ -54,29 +53,7 @@
   transition: 0.3s;
   color: white;
 }
-/* .success-container { */
-/* background-color: rgba(0, 1, 1, 0.8) !important; */
-/* background-color: rgba(131, 232, 245, 0.4); */
-/* margin-right: auto; */
-/* margin-left: auto; */
-/* animation: fadeInSuccess 0.5s linear forwards; */
-/* padding: 5%; */
-/* margin-top: 14%; */
-/* width: 30%; */
-/* margin-right: auto;
-  margin-left: auto; */
-/* } */
 
-/* @keyframes fadeInSuccess {
-  from {
-    backgound: rgba(131, 232, 245, 0.05);
-    color: rgba(255, 255, 255, 0.05);
-  }
-  to {
-    background: rgba(131, 232, 245, 0.4);
-    color: rgba(255, 255, 255, 1);
-  }
-} */
 @media screen and (max-width: 800px) {
   .container-signup {
     width: 90%;
@@ -96,20 +73,17 @@
   }
   .container-signup {
     position: relative;
-    /* width: 450px; */
   }
   .success-container {
     padding: 5%;
     margin-top: 14%;
     width: 30% !important;
-    /* margin-right: auto;
-  margin-left: auto; */
   }
 }
 
 @media screen and (max-width: 414px) {
   .container-signup {
-    width: 100%;
+    width: 95%;
     margin-top: 10%;
     box-shadow: none;
     margin-bottom: 12%;
@@ -124,6 +98,5 @@
     margin-right: auto;
     margin-left: auto;
     --bs-card-border-width: 0;
-    /* background-color: rgba(252, 252, 252, 0.6); */
   }
 }

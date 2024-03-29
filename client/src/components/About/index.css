@@ -3,18 +3,13 @@
   margin-right: auto;
   margin-left: auto;
   background-color: rgba(0, 1, 1, 0.8);
+  padding: 5%;
 }
 .card-about {
-  width: "40%";
+  /* width: "40%"; */
   padding: 2%;
   background: rgb(131, 232, 245);
   background-color: rgba(131, 232, 245, 0.4);
-}
-.about-card {
-  width: 20%;
-  margin-right: auto;
-  margin-left: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .choo {
   display: flex;
@@ -29,14 +24,16 @@
 }
 
 @media screen and (max-width: 414px) {
-  .about {
+  /* .about {
     width: 100%;
     margin-top: 10%;
     margin-bottom: 5%;
+  } */
+  .about-main {
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    /* padding: 5%; */
   }
 
-  .about-card {
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
 }

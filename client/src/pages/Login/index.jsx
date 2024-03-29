@@ -82,7 +82,7 @@ const Login = () => {
       </div>
 
       {confirm ? (
-        <div className="container-signup p-5"
+        <div className="container-login py-5"
         style={{ height: "60vh", display: "flex", alignItems: 'center' }}>
           <div className="card login my-5">
             <div
@@ -93,10 +93,10 @@ const Login = () => {
           </div>
         </div>
       ) : (
-        <div className="container-signup p-5">
+        <div className="container-login py-5">
           <div className="card global-card signup p-5">
             <h4
-              className="log-form bg-black rounded-0 text-light my-3 p-5"
+              className="log-form bg-black rounded-0 text-light my-3 p-3"
               style={{ textAlign: "center" }}
             >
               Login

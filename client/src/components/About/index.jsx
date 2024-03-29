@@ -10,10 +10,9 @@ const About = () => {
   return (
     <>
       <Navbar />
-      <main className="about-main p-5">
-        {/* <div className="container-about"> */}
-        <h3 className="reiki-title text-light m-5">What is Reiki</h3>
-        <div className="card review-list card-about text-light m-5">
+      <main className="about-main">
+        <h3 className="text-light my-5">What is Reiki</h3>
+        <div className="card review-list card-about text-light">
           <p>From Wikipedia, the free encyclopedia.</p>
           <p>
             Reiki reiki is a Japanese form of energy healing, a type of
@@ -40,17 +39,14 @@ const About = () => {
         </div>
 
         <h3 className="team-title text-light m-5">Our team</h3>
-
-        <div className="card review-list card-about mb-4 m-5">
+        {/* will do a map one that one when refactoring */}
+        <div className="card review-list card-about mb-4">
           <div className="row text-light">
             <div
               className="col-lg-4 col-sm-12"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div
-                className="container-fluid choo"
-                // style={{ display: "flex", alignItems: "center" }}
-              >
+              <div className="container-fluid choo">
                 <img className="responsive" src={Sy} alt="nurse icon" />
               </div>
             </div>
@@ -69,7 +65,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="card review-list card-about mb-4 m-5">
+        <div className="card review-list card-about mb-4">
           <div className="row text-light">
             <div className="col-lg-8 col-sm-12">
               <div className="p-2"> Nancy</div>
@@ -96,7 +92,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="card review-list card-about mb-4 m-5">
+        <div className="card review-list card-about mb-4">
           <div className="row text-light">
             <div
               className="col-lg-4 col-sm-12"

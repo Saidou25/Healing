@@ -87,7 +87,7 @@ const Signup = () => {
       </div>
 
       {confirm ? (
-        <div className="container-signup p-5"
+        <div className="container-signup py-5"
         style={{ height: "60vh", display: "flex", alignItems: 'center' }}>
           <div
             className="card bg-transparent"
@@ -97,7 +97,7 @@ const Signup = () => {
           </div>
         </div>
       ) : (
-        <div className="container-signup p-5">
+        <div className="container-signup py-5">
           <div className="card global-card signup p-5">
             <div className="card-header">
               <h4

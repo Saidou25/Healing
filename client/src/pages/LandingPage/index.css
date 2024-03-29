@@ -23,24 +23,20 @@
   justify-content: center;
   align-items: center;
   margin-top: 5px;
- 
 }
 
 .landing-item-hilight {
   text-align: center;
   color: white;
   text-decoration: none;
-  /* font-weight: 900; */
-  font-size: 2rem;
   cursor: pointer;
   padding: 10px;
   border: solid;
-  border-width: 1px !important;
+  border-width: 1px;
   background: rgb(131, 232, 245);
   background: rgba(33, 77, 83, 0.4);
   width: 40%;
   border-radius: 45px;
-  border-width: 2px;
 }
 .landing-item-hilight:hover {
   background: rgb(131, 232, 245);
@@ -71,6 +67,9 @@
 }
 
 @media screen and (max-width: 414px) {
+  .landing-row {
+    width: 95% !important;
+  }
   .landing-title {
     text-align: center;
     margin-top: 0;
@@ -78,9 +77,10 @@
     font-size: 5rem;
     color: black;
   }
-
-  .landing-column {
-    display: flex;
-    justify-content: space-evenly;
+  .landing-item-hilight {
+    padding: 2px;
+    border: solid;
+    border-width: 1px;
+    width: 40%;
   }
 }

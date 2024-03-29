@@ -5,7 +5,7 @@ import "./index.css";
 
 const LandingPage = () => {
   return (
-    <div className="mainlandingpage">
+    <>
       <div className="row">
         <div className="col-12 d-flex justify-content-end">
           <SideMenu />
@@ -34,7 +34,7 @@ const LandingPage = () => {
           </NavLink>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default LandingPage;

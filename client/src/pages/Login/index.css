@@ -14,32 +14,17 @@
   transition: 0.5s;
   color: white;
 }
-.bg-image {
-  /* background-image: url("../../assets/images/nenuphar.jpeg"); */
-  /* min-height: 90%; */
-  min-height: 600px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  margin-top: 4%;
-  margin-left: 6%;
-  margin-right: 6%;
-  margin-bottom: 7%;
-}
+
 .container-login {
-  /* position: absolute; */
-  /* right: 0; */
-  /* width: 450px; */
   margin-top: 12%;
   background-color: rgba(0, 1, 1, 0.8);
-  width: 90%;
+  width: 95%;
   margin-right: auto;
   margin-left: auto;
 }
 .login {
   margin-right: 12%;
   --bs-card-border-width: 0;
-  /* background-color: rgba(252, 252, 252, 0.4); */
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
   width: 40%;
@@ -59,7 +44,6 @@
   margin-left: auto;
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
-  /* padding: 5px; */
   font-style: oblique;
 }
 
@@ -95,37 +79,29 @@
     margin-right: auto;
     margin-left: auto;
     --bs-card-border-width: 0;
-    /* background-color: rgba(252, 252, 252, 0.4); */
   }
   .container-login {
     position: relative;
-    /* width: 450px; */
   }
 
-  .bg-image {
-    background-image: url("../../assets/images/nenuphar.jpeg");
-    /* min-height: 90%; */
-    min-height: 600px;
-    background-position: center;
-    margin-bottom: 10%;
-  }
+  
 }
 @media screen and (max-width: 414px) {
   .container-login {
-    width: 100%;
+    width: 95%;
     margin-top: 10%;
     box-shadow: none;
     margin-bottom: 12%;
   }
-  .bg-image {
-    margin-left: 2%;
-    margin-right: 2%;
-  }
+ 
   .login {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
     --bs-card-border-width: 0;
     background-color: rgba(252, 252, 252, 0.6);
+  }
+  .global-card {
+    padding: 0 !important;
   }
 }
