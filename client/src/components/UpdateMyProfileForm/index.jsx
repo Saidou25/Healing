@@ -129,12 +129,12 @@ const UpdateMyProfileForm = (props) => {
          style={{ display: "flex", alignItems: "center" }}
          >
           {!showSuccess && (
-            <p className="update-p mb-5">
+            <p className="mb-5 modify-media">
               Please modify the fields you would like to update with your new
               information.
             </p>
           )}
-          <div className="card bg-0 review-list login my-5"
+          <div className="card global-card bg-0 update-profile-card my-5"
            >
             {showSuccess ? (
               <Success message={"Profiles updated!"} />

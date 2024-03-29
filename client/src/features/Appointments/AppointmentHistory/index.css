@@ -1,16 +1,10 @@
 .container-history {
   width: 80%;
-    margin: auto;
+  margin: auto;
 }
 .all-history {
   padding-right: 4%;
 }
-/* .container-no-history {
-  margin-top: 7%;
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
-} */
 .history-header {
   text-align: center;
   height: 30%;
@@ -19,9 +13,6 @@
   border-style: double !important;
   border: solid;
   height: 200px;
-  /* background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4); */
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .history {
   background: rgb(131, 232, 245);
@@ -32,9 +23,6 @@
 }
 .delete-appointment {
   margin-bottom: 2%;
-}
-.history {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 @media screen and (max-width: 680px) {
   .appointment-list-title {

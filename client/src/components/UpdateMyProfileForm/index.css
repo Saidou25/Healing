@@ -1,5 +1,5 @@
 .container-update {
-  margin-top: 8%;
+  margin-top: 5%;
   padding-right: 10%;
   padding-left: 10%;
   margin-right: auto;
@@ -10,8 +10,6 @@
   min-height: 50vh;
 }
 .update-profile-card {
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
   width: 40%;
   margin: auto;
 }
@@ -68,7 +66,11 @@
   justify-content: center;
   height: 55px;
 }
-
+.modify-media {
+  padding-right: 5%;
+  padding-left: 5%;
+  text-align: center;
+}
 @media screen and (max-width: 600px) {
   .update-error {
     text-align: center;
@@ -77,8 +79,18 @@
 }
 @media screen and (max-width: 414px) {
   .container-update {
-    width: 90%;
+    padding-right: 5%;
+    padding-left: 5%;
     margin-right: auto;
     margin-left: auto;
+  }
+  .container-update {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .update-profile-card {
+    width: 100% !important;
   }
 }

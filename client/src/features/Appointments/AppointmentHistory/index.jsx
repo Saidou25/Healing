@@ -59,7 +59,7 @@ const AppointmentHistory = () => {
     <div>
       {!history?.length ? (
         <div className="container-history my-5">
-          <div className="card global-card no-history review-list text-light">
+          <div className="card global-card no-review-history">
             <NavLink
               to="/Dashboard"
               className="text-white fs-3 px-3 pt-3"

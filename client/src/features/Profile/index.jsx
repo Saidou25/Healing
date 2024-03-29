@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { FaEnvelope, FaPhone, FaIdBadge, FaHome } from "react-icons/fa";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
@@ -115,22 +115,24 @@ const Profile = () => {
               </div>
             </div>
             <div className="col-12 col-profile">
-              <Link to="/UpdateProfile" state={{ userProfile: me.profile }}
-              style={{ width: "100%" }}>
+              <NavLink
+                className="update-navlink"
+                to="/UpdateProfile"
+                state={{ userProfile: me.profile }}
+              >
                 <button className="btn update-profile mt-5 btn-info rounded-0">
                   update
                 </button>
-              </Link>
+              </NavLink>
             </div>
             <div className="col-12 col-profile">
-            <DeleteModal
-              userProfile={me.profile}
-              userId={me._id}
-              myAppointments={me.bookingdates}
-              profileId={me.profile?._id}
-            />
+              <DeleteModal
+                userProfile={me.profile}
+                userId={me._id}
+                myAppointments={me.bookingdates}
+                profileId={me.profile?._id}
+              />
             </div>
-         
           </div>
         </div>
         <Footer />

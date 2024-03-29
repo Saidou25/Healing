@@ -1,8 +1,7 @@
-
 .container-profile {
   padding-top: 3%;
   background-color: rgba(0, 1, 1, 0.8);
-  width: 95%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   color: white !important;
@@ -10,6 +9,10 @@
 }
 .my-profile {
   text-align: center;
+}
+.update-navlink {
+  width: 100%;
+  /* display: block; */
 }
 .card-header {
   border: 0;
@@ -59,6 +62,12 @@
     justify-content: center;
     flex-direction: column;
     margin-top: 0;
+  }
+  .update-navlink {
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
   }
 }
 @media screen and (max-width: 375px) {

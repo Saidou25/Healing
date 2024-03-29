@@ -68,4 +68,11 @@
     width: 95%;
     margin: auto;
   }
+  .no-review-history {
+    border-style: double !important;
+    border: solid;
+    height: 200px;
+    width: 95%;
+    margin: auto;
+  }
 }
