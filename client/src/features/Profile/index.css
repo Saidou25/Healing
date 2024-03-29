@@ -2,7 +2,9 @@
 .container-profile {
   padding-top: 3%;
   background-color: rgba(0, 1, 1, 0.8);
-  width: 90%;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
   color: white !important;
   margin-top: 5%;
 }
@@ -22,13 +24,12 @@
   margin: auto;
 }
 .profile-body {
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
   border-radius: 10px;
   margin-bottom: 5% !important;
+  width: 95% !important;
 }
 .update-profile {
-  width: 100%;
+  width: 95%;
 }
 .footer-myprofile {
   position: fixed !important;
@@ -48,9 +49,16 @@
 }
 @media screen and (max-width: 414px) {
   .container-profile {
-    width: 90%;
     margin-right: auto;
     margin-left: auto;
+  }
+  .col-profile {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 0;
   }
 }
 @media screen and (max-width: 375px) {

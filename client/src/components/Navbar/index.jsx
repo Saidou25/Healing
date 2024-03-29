@@ -15,7 +15,7 @@ const Navbar = () => {
     return (
       <main className="main-nav ">
         <div className="bg-img">
-          <nav className="row">
+          <nav className="row g-0">
             <div className="col-12 d-flex justify-content-end">
               <SideMenu />
             </div>

@@ -11,7 +11,6 @@ import auth from "../../utils/auth";
 import "./index.css";
 
 const Profile = () => {
-
   const { data, loading } = useQuery(QUERY_ME);
   const me = data?.me || [];
 
@@ -59,7 +58,7 @@ const Profile = () => {
               <h3 className="text-profile my-profile-titles text-light py-5">
                 Login
               </h3>
-              <div className="card review-list profile-body text-light p-3">
+              <div className="card global-card review-list profile-body text-light p-3">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}
@@ -92,7 +91,7 @@ const Profile = () => {
             </div>
 
             <div className="col-12 col-profile">
-              <h3 className="text-profile my-profile-titles text-light mb-5 mt-5">
+              <h3 className="text-profile my-profile-titles text-light my-5">
                 Contact
               </h3>
               <div className="card review-list profile-body text-light p-3">
@@ -115,19 +114,23 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-profile mt-5">
-              <Link to="/UpdateProfile" state={{ userProfile: me.profile }}>
-                <button className="btn update-profile mt-5 btn-info fs-5">
+            <div className="col-12 col-profile">
+              <Link to="/UpdateProfile" state={{ userProfile: me.profile }}
+              style={{ width: "100%" }}>
+                <button className="btn update-profile mt-5 btn-info rounded-0">
                   update
                 </button>
               </Link>
             </div>
-              <DeleteModal
-                userProfile={me.profile}
-                userId={me._id}
-                myAppointments={me.bookingdates}
-                profileId={me.profile?._id}
-              />
+            <div className="col-12 col-profile">
+            <DeleteModal
+              userProfile={me.profile}
+              userId={me._id}
+              myAppointments={me.bookingdates}
+              profileId={me.profile?._id}
+            />
+            </div>
+         
           </div>
         </div>
         <Footer />

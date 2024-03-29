@@ -74,7 +74,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
       <div className="d-flex top-level pb-5">
         <button
           type="button"
-          className="btn btn-danger btn-modal my-5"
+          className="btn btn-danger rounded-0 my-5"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
         >

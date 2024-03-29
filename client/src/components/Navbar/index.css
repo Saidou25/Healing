@@ -4,7 +4,6 @@
 .healing-title {
   margin-top: 3%;
   font-size: 7rem;
-  color: black;
 }
 
 .landing {
@@ -54,7 +53,6 @@
     margin-top: 0;
     padding-left: 30px;
     font-size: 7rem;
-    color: black;
   }
 }
 
@@ -64,7 +62,6 @@
     margin-top: 0;
     padding-left: 0;
     font-size: 5rem;
-    color: black;
   }
 
   .one {
@@ -74,11 +71,10 @@
 }
 
 @media screen and (max-width: 414px) {
-  .landing-title {
-    text-align: center;
+  .healing-title {
+   font-size: 3rem;
+  }
+  .nav {
     margin-top: 0;
-    margin-left: 0;
-    font-size: 5rem;
-    color: black;
   }
 }

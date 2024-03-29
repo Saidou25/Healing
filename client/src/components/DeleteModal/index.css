@@ -6,12 +6,14 @@
   text-align: center;
 }
 .top-level {
+  width: 95%;
   display: flex;
   justify-content: flex-end !important;
 }
 .btn-modal {
   width: 10%;
   margin: auto;
+
 }
 .modal-content {
   background: rgb(131, 232, 245);
@@ -31,10 +33,14 @@
 }
 @media screen and (max-width: 414px) {
   .btn-modal {
-    width: 100%;
+    width: 95%;
   }
   .modal-title-delete {
     margin-left: 9%;
     text-align: center;
+  }
+  .update-modal {
+    width: 25%;
+    margin: auto;
   }
 }

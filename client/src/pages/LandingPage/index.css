@@ -3,19 +3,17 @@
   margin-right: auto;
   margin-left: auto;
 }
-.landing-row {
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(0, 1, 1, 0.8);
-  margin-top: 8%;
-  width: 40%;
-  margin-right: auto;
-  margin-left: auto;
-}
 .landing-title {
   margin-top: 3%;
   padding-left: 95.6px;
   font-size: 7rem;
+}
+.landing-row {
+  background-color: rgba(0, 1, 1, 0.8);
+  margin-top: 12%;
+  width: 40%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .landing-column {
@@ -43,9 +41,6 @@
   background: rgba(131, 232, 245, 0.4);
 }
 
-.visit-item:hover {
-  color: black;
-}
 
 @media screen and (max-width: 825px) {
   .landing-title {
@@ -71,11 +66,7 @@
     width: 95% !important;
   }
   .landing-title {
-    text-align: center;
-    margin-top: 0;
-    padding-left: 0;
-    font-size: 5rem;
-    color: black;
+    font-size: 3rem !important;
   }
   .landing-item-hilight {
     padding: 2px;

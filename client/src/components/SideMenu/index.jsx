@@ -91,6 +91,14 @@ const SideMenu = () => {
                         history
                       </a>
                     </li>
+                    <li className="col-12 col-items mt-4 pb-4">
+                      <a
+                        className="nav-item-side fs-3"
+                        href="/Profile"
+                      >
+                        profile
+                      </a>
+                    </li>
                   </>
                 )}
                 {Auth.loggedIn() ? (
