@@ -1,6 +1,5 @@
 .footer {
     margin-top: 5%;
-    /* height: 150px; */
     align-items: center;
 }
 .text-footer {
@@ -12,7 +11,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding-bottom: 10%; */
 }
 .number {
     align-items: center;
@@ -25,10 +23,12 @@
 @media screen and (max-width: 414px) {
     .footer {
         margin-top: 3%;
-        /* height: 120px; */
         align-items: center;
+        margin-bottom: 5% !important;
     }
-    .main-footer {
-        padding: 2%;
+    .footer {
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
     }
 }

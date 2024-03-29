@@ -31,3 +31,12 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+@media screen and (max-width: 414px) {
+  .dashboard-text {
+    font-size: 1rem;
+  }
+  .dashboard-text:hover {
+    font-size: 1rem;
+  }
+  
+}

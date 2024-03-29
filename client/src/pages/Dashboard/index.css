@@ -65,6 +65,7 @@
   display: flex;
   justify-content: center;
   text-align: center;
+  
 }
 .review-button:hover {
   background-color: rgb(24, 68, 68) !important;
@@ -93,7 +94,12 @@
     margin-right: auto;
     margin-left: auto;
   }
-
+  .dashb-border {
+    padding-left: 0;
+    border-left-style: none;
+    border-left-color: none;
+    border-width: 1px;
+  }
   .direct-message {
     width: 97%;
   }

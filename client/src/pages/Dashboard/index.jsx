@@ -123,19 +123,16 @@ const Dashboard = () => {
               <AllReviews />
             </div>
             <div className="col-lg-4 col-sm-12 right-window dashb-border mb-5">
-              <div className="row top-box g-0">
+              <div className="row top-box"
+              >
                 <div className="col-12">
-                  <h3 className="write-review-title pt-5 text-light">
+                  <h3 className="write-review-title pt-5 text-light"
+                  >
                     Write a review
                   </h3>
                 </div>
                 <div
-                  className="col-12 d-flex justify-content-center"
-                  style={{
-                    width: "96%",
-                    marginRight: "auto",
-                    marginLeft: "auto",
-                  }}
+                  className="col-12 d-flex justify-content-center p-2"
                 >
                   <button
                     type="button"

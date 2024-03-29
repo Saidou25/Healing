@@ -58,8 +58,8 @@ const AppointmentHistory = () => {
   return (
     <div>
       {!history?.length ? (
-        <div className="container-history mt-5 mb-5">
-          <div className="card review-list no-history text-light">
+        <div className="container-history my-5">
+          <div className="card global-card no-history review-list text-light">
             <NavLink
               to="/Dashboard"
               className="text-white fs-3 px-3 pt-3"
@@ -70,37 +70,37 @@ const AppointmentHistory = () => {
             <p className="card-header history-header fs-3">
               No appointment yet
             </p>
-            <div className="card-body text-light"
-            style={{ textAlign: "center" }}>
+            <div
+              className="card-body text-light"
+              style={{ textAlign: "center" }}
+            >
               <p>Your appointments will show on here soon.</p>
             </div>
           </div>
         </div>
       ) : (
-        <div className="container-history text-light py-5">
-          <div className="row review-border">
-            <div className="col-4 d-flex test">
-              <h3 className="review-list-title  text-light my-5">
-                Appointment history
-              </h3>
-            </div>
-            <div className="col-4 text-light d-flex justify-content-end">
-              <NavLink to="/Dashboard" className="text-white my-5 fs-3">
-                <AiOutlineClose />
-              </NavLink>
-            </div>
+        <div className="container-review text-light py-5">
+          <div className="media-title review-border">
+            <h3 className="review-list-title text-light my-5">
+              Past appointments
+            </h3>
+            <NavLink to="/Dashboard" className="text-white my-5 fs-3 g-0"
+             style={{ display: "flex", alignItems: "center" }}>
+              <AiOutlineClose />
+            </NavLink>
           </div>
           <div className="row all-history">
             {history &&
               history.map((bookingdate) => (
-                <div key={bookingdate._id} className="col-8 history-column">
-                  <div className="card review-list history mb-4 text-light">
+                <div key={bookingdate._id} className="col-lg-8 col-sm-12">
+                  <div className="card global-card card-media mb-4">
                     <div className="card-header fs-3">
                       Previous appointment:
                     </div>
                     <div className="card-body p-3">
                       <div className="row">
-                        <div className="col-8 d-flex align-items-center">
+                        <div className="col-8"
+                        style={{ display: "flex", alignItems: "center" }}>
                           <div className="appointment-text">
                             <div className="text">
                               {bookingdate.appointmentString}

@@ -1,10 +1,13 @@
 .container-review,
 .containerno-history {
-  margin-top: 7%;
   width: 80%;
   margin: auto;
 }
-
+.media-title {
+  display: flex;
+  justify-content: space-between;
+  width: 69%;
+}
 .no-review-history {
   border-style: double !important;
   border: solid;
@@ -12,18 +15,12 @@
 }
 .review-list {
   border-radius: 10px;
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .header-design {
   border-radius: 10px;
-  /* background: rgb(131, 232, 245); */
-  /* border-bottom-color: rgba(131, 232, 245, 0.4) !important; */
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .review-border {
-  padding-right: 4%;
+  padding-right: 5%;
 }
 .review-list {
   background: rgba(131, 232, 245, 0.05);
@@ -48,8 +45,27 @@
 }
 @media screen and (max-width: 414px) {
   .container-review {
-    width: 96%;
+    width: 95%;
     margin-right: auto;
     margin-left: auto;
+    padding-top: 1% !important;
+  }
+  .review-border {
+    padding: 0;
+  }
+  .media-title {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: auto;
+  }
+  .review-list-title {
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+  .card-media {
+    width: 95%;
+    margin: auto;
   }
 }

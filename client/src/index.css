@@ -21,7 +21,8 @@
   overflow-y: scroll;
 }
 #root .global-card {
-  background: rgba(131, 232, 245, 0.4);
+  background: rgba(131, 232, 245, 0.05);
+  animation: fadeInGlobalCard 0.4s linear forwards;
   color: white;
 }
 #root .input-input {
@@ -39,4 +40,15 @@
   padding: 5px;
   display: flex;
   flex-direction: column;
+}
+
+@keyframes fadeInGlobalCard {
+  from {
+    background: rgba(131, 232, 245, 0.05);
+    color: rgba(255, 255, 255, 0.05);
+  }
+  to {
+    background: rgba(131, 232, 245, 0.4);
+    color: rgba(255, 255, 255, 1);
+  }
 }
