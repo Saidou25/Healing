@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { sendMessage, ok, notOk } from "../../utils/email.js";
+import { sendMessage, ok, notOk, ok1, notOk1 } from "../../utils/email.js";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries.js";
 import ButtonSpinner from "../ButtonSpinner/index.jsx";
@@ -55,6 +55,14 @@ const ContactModal = () => {
     }
   }, [ok]);
 
+  useEffect(() => {
+    if (notOk) {
+      setLoading(false);
+      setError(notOk);
+      return;
+    }
+  }, [notOk]);
+
   return (
     <>
       <button
@@ -95,7 +103,7 @@ const ContactModal = () => {
               </div>
             ) : (
               <>
-                <div className="modal-body fs-4 m-2">
+                <div className="modal-body m-2">
                   <form onSubmit={handleSubmit}>
                     <label className="mb-5 text-light">
                       Message

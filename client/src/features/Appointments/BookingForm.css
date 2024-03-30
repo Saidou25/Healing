@@ -3,10 +3,6 @@
   transition: 0.3s;
   color: white;
 }
-.custom-container {
-  width: 100%;
-}
-
 .react-datepicker {
   background: rgb(2, 62, 70) !important;
   border: solid;
@@ -49,15 +45,42 @@ li.react-datepicker__time-list-item {
   padding: 5% !important;
   width: 40%;
   margin: auto;
- }
-@media screen and (max-width: 414px) {
- .booking-card {
-  width: 90%;
- }
- .react-datepicker {
-  display: flex;
 }
-.react-datepicker__month-container {
+@media screen and (max-width: 414px) {
+  .booking-card {
+    width: 90%;
+  }
+  .react-datepicker {
+    display: flex;
+    border: none;
+    border-width: 1px !important;
+    border-style: double !important;
+    border-color: transparent !important;
+  }
   
+  .react-datepicker__month-container {
+    width: 79% !important;
+  }
+  .react-datepicker__header {
+    min-width: 80% !important;
+    font-weight: 400 !important;
+  }
+
+  .react-datepicker__day,
+  li.react-datepicker__time-list-item {
+    font-weight: 400 !important;
+    width: 12.5% !important;
+    margin: 1% !important;
+  }
+
+  .react-datepicker__portal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(3, 3, 3, 0.92);
+    z-index: 2147483647;
+  }
+.react-datepicker__portal .react-datepicker__day-name {
+  width: 2rem;
 }
 }

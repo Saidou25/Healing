@@ -48,7 +48,6 @@ const AppointmentReview = () => {
     if (!successAddingBooking) {
       return;
     } else {
-      console.log(appInfo.appointmentString);
       const templateParams = {
         username: appInfo.username,
         email: appInfo.email,

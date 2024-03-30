@@ -50,6 +50,11 @@ export default function BookingForm({
                     minTime={setHours(setMinutes(new Date(), 0), 9)}
                     maxTime={setHours(setMinutes(new Date(), 0), 19)}
                     dateFormat="MMMM d, yyyy h:mm aa"
+                    popperModifiers={{
+                      preventOverflow: {
+                        enabled: true,
+                      },
+                    }}
                     withPortal
                   />
                 </div>
