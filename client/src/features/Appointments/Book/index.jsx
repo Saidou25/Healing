@@ -71,7 +71,7 @@ const Book = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     if (!reason || !startDate) {
