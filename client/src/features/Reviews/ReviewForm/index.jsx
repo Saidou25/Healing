@@ -154,7 +154,7 @@ const ReviewForm = ({ username, today }) => {
     //     setTitle("");
     //     setReviewText("");
     //     setRating("");
-    //     setChecked1("");
+    //     setChecked1("")
     //     setChecked2("");
     //     setChecked3("");
     //     setChecked4("");
