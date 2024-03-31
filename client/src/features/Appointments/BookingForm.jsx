@@ -20,7 +20,7 @@ export default function BookingForm({
 }) {
   return (
     <div className="container-fluid">
-      <div className="card booking-card global-card p-5 my-5">
+      <div className="card booking-card global-card my-5">
         <div className="bg-black">
           <h4
             className="log-form bg-black rounded-0 text-light my-3 py-3"
@@ -33,7 +33,9 @@ export default function BookingForm({
           {showNavNav ? (
             <form className="global-form">
               <div className="col-12 date-picker py-4">
-                <label className="log-form">Choose your appointment date</label>
+                <label htmlFor="user_date" className="log-form">
+                  Choose your appointment date
+                </label>
                 <div className="choose-date py-4">
                   <DatePicker
                     id="user_date"
@@ -60,10 +62,11 @@ export default function BookingForm({
                 </div>
                 <div className="col-12 appointment-column py-4">
                   <div>
-                    <label className="log-form py-4">
+                    <label htmlFor="reason" className="log-form py-4">
                       What is your reason for visiting?
                     </label>
                     <textarea
+                      id="reason"
                       className="log-form input-input"
                       name="reason"
                       value={reason}
@@ -76,16 +79,14 @@ export default function BookingForm({
                 <br />
                 {error && <ErrorComponent message={error} />}
                 <br />
-                <div className="centering">
-                  <button
-                    type="submit"
-                    onClick={(e) => handleSubmit(e)}
-                    className="btn app-btn bg-black py-4 rounded-0 m-0"
-                    style={{ width: "50%" }}
-                  >
-                    submit
-                  </button>
-                </div>
+                <button
+                  type="submit"
+                  onClick={(e) => handleSubmit(e)}
+                  className="btn app-btn bg-black rounded-0"
+                  style={{ width: "50%" }}
+                >
+                  submit
+                </button>
               </div>
             </form>
           ) : (

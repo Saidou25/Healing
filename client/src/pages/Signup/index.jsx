@@ -71,7 +71,7 @@ const Signup = () => {
       }
     } catch (error) {
       setErrorHook(error.message);
-      setLoading(false)
+      setLoading(false);
       return;
     }
   };
@@ -87,8 +87,10 @@ const Signup = () => {
       </div>
 
       {confirm ? (
-        <div className="container-signup py-5"
-        style={{ height: "60vh", display: "flex", alignItems: 'center' }}>
+        <div
+          className="container-signup py-5"
+          style={{ height: "60vh", display: "flex", alignItems: "center" }}
+        >
           <div
             className="card bg-transparent"
             style={{ width: "40%", margin: "auto" }}
@@ -102,16 +104,26 @@ const Signup = () => {
             <div className="card-header">
               <h4
                 className="log-form bg-black rounded-0 text-light p-5 mb-5"
-                style={{ fontStyle: "normal", textAlign: "center", width: "100%" }}
+                style={{
+                  fontStyle: "normal",
+                  textAlign: "center",
+                  width: "100%",
+                }}
               >
                 Sign Up
               </h4>
             </div>
             <div className="card-body">
-              <form className="global-form" onSubmit={handleFormSubmit}>
-                <label className="log-form text-light">Username</label>
+              <form
+                htmlFor="username"
+                className="global-form"
+                onSubmit={handleFormSubmit}
+              >
+                <label htmlFor="username" className="log-form text-light">Username</label>
                 <br />
                 <input
+                  id="username"
+                  autoComplete="on"
                   className="log-form input-input"
                   placeholder="choose a username..."
                   name="username"
@@ -120,9 +132,13 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <br />
-                <label className="log-form text-light">Email</label>
+                <label htmlFor="email" className="log-form text-light">
+                  Email
+                </label>
                 <br />
                 <input
+                  id="email"
+                  autoComplete="on"
                   className="log-form input-input"
                   placeholder="your email.."
                   name="email"
@@ -131,9 +147,13 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <br />
-                <label className="log-form text-light">Password</label>
+                <label htmlFor="password" className="log-form text-light">
+                  Password
+                </label>
                 <br />
                 <input
+                  id="password"
+                  autoComplete="on"
                   className="log-form input-input"
                   placeholder="******"
                   name="password"

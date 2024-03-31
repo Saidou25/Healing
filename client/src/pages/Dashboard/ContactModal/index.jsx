@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { sendMessage, ok, notOk, ok1, notOk1 } from "../../utils/email.js";
+import { sendMessage, ok, notOk, ok1, notOk1 } from "../../../utils/email.js";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../utils/queries.js";
-import ButtonSpinner from "../ButtonSpinner/index.jsx";
-import ErrorComponent from "../ErrorComponent.jsx";
-import Success from "../Success.jsx";
+import { QUERY_ME } from "../../../utils/queries.js";
 import "./index.css";
+import Success from "../../../components/Success.jsx";
+import ButtonSpinner from "../../../components/ButtonSpinner/index.jsx";
+import ErrorComponent from "../../../components/ErrorComponent.jsx";
 
 const ContactModal = () => {
   const [message, setMessage] = useState("");

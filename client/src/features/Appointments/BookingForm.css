@@ -1,3 +1,9 @@
+.app-btn {
+  background-color: black;
+  margin-top:5%;
+  transition: 0.3s;
+  color: white;
+}
 .app-btn:hover {
   background-color: rgb(24, 68, 68) !important;
   transition: 0.3s;
@@ -42,7 +48,7 @@ li.react-datepicker__time-list-item {
   z-index: 2147483647;
 }
 .booking-card {
-  padding: 5% !important;
+  padding: 2% !important;
   width: 40%;
   margin: auto;
 }

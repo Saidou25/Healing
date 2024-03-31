@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import ContactModal from "../ContactModal";
 import "./index.css";
 
-const BookingNav = ({ username, myReviews, email }) => {
+const DashboardNav = ({ username, myReviews, email }) => {
   return (
     <div className="container-fluid bookingnav g-0">
       <div className="row mb-5">
@@ -25,12 +25,14 @@ const BookingNav = ({ username, myReviews, email }) => {
             My reviews
           </NavLink>
         </div>
-        <div className="col-4"
-          style={{ display: "flex", justifyContent: "center" }}> 
-        <ContactModal username={username} email={email} />
-       </div>
+        <div
+          className="col-4"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <ContactModal username={username} email={email} />
+        </div>
       </div>
     </div>
   );
 };
-export default BookingNav;
+export default DashboardNav;

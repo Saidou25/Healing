@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import About from "./components/About";
+import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import Book from "./features/Appointments/Book";
 import AppointmentReview from "./features/Appointments/AppointmentReview";

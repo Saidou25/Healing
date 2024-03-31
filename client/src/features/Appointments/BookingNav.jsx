@@ -6,7 +6,7 @@ import Auth from "../../utils/auth";
 import SideMenu from "../../components/SideMenu";
 // import "./index.css";
 
-const BookingNav = () => {
+const DashboardNav = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -88,4 +88,4 @@ const BookingNav = () => {
   );
 };
 
-export default BookingNav;
+export default DashboardNav;

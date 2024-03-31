@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import useAddReview from "../useAddReview";
 import ButtonSpinner from "../../../components/ButtonSpinner";
 import Button from "../../../components/Button";
-import "./index.css";
 import ErrorComponent from "../../../components/ErrorComponent";
 import Success from "../../../components/Success";
+import "./index.css";
 
 const ReviewForm = ({ username, today }) => {
   const [formState, setFormState] = useState({
@@ -183,124 +183,137 @@ const ReviewForm = ({ username, today }) => {
       <main className="row my-5 pb-5">
         <div className="col-12 review-form">
           <div className="card p-2 review-design">
-            {confirm ? <Success message={successAddingReview} /> : (<>
-              <h4 className="card-header-review-title bg-black text-light p-2">
-              review
-            </h4>
-            <div className="card-body text-light">
-              <form>
-                <label className="form-label1 my-4 text-light">Title</label>
-                <br />
-                <input
-                  required
-                  className="form-input review-form-input mb-3 text-light"
-                  placeholder="title..."
-                  name="title"
-                  type="text"
-                  value={formState.title}
-                  onChange={handleChange}
-                />
-                <label className="form-label1 my-4 text-light">Text</label>
-                <br />
-                <textarea
-                  className="form-input review-form-input mb-3 text-light"
-                  placeholder="write your text here..."
-                  name="reviewText"
-                  type="text"
-                  value={formState.reviewText}
-                  onChange={handleChange}
-                />
-                <br />
-
-                {/* </form> */}
-                <div className="col-12">
-                  <label className="form-label1">
-                    Rate
-                    <span className="optional">(optianal)</span>
-                  </label>
-                  <div className="row star mt-2">
-                    <Button
-                      type="button"
-                      className="col-2 btn"
-                      // onClick={(event) => handleRating("1")}
+            {confirm ? (
+              <Success message={successAddingReview} />
+            ) : (
+              <>
+                <h4 className="card-header-review-title bg-black text-light p-2">
+                  review
+                </h4>
+                <div className="card-body text-light">
+                  <form>
+                    <label
+                      htmlFor="the-title"
+                      className="form-label1 my-4 text-light"
                     >
-                      {checked1 ? (
-                        <i className="fa fa-star checked1"></i>
-                      ) : (
-                        <i className="fa fa-star unchecked1"></i>
-                      )}
-                    </Button>
-                    <Button
-                      type="button"
-                      className="col-2 btn"
-                      // onClick={(event) => handleRating("2")}
+                      Title
+                    </label>
+                    <br />
+                    <input
+                      id="the-title"
+                      required
+                      className="form-input review-form-input mb-3 text-light"
+                      placeholder="title..."
+                      name="title"
+                      type="text"
+                      value={formState.title}
+                      onChange={handleChange}
+                    />
+                    <label
+                      htmlFor="the-text"
+                      className="form-label1 my-4 text-light"
                     >
-                      {checked2 ? (
-                        <i className="fa fa-star checked2"></i>
-                      ) : (
-                        <i className="fa fa-star unchecked2"></i>
-                      )}
-                    </Button>
-                    <Button
-                      type="button"
-                      className="col-2 btn"
-                      // onClick={(event) => handleRating("3")}
-                    >
-                      {checked3 ? (
-                        <i className="fa fa-star checked3"></i>
-                      ) : (
-                        <i className="fa fa-star unchecked3"></i>
-                      )}
-                    </Button>
-                    <Button
-                      type="button"
-                      className="col-2 btn"
-                      // onClick={(event) => handleRating("4")}
-                    >
-                      {checked4 ? (
-                        <i className="fa fa-star checked4"></i>
-                      ) : (
-                        <i className="fa fa-star unchecked4"></i>
-                      )}
-                    </Button>
-                    <Button
-                      type="button"
-                      className="col-2 btn"
-                      // onClick={(event) => handleRating("5")}
-                    >
-                      {checked5 ? (
-                        <i className="fa fa-star checked5"></i>
-                      ) : (
-                        <i className="fa fa-star unchecked5"></i>
-                      )}
-                    </Button>
-                  </div>
-                </div>
-                <div>
-                  <div>
-                    {successAddingReview && (
-                      <div className="bg-success text-white mb-5">
-                        <p className="review-confirm m-2">
-                          {successAddingReview}
-                        </p>
+                      Text
+                    </label>
+                    <br />
+                    <textarea
+                      id="the-text"
+                      className="form-input review-form-input mb-3 text-light"
+                      placeholder="write your text here..."
+                      name="reviewText"
+                      type="text"
+                      value={formState.reviewText}
+                      onChange={handleChange}
+                    />
+                    <br />
+                    <div className="col-12">
+                      <label className="form-label1">
+                        Rate
+                        <span className="optional">(optianal)</span>
+                      </label>
+                      <div className="row star mt-2">
+                        <Button
+                          type="button"
+                          className="col-2 btn"
+                          // onClick={(event) => handleRating("1")}
+                        >
+                          {checked1 ? (
+                            <i className="fa fa-star checked1"></i>
+                          ) : (
+                            <i className="fa fa-star unchecked1"></i>
+                          )}
+                        </Button>
+                        <Button
+                          type="button"
+                          className="col-2 btn"
+                          // onClick={(event) => handleRating("2")}
+                        >
+                          {checked2 ? (
+                            <i className="fa fa-star checked2"></i>
+                          ) : (
+                            <i className="fa fa-star unchecked2"></i>
+                          )}
+                        </Button>
+                        <Button
+                          type="button"
+                          className="col-2 btn"
+                          // onClick={(event) => handleRating("3")}
+                        >
+                          {checked3 ? (
+                            <i className="fa fa-star checked3"></i>
+                          ) : (
+                            <i className="fa fa-star unchecked3"></i>
+                          )}
+                        </Button>
+                        <Button
+                          type="button"
+                          className="col-2 btn"
+                          // onClick={(event) => handleRating("4")}
+                        >
+                          {checked4 ? (
+                            <i className="fa fa-star checked4"></i>
+                          ) : (
+                            <i className="fa fa-star unchecked4"></i>
+                          )}
+                        </Button>
+                        <Button
+                          type="button"
+                          className="col-2 btn"
+                          // onClick={(event) => handleRating("5")}
+                        >
+                          {checked5 ? (
+                            <i className="fa fa-star checked5"></i>
+                          ) : (
+                            <i className="fa fa-star unchecked5"></i>
+                          )}
+                        </Button>
                       </div>
-                    )}
-                  </div>
-                  <br />
-                  {error && <ErrorComponent message={error} />}
+                    </div>
+                    <div>
+                      <div>
+                        {successAddingReview && (
+                          <div className="bg-success text-white mb-5">
+                            <p className="review-confirm m-2">
+                              {successAddingReview}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                      <br />
+                      {error && <ErrorComponent message={error} />}
+                    </div>
+                    <Button
+                      className="btn btn-block rounded-0 btn-info mt-5"
+                      type="submit"
+                      onClick={handleSubmit}
+                      disabled={loading}
+                    >
+                      {loading ? <ButtonSpinner /> : <>Submit</>}
+                    </Button>
+                  </form>
                 </div>
-                <Button
-                  className="btn btn-block rounded-0 btn-info mt-5"
-                  type="submit"
-                  onClick={handleSubmit}
-                  disabled={loading}
-                >
-                  {loading ? <ButtonSpinner /> : <>Submit</>}
-                </Button>
-              </form>
-            </div>
-            </>)}
-            
+              </>
+            )}
           </div>
         </div>
       </main>

@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
 import Sy from "../../assets/images/IMG-0105 copy.jpg";
 import nurseGuy from "../../assets/images/nurseGuy.jpeg";
 import nurseLady from "../../assets/images/nurseLady.jpeg";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import "./index.css";
 
 const About = () => {

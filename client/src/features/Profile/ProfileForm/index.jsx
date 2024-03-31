@@ -3,11 +3,11 @@ import { PatternFormat } from "react-number-format";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import { Regex } from "../../../utils/Regex.js";
 import SelectUSState from "react-select-us-states";
-import "react-phone-number-input/style.css";
-import "./index.css";
 import auth from "../../../utils/auth.js";
 import ErrorComponent from "../../../components/ErrorComponent.jsx";
 import ButtonSpinner from "../../../components/ButtonSpinner/index.jsx";
+import "react-phone-number-input/style.css";
+import "./index.css";
 
 const ProfileForm = () => {
   const location = useLocation();
@@ -139,10 +139,11 @@ const ProfileForm = () => {
                       female
                     </div>
                   </div>
-                  <div className="col-lg-6 col-sm-12 p-2">
+                  <div htmlFor="birth-date" className="col-lg-6 col-sm-12 p-2">
                     <label className="form-label1">Age</label>
                     <br />
                     <input
+                      id="birth-date"
                       className="age"
                       type="text"
                       name="birthdate"
@@ -152,8 +153,12 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label className="form-label1"> First name</label>
+                    <label htmlFor="firstname" className="form-label1">
+                      {" "}
+                      First name
+                    </label>
                     <input
+                      id="firstname"
                       className="form-control"
                       type="text"
                       value={formState.patientfirstname}
@@ -165,7 +170,10 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label className="form-label1"> Last name</label>
+                    <label htmlFor="lastname" className="form-label1">
+                      {" "}
+                      Last name
+                    </label>
                     <input
                       className="form-control"
                       type="text"
@@ -178,8 +186,11 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label className="form-label1">Address</label>
+                    <label htmlFor="address" className="form-label1">
+                      Address
+                    </label>
                     <input
+                      id="address"
                       className="form-control"
                       value={formState.patientaddress}
                       onChange={(e) => handleChange(e)}
@@ -189,8 +200,11 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label className="form-label1">City</label>
+                    <label htmlFor="city" className="form-label1">
+                      City
+                    </label>
                     <input
+                      id="city"
                       className="form-control"
                       value={formState.patientcity}
                       type="text"
@@ -200,7 +214,9 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label className="form-label1">Select a state</label>
+                    <label htmlFor="myId" className="form-label1">
+                      Select a state
+                    </label>
                     <SelectUSState
                       id="myId"
                       className="myClassName"
@@ -209,8 +225,11 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label className="form-label1">Zip code</label>
+                    <label htmlFor="zip" className="form-label1">
+                      Zip code
+                    </label>
                     <input
+                      id="zip"
                       className="form-control"
                       name="patientzip"
                       value={formState.patientzip}
@@ -220,9 +239,12 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label className="form-label1">Phone number</label>
+                    <label htmlFor="phone" className="form-label1">
+                      Phone number
+                    </label>
                     <div>
                       <PatternFormat
+                        id="phone"
                         className="phone-update mb-5"
                         format="(###) ### ####"
                         allowEmptyFormatting

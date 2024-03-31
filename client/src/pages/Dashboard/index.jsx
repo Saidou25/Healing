@@ -9,7 +9,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import UpcomingAppointments from "../../features/Appointments/UpcomingAppointments";
 import auth from "../../utils/auth";
-import BookingNav from "../../components/Booking";
+import DashboardNav from "./DashboardNav";
 import "./index.css";
 
 const Dashboard = () => {
@@ -80,7 +80,7 @@ const Dashboard = () => {
     return (
       <>
         <Navbar />
-        <BookingNav />
+        <DashboardNav />
         <main className="dashboard-main">
           {/* history and My reviews little navbar */}
           <div className="pt-5">

@@ -125,137 +125,164 @@ const UpdateMyProfileForm = (props) => {
   return (
     <>
       <Navbar />
-        <div className="container-update py-5"
-         style={{ display: "flex", alignItems: "center" }}
-         >
-          {!showSuccess && (
-            <p className="mb-5 modify-media">
-              Please modify the fields you would like to update with your new
-              information.
-            </p>
-          )}
-          <div className="card global-card bg-0 update-profile-card my-5"
-           >
-            {showSuccess ? (
-              <Success message={"Profiles updated!"} />
-            ) : (
-              <div className="card bg-transparent p-4">
-                <h4 className="card-header-update bg-black rounded-0 text-light p-4">
-                  Update profile
-                </h4>
-                <div className="card-update">
-                  <form className="profile-update">
-                    <div className="row mt-5 text-light">
-                      <div className="col-lg-6 col-sm-12 p-2">
-                        <label className="form-label"> First name</label>
-                        <input
-                          className="form-control update-control"
-                          onChange={(e) => {
-                            setPatientFirstName(e.target.value);
-                            handleChange();
-                          }}
-                          type="text"
-                          value={patientfirstname}
-                          name="patientfirstname"
-                        />
-                      </div>
-                      <div className="col-lg-6 col-sm-12 p-2">
-                        <label className="form-label"> Last name</label>
-                        <input
-                          className="form-control update-control"
-                          onChange={(e) => {
-                            setPatientLastName(e.target.value);
-                            handleChange();
-                          }}
-                          type="text"
-                          value={patientlastname}
-                          name="patientlastname"
-                        />
-                      </div>
-                      <div className="col-lg-6 col-sm-12 p-2">
-                        <label className="form-label">Address</label>
-                        <input
-                          className="form-control"
-                          value={patientaddress}
-                          onChange={(e) => {
-                            setPatientAddress(e.target.value);
-                            handleChange();
-                          }}
-                          type="text"
-                          name="patientaddress"
-                        />
-                      </div>
-                      <div className="col-lg-6 col-sm-12 p-2">
-                        <label className="form-label">City</label>
-                        <input
-                          className="form-control"
-                          value={patientcity}
-                          type="text"
-                          name="patientcity"
-                          onChange={(e) => {
-                            setPatientCity(e.target.value);
-                            handleChange();
-                          }}
-                        />
-                      </div>
-                      <div className="col-lg-6 col-sm-12 p-2">
-                        <label className="form-label">Select a state</label>
-                        <SelectUSState
-                          id="myId"
-                          className="myClassName"
-                          onChange={(e) => {
-                            setNewValue(e);
-                            handleChange();
-                          }}
-                        />
-                      </div>
-                      <div className="col-lg-6 col-sm-12 p-2">
-                        <label className="form-label">zip code</label>
-                        <input
-                          className="form-control"
-                          name="patientzip"
-                          value={patientzip}
-                          type="text"
-                          onChange={(e) => {
-                            setPatientZip(e.target.value);
-                            handleChange();
-                          }}
-                        />
-                      </div>
-                      <div className="col-lg-6 col-sm-12 p-2">
-                        <label className="form-label">Phone number</label>
-                        <PatternFormat
-                          className="phone-update"
-                          format="(###) ### ####"
-                          allowEmptyFormatting
-                          mask="_"
-                          name="patientnumber"
-                          onValueChange={(values, sourceInfo) => {
-                            setPatientNumber(values.formattedValue);
-                            setNumberValue(values.value);
-                            handleChange();
-                          }}
-                        />
-                      </div>
-                      <br />
-                      {error && <ErrorComponent message={error} />}
-                      <div className="col-12">
-                        <button
-                          className="btn btn-update bg-black rounded-0"
-                          type="submit"
-                          disabled={loading}
-                          onClick={(e) => handleSubmit(e)}
-                        >
-                          {loading ? <ButtonSpinner /> : <>Submit</>}
-                        </button>
-                      </div>
+      <div
+        className="container-update py-5"
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        {!showSuccess && (
+          <p className="mb-5 modify-media">
+            Please modify the fields you would like to update with your new
+            information.
+          </p>
+        )}
+        <div className="card global-card bg-0 update-profile-card my-5">
+          {showSuccess ? (
+            <Success message={"Profiles updated!"} />
+          ) : (
+            <div className="card bg-transparent p-4">
+              <h4 className="card-header-update bg-black rounded-0 text-light p-4">
+                Update profile
+              </h4>
+              <div className="card-update">
+                <form className="profile-update">
+                  <div className="row mt-5 text-light">
+                    <div className="col-lg-6 col-sm-12 p-2">
+                      <label htmlFor="firstname" className="form-label">
+                        First name
+                      </label>
+                      <input
+                        id="firstname"
+                        autoComplete="on"
+                        className="form-control update-control"
+                        onChange={(e) => {
+                          setPatientFirstName(e.target.value);
+                          handleChange();
+                        }}
+                        type="text"
+                        value={patientfirstname}
+                        name="patientfirstname"
+                      />
                     </div>
-                  </form>
-                </div>
+                    <div className="col-lg-6 col-sm-12 p-2">
+                      <label htmlFor="lastname" className="form-label">
+                        Last name
+                      </label>
+                      <input
+                        autoComplete="on"
+                        id="lastname"
+                        className="form-control update-control"
+                        onChange={(e) => {
+                          setPatientLastName(e.target.value);
+                          handleChange();
+                        }}
+                        type="text"
+                        value={patientlastname}
+                        name="patientlastname"
+                      />
+                    </div>
+                    <div className="col-lg-6 col-sm-12 p-2">
+                      <label htmlFor="address" className="form-label">
+                        Address
+                      </label>
+                      <input
+                        autoComplete="on"
+                        id="address"
+                        className="form-control"
+                        value={patientaddress}
+                        onChange={(e) => {
+                          setPatientAddress(e.target.value);
+                          handleChange();
+                        }}
+                        type="text"
+                        name="patientaddress"
+                      />
+                    </div>
+                    <div className="col-lg-6 col-sm-12 p-2">
+                      <label htmlFor="city" className="form-label">
+                        City
+                      </label>
+                      <input
+                        autoComplete="on"
+                        id="city"
+                        className="form-control"
+                        value={patientcity}
+                        type="text"
+                        name="patientcity"
+                        onChange={(e) => {
+                          setPatientCity(e.target.value);
+                          handleChange();
+                        }}
+                      />
+                    </div>
+                    <div className="col-lg-6 col-sm-12 p-2">
+                      <label htmlFor="myId" className="form-label">
+                        Select a state
+                      </label>
+                      <SelectUSState
+                        autoComplete="on"
+                        id="myId"
+                        className="myClassName"
+                        onChange={(e) => {
+                          setNewValue(e);
+                          handleChange();
+                        }}
+                      />
+                    </div>
+                    <div className="col-lg-6 col-sm-12 p-2">
+                      <label htmlFor="zip" className="form-label">
+                        zip code
+                      </label>
+                      <input
+                        autoComplete="on"
+                        id="zip"
+                        className="form-control"
+                        name="patientzip"
+                        value={patientzip}
+                        type="text"
+                        onChange={(e) => {
+                          setPatientZip(e.target.value);
+                          handleChange();
+                        }}
+                      />
+                    </div>
+                    <div className="col-lg-6 col-sm-12 p-2">
+                      <label htmlFor="phone" className="form-label">
+                        Phone number
+                      </label>
+                      <PatternFormat
+                        id="phone"
+                        autoComplete="on"
+                        className="phone-update"
+                        format="(###) ### ####"
+                        allowEmptyFormatting
+                        mask="_"
+                        name="patientnumber"
+                        onValueChange={(values, sourceInfo) => {
+                          setPatientNumber(values.formattedValue);
+                          setNumberValue(values.value);
+                          handleChange();
+                        }}
+                      />
+                    </div>
+                    <br />
+                    {error && <ErrorComponent message={error} />}
+                    <div className="col-12">
+                      <button
+                        className="btn btn-update bg-black rounded-0"
+                        type="submit"
+                        disabled={loading}
+                        onClick={(e) => handleSubmit(e)}
+                      >
+                        {loading ? <ButtonSpinner /> : <>Submit</>}
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
+      </div>
       <Footer />
     </>
   );

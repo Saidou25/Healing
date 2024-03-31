@@ -46,7 +46,7 @@ const Login = () => {
       setLoading(false);
       return;
     }
-    
+
     setLoading(true);
     try {
       const { data } = await login({
@@ -74,20 +74,19 @@ const Login = () => {
     <>
       <div className="go-back d-flex justify-content-center">
         <NavLink to="/">
-          <button type="btn" className="btn-go-back text-white"
-          >
+          <button type="btn" className="btn-go-back text-white">
             go back
           </button>
         </NavLink>
       </div>
 
       {confirm ? (
-        <div className="container-login py-5"
-        style={{ height: "60vh", display: "flex", alignItems: 'center' }}>
+        <div
+          className="container-login py-5"
+          style={{ height: "60vh", display: "flex", alignItems: "center" }}
+        >
           <div className="card login my-5">
-            <div
-              className="card bg-transparent"
-            >
+            <div className="card bg-transparent">
               <Success message="You are logged in." />
             </div>
           </div>
@@ -103,9 +102,13 @@ const Login = () => {
             </h4>
             <div className="card-body">
               <form className="global-form" onSubmit={handleFormSubmit}>
-                <label className="log-form text-light">Email</label>
+                <label htmlFor="email" className="log-form text-light">
+                  Email
+                </label>
                 <br />
                 <input
+                  id="email"
+                  autoComplete="on"
                   className="log-form input-input"
                   placeholder="Your holder email"
                   name="email"
@@ -114,9 +117,12 @@ const Login = () => {
                   onChange={handleChange}
                 />{" "}
                 <br />
-                <label className="log-form text-light">Password</label>
+                <label htmlFor="password" className="log-form text-light">
+                  Password
+                </label>
                 <br />
                 <input
+                  id="password"
                   className="log-form input-input"
                   placeholder="******"
                   name="password"
