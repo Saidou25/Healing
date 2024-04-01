@@ -6,8 +6,7 @@ import Auth from "../../utils/auth";
 import "./index.css";
 
 const Navbar = () => {
-  const logout = (event) => {
-    event.preventDefault();
+  const logout = () => {
     Auth.logout();
   };
 
@@ -52,12 +51,12 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                  <button
-                    className="btt-logout show-hide fs-3 text-light"
+                  <NavLink
+                    className="nav-item show-hide fs-3 text-light bg-transparent"
                     onClick={logout}
                   >
                     logout
-                  </button>
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink

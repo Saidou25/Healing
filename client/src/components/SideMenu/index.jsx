@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Auth from "../../utils/auth";
 // import profileIcon from "../../assets/images/profileIcon.png";
 import "./index.css";
@@ -13,16 +14,16 @@ const SideMenu = () => {
   return (
     <main className="side-menu show">
       <div>
-        <a
+        <NavLink
           className="btn btn-side"
           height={43}
           data-bs-toggle="offcanvas"
-          href="#offcanvasExample"
+          to="#offcanvasExample"
           role="button"
           aria-controls="offcanvasExample"
         >
           <i className="fa-solid fa-bars text-light fs-2"></i>
-        </a>
+        </NavLink>
       </div>
       <div
         className="offcanvas offcanvas-start bg-primary"
@@ -31,9 +32,9 @@ const SideMenu = () => {
         aria-labelledby="offcanvasExampleLabel"
       >
         <div className="offcanvas-header text-white">
-          <a className="landing-title-side text-white" href="/">
+          <NavLink className="landing-title-side text-white" to="/">
             Healing
-          </a>
+          </NavLink>
           <button
             type="button"
             className="btn-close bg-white"
@@ -52,13 +53,13 @@ const SideMenu = () => {
           </div>
           {Auth.loggedIn() && (
             <div className="col-6 col-top">
-              <a
+              <NavLink
                 className="profile-icon-side d-flex justify-content-end align-items-center mb-2 p-3"
-                href="/UserProfile"
+                to="/UserProfile"
               >
                 {/* <img src={profileIcon} alt="profile icon" height={43} /> */}
                 profile
-              </a>
+              </NavLink>
             </div>
           )}
         </div>
@@ -67,56 +68,56 @@ const SideMenu = () => {
             <nav className="nav side-nav">
               <ul className="nav links-side">
                 <li className="col-12 col-items mt-4 pb-4">
-                  <a className="nav-item-side fs-3" href="/About">
+                  <NavLink className="nav-item-side fs-3" to="/About">
                     about
-                  </a>
+                  </NavLink>
                 </li>
                 {Auth.loggedIn() && (
                   <>
                     <li className="col-12 col-items mt-4 pb-4">
-                      <a className="nav-item-side fs-3" href="/Book">
+                      <NavLink className="nav-item-side fs-3" to="/Book">
                         book
-                      </a>
+                      </NavLink>
                     </li>
                     <li className="col-12 col-items mt-4 pb-4">
-                      <a className="nav-item-side fs-3" href="/Dashboard">
+                      <NavLink className="nav-item-side fs-3" to="/Dashboard">
                         dashboard
-                      </a>
+                      </NavLink>
                     </li>
                     <li className="col-12 col-items mt-4 pb-4">
-                      <a className="nav-item-side fs-3" href="/Profile">
+                      <NavLink className="nav-item-side fs-3" to="/Profile">
                         profile
-                      </a>
+                      </NavLink>
                     </li>
                   </>
                 )}
                 {Auth.loggedIn() ? (
                   <li className="col-12 col-items mt-4 pb-4">
-                    <a
+                    <NavLink
                       className="btn-logout nav-item-side fs-3"
-                      href="/"
+                      to="/"
                       onClick={logout}
                     >
                       logout
-                    </a>
+                    </NavLink>
                   </li>
                 ) : (
                   <>
                     <li className="col-12 col-items mt-4 pb-4">
-                      <a
+                      <NavLink
                         className="btn-logout nav-item-side fs-3"
-                        href="/Login"
+                        to="/Login"
                       >
                         login
-                      </a>
+                      </NavLink>
                     </li>
                     <li className="col-12 col-items mt-4 pb-4">
-                      <a
+                      <NavLink
                         className="btn-logout nav-item-side fs-3"
-                        href="/Signup"
+                        to="/Signup"
                       >
                         signup
-                      </a>
+                      </NavLink>
                     </li>
                   </>
                 )}
