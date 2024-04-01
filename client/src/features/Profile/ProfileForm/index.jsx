@@ -108,39 +108,61 @@ const ProfileForm = () => {
     <>
       <main>
         <div className="container-fluid mt-5">
-          <div className="card card-app-review text-light">
+          <div className="card global-card card-app-review">
             <div className="card-header app-review-header">
-              <h4 className="card-header-update bg-black rounded-0 text-light my-3 py-5">
+              <h4 className="card-header-update bg-black rounded-0 p-4">
                 Create your profile
               </h4>
-              <form>
+              <form className="bg-transparent">
                 <div className="row mt-5">
-                  <div className="col-lg-12 col-sm-12 p-2">
-                    <div>
-                      <label className="form-label1">Gender</label>
-                      <br />
+                  <div className="col-lg-12 col-sm-12">
+                    <label className="p-1">Gender</label>
+                  </div>
+                  <br />
+
+
+                  <div
+                    className="col-lg-12 col-sm-12 my-4"
+                    style={{ display: "flex", justifyContent: "space-between",
+                    width: "60%", margin: "auto"
+                 }}
+                  >
+                   <div
+                    style={{ display: "flex", width: "30%" }}
+                   >
                       <input
-                        className="radio"
+                      // style={{ display: "flex"}}
+                        className="radio mx-2 my-0"
                         type="radio"
                         name="patientgender"
                         value="male"
                         checked={patientgender === "male"}
                         onChange={(e) => setPatientGender(e.target.value)}
-                      />{" "}
-                      male
+                      />
+                      <span
+                       style={{ display: "flex", alignItems: "center", padding: "5px" }}
+                       >male</span>
+                    </div>
+                    <div  style={{ display: "flex", width: "30%" }}>
                       <input
-                        className="radio"
+                        className="radio mx-2 my-0"
                         type="radio"
                         name="patientgender"
                         value="female"
                         checked={patientgender === "female"}
                         onChange={(e) => setPatientGender(e.target.value)}
-                      />{" "}
-                      female
+                      />
+                      <span
+                       style={{ display: "flex", alignItems: "center", padding: "5px" }}
+                       >female</span>
                     </div>
+
+            
                   </div>
+                  <br />
+
                   <div htmlFor="birth-date" className="col-lg-6 col-sm-12 p-2">
-                    <label className="form-label1">Age</label>
+                    <label className="label-label">Age</label>
                     <br />
                     <input
                       id="birth-date"
@@ -153,10 +175,10 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="firstname" className="form-label1">
-                      {" "}
+                    <label htmlFor="firstname" className="label-label">
                       First name
                     </label>
+                    <br />
                     <input
                       id="firstname"
                       className="form-control"
@@ -170,10 +192,10 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="lastname" className="form-label1">
-                      {" "}
+                    <label htmlFor="lastname" className="label-label">
                       Last name
                     </label>
+                    <br />
                     <input
                       className="form-control"
                       type="text"
@@ -186,9 +208,10 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="address" className="form-label1">
+                    <label htmlFor="address" className="label-label">
                       Address
                     </label>
+                    <br />
                     <input
                       id="address"
                       className="form-control"
@@ -200,9 +223,10 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="city" className="form-label1">
+                    <label htmlFor="city" className="label-label">
                       City
-                    </label>
+                    </label>{" "}
+                    <br />
                     <input
                       id="city"
                       className="form-control"
@@ -214,9 +238,10 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="myId" className="form-label1">
+                    <label htmlFor="myId" className="label-label">
                       Select a state
-                    </label>
+                    </label>{" "}
+                    <br />
                     <SelectUSState
                       id="myId"
                       className="myClassName"
@@ -225,9 +250,10 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="zip" className="form-label1">
+                    <label htmlFor="zip" className="label-label">
                       Zip code
-                    </label>
+                    </label>{" "}
+                    <br />
                     <input
                       id="zip"
                       className="form-control"
@@ -239,9 +265,10 @@ const ProfileForm = () => {
                     />
                   </div>
                   <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="phone" className="form-label1">
+                    <label htmlFor="phone" className="label-label">
                       Phone number
-                    </label>
+                    </label>{" "}
+                    <br />
                     <div>
                       <PatternFormat
                         id="phone"

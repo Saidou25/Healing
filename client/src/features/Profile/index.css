@@ -1,11 +1,10 @@
 .container-profile {
-  padding-top: 3%;
-  background-color: rgba(0, 1, 1, 0.8);
-  width: 90%;
-  margin-left: auto;
+  width: 90% !important;
   margin-right: auto;
-  color: white !important;
-  margin-top: 5%;
+  margin-left: auto;
+  background-color: rgba(0, 1, 1, 0.8);
+  margin-top: 5% !important;
+  padding: 5%;
 }
 .my-profile {
   text-align: center;

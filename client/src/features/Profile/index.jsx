@@ -25,12 +25,13 @@ const Profile = () => {
       <>
         <Navbar />
         <div className="container-profile">
-          <div className="flex-row justify-space-between">
-            <div className="col-12 col-no-profile mb-5">
+          <div className="flex-row justify-space-between"
+          >
+            <div className="col-12 col-no-profile" style={{ width: "60%" }}>
               <h3 className="text-profile my-profile-titles py-5 text-light">
                 Login
               </h3>
-              <div className="card review-list profile-body mb-5 p-3 text-light">
+              <div className="card global-card review-list profile-body mb-5 p-3">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}
@@ -58,7 +59,7 @@ const Profile = () => {
               <h3 className="text-profile my-profile-titles text-light py-5">
                 Login
               </h3>
-              <div className="card global-card review-list profile-body text-light p-3">
+              <div className="card global-card review-list profile-body p-3">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
                   {me.username}

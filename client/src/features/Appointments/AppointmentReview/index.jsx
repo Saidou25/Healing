@@ -128,7 +128,7 @@ const AppointmentReview = () => {
 
   return (
     <div className="container-fluid mt-5">
-      <div className="card review-list card-app-review text-light">
+      <div className="card global-card review-list card-app-review text-light">
         <div className="card-header app-review-header">
           <h4 className="header-text bg-black text-light my-3 py-5">
             Please review your appointment information

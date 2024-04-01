@@ -25,12 +25,9 @@ body {
   animation: fadeInGlobalCard 0.4s linear forwards;
   color: white;
 }
-#root .input-input {
-  /* background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
-  color: white !important; */
-  font-style: oblique;
-  font-weight: 600;
+#root .label-label {
+ display: flex;
+ 
 }
 
 #root .log-form {
