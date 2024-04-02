@@ -72,13 +72,13 @@ const MyReviewsList = () => {
                     <div className="card-body p-3">
                       <div className="row">
                         <div className="col-12">
-                          <p className="card-text px-3 pt-4">
+                          <p className="card-text px-3">
                             {review.reviewText}
                           </p>
                         </div>
                         <div className="col-12 mt-3">
                           <p className="review fs-5 px-3">
-                            Created on {review.reviewDate}
+                            Created on: {review.reviewDate}
                           </p>
                         </div>
                         <div className="col-12 px-3 pb-3">
@@ -87,7 +87,7 @@ const MyReviewsList = () => {
                             alt="profile icon"
                             height={25}
                           /> */}
-                          <span className="review fs-5 m-2">
+                          <span className="review fs-5">
                             {review.username}
                           </span>
                         </div>

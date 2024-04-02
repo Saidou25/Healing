@@ -5,10 +5,8 @@ import Auth from "../../utils/auth";
 import "./index.css";
 
 const SideMenu = () => {
-  const logout = (event) => {
-    event.preventDefault();
+  const logout = () => {
     Auth.logout();
-    console.log("logout success!");
   };
 
   return (

@@ -180,14 +180,14 @@ const ReviewForm = ({ username, today }) => {
 
   return (
     <>
-      <main className="row my-5 pb-5">
+      <main className="row mt-5">
         <div className="col-12 review-form">
-          <div className="card p-2 review-design">
+          <div className="card global-card card-card">
             {confirm ? (
               <Success message={successAddingReview} />
             ) : (
               <>
-                <h4 className="card-header-review-title bg-black text-light p-2">
+                <h4 className="card-header-review-title bg-black text-light">
                   review
                 </h4>
                 <div className="card-body text-light">

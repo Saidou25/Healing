@@ -9,10 +9,9 @@
 .my-profile {
   text-align: center;
 }
-.update-navlink {
+/* .update-navlink {
   width: 100%;
-  /* display: block; */
-}
+} */
 .card-header {
   border: 0;
 }
@@ -44,30 +43,29 @@
   align-items: center;
   margin-left: 1%;
 }
-@media screen and (max-width: 500px) {
-  .my-profile-titles  {
-    text-align: center;
-  }
-}
+
 @media screen and (max-width: 414px) {
   .container-profile {
-    margin-right: auto;
-    margin-left: auto;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: transparent;
   }
   .col-profile {
-    width: 95%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    width: 100%;
     margin-top: 0;
   }
-  .update-navlink {
+  .profile-body-media {
+    border-radius: 10px;
+    margin-bottom: 5% !important;
+    width: 100% !important;
+  }
+  /* .update-navlink {
     width: 98%;
     display: flex;
     justify-content: center;
     text-decoration: none;
-  }
+  } */
 }
 @media screen and (max-width: 375px) {
   .footer-myprofile {

@@ -1,16 +1,17 @@
+.dashboard-main {
+  max-width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgba(0, 1, 1, 0.8);
+  margin-top: 5%;
+  padding: 5%;
+}
+
 .row-width,
 .review-row {
   width: 80%;
   margin: auto;
   justify-content: space-between;
-}
-.dashboard-main {
-  background-color: rgba(0, 1, 1, 0.8);
-  width: 90%;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 5%;
-  min-height: 35vh;
 }
 .suggestion,
 .top-box {
@@ -23,11 +24,7 @@
   border-left-color: rgb(206, 200, 200);
   border-width: 1px;
 }
-.container-dashboard {
-  width: 90%;
-  margin-right: auto;
-  margin-left: auto;
-}
+
 
 .fa-bars {
   color: white;
@@ -89,10 +86,13 @@
 }
 
 @media screen and (max-width: 414px) {
-  .container-dashboard {
-    width: 96%;
+  .dashboard-main {
+    max-width: 90%;
     margin-right: auto;
     margin-left: auto;
+    background-color: rgba(0, 1, 1, 0.8);
+    margin-top: 5%;
+    padding: 5%;
   }
   .dashb-border {
     padding-left: 0;
@@ -119,5 +119,8 @@
 }
   .write-review {
     padding-left: 0;
+  }
+  .review-row {
+    width: 100% !important;
   }
 }

@@ -9,6 +9,7 @@ import auth from "../../../utils/auth.js";
 import Footer from "../../../components/Footer/index.jsx";
 import BookingForm from "../BookingForm.jsx";
 import Navbar from "../../../components/Navbar/index.jsx";
+import useMonitorWidth from "../../../pages/Dashboard/useMonitorWidth.js";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./index.css";
@@ -27,9 +28,11 @@ const Book = () => {
   const [reason, setReason] = useState("");
   const [showNavNav, setShowNavNav] = useState(true);
 
+  const { showDashboardMediaNav } = useMonitorWidth();
+
   const { data: meData } = useQuery(QUERY_ME);
   const me = meData?.me || [];
- 
+
   const { appTime } = formatTime(startDate);
   const { finalDateISO, digitalAppointment, appString } = chooseStartDate(
     startDate,
@@ -93,28 +96,38 @@ const Book = () => {
       appTime: appTime,
     };
 
-
     // conditionally redirecting the user to next operation based on if user is a returning patient
     if (!profile) {
       setShowNavNav(false);
       setLoading(false);
-      // setShowCorrect(true);
       navigate("ProfileForm", { state: { appInfo } });
     } else {
       setShowNavNav(false);
       setLoading(false);
-      navigate("AppointmentReview", {
-        state: {
-          appInfo,
-          templateParams,
-          me,
-          appString,
-          reason,
-          profile
-          // loading,
-        },
-      });
-    }  
+      showDashboardMediaNav && !profile
+        ? navigate("/Dashboard/Book/AppointmentReview", {
+            state: {
+              appInfo,
+              templateParams,
+              me,
+              appString,
+              reason,
+              profile,
+              // loading,
+            },
+          })
+        : navigate("AppointmentReview", {
+            state: {
+              appInfo,
+              templateParams,
+              me,
+              appString,
+              reason,
+              profile,
+              // loading,
+            },
+          });
+    }
     // 'confirm' gives user an opportunity to verify and correct info if needed bifore finalizing appointment booking
     setTemplateParams(appInfo);
   };
@@ -125,31 +138,29 @@ const Book = () => {
 
   return (
     <>
-      <Navbar />
+      {showDashboardMediaNav ? null : <Navbar />}
       <>
-        <div className="container-appointment py-5">
-            {showNavNav ? (
-              <BookingForm
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                formatTime={formatTime}
-                setStartDate={setStartDate}
-                allAppointments={allAppointments}
-                startDate={startDate}
-                reason={reason}
-                error={error}
-                showNavNav={showNavNav}
-                me={me}
-              />
-            ) : (
-              <>
-                <Outlet />
-              </>
-            )}
-        </div>
+        {showNavNav ? (
+          <BookingForm
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            formatTime={formatTime}
+            setStartDate={setStartDate}
+            allAppointments={allAppointments}
+            startDate={startDate}
+            reason={reason}
+            error={error}
+            showNavNav={showNavNav}
+            me={me}
+          />
+        ) : (
+          <>
+            <Outlet />
+          </>
+        )}
       </>
       <div className="footer-appointment">
-        <Footer />
+        {showDashboardMediaNav ? null : <Footer />}
       </div>
     </>
   );

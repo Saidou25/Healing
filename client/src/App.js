@@ -17,6 +17,7 @@ import Signup from "./pages/Signup";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import Book from "./features/Appointments/Book";
+// import BookingForm from "./features/Appointments/BookingForm"
 import AppointmentReview from "./features/Appointments/AppointmentReview";
 import ProfileForm from "./features/Profile/ProfileForm";
 import Profile from "./features/Profile";
@@ -88,13 +89,25 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/Login" element={<Login />} />
-
-          <Route path="/About" element={<About />} />
+          
           <Route path="/Profile" element={<Profile />} />
 
+          {/* <Route path="/Profile" element={<Profile />} / */}
+          <Route path="/About" element={<About />} />
+
           <Route path="/Dashboard" element={<Dashboard />}>
-            <Route path="AppointmentHistory" element={<AppointmentHistory />} />
-            <Route path="ReviewHistory" element={<ReviewHistory />} />
+           <Route path="About" element={<About />} />
+           <Route path="Profile" element={<Profile />}>
+           <Route path="UpdateProfile" element={<UpdateProfile />} />
+           <Route path="UpdateMyProfileForm" element={<UpdateMyProfileForm />} />
+           </Route>
+           <Route path="Book" element={<Book />}>
+           <Route path="BookingSuccess" element={<BookingSuccess />} />
+            <Route path="ProfileForm" element={<ProfileForm />} />
+            <Route path="AppointmentReview" element={<AppointmentReview />} />
+           </Route>
+           <Route path="AppointmentHistory" element={<AppointmentHistory />} />
+           <Route path="ReviewHistory" element={<ReviewHistory />} />
           </Route>
 
           <Route path="/Book" element={<Book />}>

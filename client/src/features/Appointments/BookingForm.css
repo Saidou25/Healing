@@ -1,3 +1,12 @@
+.container-book {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgba(0, 1, 1, 0.8);
+  margin-top: 5%;
+  padding: 5%;
+}
+
 .app-btn {
   background-color: black;
   margin-top:5%;
@@ -42,8 +51,6 @@ li.react-datepicker__time-list-item {
 
 .react-datepicker__portal {
   position: fixed;
-  /* width: 100vw;
-  height: 100vh; */
   background: rgba(3, 3, 3, 0.92);
   z-index: 2147483647;
 }
@@ -53,8 +60,16 @@ li.react-datepicker__time-list-item {
   margin: auto;
 }
 @media screen and (max-width: 414px) {
+  .container-book {
+    width: 100%;
+    margin-top: 0 !important;
+    padding: 0;
+  }
   .booking-card {
-    width: 90%;
+    width: 100%;
+    margin-top: 14%!important;
+      margin: auto;
+    
   }
   .react-datepicker {
     display: flex;

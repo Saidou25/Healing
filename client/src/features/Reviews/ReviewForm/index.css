@@ -1,16 +1,11 @@
-.review-design {
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
-}
-
-/* .review-textarea {
-  width: 100%;
-} */
 .dashb-border {
   padding-left: 11%;
   border-left-style: solid;
   border-left-color: rgb(206, 200, 200);
   border-width: 1px;
+}
+.card-card {
+  padding: 3% !important;
 }
 .optional {
   color: white;
@@ -72,4 +67,5 @@
   .review-form {
     margin-bottom: 10%;
   }
+
 }

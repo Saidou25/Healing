@@ -103,7 +103,7 @@ const Signup = () => {
           <div className="card global-card signup p-5">
             <div className="card-header">
               <h4
-                className="log-form bg-black rounded-0 text-light p-5 mb-5"
+                className="log-form bg-black rounded-0 text-light p-3 mb-5"
                 style={{
                   fontStyle: "normal",
                   textAlign: "center",

@@ -1,3 +1,11 @@
+.cont-review {
+  max-width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgba(0, 1, 1, 0.8);
+  margin-top: 5%;
+  padding: 5%;
+}
 .card-app-review {
   width: 40%;
   margin-right: auto;
@@ -30,17 +38,17 @@
   justify-content: center;
 }
 @media screen and (max-width: 414px) {
+  .cont-review {
+    max-width: 100% !important;
+    padding: 0;
+  }
   .card-app-review {
-    width: 90%;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
   }
-  .footer-review-row {
-    background-color: blue;
-  }
   .card-footer {
     justify-content: center;
-    width: 95%;
-    margin: auto;
+    padding: 2% !important;
   }
- }
+}

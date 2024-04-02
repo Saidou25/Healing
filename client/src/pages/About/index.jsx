@@ -5,30 +5,33 @@ import nurseLady from "../../assets/images/nurseLady.jpeg";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "./index.css";
+import useMonitorWidth from "../Dashboard/useMonitorWidth";
 
 const About = () => {
+  const { showDashboardMediaNav } = useMonitorWidth();
+  
   return (
     <>
       <Navbar />
       <main className="about-main">
-        <h3 className="text-light my-5">What is Reiki</h3>
-        <div className="card review-list card-about text-light">
-          <p>From Wikipedia, the free encyclopedia.</p>
-          <p>
+        <h3 className="text-light py-5">What is Reiki</h3>
+        <div className="card global-card ">
+          <p className="p-2">From Wikipedia, the free encyclopedia.</p>
+          <p className="p-2">
             Reiki reiki is a Japanese form of energy healing, a type of
             alternative medicine. Reiki practitioners use a technique called
             palm healing or hands-on healing through which a "universal energy"
             is said to be transferred through the palms of the practitioner to
             the patient in order to encourage emotional or physical healing.
           </p>
-          <p>
+          <p className="p-2">
             Reiki is a pseudoscience, and is used as an illustrative example of
             pseudoscience in scholarly texts and academic journal articles. It
             is based on qi ("chi"), which practitioners say is a universal life
             force, although there is no empirical evidence that such a life
             force exists.
           </p>
-          <p>
+          <p className="p-2">
             Clinical research does not show reiki to be effective as a treatment
             for any medical condition, including cancer, diabetic neuropathy,
             anxiety or depression; therefore it should not replace conventional
@@ -38,7 +41,7 @@ const About = () => {
           </p>
         </div>
 
-        <h3 className="team-title text-light m-5">Our team</h3>
+        <h3 className="text-light m-5">Our team</h3>
         {/* will do a map one that one when refactoring */}
         <div className="card review-list card-about mb-4">
           <div className="row text-light">
@@ -92,7 +95,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="card review-list card-about mb-4">
+        <div className="card review-list card-about mb-4 p-2">
           <div className="row text-light">
             <div
               className="col-lg-4 col-sm-12"
@@ -120,7 +123,7 @@ const About = () => {
           </div>
         </div>
       </main>
-      <Footer />
+      {showDashboardMediaNav ? null : <Footer />}
     </>
   );
 };

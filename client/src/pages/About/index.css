@@ -6,12 +6,7 @@
   margin-top: 5%;
   padding: 5%;
 }
-.card-about {
-  /* width: "40%"; */
-  padding: 2%;
-  background: rgb(131, 232, 245);
-  background-color: rgba(131, 232, 245, 0.4);
-}
+
 .choo {
   display: flex;
   justify-content: center;
@@ -25,16 +20,8 @@
 }
 
 @media screen and (max-width: 414px) {
-  /* .about {
-    width: 100%;
-    margin-top: 10%;
-    margin-bottom: 5%;
-  } */
   .about-main {
-    width: 95%;
-    margin-right: auto;
-    margin-left: auto;
-    /* padding: 5%; */
+    width: 100% !important;
+    background-color: transparent;
   }
-
 }

@@ -1,16 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import SideMenu from "../../components/SideMenu";
+import Auth from "../../utils/auth";
+import Footer from "../../components/Footer";
 import "./index.css";
 
 const LandingPage = () => {
   return (
     <>
-      <div className="row">
-        <div className="col-12 d-flex justify-content-end">
-          <SideMenu />
-        </div>
-      </div>
       <div className="landing-title">
         <NavLink className="col-12 landing text-light" to="/">
           Healing
@@ -18,8 +14,7 @@ const LandingPage = () => {
       </div>
       <div className="row landing-row py-5">
         <div className="col-12 landing-column">
-          <NavLink to="/Login" className="landing-item-hilight"
-          >
+          <NavLink to="/Login" className="landing-item-hilight">
             Login
           </NavLink>
         </div>
@@ -29,10 +24,16 @@ const LandingPage = () => {
           </NavLink>
         </div>
         <div className="col-12 landing-column mt-4">
-          <NavLink to="/About" className="landing-item-hilight">
+          <NavLink
+            to={Auth.loggedIn() ? "/Dashboard" : "/About"}
+            className="landing-item-hilight"
+          >
             Site
           </NavLink>
         </div>
+      </div>
+      <div className="foot-land">
+        <Footer />
       </div>
     </>
   );

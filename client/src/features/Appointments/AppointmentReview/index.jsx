@@ -127,12 +127,12 @@ const AppointmentReview = () => {
   }
 
   return (
-    <div className="container-fluid mt-5">
-      <div className="card global-card review-list card-app-review text-light">
+    <div className="container-fluid cont-review mt-5">
+      <div className="card global-card card-app-review text-light">
         <div className="card-header app-review-header">
-          <h4 className="header-text bg-black text-light my-3 py-5">
+          <h5 className="header-text bg-black text-light my-3 p-4">
             Please review your appointment information
-          </h4>
+          </h5>
         </div>
         <div className="card-body mt-4">
           <p className="app-review-t p-3 fs-4">Appointment details</p>

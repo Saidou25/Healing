@@ -14,10 +14,6 @@
   border: solid;
   height: 200px;
 }
-.history {
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
-}
 .history-column {
   margin-top: 4%;
 }

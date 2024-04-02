@@ -1,27 +1,36 @@
-.app-card {
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 
-  0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-  background: rgb(131, 232, 245);
-  background: rgba(131, 232, 245, 0.4);
-}
 .all-upcoming-apppointments {
   padding-right: 4%;
 }
 .container-upcoming-appointment {
-  margin-bottom: 6%;
+  margin-bottom: 5%;
 }
+.media-col4 {
+  justify-content: flex-end;
+ }
 .up-app-btns {
   width: 95% !important;
   display: flex;
   justify-content: center;
   margin: auto;
 }
+
 @media screen and (max-width: 414px) {
-  .upcoming-title {
-    text-align: center !important;
+  .container-upcoming-appointment {
+    margin-bottom: 5%;
+    margin-top: 0 !important;
   }
-  .up-media-col {
+
+  .all-upcoming-apppointments {
+    padding-right: 0;
+    margin-bottom: 0 !important;
+  }
+  .up-app-btns {
     width: 100% !important;
-    padding: 2px !important;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+  .row-media-row {
+    margin-top: 3% !important;
   }
 }

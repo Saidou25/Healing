@@ -13,12 +13,17 @@ import Success from "../Success";
 import ErrorComponent from "../ErrorComponent";
 import "react-phone-number-input/style.css";
 import "./index.css";
+import useMonitorWidth from "../../pages/Dashboard/useMonitorWidth";
+import DashboardNav from "../../pages/Dashboard/DashboardNav";
+import DashboardMediaNav from "../../pages/Dashboard/DashboardMediaNav";
 
 const UpdateMyProfileForm = (props) => {
   const profileId = props.profileId;
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { showDashboardMediaNav } = useMonitorWidth();
 
   const userProfile = location.state.userProfile;
 
@@ -113,7 +118,7 @@ const UpdateMyProfileForm = (props) => {
       setPatientLastName("");
       setTimeout(() => {
         setShowSuccess(false);
-        navigate("/Profile");
+        navigate(showDashboardMediaNav ? "/Dashboard/Profile" : "/Profile");
       }, 2000);
     }
   };
@@ -124,7 +129,7 @@ const UpdateMyProfileForm = (props) => {
 
   return (
     <>
-      <Navbar />
+         {showDashboardMediaNav ? <DashboardMediaNav /> :  <Navbar />}
       <div
         className="container-update py-5"
         style={{ display: "flex", alignItems: "center" }}

@@ -1,9 +1,15 @@
-.bookingnav {
+.bookingnav1 {
   background-color: rgba(0, 1, 1, 0.8);
   margin-bottom: 2%;
   margin-top: 5%;
 }
-
+.media-nav {
+  width: 100px !important;
+  /* padding: 3% !important; */
+  padding-right: 2%;
+  padding-left: 2%;
+  margin: auto !important;
+}
 .dashboard-text {
   text-decoration: none;
   padding: 0 !important;
@@ -38,5 +44,19 @@
   .dashboard-text:hover {
     font-size: 1rem;
   }
-  
+  .bookingnav {
+    background-color: rgba(0, 1, 1, 0.8);
+    margin-bottom: 15% !important;
+    margin-top: 7%;
+    overflow-x: scroll;
+    margin: auto;
+    padding-top: 2% !important;
+
+  }
+  .media-nav {
+    width: 100px !important;
+    padding-right: 4%;
+    padding-left: 4%;
+    margin: auto !important;
+  }
 }

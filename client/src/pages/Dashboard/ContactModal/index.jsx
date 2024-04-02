@@ -67,11 +67,11 @@ const ContactModal = () => {
     <>
       <button
         type="button"
-        className="btn btn-black text-light direct-message rounded-0"
+        className="btn btn-black text-light direct-message rounded-0 p-0"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        <div className="message-btn-modal">Message</div>
+        <div className="message-btn-modal">contact</div>
       </button>
 
       <div

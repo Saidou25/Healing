@@ -5,8 +5,13 @@
 }
 .landing-title {
   margin-top: 3%;
-  padding-left: 95.6px;
+  padding-left: 0.05% !important;
   font-size: 7rem;
+  color: black;
+}
+.landing {
+  padding-left: 95.6px;
+  font-size: 3rem;
 }
 .landing-row {
   background-color: rgba(0, 1, 1, 0.8);
@@ -40,7 +45,11 @@
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
 }
-
+.foot-land {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 
 @media screen and (max-width: 825px) {
   .landing-title {
@@ -62,16 +71,34 @@
 }
 
 @media screen and (max-width: 414px) {
+  .landing {
+    padding-left: 0;
+    font-size: 3rem;
+  }
   .landing-row {
-    width: 95% !important;
+    margin-top: 6%;
+    width: 90% !important;
+    margin-right: auto;
+    margin-left: auto;
   }
+  
   .landing-title {
-    font-size: 3rem !important;
+    display: flex;
+    align-items: center;
+    padding-top: 5.7% !important;
+    /* padding-left: 0.05% !important; */
+    /* font-size: 3rem !important; */
   }
+
   .landing-item-hilight {
     padding: 2px;
     border: solid;
     border-width: 1px;
     width: 40%;
+  }
+  .foot-land {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 }

@@ -1,19 +1,30 @@
 .success-background {
   background-color: rgba(0, 1, 1, 0.8);
   color: rgba(255, 255, 255, 1);
-  animation: fadeInSuccess 0.4s linear forwards;
-  /* margin-top: 14%; */
+  animation: fadeInSuccess 0.5s linear forwards;
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+}
+.fa-check {
+  background-color: rgba(0, 1, 1, 0.8);
+  color: rgba(255, 255, 255, 1);
+  animation: fadeInFa 0.5s linear forwards;
 }
 .signup-success {
   color: rgba(255, 255, 255, 1);
 }
 .success-row {
-  /* width: 30%; */
   margin-right: auto;
   margin-left: auto;
+}
+@keyframes fadeInFa {
+  from {
+    backgound-color: rgba(131, 232, 245, 0.05);
+    color: rgba(255, 255, 255, 0.05);
+  }
+  to {
+    backgound-color: rgba(0, 128, 0, 0.4);
+    color: rgba(255, 255, 255, 1);
+  }
 }
 @keyframes fadeInSuccess {
   from {

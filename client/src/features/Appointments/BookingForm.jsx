@@ -18,9 +18,10 @@ export default function BookingForm({
   error,
   me,
 }) {
+  
   return (
-    <div className="container-fluid">
-      <div className="card booking-card global-card my-5">
+    <div className="container-book">
+      <div className="card global-card booking-card">
         <div className="bg-black">
           <h4
             className="log-form bg-black rounded-0 text-light my-3 py-3"
@@ -79,6 +80,7 @@ export default function BookingForm({
                 <br />
                 {error && <ErrorComponent message={error} />}
                 <br />
+
                 <button
                   type="submit"
                   onClick={(e) => handleSubmit(e)}

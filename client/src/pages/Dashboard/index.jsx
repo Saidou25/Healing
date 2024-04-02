@@ -10,16 +10,21 @@ import Footer from "../../components/Footer";
 import UpcomingAppointments from "../../features/Appointments/UpcomingAppointments";
 import auth from "../../utils/auth";
 import DashboardNav from "./DashboardNav";
+import DashboardMediaNav from "./DashboardMediaNav";
+import useMonitorWidth from "./useMonitorWidth";
 import "./index.css";
 
 const Dashboard = () => {
   const [me, setMe] = useState("");
+  // const [showDashboardMediaNav, setShowDashboardMediaNav] = useState(false);
   const [isShown, setIsShown] = useState(false);
   const [myAppointments, setMyAppointments] = useState("");
   const [futureAppointments, setFutureAppointments] = useState("");
 
   const { data: meData, loading } = useQuery(QUERY_ME);
   const username = me.username;
+
+  const { showDashboardMediaNav } = useMonitorWidth();
 
   useEffect(() => {
     if (meData) {
@@ -80,74 +85,71 @@ const Dashboard = () => {
     return (
       <>
         <Navbar />
-        <DashboardNav />
+        {showDashboardMediaNav ? <DashboardMediaNav /> : <DashboardNav />}
         <main className="dashboard-main">
-          {/* history and My reviews little navbar */}
           <div className="pt-5">
             <Outlet />
           </div>
-          <div className="row review-row mt-4">
-            <div className="col-lg-8 col-sm-10">
-              <UpcomingAppointments
-                futureAppointments={futureAppointments}
-                today={today}
-              />
-            </div>
-            {futureAppointments?.length ? (
-              <div className="col-lg-4 col-sm-12 my-5 right-window dashb-border py-5">
-                <div className="card suggestion p-3 text-light">
-                  <br />
-                  <h4 className="note mb-2">Notes</h4>
-                  <br />
-                  <p>
-                    We suggest arriving 15 minutes prior to your appointment.{" "}
+          <>
+            <div className="row review-row mt-4">
+              <div className="col-lg-8 col-sm-10">
+                <UpcomingAppointments
+                  futureAppointments={futureAppointments}
+                  today={today}
+                />
+              </div>
+              {futureAppointments?.length ? (
+                <div className="col-lg-4 col-sm-12 my-5 right-window dashb-border py-5">
+                  <div className="card suggestion p-3 text-light">
                     <br />
-                  </p>
-                  <p>
-                    Use direct message to provide additional information about
-                    your upcoming visit. <br />
-                  </p>
-                  <p>
-                    For appointment cancelation please provide a 48 hours
-                    notice. Book a new appointment if you would like to
-                    reschedule.
-                  </p>
+                    <h4 className="note mb-2">Notes</h4>
+                    <br />
+                    <p>
+                      We suggest arriving 15 minutes prior to your appointment.{" "}
+                      <br />
+                    </p>
+                    <p>
+                      Use direct message to provide additional information about
+                      your upcoming visit. <br />
+                    </p>
+                    <p>
+                      For appointment cancelation please provide a 48 hours
+                      notice. Book a new appointment if you would like to
+                      reschedule.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className="row review-row mt-4">
-            <div className="col-lg-8 col-sm-12">
-              <AllReviews />
+              ) : (
+                <></>
+              )}
             </div>
-            <div className="col-lg-4 col-sm-12 right-window dashb-border mb-5">
-              <div className="row top-box"
-              >
-                <div className="col-12">
-                  <h3 className="write-review-title pt-5 text-light"
-                  >
-                    Write a review
-                  </h3>
-                </div>
-                <div
-                  className="col-12 d-flex justify-content-center p-2"
-                >
-                  <button
-                    type="button"
-                    className="btn m-4 col-12 review-button d-flex bg-black rounded-0 justify-content-center "
-                    onClick={() => handleSubmit("review")}
-                  >
-                    start/close
-                  </button>
-                </div>
+            <div className="row review-row mt-4">
+              <div className="col-lg-8 col-sm-12">
+                <AllReviews />
               </div>
-              {isShown ? (
-                <ReviewForm username={username} today={today} />
-              ) : null}
+              <div className="col-lg-4 col-sm-12 right-window dashb-border mb-5">
+                <div className="row top-box">
+                  <div className="col-12">
+                    <h3 className="write-review-title pt-5 text-light">
+                      Write a review
+                    </h3>
+                  </div>
+                  <div className="col-12 d-flex justify-content-center p-2">
+                    <button
+                      type="button"
+                      className="btn m-4 col-12 review-button d-flex bg-black rounded-0 justify-content-center "
+                      onClick={() => handleSubmit("review")}
+                    >
+                      start/close
+                    </button>
+                  </div>
+                </div>
+                {isShown ? (
+                  <ReviewForm username={username} today={today} />
+                ) : null}
+              </div>
             </div>
-          </div>
+          </>
         </main>
         <Footer />
       </>

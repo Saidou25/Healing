@@ -4,7 +4,6 @@
 }
 .text-footer {
     margin-top: 2%;
-    font-size: 1.3rem;
     text-align: center;
 }
 .col-footer {
@@ -14,20 +13,18 @@
 }
 .number {
     align-items: center;
-    font-size: 1.2rem;
 }
 .github {
     max-width: 45px;
 }
 
 @media screen and (max-width: 414px) {
+   
     .footer {
         margin-top: 3%;
-        align-items: center;
+        padding: 2%;
         margin-bottom: 5% !important;
-    }
-    .footer {
-        width: 90%;
+        width: 90% !important;
         margin-right: auto;
         margin-left: auto;
     }

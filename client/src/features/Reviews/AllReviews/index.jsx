@@ -19,7 +19,7 @@ const AllReviews = () => {
             {reviews &&
               reviews.map((review) => (
                 <div key={review._id} className="col-12">
-                  <div className="card review-list text-light  review-design mb-4">
+                  <div className="card global-card text-light mb-4">
                     <div className="card-header fs-3">{review.title}</div>
                     <div className="card-body p-3">
                       <div className="row">

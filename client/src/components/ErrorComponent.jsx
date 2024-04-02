@@ -3,7 +3,8 @@ import "./ErrorComponent.css";
 
 const ErrorComponent = ({ message }) => {
   return (
-    <div className="row review-list mt-4 mx-2 pt-3 error-comp">
+    <div className="row review-list mt-4 mx-2 pt-3 error-comp"
+    style={{ backgrounColor: "#dd4050" }}>
       <h3 className="col-12 d-flex justify-content-center text-light">
         Error!
       </h3>

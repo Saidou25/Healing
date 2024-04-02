@@ -3,7 +3,7 @@ import "./Success.css";
 
 const Success = ({ message }) => {
   return (
-    <div className="success-background">
+    <div className="success-background bg-transparent">
       <div className="row py-4">
         <div className="col-12 d-flex appointment-success">
           <i className="fa-solid fa-check d-flex"></i>
