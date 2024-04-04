@@ -1,65 +1,33 @@
 import React from "react";
 import "./index.css";
 
-const RatingList = (props) => {
-  const rating = props.rating;
+const RatingList = ({ rating, reviews }) => {
+  const starsArray = [0, 1, 2, 3, 4];
+
   return (
     <>
-      <div className="star mt-2">
-        {rating === "" && (
-          <>
-            <i className="fa fa-star-sharp unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-          </>
-        )}
-        {rating === "1" && (
-          <>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-          </>
-        )}
-        {rating === "2" && (
-          <>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-          </>
-        )}
-        {rating === "3" && (
-          <>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star unchecked"></i>
-            <i className="fa fa-star unchecked"></i>
-          </>
-        )}
-        {rating === "4" && (
-          <>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star unchecked"></i>
-          </>
-        )}
-        {rating === "5" && (
-          <>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-            <i className="fa fa-star checked"></i>
-          </>
-        )}
+      <div className="row rating-row">
+        {starsArray &&
+          starsArray.map((star, index) => (
+            <div
+              className="col-lg-2 col-sm-2"
+              key={index}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <button type="button" className="btn">
+                <i
+                  className="fa fa-star"
+                  style={
+                    index <= rating && rating !== "0" ? { color: "yellow" } : { color: "grey" }
+                  }
+                ></i>
+              </button>
+            </div>
+          ))}
       </div>
     </>
   );

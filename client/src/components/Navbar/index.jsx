@@ -21,9 +21,9 @@ const Navbar = () => {
         <main className="main-nav ">
           <div className="bg-img">
             <nav className="row g-0">
-              <div className="col-12 d-flex justify-content-end">
+              {/* <div className="col-12 d-flex justify-content-end">
                 <SideMenu />
-              </div>
+              </div> */}
               <div className="one">
                 <div className="healing-title">
                   <NavLink className="landing text-light p-5 m-5" to="/">

@@ -24,8 +24,6 @@
   line-height: 1.5;
   background: rgb(131, 232, 245) !important;
   background: rgba(13, 50, 55, 0.4) !important;
-  /* background-clip: padding-box; */
-  /* border: 0 solid #ced4da; */
 }
 
 .card-header-review-title {
@@ -36,26 +34,7 @@
 }
 
 .fa-star {
-  font-size: 20px;
   border-width: thin;
-}
-
-.checked1,
-.checked2,
-.checked3,
-.checked4,
-.checked5 {
-  color: rgb(255, 225, 0);
-  border: black;
-}
-
-.unchecked1,
-.unchecked2,
-.unchecked3,
-.unchecked4,
-.unchecked5 {
-  color: grey;
-  border: black;
 }
 .review-error,
 .review-confirm {
@@ -67,5 +46,9 @@
   .review-form {
     margin-bottom: 10%;
   }
-
+}
+@media screen and (max-width: 414px) {
+  .review-form {
+    margin-bottom: 10%;
+  }
 }

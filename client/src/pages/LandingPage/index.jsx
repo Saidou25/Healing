@@ -32,9 +32,9 @@ const LandingPage = () => {
           </NavLink>
         </div>
       </div>
-      <div className="foot-land">
+      {/* <div className="foot-land">
         <Footer />
-      </div>
+      </div> */}
     </>
   );
 };

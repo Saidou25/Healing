@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_REVIEWS } from "../../../utils/queries";
-// import profileIcon from "../../../assets/images/profileIcon.png"
 import RatingList from "../../../components/RatingList";
 import Spinner from "../../../components/Spinner";
 import "./index.css";
@@ -11,6 +10,7 @@ const AllReviews = () => {
   const reviews = reviewsData?.reviews || [];
 
   if (resultsDataLoading) return <Spinner />;
+
   return (
       <div className="row all-reviews mb-5">
         {reviews.length ? (
@@ -32,17 +32,12 @@ const AllReviews = () => {
                           </p>
                         </div>
                         <div className="col-12 pb-3">
-                          {/* <img
-                            src={profileIcon}
-                            alt="profile icon"
-                            height={20}
-                          /> */}
                           <span className="review fs-5 m-2">
                             {review.username}
                           </span>
                         </div>
                         <div className="col-6 d-flex align-items-center">
-                          <RatingList rating={review.rating} />
+                          <RatingList rating={review.rating} reviews={reviews} />
                         </div>
                       </div>
                     </div>

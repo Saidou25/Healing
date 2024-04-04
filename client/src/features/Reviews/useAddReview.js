@@ -18,8 +18,8 @@ const useAddReview = (addReviewData) => {
           data: { reviews: [addReview, ...reviews] },
         });
       } catch (e) {
-        console.error(e);
-  
+        setError(e.message);
+        return;
       }
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
@@ -29,40 +29,35 @@ const useAddReview = (addReviewData) => {
     },
   });
 
-  const addAReview = useCallback(
-    async () => {
-      setLoading(true);
-      try {
-        const { data } = await addReview({
-          variables: {
-            reviewDate: addReviewData.reviewDate,
-            title: addReviewData.title,
-            reviewText: addReviewData.reviewText,
-            username: addReviewData.username,
-            rating: addReviewData.rating,
-          },
-        });
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setLoading(false);
-        setSuccessAddingReview("Your Review has been created");
-        setError("");
-        setTimeout(() => {
-          setSuccessAddingReview("");
-        }, [2000])
-      }
-    },
-    [addReviewData, addReview]
-  );
-  useEffect(() => {
-    if (!addReviewData.title) {
-       setSuccessAddingReview("");
-        setError("");
-      return;
-    } else { 
-      setSuccessAddingReview("");
+  const addAReview = useCallback(async () => {
+    setLoading(true);
+    try {
+      const { data } = await addReview({
+        variables: {
+          reviewDate: addReviewData.reviewDate,
+          title: addReviewData.title,
+          reviewText: addReviewData.reviewText,
+          username: addReviewData.username,
+          rating: !addReviewData.rating ? "0" : addReviewData.rating
+        },
+      });
+    } catch (e) {
+      setError(e.message);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+      setSuccessAddingReview("Your Review has been created");
       setError("");
+      setTimeout(() => {
+        setSuccessAddingReview("");
+      }, [2000]);
+    }
+  }, [addReviewData, addReview]);
+
+  useEffect(() => {
+    if (!addReviewData.title || !addReviewData.reviewText) {
+      return;
+    } else {
       addAReview();
     }
   }, [addReviewData, addAReview]);
