@@ -10,7 +10,7 @@ const RatingList = ({ rating }) => {
           starsArray.map((star, index) => (
             <div key={index}>
               <i
-                className="fa fa-star"
+                className="fa fa-star fa-star-list"
                 style={
                   index <= rating && rating !== "0"
                     ? { color: "yellow" }

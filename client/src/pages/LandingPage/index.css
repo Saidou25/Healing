@@ -5,13 +5,12 @@
 }
 .landing-title {
   margin-top: 3%;
-  padding-left: 0.05% !important;
   font-size: 7rem;
-  color: black;
 }
 .landing {
   padding-left: 95.6px;
   font-size: 3rem;
+  color: white;
 }
 .landing-row {
   background-color: rgba(0, 1, 1, 0.8);
@@ -71,16 +70,17 @@
     font-size: 3rem;
   }
   .landing-row {
-    margin-top: 6%;
-    width: 90% !important;
+    width: 95% !important;
     margin-right: auto;
     margin-left: auto;
+    margin-top: 34%;
   }
-  
+
   .landing-title {
     display: flex;
     align-items: center;
-    padding-top: 5.7% !important;
+    margin-top: 4%;
+    margin-bottom: 4%;
   }
 
   .landing-item-hilight {

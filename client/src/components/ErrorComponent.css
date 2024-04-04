@@ -1,3 +1,4 @@
 .error-comp {
     background-color: #dd4050 !important;
+    z-index: 1;
 }

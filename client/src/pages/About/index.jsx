@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sy from "../../assets/images/IMG-0105 copy.jpg";
 import nurseGuy from "../../assets/images/nurseGuy.jpeg";
 import nurseLady from "../../assets/images/nurseLady.jpeg";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import "./index.css";
 import useMonitorWidth from "../Dashboard/useMonitorWidth";
+import Auth from "../../utils/auth";
+import "./index.css";
 
 const About = () => {
+  const [mediaAbout, setMediaAbout] = useState(false);
+
   const { showDashboardMediaNav } = useMonitorWidth();
-  
+
+  useEffect(() => {
+    const urlVal = window.location.pathname;
+    if (urlVal.includes("/Dashboard/About") && Auth.loggedIn()) {
+      setMediaAbout(true);
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
-      <main className="about-main">
+      <main className={!mediaAbout ? "about-main" : "about-main-media"}>
         <h3 className="text-light py-5">What is Reiki</h3>
         <div className="card global-card ">
           <p className="p-2">From Wikipedia, the free encyclopedia.</p>
@@ -41,15 +51,15 @@ const About = () => {
           </p>
         </div>
 
-        <h3 className="text-light m-5">Our team</h3>
-        {/* will do a map one that one when refactoring */}
+        <h3 className="text-light my-5">Our team</h3>
+        {/* will do a map when refactoring */}
         <div className="card review-list card-about mb-4">
           <div className="row text-light">
             <div
               className="col-lg-4 col-sm-12"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="container-fluid choo">
+              <div className="container-fluid choo p-2">
                 <img className="responsive" src={Sy} alt="nurse icon" />
               </div>
             </div>
@@ -69,7 +79,7 @@ const About = () => {
         </div>
 
         <div className="card review-list card-about mb-4">
-          <div className="row text-light">
+          <div className="row text-light nancy">
             <div className="col-lg-8 col-sm-12">
               <div className="p-2"> Nancy</div>
               <div className="container-fluid">
@@ -123,7 +133,8 @@ const About = () => {
           </div>
         </div>
       </main>
-      {showDashboardMediaNav ? null : <Footer />}
+      {/* {showDashboardMediaNav ? null : <Footer />} */}
+      {!mediaAbout && <Footer />}
     </>
   );
 };

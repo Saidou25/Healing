@@ -4,7 +4,6 @@ import "./ErrorComponent.css";
 const ErrorComponent = ({ message }) => {
   return (
     <>
-      {" "}
       <div
         className="row review-list p-2 error-comp"
         style={{ backgrounColor: "#dd4050", zIndex: "1" }}
@@ -19,6 +18,7 @@ const ErrorComponent = ({ message }) => {
           {message}
         </p>
       </div>
+      <br />
       <br />
     </>
   );

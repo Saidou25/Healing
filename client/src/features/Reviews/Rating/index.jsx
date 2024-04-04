@@ -25,37 +25,27 @@ const Rating = ({ handleRating, successAddingReview }) => {
 
   return (
     <>
-      {/* <div className="row rating-row"> */}
-        {starsArray &&
-          starsArray.map((star, index) => (
-            <div
-              // className="col-lg-2 col-sm-2"
-              key={index}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Button
-                type="button"
-                className="btn"
-                onClick={(e) => {
-                  handleChange(index, star);
-                }}
-              >
-                <i
-                  className="fa fa-star"
-                  style={
-                    color === "yellow" && index <= indexNum
-                      ? { color: "yellow" }
-                      : { color: "grey" }
-                  }
-                ></i>
-              </Button>
-            </div>
-          ))}
-      {/* </div> */}
+          <br />
+      {starsArray &&
+        starsArray.map((star, index) => (
+          // <div>
+          <Button
+            type="button"
+            className="btn rate-btn ps-0"
+            onClick={(e) => {
+              handleChange(index, star);
+            }}
+          >
+            <i
+              className="fa fa-star fa-star-rate"
+              style={
+                color === "yellow" && index <= indexNum
+                  ? { color: "yellow" }
+                  : { color: "grey" }
+              }
+            ></i>
+          </Button>
+        ))}
     </>
   );
 };

@@ -5,7 +5,7 @@ import "./index.css";
 
 const Footer = () => {
   return (
-    <main className="main-footer">
+    <footer className="main-footer">
       <div className="row footer bg-black text-white">
         <div className="col-12 col-footer text-footer">
           <FaEnvelope className="icon m-2" />
@@ -15,13 +15,13 @@ const Footer = () => {
           <FaPhone className="icon m-2" />
           +1 (123) 456 7891
         </div>
-        <div className="col-12 col-footer p-3">
+        <div className="container-fluid d-flex justify-content-center mt-2">
           <a className="minicat" href="https://github.com/Saidou25/Healing">
             <img src={logo} className="github" alt="minicat"></img>
-          </a> 
+          </a>
         </div>
       </div>
-    </main>
+    </footer>
   );
 };
 

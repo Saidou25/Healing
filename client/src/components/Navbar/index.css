@@ -1,5 +1,10 @@
-.main-nav {
-  display: block;
+.title-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.title-nav-logged {
+  display: flex;
+  justify-content: space-between;
 }
 .healing-title {
   margin-top: 3%;
@@ -58,13 +63,6 @@
 }
 
 @media screen and (max-width: 500px) {
-  .landing-title {
-    text-align: center;
-    margin-top: 0 !important;
-    padding-left: 0;
-    font-size: 5rem;
-  }
-
   .one {
     text-align: center;
     flex-direction: column;
@@ -72,8 +70,27 @@
 }
 
 @media screen and (max-width: 414px) {
+  .title-nav {
+    justify-content: center;
+    flex-direction: column;
+  }
+  .land-navi {
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 !important;
+  }
+
   .healing-title {
-   font-size: 3rem;
+    margin-top: 4% !important;
+    font-size: 7rem;
+  }
+  .landing-title {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    font-size: 5rem;
+    padding-top: 4%;
+    padding-bottom: 4%;
   }
   .nav {
     margin-top: 0;

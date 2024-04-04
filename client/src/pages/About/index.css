@@ -6,7 +6,6 @@
   margin-top: 5%;
   padding: 5%;
 }
-
 .choo {
   display: flex;
   justify-content: center;
@@ -20,8 +19,15 @@
 }
 
 @media screen and (max-width: 414px) {
+  .nancy {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-top: 2%;
+  }
   .about-main {
-    width: 100% !important;
-    background-color: transparent;
+    width: 95% !important;
+  }
+  .about-main-media {
+    background-color: none;
   }
 }

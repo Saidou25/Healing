@@ -1,8 +1,10 @@
 import { React } from "react";
-import ContactModal from "../ContactModal";
 import { NavLink } from "react-router-dom";
+import ContactModal from "../ContactModal";
+import Auth from "../../../utils/auth"
 
 const DashboardMediaNav = () => {
+  
   return (
     <>
       <div className="healing-title my-4">
@@ -76,6 +78,18 @@ const DashboardMediaNav = () => {
           </li>
           <li className="media-nav">
             <ContactModal />
+          </li>
+          <li className="media-nav">
+            <button
+            style={{
+              background: "transparent", fontWeight: "200", borderStyle: "none"
+            }}
+              to="/Dashboard/profile"
+              className="dashboard-text  text-white px-2"
+              onClick={() => Auth.logout()}
+            >
+              logout
+            </button>
           </li>
         </ul>
       </div>

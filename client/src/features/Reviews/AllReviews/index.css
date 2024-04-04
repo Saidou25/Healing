@@ -1,30 +1,27 @@
 .all-reviews {
-    padding-right: 4%;
+  padding-right: 4%;
 }
 @media screen and (max-width: 993px) {
-    .reviews-title {
-        margin-top: 0;
-        padding-right: 0;
-        border-right-color: white;
-        text-align: center;
-    }
+  .reviews-title {
+    margin-top: 0;
+    padding-right: 0;
+    border-right-color: white;
+    text-align: center;
+  }
 }
 @media screen and (max-width: 414px) {
-    .reviews-title {
-        margin-top: 0;
-        padding-right: 0;
-        border-right-color: none;
-        text-align: center;
-    }
-    .review-column {
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    .all-reviews {
-        padding-right: 0;
-    }
-    /* .rating-row {
-        flex-direction: row !important;
-    } */
+  .reviews-title {
+    margin-top: 0;
+    padding-right: 0;
+    border-right-color: none;
+    text-align: center;
+  }
+  .review-column {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .all-reviews {
+    padding-right: 0;
+  }
 }

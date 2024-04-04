@@ -11,7 +11,8 @@ const Success = ({ message }) => {
         <h3 className="col-12 signup-success d-flex justify-content-center py-3">
           Success!
         </h3>
-        <p className="col-12 d-flex justify-content-center">{message}</p>
+        <p
+        style={{ padding: "2%", textAlign: "center" }}>{message}</p>
       </div>
     </div>
   );

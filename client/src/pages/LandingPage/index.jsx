@@ -7,7 +7,7 @@ const LandingPage = () => {
   return (
     <>
       <div className="landing-title">
-        <NavLink className="col-12 landing text-light" to="/">
+        <NavLink className="landing text-light" to="/">
           Healing
         </NavLink>
       </div>

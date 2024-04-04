@@ -1,6 +1,7 @@
 .footer {
     margin-top: 5%;
     align-items: center;
+    padding-bottom: 1%;
 }
 .text-footer {
     margin-top: 2%;
@@ -15,17 +16,22 @@
     align-items: center;
 }
 .github {
-    max-width: 45px;
+    display: flex;
+    width: 10%;
+    margin: auto;
+    aspect-ratio: 1 / 1;
+    background-position: cover;
 }
 
 @media screen and (max-width: 414px) {
    
     .footer {
         margin-top: 3%;
-        padding: 2%;
+        padding: 4%;
         margin-bottom: 5% !important;
         width: 90% !important;
         margin-right: auto;
         margin-left: auto;
     }
+    
 }

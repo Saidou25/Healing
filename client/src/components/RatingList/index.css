@@ -1,20 +1,9 @@
-.checked {
-  color: rgb(255, 225, 0);
-  border: black;
-}
-
-.unchecked {
-  color: grey;
-  border: black;
-}
-
-.fa-star {
+.fa-star-list {
   margin-right: 5px !important;
 }
 
-
 @media screen and (max-width: 414px) {
-  .fa-star {
+  .fa-star-list {
     margin-right: 0 !important;
   }
 }

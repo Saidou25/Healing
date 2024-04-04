@@ -18,6 +18,9 @@ const sendEmail = (templateParams) => {
   emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID).then(
     (result) => {
       ok1 = result.text;
+      setTimeout(() => {
+        ok1 = "";
+      }, 2000);
     },
     (error) => {
       notOk1 = error.text;
@@ -42,11 +45,11 @@ const sendMessage = async (templateParams) => {
       setTimeout(() => {
         ok = "";
       }, 2000);
-      return;
     },
     (error) => {
       ok = "";
       notOk = error.text;
+      // return;
     }
   );
 };
