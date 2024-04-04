@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Auth from "../../utils/auth";
-import Footer from "../../components/Footer";
 import "./index.css";
 
 const LandingPage = () => {
@@ -32,9 +31,6 @@ const LandingPage = () => {
           </NavLink>
         </div>
       </div>
-      {/* <div className="foot-land">
-        <Footer />
-      </div> */}
     </>
   );
 };

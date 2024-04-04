@@ -7,3 +7,14 @@
   color: grey;
   border: black;
 }
+
+.fa-star {
+  margin-right: 5px !important;
+}
+
+
+@media screen and (max-width: 414px) {
+  .fa-star {
+    margin-right: 0 !important;
+  }
+}

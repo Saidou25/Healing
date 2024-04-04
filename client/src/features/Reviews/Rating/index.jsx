@@ -25,11 +25,11 @@ const Rating = ({ handleRating, successAddingReview }) => {
 
   return (
     <>
-      <div className="row rating-row">
+      {/* <div className="row rating-row"> */}
         {starsArray &&
           starsArray.map((star, index) => (
             <div
-              className="col-lg-2 col-sm-2"
+              // className="col-lg-2 col-sm-2"
               key={index}
               style={{
                 display: "flex",
@@ -55,7 +55,7 @@ const Rating = ({ handleRating, successAddingReview }) => {
               </Button>
             </div>
           ))}
-      </div>
+      {/* </div> */}
     </>
   );
 };

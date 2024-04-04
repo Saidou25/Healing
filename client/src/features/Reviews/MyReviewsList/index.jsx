@@ -57,8 +57,10 @@ const MyReviewsList = () => {
         <div className="container-review py-5">
           <div className="media-title review-border">
             <h3 className="review-list-title my-5 text-light">Your reviews</h3>{" "}
-            <NavLink to="/Dashboard" className="text-white my-5 fs-3 g-0"
-            style={{ display: "flex", alignItems: "center" }}
+            <NavLink
+              to="/Dashboard"
+              className="text-white my-5 fs-3 g-0"
+              style={{ display: "flex", alignItems: "center" }}
             >
               <AiOutlineClose />
             </NavLink>
@@ -72,26 +74,14 @@ const MyReviewsList = () => {
                     <div className="card-body p-3">
                       <div className="row">
                         <div className="col-12">
-                          <p className="card-text px-3">
-                            {review.reviewText}
-                          </p>
+                          <p className="card-text px-3">{review.reviewText}</p>
                         </div>
                         <div className="col-12 mt-3">
                           <p className="review fs-5 px-3">
                             Created on: {review.reviewDate}
                           </p>
                         </div>
-                        <div className="col-12 px-3 pb-3">
-                          {/* <img
-                            src={profileIcon}
-                            alt="profile icon"
-                            height={25}
-                          /> */}
-                          <span className="review fs-5">
-                            {review.username}
-                          </span>
-                        </div>
-                        <div className="card-footer">
+                        <div className="card-footer p-0 pt-2">
                           <div className="row">
                             <div className="col-6 d-flex align-items-center">
                               <RatingList rating={review.rating} />
@@ -99,7 +89,7 @@ const MyReviewsList = () => {
                             <div className="col-6 d-flex justify-content-end">
                               <button
                                 type="button"
-                                className="btn delete-review"
+                                className="btn delete-review p-0"
                                 disabled={loading}
                                 onClick={() => handleSubmit(review)}
                               >
@@ -110,7 +100,7 @@ const MyReviewsList = () => {
                                     className="trash-can"
                                     src={trash}
                                     alt="trash-can"
-                                    height={50}
+                                    height={40}
                                   />
                                 )}
                               </button>

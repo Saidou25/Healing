@@ -45,11 +45,6 @@
   background: rgb(131, 232, 245);
   background: rgba(131, 232, 245, 0.4);
 }
-.foot-land {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
 
 @media screen and (max-width: 825px) {
   .landing-title {
@@ -86,8 +81,6 @@
     display: flex;
     align-items: center;
     padding-top: 5.7% !important;
-    /* padding-left: 0.05% !important; */
-    /* font-size: 3rem !important; */
   }
 
   .landing-item-hilight {
@@ -95,10 +88,5 @@
     border: solid;
     border-width: 1px;
     width: 40%;
-  }
-  .foot-land {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
   }
 }

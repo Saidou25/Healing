@@ -78,4 +78,7 @@
     width: 100%;
     margin: auto;
   }
+  .trash-can {
+    height: 30px;
+  }
 }

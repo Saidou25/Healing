@@ -12,43 +12,41 @@ const AllReviews = () => {
   if (resultsDataLoading) return <Spinner />;
 
   return (
-      <div className="row all-reviews mb-5">
-        {reviews.length ? (
-          <>
-          <h3 className="reviews-title mt-4 mb-5 text-light">Read what people say</h3>
-            {reviews &&
-              reviews.map((review) => (
-                <div key={review._id} className="col-12">
-                  <div className="card global-card text-light mb-4">
-                    <div className="card-header fs-3">{review.title}</div>
-                    <div className="card-body p-3">
-                      <div className="row">
-                        <div className="col-12">
-                          <p className="card-text fs-4">{review.reviewText}</p>
-                        </div>
-                        <div className="col-12 mt-3">
-                          <p className="review fs-5">
-                            Created on {review.reviewDate}
-                          </p>
-                        </div>
-                        <div className="col-12 pb-3">
-                          <span className="review fs-5 m-2">
-                            {review.username}
-                          </span>
-                        </div>
-                        <div className="col-6 d-flex align-items-center">
-                          <RatingList rating={review.rating} reviews={reviews} />
-                        </div>
+    <div className="row all-reviews mb-5">
+      {reviews.length ? (
+        <>
+          <h3 className="reviews-title mt-4 mb-5 text-light">
+            Read what people say
+          </h3>
+          {reviews &&
+            reviews.map((review) => (
+              <div key={review._id} className="col-12">
+                <div className="card global-card text-light mb-4">
+                  <div className="card-header fs-3">{review.title}</div>
+                  <div className="card-body p-3">
+                    <div className="row">
+                      <div className="col-12">
+                        <span className="card-text fs-4">
+                          {review.reviewText}
+                        </span>
                       </div>
+                      <div className="col-12 mt-3">
+                        <span className="review fs-5">
+                          Created on {review.reviewDate}
+                        </span>
+                      </div>
+                      <div className="col-12 pb-1">
+                        <span className="review fs-5">{review.username}</span>
+                      </div>
+                      <RatingList rating={review.rating} reviews={reviews} />
                     </div>
                   </div>
                 </div>
-              ))}
-          </>
-        ) : (
-          null
-        )}
-      </div>
+              </div>
+            ))}
+        </>
+      ) : null}
+    </div>
   );
 };
 export default AllReviews;
