@@ -2,8 +2,12 @@
 .row {
   --bs-gutter-x: 0;
 }
-.modal-title-contact {
-  margin-left: 24%;
+/* .btn-close {
+  color: white !important;
+} */
+.modal-content { 
+   width: 70%;
+   margin: auto;
 }
 .form-label-contact {
   display: flex;
@@ -13,23 +17,23 @@
 }
 .message-btn-modal {
   text-transform: none;
-  font-size: 1.2rem;
   letter-spacing: 1px;
   font-weight: 200 !important;
 }
 .message-btn-modal:hover {
   text-transform: none;
-  font-size: 2rem;
   transition: 0.3s;
 }
 .message-textarea {
-  min-height: 200px !important;
+  min-height: 100px !important;
+  font-style: oblique;
 }
 .contact-me-button {
     background-color: black;
     display: flex;
     justify-content: center;
-    width: 98%;
+    width: 100%;
+    font-weight: 200;
   }
   .contact-me-button:hover {
     background-color: rgb(24, 68, 68) !important;
@@ -44,7 +48,6 @@
   }
   .message-btn-modal {
     font-size: 1rem !important;
-    font-weight: 200 !important;
   }
   .message-btn-modal:hover {
     font-size: 1rem !important;

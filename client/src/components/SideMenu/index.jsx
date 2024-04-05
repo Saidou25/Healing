@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Auth from "../../utils/auth";
-// import profileIcon from "../../assets/images/profileIcon.png";
 import "./index.css";
 
 const SideMenu = () => {

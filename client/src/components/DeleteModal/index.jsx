@@ -90,29 +90,30 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div className="modal-content">
             <div className="modal-header">
-              <h1
-                className="modal-title-delete fs-1 text-light"
+              <h4
+                className="d-flex align-items-center justify-content-center m-0 text-light"
                 id="exampleModalLabel"
+                style={{ fontWeight: "300"}}
               >
                 Delete Account
-              </h1>
+              </h4>
               <button
                 type="button"
-                className="btn-close btn btn-primary mb-5"
+                className="btn-close btn textlight"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body fs-4 mx-2">
+            <div className="modal-body mx-2">
               {!confirm && !successMessage && (
                 <>
-                  <p className="sure mt-4 text-light">
+                  <p className="sure mt-2 text-light">
                     Are you sure you want to delete your account?
                   </p>
                   <div className="row mt-2">
                     <div className="col-6 my-2 pr-2">
                       <button
-                        className="contact-me-button text-light bg-transparent btn fs-4"
+                        className="contact-me-button text-light bg-transparent btn"
                         type="button"
                         data-bs-dismiss="modal"
                         onClick={() => {
@@ -125,7 +126,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
                     </div>
                     <div className="col-6 my-2 pl-2">
                       <button
-                        className="contact-me-button btn bg-danger text-light fs-4"
+                        className="contact-me-button btn bg-danger text-light"
                         disabled={loading}
                         type="button"
                         onClick={bye}

@@ -83,33 +83,35 @@ const ContactModal = () => {
         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div className="modal-content">
             <div className="modal-header">
-              <h1
-                className="modal-title-contact fs-1 text-light"
+              <h4
+                className="d-flex align-items-center justify-content-center m-0 text-light"
                 id="exampleModalLabel"
+                style={{ fontWeight: "300" }}
               >
                 Contact Me
-              </h1>
+              </h4>
               <button
                 type="button"
-                className="btn-close btn btn-primary mb-5"
+                className="btn-close d-flex align-items-center"
+                // style={{ color: "black", background: "blue" }}
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
 
             {ok ? (
-              <div className="modal-body fs-4 m-2">
+              <div className="modal-body m-2">
                 <Success message="Your message was sent. Please check your emails for a confirmation." />
               </div>
             ) : (
               <>
-                <div className="modal-body m-2">
+                <div className="modal-body">
                   <form onSubmit={handleSubmit}>
-                    <label className="mb-5 text-light">
+                    <label className="mb-3 text-light">
                       Message
                     </label>
                     <textarea
-                      className="form-control message-textarea"
+                      className="form-control message-textarea mb-3"
                       type="text"
                       name="message"
                       value={message}
@@ -117,10 +119,10 @@ const ContactModal = () => {
                       placeholder="Please type your message..."
                     />
                     {error && <ErrorComponent message={error} />}
-                    <div className="row mt-5">
-                      <div className="col-6 my-2">
+                    <div className="row mt-2">
+                      <div className="col-6">
                         <button
-                          className="contact-me-button text-light bg-transparent btn fs-4"
+                          className="contact-me-button text-light bg-transparent btn"
                           type="button"
                           data-bs-dismiss="modal"
                           onClick={() => {
@@ -133,9 +135,9 @@ const ContactModal = () => {
                           Close
                         </button>
                       </div>
-                      <div className="col-6 my-2">
+                      <div className="col-6">
                         <button
-                          className="contact-me-button btn bg-black fs-4"
+                          className="contact-me-button btn bg-black"
                           type="submit"
                           disabled={loading}
                         >

@@ -54,7 +54,9 @@ const Profile = () => {
           </div>
         </div>
         {showNav ? null : (
-          <div style={{ position: "absolute", bottom: "0", width: "100%" }}><Footer /></div>
+          <div style={{ position: "absolute", bottom: "0", width: "100%" }}>
+            <Footer />
+          </div>
         )}
       </>
     );
@@ -62,95 +64,90 @@ const Profile = () => {
     return (
       <>
         {showNav ? null : <Navbar />}
-        <div className="container-profile">
-          <div className="flex-row justify-space-between">
-            <div className="col-12 col-profile">
-              <h3 className="text-light my-5">Login</h3>
-              <div className="card global-card review-list profile-body-media p-3">
-                <div className="text-profile">
-                  <FaIdBadge className="icon m-2" />
-                  {me.username}
-                </div>
-                <div className="text-profile text-light">
-                  <FaEnvelope className="icon m-2" />
-                  {me.email}
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-profile">
-              <h3 className="text-profile my-profile-titles text-light my-5">
-                General
-              </h3>
-              <div className="card review-list profile-body-media text-light p-3 ">
-                <div className="text-profile m-2">
-                  First name: {me.profile.patientfirstname}
-                </div>
-                <div className="text-profile m-2">
-                  Last name: {me.profile.patientlastname}
-                </div>
-                {me.profile?.birthdate ? (
-                  <div className="text-profile m-2">
-                    Birth date: {me.profile?.birthdate}
+        <>
+          <div className="container-profile">
+            <div className="flex-row justify-space-between">
+              <div className="col-12 col-profile">
+                <h3 className="text-light my-5">Login</h3>
+                <div className="card global-card review-list profile-body-media p-3">
+                  <div className="text-profile">
+                    <FaIdBadge className="icon m-2" />
+                    {me.username}
                   </div>
-                ) : (
-                  <></>
-                )}
+                  <div className="text-profile text-light">
+                    <FaEnvelope className="icon m-2" />
+                    {me.email}
+                  </div>
+                </div>
               </div>
-            </div>
+              <div className="col-12 col-profile">
+                <h3 className="text-profile my-profile-titles text-light my-5">
+                  General
+                </h3>
+                <div className="card review-list profile-body-media text-light p-3 ">
+                  <div className="text-profile m-2">
+                    First name: {me.profile.patientfirstname}
+                  </div>
+                  <div className="text-profile m-2">
+                    Last name: {me.profile.patientlastname}
+                  </div>
+                  {me.profile?.birthdate ? (
+                    <div className="text-profile m-2">
+                      Birth date: {me.profile?.birthdate}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
 
-            <div className="col-12 col-profile">
-              <h3 className="text-profile my-profile-titles text-light my-5">
-                Contact
-              </h3>
-              <div className="card review-list profile-body-media text-light p-3">
-                <div className="text-profile">
-                  <FaPhone className="icon m-2" />
-                  {me.profile.patientnumber}
-                </div>
-                <div className="text-profile">
-                  <FaHome className="icon m-2" />
-                  Address: {me.profile.patientaddress}
-                </div>
-                <div className="text-profile m-2">
-                  City: {me.profile.patientcity}
-                </div>
-                <div className="text-profile m-2">
-                  State: {me.profile.patientState}
-                </div>
-                <div className="text-profile m-2">
-                  Zip code: {me.profile.patientzip}
+              <div className="col-12 col-profile">
+                <h3 className="text-profile my-profile-titles text-light my-5">
+                  Contact
+                </h3>
+                <div className="card review-list profile-body-media text-light p-3">
+                  <div className="text-profile">
+                    <FaPhone className="icon m-2" />
+                    {me.profile.patientnumber}
+                  </div>
+                  <div className="text-profile">
+                    <FaHome className="icon m-2" />
+                    Address: {me.profile.patientaddress}
+                  </div>
+                  <div className="text-profile m-2">
+                    City: {me.profile.patientcity}
+                  </div>
+                  <div className="text-profile m-2">
+                    State: {me.profile.patientState}
+                  </div>
+                  <div className="text-profile m-2">
+                    Zip code: {me.profile.patientzip}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-12 col-profile my-5">
-              <>
-                {" "}
-                <NavLink
-                  // className="update-navlink"
-                  to={
-                    showDashboardMediaNav
-                      ? "/Dashboard/Profile/UpdateProfile"
-                      : "/UpdateProfile"
-                  }
-                  state={{ userProfile: me.profile }}
-                >
-                  <button className="btn mt-5 btn-info rounded-0">
-                    update
-                  </button>
-                </NavLink>
-              </>
-            </div>
-            <div className="col-12 col-profile my-2">
-              <DeleteModal
-                userProfile={me.profile}
-                userId={me._id}
-                myAppointments={me.bookingdates}
-                profileId={me.profile?._id}
-              />
+              <div className="col-12 col-profile my-5">
+                <>
+                  <NavLink
+                    to={"/UpdateProfile"}
+                    state={{ userProfile: me.profile }}
+                  >
+                    <button className="btn mt-5 btn-info rounded-0">
+                      update
+                    </button>
+                  </NavLink>
+                </>
+              </div>
+              <div className="col-12 col-profile my-2">
+                <DeleteModal
+                  userProfile={me.profile}
+                  userId={me._id}
+                  myAppointments={me.bookingdates}
+                  profileId={me.profile?._id}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <Outlet />
+        </>
         {showDashboardMediaNav ? null : <Footer />}
       </>
     );

@@ -1,10 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
 import Auth from "../../utils/auth";
-// import profileIcon from "../../assets/images/profileIcon.png";
 import SideMenu from "../../components/SideMenu";
-// import "./index.css";
 
 const DashboardNav = () => {
   const logout = (event) => {

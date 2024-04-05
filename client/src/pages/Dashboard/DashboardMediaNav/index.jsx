@@ -71,7 +71,7 @@ const DashboardMediaNav = () => {
           </li>
           <li className="media-nav">
             <NavLink
-              to="/Dashboard/profile"
+              to="/Dashboard/Profile"
               className="dashboard-text text-white px-2"
             >
               profile
@@ -85,7 +85,7 @@ const DashboardMediaNav = () => {
             style={{
               background: "transparent", fontWeight: "200", borderStyle: "none"
             }}
-              to="/Dashboard/profile"
+              to="/Dashboard/Profile"
               className="dashboard-text  text-white px-2"
               onClick={() => Auth.logout()}
             >

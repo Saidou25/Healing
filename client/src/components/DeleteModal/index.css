@@ -35,8 +35,9 @@
     width: 95%;
   }
   .modal-title-delete {
-    margin-left: 9%;
-    text-align: center;
+    margin-left: 0 ;
+    /* text-align: center; */
+    font-weight: 300 !important;
   }
   .update-modal {
     width: 25%;

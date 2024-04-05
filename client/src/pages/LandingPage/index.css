@@ -9,12 +9,12 @@
 }
 .landing {
   padding-left: 95.6px;
-  font-size: 3rem;
+  font-size: 6rem;
   color: white;
 }
 .landing-row {
   background-color: rgba(0, 1, 1, 0.8);
-  margin-top: 12%;
+  margin-top: 8%;
   width: 40%;
   margin-right: auto;
   margin-left: auto;
