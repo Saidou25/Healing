@@ -12,14 +12,14 @@
 }
 .dashboard-text {
   text-decoration: none;
-  padding: 0 !important;
-  margin: 0 !important;
+  padding: 0;
+  margin: 0;
   font-size: 1.2rem;
 }
 .dashboard-text:hover {
   text-decoration: none;
-  padding: 0 !important;
-  margin: 0 !important;
+  padding: 0;
+  margin: 0;
   font-size: 2rem;
   transition: 0.3s;
 }
@@ -51,12 +51,11 @@
     overflow-x: scroll;
     margin: auto;
     padding-top: 2% !important;
-
   }
   .media-nav {
     width: 100px !important;
-    padding-right: 4%;
-    padding-left: 4%;
+    padding-right: 2;
+    padding-left: 2;
     margin: auto !important;
   }
 }

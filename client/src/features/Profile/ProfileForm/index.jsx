@@ -6,12 +6,15 @@ import SelectUSState from "react-select-us-states";
 import auth from "../../../utils/auth.js";
 import ErrorComponent from "../../../components/ErrorComponent.jsx";
 import ButtonSpinner from "../../../components/ButtonSpinner/index.jsx";
+import useMonitorWidth from "../../../pages/Dashboard/useMonitorWidth.js";
 import "react-phone-number-input/style.css";
 import "./index.css";
 
 const ProfileForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { showDashboardMediaNav } = useMonitorWidth();
 
   const appInfo = location.state.appInfo;
 
@@ -107,8 +110,8 @@ const ProfileForm = () => {
   return (
     <>
       <main>
-        <div className="container-fluid mt-5">
-          <div className="card global-card card-app-review">
+        <div className={showDashboardMediaNav ? "create-profile-container py-5" : "profile-container py-5"}>
+          <div className="card global-card card-app-review mt-5">
             <div className="card-header app-review-header">
               <h4 className="card-header-update bg-black rounded-0 p-4">
                 Create your profile
@@ -120,18 +123,18 @@ const ProfileForm = () => {
                   </div>
                   <br />
 
-
                   <div
                     className="col-lg-12 col-sm-12 my-4"
-                    style={{ display: "flex", justifyContent: "space-between",
-                    width: "60%", margin: "auto"
-                 }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      width: "60%",
+                      margin: "auto",
+                    }}
                   >
-                   <div
-                    style={{ display: "flex", width: "30%" }}
-                   >
+                    <div style={{ display: "flex", width: "30%" }}>
                       <input
-                      // style={{ display: "flex"}}
+                        // style={{ display: "flex"}}
                         className="radio mx-2 my-0"
                         type="radio"
                         name="patientgender"
@@ -140,10 +143,16 @@ const ProfileForm = () => {
                         onChange={(e) => setPatientGender(e.target.value)}
                       />
                       <span
-                       style={{ display: "flex", alignItems: "center", padding: "5px" }}
-                       >male</span>
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          padding: "5px",
+                        }}
+                      >
+                        male
+                      </span>
                     </div>
-                    <div  style={{ display: "flex", width: "30%" }}>
+                    <div style={{ display: "flex", width: "30%" }}>
                       <input
                         className="radio mx-2 my-0"
                         type="radio"
@@ -153,14 +162,17 @@ const ProfileForm = () => {
                         onChange={(e) => setPatientGender(e.target.value)}
                       />
                       <span
-                       style={{ display: "flex", alignItems: "center", padding: "5px" }}
-                       >female</span>
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          padding: "5px",
+                        }}
+                      >
+                        female
+                      </span>
                     </div>
-
-            
                   </div>
                   <br />
-
                   <div htmlFor="birth-date" className="col-lg-6 col-sm-12 p-2">
                     <label className="label-label">Age</label>
                     <br />

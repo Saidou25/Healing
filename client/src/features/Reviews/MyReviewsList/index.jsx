@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../../utils/queries";
 import { NavLink, useNavigate } from "react-router-dom";
 import useDeletReview from "../useDeleteReview";
-import RatingList from "../../../components/RatingList";
+import RatingList from "../RatingList";
 import trash from "../../../assets/images/trash.png";
 import ButtonSpinner from "../../../components/ButtonSpinner";
 import "./index.css";
@@ -18,7 +18,7 @@ const MyReviewsList = () => {
   const me = meData?.me || [];
   const myReviews = me.reviews;
 
-  const { successDeletingReview, loading, error } =
+  const { successDeletingReview, loading } =
     useDeletReview(deleteReviewData);
 
   const handleSubmit = (review) => {

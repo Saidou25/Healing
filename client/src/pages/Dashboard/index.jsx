@@ -16,7 +16,6 @@ import "./index.css";
 
 const Dashboard = () => {
   const [me, setMe] = useState("");
-  // const [showDashboardMediaNav, setShowDashboardMediaNav] = useState(false);
   const [isShown, setIsShown] = useState(false);
   const [myAppointments, setMyAppointments] = useState("");
   const [futureAppointments, setFutureAppointments] = useState("");

@@ -4,12 +4,31 @@
   margin-right: auto;
   margin-left: auto;
 }
+.create-profile-container {
+  margin-top: 5%;
+  padding: 2%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgba(0, 1, 1, 0.8);
+  width: 90%;
+  color: white !important;
+  min-height: 50vh;
+}
+.profile-container {
+  margin-top: 5%;
+  padding: 2%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgba(0, 1, 1, 0.8);
+  width: 90%;
+  color: white !important;
+  min-height: 50vh;
+}
 
 .card-visitor {
   padding-top: 1%;
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+ }
 .card-header-profile {
   text-align: center;
 }
@@ -99,3 +118,14 @@
   background-color: #f7f7f9;
   text-align: center;
 }
+@media screen and (max-width: 414px) {
+  .create-profile-container {
+    margin-top: 0% !important;
+    padding-top: 0% !important;
+    padding: 0%;
+    width: 100%;
+    color: white !important;
+    min-height: 50vh;
+  }
+}
+

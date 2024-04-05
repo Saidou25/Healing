@@ -9,24 +9,23 @@ import {
 import "bootswatch/dist/lux/bootstrap.min.css";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { UserProvider } from "./context/userContext";
 
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
-import Book from "./features/Appointments/Book";
+import AppointmentHistory from "./features/Appointments/AppointmentHistory";
 import AppointmentReview from "./features/Appointments/AppointmentReview";
+import ReviewForm from "./features/Reviews/ReviewForm";
+import Book from "./features/Appointments/Book";
 import Profile from "./features/Profile";
 import ProfileForm from "./features/Profile/ProfileForm";
 import UpdateProfile from "./features/Profile/UpdateProfile";
 import UpdateMyProfileForm from "./features/Profile/UpdateMyProfileForm";
-import ReviewForm from "./features/Reviews/ReviewForm";
-import AppointmentHistory from "./features//Appointments/AppointmentHistory";
 import BookingSuccess from "./features/Appointments/BookingSuccess";
-import ReviewHistory from "./components/ReviewHistory";
 import PageNotFound from "./components/PageNotFound";
+import MyReviews from "./features/Reviews/MyReviews";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -104,7 +103,7 @@ function App() {
             <Route path="AppointmentReview" element={<AppointmentReview />} />
            </Route>
            <Route path="AppointmentHistory" element={<AppointmentHistory />} />
-           <Route path="ReviewHistory" element={<ReviewHistory />} />
+           <Route path="MyReviews" element={<MyReviews />} />
           </Route>
 
           <Route path="/Book" element={<Book />}>

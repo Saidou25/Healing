@@ -20,6 +20,11 @@
   margin: auto;
   padding-bottom: 5% !important;
 }
+.col-no-profile-login {
+  width: 40%;
+  margin: auto;
+  padding-bottom: 5% !important;
+}
 .col-profile {
   width: 40%;
   margin: auto;
@@ -60,12 +65,11 @@
     margin-bottom: 5% !important;
     width: 100% !important;
   }
-  /* .update-navlink {
-    width: 98%;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-  } */
+  .col-no-profile-login {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 5% !important;
+  }
 }
 @media screen and (max-width: 375px) {
   .footer-myprofile {

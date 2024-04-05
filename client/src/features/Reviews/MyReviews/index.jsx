@@ -1,5 +1,5 @@
 import React from "react";
-import MyReviewsList from "../MyReviewList";
+import MyReviewsList from "../MyReviewsList";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../../utils/queries";
 // import { useUser } from "../../context.js/userContext";
@@ -20,7 +20,6 @@ const MyReviews = () => {
   const username = me.username;
   const myReviews = me.reviews;
   // const myAppointments = me.bookingdates;
- 
 
   let newDay;
   let newMonth;
@@ -42,8 +41,12 @@ const MyReviews = () => {
     (bookingdate) => today >= bookingdate.digitalAppointment
   );
 
-  // if (history) {
-    return <MyReviewsList history={history} myReviews={myReviews} username={username} />;
-  // }
+  return (
+    <MyReviewsList
+      history={history}
+      myReviews={myReviews}
+      username={username}
+    />
+  );
 };
 export default MyReviews;

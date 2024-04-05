@@ -19,7 +19,7 @@ const DashboardNav = ({ username, myReviews, email }) => {
           </div>
           <div className="col-4 top-nav-item">
             <NavLink
-              to="ReviewHistory"
+              to="MyReviews"
               className="dashboard-text text-white"
               state={{ username, myReviews }}
             >

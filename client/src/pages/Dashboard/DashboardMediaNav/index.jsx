@@ -2,6 +2,7 @@ import { React } from "react";
 import { NavLink } from "react-router-dom";
 import ContactModal from "../ContactModal";
 import Auth from "../../../utils/auth"
+import "../DashboardNav/index.css"
 
 const DashboardMediaNav = () => {
   
@@ -21,7 +22,7 @@ const DashboardMediaNav = () => {
       </div>
       <div className="bookingnav">
         <ul
-          className="my-ul p-0"
+          className="my-ul p-0 text-light"
           style={{
             display: "flex",
             alignItems: "center",
@@ -38,7 +39,7 @@ const DashboardMediaNav = () => {
           </li>
           <li className="media-nav">
             <NavLink
-              to="ReviewHistory"
+              to="MyReviews"
               className="dashboard-text text-white px-2"
             >
               reviews
@@ -47,7 +48,7 @@ const DashboardMediaNav = () => {
           <li className="media-nav">
             <NavLink
               to="/Dashboard/Book"
-              className="dashboard-text  text-white px-2"
+              className="dashboard-text text-white px-2"
             >
               book
             </NavLink>
@@ -55,15 +56,15 @@ const DashboardMediaNav = () => {
           <li className="media-nav">
             <NavLink
               to="/Dashboard"
-              className="dashboard-text  text-white px-2"
+              className="dashboard-text text-white px-2"
             >
-              dashboard
+              home
             </NavLink>
           </li>
           <li className="media-nav">
             <NavLink
               to="/Dashboard/About"
-              className="dashboard-text  text-white px-2"
+              className="dashboard-text text-white px-2"
             >
               about
             </NavLink>
@@ -71,7 +72,7 @@ const DashboardMediaNav = () => {
           <li className="media-nav">
             <NavLink
               to="/Dashboard/profile"
-              className="dashboard-text  text-white px-2"
+              className="dashboard-text text-white px-2"
             >
               profile
             </NavLink>

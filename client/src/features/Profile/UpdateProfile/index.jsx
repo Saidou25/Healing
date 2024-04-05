@@ -4,7 +4,6 @@ import { QUERY_ME } from "../../../utils/queries";
 import { Navigate } from "react-router-dom";
 import auth from "../../../utils/auth";
 import UpdateMyProfileForm from "../UpdateMyProfileForm";
-import "./index.css";
 
 const UpdateProfile = () => {
   // work is being done here to gather data needed to pre-populate the update form

@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_REVIEWS } from "../../../utils/queries";
-import RatingList from "../../../components/RatingList";
+import RatingList from "../RatingList";
 import Spinner from "../../../components/Spinner";
 import "./index.css";
 
