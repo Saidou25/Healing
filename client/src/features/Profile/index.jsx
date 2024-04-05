@@ -65,7 +65,7 @@ const Profile = () => {
         <div className="container-profile">
           <div className="flex-row justify-space-between">
             <div className="col-12 col-profile">
-              <h3 className="text-light py-5">Login</h3>
+              <h3 className="text-light my-5">Login</h3>
               <div className="card global-card review-list profile-body-media p-3">
                 <div className="text-profile">
                   <FaIdBadge className="icon m-2" />
@@ -78,7 +78,7 @@ const Profile = () => {
               </div>
             </div>
             <div className="col-12 col-profile">
-              <h3 className="text-profile my-profile-titles text-light mb-5 mt-5">
+              <h3 className="text-profile my-profile-titles text-light my-5">
                 General
               </h3>
               <div className="card review-list profile-body-media text-light p-3 ">

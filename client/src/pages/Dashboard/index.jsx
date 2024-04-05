@@ -101,7 +101,8 @@ const Dashboard = () => {
                 <div className="col-lg-4 col-sm-12 my-5 right-window dashb-border py-5">
                   <div className="card suggestion p-3 text-light">
                     <br />
-                    <h4 className="note mb-2">Notes</h4>
+                    <h4 className="note mb-2"
+                     style={{ fontWeight: "200" }}>Notes</h4>
                     <br />
                     <p>
                       We suggest arriving 15 minutes prior to your appointment.{" "}
@@ -129,7 +130,8 @@ const Dashboard = () => {
               <div className="col-lg-4 col-sm-12 right-window dashb-border mb-5">
                 <div className="row top-box">
                   <div className="col-12">
-                    <h3 className="write-review-title pt-5 text-light">
+                    <h3 className="write-review-title pt-5 text-light"
+                    style={{ fontWeight: "200" }}>
                       Write a review
                     </h3>
                   </div>

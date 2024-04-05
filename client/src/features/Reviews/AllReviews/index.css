@@ -1,6 +1,11 @@
 .all-reviews {
   padding-right: 4%;
 }
+.reviews-title-say{
+  padding-bottom: 5%;
+  padding-right: 0;
+  border-right-color: none;
+}
 @media screen and (max-width: 993px) {
   .reviews-title {
     margin-top: 0;
@@ -15,6 +20,12 @@
     padding-right: 0;
     border-right-color: none;
     text-align: center;
+  }
+  .reviews-title-say{
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-right: 0;
+    border-right-color: none;
   }
   .review-column {
     width: 100% !important;

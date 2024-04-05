@@ -26,25 +26,25 @@ const UpcomingAppointments = ({ futureAppointments }) => {
   }
 
   return (
-    <div className="container-upcoming-appointment mt-5 py-5">
-      <h4 className="upcoming-title text-light">Upcoming appointment</h4>
+    <div className="container-upcoming-appointment">
+      <h4 className="reviews-title-say text-light">Upcoming appointment</h4>
       <div className="row all-upcoming-apppointments g-0">
         {futureAppointments &&
           futureAppointments.map((bookingdate) => (
-            <div key={bookingdate._id} className="col-12 mt-5">
+            <div key={bookingdate._id} className="col-12 scheduled">
               <div className="card global-card text-light mb-3">
                 <div className="card-header fs-3">
                   You have an appointment scheduled for:
                 </div>
-                <div className="card-body p-2">
+                <div className="card-body px-3">
                   <div className="text">{bookingdate.appointmentString}</div>
                   <div className="row g-0">
                     <p className="col-lg-8 col-sm-12 text pt-3">
                       Reason: <br />
                       {bookingdate.reason}
                     </p>
-                    <div className="col-lg-4 col-sm-12">
-                      <div className="row">
+                    <div className="col-lg-4 col-sm-12 d-flex align-items-center justify-content-center">
+                      <div className="row" style={{ width: "100%" }}>
                         {confirmCancel && bookingdate._id === buttonId ? (
                           <>
                             <div className="col-lg-6 col-sm-12 row-media-row">
@@ -67,7 +67,7 @@ const UpcomingAppointments = ({ futureAppointments }) => {
                             </div>
                             <div className="col-lg-6 col-sm-12 row-media-row">
                               <Button
-                                className="btn border up-app-btns rounded bg-primary d-flex align-items-center"
+                                className="btn border up-app-btns rounded bg-primary d-flex align-items-center mb-2"
                                 type="button"
                                 style={{ maxHeight: "40px" }}
                                 onClick={() => {
@@ -82,9 +82,9 @@ const UpcomingAppointments = ({ futureAppointments }) => {
                           </>
                         ) : (
                           <>
-                            <div className="col-lg-12 col-sm-12 d-flex justify-content-end">
+                            <div className="col-lg-12 col-sm-12 d-flex justify-content-end align-items-center">
                               <Button
-                                className="btn border up-app-btns rounded bg-primary d-flex align-items-center"
+                                className="btn border up-app-btns rounded bg-primary d-flex align-items-center mb-2"
                                 type="button"
                                 style={{ maxHeight: "40px" }}
                                 onClick={() => {

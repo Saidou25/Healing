@@ -15,9 +15,9 @@ const AllReviews = () => {
     <div className="row all-reviews mb-5">
       {reviews.length ? (
         <>
-          <h3 className="reviews-title mt-4 mb-5 text-light">
+          <h4 className="reviews-title-say text-light">
             Read what people say
-          </h3>
+          </h4>
           {reviews &&
             reviews.map((review) => (
               <div key={review._id} className="col-12">

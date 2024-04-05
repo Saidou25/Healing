@@ -3,7 +3,9 @@
 }
 .container-upcoming-appointment {
   margin-bottom: 5%;
+  margin-top: 7% !important;
 }
+
 .media-col4 {
   justify-content: flex-end;
  }
@@ -16,7 +18,7 @@
 
 @media screen and (max-width: 414px) {
   .container-upcoming-appointment {
-    margin-bottom: 5%;
+    margin-bottom: 0;
     margin-top: 0 !important;
   }
 
@@ -26,9 +28,6 @@
   }
   .up-app-btns {
     width: 100% !important;
-    display: flex;
-    justify-content: center;
-    margin: auto;
   }
   .row-media-row {
     margin-top: 3% !important;
