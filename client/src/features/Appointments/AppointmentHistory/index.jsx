@@ -111,13 +111,13 @@ const AppointmentHistory = () => {
                           <button
                             type="button"
                             disabled={loading}
-                            className="btn delete-appointment rounded-0"
+                            className="btn rounded-0 py-0"
                             onClick={() => setDeleteBookingData(bookingdate)}
                           >
                             {loading &&
                             bookingdate._id === deleteBookingData._id ? (
                               <>
-                                <ButtonSpinner />
+                                <ButtonSpinner height={30}/>
                               </>
                             ) : (
                               <img

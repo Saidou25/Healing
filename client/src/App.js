@@ -17,12 +17,11 @@ import Signup from "./pages/Signup";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import Book from "./features/Appointments/Book";
-// import BookingForm from "./features/Appointments/BookingForm"
 import AppointmentReview from "./features/Appointments/AppointmentReview";
-import ProfileForm from "./features/Profile/ProfileForm";
 import Profile from "./features/Profile";
-import UpdateMyProfileForm from "./components/UpdateMyProfileForm";
-import UpdateProfile from "./components/UpdateProfile";
+import ProfileForm from "./features/Profile/ProfileForm";
+import UpdateProfile from "./features/Profile/UpdateProfile";
+import UpdateMyProfileForm from "./features/Profile/UpdateMyProfileForm";
 import ReviewForm from "./features/Reviews/ReviewForm";
 import AppointmentHistory from "./features//Appointments/AppointmentHistory";
 import BookingSuccess from "./features/Appointments/BookingSuccess";
@@ -91,8 +90,6 @@ function App() {
           <Route path="/Login" element={<Login />} />
           
           <Route path="/Profile" element={<Profile />} />
-
-          {/* <Route path="/Profile" element={<Profile />} / */}
           <Route path="/About" element={<About />} />
 
           <Route path="/Dashboard" element={<Dashboard />}>

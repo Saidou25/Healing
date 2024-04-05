@@ -1,9 +1,9 @@
 import React from "react";
-import UpdateMyProfileForm from "../../components/UpdateMyProfileForm";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../utils/queries";
-import auth from "../../utils/auth";
+import { QUERY_ME } from "../../../utils/queries";
 import { Navigate } from "react-router-dom";
+import auth from "../../../utils/auth";
+import UpdateMyProfileForm from "../UpdateMyProfileForm";
 import "./index.css";
 
 const UpdateProfile = () => {

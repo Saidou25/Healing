@@ -17,9 +17,7 @@
 .history-column {
   margin-top: 4%;
 }
-.delete-appointment {
-  margin-bottom: 2%;
-}
+
 @media screen and (max-width: 680px) {
   .appointment-list-title {
     text-align: center;
