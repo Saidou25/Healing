@@ -35,7 +35,7 @@ const resolvers = {
       return await Bookingdate.find();
     },
     bookingdate: async (_, args) => {
-      return await await Bookingdate.findOne({ _id: args.id });
+      return await Bookingdate.findOne({ _id: args.id });
     },
     reviews: async () => {
       return await Review.find();

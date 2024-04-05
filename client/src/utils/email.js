@@ -5,7 +5,7 @@ let notOk;
 let ok1;
 let notOk1;
 
-const sendEmail = (templateParams) => {
+const sendEmail = async (templateParams) => {
   const SERVICE_ID = "service_g15laob";
   const TEMPLATE_ID = "template_rels3en";
   const USER_ID = "RWSohpTYy2zdo_uXO";
@@ -15,7 +15,7 @@ const sendEmail = (templateParams) => {
     notOk1 = "";
     return;
   }
-  emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID).then(
+  await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID).then(
     (result) => {
       ok1 = result.text;
       setTimeout(() => {
