@@ -28,7 +28,7 @@
 .card-visitor {
   padding-top: 1%;
   border-radius: 10px;
- }
+}
 .card-header-profile {
   text-align: center;
 }
@@ -41,12 +41,12 @@
 .appointment-for {
   display: block;
 }
-
-.radio {
-  margin-left: 5%;
-  margin-top: 5%;
+.genre {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto;
 }
-
 .profile {
   margin-left: auto;
   margin-right: auto;
@@ -127,5 +127,15 @@
     color: white !important;
     min-height: 50vh;
   }
+  .gender-label { 
+    display: flex;
+    justify-content: flex-start;
+  }
+  .genre {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
-

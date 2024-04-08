@@ -77,7 +77,7 @@ const ProfileForm = () => {
     }
 
     if (!Regex.zipRegex.test(formState.patientzip)) {
-      setError("zip code needs to be a five digit number!");
+      setError("zip code needs to be a five digits number!");
       setLoading(false);
       return;
     }
@@ -110,7 +110,13 @@ const ProfileForm = () => {
   return (
     <>
       <main>
-        <div className={showDashboardMediaNav ? "create-profile-container py-5" : "profile-container py-5"}>
+        <div
+          className={
+            showDashboardMediaNav
+              ? "create-profile-container py-5"
+              : "profile-container py-5"
+          }
+        >
           <div className="card global-card card-app-review mt-5">
             <div className="card-header app-review-header">
               <h4 className="card-header-update bg-black rounded-0 p-4">
@@ -118,23 +124,13 @@ const ProfileForm = () => {
               </h4>
               <form className="bg-transparent">
                 <div className="row mt-5">
-                  <div className="col-lg-12 col-sm-12">
+                  <div className="col-lg-12 col-sm-12 gender-label">
                     <label className="p-1">Gender</label>
                   </div>
                   <br />
-
-                  <div
-                    className="col-lg-12 col-sm-12 my-4"
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      width: "60%",
-                      margin: "auto",
-                    }}
-                  >
-                    <div style={{ display: "flex", width: "30%" }}>
+                  <div className="col-lg-12 col-sm-12 genre my-3">
+                    <div style={{ display: "flex" }}>
                       <input
-                        // style={{ display: "flex"}}
                         className="radio mx-2 my-0"
                         type="radio"
                         name="patientgender"
@@ -146,13 +142,12 @@ const ProfileForm = () => {
                         style={{
                           display: "flex",
                           alignItems: "center",
-                          padding: "5px",
                         }}
                       >
                         male
                       </span>
                     </div>
-                    <div style={{ display: "flex", width: "30%" }}>
+                    <div style={{ display: "flex" }}>
                       <input
                         className="radio mx-2 my-0"
                         type="radio"
@@ -165,7 +160,6 @@ const ProfileForm = () => {
                         style={{
                           display: "flex",
                           alignItems: "center",
-                          padding: "5px",
                         }}
                       >
                         female
