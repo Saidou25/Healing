@@ -8,6 +8,7 @@ import ButtonSpinner from "../../components/ButtonSpinner";
 import Auth from "../../utils/auth";
 import Success from "../../components/Success";
 import ErrorComponent from "../../components/ErrorComponent";
+import Button from "../../components/Button";
 import "./index.css";
 
 const Signup = () => {
@@ -80,9 +81,19 @@ const Signup = () => {
     <>
       <div className="go-back d-flex justify-content-center">
         <NavLink to="/">
-          <button type="btn" className="btn-go-back text-white">
+          <Button
+            type="btn"
+            className="btn-go-back text-white"
+            onClick={() => {
+              setFormState({ email: "", username: "", password: "" });
+              setLoading(false);
+              setError("");
+              setConfirm(false);
+              setErrorHook("");
+            }}
+          >
             go back
-          </button>
+          </Button>
         </NavLink>
       </div>
 
@@ -101,9 +112,9 @@ const Signup = () => {
       ) : (
         <div className="container-signup py-5">
           <div className="card global-card signup p-5">
-            <div className="card-header">
+            <div className="card-header m-0 p-2">
               <h4
-                className="log-form bg-black rounded-0 text-light p-3 mb-5"
+                className="bg-black rounded-0 text-light p-3 mb-3"
                 style={{
                   fontStyle: "normal",
                   textAlign: "center",
@@ -117,9 +128,11 @@ const Signup = () => {
               <form
                 htmlFor="username"
                 className="global-form"
-                onSubmit={handleFormSubmit}
+                // onSubmit={handleFormSubmit}
               >
-                <label htmlFor="username" className="log-form text-light">Username</label>
+                <label htmlFor="username" className="log-form text-light">
+                  Username
+                </label>
                 <br />
                 <input
                   id="username"
@@ -154,7 +167,7 @@ const Signup = () => {
                 <input
                   id="password"
                   autoComplete="on"
-                  className="log-form input-input"
+                  className="log-form input-input mb-4"
                   placeholder="******"
                   name="password"
                   type="password"
@@ -162,24 +175,23 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <br />
-                {error && <ErrorComponent message={error} />}
                 <br />
+                {error && <ErrorComponent message={error} />}
+                {/* <br /> */}
                 {errorHook && <ErrorComponent message={errorHook} />}
-                <div className="btn-position">
-                  <button
-                    className="btn log-form btn-signup rounded-0 my-5 p-3"
-                    type="submit"
-                    disabled={loading}
-                  >
-                    {loading ? <ButtonSpinner /> : <>Submit</>}
-                  </button>
-                </div>
+                <Button
+                  className="btn log-form btn-signup mb-2 p-2"
+                  type="submit"
+                  disabled={loading}
+                  onClick={handleFormSubmit}
+                >
+                  {loading ? <ButtonSpinner /> : <>Submit</>}
+                </Button>
               </form>
             </div>
           </div>
         </div>
       )}
-
       <div className="footer-signup">
         <Footer />
       </div>

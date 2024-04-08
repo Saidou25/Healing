@@ -1,4 +1,21 @@
+
 .error-comp {
-    background-color: #dd4050 !important;
+    margin-bottom: 5% !important;
+    width: 95%;
+    margin: auto;
+    font-weight: 100;
+    animation: fadeInError 0.4s linear forwards !important;
     z-index: 1;
-}
+  }
+  @keyframes fadeInError {
+    from {
+      background: rgb(238, 58, 88, 0.2);
+      color: rgb(247, 244, 244, 0);
+      font-weight: 100;
+    }
+    to {
+      background: rgb(238, 58, 88, 0.9);
+      color: rgb(251, 249, 250);
+      font-weight: 200;
+    }
+  }

@@ -47,10 +47,10 @@
   font-style: oblique;
 }
 
-.btn-position {
+/* .btn-position {
   display: flex;
   justify-content: flex-end;
-}
+} */
 .btn-login {
   background-color: black;
   color: white;

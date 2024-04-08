@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
+import Button from "../../components/Button";
 import Auth from "../../utils/auth";
 import Footer from "../../components/Footer";
 import ButtonSpinner from "../../components/ButtonSpinner";
@@ -74,9 +75,19 @@ const Login = () => {
     <>
       <div className="go-back d-flex justify-content-center">
         <NavLink to="/">
-          <button type="btn" className="btn-go-back text-white">
+          <Button
+            type="btn"
+            className="btn-go-back text-white"
+            onClick={() => {
+              setFormState({ email: "", password: "" });
+              setLoading(false);
+              setError("");
+              setConfirm(false);
+              setErrorHook("");
+            }}
+          >
             go back
-          </button>
+          </Button>
         </NavLink>
       </div>
 
@@ -101,7 +112,7 @@ const Login = () => {
               Login
             </h4>
             <div className="card-body">
-              <form className="global-form" onSubmit={handleFormSubmit}>
+              <form className="global-form">
                 <label htmlFor="email" className="log-form text-light">
                   Email
                 </label>
@@ -123,7 +134,7 @@ const Login = () => {
                 <br />
                 <input
                   id="password"
-                  className="log-form input-input"
+                  className="log-form input-input mb-4"
                   placeholder="******"
                   name="password"
                   type="password"
@@ -135,15 +146,14 @@ const Login = () => {
                 {error && <ErrorComponent message={error} />}
                 <br />
                 {errorHook && <ErrorComponent message={errorHook} />}
-                <div className="btn-position">
-                  <button
-                    className="btn log-form btn-signup rounded-0 my-5 p-2"
-                    type="submit"
-                    disabled={loading}
-                  >
-                    {loading ? <ButtonSpinner /> : <>Submit</>}
-                  </button>
-                </div>
+                <Button
+                  className="btn log-form btn-login mb-2 p-2"
+                  type="submit"
+                  disabled={loading}
+                  onClick={handleFormSubmit}
+                >
+                  {loading ? <ButtonSpinner /> : <>Submit</>}
+                </Button>
               </form>
             </div>
           </div>

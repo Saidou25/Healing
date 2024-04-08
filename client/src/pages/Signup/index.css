@@ -88,11 +88,7 @@
     box-shadow: none;
     margin-bottom: 12%;
   }
-  .signup-login-error {
-    margin-left: 2%;
-    margin-right: 2%;
-    text-align: center;
-  }
+
   .signup {
     width: 80%;
     margin-right: auto;
