@@ -119,6 +119,7 @@ const Signup = () => {
                   fontStyle: "normal",
                   textAlign: "center",
                   width: "100%",
+                  fontWeight: "300",
                 }}
               >
                 Sign Up
@@ -184,6 +185,10 @@ const Signup = () => {
                   type="submit"
                   disabled={loading}
                   onClick={handleFormSubmit}
+                  style={{
+                    fontStyle: "normal",
+                    fontWeight: "300",
+                  }}
                 >
                   {loading ? <ButtonSpinner /> : <>Submit</>}
                 </Button>

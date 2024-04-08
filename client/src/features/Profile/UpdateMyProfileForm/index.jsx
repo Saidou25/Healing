@@ -11,11 +11,12 @@ import ButtonSpinner from "../../../components/ButtonSpinner";
 import SelectUSState from "react-select-us-states";
 import Success from "../../../components/Success";
 import ErrorComponent from "../../../components/ErrorComponent";
-import "react-phone-number-input/style.css";
-import "./index.css";
+import Button from "../../../components/Button";
 import useMonitorWidth from "../../../pages/Dashboard/useMonitorWidth";
 // import DashboardNav from "../../../pages/Dashboard/DashboardNav";
 import DashboardMediaNav from "../../../pages/Dashboard/DashboardMediaNav";
+import "react-phone-number-input/style.css";
+import "./index.css";
 
 const UpdateMyProfileForm = (props) => {
   const profileId = props.profileId;
@@ -52,6 +53,7 @@ const UpdateMyProfileForm = (props) => {
     setError("");
     setLoading(false);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -129,7 +131,7 @@ const UpdateMyProfileForm = (props) => {
 
   return (
     <>
-         {showDashboardMediaNav ? <DashboardMediaNav /> :  <Navbar />}
+      {showDashboardMediaNav ? <DashboardMediaNav /> : <Navbar />}
       <div
         className="container-update py-5"
         style={{ display: "flex", alignItems: "center" }}
@@ -140,10 +142,12 @@ const UpdateMyProfileForm = (props) => {
             information.
           </p>
         )}
-        <div className="card global-card bg-0 update-profile-card my-5">
           {showSuccess ? (
-            <Success message={"Profiles updated!"} />
+            <div className="card bg-transparent" style={{ margin: "auto" }}>
+              <Success message={"Profiles updated!"} />
+            </div>
           ) : (
+            <div className="card global-card bg-0 update-profile-card my-5 me-5">
             <div className="card bg-transparent p-4">
               <h4 className="card-header-update bg-black rounded-0 text-light p-4">
                 Update profile
@@ -269,24 +273,50 @@ const UpdateMyProfileForm = (props) => {
                         }}
                       />
                     </div>
-                    <br />
                     {error && <ErrorComponent message={error} />}
-                    <div className="col-12">
-                      <button
-                        className="btn btn-update bg-black rounded-0"
-                        type="submit"
-                        disabled={loading}
-                        onClick={(e) => handleSubmit(e)}
-                      >
-                        {loading ? <ButtonSpinner /> : <>Submit</>}
-                      </button>
+                    <div className="row mt-4">
+                      <div className="col-6 px-2">
+                        <Button
+                          className="btn btn-update bg-black"
+                          type="submit"
+                          disabled={loading}
+                          onClick={handleSubmit}
+                        >
+                          {loading ? <ButtonSpinner /> : <>Submit</>}
+                        </Button>
+                      </div>
+                      <div className="col-6 px-2">
+                        <Button
+                          className="btn btn-update bg-black"
+                          type="button"
+                          onClick={() => {
+                            setLoading(false);
+                            setError("");
+                            setErrorHook("");
+                            setNewValue("");
+                            setPatientCity(userProfile.patientcity);
+                            setPatientAddress(userProfile.patientaddress);
+                            setPatientZip(userProfile.patientzip);
+                            setPatientNumber(userProfile.patientNumber);
+                            setPatientFirstName(userProfile.patientfirstname);
+                            setPatientLastName(userProfile.patientlastname);
+                            navigate(
+                              showDashboardMediaNav
+                                ? "/Dashboard/Profile"
+                                : "/Profile"
+                            );
+                          }}
+                        >
+                          cancel
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
-          )}
         </div>
+          )}
       </div>
       <Footer />
     </>

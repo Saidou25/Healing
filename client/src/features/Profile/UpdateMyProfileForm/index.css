@@ -1,7 +1,5 @@
 .container-update {
   margin-top: 5%;
-  padding-right: 10%;
-  padding-left: 10%;
   margin-right: auto;
   margin-left: auto;
   background-color: rgba(0, 1, 1, 0.8);
@@ -22,6 +20,7 @@
 
 .card-header-update {
   text-align: center;
+  font-weight: 300;
 }
 
 .profile {
@@ -34,25 +33,11 @@
   border-radius: 20px;
 }
 
-.phone-number {
-  width: 100%;
-  font-style: oblique;
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #55595c;
-  background-color: #f7f7f9;
-  background-clip: padding-box;
-  border: 0 solid #ced4da;
-}
-
 .btn-update {
   margin-top: 5%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+ width: 100%;
+  letter-spacing: 2%;
+
 }
 .btn-update:hover {
   background-color: rgb(24, 68, 68) !important;
@@ -70,6 +55,10 @@
   padding-right: 5%;
   padding-left: 5%;
   text-align: center;
+  letter-spacing: 2px;
+}
+.phone-update {
+  margin-bottom: 20% !important;
 }
 @media screen and (max-width: 600px) {
   .update-error {
@@ -93,4 +82,7 @@
   .update-profile-card {
     width: 100% !important;
   }
+.phone-update {
+  margin-bottom: 20% !important;
+}
 }

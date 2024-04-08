@@ -61,8 +61,7 @@ export default function BookingForm({
                     withPortal
                   />
                 </div>
-                <div className="col-12 appointment-column py-4">
-                  <div>
+                <div className="col-12 appointment-column">
                     <label htmlFor="reason" className="log-form py-4">
                       What is your reason for visiting?
                     </label>
@@ -78,18 +77,17 @@ export default function BookingForm({
                   </div>
                 </div>
                 <br />
-                {error && <ErrorComponent message={error} />}
                 <br />
+                {error && <ErrorComponent message={error} />}
 
                 <button
                   type="submit"
                   onClick={(e) => handleSubmit(e)}
                   className="btn app-btn bg-black rounded-0"
-                  style={{ width: "50%" }}
+                  style={{ width: "100%" }}
                 >
                   submit
                 </button>
-              </div>
             </form>
           ) : (
             <>

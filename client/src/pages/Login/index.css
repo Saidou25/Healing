@@ -46,11 +46,6 @@
   background: rgba(131, 232, 245, 0.4);
   font-style: oblique;
 }
-
-/* .btn-position {
-  display: flex;
-  justify-content: flex-end;
-} */
 .btn-login {
   background-color: black;
   color: white;

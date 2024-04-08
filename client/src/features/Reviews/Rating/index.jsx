@@ -25,11 +25,12 @@ const Rating = ({ handleRating, successAddingReview }) => {
 
   return (
     <>
-          <br />
+      <br />
       {starsArray &&
         starsArray.map((star, index) => (
           // <div>
           <Button
+            key={index}
             type="button"
             className="btn rate-btn ps-0"
             onClick={(e) => {

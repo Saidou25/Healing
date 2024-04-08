@@ -135,10 +135,10 @@ const ReviewForm = ({ username, today }) => {
                     />
                     <br />
                     <div className="col-12">
-                      <label className="form-label1 mt-4">
+                      <span className="form-label1 mt-4">
                         Rate
                         <span className="optional">(optianal)</span>
-                      </label>
+                      </span>
                       <Rating
                         handleRating={handleRating}
                         successAddingReview={successAddingReview}

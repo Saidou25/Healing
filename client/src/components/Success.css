@@ -1,14 +1,21 @@
 .success-background {
-  background-color: rgba(0, 1, 1, 0.8);
-  color: rgba(255, 255, 255, 1);
-  animation: fadeInSuccess 0.5s linear forwards;
+  background-color: rgba(0, 1, 1, 0.01) !important;
+  color: rgba(255, 255, 255, 0.01);
+  animation: fadeInSuccess 1.2s linear forwards !important;
   width: 100%;
 }
 .fa-check {
-  background-color: rgba(0, 1, 1, 0.8);
-  color: rgba(255, 255, 255, 1);
-  animation: fadeInFa 0.5s linear forwards;
+  background-color: rgba(76, 160, 36, 0.01);
+  color: rgba(255, 255, 255, 0.01);
+  animation: fadeInFa 1.2s linear forwards !important;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
 }
+
 .signup-success {
   color: rgba(255, 255, 255, 1);
 }
@@ -18,21 +25,21 @@
 }
 @keyframes fadeInFa {
   from {
-    backgound-color: rgba(131, 232, 245, 0.05);
+    background-color: rgba(76, 160, 36, 0.01);
     color: rgba(255, 255, 255, 0.05);
   }
   to {
-    backgound-color: rgba(0, 128, 0, 0.4);
+    background-color: rgba(76, 160, 36, 1);
     color: rgba(255, 255, 255, 1);
   }
 }
 @keyframes fadeInSuccess {
   from {
-    backgound: rgba(131, 232, 245, 0.05);
+    /* backgound: rgba(131, 232, 245, 0.05); */
     color: rgba(255, 255, 255, 0.05);
   }
   to {
-    background: rgba(131, 232, 245, 0.4);
+    /* background: rgba(131, 232, 245, 0.4); */
     color: rgba(255, 255, 255, 1);
   }
 }

@@ -7,6 +7,7 @@ import auth from "../../../utils/auth.js";
 import ErrorComponent from "../../../components/ErrorComponent.jsx";
 import ButtonSpinner from "../../../components/ButtonSpinner/index.jsx";
 import useMonitorWidth from "../../../pages/Dashboard/useMonitorWidth.js";
+import Button from "../../../components/Button.jsx";
 import "react-phone-number-input/style.css";
 import "./index.css";
 
@@ -295,16 +296,59 @@ const ProfileForm = () => {
                     </div>
                   </div>
                   <br />
-                  {error && <ErrorComponent message={error} />}
-                  <div className="col-12 d-flex justify-content-center mt-4">
-                    <button
-                      className="btn button-profile bg-black rounded-0 mb-5"
+                  <div className="col-lg-12 col-sm-12 d-flex justify-content-center mb-4">
+                    {error && <ErrorComponent message={error} />}
+                  </div>
+                  <div className="col-lg-6 col-sm-12 p-2 d-flex justify-content-center">
+                    <Button
+                      className="btn button-profile bg-black text-light"
                       onClick={(e) => handleFormSubmit(e)}
                       type="submit"
                       disabled={loading}
+                      style={{
+                        width: "100%",
+                        fontWeight: "200",
+                        letterSpacing: "2px",
+                      }}
                     >
                       {loading ? <ButtonSpinner /> : <>Submit</>}
-                    </button>
+                    </Button>
+                  </div>
+                  <div className="col-lg-6 col-sm-12 p-2 d-flex justify-content-center">
+                    <Button
+                      className="btn button-profile bg-transparent"
+                      onClick={(e) => {
+                        setFormState(
+                          {
+                            username: appInfo.username,
+                            patientemail: appInfo.email,
+                            patientState: "",
+                            patientnumber: "",
+                            patientfirstname: "",
+                            patientgender: "",
+                            patientaddress: "",
+                            patientlastname: "",
+                            patientcity: "",
+                            birthdate: "",
+                            patientzip: "",
+                          },
+                          setLoading(false),
+                          setError(""),
+                          setPatientGender(""),
+                          setPatientNumber(""),
+                          setNewValue(""),
+                          navigate("/Dashboard")
+                        );
+                      }}
+                      type="button"
+                      style={{
+                        width: "100%",
+                        fontWeight: "200",
+                        letterSpacing: "2px",
+                      }}
+                    >
+                      cancel
+                    </Button>
                   </div>
                 </div>
               </form>

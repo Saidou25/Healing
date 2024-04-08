@@ -19,6 +19,7 @@
   text-transform: none;
   letter-spacing: 1px;
   font-weight: 200 !important;
+  font-size: 1.2rem !important;
 }
 .message-btn-modal:hover {
   text-transform: none;

@@ -77,13 +77,17 @@ const Login = () => {
         <NavLink to="/">
           <Button
             type="btn"
-            className="btn-go-back text-white"
+            className="btn-go-back text-white g-0"
             onClick={() => {
               setFormState({ email: "", password: "" });
               setLoading(false);
               setError("");
               setConfirm(false);
               setErrorHook("");
+            }}
+            style={{
+              fontStyle: "normal",
+              fontWeight: "300",
             }}
           >
             go back
@@ -96,10 +100,8 @@ const Login = () => {
           className="container-login py-5"
           style={{ height: "60vh", display: "flex", alignItems: "center" }}
         >
-          <div className="card login my-5">
-            <div className="card bg-transparent">
-              <Success message="You are logged in." />
-            </div>
+          <div className="card bg-transparent" style={{ margin: "auto" }}>
+            <Success message="You are logged in." />
           </div>
         </div>
       ) : (
@@ -107,7 +109,11 @@ const Login = () => {
           <div className="card global-card signup p-5">
             <h4
               className="log-form bg-black rounded-0 text-light my-3 p-3"
-              style={{ textAlign: "center" }}
+              style={{
+                fontStyle: "normal",
+                fontWeight: "300",
+                textAlign: "center",
+              }}
             >
               Login
             </h4>
@@ -143,6 +149,7 @@ const Login = () => {
                   autoComplete="on"
                 />
                 <br />
+                <br />
                 {error && <ErrorComponent message={error} />}
                 <br />
                 {errorHook && <ErrorComponent message={errorHook} />}
@@ -151,6 +158,10 @@ const Login = () => {
                   type="submit"
                   disabled={loading}
                   onClick={handleFormSubmit}
+                  style={{
+                    fontStyle: "normal",
+                    fontWeight: "300",
+                  }}
                 >
                   {loading ? <ButtonSpinner /> : <>Submit</>}
                 </Button>

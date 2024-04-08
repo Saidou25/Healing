@@ -18,13 +18,13 @@ const UpdateProfile = () => {
   }
 
   return (
-    <div className="container-profile-update">
+    // <div className="container-profile-update">
       <UpdateMyProfileForm
         userProfile={userProfile}
         userId={userId}
         profileId={profileId}
       />
-    </div>
+    // </div>
   );
 };
 
