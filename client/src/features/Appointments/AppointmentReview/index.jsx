@@ -35,6 +35,8 @@ const AppointmentReview = () => {
   const cancelApp = () => {
     setAppInformation("");
     setProfileInformation("");
+    setShowAppointmentInfo("");
+    setPatientInfo("");
     navigate("/Dashboard");
   };
 
@@ -53,14 +55,16 @@ const AppointmentReview = () => {
         email: appInfo.email,
         message: `Your appointment on ${appInfo.appointmentString} has been confirmed. Thank you.`,
       };
-      // sendEmail(templateParams);
-      setAppInformation("");
-      setProfileInformation("");
+      sendEmail(templateParams);
       setFinalize(true);
       setTimeout(() => {
+        setAppInformation("");
+        setProfileInformation("");
+        setShowAppointmentInfo("");
+        setPatientInfo("");
         setFinalize(false);
         navigate("/Dashboard");
-      }, 3000);
+      }, 2500);
     }
   }, [successAddingBooking, navigate, appInfo]);
 

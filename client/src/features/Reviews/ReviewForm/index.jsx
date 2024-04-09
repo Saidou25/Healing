@@ -46,7 +46,7 @@ const ReviewForm = ({ username, today }) => {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setError("");
 

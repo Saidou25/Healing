@@ -1,7 +1,7 @@
 import { React } from "react";
 import { NavLink } from "react-router-dom";
 import ContactModal from "../ContactModal";
-import Auth from "../../../utils/auth"
+import authServiceInstance from "../../../utils/auth"
 import "../DashboardNav/index.css"
 
 const DashboardMediaNav = () => {
@@ -87,7 +87,7 @@ const DashboardMediaNav = () => {
             }}
               to="/Dashboard/Profile"
               className="dashboard-text  text-white px-2"
-              onClick={() => Auth.logout()}
+              onClick={() => authServiceInstance.logout()}
             >
               logout
             </button>

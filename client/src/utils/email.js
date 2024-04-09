@@ -20,7 +20,7 @@ const sendEmail = async (templateParams) => {
       ok1 = result.text;
       setTimeout(() => {
         ok1 = "";
-      }, 2000);
+      }, 2500);
     },
     (error) => {
       notOk1 = error.text;
@@ -44,7 +44,7 @@ const sendMessage = async (templateParams) => {
       ok = result.text;
       setTimeout(() => {
         ok = "";
-      }, 2000);
+      }, 2500);
     },
     (error) => {
       ok = "";

@@ -71,7 +71,7 @@ const ProfileForm = () => {
 
     if (!Regex.ageRegex.test(formState.birthdate)) {
       setError(
-        "Age in needs to be a number with the following format: MM/DD/YYYY !"
+        "Age needs to be a number with the following format: MM/DD/YYYY !"
       );
       setLoading(false);
       return;
@@ -110,252 +110,253 @@ const ProfileForm = () => {
   }
   return (
     <>
-      <main>
-        <div
-          className={
-            showDashboardMediaNav
-              ? "create-profile-container py-5"
-              : "profile-container py-5"
-          }
-        >
-          <div className="card global-card card-app-review mt-5">
-            <div className="card-header app-review-header">
-              <h4 className="card-header-update bg-black rounded-0 p-4">
-                Create your profile
-              </h4>
-              <form className="bg-transparent">
-                <div className="row mt-5">
-                  <div className="col-lg-12 col-sm-12 gender-label">
-                    <label className="p-1">Gender</label>
-                  </div>
-                  <br />
-                  <div className="col-lg-12 col-sm-12 genre my-3">
-                    <div style={{ display: "flex" }}>
-                      <input
-                        className="radio mx-2 my-0"
-                        type="radio"
-                        name="patientgender"
-                        value="male"
-                        checked={patientgender === "male"}
-                        onChange={(e) => setPatientGender(e.target.value)}
-                      />
-                      <span
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        male
-                      </span>
-                    </div>
-                    <div style={{ display: "flex" }}>
-                      <input
-                        className="radio mx-2 my-0"
-                        type="radio"
-                        name="patientgender"
-                        value="female"
-                        checked={patientgender === "female"}
-                        onChange={(e) => setPatientGender(e.target.value)}
-                      />
-                      <span
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        female
-                      </span>
-                    </div>
-                  </div>
-                  <br />
-                  <div htmlFor="birth-date" className="col-lg-6 col-sm-12 p-2">
-                    <label className="label-label">Age</label>
-                    <br />
+      <div
+        className={
+          showDashboardMediaNav
+            ? "create-profile-container py-5"
+            : "profile-container py-5"
+        }
+      >
+        <div className="card global-card card-app-review mt-5">
+          <div className="card-header app-review-header">
+            <h4 className="card-header-update bg-black rounded-0 p-4">
+              Create your profile
+            </h4>
+            <form className="bg-transparent">
+              <div className="row mt-5">
+                <div className="col-lg-12 col-sm-12 gender-label">
+                  <label className="p-1">Gender</label>
+                </div>
+                <br />
+                <div className="col-lg-12 col-sm-12 genre my-3">
+                  <div style={{ display: "flex" }}>
                     <input
-                      id="birth-date"
-                      className="age"
-                      type="text"
-                      name="birthdate"
-                      value={formState.birthdate}
-                      onChange={(e) => handleChange(e)}
-                      placeholder="MM/DD/YYYY..."
+                      className="radio mx-2 my-0"
+                      type="radio"
+                      name="patientgender"
+                      value="male"
+                      checked={patientgender === "male"}
+                      onChange={(e) => setPatientGender(e.target.value)}
                     />
-                  </div>
-                  <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="firstname" className="label-label">
-                      First name
-                    </label>
-                    <br />
-                    <input
-                      id="firstname"
-                      className="form-control"
-                      type="text"
-                      value={formState.patientfirstname}
-                      name="patientfirstname"
-                      placeholder="first name..."
-                      onChange={(e) => {
-                        handleChange(e);
-                      }}
-                    />
-                  </div>
-                  <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="lastname" className="label-label">
-                      Last name
-                    </label>
-                    <br />
-                    <input
-                      className="form-control"
-                      type="text"
-                      name="patientlastname"
-                      value={formState.patientlastname}
-                      placeholder="last name..."
-                      onChange={(e) => {
-                        handleChange(e);
-                      }}
-                    />
-                  </div>
-                  <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="address" className="label-label">
-                      Address
-                    </label>
-                    <br />
-                    <input
-                      id="address"
-                      className="form-control"
-                      value={formState.patientaddress}
-                      onChange={(e) => handleChange(e)}
-                      type="text"
-                      name="patientaddress"
-                      placeholder="address..."
-                    />
-                  </div>
-                  <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="city" className="label-label">
-                      City
-                    </label>{" "}
-                    <br />
-                    <input
-                      id="city"
-                      className="form-control"
-                      value={formState.patientcity}
-                      type="text"
-                      name="patientcity"
-                      onChange={(e) => handleChange(e)}
-                      placeholder="enter city..."
-                    />
-                  </div>
-                  <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="myId" className="label-label">
-                      Select a state
-                    </label>{" "}
-                    <br />
-                    <SelectUSState
-                      id="myId"
-                      className="myClassName"
-                      name="patientstate"
-                      onChange={setNewValue}
-                    />
-                  </div>
-                  <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="zip" className="label-label">
-                      Zip code
-                    </label>{" "}
-                    <br />
-                    <input
-                      id="zip"
-                      className="form-control"
-                      name="patientzip"
-                      value={formState.patientzip}
-                      onChange={(e) => handleChange(e)}
-                      type="text"
-                      placeholder="zip code..."
-                    />
-                  </div>
-                  <div className="col-lg-6 col-sm-12 p-2">
-                    <label htmlFor="phone" className="label-label">
-                      Phone number
-                    </label>{" "}
-                    <br />
-                    <div>
-                      <PatternFormat
-                        id="phone"
-                        className="phone-update mb-5"
-                        format="(###) ### ####"
-                        allowEmptyFormatting
-                        mask="_"
-                        name="patientnumber"
-                        onValueChange={(values, sourceappInfo) => {
-                          setPatientNumber(values.formattedValue);
-                          setError("");
-                          setFormState({
-                            ...formState,
-                            patientnumber: values.formattedValue,
-                          });
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <br />
-                  <div className="col-lg-12 col-sm-12 d-flex justify-content-center mb-4">
-                    {error && <ErrorComponent message={error} />}
-                  </div>
-                  <div className="col-lg-6 col-sm-12 p-2 d-flex justify-content-center">
-                    <Button
-                      className="btn button-profile bg-black text-light"
-                      onClick={(e) => handleFormSubmit(e)}
-                      type="submit"
-                      disabled={loading}
+                    <span
                       style={{
-                        width: "100%",
-                        fontWeight: "200",
-                        letterSpacing: "2px",
+                        display: "flex",
+                        alignItems: "center",
                       }}
                     >
-                      {loading ? <ButtonSpinner /> : <>Submit</>}
-                    </Button>
+                      male
+                    </span>
                   </div>
-                  <div className="col-lg-6 col-sm-12 p-2 d-flex justify-content-center">
-                    <Button
-                      className="btn button-profile bg-transparent"
-                      onClick={(e) => {
-                        setFormState(
-                          {
-                            username: appInfo.username,
-                            patientemail: appInfo.email,
-                            patientState: "",
-                            patientnumber: "",
-                            patientfirstname: "",
-                            patientgender: "",
-                            patientaddress: "",
-                            patientlastname: "",
-                            patientcity: "",
-                            birthdate: "",
-                            patientzip: "",
-                          },
-                          setLoading(false),
-                          setError(""),
-                          setPatientGender(""),
-                          setPatientNumber(""),
-                          setNewValue(""),
-                          navigate("/Dashboard")
-                        );
-                      }}
-                      type="button"
+                  <div style={{ display: "flex" }}>
+                    <input
+                      className="radio mx-2 my-0"
+                      type="radio"
+                      name="patientgender"
+                      value="female"
+                      checked={patientgender === "female"}
+                      onChange={(e) => setPatientGender(e.target.value)}
+                    />
+                    <span
                       style={{
-                        width: "100%",
-                        fontWeight: "200",
-                        letterSpacing: "2px",
+                        display: "flex",
+                        alignItems: "center",
                       }}
                     >
-                      cancel
-                    </Button>
+                      female
+                    </span>
                   </div>
                 </div>
-              </form>
-            </div>
+                <br />
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label htmlFor="birth-date" className="label-label">
+                    Age
+                  </label>
+                  <br />
+                  <input
+                    id="birth-date"
+                    className="age"
+                    type="text"
+                    name="birthdate"
+                    value={formState.birthdate}
+                    onChange={(e) => handleChange(e)}
+                    placeholder="MM/DD/YYYY..."
+                  />
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label htmlFor="firstname" className="label-label">
+                    First name
+                  </label>
+                  <br />
+                  <input
+                    id="firstname"
+                    className="form-control"
+                    type="text"
+                    value={formState.patientfirstname}
+                    name="patientfirstname"
+                    placeholder="first name..."
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                  />
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label htmlFor="lastname" className="label-label">
+                    Last name
+                  </label>
+                  <br />
+                  <input
+                    id="lastname"
+                    className="form-control"
+                    type="text"
+                    name="patientlastname"
+                    value={formState.patientlastname}
+                    placeholder="last name..."
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                  />
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label htmlFor="address" className="label-label">
+                    Address
+                  </label>
+                  <br />
+                  <input
+                    id="address"
+                    className="form-control"
+                    value={formState.patientaddress}
+                    onChange={(e) => handleChange(e)}
+                    type="text"
+                    name="patientaddress"
+                    placeholder="address..."
+                  />
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label htmlFor="city" className="label-label">
+                    City
+                  </label>{" "}
+                  <br />
+                  <input
+                    id="city"
+                    className="form-control"
+                    value={formState.patientcity}
+                    type="text"
+                    name="patientcity"
+                    onChange={(e) => handleChange(e)}
+                    placeholder="enter city..."
+                  />
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label htmlFor="myId" className="label-label">
+                    Select a state
+                  </label>{" "}
+                  <br />
+                  <SelectUSState
+                    id="myId"
+                    className="myClassName"
+                    name="patientstate"
+                    onChange={setNewValue}
+                  />
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label htmlFor="zip" className="label-label">
+                    Zip code
+                  </label>{" "}
+                  <br />
+                  <input
+                    id="zip"
+                    className="form-control"
+                    name="patientzip"
+                    value={formState.patientzip}
+                    onChange={(e) => handleChange(e)}
+                    type="text"
+                    placeholder="zip code..."
+                  />
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2">
+                  <label htmlFor="phone" className="label-label">
+                    Phone number
+                  </label>{" "}
+                  <br />
+                  <div>
+                    <PatternFormat
+                      id="phone"
+                      className="phone-update mb-5"
+                      format="(###) ### ####"
+                      allowEmptyFormatting
+                      mask="_"
+                      name="patientnumber"
+                      onValueChange={(values, sourceappInfo) => {
+                        setPatientNumber(values.formattedValue);
+                        setError("");
+                        setFormState({
+                          ...formState,
+                          patientnumber: values.formattedValue,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+                <br />
+                <div className="col-lg-12 col-sm-12 d-flex justify-content-center mb-4">
+                  {error && <ErrorComponent message={error} />}
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2 d-flex justify-content-center">
+                  <Button
+                    className="btn button-profile bg-black text-light"
+                    onClick={(e) => handleFormSubmit(e)}
+                    type="submit"
+                    disabled={loading}
+                    style={{
+                      width: "100%",
+                      fontWeight: "200",
+                      letterSpacing: "2px",
+                    }}
+                  >
+                    {loading ? <ButtonSpinner /> : <>Submit</>}
+                  </Button>
+                </div>
+                <div className="col-lg-6 col-sm-12 p-2 d-flex justify-content-center">
+                  <Button
+                    className="btn button-profile bg-transparent"
+                    onClick={(e) => {
+                      setFormState(
+                        {
+                          username: appInfo.username,
+                          patientemail: appInfo.email,
+                          patientState: "",
+                          patientnumber: "",
+                          patientfirstname: "",
+                          patientgender: "",
+                          patientaddress: "",
+                          patientlastname: "",
+                          patientcity: "",
+                          birthdate: "",
+                          patientzip: "",
+                        },
+                        setLoading(false),
+                        setError(""),
+                        setPatientGender(""),
+                        setPatientNumber(""),
+                        setNewValue(""),
+                        navigate("/Dashboard")
+                      );
+                    }}
+                    type="button"
+                    style={{
+                      width: "100%",
+                      fontWeight: "200",
+                      letterSpacing: "2px",
+                    }}
+                  >
+                    cancel
+                  </Button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 };

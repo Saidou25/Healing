@@ -59,7 +59,7 @@ const useAddBooking = (appInformation) => {
     } catch (err) {
       setErrorAddingBooking(err.message);
     } finally {
-      setSuccessAddingBooking("success booking a date");
+      setSuccessAddingBooking(`Your have an appointment on ${appointmentString}.`);
       setErrorAddingBooking("");
      
       setLoading(false);

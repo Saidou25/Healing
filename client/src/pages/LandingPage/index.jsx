@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Auth from "../../utils/auth";
+import authServiceInstance from "../../utils/auth";
 import "./index.css";
 
 const LandingPage = () => {
@@ -24,7 +24,7 @@ const LandingPage = () => {
         </div>
         <div className="col-12 landing-column mt-4">
           <NavLink
-            to={Auth.loggedIn() ? "/Dashboard" : "/About"}
+            to={authServiceInstance.loggedIn() ? "/Dashboard" : "/About"}
             className="landing-item-hilight"
           >
             Site

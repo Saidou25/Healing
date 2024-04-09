@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Footer from "../../components/Footer";
 import ButtonSpinner from "../../components/ButtonSpinner";
-import Auth from "../../utils/auth";
+import authServiceInstance from "../../utils/auth";
 import Success from "../../components/Success";
 import ErrorComponent from "../../components/ErrorComponent";
 import Button from "../../components/Button";
@@ -65,10 +65,10 @@ const Signup = () => {
         setError("");
         setErrorHook("");
         setTimeout(() => {
-          Auth.login(data.addUser.token);
+          authServiceInstance.login(data.addUser.token);
           setConfirm(false);
           navigate("/Dashboard");
-        }, 2000);
+        }, 2500);
       }
     } catch (error) {
       setErrorHook(error.message);

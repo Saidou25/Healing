@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Button from "../../components/Button";
-import Auth from "../../utils/auth";
+import authServiceInstance from "../../utils/auth";
 import Footer from "../../components/Footer";
 import ButtonSpinner from "../../components/ButtonSpinner";
 import Success from "../../components/Success";
@@ -54,7 +54,7 @@ const Login = () => {
         variables: { email: formState.email, password: formState.password },
       });
       if (data) {
-        Auth.login(data.login.token);
+        authServiceInstance.login(data.login.token);
         setConfirm(true);
         setLoading(false);
         setError("");
@@ -62,7 +62,7 @@ const Login = () => {
         setTimeout(() => {
           setConfirm(false);
           navigate("/Dashboard");
-        }, 2000);
+        }, 2500);
       }
     } catch (error) {
       setErrorHook(error.message);

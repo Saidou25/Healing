@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Auth from "../../utils/auth";
+import authServiceInstance from "../../utils/auth";
 import "./index.css";
 
 const SideMenu = () => {
   const logout = () => {
-    Auth.logout();
+    authServiceInstance.logout();
   };
 
   return (
@@ -48,7 +48,7 @@ const SideMenu = () => {
               Menu
             </h5>
           </div>
-          {Auth.loggedIn() && (
+          {authServiceInstance.loggedIn() && (
             <div className="col-6 col-top">
               <NavLink
                 className="profile-icon-side d-flex justify-content-end align-items-center mb-2 p-3"
@@ -69,7 +69,7 @@ const SideMenu = () => {
                     about
                   </NavLink>
                 </li>
-                {Auth.loggedIn() && (
+                {authServiceInstance.loggedIn() && (
                   <>
                     <li className="col-12 col-items mt-4 pb-4">
                       <NavLink className="nav-item-side fs-3" to="/Book">
@@ -88,7 +88,7 @@ const SideMenu = () => {
                     </li>
                   </>
                 )}
-                {Auth.loggedIn() ? (
+                {authServiceInstance.loggedIn() ? (
                   <li className="col-12 col-items mt-4 pb-4">
                     <NavLink
                       className="btn-logout nav-item-side fs-3"

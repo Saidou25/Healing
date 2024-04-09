@@ -121,7 +121,7 @@ const UpdateMyProfileForm = (props) => {
       setTimeout(() => {
         setShowSuccess(false);
         navigate(showDashboardMediaNav ? "/Dashboard/Profile" : "/Profile");
-      }, 2000);
+      }, 2500);
     }
   };
 

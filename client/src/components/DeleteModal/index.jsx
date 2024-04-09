@@ -5,7 +5,7 @@ import {
   DELETE_PROFILE,
   DELETE_BOOKINGDATE,
 } from "../../utils/mutations";
-import Auth from "../../utils/auth";
+import authServiceInstance from "../../utils/auth";
 import Success from "../Success";
 import ButtonSpinner from "../ButtonSpinner";
 import "./index.css";
@@ -20,7 +20,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
   const [deleteBookingdate] = useMutation(DELETE_BOOKINGDATE);
 
   const logout = () => {
-    Auth.logout();
+    authServiceInstance.logout();
   };
 
   const deleteAll = async () => {

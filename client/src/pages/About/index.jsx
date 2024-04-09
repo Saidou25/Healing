@@ -5,7 +5,7 @@ import nurseLady from "../../assets/images/nurseLady.jpeg";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import useMonitorWidth from "../Dashboard/useMonitorWidth";
-import Auth from "../../utils/auth";
+import authServiceInstance from "../../utils/auth";
 import "./index.css";
 
 const About = () => {
@@ -15,7 +15,7 @@ const About = () => {
 
   useEffect(() => {
     const urlVal = window.location.pathname;
-    if (urlVal.includes("/Dashboard/About") && Auth.loggedIn()) {
+    if (urlVal.includes("/Dashboard/About") && authServiceInstance.loggedIn()) {
       setMediaAbout(true);
     }
   }, []);

@@ -8,7 +8,6 @@ const useDeletReview = (deleteReviewData) => {
   const [error, setError] = useState("");
   const [successDeletingReview, setSuccessDeletingReview] = useState("");
 
-
   const [deleteReview] = useMutation(DELETE_REVIEW, {
     variables: { id: deleteReviewData },
     update(cache, { data: { deleteReview } }) {
@@ -23,7 +22,7 @@ const useDeletReview = (deleteReviewData) => {
           },
         });
       } catch (error) {
-        console.error(error);
+        setError(error.message);
       }
       // update me object's cache with deleted review
       const { me } = cache.readQuery({ query: QUERY_ME });
@@ -54,12 +53,11 @@ const useDeletReview = (deleteReviewData) => {
       setLoading(false);
     } finally {
       setSuccessDeletingReview("Review was successfully deleted");
-      // setDeleteReviewId(deleteReviewData);
       setError("");
       setLoading(false);
-      // setTimeout(() => {
-      //     setSuccessDeletingReview("");
-      //   }, [2000]);
+      setTimeout(() => {
+        setSuccessDeletingReview("");
+      }, [2500]);
     }
   }, [deleteReviewData, deleteReview]);
 

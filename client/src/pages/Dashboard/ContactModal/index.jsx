@@ -51,7 +51,7 @@ const ContactModal = () => {
       setLoading(false);
       setTimeout(() => {
         sendMessage("");
-      }, 2000);
+      }, 2500);
     }
   }, [ok]);
 

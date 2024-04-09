@@ -1,16 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Auth from "../../utils/auth";
+import authServiceInstance from "../../utils/auth";
 import SideMenu from "../../components/SideMenu";
 
 const DashboardNav = () => {
   const logout = (event) => {
     event.preventDefault();
-    Auth.logout();
+    authServiceInstance.logout();
     console.log("logout success!");
   };
 
-  if (Auth.loggedIn()) {
+  if (authServiceInstance.loggedIn()) {
     return (
       <>
         <main className="container-fluid g-0">

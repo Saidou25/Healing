@@ -8,20 +8,20 @@ const resolvers = {
       return await User.find()
         .populate("profile")
         .populate("bookingdates")
-        .populate("reviews")
+        .populate("reviews");
     },
     user: async (_, args) => {
       return await User.findOne({ id: args._id })
         .populate("profile")
         .populate("bookingdates")
-        .populate("reviews")
+        .populate("reviews");
     },
     me: async (_, _args, context) => {
       if (context.user) {
         return await User.findOne({ _id: context.user._id })
           .populate("profile")
           .populate("bookingdates")
-          .populate("reviews")
+          .populate("reviews");
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -84,7 +84,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-   
+
     addProfile: async (_, args, context) => {
       if (context.user) {
         const profile = await Profile.create({
@@ -132,7 +132,7 @@ const resolvers = {
         {
           username: args.username,
           patientlastname: args.patientlastname,
-          patientfirstname: args.  patientfirstname,
+          patientfirstname: args.patientfirstname,
           patientcity: args.patientcity,
           patientzip: args.patientzip,
           patientState: args.patientState,
