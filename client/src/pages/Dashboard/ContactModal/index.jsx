@@ -118,8 +118,9 @@ const ContactModal = () => {
                       onChange={handleChange}
                       placeholder="Please type your message..."
                     />
+                    <br />
                     {error && <ErrorComponent message={error} />}
-                    <div className="row mt-2">
+                    <div className="row">
                       <div className="col-6">
                         <button
                           className="contact-me-button text-light bg-transparent btn"
@@ -137,7 +138,7 @@ const ContactModal = () => {
                       </div>
                       <div className="col-6">
                         <button
-                          className="contact-me-button btn bg-black"
+                          className="contact-me-button btn bg-black text-light"
                           type="submit"
                           disabled={loading}
                         >

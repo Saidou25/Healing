@@ -45,7 +45,6 @@ const AppointmentReview = () => {
   };
 
   useEffect(() => {
-    
     if (!successAddingBooking) {
       return;
     } else {
@@ -108,14 +107,22 @@ const AppointmentReview = () => {
   }
 
   return (
-    <div className="container-fluid cont-review mt-5">
-      <div className="card global-card card-app-review text-light">
-        {finalize ? (
-          <Success message="Thank you, lets head to your dashboard now." />
-        ) : (
-          <>
+    <div
+      className="container-fluid cont-review mt-5"
+      style={{ margin: "auto", display: "flex", alignItems: "center" }}
+    >
+      {finalize ? (
+        <div className="card bg-transparent" style={{ margin: "auto" }}>
+          <Success message={successAddingBooking} />
+        </div>
+      ) : (
+        <>
+          <div className="card global-card card-app-review text-light">
             <div className="card-header app-review-header">
-              <h5 className="header-text bg-black text-light my-3 p-4">
+              <h5
+                className="header-text bg-black text-light my-3 p-4"
+                style={{ fontWeight: "300" }}
+              >
                 Please review your appointment information
               </h5>
             </div>
@@ -218,9 +225,9 @@ const AppointmentReview = () => {
                 cancel
               </button>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

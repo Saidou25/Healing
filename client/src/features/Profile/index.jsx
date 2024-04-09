@@ -131,13 +131,13 @@ const Profile = () => {
                     to={"/UpdateProfile"}
                     state={{ userProfile: me.profile }}
                   >
-                    <button className="btn mt-5 btn-info rounded-0">
+                    <button className="btn mt-5 btn-info">
                       update
                     </button>
                   </NavLink>
                 </>
               </div>
-              <div className="col-12 col-profile my-2">
+              <div className="col-12 col-profile">
                 <DeleteModal
                   userProfile={me.profile}
                   userId={me._id}

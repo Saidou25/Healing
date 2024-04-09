@@ -74,7 +74,7 @@ const ReviewForm = ({ username, today }) => {
           rating: "",
         });
         navigate("/Dashboard");
-      }, 2000);
+      }, 2500);
     }
   }, [successAddingReview, today, username, navigate]);
 
@@ -90,11 +90,13 @@ const ReviewForm = ({ username, today }) => {
     <>
       <main className="row mt-5">
         <div className="col-12 review-form">
-          <div className="card global-card card-card">
-            {confirm ? (
+          {confirm ? (
+            <div className="card bg-transparent" style={{ margin: "auto" }}>
               <Success message={successAddingReview} />
-            ) : (
-              <>
+            </div>
+          ) : (
+            <>
+              <div className="card global-card p-2">
                 <h4 className="card-header-review-title bg-black text-light">
                   review
                 </h4>
@@ -156,7 +158,7 @@ const ReviewForm = ({ username, today }) => {
                       {error && <ErrorComponent message={error} />}
                     </div>
                     <Button
-                      className="btn btn-block rounded-0 btn-info mt-2"
+                      className="btn btn-block btn-info mt-2"
                       type="submit"
                       onClick={handleSubmit}
                       disabled={loadingAddingReview}
@@ -165,9 +167,9 @@ const ReviewForm = ({ username, today }) => {
                     </Button>
                   </form>
                 </div>
-              </>
-            )}
-          </div>
+              </div>
+            </>
+          )}
         </div>
       </main>
     </>

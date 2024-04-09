@@ -5,7 +5,8 @@ const ErrorComponent = ({ message }) => {
   return (
     <>
       <div className="row review-list p-2 error-comp">
-        <h4 className="col-12 d-flex justify-content-center">
+        <h4 className="col-12 d-flex justify-content-center text-light"
+        style={{ fontWeight: "300" }}>
           Error!
         </h4>
         <p

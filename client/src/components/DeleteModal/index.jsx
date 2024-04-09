@@ -60,7 +60,7 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
       setTimeout(() => {
         setSuccessMessage("");
         logout();
-      }, 2000);
+      }, 2500);
     }
   };
 
@@ -71,10 +71,10 @@ const DeleteModal = ({ userId, myAppointments, profileId }) => {
 
   return (
     <>
-      <div className="d-flex top-level pb-5">
+      <div className="d-flex top-level">
         <button
           type="button"
-          className="btn btn-danger rounded-0 my-5"
+          className="btn btn-danger mb-5 p-2"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
         >

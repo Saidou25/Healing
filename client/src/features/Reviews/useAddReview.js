@@ -50,7 +50,7 @@ const useAddReview = (addReviewData) => {
       setError("");
       setTimeout(() => {
         setSuccessAddingReview("");
-      }, [2000]);
+      }, [2500]);
     }
   }, [addReviewData, addReview]);
 
