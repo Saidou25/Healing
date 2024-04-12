@@ -6,7 +6,7 @@ import "./index.css";
 
 const Footer = () => {
   return (
-    <footer className="main-footer">
+    <footer className="main-footer mt-5">
       <div
         className={
           auth.loggedIn()
