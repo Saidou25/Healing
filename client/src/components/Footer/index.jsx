@@ -1,12 +1,19 @@
 import React from "react";
 import { FaEnvelope, FaPhone } from "react-icons/fa";
+import auth from "../../utils/auth";
 import logo from "../../assets/images/github-white.png";
 import "./index.css";
 
 const Footer = () => {
   return (
-    <footer className="main-footer">
-      <div className="row footer bg-black text-white">
+    <footer className="main-footer py-4">
+      <div
+        className={
+          auth.loggedIn()
+            ? "row loggedInFooter bg-black text-white pb-3"
+            : "row footer bg-black text-white pb-3"
+        }
+      >
         <div className="col-12 col-footer text-footer">
           <FaEnvelope className="icon m-2" />
           healing@demo.com

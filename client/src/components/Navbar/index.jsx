@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import authServiceInstance from "../../utils/auth";
+import auth from "../../utils/auth";
 import useMonitorWidth from "../../pages/Dashboard/useMonitorWidth";
 import "./index.css";
 
@@ -8,10 +8,10 @@ const Navbar = () => {
   const { showDashboardMediaNav } = useMonitorWidth();
 
   const logout = () => {
-    authServiceInstance.logout();
+    auth.logout();
   };
 
-  if (authServiceInstance.loggedIn()) {
+  if (auth.loggedIn()) {
     return (
       <>
         {showDashboardMediaNav ? null : (

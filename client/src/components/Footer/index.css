@@ -1,37 +1,45 @@
 .footer {
-    margin-top: 5%;
-    align-items: center;
-    padding-bottom: 1%;
+  margin-top: 5%;
+  align-items: center;
+  padding-bottom: 1%;
+  width: 100% !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  width: 100% !important;
 }
 .text-footer {
-    margin-top: 2%;
-    text-align: center;
+  margin-top: 2%;
+  text-align: center;
 }
 .col-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .number {
-    align-items: center;
+  align-items: center;
 }
 .github {
-    display: flex;
-    width: 10%;
-    margin: auto;
-    aspect-ratio: 1 / 1;
-    background-position: cover;
+  display: flex;
+  width: 10%;
+  margin: auto;
+  aspect-ratio: 1 / 1;
+  background-position: cover;
 }
 
 @media screen and (max-width: 414px) {
-   
-    .footer {
-        margin-top: 3%;
-        padding: 4%;
-        margin-bottom: 5% !important;
-        width: 90% !important;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    
+  .loggedInFooter {
+    margin-top: 3%;
+    padding: 4%;
+    margin-bottom: 5%;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .footer {
+    margin-top: 3%;
+    width: 95% !important;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

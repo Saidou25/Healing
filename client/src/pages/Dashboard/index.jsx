@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import { Navigate, Outlet } from "react-router-dom";
@@ -19,19 +19,16 @@ const Dashboard = () => {
   const [isShown, setIsShown] = useState(false);
   const [myAppointments, setMyAppointments] = useState("");
   const [futureAppointments, setFutureAppointments] = useState("");
+  // const [mediaNav, setMediaNav] = useState(false);
+  // const [scrollPosition, setScrollPosition] = useState({
+  //   scrollTop: 0,
+  // });
+  const scrollDemoRef = useRef(null);
 
   const { data: meData, loading } = useQuery(QUERY_ME);
   const username = me.username;
 
   const { showDashboardMediaNav } = useMonitorWidth();
-
-  useEffect(() => {
-    if (meData) {
-      const myData = meData?.me || [];
-      setMe(myData);
-      setMyAppointments(myData.bookingdates);
-    }
-  }, [meData]);
 
   const date = new Date();
   const todaysDate = date.getDate();
@@ -57,6 +54,18 @@ const Dashboard = () => {
 
   const today = `${newMonth}/${newDay}/${todaysYear}`;
 
+  // const handleScroll = () => {
+  //   if (scrollDemoRef?.current) {
+  //     const { scrollTop } = scrollDemoRef.current;
+  //     // setScrollPosition({ scrollTop });
+  //     if (scrollTop >= 124) {
+  //       setMediaNav(true);
+  //     }
+  //   } else {
+  //     setMediaNav(false);
+  //   }
+  // };
+
   useEffect(() => {
     if (myAppointments) {
       const myFutureAppointments = myAppointments?.filter(
@@ -73,6 +82,14 @@ const Dashboard = () => {
     }
   };
 
+  useEffect(() => {
+    if (meData) {
+      const myData = meData?.me || [];
+      setMe(myData);
+      setMyAppointments(myData.bookingdates);
+    }
+  }, [meData]);
+
   if (!auth.loggedIn()) {
     return <Navigate to="/" replace />;
   }
@@ -82,10 +99,18 @@ const Dashboard = () => {
 
   if (auth.loggedIn()) {
     return (
-      <>
+      <div className="dash"
+        // ref={scrollDemoRef}
+        // onScroll={handleScroll}
+        // style={{
+        //   height: "100vh",
+        //   width: "100vw",
+        //   overflow: "auto",
+        // }}
+      >
         <Navbar />
-        {showDashboardMediaNav ? (<DashboardMediaNav />) : <DashboardNav />}
-        <main className="dashboard-main">
+        {showDashboardMediaNav ? <DashboardMediaNav /> : <DashboardNav />}
+        <div className="dashboard-main">
           <div className="pt-5">
             <Outlet />
           </div>
@@ -101,8 +126,9 @@ const Dashboard = () => {
                 <div className="col-lg-4 col-sm-12 my-5 right-window dashb-border py-0">
                   <div className="card suggestion p-3 text-light">
                     <br />
-                    <h4 className="note mb-2"
-                     style={{ fontWeight: "200" }}>Notes</h4>
+                    <h4 className="note mb-2" style={{ fontWeight: "200" }}>
+                      Notes
+                    </h4>
                     <br />
                     <p>
                       We suggest arriving 15 minutes prior to your appointment.{" "}
@@ -130,8 +156,10 @@ const Dashboard = () => {
               <div className="col-lg-4 col-sm-12 right-window dashb-border mb-5">
                 <div className="row top-box">
                   <div className="col-12">
-                    <h3 className="write-review-title pt-5 text-light"
-                    style={{ fontWeight: "200" }}>
+                    <h3
+                      className="write-review-title pt-5 text-light"
+                      style={{ fontWeight: "200" }}
+                    >
                       Write a review
                     </h3>
                   </div>
@@ -151,9 +179,9 @@ const Dashboard = () => {
               </div>
             </div>
           </>
-        </main>
+        </div>
         <Footer />
-      </>
+      </div>
     );
   }
 };

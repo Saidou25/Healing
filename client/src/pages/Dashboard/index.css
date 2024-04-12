@@ -5,6 +5,7 @@
   background-color: rgba(0, 1, 1, 0.8);
   margin-top: 5%;
   padding: 5%;
+  
 }
 
 .row-width,
@@ -24,12 +25,9 @@
   border-left-color: rgb(206, 200, 200);
   border-width: 1px;
 }
-
-
 .fa-bars {
   color: white;
 }
-
 .dashboard-text {
   text-decoration: none;
 }
@@ -62,7 +60,6 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  
 }
 .review-button:hover {
   background-color: rgb(24, 68, 68) !important;
@@ -113,14 +110,36 @@
     padding-right: 0;
     border-right-style: none;
   }
-.right-window {
-  margin: 0 !important;
-  padding: 0 !important;
-}
+  .right-window {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
   .write-review {
     padding-left: 0;
   }
   .review-row {
     width: 100% !important;
   }
+  .media-nav-fixed {
+    position: sticky !important;
+    top: 0 !important;
+    overflow: scroll;
+    z-index: 1;
+    height: 45px !important;
+    background-color: rgba(0, 1, 1, 0.9);
+    display: flex;
+    justify-content: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* font-size: 1.2rem;
+    font-weight: 300; */
+  }
+  /* .bookingnav {
+    background-color: rgba(0, 1, 1, 0.8);
+    margin-bottom: 15% !important;
+    margin-top: 7%;
+    overflow-x: scroll;
+    margin: auto;
+    padding-top: 2% !important;
+  } */
 }

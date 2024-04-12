@@ -170,7 +170,9 @@ const Login = () => {
           </div>
         </div>
       )}
-      <Footer />
+      <div style={{ width: "100%" }}>
+        <Footer />
+      </div>
     </>
   );
 };

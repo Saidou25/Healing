@@ -20,9 +20,9 @@ const DashboardMediaNav = () => {
           Healing
         </NavLink>
       </div>
-      <div className="bookingnav">
+      <div className="media-nav-fixed">
         <ul
-          className="my-ul p-0 text-light"
+          className="p-0 m-0 text-light"
           style={{
             display: "flex",
             alignItems: "center",
@@ -32,7 +32,7 @@ const DashboardMediaNav = () => {
           <li className="media-nav">
             <NavLink
               to="AppointmentHistory"
-              className="dashboard-text  text-white d-flex align-items-center mx-2"
+              className="dashboard-text text-white d-flex align-items-center mx-2"
             >
               history
             </NavLink>
