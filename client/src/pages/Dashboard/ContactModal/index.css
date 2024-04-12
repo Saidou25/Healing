@@ -21,13 +21,15 @@
 .message-btn-modal {
   text-transform: none;
   letter-spacing: 1px;
-  font-weight: 200 !important;
-  font-size: 1.2rem !important;
+  font-weight: 200;
+  font-size: 1.2rem;
 }
 .message-btn-modal:hover {
   text-transform: none;
   transition: 0.3s;
+  font-size: 2rem;
 }
+
 .message-textarea {
   min-height: 100px !important;
   font-style: oblique;

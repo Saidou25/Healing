@@ -6,6 +6,9 @@
 .media-nav {
   width: 100px !important;
   /* padding: 3% !important; */
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
   padding-right: 2%;
   padding-left: 2%;
   margin: auto !important;
@@ -29,9 +32,6 @@
   justify-content: center;
   align-items: center;
 }
-.message-btn-modal {
-  font-style: normal !important;
-}
 .modal {
   background: rgba(6, 6, 6, 0.7) !important;
   backdrop-filter: blur(10px);
@@ -45,17 +45,17 @@
     font-size: 1rem;
   }
   .bookingnav {
-    background-color: rgba(0, 1, 1, 0.8);
+    background-color: rgba(0, 1, 1, 1) !important;
     margin-bottom: 15% !important;
     margin-top: 7%;
     overflow-x: scroll;
     margin: auto;
     padding-top: 2% !important;
+    display: flex;
   }
   .media-nav {
     width: 100px !important;
-    padding-right: 2;
-    padding-left: 2;
-    margin: auto !important;
+    padding-right: 0;
+    padding-left: 0;
   }
 }

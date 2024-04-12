@@ -6,12 +6,12 @@ import "./index.css";
 
 const Footer = () => {
   return (
-    <footer className="main-footer py-4">
+    <footer className="main-footer">
       <div
         className={
           auth.loggedIn()
             ? "row loggedInFooter bg-black text-white pb-3"
-            : "row footer bg-black text-white pb-3"
+            : "row footer bg-black text-white mb-3"
         }
       >
         <div className="col-12 col-footer text-footer">

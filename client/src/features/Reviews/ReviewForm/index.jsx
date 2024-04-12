@@ -96,11 +96,11 @@ const ReviewForm = ({ username, today }) => {
             </div>
           ) : (
             <>
-              <div className="card global-card p-2">
-                <h4 className="card-header-review-title bg-black text-light">
+              <div className="card global-card">
+                <h4 className="card-header-review-title bg-black text-light m-2">
                   review
                 </h4>
-                <div className="card-body text-light">
+                <div className="card-body text-light p-2">
                   <form>
                     <label
                       htmlFor="the-title"

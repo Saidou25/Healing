@@ -19,10 +19,10 @@ const Dashboard = () => {
   const [isShown, setIsShown] = useState(false);
   const [myAppointments, setMyAppointments] = useState("");
   const [futureAppointments, setFutureAppointments] = useState("");
-  // const [mediaNav, setMediaNav] = useState(false);
-  // const [scrollPosition, setScrollPosition] = useState({
-  //   scrollTop: 0,
-  // });
+  const [mediaNav, setMediaNav] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState({
+    scrollTop: 0,
+  });
   const scrollDemoRef = useRef(null);
 
   const { data: meData, loading } = useQuery(QUERY_ME);
@@ -54,17 +54,17 @@ const Dashboard = () => {
 
   const today = `${newMonth}/${newDay}/${todaysYear}`;
 
-  // const handleScroll = () => {
-  //   if (scrollDemoRef?.current) {
-  //     const { scrollTop } = scrollDemoRef.current;
-  //     // setScrollPosition({ scrollTop });
-  //     if (scrollTop >= 124) {
-  //       setMediaNav(true);
-  //     }
-  //   } else {
-  //     setMediaNav(false);
-  //   }
-  // };
+  const handleScroll = () => {
+    if (scrollDemoRef?.current) {
+      const { scrollTop } = scrollDemoRef.current;
+      // setScrollPosition({ scrollTop });
+      if (scrollTop >= 124) {
+        setMediaNav(true);
+      }
+    } else {
+      setMediaNav(false);
+    }
+  };
 
   useEffect(() => {
     if (myAppointments) {
@@ -99,14 +99,14 @@ const Dashboard = () => {
 
   if (auth.loggedIn()) {
     return (
-      <div className="dash"
-        // ref={scrollDemoRef}
-        // onScroll={handleScroll}
-        // style={{
-        //   height: "100vh",
-        //   width: "100vw",
-        //   overflow: "auto",
-        // }}
+      <div
+        ref={scrollDemoRef}
+        onScroll={handleScroll}
+        style={{
+          height: "100vh",
+          width: "100vw",
+          overflow: "auto",
+        }}
       >
         <Navbar />
         {showDashboardMediaNav ? <DashboardMediaNav /> : <DashboardNav />}

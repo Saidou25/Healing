@@ -20,7 +20,7 @@ const DashboardMediaNav = () => {
           Healing
         </NavLink>
       </div>
-      <div className="media-nav-fixed">
+      <div className="bookingnav media-nav-fixed">
         <ul
           className="p-0 m-0 text-light"
           style={{

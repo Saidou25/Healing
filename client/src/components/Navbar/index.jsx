@@ -55,7 +55,6 @@ const Navbar = () => {
   }
 
   return (
-    // <div className="main-nav">
     <nav className="d-flex title-nav">
       <div className="landing-title g-0">
         <NavLink className="landing text-light" to="/">
@@ -80,7 +79,6 @@ const Navbar = () => {
         </li>
       </ul>
     </nav>
-    // </div>
   );
 };
 
