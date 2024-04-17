@@ -78,7 +78,7 @@ const Signup = () => {
   };
 
   return (
-    <>
+    <div className="media">
       <div className="go-back d-flex justify-content-center">
         <NavLink to="/">
           <Button
@@ -197,10 +197,10 @@ const Signup = () => {
           </div>
         </div>
       )}
-      <div className="footer-signup">
+      <div className="footer-container">
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 export default Signup;

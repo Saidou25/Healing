@@ -72,7 +72,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="media">
       <div className="go-back d-flex justify-content-center">
         <NavLink to="/">
           <Button
@@ -170,10 +170,10 @@ const Login = () => {
           </div>
         </div>
       )}
-      <div style={{ width: "100%" }}>
+      <div className="footer-container-login">
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 export default Login;

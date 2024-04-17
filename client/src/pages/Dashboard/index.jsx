@@ -103,9 +103,10 @@ const Dashboard = () => {
         ref={scrollDemoRef}
         onScroll={handleScroll}
         style={{
-          height: "100vh",
+          minHeight: "100vh",
           width: "100vw",
           overflow: "auto",
+          position: "relative",
         }}
       >
         <Navbar />
@@ -180,7 +181,9 @@ const Dashboard = () => {
             </div>
           </>
         </div>
+        <div style={{ width: "100%", position: "absolute", bottom: "0",   marginTop: "5%" }}>
         <Footer />
+      </div>
       </div>
     );
   }

@@ -11,7 +11,7 @@ const Footer = () => {
         className={
           auth.loggedIn()
             ? "row loggedInFooter bg-black text-white pb-3"
-            : "row footer bg-black text-white mb-3"
+            : "row footer bg-black text-white"
         }
       >
         <div className="col-12 col-footer text-footer">

@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 #root {
   position: fixed;
@@ -25,8 +26,7 @@ body {
   color: white;
 }
 #root .label-label {
- display: flex;
- 
+  display: flex;
 }
 
 #root .log-form {

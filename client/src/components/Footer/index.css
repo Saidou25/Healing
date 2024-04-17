@@ -1,45 +1,47 @@
 .footer {
-    margin-top: 5%;
-    align-items: center;
-    padding-bottom: 1%;
+  margin-top: 5%;
+  align-items: center;
+  padding-bottom: 1%;
+  /* background-color: rgb(255, 0, 170) !important; */
+  width: 100%;
 }
 .text-footer {
-    margin-top: 2%;
-    text-align: center;
+  margin-top: 2%;
+  text-align: center;
 }
 .col-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .number {
-    align-items: center;
+  align-items: center;
 }
 .github {
-    display: flex;
-    width: 10%;
-    margin: auto;
-    aspect-ratio: 1 / 1;
-    background-position: cover;
+  display: flex;
+  width: 10%;
+  margin: auto;
+  aspect-ratio: 1 / 1;
+  background-position: cover;
 }
 
 @media screen and (max-width: 414px) {
-   
-    .loggedInFooter {
-        margin-top: 3%;
-        padding: 4%;
-        margin-bottom: 5%;
-        width: 90%;
-        margin-right: auto;
-        margin-left: auto;
+    .main-footer {
+        margin-top: 5% !important;
     }
-    .footer {
-        padding: 4%;
-        margin-top: 3%;
-        width: 95% !important;
-        margin-right: auto;
-        margin-left: auto;
-        /* background-color: blue !important; */
-    }
-    
+  .loggedInFooter {
+    margin-top: 3%;
+    padding: 4%;
+    margin-bottom: 5%;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .footer {
+    margin-bottom: 3%;
+    margin-top: 3%;
+    width: 95% !important;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Navigate, Outlet } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { FaEnvelope, FaPhone, FaIdBadge, FaHome } from "react-icons/fa";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
