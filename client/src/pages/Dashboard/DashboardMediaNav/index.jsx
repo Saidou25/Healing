@@ -1,11 +1,10 @@
 import { React } from "react";
 import { NavLink } from "react-router-dom";
 import ContactModal from "../ContactModal";
-import authServiceInstance from "../../../utils/auth"
-import "../DashboardNav/index.css"
+import authServiceInstance from "../../../utils/auth";
+import "../DashboardNav/index.css";
 
 const DashboardMediaNav = () => {
-  
   return (
     <>
       <div className="healing-title my-4">
@@ -21,14 +20,7 @@ const DashboardMediaNav = () => {
         </NavLink>
       </div>
       <div className="bookingnav media-nav-fixed">
-        <ul
-          className="p-0 m-0 text-light"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            listStyleType: "none",
-          }}
-        >
+        <ul className="medianav-ul text-light">
           <li className="media-nav">
             <NavLink
               to="AppointmentHistory"
@@ -38,10 +30,7 @@ const DashboardMediaNav = () => {
             </NavLink>
           </li>
           <li className="media-nav">
-            <NavLink
-              to="MyReviews"
-              className="dashboard-text text-white px-2"
-            >
+            <NavLink to="MyReviews" className="dashboard-text text-white px-2">
               reviews
             </NavLink>
           </li>
@@ -54,10 +43,7 @@ const DashboardMediaNav = () => {
             </NavLink>
           </li>
           <li className="media-nav">
-            <NavLink
-              to="/Dashboard"
-              className="dashboard-text text-white px-2"
-            >
+            <NavLink to="/Dashboard" className="dashboard-text text-white px-2">
               home
             </NavLink>
           </li>
@@ -82,9 +68,11 @@ const DashboardMediaNav = () => {
           </li>
           <li className="media-nav">
             <button
-            style={{
-              background: "transparent", fontWeight: "200", borderStyle: "none"
-            }}
+              style={{
+                background: "transparent",
+                fontWeight: "200",
+                borderStyle: "none",
+              }}
               to="/Dashboard/Profile"
               className="dashboard-text  text-white px-2"
               onClick={() => authServiceInstance.logout()}

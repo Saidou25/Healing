@@ -137,7 +137,7 @@ const Book = () => {
   }
 
   return (
-    <>
+    <div className="media">
       {showDashboardMediaNav ? null : <Navbar />}
       <>
         {showNavNav ? (
@@ -159,10 +159,16 @@ const Book = () => {
           </>
         )}
       </>
-      <div className="footer-appointment">
+      {/* <div
+        className={
+          window.location.pathname.includes("/Book/ProfileForm")
+            ? ""
+            : "footer-appointment-book"
+        }
+      > */}
         {showDashboardMediaNav ? null : <Footer />}
-      </div>
-    </>
+      {/* </div> */}
+    </div>
   );
 };
 

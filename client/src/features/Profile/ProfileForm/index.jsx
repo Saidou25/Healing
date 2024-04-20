@@ -100,7 +100,7 @@ const ProfileForm = () => {
       return;
     }
     setError("");
-    navigate("/Dashboard/Book/AppointmentReview", {
+    navigate("/Book/AppointmentReview", {
       state: { formState: formState, appInfo: appInfo },
     });
   };

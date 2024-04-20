@@ -101,9 +101,15 @@
 .btn-submitapp:hover {
   background-color: rgb(223, 128, 80);
 }
-.footer-appointment {
-  clear: both;
+
+@media screen and (max-width: 1500px) {
+  .footer-appointment-book {
+    position: absolute !important;
+    bottom: 0 !important;
+    width: 100%;
+  }
 }
+
 @media screen and (max-width: 870px) {
   .container-appointment {
     margin-top: 5%;

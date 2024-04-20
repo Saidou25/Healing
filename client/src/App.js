@@ -96,7 +96,6 @@ function App() {
            <Route path="Profile" element={<Profile />}>
            <Route path="UpdateProfile" element={<UpdateProfile />} />
            <Route path="UpdateMyProfileForm" element={<UpdateMyProfileForm />} />
-           {/* </Route> */}
            </Route>
            <Route path="Book" element={<Book />}>
            <Route path="BookingSuccess" element={<BookingSuccess />} />

@@ -98,7 +98,7 @@ const MyReviewsList = () => {
                                     className="trash-can"
                                     src={trash}
                                     alt="trash-can"
-                                    height={40}
+                                    height={25}
                                   />
                                 )}
                               </button>
