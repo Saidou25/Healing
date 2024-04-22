@@ -58,13 +58,6 @@
   transition: 0.3s;
   color: white;
 }
-/* @media screen and (max-width: 1490px) {
-  .footer-container-signup {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-} */
 @media screen and (max-width: 800px) {
   .container-signup {
     width: 90%;
