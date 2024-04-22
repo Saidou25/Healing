@@ -27,7 +27,6 @@ const Dashboard = () => {
   const username = me.username;
 
   const { showDashboardMediaNav, vw } = useMonitorWidth();
-  console.log(vw);
 
   const date = new Date();
   const todaysDate = date.getDate();
