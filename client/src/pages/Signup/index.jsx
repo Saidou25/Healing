@@ -197,9 +197,9 @@ const Signup = () => {
           </div>
         </div>
       )}
-      <div className="footer-container-signup">
+      {/* <div className="footer-container-signup"> */}
         <Footer />
-      </div>
+      {/* </div> */}
     </div>
   );
 };
