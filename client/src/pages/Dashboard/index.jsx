@@ -179,9 +179,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        {/* <div className="footer-container-dashboard"> */}
-          <Footer />
-        {/* </div> */}
+        <Footer />
       </div>
     );
   }

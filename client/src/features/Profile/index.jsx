@@ -54,7 +54,7 @@ const Profile = () => {
           </div>
         </div>
         {showNav ? null : (
-          <div style={{ position: "absolute", bottom: "0", width: "100%" }}>
+          <div className="footer-myprofile">
             <Footer />
           </div>
         )}

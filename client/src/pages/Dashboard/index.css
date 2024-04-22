@@ -71,13 +71,6 @@
   transition: 0.3s;
   color: white;
 }
-/* @media screen and (max-width: 1730px) {
-  .footer-container-dashboard {
-    position: absolute !important;
-    bottom: 0 !important;
-    width: 100%;
-  }
-} */
 @media screen and (max-width: 993px) {
   .dashb-border {
     padding-right: 0;
@@ -150,8 +143,5 @@
   }
   .loggedInd {
     color: blue !important;
-  }
-  .footer-container-dashboard {
-    position: relative !important;
   }
 }

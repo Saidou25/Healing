@@ -9,9 +9,7 @@
 .my-profile {
   text-align: center;
 }
-/* .update-navlink {
-  width: 100%;
-} */
+
 .card-header {
   border: 0;
 }
@@ -37,11 +35,7 @@
 .update-profile {
   width: 95%;
 }
-.footer-myprofile {
-  position: fixed !important;
-  bottom: 0 !important;
-  width: 100%;
-}
+
 .error {
   height: 60px;
   display: flex;
@@ -49,6 +43,18 @@
   margin-left: 1%;
 }
 
+.footer-myprofile {
+  position: fixed !important;
+  bottom: 0 !important;
+  width: 100%;
+}
+@media screen and (max-width: 1360px) {
+  .footer-myprofile {
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 100%;
+  }
+  }
 @media screen and (max-width: 414px) {
   .container-profile {
     width: 100% !important;
