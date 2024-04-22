@@ -159,15 +159,16 @@ const Book = () => {
           </>
         )}
       </>
-      {/* <div
+      <div
         className={
           window.location.pathname.includes("/Book/ProfileForm")
             ? ""
             : "footer-appointment-book"
         }
-      > */}
+      >
         {showDashboardMediaNav ? null : <Footer />}
-      {/* </div> */}
+       
+      </div>
     </div>
   );
 };

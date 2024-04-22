@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
@@ -72,7 +72,7 @@ const Login = () => {
   };
 
   return (
-    <div className="media">
+    <div className="media-login">
       <div className="go-back d-flex justify-content-center">
         <NavLink to="/">
           <Button

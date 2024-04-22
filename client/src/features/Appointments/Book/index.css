@@ -6,6 +6,10 @@
   margin-top: 5%;
   padding: 5%;
 }
+.media-book {
+  position: relative;
+  height: 100vh;
+}
 
 .goback-appointment {
   margin-top: 5%;
@@ -102,14 +106,6 @@
   background-color: rgb(223, 128, 80);
 }
 
-@media screen and (max-width: 1500px) {
-  .footer-appointment-book {
-    position: absolute !important;
-    bottom: 0 !important;
-    width: 100%;
-  }
-}
-
 @media screen and (max-width: 870px) {
   .container-appointment {
     margin-top: 5%;
@@ -153,6 +149,7 @@
   .text-container {
     display: none;
   }
+  
 }
 /* for iphone X */
 @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {

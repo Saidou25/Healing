@@ -78,7 +78,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="media">
+    <div className="media-signup">
       <div className="go-back d-flex justify-content-center">
         <NavLink to="/">
           <Button

@@ -1,6 +1,11 @@
 .go-back {
   margin-top: 5%;
 }
+.media-login {
+  position: relative;
+  height: 100vh;
+}
+
 .btn-go-back {
   font-size: 1.2rem;
   text-decoration: none;

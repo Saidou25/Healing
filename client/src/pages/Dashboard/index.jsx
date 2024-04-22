@@ -26,7 +26,8 @@ const Dashboard = () => {
   const { data: meData, loading } = useQuery(QUERY_ME);
   const username = me.username;
 
-  const { showDashboardMediaNav } = useMonitorWidth();
+  const { showDashboardMediaNav, vw } = useMonitorWidth();
+  console.log(vw);
 
   const date = new Date();
   const todaysDate = date.getDate();
@@ -98,8 +99,7 @@ const Dashboard = () => {
   if (auth.loggedIn()) {
     return (
       <div
-      
-        className={auth.loggedIn() ? "logged" : "media"}
+        className={auth.loggedIn() ? "logged" : "media-login"}
         ref={scrollDemoRef}
         onScroll={handleScroll}
         style={{
