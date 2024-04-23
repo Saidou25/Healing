@@ -80,6 +80,7 @@
     margin-left: auto;
     box-shadow: none;
     margin-bottom: 10%;
+    position: relative;
   }
   .login {
     width: 80%;
@@ -87,11 +88,6 @@
     margin-left: auto;
     --bs-card-border-width: 0;
   }
-  .container-login {
-    position: relative;
-  }
-
-  
 }
 @media screen and (max-width: 414px) {
   .container-login {
@@ -110,5 +106,11 @@
   }
   .global-card {
     padding: 0 !important;
+  }
+}
+@media screen and (max-width: 375px) {
+  .footer-container-login {
+    position: relative;
+    padding-bottom: 2% !important;
   }
 }
